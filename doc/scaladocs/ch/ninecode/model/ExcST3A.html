@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcST3A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcST3A</title>
-          <meta name="description" content="ExcST3A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcST3A" />
-          <meta name="keywords" content="ExcST3A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcST3A" />
+          <title>ExcST3A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcST3A</title>
+          <meta name="description" content="ExcST3A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcST3A" />
+          <meta name="keywords" content="ExcST3A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcST3A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,27 +52,27 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Modified IEEE ST3A static excitation system with added speed multiplier.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Maximum AVR output (Efdmax).
-       Typical Value = 6.9.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 1.1.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 1.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 4.83.</p></dd><dt class="param">kj</dt><dd class="cmt"><p>AVR gain (Kj).
-       Typical Value = 200.</p></dd><dt class="param">km</dt><dd class="cmt"><p>Forward gain constant of the inner loop field regulator (Km).
-       Typical Value = 7.04.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (Kp) (&gt;0).
-       Typical Value = 4.37.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks1).
-       Typical Value = 0.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 6.67.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 1.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 20.</p></dd><dt class="param">tm</dt><dd class="cmt"><p>Forward time constant of inner loop field regulator (Tm).
-       Typical Value = 1.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 8.63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 6.53.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (Vimax).
-       Typical Value = 0.2.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (Vimin).
-       Typical Value = -0.2.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = 0.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.09.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
+       Typical value = 6,9.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 1,1.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+       Typical value = 4,83.</p></dd><dt class="param">kj</dt><dd class="cmt"><p>AVR gain (<i>Kj</i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">km</dt><dd class="cmt"><p>Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
+       Typical value = 7,04.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
+       Typical value = 4,37.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
+       Typical value = 0.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 6,67.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 20.</p></dd><dt class="param">tm</dt><dd class="cmt"><p>Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 8,63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 6,53.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+       Typical value = 0,2.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+       Typical value = -0,2.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -1.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,09.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -144,27 +144,27 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Maximum AVR output (Efdmax).
-       Typical Value = 6.9.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 1.1.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 1.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 4.83.</p></dd><dt class="param">kj</dt><dd class="cmt"><p>AVR gain (Kj).
-       Typical Value = 200.</p></dd><dt class="param">km</dt><dd class="cmt"><p>Forward gain constant of the inner loop field regulator (Km).
-       Typical Value = 7.04.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (Kp) (&gt;0).
-       Typical Value = 4.37.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks1).
-       Typical Value = 0.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 6.67.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 1.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 20.</p></dd><dt class="param">tm</dt><dd class="cmt"><p>Forward time constant of inner loop field regulator (Tm).
-       Typical Value = 1.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 8.63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 6.53.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (Vimax).
-       Typical Value = 0.2.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (Vimin).
-       Typical Value = -0.2.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = 0.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.09.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
+       Typical value = 6,9.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 1,1.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+       Typical value = 4,83.</p></dd><dt class="param">kj</dt><dd class="cmt"><p>AVR gain (<i>Kj</i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">km</dt><dd class="cmt"><p>Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
+       Typical value = 7,04.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
+       Typical value = 4,37.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
+       Typical value = 0.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 6,67.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 20.</p></dd><dt class="param">tm</dt><dd class="cmt"><p>Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 8,63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 6,53.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+       Typical value = 0,2.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+       Typical value = -0,2.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -1.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,09.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -389,8 +389,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum AVR output (Efdmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum AVR output (Efdmax).
-       Typical Value = 6.9.</p></div></div>
+      <p class="shortcomment cmt">Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
+       Typical value = 6,9.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -984,8 +984,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 1.1.</p></div></div>
+      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 1,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#kg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kg:Double"></a>
       <a id="kg:Double"></a>
@@ -1002,8 +1002,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Feedback gain constant of the inner loop field regulator (Kg).</p><div class="fullcomment"><div class="comment cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
@@ -1020,8 +1020,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential circuit gain coefficient (Ki).</p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 4.83.</p></div></div>
+      <p class="shortcomment cmt">Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+       Typical value = 4,83.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#kj" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kj:Double"></a>
       <a id="kj:Double"></a>
@@ -1038,8 +1038,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR gain (Kj).</p><div class="fullcomment"><div class="comment cmt"><p>AVR gain (Kj).
-       Typical Value = 200.</p></div></div>
+      <p class="shortcomment cmt">AVR gain (<i>Kj</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>AVR gain (<i>Kj</i>) (&gt; 0).
+       Typical value = 200.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#km" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="km:Double"></a>
       <a id="km:Double"></a>
@@ -1056,8 +1056,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Forward gain constant of the inner loop field regulator (Km).</p><div class="fullcomment"><div class="comment cmt"><p>Forward gain constant of the inner loop field regulator (Km).
-       Typical Value = 7.04.</p></div></div>
+      <p class="shortcomment cmt">Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
+       Typical value = 7,04.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1074,8 +1074,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential source gain (Kp) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Potential source gain (Kp) (&gt;0).
-       Typical Value = 4.37.</p></div></div>
+      <p class="shortcomment cmt">Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
+       Typical value = 4,37.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#ks" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks:Double"></a>
       <a id="ks:Double"></a>
@@ -1092,8 +1092,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (Ks).</p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#ks1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks1:Double"></a>
       <a id="ks1:Double"></a>
@@ -1110,8 +1110,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (Ks1).</p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks1).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1334,8 +1334,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Tb).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 6.67.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 6,67.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
@@ -1352,8 +1352,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Tc).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#thetap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="thetap:Double"></a>
       <a id="thetap:Double"></a>
@@ -1370,8 +1370,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential circuit phase angle (thetap).</p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 20.</p></div></div>
+      <p class="shortcomment cmt">Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 20.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#tm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tm:Double"></a>
       <a id="tm:Double"></a>
@@ -1388,8 +1388,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Forward time constant of inner loop field regulator (Tm).</p><div class="fullcomment"><div class="comment cmt"><p>Forward time constant of inner loop field regulator (Tm).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1440,8 +1440,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum excitation voltage (Vbmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 8.63.</p></div></div>
+      <p class="shortcomment cmt">Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 8,63.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#vgmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vgmax:Double"></a>
       <a id="vgmax:Double"></a>
@@ -1458,8 +1458,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum inner loop feedback voltage (Vgmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 6.53.</p></div></div>
+      <p class="shortcomment cmt">Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 6,53.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#vimax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vimax:Double"></a>
       <a id="vimax:Double"></a>
@@ -1476,8 +1476,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator input limit (Vimax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator input limit (Vimax).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#vimin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vimin:Double"></a>
       <a id="vimin:Double"></a>
@@ -1494,8 +1494,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator input limit (Vimin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator input limit (Vimin).
-       Typical Value = -0.2.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+       Typical value = -0,2.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1512,8 +1512,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (Vrmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST3A#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1530,8 +1530,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (Vrmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -1.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1617,8 +1617,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reactance associated with potential source (Xl).</p><div class="fullcomment"><div class="comment cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.09.</p></div></div>
+      <p class="shortcomment cmt">Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,09.</p></div></div>
     </li></ol>
             </div>
 

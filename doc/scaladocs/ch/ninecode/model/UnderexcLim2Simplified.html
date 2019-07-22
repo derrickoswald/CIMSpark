@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>UnderexcLim2Simplified - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.UnderexcLim2Simplified</title>
-          <meta name="description" content="UnderexcLim2Simplified - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.UnderexcLim2Simplified" />
-          <meta name="keywords" content="UnderexcLim2Simplified CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.UnderexcLim2Simplified" />
+          <title>UnderexcLim2Simplified - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.UnderexcLim2Simplified</title>
+          <meta name="description" content="UnderexcLim2Simplified - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.UnderexcLim2Simplified" />
+          <meta name="keywords" content="UnderexcLim2Simplified CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.UnderexcLim2Simplified" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,15 +51,15 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This model can be derived from UnderexcLimIEEE2.</p><p>The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>Gain Under excitation limiter (Kui).
-       Typical Value = 0.1.</p></dd><dt class="param">p0</dt><dd class="cmt"><p>Segment P initial point (P0).
-       Typical Value = 0.</p></dd><dt class="param">p1</dt><dd class="cmt"><p>Segment P end point (P1).
-       Typical Value = 1.</p></dd><dt class="param">q0</dt><dd class="cmt"><p>Segment Q initial point (Q0).
-       Typical Value = -0.31.</p></dd><dt class="param">q1</dt><dd class="cmt"><p>Segment Q end point (Q1).
-       Typical Value = -0.1.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>Maximum error signal (V<sub>UImax</sub>).
-       Typical Value = 1.</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>Minimum error signal (V<sub>UImin</sub>).
-       Typical Value = 0.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simplified type UEL2 underexcitation limiter.</p><p>This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0,1.</p></dd><dt class="param">p0</dt><dd class="cmt"><p>Segment P initial point (<i>P</i><i><sub>0</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">p1</dt><dd class="cmt"><p>Segment P end point (<i>P</i><i><sub>1</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">q0</dt><dd class="cmt"><p>Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
+       Typical value = -0,31.</p></dd><dt class="param">q1</dt><dd class="cmt"><p>Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
+       Typical value = -0,1.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
+       Typical value = 1.</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
+       Typical value = 0.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -131,14 +131,14 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>Gain Under excitation limiter (Kui).
-       Typical Value = 0.1.</p></dd><dt class="param">p0</dt><dd class="cmt"><p>Segment P initial point (P0).
-       Typical Value = 0.</p></dd><dt class="param">p1</dt><dd class="cmt"><p>Segment P end point (P1).
-       Typical Value = 1.</p></dd><dt class="param">q0</dt><dd class="cmt"><p>Segment Q initial point (Q0).
-       Typical Value = -0.31.</p></dd><dt class="param">q1</dt><dd class="cmt"><p>Segment Q end point (Q1).
-       Typical Value = -0.1.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>Maximum error signal (V<sub>UImax</sub>).
-       Typical Value = 1.</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>Minimum error signal (V<sub>UImin</sub>).
-       Typical Value = 0.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0,1.</p></dd><dt class="param">p0</dt><dd class="cmt"><p>Segment P initial point (<i>P</i><i><sub>0</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">p1</dt><dd class="cmt"><p>Segment P end point (<i>P</i><i><sub>1</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">q0</dt><dd class="cmt"><p>Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
+       Typical value = -0,31.</p></dd><dt class="param">q1</dt><dd class="cmt"><p>Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
+       Typical value = -0,1.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
+       Typical value = 1.</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
+       Typical value = 0.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -940,8 +940,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain Under excitation limiter (Kui).</p><div class="fullcomment"><div class="comment cmt"><p>Gain Under excitation limiter (Kui).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLim2Simplified#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1096,8 +1096,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Segment P initial point (P0).</p><div class="fullcomment"><div class="comment cmt"><p>Segment P initial point (P0).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Segment P initial point (<i>P</i><i><sub>0</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Segment P initial point (<i>P</i><i><sub>0</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLim2Simplified#p1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="p1:Double"></a>
       <a id="p1:Double"></a>
@@ -1114,8 +1114,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Segment P end point (P1).</p><div class="fullcomment"><div class="comment cmt"><p>Segment P end point (P1).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Segment P end point (<i>P</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Segment P end point (<i>P</i><i><sub>1</sub></i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLim2Simplified#q0" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="q0:Double"></a>
       <a id="q0:Double"></a>
@@ -1132,8 +1132,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Segment Q initial point (Q0).</p><div class="fullcomment"><div class="comment cmt"><p>Segment Q initial point (Q0).
-       Typical Value = -0.31.</p></div></div>
+      <p class="shortcomment cmt">Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
+       Typical value = -0,31.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLim2Simplified#q1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="q1:Double"></a>
       <a id="q1:Double"></a>
@@ -1150,8 +1150,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Segment Q end point (Q1).</p><div class="fullcomment"><div class="comment cmt"><p>Segment Q end point (Q1).
-       Typical Value = -0.1.</p></div></div>
+      <p class="shortcomment cmt">Segment Q end point (<i>Q</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
+       Typical value = -0,1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1270,8 +1270,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum error signal (V<sub>UImax</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum error signal (V<sub>UImax</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLim2Simplified#vuimin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vuimin:Double"></a>
       <a id="vuimin:Double"></a>
@@ -1288,8 +1288,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum error signal (V<sub>UImin</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum error signal (V<sub>UImin</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
+       Typical value = 0.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

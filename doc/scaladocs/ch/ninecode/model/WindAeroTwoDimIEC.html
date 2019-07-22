@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindAeroTwoDimIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindAeroTwoDimIEC</title>
-          <meta name="description" content="WindAeroTwoDimIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindAeroTwoDimIEC" />
-          <meta name="keywords" content="WindAeroTwoDimIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindAeroTwoDimIEC" />
+          <title>WindAeroTwoDimIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindAeroTwoDimIEC</title>
+          <meta name="description" content="WindAeroTwoDimIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindAeroTwoDimIEC" />
+          <meta name="keywords" content="WindAeroTwoDimIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindAeroTwoDimIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,15 +51,15 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Two-dimensional aerodynamic model.</p><p>Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Two-dimensional aerodynamic model.</p><p>Reference: IEC 61400-27-1:2015, 5.6.1.3.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dpomega</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">dptheta</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">dpv1</dt><dd class="cmt"><p>Partial derivative (<i>dp</i><sub>v1</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">omegazero</dt><dd class="cmt"><p>Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">pavail</dt><dd class="cmt"><p>Available aerodynamic power (<i>p</i><sub>avail</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">thetav2</dt><dd class="cmt"><p>Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">thetazero</dt><dd class="cmt"><p>Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
-       It is case dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this wind aerodynamic model is associated.</p></dd></dl><div class="toggleContainer block">
+       It is a type-dependent parameter.</p></dd><dt class="param">dptheta</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">dpv1</dt><dd class="cmt"><p>Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">omegazero</dt><dd class="cmt"><p>Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">pavail</dt><dd class="cmt"><p>Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
+       It is a case-dependent parameter.</p></dd><dt class="param">thetav2</dt><dd class="cmt"><p>Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetazero</dt><dd class="cmt"><p>Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
+       It is a case-dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this wind aerodynamic model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -132,13 +132,13 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dpomega</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">dptheta</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">dpv1</dt><dd class="cmt"><p>Partial derivative (<i>dp</i><sub>v1</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">omegazero</dt><dd class="cmt"><p>Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">pavail</dt><dd class="cmt"><p>Available aerodynamic power (<i>p</i><sub>avail</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">thetav2</dt><dd class="cmt"><p>Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">thetazero</dt><dd class="cmt"><p>Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
-       It is case dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this wind aerodynamic model is associated.</p></dd></dl></div>
+       It is a type-dependent parameter.</p></dd><dt class="param">dptheta</dt><dd class="cmt"><p>Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">dpv1</dt><dd class="cmt"><p>Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">omegazero</dt><dd class="cmt"><p>Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">pavail</dt><dd class="cmt"><p>Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
+       It is a case-dependent parameter.</p></dd><dt class="param">thetav2</dt><dd class="cmt"><p>Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetazero</dt><dd class="cmt"><p>Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
+       It is a case-dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this wind aerodynamic model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -381,7 +381,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
-       It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindAeroTwoDimIEC#dptheta" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dptheta:Double"></a>
       <a id="dptheta:Double"></a>
@@ -399,7 +399,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
-       It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindAeroTwoDimIEC#dpv1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dpv1:Double"></a>
       <a id="dpv1:Double"></a>
@@ -416,8 +416,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Partial derivative (<i>dp</i><sub>v1</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative (<i>dp</i><sub>v1</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Partial derivative (<i>dp</i><i><sub>v1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1150,7 +1150,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
-       It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindAeroTwoDimIEC#pavail" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="pavail:Double"></a>
       <a id="pavail:Double"></a>
@@ -1167,8 +1167,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Available aerodynamic power (<i>p</i><sub>avail</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Available aerodynamic power (<i>p</i><sub>avail</sub>).
-       It is case dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.</i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
+       It is a case-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1254,7 +1254,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
-       It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindAeroTwoDimIEC#thetazero" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="thetazero:Double"></a>
       <a id="thetazero:Double"></a>
@@ -1272,7 +1272,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
-       It is case dependent parameter.</p></div></div>
+       It is a case-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>

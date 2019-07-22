@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>IntervalBlock - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.IntervalBlock</title>
-          <meta name="description" content="IntervalBlock - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.IntervalBlock" />
-          <meta name="keywords" content="IntervalBlock CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.IntervalBlock" />
+          <title>IntervalBlock - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.IntervalBlock</title>
+          <meta name="description" content="IntervalBlock - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.IntervalBlock" />
+          <meta name="keywords" content="IntervalBlock CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.IntervalBlock" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,31 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Time sequence of readings of the same reading type.</p><p>Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
+Table 548 shows all association ends of IntervalBlock with other classes.
+Table 548 � Association ends of Metering::IntervalBlock with other classes
+Associations
+name
+mult to
+type
+description</p><p>0..*
+PendingCalculation
+0..1
+PendingCalculation
+Pending calculation to apply to interval reading values contained by this block (after which the resulting reading type is different than the original because it reflects the conversion result).</p><p>0..*
+IntervalReadings
+0..*
+IntervalReading
+Interval reading contained in this block.</p><p>0..*
+ReadingType
+0..1
+ReadingType
+Type information for interval reading values contained in this block.</p><p>0..*
+MeterReading
+0..1
+MeterReading
+Meter reading containing this interval block.</p><p>IntervalReading
+Data captured at regular intervals of time. Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
+Note: Interval Data is sometimes also called &quot;Interval Data Readings&quot; (IDR).
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">IntervalReadings</dt><dd class="cmt"><p><a href="IntervalReading.html" class="extype" name="ch.ninecode.model.IntervalReading">IntervalReading</a> Interval reading contained in this block.</p></dd><dt class="param">MeterReading</dt><dd class="cmt"><p><a href="MeterReading.html" class="extype" name="ch.ninecode.model.MeterReading">MeterReading</a> Meter reading containing this interval block.</p></dd><dt class="param">PendingCalculation</dt><dd class="cmt"><p><a href="PendingCalculation.html" class="extype" name="ch.ninecode.model.PendingCalculation">PendingCalculation</a> Pending calculation to apply to interval reading values contained by this block (after which the resulting reading type is different than the original because it reflects the conversion result).</p></dd><dt class="param">ReadingType</dt><dd class="cmt"><p><a href="ReadingType.html" class="extype" name="ch.ninecode.model.ReadingType">ReadingType</a> Type information for interval reading values contained in this block.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

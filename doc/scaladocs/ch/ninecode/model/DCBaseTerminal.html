@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DCBaseTerminal - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.DCBaseTerminal</title>
-          <meta name="description" content="DCBaseTerminal - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.DCBaseTerminal" />
-          <meta name="keywords" content="DCBaseTerminal CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.DCBaseTerminal" />
+          <title>DCBaseTerminal - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.DCBaseTerminal</title>
+          <meta name="description" content="DCBaseTerminal - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.DCBaseTerminal" />
+          <meta name="keywords" content="DCBaseTerminal CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.DCBaseTerminal" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,8 +51,8 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An electrical connection point at a piece of DC conducting equipment.</p><p>DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">DCNode</dt><dd class="cmt"><p><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> <em>undocumented</em></p></dd><dt class="param">DCTopologicalNode</dt><dd class="cmt"><p><a href="DCTopologicalNode.html" class="extype" name="ch.ninecode.model.DCTopologicalNode">DCTopologicalNode</a> See association end Terminal.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An electrical connection point at a piece of DC conducting equipment.</p><p>DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model requires that DC connections are distinct from AC connections.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">DCNode</dt><dd class="cmt"><p><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> The DC connectivity node to which this DC base terminal connects with zero impedance.</p></dd><dt class="param">DCTopologicalNode</dt><dd class="cmt"><p><a href="DCTopologicalNode.html" class="extype" name="ch.ninecode.model.DCTopologicalNode">DCTopologicalNode</a> See association end Terminal.
        TopologicalNode.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -125,7 +125,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">DCNode</dt><dd class="cmt"><p><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> <em>undocumented</em></p></dd><dt class="param">DCTopologicalNode</dt><dd class="cmt"><p><a href="DCTopologicalNode.html" class="extype" name="ch.ninecode.model.DCTopologicalNode">DCTopologicalNode</a> See association end Terminal.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">DCNode</dt><dd class="cmt"><p><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> The DC connectivity node to which this DC base terminal connects with zero impedance.</p></dd><dt class="param">DCTopologicalNode</dt><dd class="cmt"><p><a href="DCTopologicalNode.html" class="extype" name="ch.ninecode.model.DCTopologicalNode">DCTopologicalNode</a> See association end Terminal.
        TopologicalNode.</p></dd></dl></div>
     </li></ol>
             </div>
@@ -205,7 +205,7 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
-    </li><li name="ch.ninecode.model.DCBaseTerminal#DCNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.DCBaseTerminal#DCNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DCNode:String"></a>
       <a id="DCNode:String"></a>
       <h4 class="signature">
@@ -221,7 +221,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> <em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="DCNode.html" class="extype" name="ch.ninecode.model.DCNode">DCNode</a> The DC connectivity node to which this DC base terminal connects with zero impedance.</p>
     </li><li name="ch.ninecode.model.DCBaseTerminal#DCTopologicalNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="DCTopologicalNode:String"></a>
       <a id="DCTopologicalNode:String"></a>

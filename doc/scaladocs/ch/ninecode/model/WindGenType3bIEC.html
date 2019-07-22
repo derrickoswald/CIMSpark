@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindGenType3bIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindGenType3bIEC</title>
-          <meta name="description" content="WindGenType3bIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindGenType3bIEC" />
-          <meta name="keywords" content="WindGenType3bIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindGenType3bIEC" />
+          <title>WindGenType3bIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindGenType3bIEC</title>
+          <meta name="description" content="WindGenType3bIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindGenType3bIEC" />
+          <meta name="keywords" content="WindGenType3bIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindGenType3bIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,11 +51,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEC Type 3B generator set model.</p><p>Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</p><ul><li>true = 1 in the model</li><li>false = 0 in the model.
-       The parameter is case dependent parameter.</li></ul></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation Time constant (<i>T</i><sub>g</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEC type 3B generator set model.</p><p>Reference: IEC 61400-27-1:2015, 5.6.3.3.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
+       It is a case-dependent parameter.
+       true = 1 in the IEC model
+       false = 0 in the IEC model.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
+       It is a case-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -127,10 +129,12 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</p><ul><li>true = 1 in the model</li><li>false = 0 in the model.
-       The parameter is case dependent parameter.</li></ul></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation Time constant (<i>T</i><sub>g</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
+       It is a case-dependent parameter.
+       true = 1 in the IEC model
+       false = 0 in the IEC model.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
+       It is a case-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1036,8 +1040,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</p><ul><li>true = 1 in the model</li><li>false = 0 in the model.
-       The parameter is case dependent parameter.</li></ul></div></div>
+      <p class="shortcomment cmt">Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
+       It is a case-dependent parameter.
+       true = 1 in the IEC model
+       false = 0 in the IEC model.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1173,8 +1179,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Current generation Time constant (<i>T</i><sub>g</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Current generation Time constant (<i>T</i><sub>g</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1225,8 +1231,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-       It is case dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
+       It is a case-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

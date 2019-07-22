@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcSCRX - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcSCRX</title>
-          <meta name="description" content="ExcSCRX - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcSCRX" />
-          <meta name="keywords" content="ExcSCRX CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcSCRX" />
+          <title>ExcSCRX - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcSCRX</title>
+          <meta name="description" content="ExcSCRX - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcSCRX" />
+          <meta name="keywords" content="ExcSCRX CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcSCRX" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,17 +51,17 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (Cswitch).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
        true = fixed voltage of 1.0 PU
-       false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = 0.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (K) (&gt;0).
-       Typical Value = 200.</p></dd><dt class="param">rcrfd</dt><dd class="cmt"><p>Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
-       Typical Value = 0.</p></dd><dt class="param">tatb</dt><dd class="cmt"><p>Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
-       The parameter Ta is not defined explicitly.  Typical Value = 0.1.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Denominator time constant of lag-lead block (Tb).
-       Typical Value = 10.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (Te) (&gt;0).
-       Typical Value = 0.02.</p></dd></dl><div class="toggleContainer block">
+       false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
+       Typical value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
+       Typical value = 0.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (<i>K</i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">rcrfd</dt><dd class="cmt"><p>Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
+       Typical value = 0.</p></dd><dt class="param">tatb</dt><dd class="cmt"><p>Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
+       The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (<i>Te</i>) (&gt; 0).
+       Typical value = 0,02.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -133,16 +133,16 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (Cswitch).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
        true = fixed voltage of 1.0 PU
-       false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = 0.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (K) (&gt;0).
-       Typical Value = 200.</p></dd><dt class="param">rcrfd</dt><dd class="cmt"><p>Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
-       Typical Value = 0.</p></dd><dt class="param">tatb</dt><dd class="cmt"><p>Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
-       The parameter Ta is not defined explicitly.  Typical Value = 0.1.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Denominator time constant of lag-lead block (Tb).
-       Typical Value = 10.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (Te) (&gt;0).
-       Typical Value = 0.02.</p></dd></dl></div>
+       false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
+       Typical value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
+       Typical value = 0.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (<i>K</i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">rcrfd</dt><dd class="cmt"><p>Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
+       Typical value = 0.</p></dd><dt class="param">tatb</dt><dd class="cmt"><p>Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
+       The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (<i>Te</i>) (&gt; 0).
+       Typical value = 0,02.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -367,7 +367,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power source switch (Cswitch).</p><div class="fullcomment"><div class="comment cmt"><p>Power source switch (Cswitch).
+      <p class="shortcomment cmt">Power source switch (<i>Cswitch</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power source switch (<i>Cswitch</i>).
        true = fixed voltage of 1.0 PU
        false = generator terminal voltage.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSCRX#emax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -386,8 +386,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum field voltage output (Emax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSCRX#emin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emin:Double"></a>
       <a id="emin:Double"></a>
@@ -404,8 +404,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum field voltage output (Emin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -999,8 +999,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain (K) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Gain (K) (&gt;0).
-       Typical Value = 200.</p></div></div>
+      <p class="shortcomment cmt">Gain (<i>K</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain (<i>K</i>) (&gt; 0).
+       Typical value = 200.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSCRX#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1155,8 +1155,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).</p><div class="fullcomment"><div class="comment cmt"><p>Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1241,8 +1241,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Ta/Tb - gain reduction ratio of lag-lead element (TaTb).</p><div class="fullcomment"><div class="comment cmt"><p>Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
-       The parameter Ta is not defined explicitly.  Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
+       The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSCRX#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
@@ -1259,8 +1259,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Denominator time constant of lag-lead block (Tb).</p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant of lag-lead block (Tb).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSCRX#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
@@ -1277,8 +1277,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant of gain block (Te) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Time constant of gain block (Te) (&gt;0).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Time constant of gain block (<i>Te</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant of gain block (<i>Te</i>) (&gt; 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcIEEEAC4A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcIEEEAC4A</title>
-          <meta name="description" content="ExcIEEEAC4A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcIEEEAC4A" />
-          <meta name="keywords" content="ExcIEEEAC4A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcIEEEAC4A" />
+          <title>ExcIEEEAC4A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcIEEEAC4A</title>
+          <meta name="description" content="ExcIEEEAC4A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcIEEEAC4A" />
+          <meta name="keywords" content="ExcIEEEAC4A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcIEEEAC4A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,17 +51,18 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type AC4A model.</p><p>The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other type ac systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modeled; however, transient loading effects on the exciter alternator are included.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 200.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-       Typical Value = 0.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.015.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>B</sub>).
-       Typical Value = 10.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>C</sub>).
-       Typical Value = 1.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-       Typical Value = 10.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-       Typical Value = -10.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.64.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.53.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type AC4A model.</p><p>The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other types of AC systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modelled; however, transient loading effects on the exciter alternator are included.
+Reference: IEEE 421.5-2005, 6.4.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,015.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+       Typical value = 10.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+       Typical value = -10.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5,64.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,53.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -133,16 +134,16 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 200.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-       Typical Value = 0.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.015.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>B</sub>).
-       Typical Value = 10.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>C</sub>).
-       Typical Value = 1.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-       Typical Value = 10.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-       Typical Value = -10.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.64.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.53.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,015.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">vimax</dt><dd class="cmt"><p>Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+       Typical value = 10.</p></dd><dt class="param">vimin</dt><dd class="cmt"><p>Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+       Typical value = -10.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5,64.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,53.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -944,8 +945,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator gain (K<sub>A</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 200.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 200.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#kc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kc:Double"></a>
       <a id="kc:Double"></a>
@@ -962,8 +963,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1186,8 +1187,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (T<sub>A</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.015.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,015.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
@@ -1204,8 +1205,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (T<sub>B</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (T<sub>B</sub>).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
@@ -1222,8 +1223,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (T<sub>C</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (T<sub>C</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1274,8 +1275,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator input limit (V<sub>IMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#vimin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vimin:Double"></a>
       <a id="vimin:Double"></a>
@@ -1292,8 +1293,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator input limit (V<sub>IMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-       Typical Value = -10.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+       Typical value = -10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1310,8 +1311,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (V<sub>RMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.64.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5,64.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEAC4A#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1328,8 +1329,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (V<sub>RMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.53.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,53.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PFVArType1IEEEPFController - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PFVArType1IEEEPFController</title>
-          <meta name="description" content="PFVArType1IEEEPFController - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PFVArType1IEEEPFController" />
-          <meta name="keywords" content="PFVArType1IEEEPFController CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PFVArType1IEEEPFController" />
+          <title>PFVArType1IEEEPFController - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PFVArType1IEEEPFController</title>
+          <meta name="description" content="PFVArType1IEEEPFController - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PFVArType1IEEEPFController" />
+          <meta name="keywords" content="PFVArType1IEEEPFController CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PFVArType1IEEEPFController" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,12 +51,12 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.</p><p>Reference: IEEE Standard 421.5-2005 Section 11.2.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE PF controller type 1 which operates by moving the voltage reference directly.</p><p>Reference: IEEE 421.5-2005, 11.2.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">ovex</dt><dd class="cmt"><p>Overexcitation Flag (<i>OVEX</i>)
        true = overexcited
-       false = underexcited.</p></dd><dt class="param">tpfc</dt><dd class="cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
-       Typical Value = 5.</p></dd><dt class="param">vitmin</dt><dd class="cmt"><p>Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).</p></dd><dt class="param">vpf</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).</p></dd><dt class="param">vpfcbw</dt><dd class="cmt"><p>PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
-       Typical Value = 0.05.</p></dd><dt class="param">vpfref</dt><dd class="cmt"><p>PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></dd></dl><div class="toggleContainer block">
+       false = underexcited.</p></dd><dt class="param">tpfc</dt><dd class="cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vitmin</dt><dd class="cmt"><p>Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).</p></dd><dt class="param">vpf</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).</p></dd><dt class="param">vpfcbw</dt><dd class="cmt"><p>PF controller deadband (<i>V</i><i><sub>PFC_BW</sub></i>).
+       Typical value = 0,05.</p></dd><dt class="param">vpfref</dt><dd class="cmt"><p>PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PFVArType1IEEEPFController.vvtmin).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PFVArType1IEEEPFController.vvtmax).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,9 +130,9 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">ovex</dt><dd class="cmt"><p>Overexcitation Flag (<i>OVEX</i>)
        true = overexcited
-       false = underexcited.</p></dd><dt class="param">tpfc</dt><dd class="cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
-       Typical Value = 5.</p></dd><dt class="param">vitmin</dt><dd class="cmt"><p>Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).</p></dd><dt class="param">vpf</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).</p></dd><dt class="param">vpfcbw</dt><dd class="cmt"><p>PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
-       Typical Value = 0.05.</p></dd><dt class="param">vpfref</dt><dd class="cmt"><p>PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></dd></dl></div>
+       false = underexcited.</p></dd><dt class="param">tpfc</dt><dd class="cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vitmin</dt><dd class="cmt"><p>Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).</p></dd><dt class="param">vpf</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).</p></dd><dt class="param">vpfcbw</dt><dd class="cmt"><p>PF controller deadband (<i>V</i><i><sub>PFC_BW</sub></i>).
+       Typical value = 0,05.</p></dd><dt class="param">vpfref</dt><dd class="cmt"><p>PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PFVArType1IEEEPFController.vvtmin).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PFVArType1IEEEPFController.vvtmax).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1195,8 +1195,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">PF controller time delay (<i>T</i><i><sub>PFC</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PF controller time delay (<i>T</i><i><sub>PFC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEPFController#vitmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vitmin:Double"></a>
       <a id="vitmin:Double"></a>
@@ -1247,8 +1247,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">PF controller deadband (<i>V</i><i><sub>PFC_BW</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PF controller deadband (<i>V</i><i><sub>PFC_BW</sub></i>).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEPFController#vpfref" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vpfref:Double"></a>
       <a id="vpfref:Double"></a>
@@ -1282,7 +1282,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PFVArType1IEEEPFController.vvtmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PFVArType1IEEEPFController.vvtmin).</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEPFController#vvtmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vvtmin:Double"></a>
       <a id="vvtmin:Double"></a>
@@ -1299,7 +1299,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PFVArType1IEEEPFController.vvtmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PFVArType1IEEEPFController.vvtmax).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

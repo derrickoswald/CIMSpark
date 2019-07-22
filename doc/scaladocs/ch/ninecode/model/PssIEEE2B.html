@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PssIEEE2B - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PssIEEE2B</title>
-          <meta name="description" content="PssIEEE2B - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PssIEEE2B" />
-          <meta name="keywords" content="PssIEEE2B CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PssIEEE2B" />
+          <title>PssIEEE2B - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PssIEEE2B</title>
+          <meta name="description" content="PssIEEE2B - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PssIEEE2B" />
+          <meta name="keywords" content="PssIEEE2B CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PssIEEE2B" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,35 +51,36 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.</p><p>This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1.
-       Typical Value = rotorSpeed.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Stabilizer gain (Ks1).
-       Typical Value = 12.</p></dd><dt class="param">ks2</dt><dd class="cmt"><p>Gain on signal #2 (Ks2).
-       Typical Value = 0.2.</p></dd><dt class="param">ks3</dt><dd class="cmt"><p>Gain on signal #2 input before ramp-tracking filter (Ks3).
-       Typical Value = 1.</p></dd><dt class="param">m</dt><dd class="cmt"><p>Denominator order of ramp tracking filter (M).
-       Typical Value = 5.</p></dd><dt class="param">n</dt><dd class="cmt"><p>Order of ramp tracking filter (N).
-       Typical Value = 1.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.12.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (T10).
-       Typical Value = 0.</p></dd><dt class="param">t11</dt><dd class="cmt"><p>Lead/lag time constant (T11).
-       Typical Value = 0.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.02.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant on signal #1 (T6).
-       Typical Value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant on signal #2 (T7).
-       Typical Value = 2.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead of ramp tracking filter (T8).
-       Typical Value = 0.2.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lag of ramp tracking filter (T9).
-       Typical Value = 0.1.</p></dd><dt class="param">tw1</dt><dd class="cmt"><p>First washout on signal #1 (Tw1).
-       Typical Value = 2.</p></dd><dt class="param">tw2</dt><dd class="cmt"><p>Second washout on signal #1 (Tw2).
-       Typical Value = 2.</p></dd><dt class="param">tw3</dt><dd class="cmt"><p>First washout on signal #2 (Tw3).
-       Typical Value = 2.</p></dd><dt class="param">tw4</dt><dd class="cmt"><p>Second washout on signal #2 (Tw4).
-       Typical Value = 0.</p></dd><dt class="param">vsi1max</dt><dd class="cmt"><p>Input signal #1 max limit (Vsi1max).
-       Typical Value = 2.</p></dd><dt class="param">vsi1min</dt><dd class="cmt"><p>Input signal #1 min limit (Vsi1min).
-       Typical Value = -2.</p></dd><dt class="param">vsi2max</dt><dd class="cmt"><p>Input signal #2 max limit (Vsi2max).
-       Typical Value = 2.</p></dd><dt class="param">vsi2min</dt><dd class="cmt"><p>Input signal #2 min limit (Vsi2min).
-       Typical Value = -2.</p></dd><dt class="param">vstmax</dt><dd class="cmt"><p>Stabilizer output max limit (Vstmax).
-       Typical Value = 0.1.</p></dd><dt class="param">vstmin</dt><dd class="cmt"><p>Stabilizer output min limit (Vstmin).
-       Typical Value = -0.1.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type PSS2B power system stabilizer model.</p><p>This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
+Reference: IEEE 2B 421.5-2005, 8.2.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2 (generatorElectricalPower).
+       Typical value = generatorElectricalPower.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Stabilizer gain (<i>Ks1</i>).
+       Typical value = 12.</p></dd><dt class="param">ks2</dt><dd class="cmt"><p>Gain on signal #2 (<i>Ks2</i>).
+       Typical value = 0,2.</p></dd><dt class="param">ks3</dt><dd class="cmt"><p>Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+       Typical value = 1.</p></dd><dt class="param">m</dt><dd class="cmt"><p>Denominator order of ramp tracking filter (<i>M</i>).
+       Typical value = 5.</p></dd><dt class="param">n</dt><dd class="cmt"><p>Order of ramp tracking filter (<i>N</i>).
+       Typical value = 1.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,12.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (<i>T10</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t11</dt><dd class="cmt"><p>Lead/lag time constant (<i>T11</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
+       Typical value = 0,2.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">tw1</dt><dd class="cmt"><p>First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw2</dt><dd class="cmt"><p>Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw3</dt><dd class="cmt"><p>First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw4</dt><dd class="cmt"><p>Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vsi1max</dt><dd class="cmt"><p>Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
+       Typical value = 2.</p></dd><dt class="param">vsi1min</dt><dd class="cmt"><p>Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
+       Typical value = -2.</p></dd><dt class="param">vsi2max</dt><dd class="cmt"><p>Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
+       Typical value = 2.</p></dd><dt class="param">vsi2min</dt><dd class="cmt"><p>Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
+       Typical value = -2.</p></dd><dt class="param">vstmax</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
+       Typical value = 0,1.</p></dd><dt class="param">vstmin</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
+       Typical value = -0,1.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -151,34 +152,34 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1.
-       Typical Value = rotorSpeed.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Stabilizer gain (Ks1).
-       Typical Value = 12.</p></dd><dt class="param">ks2</dt><dd class="cmt"><p>Gain on signal #2 (Ks2).
-       Typical Value = 0.2.</p></dd><dt class="param">ks3</dt><dd class="cmt"><p>Gain on signal #2 input before ramp-tracking filter (Ks3).
-       Typical Value = 1.</p></dd><dt class="param">m</dt><dd class="cmt"><p>Denominator order of ramp tracking filter (M).
-       Typical Value = 5.</p></dd><dt class="param">n</dt><dd class="cmt"><p>Order of ramp tracking filter (N).
-       Typical Value = 1.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.12.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (T10).
-       Typical Value = 0.</p></dd><dt class="param">t11</dt><dd class="cmt"><p>Lead/lag time constant (T11).
-       Typical Value = 0.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.02.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant on signal #1 (T6).
-       Typical Value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant on signal #2 (T7).
-       Typical Value = 2.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead of ramp tracking filter (T8).
-       Typical Value = 0.2.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lag of ramp tracking filter (T9).
-       Typical Value = 0.1.</p></dd><dt class="param">tw1</dt><dd class="cmt"><p>First washout on signal #1 (Tw1).
-       Typical Value = 2.</p></dd><dt class="param">tw2</dt><dd class="cmt"><p>Second washout on signal #1 (Tw2).
-       Typical Value = 2.</p></dd><dt class="param">tw3</dt><dd class="cmt"><p>First washout on signal #2 (Tw3).
-       Typical Value = 2.</p></dd><dt class="param">tw4</dt><dd class="cmt"><p>Second washout on signal #2 (Tw4).
-       Typical Value = 0.</p></dd><dt class="param">vsi1max</dt><dd class="cmt"><p>Input signal #1 max limit (Vsi1max).
-       Typical Value = 2.</p></dd><dt class="param">vsi1min</dt><dd class="cmt"><p>Input signal #1 min limit (Vsi1min).
-       Typical Value = -2.</p></dd><dt class="param">vsi2max</dt><dd class="cmt"><p>Input signal #2 max limit (Vsi2max).
-       Typical Value = 2.</p></dd><dt class="param">vsi2min</dt><dd class="cmt"><p>Input signal #2 min limit (Vsi2min).
-       Typical Value = -2.</p></dd><dt class="param">vstmax</dt><dd class="cmt"><p>Stabilizer output max limit (Vstmax).
-       Typical Value = 0.1.</p></dd><dt class="param">vstmin</dt><dd class="cmt"><p>Stabilizer output min limit (Vstmin).
-       Typical Value = -0.1.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2 (generatorElectricalPower).
+       Typical value = generatorElectricalPower.</p></dd><dt class="param">ks1</dt><dd class="cmt"><p>Stabilizer gain (<i>Ks1</i>).
+       Typical value = 12.</p></dd><dt class="param">ks2</dt><dd class="cmt"><p>Gain on signal #2 (<i>Ks2</i>).
+       Typical value = 0,2.</p></dd><dt class="param">ks3</dt><dd class="cmt"><p>Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+       Typical value = 1.</p></dd><dt class="param">m</dt><dd class="cmt"><p>Denominator order of ramp tracking filter (<i>M</i>).
+       Typical value = 5.</p></dd><dt class="param">n</dt><dd class="cmt"><p>Order of ramp tracking filter (<i>N</i>).
+       Typical value = 1.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,12.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (<i>T10</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t11</dt><dd class="cmt"><p>Lead/lag time constant (<i>T11</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
+       Typical value = 0,2.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">tw1</dt><dd class="cmt"><p>First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw2</dt><dd class="cmt"><p>Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw3</dt><dd class="cmt"><p>First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tw4</dt><dd class="cmt"><p>Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vsi1max</dt><dd class="cmt"><p>Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
+       Typical value = 2.</p></dd><dt class="param">vsi1min</dt><dd class="cmt"><p>Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
+       Typical value = -2.</p></dd><dt class="param">vsi2max</dt><dd class="cmt"><p>Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
+       Typical value = 2.</p></dd><dt class="param">vsi2min</dt><dd class="cmt"><p>Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
+       Typical value = -2.</p></dd><dt class="param">vstmax</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
+       Typical value = 0,1.</p></dd><dt class="param">vstmin</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
+       Typical value = -0,1.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -946,8 +947,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal #1.</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #1.
-       Typical Value = rotorSpeed.</p></div></div>
+      <p class="shortcomment cmt">Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#inputSignal2Type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="inputSignal2Type:String"></a>
       <a id="inputSignal2Type:String"></a>
@@ -964,8 +965,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal #2.</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></div></div>
+      <p class="shortcomment cmt">Type of input signal #2 (generatorElectricalPower).</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #2 (generatorElectricalPower).
+       Typical value = generatorElectricalPower.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1016,8 +1017,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer gain (Ks1).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer gain (Ks1).
-       Typical Value = 12.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer gain (<i>Ks1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer gain (<i>Ks1</i>).
+       Typical value = 12.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#ks2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks2:Double"></a>
       <a id="ks2:Double"></a>
@@ -1034,8 +1035,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain on signal #2 (Ks2).</p><div class="fullcomment"><div class="comment cmt"><p>Gain on signal #2 (Ks2).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Gain on signal #2 (<i>Ks2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain on signal #2 (<i>Ks2</i>).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#ks3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks3:Double"></a>
       <a id="ks3:Double"></a>
@@ -1052,8 +1053,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain on signal #2 input before ramp-tracking filter (Ks3).</p><div class="fullcomment"><div class="comment cmt"><p>Gain on signal #2 input before ramp-tracking filter (Ks3).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1088,8 +1089,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Denominator order of ramp tracking filter (M).</p><div class="fullcomment"><div class="comment cmt"><p>Denominator order of ramp tracking filter (M).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Denominator order of ramp tracking filter (<i>M</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Denominator order of ramp tracking filter (<i>M</i>).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1175,8 +1176,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Order of ramp tracking filter (N).</p><div class="fullcomment"><div class="comment cmt"><p>Order of ramp tracking filter (N).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Order of ramp tracking filter (<i>N</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Order of ramp tracking filter (<i>N</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1312,8 +1313,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T1).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.12.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,12.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t10" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t10:Double"></a>
       <a id="t10:Double"></a>
@@ -1330,8 +1331,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T10).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T10).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T10</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T10</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t11" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t11:Double"></a>
       <a id="t11:Double"></a>
@@ -1348,8 +1349,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T11).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T11).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T11</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T11</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
@@ -1366,8 +1367,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T2).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T2</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
@@ -1384,8 +1385,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T3).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T3</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
@@ -1402,8 +1403,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T4).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T4</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
@@ -1420,8 +1421,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant on signal #1 (T6).</p><div class="fullcomment"><div class="comment cmt"><p>Time constant on signal #1 (T6).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Time constant on signal #1 (<i>T6</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t7:Double"></a>
       <a id="t7:Double"></a>
@@ -1438,8 +1439,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant on signal #2 (T7).</p><div class="fullcomment"><div class="comment cmt"><p>Time constant on signal #2 (T7).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Time constant on signal #2 (<i>T7</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t8:Double"></a>
       <a id="t8:Double"></a>
@@ -1456,8 +1457,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead of ramp tracking filter (T8).</p><div class="fullcomment"><div class="comment cmt"><p>Lead of ramp tracking filter (T8).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#t9" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t9:Double"></a>
       <a id="t9:Double"></a>
@@ -1474,8 +1475,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lag of ramp tracking filter (T9).</p><div class="fullcomment"><div class="comment cmt"><p>Lag of ramp tracking filter (T9).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1526,8 +1527,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">First washout on signal #1 (Tw1).</p><div class="fullcomment"><div class="comment cmt"><p>First washout on signal #1 (Tw1).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#tw2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tw2:Double"></a>
       <a id="tw2:Double"></a>
@@ -1544,8 +1545,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Second washout on signal #1 (Tw2).</p><div class="fullcomment"><div class="comment cmt"><p>Second washout on signal #1 (Tw2).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#tw3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tw3:Double"></a>
       <a id="tw3:Double"></a>
@@ -1562,8 +1563,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">First washout on signal #2 (Tw3).</p><div class="fullcomment"><div class="comment cmt"><p>First washout on signal #2 (Tw3).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#tw4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tw4:Double"></a>
       <a id="tw4:Double"></a>
@@ -1580,8 +1581,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Second washout on signal #2 (Tw4).</p><div class="fullcomment"><div class="comment cmt"><p>Second washout on signal #2 (Tw4).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vsi1max" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsi1max:Double"></a>
       <a id="vsi1max:Double"></a>
@@ -1598,8 +1599,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Input signal #1 max limit (Vsi1max).</p><div class="fullcomment"><div class="comment cmt"><p>Input signal #1 max limit (Vsi1max).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).</i></p><div class="fullcomment"><div class="comment cmt"><p>Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vsi1min" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsi1min:Double"></a>
       <a id="vsi1min:Double"></a>
@@ -1616,8 +1617,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Input signal #1 min limit (Vsi1min).</p><div class="fullcomment"><div class="comment cmt"><p>Input signal #1 min limit (Vsi1min).
-       Typical Value = -2.</p></div></div>
+      <p class="shortcomment cmt">Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).</i></p><div class="fullcomment"><div class="comment cmt"><p>Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
+       Typical value = -2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vsi2max" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsi2max:Double"></a>
       <a id="vsi2max:Double"></a>
@@ -1634,8 +1635,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Input signal #2 max limit (Vsi2max).</p><div class="fullcomment"><div class="comment cmt"><p>Input signal #2 max limit (Vsi2max).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).</i></p><div class="fullcomment"><div class="comment cmt"><p>Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vsi2min" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsi2min:Double"></a>
       <a id="vsi2min:Double"></a>
@@ -1652,8 +1653,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Input signal #2 min limit (Vsi2min).</p><div class="fullcomment"><div class="comment cmt"><p>Input signal #2 min limit (Vsi2min).
-       Typical Value = -2.</p></div></div>
+      <p class="shortcomment cmt">Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).</i></p><div class="fullcomment"><div class="comment cmt"><p>Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
+       Typical value = -2.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vstmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vstmax:Double"></a>
       <a id="vstmax:Double"></a>
@@ -1670,8 +1671,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output max limit (Vstmax).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output max limit (Vstmax).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE2B#vstmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vstmin:Double"></a>
       <a id="vstmin:Double"></a>
@@ -1688,8 +1689,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output min limit (Vstmin).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output min limit (Vstmin).
-       Typical Value = -0.1.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
+       Typical value = -0,1.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

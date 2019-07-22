@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindContCurrLimIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindContCurrLimIEC</title>
-          <meta name="description" content="WindContCurrLimIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindContCurrLimIEC" />
-          <meta name="keywords" content="WindContCurrLimIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindContCurrLimIEC" />
+          <title>WindContCurrLimIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindContCurrLimIEC</title>
+          <meta name="description" content="WindContCurrLimIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindContCurrLimIEC" />
+          <meta name="keywords" content="WindContCurrLimIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindContCurrLimIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,14 +52,19 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Current limitation model.</p><p>The current limitation model combines the physical limits and the control limits.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">imax</dt><dd class="cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">imaxdip</dt><dd class="cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kpqu</dt><dd class="cmt"><p>Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">mdfslim</dt><dd class="cmt"><p>Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):</p><ul><li>false=0: total current limitation,</li><li>true=1: stator current limitation).
-       It is type dependent parameter.</li></ul></dd><dt class="param">mqpri</dt><dd class="cmt"><p>Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):</p><ul><li>true = 1: reactive power priority,</li><li>false = 0: active power priority.
-       It is project dependent parameter.</li></ul></dd><dt class="param">tufiltcl</dt><dd class="cmt"><p>Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">upqumax</dt><dd class="cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this current control limitation model.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.</p></dd></dl><div class="toggleContainer block">
+Reference: IEC 61400-27-1:2015, 5.6.5.8.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">imax</dt><dd class="cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">imaxdip</dt><dd class="cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kpqu</dt><dd class="cmt"><p>Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
+       It is a type-dependent parameter.</p></dd><dt class="param">mdfslim</dt><dd class="cmt"><p>Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
+       It is a type-dependent parameter.
+       false= total current limitation (0 in the IEC model)
+       true=stator current limitation (1 in the IEC model).</p></dd><dt class="param">mqpri</dt><dd class="cmt"><p>Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
+       It is a project-dependent parameter.
+       true = reactive power priority (1 in the IEC model)
+       false = active power priority (0 in the IEC model).</p></dd><dt class="param">tufiltcl</dt><dd class="cmt"><p>Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">upqumax</dt><dd class="cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this current control limitation model.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -131,14 +136,18 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">imax</dt><dd class="cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">imaxdip</dt><dd class="cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kpqu</dt><dd class="cmt"><p>Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">mdfslim</dt><dd class="cmt"><p>Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):</p><ul><li>false=0: total current limitation,</li><li>true=1: stator current limitation).
-       It is type dependent parameter.</li></ul></dd><dt class="param">mqpri</dt><dd class="cmt"><p>Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):</p><ul><li>true = 1: reactive power priority,</li><li>false = 0: active power priority.
-       It is project dependent parameter.</li></ul></dd><dt class="param">tufiltcl</dt><dd class="cmt"><p>Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">upqumax</dt><dd class="cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this current control limitation model.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">imax</dt><dd class="cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">imaxdip</dt><dd class="cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kpqu</dt><dd class="cmt"><p>Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
+       It is a type-dependent parameter.</p></dd><dt class="param">mdfslim</dt><dd class="cmt"><p>Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
+       It is a type-dependent parameter.
+       false= total current limitation (0 in the IEC model)
+       true=stator current limitation (1 in the IEC model).</p></dd><dt class="param">mqpri</dt><dd class="cmt"><p>Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
+       It is a project-dependent parameter.
+       true = reactive power priority (1 in the IEC model)
+       false = active power priority (0 in the IEC model).</p></dd><dt class="param">tufiltcl</dt><dd class="cmt"><p>Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">upqumax</dt><dd class="cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this current control limitation model.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -250,7 +259,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.</p>
+      <p class="shortcomment cmt"><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -940,8 +949,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContCurrLimIEC#imaxdip" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="imaxdip:Double"></a>
       <a id="imaxdip:Double"></a>
@@ -958,8 +967,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1010,8 +1019,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContCurrLimIEC#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1064,8 +1073,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):</p><ul><li>false=0: total current limitation,</li><li>true=1: stator current limitation).
-       It is type dependent parameter.</li></ul></div></div>
+      <p class="shortcomment cmt">Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
+       It is a type-dependent parameter.
+       false= total current limitation (0 in the IEC model)
+       true=stator current limitation (1 in the IEC model).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
       <a id="mkString(String,String,String):String"></a>
@@ -1133,8 +1144,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):</p><ul><li>true = 1: reactive power priority,</li><li>false = 0: active power priority.
-       It is project dependent parameter.</li></ul></div></div>
+      <p class="shortcomment cmt">Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
+       It is a project-dependent parameter.
+       true = reactive power priority (1 in the IEC model)
+       false = active power priority (0 in the IEC model).</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1304,8 +1317,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContCurrLimIEC#upqumax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="upqumax:Double"></a>
       <a id="upqumax:Double"></a>
@@ -1322,8 +1335,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

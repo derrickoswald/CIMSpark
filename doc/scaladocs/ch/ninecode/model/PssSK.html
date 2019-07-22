@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PssSK - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PssSK</title>
-          <meta name="description" content="PssSK - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PssSK" />
-          <meta name="keywords" content="PssSK CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PssSK" />
+          <title>PssSK - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PssSK</title>
+          <meta name="description" content="PssSK - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PssSK" />
+          <meta name="keywords" content="PssSK CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PssSK" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,19 +51,19 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>PSS Slovakian type � three inputs.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain P (K1).
-       Typical Value = -0.3.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain fe (K2).
-       Typical Value = -0.15.</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Gain If (K3).
-       Typical Value = 10.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Denominator time constant (T1).
-       Typical Value = 0.3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Filter time constant (T2).
-       Typical Value = 0.35.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Denominator time constant (T3).
-       Typical Value = 0.22.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Filter time constant (T4).
-       Typical Value = 0.02.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Denominator time constant (T5).
-       Typical Value = 0.02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (T6).
-       Typical Value = 0.02.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Stabilizer output max limit (Vsmax).
-       Typical Value = 0.4.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Stabilizer output min limit (Vsmin).
-       Typical Value = -0.4.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Slovakian PSS with three inputs.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
+       Typical value = -0,3.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
+       Typical value = -0,15.</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
+       Typical value = 10.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
+       Typical value = 0,3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
+       Typical value = 0,35.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
+       Typical value = 0,22.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
+       Typical value = 0,4.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
+       Typical value = -0.4.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -135,18 +135,18 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain P (K1).
-       Typical Value = -0.3.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain fe (K2).
-       Typical Value = -0.15.</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Gain If (K3).
-       Typical Value = 10.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Denominator time constant (T1).
-       Typical Value = 0.3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Filter time constant (T2).
-       Typical Value = 0.35.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Denominator time constant (T3).
-       Typical Value = 0.22.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Filter time constant (T4).
-       Typical Value = 0.02.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Denominator time constant (T5).
-       Typical Value = 0.02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (T6).
-       Typical Value = 0.02.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Stabilizer output max limit (Vsmax).
-       Typical Value = 0.4.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Stabilizer output min limit (Vsmin).
-       Typical Value = -0.4.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
+       Typical value = -0,3.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
+       Typical value = -0,15.</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
+       Typical value = 10.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
+       Typical value = 0,3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
+       Typical value = 0,35.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
+       Typical value = 0,22.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
+       Typical value = 0,4.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
+       Typical value = -0.4.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -948,8 +948,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain P (K1).</p><div class="fullcomment"><div class="comment cmt"><p>Gain P (K1).
-       Typical Value = -0.3.</p></div></div>
+      <p class="shortcomment cmt">Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).</i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
+       Typical value = -0,3.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#k2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k2:Double"></a>
       <a id="k2:Double"></a>
@@ -966,8 +966,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain fe (K2).</p><div class="fullcomment"><div class="comment cmt"><p>Gain fe (K2).
-       Typical Value = -0.15.</p></div></div>
+      <p class="shortcomment cmt">Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).</i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
+       Typical value = -0,15.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#k3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k3:Double"></a>
       <a id="k3:Double"></a>
@@ -984,8 +984,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain If (K3).</p><div class="fullcomment"><div class="comment cmt"><p>Gain If (K3).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).</i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1208,8 +1208,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Denominator time constant (T1).</p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (T1).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
@@ -1226,8 +1226,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant (T2).</p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (T2).
-       Typical Value = 0.35.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
+       Typical value = 0,35.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
@@ -1244,8 +1244,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Denominator time constant (T3).</p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (T3).
-       Typical Value = 0.22.</p></div></div>
+      <p class="shortcomment cmt">Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
+       Typical value = 0,22.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
@@ -1262,8 +1262,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant (T4).</p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (T4).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
@@ -1280,8 +1280,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Denominator time constant (T5).</p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (T5).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
@@ -1298,8 +1298,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant (T6).</p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (T6).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
+       Typical value = 0,02.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1350,8 +1350,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output max limit (Vsmax).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output max limit (Vsmax).
-       Typical Value = 0.4.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
+       Typical value = 0,4.</p></div></div>
     </li><li name="ch.ninecode.model.PssSK#vsmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmin:Double"></a>
       <a id="vsmin:Double"></a>
@@ -1368,8 +1368,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output min limit (Vsmin).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output min limit (Vsmin).
-       Typical Value = -0.4.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
+       Typical value = -0.4.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

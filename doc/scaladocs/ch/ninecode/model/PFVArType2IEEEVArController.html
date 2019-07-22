@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PFVArType2IEEEVArController - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PFVArType2IEEEVArController</title>
-          <meta name="description" content="PFVArType2IEEEVArController - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PFVArType2IEEEVArController" />
-          <meta name="keywords" content="PFVArType2IEEEVArController CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PFVArType2IEEEVArController" />
+          <title>PFVArType2IEEEVArController - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PFVArType2IEEEVArController</title>
+          <meta name="description" content="PFVArType2IEEEVArController - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PFVArType2IEEEVArController" />
+          <meta name="keywords" content="PFVArType2IEEEVArController CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PFVArType2IEEEVArController" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,7 +51,8 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE VAR Controller Type 2 which is a summing point type controller.</p><p>It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE VAR controller type 2 which is a summing point type controller.</p><p>It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
+Reference: IEEE 421.5-2005, 11.5.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType2Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType2Dynamics">PFVArControllerType2Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">exlon</dt><dd class="cmt"><p>Overexcitation or under excitation flag (<i>EXLON</i>)
        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).</p></dd><dt class="param">qref</dt><dd class="cmt"><p>Reactive power reference (<i>Q</i><i><sub>REF</sub></i>).</p></dd><dt class="param">vclmt</dt><dd class="cmt"><p>Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).</p></dd><dt class="param">vref</dt><dd class="cmt"><p>Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).</p></dd><dt class="param">vs</dt><dd class="cmt"><p>Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).</p></dd></dl><div class="toggleContainer block">

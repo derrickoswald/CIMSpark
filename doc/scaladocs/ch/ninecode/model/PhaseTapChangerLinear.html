@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PhaseTapChangerLinear - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PhaseTapChangerLinear</title>
-          <meta name="description" content="PhaseTapChangerLinear - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PhaseTapChangerLinear" />
-          <meta name="keywords" content="PhaseTapChangerLinear CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PhaseTapChangerLinear" />
+          <title>PhaseTapChangerLinear - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PhaseTapChangerLinear</title>
+          <meta name="description" content="PhaseTapChangerLinear - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PhaseTapChangerLinear" />
+          <meta name="keywords" content="PhaseTapChangerLinear CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PhaseTapChangerLinear" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,10 +52,13 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer.</p><p>This is a mathematical model that is an approximation of a real phase tap changer.
+The phase angle is computed as stepPhaseShiftIncrement times the tap position.
+The secondary side voltage magnitude is the same as at the primary side.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">stepPhaseShiftIncrement</dt><dd class="cmt"><p>Phase shift per step position.
-       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The maximum reactance (xMax) appear at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></dd></dl><div class="toggleContainer block">
+       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+       The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The maximum reactance (xMax) appears at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,9 +131,10 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">stepPhaseShiftIncrement</dt><dd class="cmt"><p>Phase shift per step position.
-       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The maximum reactance (xMax) appear at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></dd></dl></div>
+       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+       The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The maximum reactance (xMax) appears at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1105,7 +1109,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Phase shift per step position.</p><div class="fullcomment"><div class="comment cmt"><p>Phase shift per step position.
-       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).</p></div></div>
+       A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+       The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.</p></div></div>
     </li><li name="ch.ninecode.model.PhaseTapChangerLinear#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.PhaseTapChanger"></a>
       <a id="sup:PhaseTapChanger"></a>
@@ -1259,8 +1264,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The reactance depend on the tap position according to a &quot;u&quot; shaped curve.</p><div class="fullcomment"><div class="comment cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The maximum reactance (xMax) appear at the low and high tap positions.</p></div></div>
+      <p class="shortcomment cmt">The reactance depends on the tap position according to a &quot;u&quot; shaped curve.</p><div class="fullcomment"><div class="comment cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The maximum reactance (xMax) appears at the low and high tap positions.</p></div></div>
     </li><li name="ch.ninecode.model.PhaseTapChangerLinear#xMin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xMin:Double"></a>
       <a id="xMin:Double"></a>
@@ -1277,8 +1282,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The reactance depend on the tap position according to a &quot;u&quot; shaped curve.</p><div class="fullcomment"><div class="comment cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></div></div>
+      <p class="shortcomment cmt">The reactance depends on the tap position according to a &quot;u&quot; shaped curve.</p><div class="fullcomment"><div class="comment cmt"><p>The reactance depends on the tap position according to a &quot;u&quot; shaped curve.
+       The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></div></div>
     </li></ol>
             </div>
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SynchronousMachineDetailed - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.SynchronousMachineDetailed</title>
-          <meta name="description" content="SynchronousMachineDetailed - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.SynchronousMachineDetailed" />
-          <meta name="keywords" content="SynchronousMachineDetailed CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.SynchronousMachineDetailed" />
+          <title>SynchronousMachineDetailed - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.SynchronousMachineDetailed</title>
+          <meta name="description" content="SynchronousMachineDetailed - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.SynchronousMachineDetailed" />
+          <meta name="keywords" content="SynchronousMachineDetailed CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.SynchronousMachineDetailed" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,11 +52,15 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>All synchronous machine detailed types use a subset of the same data parameters and input/output variables.</p><p>The several variations differ in the following ways:
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDynamics.html" class="extype" name="ch.ninecode.model.SynchronousMachineDynamics">SynchronousMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdBaseRatio</dt><dd class="cmt"><p>Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
-       Typical Value = 1.</p></dd><dt class="param">ifdBaseType</dt><dd class="cmt"><p>Excitation base system mode.
-       It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.</p></dd><dt class="param">saturationFactor120QAxis</dt><dd class="cmt"><p>Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
-       Typical Value = 0.12.</p></dd><dt class="param">saturationFactorQAxis</dt><dd class="cmt"><p>Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
-       Typical Value = 0.02.</p></dd></dl><div class="toggleContainer block">
+- the number of  equivalent windings that are included;
+- the way in which saturation is incorporated into the model;
+- whether or not �subtransient saliency� (<i>X''q</i> not = <i>X''d</i>) is represented.
+It is not necessary for each simulation tool to have separate models for each of the model types.  The same model can often be used for several types by alternative logic within the model.  Also, differences in saturation representation might not result in significant model performance differences so model substitutions are often acceptable.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDynamics.html" class="extype" name="ch.ninecode.model.SynchronousMachineDynamics">SynchronousMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdBaseRatio</dt><dd class="cmt"><p>Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">ifdBaseType</dt><dd class="cmt"><p>Excitation base system mode.
+       It should be equal to the value of <i>WLMDV</i> given by the user. <i>WLMDV</i> is the PU ratio between the field voltage and the excitation current: <i>Efd</i> = <i>WLMDV</i> x <i>Ifd</i>. Typical value = ifag.</p></dd><dt class="param">saturationFactor120QAxis</dt><dd class="cmt"><p>Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (&gt;= SynchonousMachineDetailed.saturationFactorQAxis).
+       Typical value = 0,12.</p></dd><dt class="param">saturationFactorQAxis</dt><dd class="cmt"><p>Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,11 +132,11 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDynamics.html" class="extype" name="ch.ninecode.model.SynchronousMachineDynamics">SynchronousMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdBaseRatio</dt><dd class="cmt"><p>Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
-       Typical Value = 1.</p></dd><dt class="param">ifdBaseType</dt><dd class="cmt"><p>Excitation base system mode.
-       It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.</p></dd><dt class="param">saturationFactor120QAxis</dt><dd class="cmt"><p>Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
-       Typical Value = 0.12.</p></dd><dt class="param">saturationFactorQAxis</dt><dd class="cmt"><p>Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
-       Typical Value = 0.02.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDynamics.html" class="extype" name="ch.ninecode.model.SynchronousMachineDynamics">SynchronousMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdBaseRatio</dt><dd class="cmt"><p>Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">ifdBaseType</dt><dd class="cmt"><p>Excitation base system mode.
+       It should be equal to the value of <i>WLMDV</i> given by the user. <i>WLMDV</i> is the PU ratio between the field voltage and the excitation current: <i>Efd</i> = <i>WLMDV</i> x <i>Ifd</i>. Typical value = ifag.</p></dd><dt class="param">saturationFactor120QAxis</dt><dd class="cmt"><p>Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (&gt;= SynchonousMachineDetailed.saturationFactorQAxis).
+       Typical value = 0,12.</p></dd><dt class="param">saturationFactorQAxis</dt><dd class="cmt"><p>Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -357,8 +361,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.</p><div class="fullcomment"><div class="comment cmt"><p>Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -919,7 +923,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Excitation base system mode.</p><div class="fullcomment"><div class="comment cmt"><p>Excitation base system mode.
-       It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.</p></div></div>
+       It should be equal to the value of <i>WLMDV</i> given by the user. <i>WLMDV</i> is the PU ratio between the field voltage and the excitation current: <i>Efd</i> = <i>WLMDV</i> x <i>Ifd</i>. Typical value = ifag.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1108,8 +1112,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).</p><div class="fullcomment"><div class="comment cmt"><p>Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
-       Typical Value = 0.12.</p></div></div>
+      <p class="shortcomment cmt">Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (&gt;= SynchonousMachineDetailed.saturationFactorQAxis).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (&gt;= SynchonousMachineDetailed.saturationFactorQAxis).
+       Typical value = 0,12.</p></div></div>
     </li><li name="ch.ninecode.model.SynchronousMachineDetailed#saturationFactorQAxis" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="saturationFactorQAxis:Double"></a>
       <a id="saturationFactorQAxis:Double"></a>
@@ -1126,8 +1130,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).</p><div class="fullcomment"><div class="comment cmt"><p>Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>

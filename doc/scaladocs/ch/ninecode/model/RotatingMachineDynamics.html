@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>RotatingMachineDynamics - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.RotatingMachineDynamics</title>
-          <meta name="description" content="RotatingMachineDynamics - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.RotatingMachineDynamics" />
-          <meta name="keywords" content="RotatingMachineDynamics CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.RotatingMachineDynamics" />
+          <title>RotatingMachineDynamics - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.RotatingMachineDynamics</title>
+          <meta name="description" content="RotatingMachineDynamics - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.RotatingMachineDynamics" />
+          <meta name="keywords" content="RotatingMachineDynamics CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.RotatingMachineDynamics" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,13 +52,13 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Abstract parent class for all synchronous and asynchronous machine standard models.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DynamicsFunctionBlock.html" class="extype" name="ch.ninecode.model.DynamicsFunctionBlock">DynamicsFunctionBlock</a> Reference to the superclass object.</p></dd><dt class="param">damping</dt><dd class="cmt"><p>Damping torque coefficient (D).
-       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.</p></dd><dt class="param">inertia</dt><dd class="cmt"><p>Inertia constant of generator or motor and mechanical load (H) (&gt;0).
-       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.</p></dd><dt class="param">saturationFactor</dt><dd class="cmt"><p>Saturation factor at rated terminal voltage (S1) (&gt; or =0).
-       Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.</p></dd><dt class="param">saturationFactor120</dt><dd class="cmt"><p>Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).
-       Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.</p></dd><dt class="param">statorLeakageReactance</dt><dd class="cmt"><p>Stator leakage reactance (Xl) (&gt; or =0).
-       Typical Value = 0.15.</p></dd><dt class="param">statorResistance</dt><dd class="cmt"><p>Stator (armature) resistance (Rs) (&gt; or =0).
-       Typical Value = 0.005.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DynamicsFunctionBlock.html" class="extype" name="ch.ninecode.model.DynamicsFunctionBlock">DynamicsFunctionBlock</a> Reference to the superclass object.</p></dd><dt class="param">damping</dt><dd class="cmt"><p>Damping torque coefficient (<i>D</i>) (&gt;= 0).
+       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical value = 0.</p></dd><dt class="param">inertia</dt><dd class="cmt"><p>Inertia constant of generator or motor and mechanical load (<i>H</i>) (&gt; 0).
+       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW x s.  For a motor, it includes the motor plus its mechanical load. Conventional units are PU on the generator MVA base, usually expressed as MW x s / MVA or just s. This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical value = 3.</p></dd><dt class="param">saturationFactor</dt><dd class="cmt"><p>Saturation factor at rated terminal voltage (<i>S1</i>) (&gt;= 0).
+       Not used by simplified model.  Defined by defined by <i>S</i>(<i>E1</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,02.</p></dd><dt class="param">saturationFactor120</dt><dd class="cmt"><p>Saturation factor at 120% of rated terminal voltage (<i>S12</i>) (&gt;= RotatingMachineDynamics.saturationFactor).
+       Not used by the simplified model, defined by <i>S</i>(<i>E2</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,12.</p></dd><dt class="param">statorLeakageReactance</dt><dd class="cmt"><p>Stator leakage reactance (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,15.</p></dd><dt class="param">statorResistance</dt><dd class="cmt"><p>Stator (armature) resistance (<i>Rs</i>) (&gt;= 0).
+       Typical value = 0,005.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,13 +130,13 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DynamicsFunctionBlock.html" class="extype" name="ch.ninecode.model.DynamicsFunctionBlock">DynamicsFunctionBlock</a> Reference to the superclass object.</p></dd><dt class="param">damping</dt><dd class="cmt"><p>Damping torque coefficient (D).
-       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.</p></dd><dt class="param">inertia</dt><dd class="cmt"><p>Inertia constant of generator or motor and mechanical load (H) (&gt;0).
-       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.</p></dd><dt class="param">saturationFactor</dt><dd class="cmt"><p>Saturation factor at rated terminal voltage (S1) (&gt; or =0).
-       Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.</p></dd><dt class="param">saturationFactor120</dt><dd class="cmt"><p>Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).
-       Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.</p></dd><dt class="param">statorLeakageReactance</dt><dd class="cmt"><p>Stator leakage reactance (Xl) (&gt; or =0).
-       Typical Value = 0.15.</p></dd><dt class="param">statorResistance</dt><dd class="cmt"><p>Stator (armature) resistance (Rs) (&gt; or =0).
-       Typical Value = 0.005.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DynamicsFunctionBlock.html" class="extype" name="ch.ninecode.model.DynamicsFunctionBlock">DynamicsFunctionBlock</a> Reference to the superclass object.</p></dd><dt class="param">damping</dt><dd class="cmt"><p>Damping torque coefficient (<i>D</i>) (&gt;= 0).
+       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical value = 0.</p></dd><dt class="param">inertia</dt><dd class="cmt"><p>Inertia constant of generator or motor and mechanical load (<i>H</i>) (&gt; 0).
+       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW x s.  For a motor, it includes the motor plus its mechanical load. Conventional units are PU on the generator MVA base, usually expressed as MW x s / MVA or just s. This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical value = 3.</p></dd><dt class="param">saturationFactor</dt><dd class="cmt"><p>Saturation factor at rated terminal voltage (<i>S1</i>) (&gt;= 0).
+       Not used by simplified model.  Defined by defined by <i>S</i>(<i>E1</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,02.</p></dd><dt class="param">saturationFactor120</dt><dd class="cmt"><p>Saturation factor at 120% of rated terminal voltage (<i>S12</i>) (&gt;= RotatingMachineDynamics.saturationFactor).
+       Not used by the simplified model, defined by <i>S</i>(<i>E2</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,12.</p></dd><dt class="param">statorLeakageReactance</dt><dd class="cmt"><p>Stator leakage reactance (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,15.</p></dd><dt class="param">statorResistance</dt><dd class="cmt"><p>Stator (armature) resistance (<i>Rs</i>) (&gt;= 0).
+       Typical value = 0,005.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -361,8 +361,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Damping torque coefficient (D).</p><div class="fullcomment"><div class="comment cmt"><p>Damping torque coefficient (D).
-       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Damping torque coefficient (<i>D</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Damping torque coefficient (<i>D</i>) (&gt;= 0).
+       A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -922,8 +922,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Inertia constant of generator or motor and mechanical load (H) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Inertia constant of generator or motor and mechanical load (H) (&gt;0).
-       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Inertia constant of generator or motor and mechanical load (<i>H</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Inertia constant of generator or motor and mechanical load (<i>H</i>) (&gt; 0).
+       This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW x s.  For a motor, it includes the motor plus its mechanical load. Conventional units are PU on the generator MVA base, usually expressed as MW x s / MVA or just s. This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical value = 3.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1112,8 +1112,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Saturation factor at rated terminal voltage (S1) (&gt; or =0).</p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at rated terminal voltage (S1) (&gt; or =0).
-       Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Saturation factor at rated terminal voltage (<i>S1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at rated terminal voltage (<i>S1</i>) (&gt;= 0).
+       Not used by simplified model.  Defined by defined by <i>S</i>(<i>E1</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.RotatingMachineDynamics#saturationFactor120" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="saturationFactor120:Double"></a>
       <a id="saturationFactor120:Double"></a>
@@ -1130,8 +1130,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).</p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).
-       Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.</p></div></div>
+      <p class="shortcomment cmt">Saturation factor at 120% of rated terminal voltage (<i>S12</i>) (&gt;= RotatingMachineDynamics.saturationFactor).</i></p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at 120% of rated terminal voltage (<i>S12</i>) (&gt;= RotatingMachineDynamics.saturationFactor).
+       Not used by the simplified model, defined by <i>S</i>(<i>E2</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,12.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1182,8 +1182,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stator leakage reactance (Xl) (&gt; or =0).</p><div class="fullcomment"><div class="comment cmt"><p>Stator leakage reactance (Xl) (&gt; or =0).
-       Typical Value = 0.15.</p></div></div>
+      <p class="shortcomment cmt">Stator leakage reactance (<i>Xl</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stator leakage reactance (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,15.</p></div></div>
     </li><li name="ch.ninecode.model.RotatingMachineDynamics#statorResistance" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="statorResistance:Double"></a>
       <a id="statorResistance:Double"></a>
@@ -1200,8 +1200,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stator (armature) resistance (Rs) (&gt; or =0).</p><div class="fullcomment"><div class="comment cmt"><p>Stator (armature) resistance (Rs) (&gt; or =0).
-       Typical Value = 0.005.</p></div></div>
+      <p class="shortcomment cmt">Stator (armature) resistance (<i>Rs</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stator (armature) resistance (<i>Rs</i>) (&gt;= 0).
+       Typical value = 0,005.</p></div></div>
     </li><li name="ch.ninecode.model.RotatingMachineDynamics#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.DynamicsFunctionBlock"></a>
       <a id="sup:DynamicsFunctionBlock"></a>

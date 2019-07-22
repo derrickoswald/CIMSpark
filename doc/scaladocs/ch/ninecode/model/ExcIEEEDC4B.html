@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcIEEEDC4B - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcIEEEDC4B</title>
-          <meta name="description" content="ExcIEEEDC4B - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcIEEEDC4B" />
-          <meta name="keywords" content="ExcIEEEDC4B CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcIEEEDC4B" />
+          <title>ExcIEEEDC4B - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcIEEEDC4B</title>
+          <meta name="description" content="ExcIEEEDC4B - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcIEEEDC4B" />
+          <meta name="keywords" content="ExcIEEEDC4B CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcIEEEDC4B" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,31 +51,32 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type DC4B model.</p><p>These excitation systems utilize a field-controlled dc commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efd1</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-       Typical Value = 1.75.</p></dd><dt class="param">efd2</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-       Typical Value = 2.33.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Regulator derivative gain (K<sub>D</sub>).
-       Typical Value = 20.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (K<sub>E</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Excitation control system stabilizer gain (K<sub>F</sub>).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Regulator integral gain (K<sub>I</sub>).
-       Typical Value = 20.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Regulator proportional gain (K<sub>P</sub>).
-       Typical Value = 20.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input (OELin).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type DC4B model.</p><p>These excitation systems utilize a field-controlled DC commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
+Reference: IEEE 421.5-2005, 5.4.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efd1</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+       Typical value = 1,75.</p></dd><dt class="param">efd2</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+       Typical value = 2,33.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input (<i>OELin</i>).
        true = LV gate
        false = subtract from error signal.
-       Typical Value = true.</p></dd><dt class="param">seefd1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-       Typical Value = 0.08.</p></dd><dt class="param">seefd2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-       Typical Value = 0.27.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.2.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Regulator derivative filter time constant(T<sub>D</sub>).
-       Typical Value = 0.01.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-       Typical Value = 0.8.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value = 1.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input (UELin).
+       Typical value = true.</p></dd><dt class="param">seefd1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">seefd2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,27.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,2.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
+       Typical value = 0,01.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+       Typical value = 0,8.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input (<i>UELin</i>).
        true = HV gate
        false = add to error signal.
-       Typical Value = true.</p></dd><dt class="param">vemin</dt><dd class="cmt"><p>Minimum exciter voltage output(V<sub>EMIN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 2.7.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -0.9.</p></dd></dl><div class="toggleContainer block">
+       Typical value = true.</p></dd><dt class="param">vemin</dt><dd class="cmt"><p>Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
+       Typical value = 2,7.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
+       Typical value = -0,9.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -147,30 +148,30 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efd1</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-       Typical Value = 1.75.</p></dd><dt class="param">efd2</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-       Typical Value = 2.33.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Regulator derivative gain (K<sub>D</sub>).
-       Typical Value = 20.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (K<sub>E</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Excitation control system stabilizer gain (K<sub>F</sub>).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Regulator integral gain (K<sub>I</sub>).
-       Typical Value = 20.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Regulator proportional gain (K<sub>P</sub>).
-       Typical Value = 20.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input (OELin).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efd1</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+       Typical value = 1,75.</p></dd><dt class="param">efd2</dt><dd class="cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+       Typical value = 2,33.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input (<i>OELin</i>).
        true = LV gate
        false = subtract from error signal.
-       Typical Value = true.</p></dd><dt class="param">seefd1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-       Typical Value = 0.08.</p></dd><dt class="param">seefd2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-       Typical Value = 0.27.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.2.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Regulator derivative filter time constant(T<sub>D</sub>).
-       Typical Value = 0.01.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-       Typical Value = 0.8.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value = 1.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input (UELin).
+       Typical value = true.</p></dd><dt class="param">seefd1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">seefd2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,27.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,2.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
+       Typical value = 0,01.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+       Typical value = 0,8.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input (<i>UELin</i>).
        true = HV gate
        false = add to error signal.
-       Typical Value = true.</p></dd><dt class="param">vemin</dt><dd class="cmt"><p>Minimum exciter voltage output(V<sub>EMIN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 2.7.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -0.9.</p></dd></dl></div>
+       Typical value = true.</p></dd><dt class="param">vemin</dt><dd class="cmt"><p>Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
+       Typical value = 2,7.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
+       Typical value = -0,9.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -395,8 +396,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-       Typical Value = 1.75.</p></div></div>
+      <p class="shortcomment cmt">Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+       Typical value = 1,75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#efd2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="efd2:Double"></a>
       <a id="efd2:Double"></a>
@@ -413,8 +414,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-       Typical Value = 2.33.</p></div></div>
+      <p class="shortcomment cmt">Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+       Typical value = 2,33.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1008,8 +1009,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator gain (K<sub>A</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (K<sub>A</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#kd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kd:Double"></a>
       <a id="kd:Double"></a>
@@ -1026,8 +1027,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator derivative gain (K<sub>D</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator derivative gain (K<sub>D</sub>).
-       Typical Value = 20.</p></div></div>
+      <p class="shortcomment cmt">Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#ke" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ke:Double"></a>
       <a id="ke:Double"></a>
@@ -1044,8 +1045,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter constant related to self-excited field (K<sub>E</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant related to self-excited field (K<sub>E</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#kf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kf:Double"></a>
       <a id="kf:Double"></a>
@@ -1062,8 +1063,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Excitation control system stabilizer gain (K<sub>F</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer gain (K<sub>F</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
@@ -1080,8 +1081,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator integral gain (K<sub>I</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator integral gain (K<sub>I</sub>).
-       Typical Value = 20.</p></div></div>
+      <p class="shortcomment cmt">Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1098,8 +1099,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator proportional gain (K<sub>P</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator proportional gain (K<sub>P</sub>).
-       Typical Value = 20.</p></div></div>
+      <p class="shortcomment cmt">Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+       Typical value = 20.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1254,10 +1255,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL input (OELin).</p><div class="fullcomment"><div class="comment cmt"><p>OEL input (OELin).
+      <p class="shortcomment cmt">OEL input (<i>OELin</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>OEL input (<i>OELin</i>).
        true = LV gate
        false = subtract from error signal.
-       Typical Value = true.</p></div></div>
+       Typical value = true.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1291,8 +1292,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).</sub></sub></sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).</i></i></i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#seefd2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="seefd2:Double"></a>
       <a id="seefd2:Double"></a>
@@ -1309,8 +1310,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).</sub></sub></sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-       Typical Value = 0.27.</p></div></div>
+      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).</i></i></i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,27.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="size:Int"></a>
       <a id="size:Int"></a>
@@ -1378,8 +1379,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (T<sub>A</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (T<sub>A</sub>).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#td" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="td:Double"></a>
       <a id="td:Double"></a>
@@ -1396,8 +1397,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator derivative filter time constant(T<sub>D</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator derivative filter time constant(T<sub>D</sub>).
-       Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
+       Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
@@ -1414,8 +1415,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-       Typical Value = 0.8.</p></div></div>
+      <p class="shortcomment cmt">Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+       Typical value = 0,8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#tf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tf:Double"></a>
       <a id="tf:Double"></a>
@@ -1432,8 +1433,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Excitation control system stabilizer time constant (T<sub>F</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1484,10 +1485,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL input (UELin).</p><div class="fullcomment"><div class="comment cmt"><p>UEL input (UELin).
+      <p class="shortcomment cmt">UEL input (<i>UELin</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>UEL input (<i>UELin</i>).
        true = HV gate
        false = add to error signal.
-       Typical Value = true.</p></div></div>
+       Typical value = true.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#vemin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vemin:Double"></a>
       <a id="vemin:Double"></a>
@@ -1504,8 +1505,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum exciter voltage output(V<sub>EMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum exciter voltage output(V<sub>EMIN</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1522,8 +1523,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (V<sub>RMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 2.7.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
+       Typical value = 2,7.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEDC4B#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1540,8 +1541,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (V<sub>RMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -0.9.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
+       Typical value = -0,9.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

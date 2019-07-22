@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcST4B - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcST4B</title>
-          <meta name="description" content="ExcST4B - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcST4B" />
-          <meta name="keywords" content="ExcST4B CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcST4B" />
+          <title>ExcST4B - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcST4B</title>
+          <meta name="description" content="ExcST4B - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcST4B" />
+          <meta name="keywords" content="ExcST4B CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcST4B" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,31 +51,31 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <b>Vgmax</b>.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.113.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kim</dt><dd class="cmt"><p>Voltage regulator integral gain output (Kim).
-       Typical Value = 0.</p></dd><dt class="param">kir</dt><dd class="cmt"><p>Voltage regulator integral gain (Kir).
-       Typical Value = 10.75.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential circuit gain coefficient (Kp).
-       Typical Value = 9.3.</p></dd><dt class="param">kpm</dt><dd class="cmt"><p>Voltage regulator proportional gain output (Kpm).
-       Typical Value = 1.</p></dd><dt class="param">kpr</dt><dd class="cmt"><p>Voltage regulator proportional gain (Kpr).
-       Typical Value = 10.75.</p></dd><dt class="param">lvgate</dt><dd class="cmt"><p>Selector (LVgate).
-       true = LVgate is part of the block diagram
-       false = LVgate is not part of the block diagram.
-       Typical Value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.02.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 0.</p></dd><dt class="param">uel</dt><dd class="cmt"><p>Selector (Uel).
-       true = UEL is part of block diagram
-       false = UEL is not part of block diagram.
-       Typical Value = false.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 11.63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 5.8.</p></dd><dt class="param">vmmax</dt><dd class="cmt"><p>Maximum inner loop output (Vmmax).
-       Typical Value = 99.</p></dd><dt class="param">vmmin</dt><dd class="cmt"><p>Minimum inner loop output (Vmmin).
-       Typical Value = -99.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -0.87.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.124.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <i>Vgmax</i>.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,113.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">kim</dt><dd class="cmt"><p>Voltage regulator integral gain output (<i>Kim</i>).
+       Typical value = 0.</p></dd><dt class="param">kir</dt><dd class="cmt"><p>Voltage regulator integral gain (<i>Kir</i>).
+       Typical value = 10,75.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
+       Typical value = 9,3.</p></dd><dt class="param">kpm</dt><dd class="cmt"><p>Voltage regulator proportional gain output (<i>Kpm</i>).
+       Typical value = 1.</p></dd><dt class="param">kpr</dt><dd class="cmt"><p>Voltage regulator proportional gain (<i>Kpr</i>).
+       Typical value = 10,75.</p></dd><dt class="param">lvgate</dt><dd class="cmt"><p>Selector (<i>LVGate</i>).
+       true = <i>LVGate</i> is part of the block diagram
+       false = <i>LVGate</i> is not part of the block diagram.
+       Typical value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">uel</dt><dd class="cmt"><p>Selector (<i>UEL</i>).
+       true = <i>UEL</i> is part of block diagram
+       false = <i>UEL</i> is not part of block diagram.
+       Typical value = false.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 11,63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 5,8.</p></dd><dt class="param">vmmax</dt><dd class="cmt"><p>Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
+       Typical value = 99.</p></dd><dt class="param">vmmin</dt><dd class="cmt"><p>Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
+       Typical value = -99.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -0,87.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,124.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -147,30 +147,30 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.113.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kim</dt><dd class="cmt"><p>Voltage regulator integral gain output (Kim).
-       Typical Value = 0.</p></dd><dt class="param">kir</dt><dd class="cmt"><p>Voltage regulator integral gain (Kir).
-       Typical Value = 10.75.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential circuit gain coefficient (Kp).
-       Typical Value = 9.3.</p></dd><dt class="param">kpm</dt><dd class="cmt"><p>Voltage regulator proportional gain output (Kpm).
-       Typical Value = 1.</p></dd><dt class="param">kpr</dt><dd class="cmt"><p>Voltage regulator proportional gain (Kpr).
-       Typical Value = 10.75.</p></dd><dt class="param">lvgate</dt><dd class="cmt"><p>Selector (LVgate).
-       true = LVgate is part of the block diagram
-       false = LVgate is not part of the block diagram.
-       Typical Value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.02.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 0.</p></dd><dt class="param">uel</dt><dd class="cmt"><p>Selector (Uel).
-       true = UEL is part of block diagram
-       false = UEL is not part of block diagram.
-       Typical Value = false.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 11.63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 5.8.</p></dd><dt class="param">vmmax</dt><dd class="cmt"><p>Maximum inner loop output (Vmmax).
-       Typical Value = 99.</p></dd><dt class="param">vmmin</dt><dd class="cmt"><p>Minimum inner loop output (Vmmin).
-       Typical Value = -99.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -0.87.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.124.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,113.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">kim</dt><dd class="cmt"><p>Voltage regulator integral gain output (<i>Kim</i>).
+       Typical value = 0.</p></dd><dt class="param">kir</dt><dd class="cmt"><p>Voltage regulator integral gain (<i>Kir</i>).
+       Typical value = 10,75.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
+       Typical value = 9,3.</p></dd><dt class="param">kpm</dt><dd class="cmt"><p>Voltage regulator proportional gain output (<i>Kpm</i>).
+       Typical value = 1.</p></dd><dt class="param">kpr</dt><dd class="cmt"><p>Voltage regulator proportional gain (<i>Kpr</i>).
+       Typical value = 10,75.</p></dd><dt class="param">lvgate</dt><dd class="cmt"><p>Selector (<i>LVGate</i>).
+       true = <i>LVGate</i> is part of the block diagram
+       false = <i>LVGate</i> is not part of the block diagram.
+       Typical value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">thetap</dt><dd class="cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">uel</dt><dd class="cmt"><p>Selector (<i>UEL</i>).
+       true = <i>UEL</i> is part of block diagram
+       false = <i>UEL</i> is not part of block diagram.
+       Typical value = false.</p></dd><dt class="param">vbmax</dt><dd class="cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 11,63.</p></dd><dt class="param">vgmax</dt><dd class="cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 5,8.</p></dd><dt class="param">vmmax</dt><dd class="cmt"><p>Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
+       Typical value = 99.</p></dd><dt class="param">vmmin</dt><dd class="cmt"><p>Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
+       Typical value = -99.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -0,87.</p></dd><dt class="param">xl</dt><dd class="cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,124.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -972,8 +972,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.113.</p></div></div>
+      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,113.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kg:Double"></a>
       <a id="kg:Double"></a>
@@ -990,8 +990,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Feedback gain constant of the inner loop field regulator (Kg).</p><div class="fullcomment"><div class="comment cmt"><p>Feedback gain constant of the inner loop field regulator (Kg).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
@@ -1008,8 +1008,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential circuit gain coefficient (Ki).</p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (Ki).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kim" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kim:Double"></a>
       <a id="kim:Double"></a>
@@ -1026,8 +1026,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator integral gain output (Kim).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain output (Kim).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator integral gain output (<i>Kim</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain output (<i>Kim</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kir:Double"></a>
       <a id="kir:Double"></a>
@@ -1044,8 +1044,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator integral gain (Kir).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain (Kir).
-       Typical Value = 10.75.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator integral gain (<i>Kir</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain (<i>Kir</i>).
+       Typical value = 10,75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1062,8 +1062,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential circuit gain coefficient (Kp).</p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (Kp).
-       Typical Value = 9.3.</p></div></div>
+      <p class="shortcomment cmt">Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
+       Typical value = 9,3.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kpm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpm:Double"></a>
       <a id="kpm:Double"></a>
@@ -1080,8 +1080,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator proportional gain output (Kpm).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain output (Kpm).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator proportional gain output (<i>Kpm</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain output (<i>Kpm</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#kpr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpr:Double"></a>
       <a id="kpr:Double"></a>
@@ -1098,8 +1098,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator proportional gain (Kpr).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain (Kpr).
-       Typical Value = 10.75.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator proportional gain (<i>Kpr</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain (<i>Kpr</i>).
+       Typical value = 10,75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1134,10 +1134,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Selector (LVgate).</p><div class="fullcomment"><div class="comment cmt"><p>Selector (LVgate).
-       true = LVgate is part of the block diagram
-       false = LVgate is not part of the block diagram.
-       Typical Value = false.</p></div></div>
+      <p class="shortcomment cmt">Selector (<i>LVGate</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Selector (<i>LVGate</i>).
+       true = <i>LVGate</i> is part of the block diagram
+       false = <i>LVGate</i> is not part of the block diagram.
+       Typical value = false.</p></div></div>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1342,8 +1342,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Ta).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#thetap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="thetap:Double"></a>
       <a id="thetap:Double"></a>
@@ -1360,8 +1360,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential circuit phase angle (thetap).</p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit phase angle (thetap).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1412,10 +1412,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Selector (Uel).</p><div class="fullcomment"><div class="comment cmt"><p>Selector (Uel).
-       true = UEL is part of block diagram
-       false = UEL is not part of block diagram.
-       Typical Value = false.</p></div></div>
+      <p class="shortcomment cmt">Selector (<i>UEL</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Selector (<i>UEL</i>).
+       true = <i>UEL</i> is part of block diagram
+       false = <i>UEL</i> is not part of block diagram.
+       Typical value = false.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vbmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vbmax:Double"></a>
       <a id="vbmax:Double"></a>
@@ -1432,8 +1432,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum excitation voltage (Vbmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum excitation voltage (Vbmax).
-       Typical Value = 11.63.</p></div></div>
+      <p class="shortcomment cmt">Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+       Typical value = 11,63.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vgmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vgmax:Double"></a>
       <a id="vgmax:Double"></a>
@@ -1450,8 +1450,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum inner loop feedback voltage (Vgmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop feedback voltage (Vgmax).
-       Typical Value = 5.8.</p></div></div>
+      <p class="shortcomment cmt">Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+       Typical value = 5,8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vmmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmmax:Double"></a>
       <a id="vmmax:Double"></a>
@@ -1468,8 +1468,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum inner loop output (Vmmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop output (Vmmax).
-       Typical Value = 99.</p></div></div>
+      <p class="shortcomment cmt">Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
+       Typical value = 99.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vmmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmmin:Double"></a>
       <a id="vmmin:Double"></a>
@@ -1486,8 +1486,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum inner loop output (Vmmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum inner loop output (Vmmin).
-       Typical Value = -99.</p></div></div>
+      <p class="shortcomment cmt">Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
+       Typical value = -99.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1504,8 +1504,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (Vrmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcST4B#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1522,8 +1522,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (Vrmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -0.87.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -0,87.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1609,8 +1609,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reactance associated with potential source (Xl).</p><div class="fullcomment"><div class="comment cmt"><p>Reactance associated with potential source (Xl).
-       Typical Value = 0.124.</p></div></div>
+      <p class="shortcomment cmt">Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+       Typical value = 0,124.</p></div></div>
     </li></ol>
             </div>
 

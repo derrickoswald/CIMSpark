@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovHydro1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovHydro1</title>
-          <meta name="description" content="GovHydro1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovHydro1" />
-          <meta name="keywords" content="GovHydro1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovHydro1" />
+          <title>GovHydro1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovHydro1</title>
+          <meta name="description" content="GovHydro1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovHydro1" />
+          <meta name="keywords" content="GovHydro1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovHydro1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,22 +51,22 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Basic Hydro turbine governor model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">at</dt><dd class="cmt"><p>Turbine gain (At) (&gt;0).
-       Typical Value = 1.2.</p></dd><dt class="param">dturb</dt><dd class="cmt"><p>Turbine damping factor (Dturb) (&gt;=0).
-       Typical Value = 0.5.</p></dd><dt class="param">gmax</dt><dd class="cmt"><p>Maximum gate opening (Gmax) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">gmin</dt><dd class="cmt"><p>Minimum gate opening (Gmin) (&gt;=0).
-       Typical Value = 0.</p></dd><dt class="param">hdam</dt><dd class="cmt"><p>Turbine nominal head (hdam).
-       Typical Value = 1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">qnl</dt><dd class="cmt"><p>No-load flow at nominal head (qnl) (&gt;=0).
-       Typical Value = 0.08.</p></dd><dt class="param">rperm</dt><dd class="cmt"><p>Permanent droop (R) (&gt;0).
-       Typical Value = 0.04.</p></dd><dt class="param">rtemp</dt><dd class="cmt"><p>Temporary droop (r) (&gt;R).
-       Typical Value = 0.3.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Filter time constant (<i>Tf</i>) (&gt;0).
-       Typical Value = 0.05.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Gate servo time constant (Tg) (&gt;0).
-       Typical Value = 0.5.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Washout time constant (Tr) (&gt;0).
-       Typical Value = 5.</p></dd><dt class="param">tw</dt><dd class="cmt"><p>Water inertia time constant (Tw) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">velm</dt><dd class="cmt"><p>Maximum gate velocity (Vlem) (&gt;0).
-       Typical Value = 0.2.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Basic hydro turbine governor.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">at</dt><dd class="cmt"><p>Turbine gain (<i>At</i>) (&gt; 0).
+       Typical value = 1,2.</p></dd><dt class="param">dturb</dt><dd class="cmt"><p>Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">gmax</dt><dd class="cmt"><p>Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
+       Typical value = 1.</p></dd><dt class="param">gmin</dt><dd class="cmt"><p>Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
+       Typical value = 0.</p></dd><dt class="param">hdam</dt><dd class="cmt"><p>Turbine nominal head (<i>hdam</i>).
+       Typical value = 1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">qnl</dt><dd class="cmt"><p>No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">rperm</dt><dd class="cmt"><p>Permanent droop (<i>R</i>) (&gt; 0).
+       Typical value = 0,04.</p></dd><dt class="param">rtemp</dt><dd class="cmt"><p>Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
+       Typical value = 0,3.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Filter time constant (<i>Tf</i>) (&gt; 0).
+       Typical value = 0,05.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Gate servo time constant (<i>Tg</i>) (&gt; 0).
+       Typical value = 0,5.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Washout time constant (<i>Tr</i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">tw</dt><dd class="cmt"><p>Water inertia time constant (<i>Tw</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">velm</dt><dd class="cmt"><p>Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
+       Typical value = 0,2.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -138,21 +138,21 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">at</dt><dd class="cmt"><p>Turbine gain (At) (&gt;0).
-       Typical Value = 1.2.</p></dd><dt class="param">dturb</dt><dd class="cmt"><p>Turbine damping factor (Dturb) (&gt;=0).
-       Typical Value = 0.5.</p></dd><dt class="param">gmax</dt><dd class="cmt"><p>Maximum gate opening (Gmax) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">gmin</dt><dd class="cmt"><p>Minimum gate opening (Gmin) (&gt;=0).
-       Typical Value = 0.</p></dd><dt class="param">hdam</dt><dd class="cmt"><p>Turbine nominal head (hdam).
-       Typical Value = 1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">qnl</dt><dd class="cmt"><p>No-load flow at nominal head (qnl) (&gt;=0).
-       Typical Value = 0.08.</p></dd><dt class="param">rperm</dt><dd class="cmt"><p>Permanent droop (R) (&gt;0).
-       Typical Value = 0.04.</p></dd><dt class="param">rtemp</dt><dd class="cmt"><p>Temporary droop (r) (&gt;R).
-       Typical Value = 0.3.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Filter time constant (<i>Tf</i>) (&gt;0).
-       Typical Value = 0.05.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Gate servo time constant (Tg) (&gt;0).
-       Typical Value = 0.5.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Washout time constant (Tr) (&gt;0).
-       Typical Value = 5.</p></dd><dt class="param">tw</dt><dd class="cmt"><p>Water inertia time constant (Tw) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">velm</dt><dd class="cmt"><p>Maximum gate velocity (Vlem) (&gt;0).
-       Typical Value = 0.2.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">at</dt><dd class="cmt"><p>Turbine gain (<i>At</i>) (&gt; 0).
+       Typical value = 1,2.</p></dd><dt class="param">dturb</dt><dd class="cmt"><p>Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">gmax</dt><dd class="cmt"><p>Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
+       Typical value = 1.</p></dd><dt class="param">gmin</dt><dd class="cmt"><p>Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
+       Typical value = 0.</p></dd><dt class="param">hdam</dt><dd class="cmt"><p>Turbine nominal head (<i>hdam</i>).
+       Typical value = 1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">qnl</dt><dd class="cmt"><p>No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">rperm</dt><dd class="cmt"><p>Permanent droop (<i>R</i>) (&gt; 0).
+       Typical value = 0,04.</p></dd><dt class="param">rtemp</dt><dd class="cmt"><p>Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
+       Typical value = 0,3.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Filter time constant (<i>Tf</i>) (&gt; 0).
+       Typical value = 0,05.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Gate servo time constant (<i>Tg</i>) (&gt; 0).
+       Typical value = 0,5.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Washout time constant (<i>Tr</i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">tw</dt><dd class="cmt"><p>Water inertia time constant (<i>Tw</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">velm</dt><dd class="cmt"><p>Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
+       Typical value = 0,2.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -316,8 +316,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine gain (At) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine gain (At) (&gt;0).
-       Typical Value = 1.2.</p></div></div>
+      <p class="shortcomment cmt">Turbine gain (<i>At</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine gain (<i>At</i>) (&gt; 0).
+       Typical value = 1,2.</p></div></div>
     </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bitfields:Array[Int]"></a>
       <a id="bitfields:Array[Int]"></a>
@@ -395,8 +395,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine damping factor (Dturb) (&gt;=0).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine damping factor (Dturb) (&gt;=0).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Turbine damping factor (<i>Dturb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -921,8 +921,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum gate opening (Gmax) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening (Gmax) (&gt;0).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#gmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="gmin:Double"></a>
       <a id="gmin:Double"></a>
@@ -939,8 +939,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum gate opening (Gmin) (&gt;=0).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum gate opening (Gmin) (&gt;=0).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -974,8 +974,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine nominal head (hdam).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine nominal head (hdam).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Turbine nominal head (<i>hdam</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine nominal head (<i>hdam</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.Element#id" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="id:String"></a>
       <a id="id:String"></a>
@@ -1131,7 +1131,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base for power values (MWbase) (&gt; 0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt; 0).
+      <p class="shortcomment cmt">Base for power values (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1200,8 +1200,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">No-load flow at nominal head (qnl) (&gt;=0).</p><div class="fullcomment"><div class="comment cmt"><p>No-load flow at nominal head (qnl) (&gt;=0).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#rperm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rperm:Double"></a>
       <a id="rperm:Double"></a>
@@ -1218,8 +1218,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Permanent droop (R) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Permanent droop (R) (&gt;0).
-       Typical Value = 0.04.</p></div></div>
+      <p class="shortcomment cmt">Permanent droop (<i>R</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Permanent droop (<i>R</i>) (&gt; 0).
+       Typical value = 0,04.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#rtemp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rtemp:Double"></a>
       <a id="rtemp:Double"></a>
@@ -1236,8 +1236,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temporary droop (r) (&gt;R).</p><div class="fullcomment"><div class="comment cmt"><p>Temporary droop (r) (&gt;R).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
+       Typical value = 0,3.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1322,8 +1322,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant (<i>Tf</i>) (&gt;0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>Tf</i>) (&gt;0).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant (<i>Tf</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>Tf</i>) (&gt; 0).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#tg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tg:Double"></a>
       <a id="tg:Double"></a>
@@ -1340,8 +1340,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gate servo time constant (Tg) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Gate servo time constant (Tg) (&gt;0).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Gate servo time constant (<i>Tg</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gate servo time constant (<i>Tg</i>) (&gt; 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1392,8 +1392,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Washout time constant (Tr) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Washout time constant (Tr) (&gt;0).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Washout time constant (<i>Tr</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Washout time constant (<i>Tr</i>) (&gt; 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#tw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tw:Double"></a>
       <a id="tw:Double"></a>
@@ -1410,8 +1410,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Water inertia time constant (Tw) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Water inertia time constant (Tw) (&gt;0).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Water inertia time constant (<i>Tw</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Water inertia time constant (<i>Tw</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydro1#velm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="velm:Double"></a>
       <a id="velm:Double"></a>
@@ -1428,8 +1428,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum gate velocity (Vlem) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate velocity (Vlem) (&gt;0).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Maximum gate velocity (<i>Vlem</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
+       Typical value = 0,2.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

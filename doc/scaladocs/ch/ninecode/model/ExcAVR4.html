@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcAVR4 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcAVR4</title>
-          <meta name="description" content="ExcAVR4 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcAVR4" />
-          <meta name="keywords" content="ExcAVR4 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcAVR4" />
+          <title>ExcAVR4 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcAVR4</title>
+          <meta name="description" content="ExcAVR4 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcAVR4" />
+          <meta name="keywords" content="ExcAVR4 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcAVR4" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,24 +51,24 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Italian excitation system.</p><p>It represents static exciter and electric voltage regulator.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">imul</dt><dd class="cmt"><p>AVR output voltage dependency selector (Imul).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Italian excitation system.</p><p>It represents a static exciter and electric voltage regulator.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">imul</dt><dd class="cmt"><p>AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
        true = selector is connected
        false = selector is not connected.
-       Typical Value = true.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>AVR gain (K<sub>A</sub>).
-       Typical Value = 300.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter gain (K<sub>E</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kif</dt><dd class="cmt"><p>Exciter internal reactance (K<sub>IF</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>AVR time constant (T<sub>1</sub>).
-       Typical Value = 4.8.</p></dd><dt class="param">t1if</dt><dd class="cmt"><p>Exciter current feedback time constant (T<sub>1IF</sub>).
-       Typical Value = 60.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>AVR time constant (T<sub>2</sub>).
-       Typical Value = 1.5.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>AVR time constant (T<sub>3</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>AVR time constant (T<sub>4</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tif</dt><dd class="cmt"><p>Exciter current feedback time constant (T<sub>IF</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vfmn</dt><dd class="cmt"><p>Minimum exciter output (V<sub>FMN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vfmx</dt><dd class="cmt"><p>Maximum exciter output (V<sub>FMX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmn</dt><dd class="cmt"><p>Minimum AVR output (V<sub>RMN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vrmx</dt><dd class="cmt"><p>Maximum AVR output (V<sub>RMX</sub>).
-       Typical Value = 5.</p></dd></dl><div class="toggleContainer block">
+       Typical value = true.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>AVR gain (<i>K</i><i><sub>A</sub></i>).
+       Typical value = 300.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
+       Typical value = 1.</p></dd><dt class="param">kif</dt><dd class="cmt"><p>Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+       Typical value = 4,8.</p></dd><dt class="param">t1if</dt><dd class="cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
+       Typical value = 60.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+       Typical value = 1,5.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tif</dt><dd class="cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vfmn</dt><dd class="cmt"><p>Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">vfmx</dt><dd class="cmt"><p>Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
+       Typical value = 5.</p></dd><dt class="param">vrmn</dt><dd class="cmt"><p>Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">vrmx</dt><dd class="cmt"><p>Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+       Typical value = 5.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -140,23 +140,23 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">imul</dt><dd class="cmt"><p>AVR output voltage dependency selector (Imul).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">imul</dt><dd class="cmt"><p>AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
        true = selector is connected
        false = selector is not connected.
-       Typical Value = true.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>AVR gain (K<sub>A</sub>).
-       Typical Value = 300.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter gain (K<sub>E</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kif</dt><dd class="cmt"><p>Exciter internal reactance (K<sub>IF</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>AVR time constant (T<sub>1</sub>).
-       Typical Value = 4.8.</p></dd><dt class="param">t1if</dt><dd class="cmt"><p>Exciter current feedback time constant (T<sub>1IF</sub>).
-       Typical Value = 60.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>AVR time constant (T<sub>2</sub>).
-       Typical Value = 1.5.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>AVR time constant (T<sub>3</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>AVR time constant (T<sub>4</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tif</dt><dd class="cmt"><p>Exciter current feedback time constant (T<sub>IF</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vfmn</dt><dd class="cmt"><p>Minimum exciter output (V<sub>FMN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vfmx</dt><dd class="cmt"><p>Maximum exciter output (V<sub>FMX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmn</dt><dd class="cmt"><p>Minimum AVR output (V<sub>RMN</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vrmx</dt><dd class="cmt"><p>Maximum AVR output (V<sub>RMX</sub>).
-       Typical Value = 5.</p></dd></dl></div>
+       Typical value = true.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>AVR gain (<i>K</i><i><sub>A</sub></i>).
+       Typical value = 300.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
+       Typical value = 1.</p></dd><dt class="param">kif</dt><dd class="cmt"><p>Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+       Typical value = 4,8.</p></dd><dt class="param">t1if</dt><dd class="cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
+       Typical value = 60.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+       Typical value = 1,5.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tif</dt><dd class="cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vfmn</dt><dd class="cmt"><p>Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">vfmx</dt><dd class="cmt"><p>Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
+       Typical value = 5.</p></dd><dt class="param">vrmn</dt><dd class="cmt"><p>Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">vrmx</dt><dd class="cmt"><p>Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+       Typical value = 5.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -924,10 +924,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR output voltage dependency selector (Imul).</p><div class="fullcomment"><div class="comment cmt"><p>AVR output voltage dependency selector (Imul).
+      <p class="shortcomment cmt">AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
        true = selector is connected
        false = selector is not connected.
-       Typical Value = true.</p></div></div>
+       Typical value = true.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -978,8 +978,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR gain (K<sub>A</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>AVR gain (K<sub>A</sub>).
-       Typical Value = 300.</p></div></div>
+      <p class="shortcomment cmt">AVR gain (<i>K</i><i><sub>A</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR gain (<i>K</i><i><sub>A</sub></i>).
+       Typical value = 300.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#ke" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ke:Double"></a>
       <a id="ke:Double"></a>
@@ -996,8 +996,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter gain (K<sub>E</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter gain (K<sub>E</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.</i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#kif" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kif:Double"></a>
       <a id="kif:Double"></a>
@@ -1014,8 +1014,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter internal reactance (K<sub>IF</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter internal reactance (K<sub>IF</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1238,8 +1238,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR time constant (T<sub>1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (T<sub>1</sub>).
-       Typical Value = 4.8.</p></div></div>
+      <p class="shortcomment cmt">AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+       Typical value = 4,8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#t1if" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t1if:Double"></a>
       <a id="t1if:Double"></a>
@@ -1256,8 +1256,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter current feedback time constant (T<sub>1IF</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter current feedback time constant (T<sub>1IF</sub>).
-       Typical Value = 60.</p></div></div>
+      <p class="shortcomment cmt">Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
+       Typical value = 60.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
@@ -1274,8 +1274,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR time constant (T<sub>2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (T<sub>2</sub>).
-       Typical Value = 1.5.</p></div></div>
+      <p class="shortcomment cmt">AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+       Typical value = 1,5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
@@ -1292,8 +1292,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR time constant (T<sub>3</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (T<sub>3</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
@@ -1310,8 +1310,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">AVR time constant (T<sub>4</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (T<sub>4</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#tif" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tif:Double"></a>
       <a id="tif:Double"></a>
@@ -1328,8 +1328,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter current feedback time constant (T<sub>IF</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter current feedback time constant (T<sub>IF</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1380,8 +1380,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum exciter output (V<sub>FMN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum exciter output (V<sub>FMN</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#vfmx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vfmx:Double"></a>
       <a id="vfmx:Double"></a>
@@ -1398,8 +1398,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum exciter output (V<sub>FMX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum exciter output (V<sub>FMX</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#vrmn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmn:Double"></a>
       <a id="vrmn:Double"></a>
@@ -1416,8 +1416,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum AVR output (V<sub>RMN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum AVR output (V<sub>RMN</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAVR4#vrmx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmx:Double"></a>
       <a id="vrmx:Double"></a>
@@ -1434,8 +1434,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum AVR output (V<sub>RMX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum AVR output (V<sub>RMX</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+       Typical value = 5.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

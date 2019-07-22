@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MarketActualEvent - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.MarketActualEvent</title>
-          <meta name="description" content="MarketActualEvent - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.MarketActualEvent" />
-          <meta name="keywords" content="MarketActualEvent CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.MarketActualEvent" />
+          <title>MarketActualEvent - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.MarketActualEvent</title>
+          <meta name="description" content="MarketActualEvent - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.MarketActualEvent" />
+          <meta name="keywords" content="MarketActualEvent CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.MarketActualEvent" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MarketActualEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventID">eventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventTime">eventTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketRun">MarketRun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedMarketEvent">PlannedMarketEvent: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MarketActualEvent</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="eventComments">eventComments: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventEndTime">eventEndTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventStartTime">eventStartTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventStatus">eventStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketRun">MarketRun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedMarketEvent">PlannedMarketEvent: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class represent the actual instance of an event.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">description</dt><dd class="cmt"><p>Description of the event.</p></dd><dt class="param">eventID</dt><dd class="cmt"><p>Actual event ID.</p></dd><dt class="param">eventTime</dt><dd class="cmt"><p>Start time of the event.</p></dd><dt class="param">MarketRun</dt><dd class="cmt"><p><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.
-       For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.</p></dd><dt class="param">PlannedMarketEvent</dt><dd class="cmt"><p><a href="PlannedMarketEvent.html" class="extype" name="ch.ninecode.model.PlannedMarketEvent">PlannedMarketEvent</a> Planned event executed by this actual event.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class represents the actual instance of an event.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">eventComments</dt><dd class="cmt"><p>Free format comments for the event, for any purpose needed.</p></dd><dt class="param">eventEndTime</dt><dd class="cmt"><p>End time of the event.</p></dd><dt class="param">eventStartTime</dt><dd class="cmt"><p>Start time of the event.</p></dd><dt class="param">eventStatus</dt><dd class="cmt"><p>Event status, e.g. active, canceled, expired, etc.</p></dd><dt class="param">eventType</dt><dd class="cmt"><p>Actual event type.</p></dd><dt class="param">MarketRun</dt><dd class="cmt"><p><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.
+       For example, the DA market run is triggered by the actual open bid submission event and terminated by the actual execution and completion of the DA market run captured by the runState of the MarketRun.</p></dd><dt class="param">PlannedMarketEvent</dt><dd class="cmt"><p><a href="PlannedMarketEvent.html" class="extype" name="ch.ninecode.model.PlannedMarketEvent">PlannedMarketEvent</a> Planned event executed by this actual event.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MarketActualEvent#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventID:String,eventTime:String,MarketRun:String,PlannedMarketEvent:String):ch.ninecode.model.MarketActualEvent"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,eventComments:String,eventEndTime:String,eventStartTime:String,eventStatus:String,eventType:String,MarketRun:String,PlannedMarketEvent:String):ch.ninecode.model.MarketActualEvent"></a>
       <a id="&lt;init&gt;:MarketActualEvent"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MarketActualEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventID">eventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventTime">eventTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketRun">MarketRun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedMarketEvent">PlannedMarketEvent: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">MarketActualEvent</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="eventComments">eventComments: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventEndTime">eventEndTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventStartTime">eventStartTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventStatus">eventStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketRun">MarketRun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedMarketEvent">PlannedMarketEvent: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventID:String,eventTime:String,MarketRun:String,PlannedMarketEvent:String):ch.ninecode.model.MarketActualEvent" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,eventComments:String,eventEndTime:String,eventStartTime:String,eventStatus:String,eventType:String,MarketRun:String,PlannedMarketEvent:String):ch.ninecode.model.MarketActualEvent" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">description</dt><dd class="cmt"><p>Description of the event.</p></dd><dt class="param">eventID</dt><dd class="cmt"><p>Actual event ID.</p></dd><dt class="param">eventTime</dt><dd class="cmt"><p>Start time of the event.</p></dd><dt class="param">MarketRun</dt><dd class="cmt"><p><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.
-       For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.</p></dd><dt class="param">PlannedMarketEvent</dt><dd class="cmt"><p><a href="PlannedMarketEvent.html" class="extype" name="ch.ninecode.model.PlannedMarketEvent">PlannedMarketEvent</a> Planned event executed by this actual event.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">eventComments</dt><dd class="cmt"><p>Free format comments for the event, for any purpose needed.</p></dd><dt class="param">eventEndTime</dt><dd class="cmt"><p>End time of the event.</p></dd><dt class="param">eventStartTime</dt><dd class="cmt"><p>Start time of the event.</p></dd><dt class="param">eventStatus</dt><dd class="cmt"><p>Event status, e.g. active, canceled, expired, etc.</p></dd><dt class="param">eventType</dt><dd class="cmt"><p>Actual event type.</p></dd><dt class="param">MarketRun</dt><dd class="cmt"><p><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.
+       For example, the DA market run is triggered by the actual open bid submission event and terminated by the actual execution and completion of the DA market run captured by the runState of the MarketRun.</p></dd><dt class="param">PlannedMarketEvent</dt><dd class="cmt"><p><a href="PlannedMarketEvent.html" class="extype" name="ch.ninecode.model.PlannedMarketEvent">PlannedMarketEvent</a> Planned event executed by this actual event.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,19 +187,19 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.MarketActualEvent#Element" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
-      <a id="Element:ch.ninecode.model.Element"></a>
-      <a id="Element:Element"></a>
+    </li><li name="ch.ninecode.model.MarketActualEvent#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
+      <a id="IdentifiedObject:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">Element</span><span class="result">: <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>
+        <span class="name">IdentifiedObject</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@Element:ch.ninecode.model.Element" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@IdentifiedObject:ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -222,7 +222,7 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.</p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketRun.html" class="extype" name="ch.ninecode.model.MarketRun">MarketRun</a> Market run triggered by this actual event.
-       For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.</p></div></div>
+       For example, the DA market run is triggered by the actual open bid submission event and terminated by the actual execution and completion of the DA market run captured by the runState of the MarketRun.</p></div></div>
     </li><li name="ch.ninecode.model.MarketActualEvent#PlannedMarketEvent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="PlannedMarketEvent:String"></a>
       <a id="PlannedMarketEvent:String"></a>
@@ -370,23 +370,6 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.MarketActualEvent">MarketActualEvent</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.MarketActualEvent#description" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="description:String"></a>
-      <a id="description:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">description</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@description:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Description of the event.</p>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -461,40 +444,91 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.MarketActualEvent#eventID" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="eventID:String"></a>
-      <a id="eventID:String"></a>
+    </li><li name="ch.ninecode.model.MarketActualEvent#eventComments" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="eventComments:String"></a>
+      <a id="eventComments:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">eventID</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">eventComments</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventID:String" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventComments:String" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Actual event ID.</p>
-    </li><li name="ch.ninecode.model.MarketActualEvent#eventTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="eventTime:String"></a>
-      <a id="eventTime:String"></a>
+      <p class="shortcomment cmt">Free format comments for the event, for any purpose needed.</p>
+    </li><li name="ch.ninecode.model.MarketActualEvent#eventEndTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="eventEndTime:String"></a>
+      <a id="eventEndTime:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">eventTime</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">eventEndTime</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventTime:String" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventEndTime:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">End time of the event.</p>
+    </li><li name="ch.ninecode.model.MarketActualEvent#eventStartTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="eventStartTime:String"></a>
+      <a id="eventStartTime:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eventStartTime</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventStartTime:String" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Start time of the event.</p>
+    </li><li name="ch.ninecode.model.MarketActualEvent#eventStatus" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eventStatus:String"></a>
+      <a id="eventStatus:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eventStatus</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventStatus:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Event status, e.g.</p><div class="fullcomment"><div class="comment cmt"><p>Event status, e.g. active, canceled, expired, etc.</p></div></div>
+    </li><li name="ch.ninecode.model.MarketActualEvent#eventType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="eventType:String"></a>
+      <a id="eventType:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eventType</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@eventType:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Actual event type.</p>
     </li><li name="ch.ninecode.model.MarketActualEvent#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
       <a id="export:String"></a>
       <a id="export:String"></a>
@@ -1171,22 +1205,22 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
     </li><li name="ch.ninecode.model.MarketActualEvent#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sup:ch.ninecode.model.BasicElement"></a>
-      <a id="sup:BasicElement"></a>
+      <a id="sup:ch.ninecode.model.IdentifiedObject"></a>
+      <a id="sup:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">sup</span><span class="result">: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>
+        <span class="name">sup</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@sup:ch.ninecode.model.BasicElement" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketActualEvent@sup:ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.MarketActualEvent">MarketActualEvent</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.MarketActualEvent">MarketActualEvent</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

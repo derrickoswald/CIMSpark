@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>OperationalLimit - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.OperationalLimit</title>
-          <meta name="description" content="OperationalLimit - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.OperationalLimit" />
-          <meta name="keywords" content="OperationalLimit CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.OperationalLimit" />
+          <title>OperationalLimit - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.OperationalLimit</title>
+          <meta name="description" content="OperationalLimit - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.OperationalLimit" />
+          <meta name="keywords" content="OperationalLimit CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.OperationalLimit" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,10 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A value associated with a specific kind of limit.</p><p>The sub class value attribute shall be positive.
+The sub class value attribute is inversely proportional to OperationalLimitType.acceptableDuration (acceptableDuration for short). A pair of value_x and acceptableDuration_x are related to each other as follows:
+if value_1 &gt; value_2 &gt; value_3 &gt;... then
+acceptableDuration_1 &lt; acceptableDuration_2 &lt; acceptableDuration_3 &lt; ...
+A value_x with direction=&quot;high&quot; shall be greater than a value_y with direction=&quot;low&quot;.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">LimitDependencyModel</dt><dd class="cmt"><p><a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a> The limit dependency models which are used to calculate this limit.
        If no limit dependencies are specified then the native limit value is used.</p></dd><dt class="param">LimitScalingLimit</dt><dd class="cmt"><p><a href="LimitScalingLimit.html" class="extype" name="ch.ninecode.model.LimitScalingLimit">LimitScalingLimit</a> <em>undocumented</em></p></dd><dt class="param">OperationalLimitSet</dt><dd class="cmt"><p><a href="OperationalLimitSet.html" class="extype" name="ch.ninecode.model.OperationalLimitSet">OperationalLimitSet</a> The limit set to which the limit values belong.</p></dd><dt class="param">OperationalLimitType</dt><dd class="cmt"><p><a href="OperationalLimitType.html" class="extype" name="ch.ninecode.model.OperationalLimitType">OperationalLimitType</a> The limit type associated with this limit.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>

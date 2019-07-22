@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TapChanger - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.TapChanger</title>
-          <meta name="description" content="TapChanger - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.TapChanger" />
-          <meta name="keywords" content="TapChanger CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.TapChanger" />
+          <title>TapChanger - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.TapChanger</title>
+          <meta name="description" content="TapChanger - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.TapChanger" />
+          <meta name="keywords" content="TapChanger CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.TapChanger" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -54,10 +54,15 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Mechanism for changing transformer winding tap positions.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
        True is regulating, false is not regulating.</p></dd><dt class="param">highStep</dt><dd class="cmt"><p>Highest possible tap step position, advance from neutral.
-       The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change)</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
-       The attribute shall be equal or greater than lowStep and equal or less than highStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
-       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
-       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd><dt class="param">TapSchedules</dt><dd class="cmt"><p><a href="TapSchedule.html" class="extype" name="ch.ninecode.model.TapSchedule">TapSchedule</a> A TapChanger can have TapSchedules.</p></dd></dl><div class="toggleContainer block">
+       The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change).</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral.</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
+       The attribute shall be equal to or greater than lowStep and equal or less than highStep.
+       It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.
+       It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
+       This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
+       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
+       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes).</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd><dt class="param">TapSchedules</dt><dd class="cmt"><p><a href="TapSchedule.html" class="extype" name="ch.ninecode.model.TapSchedule">TapSchedule</a> A TapChanger can have TapSchedules.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -131,10 +136,15 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
        True is regulating, false is not regulating.</p></dd><dt class="param">highStep</dt><dd class="cmt"><p>Highest possible tap step position, advance from neutral.
-       The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change)</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
-       The attribute shall be equal or greater than lowStep and equal or less than highStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
-       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
-       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd><dt class="param">TapSchedules</dt><dd class="cmt"><p><a href="TapSchedule.html" class="extype" name="ch.ninecode.model.TapSchedule">TapSchedule</a> A TapChanger can have TapSchedules.</p></dd></dl></div>
+       The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change).</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral.</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
+       The attribute shall be equal to or greater than lowStep and equal or less than highStep.
+       It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.
+       It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
+       This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
+       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
+       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes).</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd><dt class="param">TapSchedules</dt><dd class="cmt"><p><a href="TapSchedule.html" class="extype" name="ch.ninecode.model.TapSchedule">TapSchedule</a> A TapChanger can have TapSchedules.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -989,7 +999,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">For an LTC, the delay for initial tap changer operation (first step change)</p>
+      <p class="shortcomment cmt">For an LTC, the delay for initial tap changer operation (first step change).</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1058,7 +1068,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lowest possible tap step position, retard from neutral</p>
+      <p class="shortcomment cmt">Lowest possible tap step position, retard from neutral.</p>
     </li><li name="ch.ninecode.model.TapChanger#ltcFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ltcFlag:Boolean"></a>
       <a id="ltcFlag:Boolean"></a>
@@ -1179,8 +1189,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">The neutral tap step position for this winding.</p><div class="fullcomment"><div class="comment cmt"><p>The neutral tap step position for this winding.
-       The attribute shall be equal or greater than lowStep and equal or less than highStep.</p></div></div>
-    </li><li name="ch.ninecode.model.TapChanger#neutralU" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+       The attribute shall be equal to or greater than lowStep and equal or less than highStep.
+       It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.</p></div></div>
+    </li><li name="ch.ninecode.model.TapChanger#neutralU" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="neutralU:Double"></a>
       <a id="neutralU:Double"></a>
       <h4 class="signature">
@@ -1196,7 +1207,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage at which the winding operates at the neutral tap setting.</p>
+      <p class="shortcomment cmt">Voltage at which the winding operates at the neutral tap setting.</p><div class="fullcomment"><div class="comment cmt"><p>Voltage at which the winding operates at the neutral tap setting.
+       It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
+       This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.</p></div></div>
     </li><li name="ch.ninecode.model.TapChanger#normalStep" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="normalStep:Int"></a>
       <a id="normalStep:Int"></a>
@@ -1214,7 +1227,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">The tap step position used in &quot;normal&quot; network operation for this winding.</p><div class="fullcomment"><div class="comment cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
-       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.</p></div></div>
+       For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></div></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <a id="notify():Unit"></a>
@@ -1300,7 +1314,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Tap changer position.</p><div class="fullcomment"><div class="comment cmt"><p>Tap changer position.
-       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></div></div>
+       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+       The attribute shall be equal to or greater than lowStep and equal to or less than highStep.</p></div></div>
     </li><li name="ch.ninecode.model.TapChanger#subsequentDelay" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="subsequentDelay:Double"></a>
       <a id="subsequentDelay:Double"></a>
@@ -1317,7 +1332,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p>
+      <p class="shortcomment cmt">For an LTC, the delay for subsequent tap changer operation (second and later step changes).</p>
     </li><li name="ch.ninecode.model.TapChanger#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.PowerSystemResource"></a>
       <a id="sup:PowerSystemResource"></a>

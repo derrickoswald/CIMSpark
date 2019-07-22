@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Cut - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Cut</title>
-          <meta name="description" content="Cut - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Cut" />
-          <meta name="keywords" content="Cut CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Cut" />
+          <title>Cut - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Cut</title>
+          <meta name="description" content="Cut - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Cut" />
+          <meta name="keywords" content="Cut CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Cut" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A cut separates a line segment into two parts.</p><p>The cut appears as a switch inserted between these two parts and connects them together. As the cut is normally open there is no galvanic connection between the two line segment parts. But it is possible to close the cut to get galvanic connection.
+The cut terminals are oriented towards the line segment terminals with the same sequence number. Hence the cut terminal with sequence number equal to 1 is oriented to the line segment's terminal with sequence number equal to 1.
+The cut terminals also act as connection points for jumpers and other equipment, e.g. a mobile generator. To enable this, connectivity nodes are placed at the cut terminals. Once the connectivity nodes are in place any conducting equipment can be connected at them.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> Reference to the superclass object.</p></dd><dt class="param">lengthFromTerminal1</dt><dd class="cmt"><p>The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.</p></dd><dt class="param">ACLineSegment</dt><dd class="cmt"><p><a href="ACLineSegment.html" class="extype" name="ch.ninecode.model.ACLineSegment">ACLineSegment</a> The line segment to which the cut is applied.</p></dd><dt class="param">CutAction</dt><dd class="cmt"><p><a href="CutAction.html" class="extype" name="ch.ninecode.model.CutAction">CutAction</a> Action taken with this cut.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

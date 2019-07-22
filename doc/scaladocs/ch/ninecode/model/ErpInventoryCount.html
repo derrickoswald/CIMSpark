@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ErpInventoryCount - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ErpInventoryCount</title>
-          <meta name="description" content="ErpInventoryCount - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ErpInventoryCount" />
-          <meta name="keywords" content="ErpInventoryCount CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ErpInventoryCount" />
+          <title>ErpInventoryCount - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ErpInventoryCount</title>
+          <meta name="description" content="ErpInventoryCount - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ErpInventoryCount" />
+          <meta name="keywords" content="ErpInventoryCount CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ErpInventoryCount" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ErpInventoryCount</span><span class="params">(<span name="sup">sup: <a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AssetModel">AssetModel: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ErpInventoryCount</span><span class="params">(<span name="sup">sup: <a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This is related to Inventory physical counts organized by AssetModel.</p><p>Note that a count of a type of asset can be accomplished by the association inherited by AssetModel (from Document) to Asset.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">AssetModel</dt><dd class="cmt"><p><a href="AssetModel.html" class="extype" name="ch.ninecode.model.AssetModel">AssetModel</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+It enables ERP applications to transfer an inventory count between ERP and the actual physical inventory location. This count may be a cycle count or a physical count.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ErpInventoryCount#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ErpIdentifiedObject,status:String,AssetModel:String):ch.ninecode.model.ErpInventoryCount"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.ErpIdentifiedObject,status:String):ch.ninecode.model.ErpInventoryCount"></a>
       <a id="&lt;init&gt;:ErpInventoryCount"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +118,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ErpInventoryCount</span><span class="params">(<span name="sup">sup: <a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AssetModel">AssetModel: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ErpInventoryCount</span><span class="params">(<span name="sup">sup: <a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ErpInventoryCount@&lt;init&gt;(sup:ch.ninecode.model.ErpIdentifiedObject,status:String,AssetModel:String):ch.ninecode.model.ErpInventoryCount" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ErpInventoryCount@&lt;init&gt;(sup:ch.ninecode.model.ErpIdentifiedObject,status:String):ch.ninecode.model.ErpInventoryCount" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">AssetModel</dt><dd class="cmt"><p><a href="AssetModel.html" class="extype" name="ch.ninecode.model.AssetModel">AssetModel</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ErpIdentifiedObject.html" class="extype" name="ch.ninecode.model.ErpIdentifiedObject">ErpIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,23 +186,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.ErpInventoryCount#AssetModel" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="AssetModel:String"></a>
-      <a id="AssetModel:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">AssetModel</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ErpInventoryCount@AssetModel:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"><a href="AssetModel.html" class="extype" name="ch.ninecode.model.AssetModel">AssetModel</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="AssetModel.html" class="extype" name="ch.ninecode.model.AssetModel">AssetModel</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.ErpInventoryCount#ErpIdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="ErpIdentifiedObject:ch.ninecode.model.ErpIdentifiedObject"></a>
       <a id="ErpIdentifiedObject:ErpIdentifiedObject"></a>

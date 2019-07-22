@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovSteamFV2 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovSteamFV2</title>
-          <meta name="description" content="GovSteamFV2 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovSteamFV2" />
-          <meta name="keywords" content="GovSteamFV2 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovSteamFV2" />
+          <title>GovSteamFV2 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovSteamFV2</title>
+          <meta name="description" content="GovSteamFV2 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovSteamFV2" />
+          <meta name="keywords" content="GovSteamFV2 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovSteamFV2" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">GovSteamFV2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="dt">dt: <span class="extype" name="scala.Double">Double</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="t1">t1: <span class="extype" name="scala.Double">Double</span></span>, <span name="t3">t3: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="ti">ti: <span class="extype" name="scala.Double">Double</span></span>, <span name="tt">tt: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">GovSteamFV2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="dt">dt: <span class="extype" name="scala.Double">Double</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="t1">t1: <span class="extype" name="scala.Double">Double</span></span>, <span name="t3">t3: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="tt">tt: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">dt</dt><dd class="cmt"><p>(Dt).</p></dd><dt class="param">k</dt><dd class="cmt"><p>Fraction of the turbine power developed by turbine sections not involved in fast valving (K).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>(R).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Governor time constant (T1).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Reheater time constant (T3).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time after initial time for valve to close (Ta).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time after initial time for valve to begin opening (Tb).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time after initial time for valve to become fully open (Tc).</p></dd><dt class="param">ti</dt><dd class="cmt"><p>Initial time to begin fast valving (Ti).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant with which power falls off after intercept valve closure (Tt).</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>(Vmax).</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>(Vmin).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Steam turbine governor with reheat time constants and modelling of the effects of fast valve closing to reduce mechanical power.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">dt</dt><dd class="cmt"><p>(<i>Dt</i>).</p></dd><dt class="param">k</dt><dd class="cmt"><p>Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>(<i>R</i>).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Governor time constant (<i>T1</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Reheater time constant (<i>T3</i>) (&gt;= 0).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>(<i>Vmax</i>) (&gt; GovSteamFV2.vmin).</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>(<i>Vmin</i>) (&lt; GovSteamFV2.vmax).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.GovSteamFV2#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,dt:Double,k:Double,mwbase:Double,r:Double,t1:Double,t3:Double,ta:Double,tb:Double,tc:Double,ti:Double,tt:Double,vmax:Double,vmin:Double):ch.ninecode.model.GovSteamFV2"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,dt:Double,k:Double,mwbase:Double,r:Double,t1:Double,t3:Double,ta:Double,tb:Double,tc:Double,tt:Double,vmax:Double,vmin:Double):ch.ninecode.model.GovSteamFV2"></a>
       <a id="&lt;init&gt;:GovSteamFV2"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">GovSteamFV2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="dt">dt: <span class="extype" name="scala.Double">Double</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="t1">t1: <span class="extype" name="scala.Double">Double</span></span>, <span name="t3">t3: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="ti">ti: <span class="extype" name="scala.Double">Double</span></span>, <span name="tt">tt: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">GovSteamFV2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="dt">dt: <span class="extype" name="scala.Double">Double</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="t1">t1: <span class="extype" name="scala.Double">Double</span></span>, <span name="t3">t3: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="tt">tt: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.GovSteamFV2@&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,dt:Double,k:Double,mwbase:Double,r:Double,t1:Double,t3:Double,ta:Double,tb:Double,tc:Double,ti:Double,tt:Double,vmax:Double,vmin:Double):ch.ninecode.model.GovSteamFV2" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.GovSteamFV2@&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,dt:Double,k:Double,mwbase:Double,r:Double,t1:Double,t3:Double,ta:Double,tb:Double,tc:Double,tt:Double,vmax:Double,vmin:Double):ch.ninecode.model.GovSteamFV2" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">dt</dt><dd class="cmt"><p>(Dt).</p></dd><dt class="param">k</dt><dd class="cmt"><p>Fraction of the turbine power developed by turbine sections not involved in fast valving (K).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>(R).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Governor time constant (T1).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Reheater time constant (T3).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time after initial time for valve to close (Ta).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time after initial time for valve to begin opening (Tb).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time after initial time for valve to become fully open (Tc).</p></dd><dt class="param">ti</dt><dd class="cmt"><p>Initial time to begin fast valving (Ti).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant with which power falls off after intercept valve closure (Tt).</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>(Vmax).</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>(Vmin).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">dt</dt><dd class="cmt"><p>(<i>Dt</i>).</p></dd><dt class="param">k</dt><dd class="cmt"><p>Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>(<i>R</i>).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Governor time constant (<i>T1</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Reheater time constant (<i>T3</i>) (&gt;= 0).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>(<i>Vmax</i>) (&gt; GovSteamFV2.vmin).</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>(<i>Vmin</i>) (&lt; GovSteamFV2.vmax).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -335,7 +335,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovSteamFV2">GovSteamFV2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamFV2#dt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamFV2#dt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dt:Double"></a>
       <a id="dt:Double"></a>
       <h4 class="signature">
@@ -351,7 +351,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(Dt).</p>
+      <p class="shortcomment cmt">(<i>Dt</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>Dt</i>).</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -929,7 +929,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamFV2#k" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamFV2#k" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k:Double"></a>
       <a id="k:Double"></a>
       <h4 class="signature">
@@ -945,7 +945,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fraction of the turbine power developed by turbine sections not involved in fast valving (K).</p>
+      <p class="shortcomment cmt">Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).</p></div></div>
     </li><li name="ch.ninecode.model.GovSteamFV2#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1049,7 +1049,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
+      <p class="shortcomment cmt">Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1102,7 +1102,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamFV2#r" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamFV2#r" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="r:Double"></a>
       <a id="r:Double"></a>
       <h4 class="signature">
@@ -1118,7 +1118,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(R).</p>
+      <p class="shortcomment cmt">(<i>R</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>R</i>).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1187,7 +1187,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamFV2#t1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamFV2#t1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t1:Double"></a>
       <a id="t1:Double"></a>
       <h4 class="signature">
@@ -1203,8 +1203,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor time constant (T1).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#t3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Governor time constant (<i>T1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor time constant (<i>T1</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
       <h4 class="signature">
@@ -1220,8 +1220,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reheater time constant (T3).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#ta" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Reheater time constant (<i>T3</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reheater time constant (<i>T3</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#ta" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ta:Double"></a>
       <a id="ta:Double"></a>
       <h4 class="signature">
@@ -1237,8 +1237,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time after initial time for valve to close (Ta).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#tb" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
       <h4 class="signature">
@@ -1254,8 +1254,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time after initial time for valve to begin opening (Tb).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#tc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
       <h4 class="signature">
@@ -1271,24 +1271,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time after initial time for valve to become fully open (Tc).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#ti" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ti:Double"></a>
-      <a id="ti:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ti</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.GovSteamFV2@ti:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Initial time to begin fast valving (Ti).</p>
+      <p class="shortcomment cmt">Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1323,7 +1306,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamFV2#tt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamFV2#tt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tt:Double"></a>
       <a id="tt:Double"></a>
       <h4 class="signature">
@@ -1339,8 +1322,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant with which power falls off after intercept valve closure (Tt).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#vmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#vmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmax:Double"></a>
       <a id="vmax:Double"></a>
       <h4 class="signature">
@@ -1356,8 +1339,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(Vmax).</p>
-    </li><li name="ch.ninecode.model.GovSteamFV2#vmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">(<i>Vmax</i>) (&gt; GovSteamFV2.vmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>Vmax</i>) (&gt; GovSteamFV2.vmin).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamFV2#vmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmin:Double"></a>
       <a id="vmin:Double"></a>
       <h4 class="signature">
@@ -1373,7 +1356,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(Vmin).</p>
+      <p class="shortcomment cmt">(<i>Vmin</i>) (&lt; GovSteamFV2.vmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>Vmin</i>) (&lt; GovSteamFV2.vmax).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

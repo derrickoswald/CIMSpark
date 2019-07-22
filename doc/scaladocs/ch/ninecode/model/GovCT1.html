@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovCT1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovCT1</title>
-          <meta name="description" content="GovCT1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovCT1" />
-          <meta name="keywords" content="GovCT1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovCT1" />
+          <title>GovCT1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovCT1</title>
+          <meta name="description" content="GovCT1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovCT1" />
+          <meta name="keywords" content="GovCT1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovCT1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,45 +51,45 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.</p><p>This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (Aset).
-       Unit = PU/sec.  Typical Value = 0.01.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor dead band in per unit speed (db).
-       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (Dm).
-       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter gain (Ka).
-       Typical Value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (Kdgov).
-       Typical Value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (Kigov).
-       Typical Value = 2.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (Kiload).
-       Typical Value = 0.67.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (Kimw).
-       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (Kpgov).
-       Typical Value = 10.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (Kpload).
-       Typical Value = 2.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (Kturb) (&gt;0).
-       Typical Value = 1.5.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (Ldref).
-       Typical Value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (maxerr).
-       Typical Value = 0.05.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (minerr).
-       Typical Value = -0.05.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (R).
-       Typical Value = 0.04.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (Rclose).
-       Unit = PU/sec.  Typical Value = -0.1.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (Rdown).
-       Typical Value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (Ropen).
-       Unit = PU/sec.  Typical Value = 0.10.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (Rselect).
-       Typical Value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (Rup).
-       Typical Value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (Ta) (&gt;0).
-       Typical Value = 0.1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (Tact).
-       Typical Value = 0.5.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (Tb) (&gt;0).
-       Typical Value = 0.5.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (Tc).
-       Typical Value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (Tdgov).
-       Typical Value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
-       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load Limiter time constant (Tfload) (&gt;0).
-       Typical Value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (Tpelec) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (Tsa).
-       Typical Value = 4.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (Tsb).
-       Typical Value = 5.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (Vmax).
-       Typical Value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (Vmin).
-       Typical Value = 0.15.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (Wfnl).
-       Typical Value = 0.2.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.</p><p>This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for the representation of:</p><ul><li>gas turbine and single shaft combined cycle turbines</li><li>diesel engines with modern electronic or digital governors</li><li>steam turbines where steam is supplied from a large boiler drum or a large header whose pressure is substantially constant over the period under study</li><li>simple hydro turbines in dam configurations where the water column length is short and water inertia effects are minimal.</li></ul><p>Additional information on this model is available in the 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, 3.1.2.3 pages 3-4 (GGOV1).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (<i>Aset</i>).
+       Unit = PU / s.  Typical value = 0,01.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor deadband in PU speed (<i>db</i>).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+       If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter gain (<i>Ka</i>).
+       Typical value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (<i>Kdgov</i>).
+       Typical value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (<i>Kigov</i>).
+       Typical value = 2.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (<i>Kiload</i>).
+       Typical value = 0,67.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (<i>Kimw</i>).
+       The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (<i>Kpgov</i>).
+       Typical value = 10.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (<i>Kpload</i>).
+       Typical value = 2.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (<i>Kturb</i>) (&gt; 0).
+       Typical value = 1,5.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (<i>Ldref</i>).
+       Typical value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
+       Typical value = 0,05.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
+       Typical value = -0,05.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (<i>R</i>).
+       Typical value = 0,04.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (<i>Rclose</i>).
+       Unit = PU / s.  Typical value = -0,1.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (<i>Rdown</i>).
+       Typical value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (<i>Ropen</i>).
+       Unit = PU / s.  Typical value = 0.10.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (<i>Rselect</i>).
+       Typical value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (<i>Rup</i>).
+       Typical value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
+       Typical value = 0,1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (<i>Tact</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (<i>Tb</i>) (&gt; 0).
+       Typical value = 0,5.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+       Typical value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
+       Typical value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+       Typical value = 4.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
+       Typical value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
+       Typical value = 0,15.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (<i>Wfnl</i>).
+       Typical value = 0,2.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
        false = fuel control system keeps fuel flow independent of engine speed.
-       Typical Value = true.</p></dd></dl><div class="toggleContainer block">
+       Typical value = true.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -161,44 +161,44 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (Aset).
-       Unit = PU/sec.  Typical Value = 0.01.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor dead band in per unit speed (db).
-       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (Dm).
-       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter gain (Ka).
-       Typical Value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (Kdgov).
-       Typical Value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (Kigov).
-       Typical Value = 2.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (Kiload).
-       Typical Value = 0.67.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (Kimw).
-       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (Kpgov).
-       Typical Value = 10.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (Kpload).
-       Typical Value = 2.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (Kturb) (&gt;0).
-       Typical Value = 1.5.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (Ldref).
-       Typical Value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (maxerr).
-       Typical Value = 0.05.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (minerr).
-       Typical Value = -0.05.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (R).
-       Typical Value = 0.04.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (Rclose).
-       Unit = PU/sec.  Typical Value = -0.1.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (Rdown).
-       Typical Value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (Ropen).
-       Unit = PU/sec.  Typical Value = 0.10.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (Rselect).
-       Typical Value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (Rup).
-       Typical Value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (Ta) (&gt;0).
-       Typical Value = 0.1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (Tact).
-       Typical Value = 0.5.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (Tb) (&gt;0).
-       Typical Value = 0.5.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (Tc).
-       Typical Value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (Tdgov).
-       Typical Value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
-       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load Limiter time constant (Tfload) (&gt;0).
-       Typical Value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (Tpelec) (&gt;0).
-       Typical Value = 1.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (Tsa).
-       Typical Value = 4.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (Tsb).
-       Typical Value = 5.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (Vmax).
-       Typical Value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (Vmin).
-       Typical Value = 0.15.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (Wfnl).
-       Typical Value = 0.2.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (<i>Aset</i>).
+       Unit = PU / s.  Typical value = 0,01.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor deadband in PU speed (<i>db</i>).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+       If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter gain (<i>Ka</i>).
+       Typical value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (<i>Kdgov</i>).
+       Typical value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (<i>Kigov</i>).
+       Typical value = 2.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (<i>Kiload</i>).
+       Typical value = 0,67.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (<i>Kimw</i>).
+       The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (<i>Kpgov</i>).
+       Typical value = 10.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (<i>Kpload</i>).
+       Typical value = 2.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (<i>Kturb</i>) (&gt; 0).
+       Typical value = 1,5.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (<i>Ldref</i>).
+       Typical value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
+       Typical value = 0,05.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
+       Typical value = -0,05.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (<i>R</i>).
+       Typical value = 0,04.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (<i>Rclose</i>).
+       Unit = PU / s.  Typical value = -0,1.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (<i>Rdown</i>).
+       Typical value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (<i>Ropen</i>).
+       Unit = PU / s.  Typical value = 0.10.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (<i>Rselect</i>).
+       Typical value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (<i>Rup</i>).
+       Typical value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
+       Typical value = 0,1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (<i>Tact</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (<i>Tb</i>) (&gt; 0).
+       Typical value = 0,5.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+       Typical value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
+       Typical value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+       Typical value = 4.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
+       Typical value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
+       Typical value = 0,15.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (<i>Wfnl</i>).
+       Typical value = 0,2.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
        false = fuel control system keeps fuel flow independent of engine speed.
-       Typical Value = true.</p></dd></dl></div>
+       Typical value = true.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -362,8 +362,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Acceleration limiter setpoint (Aset).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter setpoint (Aset).
-       Unit = PU/sec.  Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Acceleration limiter setpoint (<i>Aset</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter setpoint (<i>Aset</i>).
+       Unit = PU / s.  Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bitfields:Array[Int]"></a>
       <a id="bitfields:Array[Int]"></a>
@@ -441,8 +441,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Speed governor dead band in per unit speed (db).</p><div class="fullcomment"><div class="comment cmt"><p>Speed governor dead band in per unit speed (db).
-       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Speed governor deadband in PU speed (<i>db</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Speed governor deadband in PU speed (<i>db</i>).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#dm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dm:Double"></a>
       <a id="dm:Double"></a>
@@ -459,8 +459,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Speed sensitivity coefficient (Dm).</p><div class="fullcomment"><div class="comment cmt"><p>Speed sensitivity coefficient (Dm).
-       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Speed sensitivity coefficient (<i>Dm</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+       If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1054,8 +1054,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Acceleration limiter gain (Ka).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter gain (Ka).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Acceleration limiter gain (<i>Ka</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter gain (<i>Ka</i>).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kdgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kdgov:Double"></a>
       <a id="kdgov:Double"></a>
@@ -1072,8 +1072,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor derivative gain (Kdgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative gain (Kdgov).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Governor derivative gain (<i>Kdgov</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative gain (<i>Kdgov</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kigov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kigov:Double"></a>
       <a id="kigov:Double"></a>
@@ -1090,8 +1090,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor integral gain (Kigov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor integral gain (Kigov).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Governor integral gain (<i>Kigov</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor integral gain (<i>Kigov</i>).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kiload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kiload:Double"></a>
       <a id="kiload:Double"></a>
@@ -1108,8 +1108,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Load limiter integral gain for PI controller (Kiload).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter integral gain for PI controller (Kiload).
-       Typical Value = 0.67.</p></div></div>
+      <p class="shortcomment cmt">Load limiter integral gain for PI controller (<i>Kiload</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Load limiter integral gain for PI controller (<i>Kiload</i>).
+       Typical value = 0,67.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kimw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kimw:Double"></a>
       <a id="kimw:Double"></a>
@@ -1126,8 +1126,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power controller (reset) gain (Kimw).</p><div class="fullcomment"><div class="comment cmt"><p>Power controller (reset) gain (Kimw).
-       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Power controller (reset) gain (<i>Kimw</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power controller (reset) gain (<i>Kimw</i>).
+       The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kpgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpgov:Double"></a>
       <a id="kpgov:Double"></a>
@@ -1144,8 +1144,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor proportional gain (Kpgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor proportional gain (Kpgov).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Governor proportional gain (<i>Kpgov</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor proportional gain (<i>Kpgov</i>).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kpload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpload:Double"></a>
       <a id="kpload:Double"></a>
@@ -1162,8 +1162,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Load limiter proportional gain for PI controller (Kpload).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter proportional gain for PI controller (Kpload).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Load limiter proportional gain for PI controller (<i>Kpload</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Load limiter proportional gain for PI controller (<i>Kpload</i>).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#kturb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kturb:Double"></a>
       <a id="kturb:Double"></a>
@@ -1180,8 +1180,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine gain (Kturb) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine gain (Kturb) (&gt;0).
-       Typical Value = 1.5.</p></div></div>
+      <p class="shortcomment cmt">Turbine gain (<i>Kturb</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine gain (<i>Kturb</i>) (&gt; 0).
+       Typical value = 1,5.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#ldref" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ldref:Double"></a>
       <a id="ldref:Double"></a>
@@ -1198,8 +1198,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Load limiter reference value (Ldref).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter reference value (Ldref).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Load limiter reference value (<i>Ldref</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Load limiter reference value (<i>Ldref</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1252,8 +1252,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum value for speed error signal (maxerr).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum value for speed error signal (maxerr).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#minerr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="minerr:Double"></a>
       <a id="minerr:Double"></a>
@@ -1270,8 +1270,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum value for speed error signal (minerr).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum value for speed error signal (minerr).
-       Typical Value = -0.05.</p></div></div>
+      <p class="shortcomment cmt">Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
+       Typical value = -0,05.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
       <a id="mkString(String,String,String):String"></a>
@@ -1339,7 +1339,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base for power values (MWbase) (&gt; 0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt; 0).
+      <p class="shortcomment cmt">Base for power values (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1408,8 +1408,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Permanent droop (R).</p><div class="fullcomment"><div class="comment cmt"><p>Permanent droop (R).
-       Typical Value = 0.04.</p></div></div>
+      <p class="shortcomment cmt">Permanent droop (<i>R</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Permanent droop (<i>R</i>).
+       Typical value = 0,04.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#rclose" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rclose:Double"></a>
       <a id="rclose:Double"></a>
@@ -1426,8 +1426,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum valve closing rate (Rclose).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve closing rate (Rclose).
-       Unit = PU/sec.  Typical Value = -0.1.</p></div></div>
+      <p class="shortcomment cmt">Minimum valve closing rate (<i>Rclose</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve closing rate (<i>Rclose</i>).
+       Unit = PU / s.  Typical value = -0,1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#rdown" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rdown:Double"></a>
       <a id="rdown:Double"></a>
@@ -1444,8 +1444,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum rate of load limit decrease (Rdown).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit decrease (Rdown).
-       Typical Value = -99.</p></div></div>
+      <p class="shortcomment cmt">Maximum rate of load limit decrease (<i>Rdown</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit decrease (<i>Rdown</i>).
+       Typical value = -99.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#ropen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ropen:Double"></a>
       <a id="ropen:Double"></a>
@@ -1462,8 +1462,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum valve opening rate (Ropen).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve opening rate (Ropen).
-       Unit = PU/sec.  Typical Value = 0.10.</p></div></div>
+      <p class="shortcomment cmt">Maximum valve opening rate (<i>Ropen</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve opening rate (<i>Ropen</i>).
+       Unit = PU / s.  Typical value = 0.10.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#rselect" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rselect:String"></a>
       <a id="rselect:String"></a>
@@ -1480,8 +1480,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Feedback signal for droop (Rselect).</p><div class="fullcomment"><div class="comment cmt"><p>Feedback signal for droop (Rselect).
-       Typical Value = electricalPower.</p></div></div>
+      <p class="shortcomment cmt">Feedback signal for droop (<i>Rselect</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Feedback signal for droop (<i>Rselect</i>).
+       Typical value = electricalPower.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#rup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rup:Double"></a>
       <a id="rup:Double"></a>
@@ -1498,8 +1498,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum rate of load limit increase (Rup).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit increase (Rup).
-       Typical Value = 99.</p></div></div>
+      <p class="shortcomment cmt">Maximum rate of load limit increase (<i>Rup</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit increase (<i>Rup</i>).
+       Typical value = 99.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1584,8 +1584,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Acceleration limiter time constant (Ta) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter time constant (Ta) (&gt;0).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tact:Double"></a>
       <a id="tact:Double"></a>
@@ -1602,8 +1602,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Actuator time constant (Tact).</p><div class="fullcomment"><div class="comment cmt"><p>Actuator time constant (Tact).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Actuator time constant (<i>Tact</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Actuator time constant (<i>Tact</i>) (&gt;= 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
@@ -1620,8 +1620,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine lag time constant (Tb) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine lag time constant (Tb) (&gt;0).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Turbine lag time constant (<i>Tb</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine lag time constant (<i>Tb</i>) (&gt; 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
@@ -1638,8 +1638,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine lead time constant (Tc).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine lead time constant (Tc).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Turbine lead time constant (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tdgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tdgov:Double"></a>
       <a id="tdgov:Double"></a>
@@ -1656,8 +1656,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor derivative controller time constant (Tdgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative controller time constant (Tdgov).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#teng" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="teng:Double"></a>
       <a id="teng:Double"></a>
@@ -1674,8 +1674,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).</p><div class="fullcomment"><div class="comment cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
-       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tfload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tfload:Double"></a>
       <a id="tfload:Double"></a>
@@ -1692,8 +1692,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Load Limiter time constant (Tfload) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Load Limiter time constant (Tfload) (&gt;0).
-       Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Load-limiter time constant (<i>Tfload</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
+       Typical value = 3.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1744,8 +1744,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Electrical power transducer time constant (Tpelec) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Electrical power transducer time constant (Tpelec) (&gt;0).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tsa" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tsa:Double"></a>
       <a id="tsa:Double"></a>
@@ -1762,8 +1762,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temperature detection lead time constant (Tsa).</p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lead time constant (Tsa).
-       Typical Value = 4.</p></div></div>
+      <p class="shortcomment cmt">Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+       Typical value = 4.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#tsb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tsb:Double"></a>
       <a id="tsb:Double"></a>
@@ -1780,8 +1780,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temperature detection lag time constant (Tsb).</p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lag time constant (Tsb).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#vmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmax:Double"></a>
       <a id="vmax:Double"></a>
@@ -1798,8 +1798,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum valve position limit (Vmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve position limit (Vmax).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#vmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmin:Double"></a>
       <a id="vmin:Double"></a>
@@ -1816,8 +1816,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum valve position limit (Vmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve position limit (Vmin).
-       Typical Value = 0.15.</p></div></div>
+      <p class="shortcomment cmt">Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
+       Typical value = 0,15.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1903,8 +1903,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">No load fuel flow (Wfnl).</p><div class="fullcomment"><div class="comment cmt"><p>No load fuel flow (Wfnl).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">No load fuel flow (<i>Wfnl</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>No load fuel flow (<i>Wfnl</i>).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.GovCT1#wfspd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wfspd:Boolean"></a>
       <a id="wfspd:Boolean"></a>
@@ -1921,10 +1921,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).</p><div class="fullcomment"><div class="comment cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+      <p class="shortcomment cmt">Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
        false = fuel control system keeps fuel flow independent of engine speed.
-       Typical Value = true.</p></div></div>
+       Typical value = true.</p></div></div>
     </li></ol>
             </div>
 

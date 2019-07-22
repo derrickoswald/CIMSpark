@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TurbLCFB1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.TurbLCFB1</title>
-          <meta name="description" content="TurbLCFB1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.TurbLCFB1" />
-          <meta name="keywords" content="TurbLCFB1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.TurbLCFB1" />
+          <title>TurbLCFB1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.TurbLCFB1</title>
+          <meta name="description" content="TurbLCFB1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.TurbLCFB1" />
+          <meta name="keywords" content="TurbLCFB1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.TurbLCFB1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,26 +51,26 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Turbine Load Controller model developed in the WECC.</p><p>This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineLoadControllerDynamics.html" class="extype" name="ch.ninecode.model.TurbineLoadControllerDynamics">TurbineLoadControllerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Controller dead band (db).
-       Typical Value = 0.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum control error (Emax) (note 4).
-       Typical Value = 0.02.</p></dd><dt class="param">fb</dt><dd class="cmt"><p>Frequency bias gain (Fb).
-       Typical Value = 0.</p></dd><dt class="param">fbf</dt><dd class="cmt"><p>Frequency bias flag (Fbf).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Turbine load controller model developed by WECC.</p><p>This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineLoadControllerDynamics.html" class="extype" name="ch.ninecode.model.TurbineLoadControllerDynamics">TurbineLoadControllerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Controller deadband (<i>db</i>).
+       Typical value = 0.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum control error (<i>Emax</i>) (see parameter detail 4).
+       Typical value = 0,02.</p></dd><dt class="param">fb</dt><dd class="cmt"><p>Frequency bias gain (<i>Fb</i>).
+       Typical value = 0.</p></dd><dt class="param">fbf</dt><dd class="cmt"><p>Frequency bias flag (<i>Fbf</i>).
        true = enable frequency bias
        false = disable frequency bias.
-       Typical Value = false.</p></dd><dt class="param">irmax</dt><dd class="cmt"><p>Maximum turbine speed/load reference bias (Irmax) (note 3).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Integral gain (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (Kp).
-       Typical Value = 0.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">pbf</dt><dd class="cmt"><p>Power controller flag (Pbf).
+       Typical value = false.</p></dd><dt class="param">irmax</dt><dd class="cmt"><p>Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Integral gain (<i>Ki</i>).
+       Typical value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (<i>Kp</i>).
+       Typical value = 0.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">pbf</dt><dd class="cmt"><p>Power controller flag (<i>Pbf</i>).
        true = enable load controller
        false = disable load controller.
-       Typical Value = false.</p></dd><dt class="param">pmwset</dt><dd class="cmt"><p>Power controller setpoint (Pmwset) (note 1).
-       Unit = MW. Typical Value = 0.</p></dd><dt class="param">speedReferenceGovernor</dt><dd class="cmt"><p>Type of turbine governor reference (Type).
+       Typical value = false.</p></dd><dt class="param">pmwset</dt><dd class="cmt"><p>Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
+       Unit = MW. Typical value = 0.</p></dd><dt class="param">speedReferenceGovernor</dt><dd class="cmt"><p>Type of turbine governor reference (<i>Type</i>).
        true = speed reference governor
        false = load reference governor.
-       Typical Value = true.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Power transducer time constant (Tpelec).
-       Typical Value = 0.</p></dd></dl><div class="toggleContainer block">
+       Typical value = true.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+       Typical value = 0.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -142,25 +142,25 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineLoadControllerDynamics.html" class="extype" name="ch.ninecode.model.TurbineLoadControllerDynamics">TurbineLoadControllerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Controller dead band (db).
-       Typical Value = 0.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum control error (Emax) (note 4).
-       Typical Value = 0.02.</p></dd><dt class="param">fb</dt><dd class="cmt"><p>Frequency bias gain (Fb).
-       Typical Value = 0.</p></dd><dt class="param">fbf</dt><dd class="cmt"><p>Frequency bias flag (Fbf).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineLoadControllerDynamics.html" class="extype" name="ch.ninecode.model.TurbineLoadControllerDynamics">TurbineLoadControllerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Controller deadband (<i>db</i>).
+       Typical value = 0.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum control error (<i>Emax</i>) (see parameter detail 4).
+       Typical value = 0,02.</p></dd><dt class="param">fb</dt><dd class="cmt"><p>Frequency bias gain (<i>Fb</i>).
+       Typical value = 0.</p></dd><dt class="param">fbf</dt><dd class="cmt"><p>Frequency bias flag (<i>Fbf</i>).
        true = enable frequency bias
        false = disable frequency bias.
-       Typical Value = false.</p></dd><dt class="param">irmax</dt><dd class="cmt"><p>Maximum turbine speed/load reference bias (Irmax) (note 3).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Integral gain (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (Kp).
-       Typical Value = 0.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">pbf</dt><dd class="cmt"><p>Power controller flag (Pbf).
+       Typical value = false.</p></dd><dt class="param">irmax</dt><dd class="cmt"><p>Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Integral gain (<i>Ki</i>).
+       Typical value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (<i>Kp</i>).
+       Typical value = 0.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">pbf</dt><dd class="cmt"><p>Power controller flag (<i>Pbf</i>).
        true = enable load controller
        false = disable load controller.
-       Typical Value = false.</p></dd><dt class="param">pmwset</dt><dd class="cmt"><p>Power controller setpoint (Pmwset) (note 1).
-       Unit = MW. Typical Value = 0.</p></dd><dt class="param">speedReferenceGovernor</dt><dd class="cmt"><p>Type of turbine governor reference (Type).
+       Typical value = false.</p></dd><dt class="param">pmwset</dt><dd class="cmt"><p>Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
+       Unit = MW. Typical value = 0.</p></dd><dt class="param">speedReferenceGovernor</dt><dd class="cmt"><p>Type of turbine governor reference (<i>Type</i>).
        true = speed reference governor
        false = load reference governor.
-       Typical Value = true.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Power transducer time constant (Tpelec).
-       Typical Value = 0.</p></dd></dl></div>
+       Typical value = true.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+       Typical value = 0.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -385,8 +385,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Controller dead band (db).</p><div class="fullcomment"><div class="comment cmt"><p>Controller dead band (db).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Controller deadband (<i>db</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Controller deadband (<i>db</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#emax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emax:Double"></a>
       <a id="emax:Double"></a>
@@ -403,8 +403,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum control error (Emax) (note 4).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum control error (Emax) (note 4).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Maximum control error (<i>Emax</i>) (see parameter detail 4).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum control error (<i>Emax</i>) (see parameter detail 4).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -531,8 +531,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Frequency bias gain (Fb).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency bias gain (Fb).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Frequency bias gain (<i>Fb</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Frequency bias gain (<i>Fb</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#fbf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fbf:Boolean"></a>
       <a id="fbf:Boolean"></a>
@@ -549,10 +549,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Frequency bias flag (Fbf).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency bias flag (Fbf).
+      <p class="shortcomment cmt">Frequency bias flag (<i>Fbf</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Frequency bias flag (<i>Fbf</i>).
        true = enable frequency bias
        false = disable frequency bias.
-       Typical Value = false.</p></div></div>
+       Typical value = false.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#fieldIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fieldIndex(name:String):Int"></a>
       <a id="fieldIndex(String):Int"></a>
@@ -1002,8 +1002,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum turbine speed/load reference bias (Irmax) (note 3).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum turbine speed/load reference bias (Irmax) (note 3).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
+       Typical value = 0.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1054,8 +1054,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Integral gain (Ki).</p><div class="fullcomment"><div class="comment cmt"><p>Integral gain (Ki).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Integral gain (<i>Ki</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Integral gain (<i>Ki</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1072,8 +1072,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Proportional gain (Kp).</p><div class="fullcomment"><div class="comment cmt"><p>Proportional gain (Kp).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Proportional gain (<i>Kp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Proportional gain (<i>Kp</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1177,7 +1177,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base for power values (MWbase) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt;0).
+      <p class="shortcomment cmt">Base for power values (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1246,10 +1246,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power controller flag (Pbf).</p><div class="fullcomment"><div class="comment cmt"><p>Power controller flag (Pbf).
+      <p class="shortcomment cmt">Power controller flag (<i>Pbf</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power controller flag (<i>Pbf</i>).
        true = enable load controller
        false = disable load controller.
-       Typical Value = false.</p></div></div>
+       Typical value = false.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#pmwset" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="pmwset:Double"></a>
       <a id="pmwset:Double"></a>
@@ -1266,8 +1266,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power controller setpoint (Pmwset) (note 1).</p><div class="fullcomment"><div class="comment cmt"><p>Power controller setpoint (Pmwset) (note 1).
-       Unit = MW. Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
+       Unit = MW. Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1318,10 +1318,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of turbine governor reference (Type).</p><div class="fullcomment"><div class="comment cmt"><p>Type of turbine governor reference (Type).
+      <p class="shortcomment cmt">Type of turbine governor reference (<i>Type</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Type of turbine governor reference (<i>Type</i>).
        true = speed reference governor
        false = load reference governor.
-       Typical Value = true.</p></div></div>
+       Typical value = true.</p></div></div>
     </li><li name="ch.ninecode.model.TurbLCFB1#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.TurbineLoadControllerDynamics"></a>
       <a id="sup:TurbineLoadControllerDynamics"></a>
@@ -1406,8 +1406,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power transducer time constant (Tpelec).</p><div class="fullcomment"><div class="comment cmt"><p>Power transducer time constant (Tpelec).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovHydroPelton - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovHydroPelton</title>
-          <meta name="description" content="GovHydroPelton - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovHydroPelton" />
-          <meta name="keywords" content="GovHydroPelton CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovHydroPelton" />
+          <title>GovHydroPelton - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovHydroPelton</title>
+          <meta name="description" content="GovHydroPelton - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovHydroPelton" />
+          <meta name="keywords" content="GovHydroPelton CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovHydroPelton" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,41 +52,43 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Detailed hydro unit - Pelton model.</p><p>This model can be used to represent the dynamic related to water tunnel and surge chamber.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">av0</dt><dd class="cmt"><p>Area of the surge tank (A<sub>V0</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 30.</p></dd><dt class="param">av1</dt><dd class="cmt"><p>Area of the compensation tank (A<sub>V1</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 700.</p></dd><dt class="param">bp</dt><dd class="cmt"><p>Droop (bp).
-       Typical Value = 0.05.</p></dd><dt class="param">db1</dt><dd class="cmt"><p>Intentional dead-band width (DB1).
-       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">db2</dt><dd class="cmt"><p>Intentional dead-band width of valve opening error (DB2).
-       Unit = Hz.  Typical Value = 0.01.</p></dd><dt class="param">h1</dt><dd class="cmt"><p>Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
-       Unit = m. Typical Value = 4.</p></dd><dt class="param">h2</dt><dd class="cmt"><p>Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
-       Unit = m. Typical Value = 40.</p></dd><dt class="param">hn</dt><dd class="cmt"><p>Rated hydraulic head (H<sub>n</sub>).
-       Unit = m. Typical Value = 250.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Penstock loss coefficient (due to friction) (Kc).
-       Typical Value = 0.025.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
-       Typical Value = -0.025.</p></dd><dt class="param">qc0</dt><dd class="cmt"><p>No-load turbine flow at nominal head (Qc0).
-       Typical Value = 0.05.</p></dd><dt class="param">qn</dt><dd class="cmt"><p>Rated flow (Q<sub>n</sub>).
-       Unit = m<sup>3</sup>/s. Typical Value = 40.</p></dd><dt class="param">simplifiedPelton</dt><dd class="cmt"><p>Simplified Pelton model simulation (Sflag).
+The DetailedHydroModelHydraulicSystem diagram, located under the GovHydroFrancis class, provides a schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">av0</dt><dd class="cmt"><p>Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 30.</p></dd><dt class="param">av1</dt><dd class="cmt"><p>Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 700.</p></dd><dt class="param">bp</dt><dd class="cmt"><p>Droop (<i>bp</i>).
+       Typical value = 0,05.</p></dd><dt class="param">db1</dt><dd class="cmt"><p>Intentional dead-band width (<i>DB1</i>).
+       Unit = Hz.  Typical value = 0.</p></dd><dt class="param">db2</dt><dd class="cmt"><p>Intentional dead-band width of valve opening error (<i>DB2</i>).
+       Unit = Hz.  Typical value = 0,01.</p></dd><dt class="param">h1</dt><dd class="cmt"><p>Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+       Unit = km.  Typical value = 0,004.</p></dd><dt class="param">h2</dt><dd class="cmt"><p>Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+       Unit = km.  Typical value = 0,040.</p></dd><dt class="param">hn</dt><dd class="cmt"><p>Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+       Unit = km.  Typical value = 0,250.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Penstock loss coefficient (due to friction) (<i>Kc</i>).
+       Typical value = 0,025.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+       Typical value = 0,025.</p></dd><dt class="param">qc0</dt><dd class="cmt"><p>No-load turbine flow at nominal head (<i>Qc0</i>).
+       Typical value = 0,05.</p></dd><dt class="param">qn</dt><dd class="cmt"><p>Rated flow (<i>Q</i><i><sub>n</sub></i>).
+       Unit = m<sup>3</sup>/s. Typical value = 250.</p></dd><dt class="param">simplifiedPelton</dt><dd class="cmt"><p>Simplified Pelton model simulation (<i>Sflag</i>).
        true = enable of simplified Pelton model simulation
-       false = enable of complete Pelton model simulation (non linear gain).
-       Typical Value = false.</p></dd><dt class="param">staticCompensating</dt><dd class="cmt"><p>Static compensating characteristic (Cflag).
+       false = enable of complete Pelton model simulation (non-linear gain).
+       Typical value = true.</p></dd><dt class="param">staticCompensating</dt><dd class="cmt"><p>Static compensating characteristic (<i>Cflag</i>).
+       It should be true if simplifiedPelton = false.
        true = enable of static compensating characteristic
        false = inhibit of static compensating characteristic.
-       Typical Value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Derivative gain (accelerometer time constant) (Ta).
-       Typical Value = 3.</p></dd><dt class="param">ts</dt><dd class="cmt"><p>Gate servo time constant (Ts).
-       Typical Value = 0.15.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Servomotor integrator time constant (TV).
-       Typical Value = 0.3.</p></dd><dt class="param">twnc</dt><dd class="cmt"><p>Water inertia time constant (Twnc).
-       Typical Value = 1.</p></dd><dt class="param">twng</dt><dd class="cmt"><p>Water tunnel and surge chamber inertia time constant (Twng).
-       Typical Value = 3.</p></dd><dt class="param">tx</dt><dd class="cmt"><p>Electronic integrator time constant (Tx).
-       Typical Value = 0.5.</p></dd><dt class="param">va</dt><dd class="cmt"><p>Maximum gate opening velocity (Va).
-       Unit = PU/sec.  Typical Value = 0.016.</p></dd><dt class="param">valvmax</dt><dd class="cmt"><p>Maximum gate opening (ValvMax).
-       Typical Value = 1.</p></dd><dt class="param">valvmin</dt><dd class="cmt"><p>Minimum gate opening (ValvMin).
-       Typical Value = 0.</p></dd><dt class="param">vav</dt><dd class="cmt"><p>Maximum servomotor valve opening velocity (Vav).
-       Typical Value = 0.017.</p></dd><dt class="param">vc</dt><dd class="cmt"><p>Maximum gate closing velocity (Vc).
-       Unit = PU/sec.  Typical Value = -0.016.</p></dd><dt class="param">vcv</dt><dd class="cmt"><p>Maximum servomotor valve closing velocity (Vcv).
-       Typical Value = -0.017.</p></dd><dt class="param">waterTunnelSurgeChamberSimulation</dt><dd class="cmt"><p>Water tunnel and surge chamber simulation (Tflag).
+       Typical value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">ts</dt><dd class="cmt"><p>Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+       Typical value = 0,15.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">twnc</dt><dd class="cmt"><p>Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">twng</dt><dd class="cmt"><p>Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">tx</dt><dd class="cmt"><p>Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">va</dt><dd class="cmt"><p>Maximum gate opening velocity (<i>Va</i>).
+       Unit = PU / s.  Typical value = 0,06.</p></dd><dt class="param">valvmax</dt><dd class="cmt"><p>Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
+       Typical value = 1,1.</p></dd><dt class="param">valvmin</dt><dd class="cmt"><p>Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
+       Typical value = 0.</p></dd><dt class="param">vav</dt><dd class="cmt"><p>Maximum servomotor valve opening velocity (<i>Vav</i>).
+       Typical value = 0,1.</p></dd><dt class="param">vc</dt><dd class="cmt"><p>Maximum gate closing velocity (<i>Vc</i>).
+       Unit = PU / s.  Typical value = -0,06.</p></dd><dt class="param">vcv</dt><dd class="cmt"><p>Maximum servomotor valve closing velocity (<i>Vcv</i>).
+       Typical value = -0,1.</p></dd><dt class="param">waterTunnelSurgeChamberSimulation</dt><dd class="cmt"><p>Water tunnel and surge chamber simulation (<i>Tflag</i>).
        true = enable of water tunnel and surge chamber simulation
        false = inhibit of water tunnel and surge chamber simulation.
-       Typical Value = false.</p></dd><dt class="param">zsfc</dt><dd class="cmt"><p>Head of upper water level with respect to the level of penstock (Zsfc).
-       Unit = m. Typical Value = 25.</p></dd></dl><div class="toggleContainer block">
+       Typical value = false.</p></dd><dt class="param">zsfc</dt><dd class="cmt"><p>Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+       Unit = km.  Typical value = 0,025.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -158,41 +160,42 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">av0</dt><dd class="cmt"><p>Area of the surge tank (A<sub>V0</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 30.</p></dd><dt class="param">av1</dt><dd class="cmt"><p>Area of the compensation tank (A<sub>V1</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 700.</p></dd><dt class="param">bp</dt><dd class="cmt"><p>Droop (bp).
-       Typical Value = 0.05.</p></dd><dt class="param">db1</dt><dd class="cmt"><p>Intentional dead-band width (DB1).
-       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">db2</dt><dd class="cmt"><p>Intentional dead-band width of valve opening error (DB2).
-       Unit = Hz.  Typical Value = 0.01.</p></dd><dt class="param">h1</dt><dd class="cmt"><p>Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
-       Unit = m. Typical Value = 4.</p></dd><dt class="param">h2</dt><dd class="cmt"><p>Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
-       Unit = m. Typical Value = 40.</p></dd><dt class="param">hn</dt><dd class="cmt"><p>Rated hydraulic head (H<sub>n</sub>).
-       Unit = m. Typical Value = 250.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Penstock loss coefficient (due to friction) (Kc).
-       Typical Value = 0.025.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
-       Typical Value = -0.025.</p></dd><dt class="param">qc0</dt><dd class="cmt"><p>No-load turbine flow at nominal head (Qc0).
-       Typical Value = 0.05.</p></dd><dt class="param">qn</dt><dd class="cmt"><p>Rated flow (Q<sub>n</sub>).
-       Unit = m<sup>3</sup>/s. Typical Value = 40.</p></dd><dt class="param">simplifiedPelton</dt><dd class="cmt"><p>Simplified Pelton model simulation (Sflag).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">av0</dt><dd class="cmt"><p>Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 30.</p></dd><dt class="param">av1</dt><dd class="cmt"><p>Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 700.</p></dd><dt class="param">bp</dt><dd class="cmt"><p>Droop (<i>bp</i>).
+       Typical value = 0,05.</p></dd><dt class="param">db1</dt><dd class="cmt"><p>Intentional dead-band width (<i>DB1</i>).
+       Unit = Hz.  Typical value = 0.</p></dd><dt class="param">db2</dt><dd class="cmt"><p>Intentional dead-band width of valve opening error (<i>DB2</i>).
+       Unit = Hz.  Typical value = 0,01.</p></dd><dt class="param">h1</dt><dd class="cmt"><p>Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+       Unit = km.  Typical value = 0,004.</p></dd><dt class="param">h2</dt><dd class="cmt"><p>Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+       Unit = km.  Typical value = 0,040.</p></dd><dt class="param">hn</dt><dd class="cmt"><p>Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+       Unit = km.  Typical value = 0,250.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Penstock loss coefficient (due to friction) (<i>Kc</i>).
+       Typical value = 0,025.</p></dd><dt class="param">kg</dt><dd class="cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+       Typical value = 0,025.</p></dd><dt class="param">qc0</dt><dd class="cmt"><p>No-load turbine flow at nominal head (<i>Qc0</i>).
+       Typical value = 0,05.</p></dd><dt class="param">qn</dt><dd class="cmt"><p>Rated flow (<i>Q</i><i><sub>n</sub></i>).
+       Unit = m<sup>3</sup>/s. Typical value = 250.</p></dd><dt class="param">simplifiedPelton</dt><dd class="cmt"><p>Simplified Pelton model simulation (<i>Sflag</i>).
        true = enable of simplified Pelton model simulation
-       false = enable of complete Pelton model simulation (non linear gain).
-       Typical Value = false.</p></dd><dt class="param">staticCompensating</dt><dd class="cmt"><p>Static compensating characteristic (Cflag).
+       false = enable of complete Pelton model simulation (non-linear gain).
+       Typical value = true.</p></dd><dt class="param">staticCompensating</dt><dd class="cmt"><p>Static compensating characteristic (<i>Cflag</i>).
+       It should be true if simplifiedPelton = false.
        true = enable of static compensating characteristic
        false = inhibit of static compensating characteristic.
-       Typical Value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Derivative gain (accelerometer time constant) (Ta).
-       Typical Value = 3.</p></dd><dt class="param">ts</dt><dd class="cmt"><p>Gate servo time constant (Ts).
-       Typical Value = 0.15.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Servomotor integrator time constant (TV).
-       Typical Value = 0.3.</p></dd><dt class="param">twnc</dt><dd class="cmt"><p>Water inertia time constant (Twnc).
-       Typical Value = 1.</p></dd><dt class="param">twng</dt><dd class="cmt"><p>Water tunnel and surge chamber inertia time constant (Twng).
-       Typical Value = 3.</p></dd><dt class="param">tx</dt><dd class="cmt"><p>Electronic integrator time constant (Tx).
-       Typical Value = 0.5.</p></dd><dt class="param">va</dt><dd class="cmt"><p>Maximum gate opening velocity (Va).
-       Unit = PU/sec.  Typical Value = 0.016.</p></dd><dt class="param">valvmax</dt><dd class="cmt"><p>Maximum gate opening (ValvMax).
-       Typical Value = 1.</p></dd><dt class="param">valvmin</dt><dd class="cmt"><p>Minimum gate opening (ValvMin).
-       Typical Value = 0.</p></dd><dt class="param">vav</dt><dd class="cmt"><p>Maximum servomotor valve opening velocity (Vav).
-       Typical Value = 0.017.</p></dd><dt class="param">vc</dt><dd class="cmt"><p>Maximum gate closing velocity (Vc).
-       Unit = PU/sec.  Typical Value = -0.016.</p></dd><dt class="param">vcv</dt><dd class="cmt"><p>Maximum servomotor valve closing velocity (Vcv).
-       Typical Value = -0.017.</p></dd><dt class="param">waterTunnelSurgeChamberSimulation</dt><dd class="cmt"><p>Water tunnel and surge chamber simulation (Tflag).
+       Typical value = false.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">ts</dt><dd class="cmt"><p>Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+       Typical value = 0,15.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">twnc</dt><dd class="cmt"><p>Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">twng</dt><dd class="cmt"><p>Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">tx</dt><dd class="cmt"><p>Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">va</dt><dd class="cmt"><p>Maximum gate opening velocity (<i>Va</i>).
+       Unit = PU / s.  Typical value = 0,06.</p></dd><dt class="param">valvmax</dt><dd class="cmt"><p>Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
+       Typical value = 1,1.</p></dd><dt class="param">valvmin</dt><dd class="cmt"><p>Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
+       Typical value = 0.</p></dd><dt class="param">vav</dt><dd class="cmt"><p>Maximum servomotor valve opening velocity (<i>Vav</i>).
+       Typical value = 0,1.</p></dd><dt class="param">vc</dt><dd class="cmt"><p>Maximum gate closing velocity (<i>Vc</i>).
+       Unit = PU / s.  Typical value = -0,06.</p></dd><dt class="param">vcv</dt><dd class="cmt"><p>Maximum servomotor valve closing velocity (<i>Vcv</i>).
+       Typical value = -0,1.</p></dd><dt class="param">waterTunnelSurgeChamberSimulation</dt><dd class="cmt"><p>Water tunnel and surge chamber simulation (<i>Tflag</i>).
        true = enable of water tunnel and surge chamber simulation
        false = inhibit of water tunnel and surge chamber simulation.
-       Typical Value = false.</p></dd><dt class="param">zsfc</dt><dd class="cmt"><p>Head of upper water level with respect to the level of penstock (Zsfc).
-       Unit = m. Typical Value = 25.</p></dd></dl></div>
+       Typical value = false.</p></dd><dt class="param">zsfc</dt><dd class="cmt"><p>Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+       Unit = km.  Typical value = 0,025.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -356,8 +359,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Area of the surge tank (A<sub>V0</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Area of the surge tank (A<sub>V0</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 30.</p></div></div>
+      <p class="shortcomment cmt">Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 30.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#av1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="av1:Double"></a>
       <a id="av1:Double"></a>
@@ -374,8 +377,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Area of the compensation tank (A<sub>V1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Area of the compensation tank (A<sub>V1</sub>).
-       Unit = m<sup>2</sup>. Typical Value = 700.</p></div></div>
+      <p class="shortcomment cmt">Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+       Unit = m<sup>2</sup>. Typical value = 700.</p></div></div>
     </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bitfields:Array[Int]"></a>
       <a id="bitfields:Array[Int]"></a>
@@ -412,8 +415,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Droop (bp).</p><div class="fullcomment"><div class="comment cmt"><p>Droop (bp).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">Droop (<i>bp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Droop (<i>bp</i>).
+       Typical value = 0,05.</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -471,8 +474,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Intentional dead-band width (DB1).</p><div class="fullcomment"><div class="comment cmt"><p>Intentional dead-band width (DB1).
-       Unit = Hz.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Intentional dead-band width (<i>DB1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Intentional dead-band width (<i>DB1</i>).
+       Unit = Hz.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#db2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="db2:Double"></a>
       <a id="db2:Double"></a>
@@ -489,8 +492,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Intentional dead-band width of valve opening error (DB2).</p><div class="fullcomment"><div class="comment cmt"><p>Intentional dead-band width of valve opening error (DB2).
-       Unit = Hz.  Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Intentional dead-band width of valve opening error (<i>DB2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Intentional dead-band width of valve opening error (<i>DB2</i>).
+       Unit = Hz.  Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1015,8 +1018,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
-       Unit = m. Typical Value = 4.</p></div></div>
+      <p class="shortcomment cmt">Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+       Unit = km.  Typical value = 0,004.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#h2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="h2:Double"></a>
       <a id="h2:Double"></a>
@@ -1033,8 +1036,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
-       Unit = m. Typical Value = 40.</p></div></div>
+      <p class="shortcomment cmt">Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+       Unit = km.  Typical value = 0,040.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -1068,8 +1071,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rated hydraulic head (H<sub>n</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Rated hydraulic head (H<sub>n</sub>).
-       Unit = m. Typical Value = 250.</p></div></div>
+      <p class="shortcomment cmt">Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+       Unit = km.  Typical value = 0,250.</p></div></div>
     </li><li name="ch.ninecode.model.Element#id" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="id:String"></a>
       <a id="id:String"></a>
@@ -1138,8 +1141,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Penstock loss coefficient (due to friction) (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>Penstock loss coefficient (due to friction) (Kc).
-       Typical Value = 0.025.</p></div></div>
+      <p class="shortcomment cmt">Penstock loss coefficient (due to friction) (<i>Kc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Penstock loss coefficient (due to friction) (<i>Kc</i>).
+       Typical value = 0,025.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#kg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kg:Double"></a>
       <a id="kg:Double"></a>
@@ -1156,8 +1159,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Water tunnel and surge chamber loss coefficient (due to friction) (Kg).</p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
-       Typical Value = -0.025.</p></div></div>
+      <p class="shortcomment cmt">Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+       Typical value = 0,025.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1312,8 +1315,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">No-load turbine flow at nominal head (Qc0).</p><div class="fullcomment"><div class="comment cmt"><p>No-load turbine flow at nominal head (Qc0).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">No-load turbine flow at nominal head (<i>Qc0</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>No-load turbine flow at nominal head (<i>Qc0</i>).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#qn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="qn:Double"></a>
       <a id="qn:Double"></a>
@@ -1330,8 +1333,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rated flow (Q<sub>n</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Rated flow (Q<sub>n</sub>).
-       Unit = m<sup>3</sup>/s. Typical Value = 40.</p></div></div>
+      <p class="shortcomment cmt">Rated flow (<i>Q</i><i><sub>n</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rated flow (<i>Q</i><i><sub>n</sub></i>).
+       Unit = m<sup>3</sup>/s. Typical value = 250.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1365,10 +1368,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Simplified Pelton model simulation (Sflag).</p><div class="fullcomment"><div class="comment cmt"><p>Simplified Pelton model simulation (Sflag).
+      <p class="shortcomment cmt">Simplified Pelton model simulation (<i>Sflag</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Simplified Pelton model simulation (<i>Sflag</i>).
        true = enable of simplified Pelton model simulation
-       false = enable of complete Pelton model simulation (non linear gain).
-       Typical Value = false.</p></div></div>
+       false = enable of complete Pelton model simulation (non-linear gain).
+       Typical value = true.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="size:Int"></a>
       <a id="size:Int"></a>
@@ -1402,10 +1405,11 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Static compensating characteristic (Cflag).</p><div class="fullcomment"><div class="comment cmt"><p>Static compensating characteristic (Cflag).
+      <p class="shortcomment cmt">Static compensating characteristic (<i>Cflag</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Static compensating characteristic (<i>Cflag</i>).
+       It should be true if simplifiedPelton = false.
        true = enable of static compensating characteristic
        false = inhibit of static compensating characteristic.
-       Typical Value = false.</p></div></div>
+       Typical value = false.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.TurbineGovernorDynamics"></a>
       <a id="sup:TurbineGovernorDynamics"></a>
@@ -1456,8 +1460,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Derivative gain (accelerometer time constant) (Ta).</p><div class="fullcomment"><div class="comment cmt"><p>Derivative gain (accelerometer time constant) (Ta).
-       Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
+       Typical value = 3.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1508,8 +1512,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gate servo time constant (Ts).</p><div class="fullcomment"><div class="comment cmt"><p>Gate servo time constant (Ts).
-       Typical Value = 0.15.</p></div></div>
+      <p class="shortcomment cmt">Gate servo time constant (<i>Ts</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+       Typical value = 0,15.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#tv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tv:Double"></a>
       <a id="tv:Double"></a>
@@ -1526,8 +1530,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Servomotor integrator time constant (TV).</p><div class="fullcomment"><div class="comment cmt"><p>Servomotor integrator time constant (TV).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#twnc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="twnc:Double"></a>
       <a id="twnc:Double"></a>
@@ -1544,8 +1548,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Water inertia time constant (Twnc).</p><div class="fullcomment"><div class="comment cmt"><p>Water inertia time constant (Twnc).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Water inertia time constant (<i>Twnc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#twng" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="twng:Double"></a>
       <a id="twng:Double"></a>
@@ -1562,8 +1566,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Water tunnel and surge chamber inertia time constant (Twng).</p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber inertia time constant (Twng).
-       Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+       Typical value = 3.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#tx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx:Double"></a>
       <a id="tx:Double"></a>
@@ -1580,8 +1584,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Electronic integrator time constant (Tx).</p><div class="fullcomment"><div class="comment cmt"><p>Electronic integrator time constant (Tx).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#va" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="va:Double"></a>
       <a id="va:Double"></a>
@@ -1598,8 +1602,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum gate opening velocity (Va).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening velocity (Va).
-       Unit = PU/sec.  Typical Value = 0.016.</p></div></div>
+      <p class="shortcomment cmt">Maximum gate opening velocity (<i>Va</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening velocity (<i>Va</i>).
+       Unit = PU / s.  Typical value = 0,06.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#valvmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="valvmax:Double"></a>
       <a id="valvmax:Double"></a>
@@ -1616,8 +1620,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum gate opening (ValvMax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening (ValvMax).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
+       Typical value = 1,1.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#valvmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="valvmin:Double"></a>
       <a id="valvmin:Double"></a>
@@ -1634,8 +1638,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum gate opening (ValvMin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum gate opening (ValvMin).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#vav" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vav:Double"></a>
       <a id="vav:Double"></a>
@@ -1652,8 +1656,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum servomotor valve opening velocity (Vav).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum servomotor valve opening velocity (Vav).
-       Typical Value = 0.017.</p></div></div>
+      <p class="shortcomment cmt">Maximum servomotor valve opening velocity (<i>Vav</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum servomotor valve opening velocity (<i>Vav</i>).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#vc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vc:Double"></a>
       <a id="vc:Double"></a>
@@ -1670,8 +1674,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum gate closing velocity (Vc).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate closing velocity (Vc).
-       Unit = PU/sec.  Typical Value = -0.016.</p></div></div>
+      <p class="shortcomment cmt">Maximum gate closing velocity (<i>Vc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum gate closing velocity (<i>Vc</i>).
+       Unit = PU / s.  Typical value = -0,06.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#vcv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vcv:Double"></a>
       <a id="vcv:Double"></a>
@@ -1688,8 +1692,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum servomotor valve closing velocity (Vcv).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum servomotor valve closing velocity (Vcv).
-       Typical Value = -0.017.</p></div></div>
+      <p class="shortcomment cmt">Maximum servomotor valve closing velocity (<i>Vcv</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum servomotor valve closing velocity (<i>Vcv</i>).
+       Typical value = -0,1.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1775,10 +1779,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Water tunnel and surge chamber simulation (Tflag).</p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber simulation (Tflag).
+      <p class="shortcomment cmt">Water tunnel and surge chamber simulation (<i>Tflag</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Water tunnel and surge chamber simulation (<i>Tflag</i>).
        true = enable of water tunnel and surge chamber simulation
        false = inhibit of water tunnel and surge chamber simulation.
-       Typical Value = false.</p></div></div>
+       Typical value = false.</p></div></div>
     </li><li name="ch.ninecode.model.GovHydroPelton#zsfc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="zsfc:Double"></a>
       <a id="zsfc:Double"></a>
@@ -1795,8 +1799,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Head of upper water level with respect to the level of penstock (Zsfc).</p><div class="fullcomment"><div class="comment cmt"><p>Head of upper water level with respect to the level of penstock (Zsfc).
-       Unit = m. Typical Value = 25.</p></div></div>
+      <p class="shortcomment cmt">Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+       Unit = km.  Typical value = 0,025.</p></div></div>
     </li></ol>
             </div>
 

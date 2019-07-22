@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Commitments - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Commitments</title>
-          <meta name="description" content="Commitments - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Commitments" />
-          <meta name="keywords" content="Commitments CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Commitments" />
+          <title>Commitments - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Commitments</title>
+          <meta name="description" content="Commitments - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Commitments" />
+          <meta name="keywords" content="Commitments CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Commitments" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -55,7 +55,9 @@
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">commitmentType</dt><dd class="cmt"><p>the type of UC status (self commitment, ISO commitment, or SCUC commitment)</p></dd><dt class="param">instructionCost</dt><dd class="cmt"><p>Total cost associated with changing the status of the resource.</p></dd><dt class="param">instructionType</dt><dd class="cmt"><p>Indicator of either a Start-Up or a Shut-Down.</p></dd><dt class="param">intervalEndTime</dt><dd class="cmt"><p>End time for the commitment period.
        This will be on an interval boundary.</p></dd><dt class="param">intervalStartTime</dt><dd class="cmt"><p>Start time for the commitment period.
        This will be on an interval boundary.</p></dd><dt class="param">minStatusChangeTime</dt><dd class="cmt"><p>SCUC commitment period start-up time.
-       Calculated start up time based on the StartUpTimeCurve provided with the Bid.</p></dd><dt class="param">noLoadCost</dt><dd class="cmt"><p>Unit no load cost in case of energy commodity</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateUser</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">CommitmentClearing</dt><dd class="cmt"><p><a href="CommitmentClearing.html" class="extype" name="ch.ninecode.model.CommitmentClearing">CommitmentClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+       This is a combination of StartUp time bid and Unit down time.
+       Units is minutes</p></dd><dt class="param">noLoadCost</dt><dd class="cmt"><p>Unit no load cost in case of energy commodity</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateUser</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">CommitmentClearing</dt><dd class="cmt"><p><a href="CommitmentClearing.html" class="extype" name="ch.ninecode.model.CommitmentClearing">CommitmentClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,7 +132,9 @@
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">commitmentType</dt><dd class="cmt"><p>the type of UC status (self commitment, ISO commitment, or SCUC commitment)</p></dd><dt class="param">instructionCost</dt><dd class="cmt"><p>Total cost associated with changing the status of the resource.</p></dd><dt class="param">instructionType</dt><dd class="cmt"><p>Indicator of either a Start-Up or a Shut-Down.</p></dd><dt class="param">intervalEndTime</dt><dd class="cmt"><p>End time for the commitment period.
        This will be on an interval boundary.</p></dd><dt class="param">intervalStartTime</dt><dd class="cmt"><p>Start time for the commitment period.
        This will be on an interval boundary.</p></dd><dt class="param">minStatusChangeTime</dt><dd class="cmt"><p>SCUC commitment period start-up time.
-       Calculated start up time based on the StartUpTimeCurve provided with the Bid.</p></dd><dt class="param">noLoadCost</dt><dd class="cmt"><p>Unit no load cost in case of energy commodity</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateUser</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">CommitmentClearing</dt><dd class="cmt"><p><a href="CommitmentClearing.html" class="extype" name="ch.ninecode.model.CommitmentClearing">CommitmentClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl></div>
+       Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+       This is a combination of StartUp time bid and Unit down time.
+       Units is minutes</p></dd><dt class="param">noLoadCost</dt><dd class="cmt"><p>Unit no load cost in case of energy commodity</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">updateUser</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">CommitmentClearing</dt><dd class="cmt"><p><a href="CommitmentClearing.html" class="extype" name="ch.ninecode.model.CommitmentClearing">CommitmentClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1090,7 +1094,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">SCUC commitment period start-up time.</p><div class="fullcomment"><div class="comment cmt"><p>SCUC commitment period start-up time.
-       Calculated start up time based on the StartUpTimeCurve provided with the Bid.</p></div></div>
+       Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+       This is a combination of StartUp time bid and Unit down time.
+       Units is minutes</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
       <a id="mkString(String,String,String):String"></a>

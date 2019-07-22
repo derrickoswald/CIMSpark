@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DiscExcContIEEEDEC1A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.DiscExcContIEEEDEC1A</title>
-          <meta name="description" content="DiscExcContIEEEDEC1A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.DiscExcContIEEEDEC1A" />
-          <meta name="keywords" content="DiscExcContIEEEDEC1A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.DiscExcContIEEEDEC1A" />
+          <title>DiscExcContIEEEDEC1A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.DiscExcContIEEEDEC1A</title>
+          <meta name="description" content="DiscExcContIEEEDEC1A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.DiscExcContIEEEDEC1A" />
+          <meta name="keywords" content="DiscExcContIEEEDEC1A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.DiscExcContIEEEDEC1A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,25 +51,25 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.</p><p>Reference: IEEE Standard 421.5-2005 Section 12.2.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.</p><p>Reference: IEEE 421.5-2005, 12.2.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">esc</dt><dd class="cmt"><p>Speed change reference (<i>E</i><i><sub>SC</sub></i>).
-       Typical Value = 0.0015.</p></dd><dt class="param">kan</dt><dd class="cmt"><p>Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
-       Typical Value = 400.</p></dd><dt class="param">ketl</dt><dd class="cmt"><p>Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
-       Typical Value = 47.</p></dd><dt class="param">tan</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
-       Typical Value = 0.08.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>).
-       Typical Value = 0.03.</p></dd><dt class="param">tl1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
-       Typical Value = 0.025.</p></dd><dt class="param">tl2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
-       Typical Value = 1.25.</p></dd><dt class="param">tw5</dt><dd class="cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
-       Typical Value = 5.</p></dd><dt class="param">val</dt><dd class="cmt"><p>Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
-       Typical Value = 5.5.</p></dd><dt class="param">vanmax</dt><dd class="cmt"><p>Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).</p></dd><dt class="param">vomax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>).
-       Typical Value = 0.3.</p></dd><dt class="param">vomin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>).
-       Typical Value = 0.1.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>).
-       Typical Value = 0.2.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>).
-       Typical Value = -0.066.</p></dd><dt class="param">vtc</dt><dd class="cmt"><p>Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
-       Typical Value = 0.95.</p></dd><dt class="param">vtlmt</dt><dd class="cmt"><p>Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
-       Typical Value = 1.1.</p></dd><dt class="param">vtm</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TM</sub></i>).
-       Typical Value = 1.13.</p></dd><dt class="param">vtn</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TN</sub></i>).
-       Typical Value = 1.12.</p></dd></dl><div class="toggleContainer block">
+       Typical value = 0,0015.</p></dd><dt class="param">kan</dt><dd class="cmt"><p>Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
+       Typical value = 400.</p></dd><dt class="param">ketl</dt><dd class="cmt"><p>Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
+       Typical value = 47.</p></dd><dt class="param">tan</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">tl1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
+       Typical value = 0,025.</p></dd><dt class="param">tl2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
+       Typical value = 1,25.</p></dd><dt class="param">tw5</dt><dd class="cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">val</dt><dd class="cmt"><p>Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+       Typical value = 5,5.</p></dd><dt class="param">vanmax</dt><dd class="cmt"><p>Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).</p></dd><dt class="param">vomax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
+       Typical value = 0,3.</p></dd><dt class="param">vomin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
+       Typical value = 0,1.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
+       Typical value = 0,2.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
+       Typical value = -0,066.</p></dd><dt class="param">vtc</dt><dd class="cmt"><p>Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
+       Typical value = 0,95.</p></dd><dt class="param">vtlmt</dt><dd class="cmt"><p>Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
+       Typical value = 1,1.</p></dd><dt class="param">vtm</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TM</sub></i>).
+       Typical value = 1,13.</p></dd><dt class="param">vtn</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TN</sub></i>).
+       Typical value = 1,12.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -142,23 +142,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">esc</dt><dd class="cmt"><p>Speed change reference (<i>E</i><i><sub>SC</sub></i>).
-       Typical Value = 0.0015.</p></dd><dt class="param">kan</dt><dd class="cmt"><p>Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
-       Typical Value = 400.</p></dd><dt class="param">ketl</dt><dd class="cmt"><p>Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
-       Typical Value = 47.</p></dd><dt class="param">tan</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
-       Typical Value = 0.08.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>).
-       Typical Value = 0.03.</p></dd><dt class="param">tl1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
-       Typical Value = 0.025.</p></dd><dt class="param">tl2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
-       Typical Value = 1.25.</p></dd><dt class="param">tw5</dt><dd class="cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
-       Typical Value = 5.</p></dd><dt class="param">val</dt><dd class="cmt"><p>Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
-       Typical Value = 5.5.</p></dd><dt class="param">vanmax</dt><dd class="cmt"><p>Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).</p></dd><dt class="param">vomax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>).
-       Typical Value = 0.3.</p></dd><dt class="param">vomin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>).
-       Typical Value = 0.1.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>).
-       Typical Value = 0.2.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>).
-       Typical Value = -0.066.</p></dd><dt class="param">vtc</dt><dd class="cmt"><p>Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
-       Typical Value = 0.95.</p></dd><dt class="param">vtlmt</dt><dd class="cmt"><p>Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
-       Typical Value = 1.1.</p></dd><dt class="param">vtm</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TM</sub></i>).
-       Typical Value = 1.13.</p></dd><dt class="param">vtn</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TN</sub></i>).
-       Typical Value = 1.12.</p></dd></dl></div>
+       Typical value = 0,0015.</p></dd><dt class="param">kan</dt><dd class="cmt"><p>Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
+       Typical value = 400.</p></dd><dt class="param">ketl</dt><dd class="cmt"><p>Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
+       Typical value = 47.</p></dd><dt class="param">tan</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">tl1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
+       Typical value = 0,025.</p></dd><dt class="param">tl2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
+       Typical value = 1,25.</p></dd><dt class="param">tw5</dt><dd class="cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">val</dt><dd class="cmt"><p>Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+       Typical value = 5,5.</p></dd><dt class="param">vanmax</dt><dd class="cmt"><p>Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).</p></dd><dt class="param">vomax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
+       Typical value = 0,3.</p></dd><dt class="param">vomin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
+       Typical value = 0,1.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
+       Typical value = 0,2.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
+       Typical value = -0,066.</p></dd><dt class="param">vtc</dt><dd class="cmt"><p>Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
+       Typical value = 0,95.</p></dd><dt class="param">vtlmt</dt><dd class="cmt"><p>Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
+       Typical value = 1,1.</p></dd><dt class="param">vtm</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TM</sub></i>).
+       Typical value = 1,13.</p></dd><dt class="param">vtn</dt><dd class="cmt"><p>Voltage limits (<i>V</i><i><sub>TN</sub></i>).
+       Typical value = 1,12.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -458,7 +458,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Speed change reference (<i>E</i><i><sub>SC</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Speed change reference (<i>E</i><i><sub>SC</sub></i>).
-       Typical Value = 0.0015.</p></div></div>
+       Typical value = 0,0015.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
       <a id="export:String"></a>
       <a id="export:String"></a>
@@ -979,7 +979,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
-       Typical Value = 400.</p></div></div>
+       Typical value = 400.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#ketl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ketl:Double"></a>
       <a id="ketl:Double"></a>
@@ -997,7 +997,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
-       Typical Value = 47.</p></div></div>
+       Typical value = 47.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1220,8 +1220,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#td" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="td:Double"></a>
       <a id="td:Double"></a>
@@ -1238,8 +1238,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>D</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>).
-       Typical Value = 0.03.</p></div></div>
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
+       Typical value = 0,03.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#tl1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tl1:Double"></a>
       <a id="tl1:Double"></a>
@@ -1256,8 +1256,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
-       Typical Value = 0.025.</p></div></div>
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
+       Typical value = 0,025.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#tl2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tl2:Double"></a>
       <a id="tl2:Double"></a>
@@ -1274,8 +1274,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
-       Typical Value = 1.25.</p></div></div>
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
+       Typical value = 1,25.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1326,8 +1326,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).</sub></i></i></p><div class="fullcomment"><div class="comment cmt"><p>DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#val" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="val:Double"></a>
       <a id="val:Double"></a>
@@ -1345,7 +1345,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
-       Typical Value = 5.5.</p></div></div>
+       Typical value = 5,5.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vanmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vanmax:Double"></a>
       <a id="vanmax:Double"></a>
@@ -1379,8 +1379,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>OMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vomin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vomin:Double"></a>
       <a id="vomin:Double"></a>
@@ -1397,8 +1397,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>OMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vsmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmax:Double"></a>
       <a id="vsmax:Double"></a>
@@ -1415,8 +1415,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>SMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>).
-       Typical Value = 0.2.</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vsmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmin:Double"></a>
       <a id="vsmin:Double"></a>
@@ -1433,8 +1433,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>SMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>).
-       Typical Value = -0.066.</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
+       Typical value = -0,066.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vtc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtc:Double"></a>
       <a id="vtc:Double"></a>
@@ -1452,7 +1452,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
-       Typical Value = 0.95.</p></div></div>
+       Typical value = 0,95.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vtlmt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtlmt:Double"></a>
       <a id="vtlmt:Double"></a>
@@ -1470,7 +1470,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
-       Typical Value = 1.1.</p></div></div>
+       Typical value = 1,1.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vtm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtm:Double"></a>
       <a id="vtm:Double"></a>
@@ -1488,7 +1488,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Voltage limits (<i>V</i><i><sub>TM</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage limits (<i>V</i><i><sub>TM</sub></i>).
-       Typical Value = 1.13.</p></div></div>
+       Typical value = 1,13.</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC1A#vtn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtn:Double"></a>
       <a id="vtn:Double"></a>
@@ -1506,7 +1506,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Voltage limits (<i>V</i><i><sub>TN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage limits (<i>V</i><i><sub>TN</sub></i>).
-       Typical Value = 1.12.</p></div></div>
+       Typical value = 1,12.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

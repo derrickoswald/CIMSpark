@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Pss2ST - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Pss2ST</title>
-          <meta name="description" content="Pss2ST - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Pss2ST" />
-          <meta name="keywords" content="Pss2ST CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Pss2ST" />
+          <title>Pss2ST - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Pss2ST</title>
+          <meta name="description" content="Pss2ST - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Pss2ST" />
+          <meta name="keywords" content="Pss2ST CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Pss2ST" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,10 +51,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>PTI Microprocessor-Based Stabilizer type 1.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1.
-       Typical Value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain (K1).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain (K2).</p></dd><dt class="param">lsmax</dt><dd class="cmt"><p>Limiter (Lsmax).</p></dd><dt class="param">lsmin</dt><dd class="cmt"><p>Limiter (Lsmin).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Time constant (T1).</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Time constant (T10).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Time constant (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Time constant (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant (T6).</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant (T7).</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Time constant (T8).</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Time constant (T9).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Cutoff limiter (Vcl).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Cutoff limiter (Vcu).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>PTI microprocessor-based stabilizer type 1.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
+       Typical value = busVoltageDerivative.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain (<i>K</i><i><sub>1</sub></i>).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain (<i>K</i><i><sub>2</sub></i>).</p></dd><dt class="param">lsmax</dt><dd class="cmt"><p>Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).</p></dd><dt class="param">lsmin</dt><dd class="cmt"><p>Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,9 +126,9 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1.
-       Typical Value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain (K1).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain (K2).</p></dd><dt class="param">lsmax</dt><dd class="cmt"><p>Limiter (Lsmax).</p></dd><dt class="param">lsmin</dt><dd class="cmt"><p>Limiter (Lsmin).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Time constant (T1).</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Time constant (T10).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Time constant (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Time constant (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant (T6).</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant (T7).</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Time constant (T8).</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Time constant (T9).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Cutoff limiter (Vcl).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Cutoff limiter (Vcu).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">inputSignal1Type</dt><dd class="cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">inputSignal2Type</dt><dd class="cmt"><p>Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
+       Typical value = busVoltageDerivative.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Gain (<i>K</i><i><sub>1</sub></i>).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Gain (<i>K</i><i><sub>2</sub></i>).</p></dd><dt class="param">lsmax</dt><dd class="cmt"><p>Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).</p></dd><dt class="param">lsmin</dt><dd class="cmt"><p>Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -896,8 +896,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal #1.</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #1.
-       Typical Value = rotorAngularFrequencyDeviation.</p></div></div>
+      <p class="shortcomment cmt">Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
+       Typical value = rotorAngularFrequencyDeviation.</p></div></div>
     </li><li name="ch.ninecode.model.Pss2ST#inputSignal2Type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="inputSignal2Type:String"></a>
       <a id="inputSignal2Type:String"></a>
@@ -914,8 +914,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal #2.</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #2.
-       Typical Value = generatorElectricalPower.</p></div></div>
+      <p class="shortcomment cmt">Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
+       Typical value = busVoltageDerivative.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -950,7 +950,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss2ST#k1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss2ST#k1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k1:Double"></a>
       <a id="k1:Double"></a>
       <h4 class="signature">
@@ -966,8 +966,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain (K1).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#k2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Gain (<i>K</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain (<i>K</i><i><sub>1</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#k2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k2:Double"></a>
       <a id="k2:Double"></a>
       <h4 class="signature">
@@ -983,7 +983,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain (K2).</p>
+      <p class="shortcomment cmt">Gain (<i>K</i><i><sub>2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Gain (<i>K</i><i><sub>2</sub></i>).</p></div></div>
     </li><li name="ch.ninecode.model.Pss2ST#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1002,7 +1002,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">The number of fields in the object definition.</p><div class="fullcomment"><div class="comment cmt"><p>The number of fields in the object definition.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of defined fields for use in Row manipulations.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.Pss2ST">Pss2ST</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss2ST#lsmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss2ST#lsmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="lsmax:Double"></a>
       <a id="lsmax:Double"></a>
       <h4 class="signature">
@@ -1018,8 +1018,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (Lsmax).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#lsmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#lsmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="lsmin:Double"></a>
       <a id="lsmin:Double"></a>
       <h4 class="signature">
@@ -1035,7 +1035,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (Lsmin).</p>
+      <p class="shortcomment cmt">Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).</p></div></div>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1224,7 +1224,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss2ST#t1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss2ST#t1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t1:Double"></a>
       <a id="t1:Double"></a>
       <h4 class="signature">
@@ -1240,8 +1240,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T1).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t10" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t10" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t10:Double"></a>
       <a id="t10:Double"></a>
       <h4 class="signature">
@@ -1257,8 +1257,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T10).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
       <h4 class="signature">
@@ -1274,8 +1274,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T2).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
       <h4 class="signature">
@@ -1291,8 +1291,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T3).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
       <h4 class="signature">
@@ -1308,8 +1308,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T4).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
       <h4 class="signature">
@@ -1325,8 +1325,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T5).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
       <h4 class="signature">
@@ -1342,8 +1342,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T6).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t7" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t7:Double"></a>
       <a id="t7:Double"></a>
       <h4 class="signature">
@@ -1359,8 +1359,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T7).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t8" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t8:Double"></a>
       <a id="t8:Double"></a>
       <h4 class="signature">
@@ -1376,8 +1376,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T8).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#t9" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#t9" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t9:Double"></a>
       <a id="t9:Double"></a>
       <h4 class="signature">
@@ -1393,7 +1393,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (T9).</p>
+      <p class="shortcomment cmt">Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1428,7 +1428,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss2ST#vcl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss2ST#vcl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vcl:Double"></a>
       <a id="vcl:Double"></a>
       <h4 class="signature">
@@ -1444,8 +1444,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Cutoff limiter (Vcl).</p>
-    </li><li name="ch.ninecode.model.Pss2ST#vcu" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss2ST#vcu" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vcu:Double"></a>
       <a id="vcu:Double"></a>
       <h4 class="signature">
@@ -1461,7 +1461,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Cutoff limiter (Vcu).</p>
+      <p class="shortcomment cmt">Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DiscExcContIEEEDEC2A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.DiscExcContIEEEDEC2A</title>
-          <meta name="description" content="DiscExcContIEEEDEC2A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.DiscExcContIEEEDEC2A" />
-          <meta name="keywords" content="DiscExcContIEEEDEC2A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.DiscExcContIEEEDEC2A" />
+          <title>DiscExcContIEEEDEC2A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.DiscExcContIEEEDEC2A</title>
+          <meta name="description" content="DiscExcContIEEEDEC2A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.DiscExcContIEEEDEC2A" />
+          <meta name="keywords" content="DiscExcContIEEEDEC2A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.DiscExcContIEEEDEC2A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,8 +51,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Type DEC2A model for the discontinuous excitation control.</p><p>This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">td1</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).</p></dd><dt class="param">td2</dt><dd class="cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).</p></dd><dt class="param">vdmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>).</p></dd><dt class="param">vdmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>).</p></dd><dt class="param">vk</dt><dd class="cmt"><p>Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE type DEC2A model for discontinuous excitation control.</p><p>This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
+Reference: IEEE 421.5-2005 12.3.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">td1</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).</p></dd><dt class="param">td2</dt><dd class="cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).</p></dd><dt class="param">vdmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).</p></dd><dt class="param">vdmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).</p></dd><dt class="param">vk</dt><dd class="cmt"><p>Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +125,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">td1</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).</p></dd><dt class="param">td2</dt><dd class="cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).</p></dd><dt class="param">vdmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>).</p></dd><dt class="param">vdmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>).</p></dd><dt class="param">vk</dt><dd class="cmt"><p>Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="DiscontinuousExcitationControlDynamics.html" class="extype" name="ch.ninecode.model.DiscontinuousExcitationControlDynamics">DiscontinuousExcitationControlDynamics</a> Reference to the superclass object.</p></dd><dt class="param">td1</dt><dd class="cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).</p></dd><dt class="param">td2</dt><dd class="cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).</p></dd><dt class="param">vdmax</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).</p></dd><dt class="param">vdmin</dt><dd class="cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).</p></dd><dt class="param">vk</dt><dd class="cmt"><p>Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1132,7 +1133,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC2A#td2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="td2:Double"></a>
       <a id="td2:Double"></a>
@@ -1149,7 +1150,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1200,7 +1201,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>DMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC2A#vdmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vdmin:Double"></a>
       <a id="vdmin:Double"></a>
@@ -1217,7 +1218,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>DMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).</p></div></div>
     </li><li name="ch.ninecode.model.DiscExcContIEEEDEC2A#vk" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vk:Double"></a>
       <a id="vk:Double"></a>

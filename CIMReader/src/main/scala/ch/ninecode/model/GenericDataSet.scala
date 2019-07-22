@@ -216,7 +216,7 @@ extends
  *        For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
  * @param name The name is any free human readable and possibly non unique text naming the object.
  * @param AlternateModel [[ch.ninecode.model.AlternateModel AlternateModel]] The alternate model using the data.
- * @param Profile [[ch.ninecode.model.Profile Profile]] The profiles that describe the contents of the data set and the rules governing the contents of the data set.
+ * @param Profile [[ch.ninecode.model.Profile2 Profile2]] The profiles that describe the contents of the data set and the rules governing the contents of the data set.
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
@@ -288,7 +288,7 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("AlternateModel", "AlternateModel", "0..1", "1"),
-        Relationship ("Profile", "Profile", "1..*", "0..*")
+        Relationship ("Profile", "Profile2", "1..*", "0..*")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val mRID: Fielder = parse_element (element (cls, fields(1)))
@@ -774,7 +774,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class Profile
+case class Profile2
 (
     override val sup: IdentifiedObject,
     DataSet: List[String]
@@ -795,7 +795,7 @@ extends
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Profile] }
+    override def copy (): Row = { clone ().asInstanceOf[Profile2] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -807,20 +807,20 @@ extends
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = Profile.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Profile.fields (position), x))
+        implicit val clz: String = Profile2.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Profile2.fields (position), x))
         emitattrs (0, DataSet)
         s.toString
     }
     override def export: String =
     {
-        "\t<cim:Profile rdf:ID=\"%s\">\n%s\t</cim:Profile>".format (id, export_fields)
+        "\t<cim:Profile2 rdf:ID=\"%s\">\n%s\t</cim:Profile2>".format (id, export_fields)
     }
 }
 
-object Profile
+object Profile2
 extends
-    Parseable[Profile]
+    Parseable[Profile2]
 {
     override val fields: Array[String] = Array[String] (
         "DataSet"
@@ -830,11 +830,11 @@ extends
     )
     val DataSet: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): Profile =
+    def parse (context: Context): Profile2 =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
-        val ret = Profile (
+        val ret = Profile2 (
             IdentifiedObject.parse (context),
             masks (DataSet (), 0)
         )
@@ -857,7 +857,7 @@ private[ninecode] object _GenericDataSet
             ObjectDeletion.register,
             ObjectModification.register,
             ObjectReverseModification.register,
-            Profile.register
+            Profile2.register
         )
     }
 }

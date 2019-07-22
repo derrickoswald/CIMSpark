@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovSteamSGO - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovSteamSGO</title>
-          <meta name="description" content="GovSteamSGO - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovSteamSGO" />
-          <meta name="keywords" content="GovSteamSGO CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovSteamSGO" />
+          <title>GovSteamSGO - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovSteamSGO</title>
+          <meta name="description" content="GovSteamSGO - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovSteamSGO" />
+          <meta name="keywords" content="GovSteamSGO CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovSteamSGO" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simplified Steam turbine governor model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>One/per unit regulation (K1).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Fraction (K2).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Fraction (K3).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">pmax</dt><dd class="cmt"><p>Upper power limit (Pmax).</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Lower power limit (Pmin).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Controller lag (T1).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Controller lead compensation (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Governor lag (T3) (&gt;0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Reheater delay including hot and cold leads (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simplified steam turbine governor.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>One / PU regulation (<i>K1</i>).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Fraction (<i>K2</i>).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Fraction (<i>K3</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">pmax</dt><dd class="cmt"><p>Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Controller lag (<i>T1</i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Controller lead compensation (<i>T2</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Governor lag (<i>T3</i>) (&gt; 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -125,8 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>One/per unit regulation (K1).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Fraction (K2).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Fraction (K3).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt;0).
-       Unit = MW.</p></dd><dt class="param">pmax</dt><dd class="cmt"><p>Upper power limit (Pmax).</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Lower power limit (Pmin).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Controller lag (T1).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Controller lead compensation (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Governor lag (T3) (&gt;0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Reheater delay including hot and cold leads (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>One / PU regulation (<i>K1</i>).</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Fraction (<i>K2</i>).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Fraction (<i>K3</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">pmax</dt><dd class="cmt"><p>Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Controller lag (<i>T1</i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Controller lead compensation (<i>T2</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Governor lag (<i>T3</i>) (&gt; 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -912,7 +912,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamSGO#k1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamSGO#k1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k1:Double"></a>
       <a id="k1:Double"></a>
       <h4 class="signature">
@@ -928,8 +928,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">One/per unit regulation (K1).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#k2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">One / PU regulation (<i>K1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>One / PU regulation (<i>K1</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#k2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k2:Double"></a>
       <a id="k2:Double"></a>
       <h4 class="signature">
@@ -945,8 +945,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fraction (K2).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#k3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Fraction (<i>K2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fraction (<i>K2</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#k3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k3:Double"></a>
       <a id="k3:Double"></a>
       <h4 class="signature">
@@ -962,7 +962,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fraction (K3).</p>
+      <p class="shortcomment cmt">Fraction (<i>K3</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fraction (<i>K3</i>).</p></div></div>
     </li><li name="ch.ninecode.model.GovSteamSGO#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1066,7 +1066,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base for power values (MWbase) (&gt;0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt;0).
+      <p class="shortcomment cmt">Base for power values (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1119,7 +1119,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamSGO#pmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamSGO#pmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="pmax:Double"></a>
       <a id="pmax:Double"></a>
       <h4 class="signature">
@@ -1135,8 +1135,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Upper power limit (Pmax).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#pmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#pmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="pmin:Double"></a>
       <a id="pmin:Double"></a>
       <h4 class="signature">
@@ -1152,7 +1152,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lower power limit (Pmin).</p>
+      <p class="shortcomment cmt">Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1221,7 +1221,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovSteamSGO#t1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t1:Double"></a>
       <a id="t1:Double"></a>
       <h4 class="signature">
@@ -1237,8 +1237,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Controller lag (T1).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Controller lag (<i>T1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Controller lag (<i>T1</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
       <h4 class="signature">
@@ -1254,8 +1254,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Controller lead compensation (T2).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Controller lead compensation (<i>T2</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Controller lead compensation (<i>T2</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
       <h4 class="signature">
@@ -1271,8 +1271,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Governor lag (T3) (&gt;0).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Governor lag (<i>T3</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Governor lag (<i>T3</i>) (&gt; 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
       <h4 class="signature">
@@ -1288,8 +1288,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
       <h4 class="signature">
@@ -1305,8 +1305,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reheater delay including hot and cold leads (T5).</p>
-    </li><li name="ch.ninecode.model.GovSteamSGO#t6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovSteamSGO#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
       <h4 class="signature">
@@ -1322,7 +1322,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).</p>
+      <p class="shortcomment cmt">Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>

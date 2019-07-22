@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindProtectionIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindProtectionIEC</title>
-          <meta name="description" content="WindProtectionIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindProtectionIEC" />
-          <meta name="keywords" content="WindProtectionIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindProtectionIEC" />
+          <title>WindProtectionIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindProtectionIEC</title>
+          <meta name="description" content="WindProtectionIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindProtectionIEC" />
+          <meta name="keywords" content="WindProtectionIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindProtectionIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,15 +51,17 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The grid protection model includes protection against over and under voltage, and against over and under frequency.</p><p>Reference: IEC Standard 614000-27-1 Section 5.6.6.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The grid protection model includes protection against over- and under-voltage, and against over- and under-frequency.</p><p>Reference: IEC 61400-27-1:2015, 5.6.6.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dfimax</dt><dd class="cmt"><p>Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">fover</dt><dd class="cmt"><p>Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">funder</dt><dd class="cmt"><p>Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">mzc</dt><dd class="cmt"><p>Zero crossing measurement mode (<i>Mzc</i>).
-       True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>).
-       It is type dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl><div class="toggleContainer block">
+       It is a type-dependent parameter.</p></dd><dt class="param">fover</dt><dd class="cmt"><p>Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">funder</dt><dd class="cmt"><p>Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">mzc</dt><dd class="cmt"><p>Zero crossing measurement mode (<i>Mzc</i>).
+       It is a type-dependent parameter.
+       true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
+       false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -132,13 +134,15 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dfimax</dt><dd class="cmt"><p>Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
-       It is type dependent parameter.</p></dd><dt class="param">fover</dt><dd class="cmt"><p>Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">funder</dt><dd class="cmt"><p>Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">mzc</dt><dd class="cmt"><p>Zero crossing measurement mode (<i>Mzc</i>).
-       True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>).
-       It is type dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl></div>
+       It is a type-dependent parameter.</p></dd><dt class="param">fover</dt><dd class="cmt"><p>Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">funder</dt><dd class="cmt"><p>Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">mzc</dt><dd class="cmt"><p>Zero crossing measurement mode (<i>Mzc</i>).
+       It is a type-dependent parameter.
+       true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
+       false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -250,7 +254,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p>
+      <p class="shortcomment cmt"><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.</p>
     </li><li name="ch.ninecode.model.WindProtectionIEC#WindTurbineType3or4IEC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="WindTurbineType3or4IEC:String"></a>
       <a id="WindTurbineType3or4IEC:String"></a>
@@ -267,7 +271,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p>
+      <p class="shortcomment cmt"><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -415,7 +419,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
-       It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -583,7 +587,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></div></div>
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindProtectionIEC#funder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="funder:Double"></a>
       <a id="funder:Double"></a>
@@ -601,7 +605,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></div></div>
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindProtectionIEC#get" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="get(i:Int):Object"></a>
       <a id="get(Int):AnyRef"></a>
@@ -1133,7 +1137,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Zero crossing measurement mode (<i>Mzc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Zero crossing measurement mode (<i>Mzc</i>).
-       True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.</p></div></div>
+       It is a type-dependent parameter.
+       true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
+       false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1269,8 +1275,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time interval of moving average window (<i>TfMA</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time interval of moving average window (<i>TfMA</i>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1322,7 +1328,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
-       It is project dependent parameter.</p></div></div>
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindProtectionIEC#uunder" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="uunder:Double"></a>
       <a id="uunder:Double"></a>
@@ -1340,7 +1346,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></div></div>
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

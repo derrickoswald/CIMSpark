@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CoordinateSystem - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.CoordinateSystem</title>
-          <meta name="description" content="CoordinateSystem - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.CoordinateSystem" />
-          <meta name="keywords" content="CoordinateSystem CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.CoordinateSystem" />
+          <title>CoordinateSystem - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.CoordinateSystem</title>
+          <meta name="description" content="CoordinateSystem - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.CoordinateSystem" />
+          <meta name="keywords" content="CoordinateSystem CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.CoordinateSystem" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -53,7 +53,9 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Coordinate reference system.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
-       PositionPoints'.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl><div class="toggleContainer block">
+       PositionPoints'.
+       An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
+       A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,7 +128,9 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
-       PositionPoints'.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl></div>
+       PositionPoints'.
+       An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
+       A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -369,7 +373,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.</p><div class="fullcomment"><div class="comment cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
-       PositionPoints'.</p></div></div>
+       PositionPoints'.
+       An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
+       A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>

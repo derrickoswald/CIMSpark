@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>BidSelfSched - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.BidSelfSched</title>
-          <meta name="description" content="BidSelfSched - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.BidSelfSched" />
-          <meta name="keywords" content="BidSelfSched CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.BidSelfSched" />
+          <title>BidSelfSched - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.BidSelfSched</title>
+          <meta name="description" content="BidSelfSched - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.BidSelfSched" />
+          <meta name="keywords" content="BidSelfSched CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.BidSelfSched" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -56,7 +56,17 @@
        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.</p></dd><dt class="param">bidType</dt><dd class="cmt"><p>bidType has two types as the required output of requirements and qualified pre-dispatch.</p></dd><dt class="param">priorityFlag</dt><dd class="cmt"><p>This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
        It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.</p></dd><dt class="param">pumpSelfSchedMw</dt><dd class="cmt"><p>Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
        If this value is not null, then the unit is in pumping mode.</p></dd><dt class="param">referenceType</dt><dd class="cmt"><p>Indication of which type of self schedule is being referenced.</p></dd><dt class="param">selfSchedMw</dt><dd class="cmt"><p>Self scheduled value</p></dd><dt class="param">selfSchedSptResource</dt><dd class="cmt"><p>Price Taker Export Self Sched Support Resource</p></dd><dt class="param">selfSchedType</dt><dd class="cmt"><p>This attribute is used to specify if a bid includes a self sched bid.
-       If so what self sched type is it. The possible values are shown as follow but not limited to:</p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">wheelingTransactionReference</dt><dd class="cmt"><p>A unique identifier of a wheeling transaction.
+       If so what self sched type is it. The possible values are shown as follow but not limited to:
+       'ETC' - Existing transmission contract
+       'TOR' - Transmission ownership right
+       'RMR' - Reliability must run
+       'RGMR' - Regulatory must run
+       &quot;RMT&quot; - Relaiability must take
+       &quot;PT&quot; - Price taker
+       &quot;LPT&quot; - Low price taker
+       &quot;SP&quot; - Self provision
+       &quot;RA&quot; - Resource adequacy
+       This attribute is originally defined in the BidSelfSched class</p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">wheelingTransactionReference</dt><dd class="cmt"><p>A unique identifier of a wheeling transaction.
        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.</p></dd><dt class="param">AdjacentCASet</dt><dd class="cmt"><p><a href="AdjacentCASet.html" class="extype" name="ch.ninecode.model.AdjacentCASet">AdjacentCASet</a> <em>undocumented</em></p></dd><dt class="param">HostControlArea</dt><dd class="cmt"><p><a href="HostControlArea.html" class="extype" name="ch.ninecode.model.HostControlArea">HostControlArea</a> <em>undocumented</em></p></dd><dt class="param">ProductBid</dt><dd class="cmt"><p><a href="ProductBid.html" class="extype" name="ch.ninecode.model.ProductBid">ProductBid</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd><dt class="param">TransmissionContractRight</dt><dd class="cmt"><p><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -133,7 +143,17 @@
        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.</p></dd><dt class="param">bidType</dt><dd class="cmt"><p>bidType has two types as the required output of requirements and qualified pre-dispatch.</p></dd><dt class="param">priorityFlag</dt><dd class="cmt"><p>This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
        It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.</p></dd><dt class="param">pumpSelfSchedMw</dt><dd class="cmt"><p>Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
        If this value is not null, then the unit is in pumping mode.</p></dd><dt class="param">referenceType</dt><dd class="cmt"><p>Indication of which type of self schedule is being referenced.</p></dd><dt class="param">selfSchedMw</dt><dd class="cmt"><p>Self scheduled value</p></dd><dt class="param">selfSchedSptResource</dt><dd class="cmt"><p>Price Taker Export Self Sched Support Resource</p></dd><dt class="param">selfSchedType</dt><dd class="cmt"><p>This attribute is used to specify if a bid includes a self sched bid.
-       If so what self sched type is it. The possible values are shown as follow but not limited to:</p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">wheelingTransactionReference</dt><dd class="cmt"><p>A unique identifier of a wheeling transaction.
+       If so what self sched type is it. The possible values are shown as follow but not limited to:
+       'ETC' - Existing transmission contract
+       'TOR' - Transmission ownership right
+       'RMR' - Reliability must run
+       'RGMR' - Regulatory must run
+       &quot;RMT&quot; - Relaiability must take
+       &quot;PT&quot; - Price taker
+       &quot;LPT&quot; - Low price taker
+       &quot;SP&quot; - Self provision
+       &quot;RA&quot; - Resource adequacy
+       This attribute is originally defined in the BidSelfSched class</p></dd><dt class="param">updateType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">wheelingTransactionReference</dt><dd class="cmt"><p>A unique identifier of a wheeling transaction.
        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.</p></dd><dt class="param">AdjacentCASet</dt><dd class="cmt"><p><a href="AdjacentCASet.html" class="extype" name="ch.ninecode.model.AdjacentCASet">AdjacentCASet</a> <em>undocumented</em></p></dd><dt class="param">HostControlArea</dt><dd class="cmt"><p><a href="HostControlArea.html" class="extype" name="ch.ninecode.model.HostControlArea">HostControlArea</a> <em>undocumented</em></p></dd><dt class="param">ProductBid</dt><dd class="cmt"><p><a href="ProductBid.html" class="extype" name="ch.ninecode.model.ProductBid">ProductBid</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd><dt class="param">TransmissionContractRight</dt><dd class="cmt"><p><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
@@ -1299,7 +1319,17 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">This attribute is used to specify if a bid includes a self sched bid.</p><div class="fullcomment"><div class="comment cmt"><p>This attribute is used to specify if a bid includes a self sched bid.
-       If so what self sched type is it. The possible values are shown as follow but not limited to:</p></div></div>
+       If so what self sched type is it. The possible values are shown as follow but not limited to:
+       'ETC' - Existing transmission contract
+       'TOR' - Transmission ownership right
+       'RMR' - Reliability must run
+       'RGMR' - Regulatory must run
+       &quot;RMT&quot; - Relaiability must take
+       &quot;PT&quot; - Price taker
+       &quot;LPT&quot; - Low price taker
+       &quot;SP&quot; - Self provision
+       &quot;RA&quot; - Resource adequacy
+       This attribute is originally defined in the BidSelfSched class</p></div></div>
     </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="size:Int"></a>
       <a id="size:Int"></a>

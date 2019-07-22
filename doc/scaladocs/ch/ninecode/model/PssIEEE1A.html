@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PssIEEE1A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PssIEEE1A</title>
-          <meta name="description" content="PssIEEE1A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PssIEEE1A" />
-          <meta name="keywords" content="PssIEEE1A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PssIEEE1A" />
+          <title>PssIEEE1A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PssIEEE1A</title>
+          <meta name="description" content="PssIEEE1A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PssIEEE1A" />
+          <meta name="keywords" content="PssIEEE1A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PssIEEE1A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,20 +51,21 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model.</p><p>PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (A1).
-       Typical Value = 0.061.</p></dd><dt class="param">a2</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (A2).
-       Typical Value = 0.0017.</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal.
-       Typical Value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (Ks).
-       Typical Value = 5.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.03.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.03.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (T5).
-       Typical Value = 10.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (T6).
-       Typical Value = 0.01.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (Vrmax).
-       Typical Value = 0.05.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (Vrmin).
-       Typical Value = -0.05.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type PSS1A power system stabilizer model.</p><p>PSS1A is the generalized form of a PSS with a single input signal.
+Reference: IEEE 1A 421.5-2005, 8.1.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (<i>A1</i>).
+       Typical value = 0,061.</p></dd><dt class="param">a2</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (<i>A2</i>).
+       Typical value = 0,0017.</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (<i>Ks</i>).
+       Typical value = 5.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (<i>T5</i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (<i>T6</i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
+       Typical value = 0,05.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
+       Typical value = -0,05.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -136,19 +137,19 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (A1).
-       Typical Value = 0.061.</p></dd><dt class="param">a2</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (A2).
-       Typical Value = 0.0017.</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal.
-       Typical Value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (Ks).
-       Typical Value = 5.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.03.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.03.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (T5).
-       Typical Value = 10.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (T6).
-       Typical Value = 0.01.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (Vrmax).
-       Typical Value = 0.05.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (Vrmin).
-       Typical Value = -0.05.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (<i>A1</i>).
+       Typical value = 0,061.</p></dd><dt class="param">a2</dt><dd class="cmt"><p>PSS signal conditioning frequency filter constant (<i>A2</i>).
+       Typical value = 0,0017.</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (<i>Ks</i>).
+       Typical value = 5.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,03.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (<i>T5</i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (<i>T6</i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
+       Typical value = 0,05.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
+       Typical value = -0,05.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -243,8 +244,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PSS signal conditioning frequency filter constant (A1).</p><div class="fullcomment"><div class="comment cmt"><p>PSS signal conditioning frequency filter constant (A1).
-       Typical Value = 0.061.</p></div></div>
+      <p class="shortcomment cmt">PSS signal conditioning frequency filter constant (<i>A1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PSS signal conditioning frequency filter constant (<i>A1</i>).
+       Typical value = 0,061.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#a2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a2:Double"></a>
       <a id="a2:Double"></a>
@@ -261,8 +262,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PSS signal conditioning frequency filter constant (A2).</p><div class="fullcomment"><div class="comment cmt"><p>PSS signal conditioning frequency filter constant (A2).
-       Typical Value = 0.0017.</p></div></div>
+      <p class="shortcomment cmt">PSS signal conditioning frequency filter constant (<i>A2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PSS signal conditioning frequency filter constant (<i>A2</i>).
+       Typical value = 0,0017.</p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -952,8 +953,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal.</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal.
-       Typical Value = rotorAngularFrequencyDeviation.</p></div></div>
+      <p class="shortcomment cmt">Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).</p><div class="fullcomment"><div class="comment cmt"><p>Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
+       Typical value = rotorAngularFrequencyDeviation.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1004,8 +1005,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer gain (Ks).</p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer gain (Ks).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer gain (<i>Ks</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer gain (<i>Ks</i>).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1228,8 +1229,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T1).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T1).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
@@ -1246,8 +1247,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T2).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T2).
-       Typical Value = 0.03.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T2</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+       Typical value = 0,03.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
@@ -1264,8 +1265,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T3).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T3).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T3</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
@@ -1282,8 +1283,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T4).</p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T4).
-       Typical Value = 0.03.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T4</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+       Typical value = 0,03.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
@@ -1300,8 +1301,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Washout time constant (T5).</p><div class="fullcomment"><div class="comment cmt"><p>Washout time constant (T5).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Washout time constant (<i>T5</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Washout time constant (<i>T5</i>) (&gt;= 0).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
@@ -1318,8 +1319,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Transducer time constant (T6).</p><div class="fullcomment"><div class="comment cmt"><p>Transducer time constant (T6).
-       Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Transducer time constant (<i>T6</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Transducer time constant (<i>T6</i>) (&gt;= 0).
+       Typical value = 0,01.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1370,8 +1371,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum stabilizer output (Vrmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum stabilizer output (Vrmax).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.PssIEEE1A#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1388,8 +1389,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum stabilizer output (Vrmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum stabilizer output (Vrmin).
-       Typical Value = -0.05.</p></div></div>
+      <p class="shortcomment cmt">Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
+       Typical value = -0,05.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

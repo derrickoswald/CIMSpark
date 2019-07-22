@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LoadMotor - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.LoadMotor</title>
-          <meta name="description" content="LoadMotor - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.LoadMotor" />
-          <meta name="keywords" content="LoadMotor CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.LoadMotor" />
+          <title>LoadMotor - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.LoadMotor</title>
+          <meta name="description" content="LoadMotor - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.LoadMotor" />
+          <meta name="keywords" content="LoadMotor CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.LoadMotor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,21 +51,25 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Aggregate induction motor load.</p><p>This model  is used to represent a fraction of an ordinary load as &quot;induction motor load&quot;.  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a &quot;one-cage&quot; or &quot;two-cage&quot; model of the induction machine can be modelled. Magnetic saturation is not modelled.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
-       Unit = delta P/delta speed.  Typical Value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (H) (not=0).
-       Typical Value = 0.4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor � ratio of initial P to motor MVA base (Lfac).
-       Typical Value = 0.8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (Lp).
-       Typical Value = 0.15.</p></dd><dt class="param">lpp</dt><dd class="cmt"><p>Subtransient reactance (Lpp).
-       Typical Value = 0.15.</p></dd><dt class="param">ls</dt><dd class="cmt"><p>Synchronous reactance (Ls).
-       Typical Value = 3.2.</p></dd><dt class="param">pfrac</dt><dd class="cmt"><p>Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
-       Typical Value = 0.3.</p></dd><dt class="param">ra</dt><dd class="cmt"><p>Stator resistance (Ra).
-       Typical Value = 0.</p></dd><dt class="param">tbkr</dt><dd class="cmt"><p>Circuit breaker operating time (Tbkr).
-       Typical Value = 0.08.</p></dd><dt class="param">tpo</dt><dd class="cmt"><p>Transient rotor time constant (Tpo) (not=0).
-       Typical Value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (Tppo).
-       Typical Value = 0.02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (Tv).
-       Typical Value = 0.1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (Vt).
-       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Aggregate induction motor load.</p><p>This model is used to represent a fraction of an ordinary load as &quot;induction motor load&quot;.  It allows a load that is treated as an ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation. This model is intended for representation of aggregations of many motors dispersed through a load represented at a high voltage bus but where there is no information on the characteristics of individual motors.
+Either a &quot;one-cage&quot; or &quot;two-cage&quot; model of the induction machine can be modelled. Magnetic saturation is not modelled.
+This model treats a fraction of the constant power part of a load as a motor. During initialisation, the initial power drawn by the motor is set equal to <i>Pfrac</i> times the constant <i>P</i> part of the static load.  The remainder of the load is left as a static load.
+The reactive power demand of the motor is calculated during initialisation as a function of voltage at the load bus. This reactive power demand can be less than or greater than the constant <i>Q</i> component of the load.  If the motor's reactive demand is greater than the constant <i>Q</i> component of the load, the model inserts a shunt capacitor at the terminal of the motor to bring its reactive demand down to equal the constant <i>Q</i> reactive load.
+If an induction motor load model and a static load model are both present for a load, the motor <i>Pfrac</i> is assumed to be subtracted from the power flow constant <i>P</i> load before the static load model is applied.  The remainder of the load, if any, is then represented by the static load model.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (<i>D</i>).
+       Unit = delta <i>P</i>/delta speed.  Typical value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (<i>H</i>) (&gt;= 0).
+       Typical value = 0,4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor (<i>Lfac</i>).
+       The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (<i>Lp</i>).
+       Typical value = 0,15.</p></dd><dt class="param">lpp</dt><dd class="cmt"><p>Subtransient reactance (<i>Lpp</i>).
+       Typical value = 0,15.</p></dd><dt class="param">ls</dt><dd class="cmt"><p>Synchronous reactance (<i>Ls</i>).
+       Typical value = 3,2.</p></dd><dt class="param">pfrac</dt><dd class="cmt"><p>Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
+       Typical value = 0,3.</p></dd><dt class="param">ra</dt><dd class="cmt"><p>Stator resistance (<i>Ra</i>).
+       Typical value = 0.</p></dd><dt class="param">tbkr</dt><dd class="cmt"><p>Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tpo</dt><dd class="cmt"><p>Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (<i>Vt</i>).
+       Typical value = 0,7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -137,20 +141,20 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
-       Unit = delta P/delta speed.  Typical Value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (H) (not=0).
-       Typical Value = 0.4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor � ratio of initial P to motor MVA base (Lfac).
-       Typical Value = 0.8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (Lp).
-       Typical Value = 0.15.</p></dd><dt class="param">lpp</dt><dd class="cmt"><p>Subtransient reactance (Lpp).
-       Typical Value = 0.15.</p></dd><dt class="param">ls</dt><dd class="cmt"><p>Synchronous reactance (Ls).
-       Typical Value = 3.2.</p></dd><dt class="param">pfrac</dt><dd class="cmt"><p>Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
-       Typical Value = 0.3.</p></dd><dt class="param">ra</dt><dd class="cmt"><p>Stator resistance (Ra).
-       Typical Value = 0.</p></dd><dt class="param">tbkr</dt><dd class="cmt"><p>Circuit breaker operating time (Tbkr).
-       Typical Value = 0.08.</p></dd><dt class="param">tpo</dt><dd class="cmt"><p>Transient rotor time constant (Tpo) (not=0).
-       Typical Value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (Tppo).
-       Typical Value = 0.02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (Tv).
-       Typical Value = 0.1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (Vt).
-       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (<i>D</i>).
+       Unit = delta <i>P</i>/delta speed.  Typical value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (<i>H</i>) (&gt;= 0).
+       Typical value = 0,4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor (<i>Lfac</i>).
+       The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (<i>Lp</i>).
+       Typical value = 0,15.</p></dd><dt class="param">lpp</dt><dd class="cmt"><p>Subtransient reactance (<i>Lpp</i>).
+       Typical value = 0,15.</p></dd><dt class="param">ls</dt><dd class="cmt"><p>Synchronous reactance (<i>Ls</i>).
+       Typical value = 3,2.</p></dd><dt class="param">pfrac</dt><dd class="cmt"><p>Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
+       Typical value = 0,3.</p></dd><dt class="param">ra</dt><dd class="cmt"><p>Stator resistance (<i>Ra</i>).
+       Typical value = 0.</p></dd><dt class="param">tbkr</dt><dd class="cmt"><p>Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tpo</dt><dd class="cmt"><p>Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (<i>Vt</i>).
+       Typical value = 0,7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -392,8 +396,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Damping factor (D).</p><div class="fullcomment"><div class="comment cmt"><p>Damping factor (D).
-       Unit = delta P/delta speed.  Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">Damping factor (<i>D</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Damping factor (<i>D</i>).
+       Unit = delta <i>P</i>/delta speed.  Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -918,8 +922,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Inertia constant (H) (not=0).</p><div class="fullcomment"><div class="comment cmt"><p>Inertia constant (H) (not=0).
-       Typical Value = 0.4.</p></div></div>
+      <p class="shortcomment cmt">Inertia constant (<i>H</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Inertia constant (<i>H</i>) (&gt;= 0).
+       Typical value = 0,4.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -1023,8 +1027,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Loading factor � ratio of initial P to motor MVA base (Lfac).</p><div class="fullcomment"><div class="comment cmt"><p>Loading factor � ratio of initial P to motor MVA base (Lfac).
-       Typical Value = 0.8.</p></div></div>
+      <p class="shortcomment cmt">Loading factor (<i>Lfac</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Loading factor (<i>Lfac</i>).
+       The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#lp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="lp:Double"></a>
       <a id="lp:Double"></a>
@@ -1041,8 +1045,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Transient reactance (Lp).</p><div class="fullcomment"><div class="comment cmt"><p>Transient reactance (Lp).
-       Typical Value = 0.15.</p></div></div>
+      <p class="shortcomment cmt">Transient reactance (<i>Lp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Transient reactance (<i>Lp</i>).
+       Typical value = 0,15.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#lpp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="lpp:Double"></a>
       <a id="lpp:Double"></a>
@@ -1059,8 +1063,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Subtransient reactance (Lpp).</p><div class="fullcomment"><div class="comment cmt"><p>Subtransient reactance (Lpp).
-       Typical Value = 0.15.</p></div></div>
+      <p class="shortcomment cmt">Subtransient reactance (<i>Lpp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Subtransient reactance (<i>Lpp</i>).
+       Typical value = 0,15.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#ls" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ls:Double"></a>
       <a id="ls:Double"></a>
@@ -1077,8 +1081,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Synchronous reactance (Ls).</p><div class="fullcomment"><div class="comment cmt"><p>Synchronous reactance (Ls).
-       Typical Value = 3.2.</p></div></div>
+      <p class="shortcomment cmt">Synchronous reactance (<i>Ls</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Synchronous reactance (<i>Ls</i>).
+       Typical value = 3,2.</p></div></div>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1215,8 +1219,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).</p><div class="fullcomment"><div class="comment cmt"><p>Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#ra" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ra:Double"></a>
       <a id="ra:Double"></a>
@@ -1233,8 +1237,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stator resistance (Ra).</p><div class="fullcomment"><div class="comment cmt"><p>Stator resistance (Ra).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Stator resistance (<i>Ra</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stator resistance (<i>Ra</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1319,8 +1323,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Circuit breaker operating time (Tbkr).</p><div class="fullcomment"><div class="comment cmt"><p>Circuit breaker operating time (Tbkr).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1371,8 +1375,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Transient rotor time constant (Tpo) (not=0).</p><div class="fullcomment"><div class="comment cmt"><p>Transient rotor time constant (Tpo) (not=0).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#tppo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tppo:Double"></a>
       <a id="tppo:Double"></a>
@@ -1389,8 +1393,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Subtransient rotor time constant (Tppo).</p><div class="fullcomment"><div class="comment cmt"><p>Subtransient rotor time constant (Tppo).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#tv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tv:Double"></a>
       <a id="tv:Double"></a>
@@ -1407,8 +1411,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage trip pickup time (Tv).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage trip pickup time (Tv).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.LoadMotor#vt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vt:Double"></a>
       <a id="vt:Double"></a>
@@ -1425,8 +1429,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage threshold for tripping (Vt).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage threshold for tripping (Vt).
-       Typical Value = 0.7.</p></div></div>
+      <p class="shortcomment cmt">Voltage threshold for tripping (<i>Vt</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage threshold for tripping (<i>Vt</i>).
+       Typical value = 0,7.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcSK - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcSK</title>
-          <meta name="description" content="ExcSK - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcSK" />
-          <meta name="keywords" content="ExcSK CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcSK" />
+          <title>ExcSK - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcSK</title>
+          <meta name="description" content="ExcSK - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcSK" />
+          <meta name="keywords" content="ExcSK CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcSK" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,40 +51,40 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Slovakian Excitation System Model.</p><p>UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Field voltage clipping limit (Efdmax).</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Field voltage clipping limit (Efdmin).</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 20.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = -20.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (K).
-       Typical Value = 1.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Parameter of underexcitation limit (K1).
-       Typical Value = 0.1364.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Parameter of underexcitation limit (K2).
-       Typical Value = -0.3861.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>PI controller gain (Kc).
-       Typical Value = 70.</p></dd><dt class="param">kce</dt><dd class="cmt"><p>Rectifier regulation factor (Kce).
-       Typical Value = 0.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Exciter internal reactance (Kd).
-       Typical Value = 0.</p></dd><dt class="param">kgob</dt><dd class="cmt"><p>P controller gain (Kgob).
-       Typical Value = 10.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PI controller gain (Kp).
-       Typical Value = 1.</p></dd><dt class="param">kqi</dt><dd class="cmt"><p>PI controller gain of integral component (Kqi).
-       Typical Value = 0.</p></dd><dt class="param">kqob</dt><dd class="cmt"><p>Rate of rise of the reactive power (Kqob).</p></dd><dt class="param">kqp</dt><dd class="cmt"><p>PI controller gain (Kqp).
-       Typical Value = 0.</p></dd><dt class="param">nq</dt><dd class="cmt"><p>Dead band of reactive power (nq).
-       Determines the range of sensitivity.  Typical Value = 0.001.</p></dd><dt class="param">qconoff</dt><dd class="cmt"><p>Secondary voltage control state (Qc_on_off).
-       true = secondary voltage control is ON
-       false = secondary voltage control is OFF.
-       Typical Value = false.</p></dd><dt class="param">qz</dt><dd class="cmt"><p>Desired value (setpoint) of reactive power, manual setting (Qz).</p></dd><dt class="param">remote</dt><dd class="cmt"><p>Selector to apply automatic calculation in secondary controller model.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Slovakian excitation system.</p><p>UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
+       Typical value = 20.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
+       Typical value = -20.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (<i>K</i>).
+       Typical value = 1.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Parameter of underexcitation limit (<i>K1</i>).
+       Typical value = 0,1364.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Parameter of underexcitation limit (<i>K2</i>).
+       Typical value = -0,3861.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>PI controller gain (<i>Kc</i>).
+       Typical value = 70.</p></dd><dt class="param">kce</dt><dd class="cmt"><p>Rectifier regulation factor (<i>Kce</i>).
+       Typical value = 0.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Exciter internal reactance (<i>Kd</i>).
+       Typical value = 0.</p></dd><dt class="param">kgob</dt><dd class="cmt"><p>P controller gain (<i>Kgob</i>).
+       Typical value = 10.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PI controller gain (<i>Kp</i>).
+       Typical value = 1.</p></dd><dt class="param">kqi</dt><dd class="cmt"><p>PI controller gain of integral component (<i>Kqi</i>).
+       Typical value = 0.</p></dd><dt class="param">kqob</dt><dd class="cmt"><p>Rate of rise of the reactive power (<i>Kqob</i>).</p></dd><dt class="param">kqp</dt><dd class="cmt"><p>PI controller gain (<i>Kqp</i>).
+       Typical value = 0.</p></dd><dt class="param">nq</dt><dd class="cmt"><p>Deadband of reactive power (<i>nq</i>).
+       Determines the range of sensitivity.  Typical value = 0,001.</p></dd><dt class="param">qconoff</dt><dd class="cmt"><p>Secondary voltage control state (<i>Qc_on_off</i>).
+       true = secondary voltage control is on
+       false = secondary voltage control is off.
+       Typical value = false.</p></dd><dt class="param">qz</dt><dd class="cmt"><p>Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).</p></dd><dt class="param">remote</dt><dd class="cmt"><p>Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
        true = automatic calculation is activated
-       false = manual set is active; the use of desired value of reactive power (Qz) is required.
-       Typical Value = true.</p></dd><dt class="param">sbase</dt><dd class="cmt"><p>Apparent power of the unit (Sbase).
-       Unit = MVA.  Typical Value = 259.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>PI controller phase lead time constant (Tc).
-       Typical Value = 8.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (Te).
-       Typical Value = 0.1.</p></dd><dt class="param">ti</dt><dd class="cmt"><p>PI controller phase lead time constant (Ti).
-       Typical Value = 2.</p></dd><dt class="param">tp</dt><dd class="cmt"><p>Time constant (Tp).
-       Typical Value = 0.1.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Voltage transducer time constant (Tr).
-       Typical Value = 0.01.</p></dd><dt class="param">uimax</dt><dd class="cmt"><p>Maximum error (Uimax).
-       Typical Value = 10.</p></dd><dt class="param">uimin</dt><dd class="cmt"><p>Minimum error (UImin).
-       Typical Value = -10.</p></dd><dt class="param">urmax</dt><dd class="cmt"><p>Maximum controller output (URmax).
-       Typical Value = 10.</p></dd><dt class="param">urmin</dt><dd class="cmt"><p>Minimum controller output (URmin).
-       Typical Value = -10.</p></dd><dt class="param">vtmax</dt><dd class="cmt"><p>Maximum terminal voltage input (Vtmax).
-       Determines the range of voltage dead band.  Typical Value = 1.05.</p></dd><dt class="param">vtmin</dt><dd class="cmt"><p>Minimum terminal voltage input (Vtmin).
-       Determines the range of voltage dead band.  Typical Value = 0.95.</p></dd><dt class="param">yp</dt><dd class="cmt"><p>Maximum output (Yp).
-       Minimum output = 0.  Typical Value = 1.</p></dd></dl><div class="toggleContainer block">
+       false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
+       Typical value = true.</p></dd><dt class="param">sbase</dt><dd class="cmt"><p>Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
+       Unit = MVA.  Typical value = 259.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 8.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">ti</dt><dd class="cmt"><p>PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tp</dt><dd class="cmt"><p>Time constant (<i>Tp</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">uimax</dt><dd class="cmt"><p>Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
+       Typical value = 10.</p></dd><dt class="param">uimin</dt><dd class="cmt"><p>Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
+       Typical value = -10.</p></dd><dt class="param">urmax</dt><dd class="cmt"><p>Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
+       Typical value = 10.</p></dd><dt class="param">urmin</dt><dd class="cmt"><p>Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
+       Typical value = -10.</p></dd><dt class="param">vtmax</dt><dd class="cmt"><p>Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
+       Determines the range of voltage deadband.  Typical value = 1,05.</p></dd><dt class="param">vtmin</dt><dd class="cmt"><p>Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
+       Determines the range of voltage deadband.  Typical value = 0,95.</p></dd><dt class="param">yp</dt><dd class="cmt"><p>Maximum output (<i>Yp</i>).
+       Typical value = 1.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -156,39 +156,39 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Field voltage clipping limit (Efdmax).</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Field voltage clipping limit (Efdmin).</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 20.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = -20.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (K).
-       Typical Value = 1.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Parameter of underexcitation limit (K1).
-       Typical Value = 0.1364.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Parameter of underexcitation limit (K2).
-       Typical Value = -0.3861.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>PI controller gain (Kc).
-       Typical Value = 70.</p></dd><dt class="param">kce</dt><dd class="cmt"><p>Rectifier regulation factor (Kce).
-       Typical Value = 0.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Exciter internal reactance (Kd).
-       Typical Value = 0.</p></dd><dt class="param">kgob</dt><dd class="cmt"><p>P controller gain (Kgob).
-       Typical Value = 10.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PI controller gain (Kp).
-       Typical Value = 1.</p></dd><dt class="param">kqi</dt><dd class="cmt"><p>PI controller gain of integral component (Kqi).
-       Typical Value = 0.</p></dd><dt class="param">kqob</dt><dd class="cmt"><p>Rate of rise of the reactive power (Kqob).</p></dd><dt class="param">kqp</dt><dd class="cmt"><p>PI controller gain (Kqp).
-       Typical Value = 0.</p></dd><dt class="param">nq</dt><dd class="cmt"><p>Dead band of reactive power (nq).
-       Determines the range of sensitivity.  Typical Value = 0.001.</p></dd><dt class="param">qconoff</dt><dd class="cmt"><p>Secondary voltage control state (Qc_on_off).
-       true = secondary voltage control is ON
-       false = secondary voltage control is OFF.
-       Typical Value = false.</p></dd><dt class="param">qz</dt><dd class="cmt"><p>Desired value (setpoint) of reactive power, manual setting (Qz).</p></dd><dt class="param">remote</dt><dd class="cmt"><p>Selector to apply automatic calculation in secondary controller model.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
+       Typical value = 20.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
+       Typical value = -20.</p></dd><dt class="param">k</dt><dd class="cmt"><p>Gain (<i>K</i>).
+       Typical value = 1.</p></dd><dt class="param">k1</dt><dd class="cmt"><p>Parameter of underexcitation limit (<i>K1</i>).
+       Typical value = 0,1364.</p></dd><dt class="param">k2</dt><dd class="cmt"><p>Parameter of underexcitation limit (<i>K2</i>).
+       Typical value = -0,3861.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>PI controller gain (<i>Kc</i>).
+       Typical value = 70.</p></dd><dt class="param">kce</dt><dd class="cmt"><p>Rectifier regulation factor (<i>Kce</i>).
+       Typical value = 0.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Exciter internal reactance (<i>Kd</i>).
+       Typical value = 0.</p></dd><dt class="param">kgob</dt><dd class="cmt"><p>P controller gain (<i>Kgob</i>).
+       Typical value = 10.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PI controller gain (<i>Kp</i>).
+       Typical value = 1.</p></dd><dt class="param">kqi</dt><dd class="cmt"><p>PI controller gain of integral component (<i>Kqi</i>).
+       Typical value = 0.</p></dd><dt class="param">kqob</dt><dd class="cmt"><p>Rate of rise of the reactive power (<i>Kqob</i>).</p></dd><dt class="param">kqp</dt><dd class="cmt"><p>PI controller gain (<i>Kqp</i>).
+       Typical value = 0.</p></dd><dt class="param">nq</dt><dd class="cmt"><p>Deadband of reactive power (<i>nq</i>).
+       Determines the range of sensitivity.  Typical value = 0,001.</p></dd><dt class="param">qconoff</dt><dd class="cmt"><p>Secondary voltage control state (<i>Qc_on_off</i>).
+       true = secondary voltage control is on
+       false = secondary voltage control is off.
+       Typical value = false.</p></dd><dt class="param">qz</dt><dd class="cmt"><p>Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).</p></dd><dt class="param">remote</dt><dd class="cmt"><p>Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
        true = automatic calculation is activated
-       false = manual set is active; the use of desired value of reactive power (Qz) is required.
-       Typical Value = true.</p></dd><dt class="param">sbase</dt><dd class="cmt"><p>Apparent power of the unit (Sbase).
-       Unit = MVA.  Typical Value = 259.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>PI controller phase lead time constant (Tc).
-       Typical Value = 8.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (Te).
-       Typical Value = 0.1.</p></dd><dt class="param">ti</dt><dd class="cmt"><p>PI controller phase lead time constant (Ti).
-       Typical Value = 2.</p></dd><dt class="param">tp</dt><dd class="cmt"><p>Time constant (Tp).
-       Typical Value = 0.1.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Voltage transducer time constant (Tr).
-       Typical Value = 0.01.</p></dd><dt class="param">uimax</dt><dd class="cmt"><p>Maximum error (Uimax).
-       Typical Value = 10.</p></dd><dt class="param">uimin</dt><dd class="cmt"><p>Minimum error (UImin).
-       Typical Value = -10.</p></dd><dt class="param">urmax</dt><dd class="cmt"><p>Maximum controller output (URmax).
-       Typical Value = 10.</p></dd><dt class="param">urmin</dt><dd class="cmt"><p>Minimum controller output (URmin).
-       Typical Value = -10.</p></dd><dt class="param">vtmax</dt><dd class="cmt"><p>Maximum terminal voltage input (Vtmax).
-       Determines the range of voltage dead band.  Typical Value = 1.05.</p></dd><dt class="param">vtmin</dt><dd class="cmt"><p>Minimum terminal voltage input (Vtmin).
-       Determines the range of voltage dead band.  Typical Value = 0.95.</p></dd><dt class="param">yp</dt><dd class="cmt"><p>Maximum output (Yp).
-       Minimum output = 0.  Typical Value = 1.</p></dd></dl></div>
+       false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
+       Typical value = true.</p></dd><dt class="param">sbase</dt><dd class="cmt"><p>Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
+       Unit = MVA.  Typical value = 259.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 8.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant of gain block (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">ti</dt><dd class="cmt"><p>PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tp</dt><dd class="cmt"><p>Time constant (<i>Tp</i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">uimax</dt><dd class="cmt"><p>Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
+       Typical value = 10.</p></dd><dt class="param">uimin</dt><dd class="cmt"><p>Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
+       Typical value = -10.</p></dd><dt class="param">urmax</dt><dd class="cmt"><p>Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
+       Typical value = 10.</p></dd><dt class="param">urmin</dt><dd class="cmt"><p>Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
+       Typical value = -10.</p></dd><dt class="param">vtmax</dt><dd class="cmt"><p>Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
+       Determines the range of voltage deadband.  Typical value = 1,05.</p></dd><dt class="param">vtmin</dt><dd class="cmt"><p>Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
+       Determines the range of voltage deadband.  Typical value = 0,95.</p></dd><dt class="param">yp</dt><dd class="cmt"><p>Maximum output (<i>Yp</i>).
+       Typical value = 1.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -397,7 +397,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ExcSK">ExcSK</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.ExcSK#efdmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.ExcSK#efdmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="efdmax:Double"></a>
       <a id="efdmax:Double"></a>
       <h4 class="signature">
@@ -413,8 +413,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Field voltage clipping limit (Efdmax).</p>
-    </li><li name="ch.ninecode.model.ExcSK#efdmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).</p></div></div>
+    </li><li name="ch.ninecode.model.ExcSK#efdmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="efdmin:Double"></a>
       <a id="efdmin:Double"></a>
       <h4 class="signature">
@@ -430,7 +430,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Field voltage clipping limit (Efdmin).</p>
+      <p class="shortcomment cmt">Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#emax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emax:Double"></a>
       <a id="emax:Double"></a>
@@ -447,8 +447,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum field voltage output (Emax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum field voltage output (Emax).
-       Typical Value = 20.</p></div></div>
+      <p class="shortcomment cmt">Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
+       Typical value = 20.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#emin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emin:Double"></a>
       <a id="emin:Double"></a>
@@ -465,8 +465,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum field voltage output (Emin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum field voltage output (Emin).
-       Typical Value = -20.</p></div></div>
+      <p class="shortcomment cmt">Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
+       Typical value = -20.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1060,8 +1060,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain (K).</p><div class="fullcomment"><div class="comment cmt"><p>Gain (K).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Gain (<i>K</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain (<i>K</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#k1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k1:Double"></a>
       <a id="k1:Double"></a>
@@ -1078,8 +1078,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Parameter of underexcitation limit (K1).</p><div class="fullcomment"><div class="comment cmt"><p>Parameter of underexcitation limit (K1).
-       Typical Value = 0.1364.</p></div></div>
+      <p class="shortcomment cmt">Parameter of underexcitation limit (<i>K1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Parameter of underexcitation limit (<i>K1</i>).
+       Typical value = 0,1364.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#k2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k2:Double"></a>
       <a id="k2:Double"></a>
@@ -1096,8 +1096,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Parameter of underexcitation limit (K2).</p><div class="fullcomment"><div class="comment cmt"><p>Parameter of underexcitation limit (K2).
-       Typical Value = -0.3861.</p></div></div>
+      <p class="shortcomment cmt">Parameter of underexcitation limit (<i>K2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Parameter of underexcitation limit (<i>K2</i>).
+       Typical value = -0,3861.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kc:Double"></a>
       <a id="kc:Double"></a>
@@ -1114,8 +1114,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller gain (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (Kc).
-       Typical Value = 70.</p></div></div>
+      <p class="shortcomment cmt">PI controller gain (<i>Kc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (<i>Kc</i>).
+       Typical value = 70.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kce" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kce:Double"></a>
       <a id="kce:Double"></a>
@@ -1132,8 +1132,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier regulation factor (Kce).</p><div class="fullcomment"><div class="comment cmt"><p>Rectifier regulation factor (Kce).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Rectifier regulation factor (<i>Kce</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier regulation factor (<i>Kce</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kd:Double"></a>
       <a id="kd:Double"></a>
@@ -1150,8 +1150,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter internal reactance (Kd).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter internal reactance (Kd).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Exciter internal reactance (<i>Kd</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter internal reactance (<i>Kd</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kgob" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kgob:Double"></a>
       <a id="kgob:Double"></a>
@@ -1168,8 +1168,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">P controller gain (Kgob).</p><div class="fullcomment"><div class="comment cmt"><p>P controller gain (Kgob).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">P controller gain (<i>Kgob</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>P controller gain (<i>Kgob</i>).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1186,8 +1186,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller gain (Kp).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (Kp).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">PI controller gain (<i>Kp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (<i>Kp</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kqi" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kqi:Double"></a>
       <a id="kqi:Double"></a>
@@ -1204,9 +1204,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller gain of integral component (Kqi).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain of integral component (Kqi).
-       Typical Value = 0.</p></div></div>
-    </li><li name="ch.ninecode.model.ExcSK#kqob" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">PI controller gain of integral component (<i>Kqi</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain of integral component (<i>Kqi</i>).
+       Typical value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.ExcSK#kqob" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kqob:Double"></a>
       <a id="kqob:Double"></a>
       <h4 class="signature">
@@ -1222,7 +1222,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rate of rise of the reactive power (Kqob).</p>
+      <p class="shortcomment cmt">Rate of rise of the reactive power (<i>Kqob</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rate of rise of the reactive power (<i>Kqob</i>).</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#kqp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kqp:Double"></a>
       <a id="kqp:Double"></a>
@@ -1239,8 +1239,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller gain (Kqp).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (Kqp).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">PI controller gain (<i>Kqp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (<i>Kqp</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1395,8 +1395,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Dead band of reactive power (nq).</p><div class="fullcomment"><div class="comment cmt"><p>Dead band of reactive power (nq).
-       Determines the range of sensitivity.  Typical Value = 0.001.</p></div></div>
+      <p class="shortcomment cmt">Deadband of reactive power (<i>nq</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Deadband of reactive power (<i>nq</i>).
+       Determines the range of sensitivity.  Typical value = 0,001.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#qconoff" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="qconoff:Boolean"></a>
       <a id="qconoff:Boolean"></a>
@@ -1413,11 +1413,11 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Secondary voltage control state (Qc_on_off).</p><div class="fullcomment"><div class="comment cmt"><p>Secondary voltage control state (Qc_on_off).
-       true = secondary voltage control is ON
-       false = secondary voltage control is OFF.
-       Typical Value = false.</p></div></div>
-    </li><li name="ch.ninecode.model.ExcSK#qz" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Secondary voltage control state (<i>Qc_on_off</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Secondary voltage control state (<i>Qc_on_off</i>).
+       true = secondary voltage control is on
+       false = secondary voltage control is off.
+       Typical value = false.</p></div></div>
+    </li><li name="ch.ninecode.model.ExcSK#qz" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="qz:Double"></a>
       <a id="qz:Double"></a>
       <h4 class="signature">
@@ -1433,7 +1433,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Desired value (setpoint) of reactive power, manual setting (Qz).</p>
+      <p class="shortcomment cmt">Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#remote" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="remote:Boolean"></a>
       <a id="remote:Boolean"></a>
@@ -1450,10 +1450,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Selector to apply automatic calculation in secondary controller model.</p><div class="fullcomment"><div class="comment cmt"><p>Selector to apply automatic calculation in secondary controller model.
+      <p class="shortcomment cmt">Selector to apply automatic calculation in secondary controller model (<i>remote</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
        true = automatic calculation is activated
-       false = manual set is active; the use of desired value of reactive power (Qz) is required.
-       Typical Value = true.</p></div></div>
+       false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
+       Typical value = true.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#sbase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sbase:Double"></a>
       <a id="sbase:Double"></a>
@@ -1470,8 +1470,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Apparent power of the unit (Sbase).</p><div class="fullcomment"><div class="comment cmt"><p>Apparent power of the unit (Sbase).
-       Unit = MVA.  Typical Value = 259.</p></div></div>
+      <p class="shortcomment cmt">Apparent power of the unit (<i>Sbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
+       Unit = MVA.  Typical value = 259.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1556,8 +1556,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller phase lead time constant (Tc).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller phase lead time constant (Tc).
-       Typical Value = 8.</p></div></div>
+      <p class="shortcomment cmt">PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
@@ -1574,8 +1574,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant of gain block (Te).</p><div class="fullcomment"><div class="comment cmt"><p>Time constant of gain block (Te).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Time constant of gain block (<i>Te</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant of gain block (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#ti" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ti:Double"></a>
       <a id="ti:Double"></a>
@@ -1592,8 +1592,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller phase lead time constant (Ti).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller phase lead time constant (Ti).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1644,8 +1644,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tp).</p><div class="fullcomment"><div class="comment cmt"><p>Time constant (Tp).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Time constant (<i>Tp</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tp</i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#tr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tr:Double"></a>
       <a id="tr:Double"></a>
@@ -1662,8 +1662,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage transducer time constant (Tr).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage transducer time constant (Tr).
-       Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
+       Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#uimax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="uimax:Double"></a>
       <a id="uimax:Double"></a>
@@ -1680,8 +1680,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum error (Uimax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum error (Uimax).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#uimin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="uimin:Double"></a>
       <a id="uimin:Double"></a>
@@ -1698,8 +1698,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum error (UImin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum error (UImin).
-       Typical Value = -10.</p></div></div>
+      <p class="shortcomment cmt">Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
+       Typical value = -10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#urmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="urmax:Double"></a>
       <a id="urmax:Double"></a>
@@ -1716,8 +1716,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum controller output (URmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum controller output (URmax).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#urmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="urmin:Double"></a>
       <a id="urmin:Double"></a>
@@ -1734,8 +1734,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum controller output (URmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum controller output (URmin).
-       Typical Value = -10.</p></div></div>
+      <p class="shortcomment cmt">Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
+       Typical value = -10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#vtmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtmax:Double"></a>
       <a id="vtmax:Double"></a>
@@ -1752,8 +1752,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum terminal voltage input (Vtmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum terminal voltage input (Vtmax).
-       Determines the range of voltage dead band.  Typical Value = 1.05.</p></div></div>
+      <p class="shortcomment cmt">Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
+       Determines the range of voltage deadband.  Typical value = 1,05.</p></div></div>
     </li><li name="ch.ninecode.model.ExcSK#vtmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vtmin:Double"></a>
       <a id="vtmin:Double"></a>
@@ -1770,8 +1770,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum terminal voltage input (Vtmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum terminal voltage input (Vtmin).
-       Determines the range of voltage dead band.  Typical Value = 0.95.</p></div></div>
+      <p class="shortcomment cmt">Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
+       Determines the range of voltage deadband.  Typical value = 0,95.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1857,8 +1857,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum output (Yp).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum output (Yp).
-       Minimum output = 0.  Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Maximum output (<i>Yp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum output (<i>Yp</i>).
+       Typical value = 1.</p></div></div>
     </li></ol>
             </div>
 

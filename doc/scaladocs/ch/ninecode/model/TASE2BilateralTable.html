@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TASE2BilateralTable - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.TASE2BilateralTable</title>
-          <meta name="description" content="TASE2BilateralTable - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.TASE2BilateralTable" />
-          <meta name="keywords" content="TASE2BilateralTable CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.TASE2BilateralTable" />
+          <title>TASE2BilateralTable - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.TASE2BilateralTable</title>
+          <meta name="description" content="TASE2BilateralTable - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.TASE2BilateralTable" />
+          <meta name="keywords" content="TASE2BilateralTable CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.TASE2BilateralTable" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TASE2BilateralTable</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="bilateralTableID">bilateralTableID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calling">calling: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="nameOfICC">nameOfICC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="tase2version">tase2version: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TASE2BilateralTable</span><span class="params">(<span name="sup">sup: <a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a></span>, <span name="bilateralTableID">bilateralTableID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="bilateralTableVersion">bilateralTableVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="tase2version">tase2version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ICCPInformationMessage">ICCPInformationMessage: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class describe the sending (providing) side in a bilateral ICCP data exchange.</p><p>Hence the ICCP bilateral (table) descriptions are created by exchanging ICCPProvider data between the parties.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">bilateralTableID</dt><dd class="cmt"><p>Specifies the version of the Bilateral Table configuration that is being exchanged.</p></dd><dt class="param">calling</dt><dd class="cmt"><p>Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
-       If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.</p></dd><dt class="param">nameOfICC</dt><dd class="cmt"><p>Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
-       This value may not be null.</p></dd><dt class="param">tase2version</dt><dd class="cmt"><p>Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class describe the sending (providing) side in a bilateral ICCP data exchange.</p><p>Hence the ICCP bilateral (table) descriptions are created by exchanging ICCP Provider data between the parties.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a> Reference to the superclass object.</p></dd><dt class="param">bilateralTableID</dt><dd class="cmt"><p>Specifies the version of the Bilateral Table configuration that is being exchanged.</p></dd><dt class="param">bilateralTableVersion</dt><dd class="cmt"><p>The Version attribute identifies a unique version of the Bilateral Table.
+       If any changes are made to a Bilateral Table, then a new unique value for this attribute shall be generated.</p></dd><dt class="param">tase2version</dt><dd class="cmt"><p>Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2.
+       In order for a link to be established, both sides must have the same value.</p></dd><dt class="param">ICCPInformationMessage</dt><dd class="cmt"><p><a href="ICCPInformationMessage.html" class="extype" name="ch.ninecode.model.ICCPInformationMessage">ICCPInformationMessage</a> Informational message to be included in a Bilateral Table agreement.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TASE2BilateralTable#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,bilateralTableID:String,calling:Boolean,nameOfICC:String,tase2version:String):ch.ninecode.model.TASE2BilateralTable"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BilateralExchangeAgreement,bilateralTableID:String,bilateralTableVersion:String,tase2version:String,ICCPInformationMessage:List[String]):ch.ninecode.model.TASE2BilateralTable"></a>
       <a id="&lt;init&gt;:TASE2BilateralTable"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TASE2BilateralTable</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="bilateralTableID">bilateralTableID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calling">calling: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="nameOfICC">nameOfICC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="tase2version">tase2version: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">TASE2BilateralTable</span><span class="params">(<span name="sup">sup: <a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a></span>, <span name="bilateralTableID">bilateralTableID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="bilateralTableVersion">bilateralTableVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="tase2version">tase2version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ICCPInformationMessage">ICCPInformationMessage: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,bilateralTableID:String,calling:Boolean,nameOfICC:String,tase2version:String):ch.ninecode.model.TASE2BilateralTable" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@&lt;init&gt;(sup:ch.ninecode.model.BilateralExchangeAgreement,bilateralTableID:String,bilateralTableVersion:String,tase2version:String,ICCPInformationMessage:List[String]):ch.ninecode.model.TASE2BilateralTable" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">bilateralTableID</dt><dd class="cmt"><p>Specifies the version of the Bilateral Table configuration that is being exchanged.</p></dd><dt class="param">calling</dt><dd class="cmt"><p>Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
-       If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.</p></dd><dt class="param">nameOfICC</dt><dd class="cmt"><p>Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
-       This value may not be null.</p></dd><dt class="param">tase2version</dt><dd class="cmt"><p>Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a> Reference to the superclass object.</p></dd><dt class="param">bilateralTableID</dt><dd class="cmt"><p>Specifies the version of the Bilateral Table configuration that is being exchanged.</p></dd><dt class="param">bilateralTableVersion</dt><dd class="cmt"><p>The Version attribute identifies a unique version of the Bilateral Table.
+       If any changes are made to a Bilateral Table, then a new unique value for this attribute shall be generated.</p></dd><dt class="param">tase2version</dt><dd class="cmt"><p>Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2.
+       In order for a link to be established, both sides must have the same value.</p></dd><dt class="param">ICCPInformationMessage</dt><dd class="cmt"><p><a href="ICCPInformationMessage.html" class="extype" name="ch.ninecode.model.ICCPInformationMessage">ICCPInformationMessage</a> Informational message to be included in a Bilateral Table agreement.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -189,24 +189,41 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.TASE2BilateralTable#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
-      <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
-      <a id="IdentifiedObject:IdentifiedObject"></a>
+    </li><li name="ch.ninecode.model.TASE2BilateralTable#BilateralExchangeAgreement" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="BilateralExchangeAgreement:ch.ninecode.model.BilateralExchangeAgreement"></a>
+      <a id="BilateralExchangeAgreement:BilateralExchangeAgreement"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">IdentifiedObject</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
+        <span class="name">BilateralExchangeAgreement</span><span class="result">: <a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@IdentifiedObject:ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@BilateralExchangeAgreement:ch.ninecode.model.BilateralExchangeAgreement" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.TASE2BilateralTable#ICCPInformationMessage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ICCPInformationMessage:List[String]"></a>
+      <a id="ICCPInformationMessage:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ICCPInformationMessage</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@ICCPInformationMessage:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ICCPInformationMessage.html" class="extype" name="ch.ninecode.model.ICCPInformationMessage">ICCPInformationMessage</a> Informational message to be included in a Bilateral Table agreement.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -293,6 +310,24 @@
       </a>
     </span>
       <p class="shortcomment cmt">Specifies the version of the Bilateral Table configuration that is being exchanged.</p>
+    </li><li name="ch.ninecode.model.TASE2BilateralTable#bilateralTableVersion" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bilateralTableVersion:String"></a>
+      <a id="bilateralTableVersion:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bilateralTableVersion</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@bilateralTableVersion:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The Version attribute identifies a unique version of the Bilateral Table.</p><div class="fullcomment"><div class="comment cmt"><p>The Version attribute identifies a unique version of the Bilateral Table.
+       If any changes are made to a Bilateral Table, then a new unique value for this attribute shall be generated.</p></div></div>
     </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bitfields:Array[Int]"></a>
       <a id="bitfields:Array[Int]"></a>
@@ -313,24 +348,6 @@
 Field order is specified by the fields array.</p><p>For classes constructed manually, we initially fill this in with the worst case scenario.
 ToDo: this won't work for classes with more than 96 fields (so far none).
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.TASE2BilateralTable#calling" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="calling:Boolean"></a>
-      <a id="calling:Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">calling</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@calling:Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Used to indicate if the Provider is responsible for initiating the TASE.2 connection.</p><div class="fullcomment"><div class="comment cmt"><p>Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
-       If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -1036,24 +1053,6 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.TASE2BilateralTable#nameOfICC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="nameOfICC:String"></a>
-      <a id="nameOfICC:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">nameOfICC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@nameOfICC:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.</p><div class="fullcomment"><div class="comment cmt"><p>Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
-       This value may not be null.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1140,22 +1139,22 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
     </li><li name="ch.ninecode.model.TASE2BilateralTable#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sup:ch.ninecode.model.IdentifiedObject"></a>
-      <a id="sup:IdentifiedObject"></a>
+      <a id="sup:ch.ninecode.model.BilateralExchangeAgreement"></a>
+      <a id="sup:BilateralExchangeAgreement"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">sup</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
+        <span class="name">sup</span><span class="result">: <a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@sup:ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TASE2BilateralTable@sup:ch.ninecode.model.BilateralExchangeAgreement" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TASE2BilateralTable">TASE2BilateralTable</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="BilateralExchangeAgreement.html" class="extype" name="ch.ninecode.model.BilateralExchangeAgreement">BilateralExchangeAgreement</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TASE2BilateralTable">TASE2BilateralTable</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -1173,7 +1172,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.TASE2BilateralTable#tase2version" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.TASE2BilateralTable#tase2version" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tase2version:String"></a>
       <a id="tase2version:String"></a>
       <h4 class="signature">
@@ -1189,7 +1188,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2</p>
+      <p class="shortcomment cmt">Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2.</p><div class="fullcomment"><div class="comment cmt"><p>Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2.
+       In order for a link to be established, both sides must have the same value.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>

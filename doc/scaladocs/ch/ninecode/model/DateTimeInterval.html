@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DateTimeInterval - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.DateTimeInterval</title>
-          <meta name="description" content="DateTimeInterval - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.DateTimeInterval" />
-          <meta name="keywords" content="DateTimeInterval CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.DateTimeInterval" />
+          <title>DateTimeInterval - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.DateTimeInterval</title>
+          <meta name="description" content="DateTimeInterval - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.DateTimeInterval" />
+          <meta name="keywords" content="DateTimeInterval CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.DateTimeInterval" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,8 +51,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Interval between two date and time points.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">end</dt><dd class="cmt"><p>End date and time of this interval.</p></dd><dt class="param">start</dt><dd class="cmt"><p>Start date and time of this interval.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Interval between two date and time points, where the interval includes the start time but excludes end time.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">end</dt><dd class="cmt"><p>End date and time of this interval.
+       The end date and time where the interval is defined up to, but excluded.</p></dd><dt class="param">start</dt><dd class="cmt"><p>Start date and time of this interval.
+       The start date and time is included in the defined interval.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +126,9 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">end</dt><dd class="cmt"><p>End date and time of this interval.</p></dd><dt class="param">start</dt><dd class="cmt"><p>Start date and time of this interval.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">end</dt><dd class="cmt"><p>End date and time of this interval.
+       The end date and time where the interval is defined up to, but excluded.</p></dd><dt class="param">start</dt><dd class="cmt"><p>Start date and time of this interval.
+       The start date and time is included in the defined interval.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -373,7 +377,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
 </p></div><dl class="paramcmts block"><dt class="param">field</dt><dd class="cmt"><p>The name of the field.</p></dd><dt class="param">value</dt><dd class="cmt"><p>The value of the field.</p></dd><dt class="param">clz</dt><dd class="cmt"><p>The class name (e.g. ACLineSegment) of this element</p></dd><dt class="param">s</dt><dd class="cmt"><p>The builder to write into.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd><div class="block">Example:
                <ol><li class="cmt"><p>&lt;cim:IdentifiedObject.name&gt;WGS 84&lt;/cim:IdentifiedObject.name&gt;</p></li></ol>
             </div></dl></div>
-    </li><li name="ch.ninecode.model.DateTimeInterval#end" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.DateTimeInterval#end" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="end:String"></a>
       <a id="end:String"></a>
       <h4 class="signature">
@@ -389,7 +393,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">End date and time of this interval.</p>
+      <p class="shortcomment cmt">End date and time of this interval.</p><div class="fullcomment"><div class="comment cmt"><p>End date and time of this interval.
+       The end date and time where the interval is defined up to, but excluded.</p></div></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -1099,7 +1104,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.DateTimeInterval#start" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.DateTimeInterval#start" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="start:String"></a>
       <a id="start:String"></a>
       <h4 class="signature">
@@ -1115,7 +1120,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Start date and time of this interval.</p>
+      <p class="shortcomment cmt">Start date and time of this interval.</p><div class="fullcomment"><div class="comment cmt"><p>Start date and time of this interval.
+       The start date and time is included in the defined interval.</p></div></div>
     </li><li name="ch.ninecode.model.DateTimeInterval#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.BasicElement"></a>
       <a id="sup:BasicElement"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>VAdjIEEE - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.VAdjIEEE</title>
-          <meta name="description" content="VAdjIEEE - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.VAdjIEEE" />
-          <meta name="keywords" content="VAdjIEEE CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.VAdjIEEE" />
+          <title>VAdjIEEE - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.VAdjIEEE</title>
+          <meta name="description" content="VAdjIEEE - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.VAdjIEEE" />
+          <meta name="keywords" content="VAdjIEEE CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.VAdjIEEE" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,13 +51,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.</p><p>Reference: IEEE Standard 421.5-2005 Section 11.1.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE voltage adjuster which is used to represent the voltage adjuster in either a power factor or VAr control system.</p><p>Reference: IEEE 421.5-2005, 11.1.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="VoltageAdjusterDynamics.html" class="extype" name="ch.ninecode.model.VoltageAdjusterDynamics">VoltageAdjusterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">adjslew</dt><dd class="cmt"><p>Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
-       Unit = sec./PU.  Typical Value = 300.</p></dd><dt class="param">taoff</dt><dd class="cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
-       Typical Value = 0.5.</p></dd><dt class="param">taon</dt><dd class="cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
-       Typical Value = 0.1.</p></dd><dt class="param">vadjf</dt><dd class="cmt"><p>Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).</p></dd><dt class="param">vadjmax</dt><dd class="cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
-       Typical Value = 1.1.</p></dd><dt class="param">vadjmin</dt><dd class="cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
-       Typical Value = 0.9.</p></dd></dl><div class="toggleContainer block">
+       Unit = s / PU.  Typical value = 300.</p></dd><dt class="param">taoff</dt><dd class="cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">taon</dt><dd class="cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vadjf</dt><dd class="cmt"><p>Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).</p></dd><dt class="param">vadjmax</dt><dd class="cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
+       Typical value = 1,1.</p></dd><dt class="param">vadjmin</dt><dd class="cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
+       Typical value = 0,9.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,11 +130,11 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="VoltageAdjusterDynamics.html" class="extype" name="ch.ninecode.model.VoltageAdjusterDynamics">VoltageAdjusterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">adjslew</dt><dd class="cmt"><p>Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
-       Unit = sec./PU.  Typical Value = 300.</p></dd><dt class="param">taoff</dt><dd class="cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
-       Typical Value = 0.5.</p></dd><dt class="param">taon</dt><dd class="cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
-       Typical Value = 0.1.</p></dd><dt class="param">vadjf</dt><dd class="cmt"><p>Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).</p></dd><dt class="param">vadjmax</dt><dd class="cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
-       Typical Value = 1.1.</p></dd><dt class="param">vadjmin</dt><dd class="cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
-       Typical Value = 0.9.</p></dd></dl></div>
+       Unit = s / PU.  Typical value = 300.</p></dd><dt class="param">taoff</dt><dd class="cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
+       Typical value = 0,5.</p></dd><dt class="param">taon</dt><dd class="cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vadjf</dt><dd class="cmt"><p>Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).</p></dd><dt class="param">vadjmax</dt><dd class="cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
+       Typical value = 1,1.</p></dd><dt class="param">vadjmin</dt><dd class="cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
+       Typical value = 0,9.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -248,7 +248,7 @@
       </a>
     </span>
       <p class="shortcomment cmt">Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
-       Unit = sec./PU.  Typical Value = 300.</p></div></div>
+       Unit = s / PU.  Typical value = 300.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1160,8 +1160,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
-       Typical Value = 0.5.</p></div></div>
+      <p class="shortcomment cmt">Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
+       Typical value = 0,5.</p></div></div>
     </li><li name="ch.ninecode.model.VAdjIEEE#taon" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="taon:Double"></a>
       <a id="taon:Double"></a>
@@ -1178,8 +1178,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1247,8 +1247,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
-       Typical Value = 1.1.</p></div></div>
+      <p class="shortcomment cmt">Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
+       Typical value = 1,1.</p></div></div>
     </li><li name="ch.ninecode.model.VAdjIEEE#vadjmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vadjmin:Double"></a>
       <a id="vadjmin:Double"></a>
@@ -1265,8 +1265,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
-       Typical Value = 0.9.</p></div></div>
+      <p class="shortcomment cmt">Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
+       Typical value = 0,9.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

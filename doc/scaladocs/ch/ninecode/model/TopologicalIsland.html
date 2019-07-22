@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TopologicalIsland - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.TopologicalIsland</title>
-          <meta name="description" content="TopologicalIsland - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.TopologicalIsland" />
-          <meta name="keywords" content="TopologicalIsland CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.TopologicalIsland" />
+          <title>TopologicalIsland - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.TopologicalIsland</title>
+          <meta name="description" content="TopologicalIsland - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.TopologicalIsland" />
+          <meta name="keywords" content="TopologicalIsland CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.TopologicalIsland" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An electrically connected subset of the network.</p><p>Topological islands can change as the current network state changes: e.g. due to
+- disconnect switches or breakers changing state in a SCADA/EMS.
+- manual creation, change or deletion of topological nodes in a planning tool.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AngleRefTopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The angle reference for the island.
        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.</p></dd><dt class="param">TopologicalNodes</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> A topological node belongs to a topological island.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>

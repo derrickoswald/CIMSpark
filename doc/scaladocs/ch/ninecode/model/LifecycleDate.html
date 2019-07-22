@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LifecycleDate - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.LifecycleDate</title>
-          <meta name="description" content="LifecycleDate - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.LifecycleDate" />
-          <meta name="keywords" content="LifecycleDate CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.LifecycleDate" />
+          <title>LifecycleDate - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.LifecycleDate</title>
+          <meta name="description" content="LifecycleDate - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.LifecycleDate" />
+          <meta name="keywords" content="LifecycleDate CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.LifecycleDate" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,11 +51,11 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Dates for lifecycle events of an asset.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">installationDate</dt><dd class="cmt"><p>(if applicable) Date current installation was completed, which may not be the same as the in-service date.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Dates for asset lifecycle state changes.</p><p>May have multiple lifecycle dates for this device and a compound type allows a query to return multiple dates.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">installationDate</dt><dd class="cmt"><p>Date current installation was completed, which may not be the same as the in-service date.
        Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).</p></dd><dt class="param">manufacturedDate</dt><dd class="cmt"><p>Date the asset was manufactured.</p></dd><dt class="param">purchaseDate</dt><dd class="cmt"><p>Date the asset was purchased.
-       Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.</p></dd><dt class="param">receivedDate</dt><dd class="cmt"><p>Date the asset was received and first placed into inventory.</p></dd><dt class="param">removalDate</dt><dd class="cmt"><p>(if applicable) Date when the asset was last removed from service.
-       Ignored if (1) not intended to be in service, or (2) currently in service.</p></dd><dt class="param">retiredDate</dt><dd class="cmt"><p>(if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.
+       Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.</p></dd><dt class="param">receivedDate</dt><dd class="cmt"><p>Date the asset was received and first placed into inventory.</p></dd><dt class="param">removalDate</dt><dd class="cmt"><p>Date when the asset was last removed from service.
+       Ignored if (1) not intended to be in service, or (2) currently in service.</p></dd><dt class="param">retiredDate</dt><dd class="cmt"><p>Date the asset is permanently retired from service and may be scheduled for disposal.
        Ignored if asset is (1) currently in service, or (2) permanently removed from service.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -128,10 +128,10 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">installationDate</dt><dd class="cmt"><p>(if applicable) Date current installation was completed, which may not be the same as the in-service date.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">installationDate</dt><dd class="cmt"><p>Date current installation was completed, which may not be the same as the in-service date.
        Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).</p></dd><dt class="param">manufacturedDate</dt><dd class="cmt"><p>Date the asset was manufactured.</p></dd><dt class="param">purchaseDate</dt><dd class="cmt"><p>Date the asset was purchased.
-       Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.</p></dd><dt class="param">receivedDate</dt><dd class="cmt"><p>Date the asset was received and first placed into inventory.</p></dd><dt class="param">removalDate</dt><dd class="cmt"><p>(if applicable) Date when the asset was last removed from service.
-       Ignored if (1) not intended to be in service, or (2) currently in service.</p></dd><dt class="param">retiredDate</dt><dd class="cmt"><p>(if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.
+       Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.</p></dd><dt class="param">receivedDate</dt><dd class="cmt"><p>Date the asset was received and first placed into inventory.</p></dd><dt class="param">removalDate</dt><dd class="cmt"><p>Date when the asset was last removed from service.
+       Ignored if (1) not intended to be in service, or (2) currently in service.</p></dd><dt class="param">retiredDate</dt><dd class="cmt"><p>Date the asset is permanently retired from service and may be scheduled for disposal.
        Ignored if asset is (1) currently in service, or (2) permanently removed from service.</p></dd></dl></div>
     </li></ol>
             </div>
@@ -900,7 +900,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(if applicable) Date current installation was completed, which may not be the same as the in-service date.</p><div class="fullcomment"><div class="comment cmt"><p>(if applicable) Date current installation was completed, which may not be the same as the in-service date.
+      <p class="shortcomment cmt">Date current installation was completed, which may not be the same as the in-service date.</p><div class="fullcomment"><div class="comment cmt"><p>Date current installation was completed, which may not be the same as the in-service date.
        Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1142,7 +1142,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(if applicable) Date when the asset was last removed from service.</p><div class="fullcomment"><div class="comment cmt"><p>(if applicable) Date when the asset was last removed from service.
+      <p class="shortcomment cmt">Date when the asset was last removed from service.</p><div class="fullcomment"><div class="comment cmt"><p>Date when the asset was last removed from service.
        Ignored if (1) not intended to be in service, or (2) currently in service.</p></div></div>
     </li><li name="ch.ninecode.model.LifecycleDate#retiredDate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="retiredDate:String"></a>
@@ -1160,7 +1160,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.</p><div class="fullcomment"><div class="comment cmt"><p>(if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.
+      <p class="shortcomment cmt">Date the asset is permanently retired from service and may be scheduled for disposal.</p><div class="fullcomment"><div class="comment cmt"><p>Date the asset is permanently retired from service and may be scheduled for disposal.
        Ignored if asset is (1) currently in service, or (2) permanently removed from service.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>

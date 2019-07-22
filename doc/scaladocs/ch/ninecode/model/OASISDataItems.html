@@ -1,0 +1,3081 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>OASISDataItems - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.OASISDataItems</title>
+          <meta name="description" content="OASISDataItems - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.OASISDataItems" />
+          <meta name="keywords" content="OASISDataItems CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.OASISDataItems" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'ch.ninecode.model.OASISDataItems';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="OASISDataItems$.html" title="See companion object"><img alt="Class/Object" src="../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="ch">ch</a>.<a href="../package.html" class="extype" name="ch.ninecode">ninecode</a>.<a href="package.html" class="extype" name="ch.ninecode.model">model</a></p>
+        <h1><a href="OASISDataItems$.html" title="See companion object">OASISDataItems</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="OASISDataItems$.html" title="See companion object">object OASISDataItems</a>
+            | <a href="package.html" class="extype" name="ch.ninecode.model">package model</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OASISDataItems</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="AS_CLEAR_ASMP_IFM">AS_CLEAR_ASMP_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_ASMP_RTM">AS_CLEAR_ASMP_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_COST_IFM">AS_CLEAR_COST_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_COST_RTM">AS_CLEAR_COST_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_MW_IFM">AS_CLEAR_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_MW_RTM">AS_CLEAR_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_GEN_TOTAL_MW_IFM">AS_GEN_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_GEN_TOTAL_MW_RTM">AS_GEN_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_IMP_TOTAL_MW_IFM">AS_IMP_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_IMP_TOTAL_MW_RTM">AS_IMP_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_LOAD_TOTAL_MW_IFM">AS_LOAD_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_LOAD_TOTAL_MW_RTM">AS_LOAD_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_REQ_MAX">AS_REGION_REQ_MAX: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_REQ_MIN">AS_REGION_REQ_MIN: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_value">AS_REGION_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_SELF_MW_IFM">AS_SELF_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_SELF_MW_RTM">AS_SELF_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW">AS_TOTAL_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW_IFM">AS_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW_RTM">AS_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TYPE">AS_TYPE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_USER_RATE">AS_USER_RATE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CA_value">CA_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_MINLOAD_MLC">CMMT_MINLOAD_MLC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_MINLOAD_MW">CMMT_MINLOAD_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_MLC">CMMT_RA_MLC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_MW">CMMT_RA_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_START_COST">CMMT_RA_START_COST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_UNITS">CMMT_RA_UNITS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_MW">CMMT_TOTAL_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_START_COST">CMMT_TOTAL_START_COST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_UNITS">CMMT_TOTAL_UNITS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_CAT">CRR_CAT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_MARKET_value">CRR_MARKET_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_MW">CRR_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_NSR">CRR_NSR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_OPTION">CRR_OPTION: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_OWNER">CRR_OWNER: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_SEGMENT">CRR_SEGMENT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TERM">CRR_TERM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TOU">CRR_TOU: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TYPE">CRR_TYPE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_DA">ENE_EA_DA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_EXCEPT">ENE_EA_EXCEPT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_HASP">ENE_EA_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_MLE">ENE_EA_MLE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_MSSLF">ENE_EA_MSSLF: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_OPTIMAL">ENE_EA_OPTIMAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RAMP_DEV">ENE_EA_RAMP_DEV: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RAMP_STD">ENE_EA_RAMP_STD: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RESIDUAL">ENE_EA_RESIDUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RMR">ENE_EA_RMR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_SELF">ENE_EA_SELF: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_SLIC">ENE_EA_SLIC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_HASP">ENE_EXP_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_IFM">ENE_EXP_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_RTM">ENE_EXP_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_HASP">ENE_GEN_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_IFM">ENE_GEN_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_RTM">ENE_GEN_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_HASP">ENE_IMP_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_IFM">ENE_IMP_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_RTM">ENE_IMP_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_ACTUAL">ENE_LOAD_ACTUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_HASP">ENE_LOAD_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_IFM">ENE_LOAD_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_RTM">ENE_LOAD_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_FCST">ENE_LOAD_FCST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_PEAK_HOUR">ENE_PEAK_HOUR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_PEAK_LOAD">ENE_PEAK_LOAD: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FUEL_REGION_value">FUEL_REGION_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="INVT_DATETIME">INVT_DATETIME: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOAD_ACTUAL">LOAD_ACTUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOAD_CLEAR_RTM">LOAD_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_COST_HASP">LOSS_TOTAL_COST_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_COST_RTM">LOSS_TOTAL_COST_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_MW_HASP">LOSS_TOTAL_MW_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_MW_RTM">LOSS_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPM_FLAG">MPM_FLAG: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OP_RSRV_TOTAL">OP_RSRV_TOTAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PRC_NG">PRC_NG: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PRC_SHADOW">PRC_SHADOW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RATING_ATC">RATING_ATC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DETER_DAM">RMR_DETER_DAM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DETER_HASP">RMR_DETER_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DISPATCH_DAM">RMR_DISPATCH_DAM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DISPATCH_HASP">RMR_DISPATCH_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_TOTAL">RMR_TOTAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_TOTAL_AVAIL">RMR_TOTAL_AVAIL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_GEN_CLEAR_RUC">RUC_GEN_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_IMP_CLEAR_RUC">RUC_IMP_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_LOAD_CLEAR_RUC">RUC_LOAD_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_ZONE_value">RUC_ZONE_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TAC_AREA_value">TAC_AREA_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TINTRFCE_value">TINTRFCE_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_AS_IMPORT">TRNS_AS_IMPORT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_ENE_IMPORT">TRNS_ENE_IMPORT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_EQUIP_value">TRNS_EQUIP_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_CBM">TRNS_RATING_CBM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_DIRECTION">TRNS_RATING_DIRECTION: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_OTC">TRNS_RATING_OTC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_OTC_DERATE">TRNS_RATING_OTC_DERATE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_TTC">TRNS_RATING_TTC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TI_value">TRNS_TI_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TR_ENTMTS">TRNS_TR_ENTMTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TR_USEAGE">TRNS_TR_USEAGE: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                <li class="group out"><span>Grouped</span></li>
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="ch.ninecode.model.OASISDataItems"><span>OASISDataItems</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="ch.ninecode.model.Element"><span>Element</span></li><li class="in" name="scala.Cloneable"><span>Cloneable</span></li><li class="in" name="java.lang.Cloneable"><span>Cloneable</span></li><li class="in" name="org.apache.spark.sql.Row"><span>Row</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="ch.ninecode.model.OASISDataItems#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():ch.ninecode.model.OASISDataItems"></a>
+      <a id="&lt;init&gt;:OASISDataItems"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OASISDataItems</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@&lt;init&gt;():ch.ninecode.model.OASISDataItems" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Zero args constructor.</p>
+    </li><li name="ch.ninecode.model.OASISDataItems#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,AS_CLEAR_ASMP_IFM:String,AS_CLEAR_ASMP_RTM:String,AS_CLEAR_COST_IFM:String,AS_CLEAR_COST_RTM:String,AS_CLEAR_MW_IFM:String,AS_CLEAR_MW_RTM:String,AS_GEN_TOTAL_MW_IFM:String,AS_GEN_TOTAL_MW_RTM:String,AS_IMP_TOTAL_MW_IFM:String,AS_IMP_TOTAL_MW_RTM:String,AS_LOAD_TOTAL_MW_IFM:String,AS_LOAD_TOTAL_MW_RTM:String,AS_REGION_REQ_MAX:String,AS_REGION_REQ_MIN:String,AS_REGION_value:String,AS_SELF_MW_IFM:String,AS_SELF_MW_RTM:String,AS_TOTAL_MW:String,AS_TOTAL_MW_IFM:String,AS_TOTAL_MW_RTM:String,AS_TYPE:String,AS_USER_RATE:String,CA_value:String,CMMT_MINLOAD_MLC:String,CMMT_MINLOAD_MW:String,CMMT_RA_MLC:String,CMMT_RA_MW:String,CMMT_RA_START_COST:String,CMMT_RA_UNITS:String,CMMT_TOTAL_MW:String,CMMT_TOTAL_START_COST:String,CMMT_TOTAL_UNITS:String,CRR_CAT:String,CRR_MARKET_value:String,CRR_MW:String,CRR_NSR:String,CRR_OPTION:String,CRR_OWNER:String,CRR_SEGMENT:String,CRR_TERM:String,CRR_TOU:String,CRR_TYPE:String,ENE_EA_DA:String,ENE_EA_EXCEPT:String,ENE_EA_HASP:String,ENE_EA_MLE:String,ENE_EA_MSSLF:String,ENE_EA_OPTIMAL:String,ENE_EA_RAMP_DEV:String,ENE_EA_RAMP_STD:String,ENE_EA_RESIDUAL:String,ENE_EA_RMR:String,ENE_EA_SELF:String,ENE_EA_SLIC:String,ENE_EXP_CLEAR_HASP:String,ENE_EXP_CLEAR_IFM:String,ENE_EXP_CLEAR_RTM:String,ENE_GEN_CLEAR_HASP:String,ENE_GEN_CLEAR_IFM:String,ENE_GEN_CLEAR_RTM:String,ENE_IMP_CLEAR_HASP:String,ENE_IMP_CLEAR_IFM:String,ENE_IMP_CLEAR_RTM:String,ENE_LOAD_ACTUAL:String,ENE_LOAD_CLEAR_HASP:String,ENE_LOAD_CLEAR_IFM:String,ENE_LOAD_CLEAR_RTM:String,ENE_LOAD_FCST:String,ENE_PEAK_HOUR:String,ENE_PEAK_LOAD:String,FUEL_REGION_value:String,INVT_DATETIME:String,LOAD_ACTUAL:String,LOAD_CLEAR_RTM:String,LOSS_TOTAL_COST_HASP:String,LOSS_TOTAL_COST_RTM:String,LOSS_TOTAL_MW_HASP:String,LOSS_TOTAL_MW_RTM:String,MPM_FLAG:String,OP_RSRV_TOTAL:String,PRC_NG:String,PRC_SHADOW:String,RATING_ATC:String,RMR_DETER_DAM:String,RMR_DETER_HASP:String,RMR_DISPATCH_DAM:String,RMR_DISPATCH_HASP:String,RMR_TOTAL:String,RMR_TOTAL_AVAIL:String,RUC_GEN_CLEAR_RUC:String,RUC_IMP_CLEAR_RUC:String,RUC_LOAD_CLEAR_RUC:String,RUC_ZONE_value:String,TAC_AREA_value:String,TINTRFCE_value:String,TRNS_AS_IMPORT:String,TRNS_ENE_IMPORT:String,TRNS_EQUIP_value:String,TRNS_RATING_CBM:String,TRNS_RATING_DIRECTION:String,TRNS_RATING_OTC:String,TRNS_RATING_OTC_DERATE:String,TRNS_RATING_TTC:String,TRNS_TI_value:String,TRNS_TR_ENTMTS:String,TRNS_TR_USEAGE:String):ch.ninecode.model.OASISDataItems"></a>
+      <a id="&lt;init&gt;:OASISDataItems"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OASISDataItems</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="AS_CLEAR_ASMP_IFM">AS_CLEAR_ASMP_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_ASMP_RTM">AS_CLEAR_ASMP_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_COST_IFM">AS_CLEAR_COST_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_COST_RTM">AS_CLEAR_COST_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_MW_IFM">AS_CLEAR_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_CLEAR_MW_RTM">AS_CLEAR_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_GEN_TOTAL_MW_IFM">AS_GEN_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_GEN_TOTAL_MW_RTM">AS_GEN_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_IMP_TOTAL_MW_IFM">AS_IMP_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_IMP_TOTAL_MW_RTM">AS_IMP_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_LOAD_TOTAL_MW_IFM">AS_LOAD_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_LOAD_TOTAL_MW_RTM">AS_LOAD_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_REQ_MAX">AS_REGION_REQ_MAX: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_REQ_MIN">AS_REGION_REQ_MIN: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_REGION_value">AS_REGION_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_SELF_MW_IFM">AS_SELF_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_SELF_MW_RTM">AS_SELF_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW">AS_TOTAL_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW_IFM">AS_TOTAL_MW_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TOTAL_MW_RTM">AS_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_TYPE">AS_TYPE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AS_USER_RATE">AS_USER_RATE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CA_value">CA_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_MINLOAD_MLC">CMMT_MINLOAD_MLC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_MINLOAD_MW">CMMT_MINLOAD_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_MLC">CMMT_RA_MLC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_MW">CMMT_RA_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_START_COST">CMMT_RA_START_COST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_RA_UNITS">CMMT_RA_UNITS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_MW">CMMT_TOTAL_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_START_COST">CMMT_TOTAL_START_COST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CMMT_TOTAL_UNITS">CMMT_TOTAL_UNITS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_CAT">CRR_CAT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_MARKET_value">CRR_MARKET_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_MW">CRR_MW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_NSR">CRR_NSR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_OPTION">CRR_OPTION: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_OWNER">CRR_OWNER: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_SEGMENT">CRR_SEGMENT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TERM">CRR_TERM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TOU">CRR_TOU: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CRR_TYPE">CRR_TYPE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_DA">ENE_EA_DA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_EXCEPT">ENE_EA_EXCEPT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_HASP">ENE_EA_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_MLE">ENE_EA_MLE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_MSSLF">ENE_EA_MSSLF: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_OPTIMAL">ENE_EA_OPTIMAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RAMP_DEV">ENE_EA_RAMP_DEV: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RAMP_STD">ENE_EA_RAMP_STD: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RESIDUAL">ENE_EA_RESIDUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_RMR">ENE_EA_RMR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_SELF">ENE_EA_SELF: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EA_SLIC">ENE_EA_SLIC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_HASP">ENE_EXP_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_IFM">ENE_EXP_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_EXP_CLEAR_RTM">ENE_EXP_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_HASP">ENE_GEN_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_IFM">ENE_GEN_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_GEN_CLEAR_RTM">ENE_GEN_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_HASP">ENE_IMP_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_IFM">ENE_IMP_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_IMP_CLEAR_RTM">ENE_IMP_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_ACTUAL">ENE_LOAD_ACTUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_HASP">ENE_LOAD_CLEAR_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_IFM">ENE_LOAD_CLEAR_IFM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_CLEAR_RTM">ENE_LOAD_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_LOAD_FCST">ENE_LOAD_FCST: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_PEAK_HOUR">ENE_PEAK_HOUR: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ENE_PEAK_LOAD">ENE_PEAK_LOAD: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FUEL_REGION_value">FUEL_REGION_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="INVT_DATETIME">INVT_DATETIME: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOAD_ACTUAL">LOAD_ACTUAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOAD_CLEAR_RTM">LOAD_CLEAR_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_COST_HASP">LOSS_TOTAL_COST_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_COST_RTM">LOSS_TOTAL_COST_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_MW_HASP">LOSS_TOTAL_MW_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LOSS_TOTAL_MW_RTM">LOSS_TOTAL_MW_RTM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPM_FLAG">MPM_FLAG: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OP_RSRV_TOTAL">OP_RSRV_TOTAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PRC_NG">PRC_NG: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PRC_SHADOW">PRC_SHADOW: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RATING_ATC">RATING_ATC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DETER_DAM">RMR_DETER_DAM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DETER_HASP">RMR_DETER_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DISPATCH_DAM">RMR_DISPATCH_DAM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_DISPATCH_HASP">RMR_DISPATCH_HASP: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_TOTAL">RMR_TOTAL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RMR_TOTAL_AVAIL">RMR_TOTAL_AVAIL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_GEN_CLEAR_RUC">RUC_GEN_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_IMP_CLEAR_RUC">RUC_IMP_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_LOAD_CLEAR_RUC">RUC_LOAD_CLEAR_RUC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RUC_ZONE_value">RUC_ZONE_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TAC_AREA_value">TAC_AREA_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TINTRFCE_value">TINTRFCE_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_AS_IMPORT">TRNS_AS_IMPORT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_ENE_IMPORT">TRNS_ENE_IMPORT: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_EQUIP_value">TRNS_EQUIP_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_CBM">TRNS_RATING_CBM: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_DIRECTION">TRNS_RATING_DIRECTION: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_OTC">TRNS_RATING_OTC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_OTC_DERATE">TRNS_RATING_OTC_DERATE: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_RATING_TTC">TRNS_RATING_TTC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TI_value">TRNS_TI_value: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TR_ENTMTS">TRNS_TR_ENTMTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TRNS_TR_USEAGE">TRNS_TR_USEAGE: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,AS_CLEAR_ASMP_IFM:String,AS_CLEAR_ASMP_RTM:String,AS_CLEAR_COST_IFM:String,AS_CLEAR_COST_RTM:String,AS_CLEAR_MW_IFM:String,AS_CLEAR_MW_RTM:String,AS_GEN_TOTAL_MW_IFM:String,AS_GEN_TOTAL_MW_RTM:String,AS_IMP_TOTAL_MW_IFM:String,AS_IMP_TOTAL_MW_RTM:String,AS_LOAD_TOTAL_MW_IFM:String,AS_LOAD_TOTAL_MW_RTM:String,AS_REGION_REQ_MAX:String,AS_REGION_REQ_MIN:String,AS_REGION_value:String,AS_SELF_MW_IFM:String,AS_SELF_MW_RTM:String,AS_TOTAL_MW:String,AS_TOTAL_MW_IFM:String,AS_TOTAL_MW_RTM:String,AS_TYPE:String,AS_USER_RATE:String,CA_value:String,CMMT_MINLOAD_MLC:String,CMMT_MINLOAD_MW:String,CMMT_RA_MLC:String,CMMT_RA_MW:String,CMMT_RA_START_COST:String,CMMT_RA_UNITS:String,CMMT_TOTAL_MW:String,CMMT_TOTAL_START_COST:String,CMMT_TOTAL_UNITS:String,CRR_CAT:String,CRR_MARKET_value:String,CRR_MW:String,CRR_NSR:String,CRR_OPTION:String,CRR_OWNER:String,CRR_SEGMENT:String,CRR_TERM:String,CRR_TOU:String,CRR_TYPE:String,ENE_EA_DA:String,ENE_EA_EXCEPT:String,ENE_EA_HASP:String,ENE_EA_MLE:String,ENE_EA_MSSLF:String,ENE_EA_OPTIMAL:String,ENE_EA_RAMP_DEV:String,ENE_EA_RAMP_STD:String,ENE_EA_RESIDUAL:String,ENE_EA_RMR:String,ENE_EA_SELF:String,ENE_EA_SLIC:String,ENE_EXP_CLEAR_HASP:String,ENE_EXP_CLEAR_IFM:String,ENE_EXP_CLEAR_RTM:String,ENE_GEN_CLEAR_HASP:String,ENE_GEN_CLEAR_IFM:String,ENE_GEN_CLEAR_RTM:String,ENE_IMP_CLEAR_HASP:String,ENE_IMP_CLEAR_IFM:String,ENE_IMP_CLEAR_RTM:String,ENE_LOAD_ACTUAL:String,ENE_LOAD_CLEAR_HASP:String,ENE_LOAD_CLEAR_IFM:String,ENE_LOAD_CLEAR_RTM:String,ENE_LOAD_FCST:String,ENE_PEAK_HOUR:String,ENE_PEAK_LOAD:String,FUEL_REGION_value:String,INVT_DATETIME:String,LOAD_ACTUAL:String,LOAD_CLEAR_RTM:String,LOSS_TOTAL_COST_HASP:String,LOSS_TOTAL_COST_RTM:String,LOSS_TOTAL_MW_HASP:String,LOSS_TOTAL_MW_RTM:String,MPM_FLAG:String,OP_RSRV_TOTAL:String,PRC_NG:String,PRC_SHADOW:String,RATING_ATC:String,RMR_DETER_DAM:String,RMR_DETER_HASP:String,RMR_DISPATCH_DAM:String,RMR_DISPATCH_HASP:String,RMR_TOTAL:String,RMR_TOTAL_AVAIL:String,RUC_GEN_CLEAR_RUC:String,RUC_IMP_CLEAR_RUC:String,RUC_LOAD_CLEAR_RUC:String,RUC_ZONE_value:String,TAC_AREA_value:String,TINTRFCE_value:String,TRNS_AS_IMPORT:String,TRNS_ENE_IMPORT:String,TRNS_EQUIP_value:String,TRNS_RATING_CBM:String,TRNS_RATING_DIRECTION:String,TRNS_RATING_OTC:String,TRNS_RATING_OTC_DERATE:String,TRNS_RATING_TTC:String,TRNS_TI_value:String,TRNS_TR_ENTMTS:String,TRNS_TR_USEAGE:String):ch.ninecode.model.OASISDataItems" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_ASMP_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_ASMP_IFM:String"></a>
+      <a id="AS_CLEAR_ASMP_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_ASMP_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_ASMP_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_ASMP_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_ASMP_RTM:String"></a>
+      <a id="AS_CLEAR_ASMP_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_ASMP_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_ASMP_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_COST_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_COST_IFM:String"></a>
+      <a id="AS_CLEAR_COST_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_COST_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_COST_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_COST_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_COST_RTM:String"></a>
+      <a id="AS_CLEAR_COST_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_COST_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_COST_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_MW_IFM:String"></a>
+      <a id="AS_CLEAR_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_CLEAR_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_CLEAR_MW_RTM:String"></a>
+      <a id="AS_CLEAR_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_CLEAR_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_CLEAR_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_GEN_TOTAL_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_GEN_TOTAL_MW_IFM:String"></a>
+      <a id="AS_GEN_TOTAL_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_GEN_TOTAL_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_GEN_TOTAL_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_GEN_TOTAL_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_GEN_TOTAL_MW_RTM:String"></a>
+      <a id="AS_GEN_TOTAL_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_GEN_TOTAL_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_GEN_TOTAL_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_IMP_TOTAL_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_IMP_TOTAL_MW_IFM:String"></a>
+      <a id="AS_IMP_TOTAL_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_IMP_TOTAL_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_IMP_TOTAL_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_IMP_TOTAL_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_IMP_TOTAL_MW_RTM:String"></a>
+      <a id="AS_IMP_TOTAL_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_IMP_TOTAL_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_IMP_TOTAL_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_LOAD_TOTAL_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_LOAD_TOTAL_MW_IFM:String"></a>
+      <a id="AS_LOAD_TOTAL_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_LOAD_TOTAL_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_LOAD_TOTAL_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_LOAD_TOTAL_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_LOAD_TOTAL_MW_RTM:String"></a>
+      <a id="AS_LOAD_TOTAL_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_LOAD_TOTAL_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_LOAD_TOTAL_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_REGION_REQ_MAX" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_REGION_REQ_MAX:String"></a>
+      <a id="AS_REGION_REQ_MAX:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_REGION_REQ_MAX</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_REGION_REQ_MAX:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_REGION_REQ_MIN" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_REGION_REQ_MIN:String"></a>
+      <a id="AS_REGION_REQ_MIN:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_REGION_REQ_MIN</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_REGION_REQ_MIN:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_REGION_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_REGION_value:String"></a>
+      <a id="AS_REGION_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_REGION_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_REGION_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_SELF_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_SELF_MW_IFM:String"></a>
+      <a id="AS_SELF_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_SELF_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_SELF_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_SELF_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_SELF_MW_RTM:String"></a>
+      <a id="AS_SELF_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_SELF_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_SELF_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_TOTAL_MW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_TOTAL_MW:String"></a>
+      <a id="AS_TOTAL_MW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_TOTAL_MW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_TOTAL_MW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_TOTAL_MW_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_TOTAL_MW_IFM:String"></a>
+      <a id="AS_TOTAL_MW_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_TOTAL_MW_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_TOTAL_MW_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_TOTAL_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_TOTAL_MW_RTM:String"></a>
+      <a id="AS_TOTAL_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_TOTAL_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_TOTAL_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_TYPE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_TYPE:String"></a>
+      <a id="AS_TYPE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_TYPE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_TYPE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#AS_USER_RATE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AS_USER_RATE:String"></a>
+      <a id="AS_USER_RATE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AS_USER_RATE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@AS_USER_RATE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CA_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CA_value:String"></a>
+      <a id="CA_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CA_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CA_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_MINLOAD_MLC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_MINLOAD_MLC:String"></a>
+      <a id="CMMT_MINLOAD_MLC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_MINLOAD_MLC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_MINLOAD_MLC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_MINLOAD_MW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_MINLOAD_MW:String"></a>
+      <a id="CMMT_MINLOAD_MW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_MINLOAD_MW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_MINLOAD_MW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_RA_MLC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_RA_MLC:String"></a>
+      <a id="CMMT_RA_MLC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_RA_MLC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_RA_MLC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_RA_MW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_RA_MW:String"></a>
+      <a id="CMMT_RA_MW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_RA_MW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_RA_MW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_RA_START_COST" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_RA_START_COST:String"></a>
+      <a id="CMMT_RA_START_COST:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_RA_START_COST</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_RA_START_COST:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_RA_UNITS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_RA_UNITS:String"></a>
+      <a id="CMMT_RA_UNITS:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_RA_UNITS</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_RA_UNITS:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_TOTAL_MW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_TOTAL_MW:String"></a>
+      <a id="CMMT_TOTAL_MW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_TOTAL_MW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_TOTAL_MW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_TOTAL_START_COST" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_TOTAL_START_COST:String"></a>
+      <a id="CMMT_TOTAL_START_COST:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_TOTAL_START_COST</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_TOTAL_START_COST:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CMMT_TOTAL_UNITS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CMMT_TOTAL_UNITS:String"></a>
+      <a id="CMMT_TOTAL_UNITS:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CMMT_TOTAL_UNITS</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CMMT_TOTAL_UNITS:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_CAT" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_CAT:String"></a>
+      <a id="CRR_CAT:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_CAT</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_CAT:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_MARKET_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_MARKET_value:String"></a>
+      <a id="CRR_MARKET_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_MARKET_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_MARKET_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_MW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_MW:String"></a>
+      <a id="CRR_MW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_MW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_MW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_NSR" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_NSR:String"></a>
+      <a id="CRR_NSR:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_NSR</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_NSR:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_OPTION" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_OPTION:String"></a>
+      <a id="CRR_OPTION:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_OPTION</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_OPTION:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_OWNER" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_OWNER:String"></a>
+      <a id="CRR_OWNER:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_OWNER</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_OWNER:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_SEGMENT" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_SEGMENT:String"></a>
+      <a id="CRR_SEGMENT:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_SEGMENT</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_SEGMENT:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_TERM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_TERM:String"></a>
+      <a id="CRR_TERM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_TERM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_TERM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_TOU" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_TOU:String"></a>
+      <a id="CRR_TOU:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_TOU</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_TOU:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#CRR_TYPE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CRR_TYPE:String"></a>
+      <a id="CRR_TYPE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CRR_TYPE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@CRR_TYPE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_DA" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_DA:String"></a>
+      <a id="ENE_EA_DA:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_DA</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_DA:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_EXCEPT" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_EXCEPT:String"></a>
+      <a id="ENE_EA_EXCEPT:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_EXCEPT</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_EXCEPT:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_HASP:String"></a>
+      <a id="ENE_EA_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_MLE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_MLE:String"></a>
+      <a id="ENE_EA_MLE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_MLE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_MLE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_MSSLF" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_MSSLF:String"></a>
+      <a id="ENE_EA_MSSLF:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_MSSLF</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_MSSLF:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_OPTIMAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_OPTIMAL:String"></a>
+      <a id="ENE_EA_OPTIMAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_OPTIMAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_OPTIMAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_RAMP_DEV" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_RAMP_DEV:String"></a>
+      <a id="ENE_EA_RAMP_DEV:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_RAMP_DEV</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_RAMP_DEV:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_RAMP_STD" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_RAMP_STD:String"></a>
+      <a id="ENE_EA_RAMP_STD:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_RAMP_STD</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_RAMP_STD:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_RESIDUAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_RESIDUAL:String"></a>
+      <a id="ENE_EA_RESIDUAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_RESIDUAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_RESIDUAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_RMR" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_RMR:String"></a>
+      <a id="ENE_EA_RMR:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_RMR</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_RMR:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_SELF" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_SELF:String"></a>
+      <a id="ENE_EA_SELF:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_SELF</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_SELF:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EA_SLIC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EA_SLIC:String"></a>
+      <a id="ENE_EA_SLIC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EA_SLIC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EA_SLIC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EXP_CLEAR_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EXP_CLEAR_HASP:String"></a>
+      <a id="ENE_EXP_CLEAR_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EXP_CLEAR_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EXP_CLEAR_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EXP_CLEAR_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EXP_CLEAR_IFM:String"></a>
+      <a id="ENE_EXP_CLEAR_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EXP_CLEAR_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EXP_CLEAR_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_EXP_CLEAR_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_EXP_CLEAR_RTM:String"></a>
+      <a id="ENE_EXP_CLEAR_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_EXP_CLEAR_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_EXP_CLEAR_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_GEN_CLEAR_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_GEN_CLEAR_HASP:String"></a>
+      <a id="ENE_GEN_CLEAR_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_GEN_CLEAR_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_GEN_CLEAR_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_GEN_CLEAR_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_GEN_CLEAR_IFM:String"></a>
+      <a id="ENE_GEN_CLEAR_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_GEN_CLEAR_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_GEN_CLEAR_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_GEN_CLEAR_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_GEN_CLEAR_RTM:String"></a>
+      <a id="ENE_GEN_CLEAR_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_GEN_CLEAR_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_GEN_CLEAR_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_IMP_CLEAR_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_IMP_CLEAR_HASP:String"></a>
+      <a id="ENE_IMP_CLEAR_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_IMP_CLEAR_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_IMP_CLEAR_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_IMP_CLEAR_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_IMP_CLEAR_IFM:String"></a>
+      <a id="ENE_IMP_CLEAR_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_IMP_CLEAR_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_IMP_CLEAR_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_IMP_CLEAR_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_IMP_CLEAR_RTM:String"></a>
+      <a id="ENE_IMP_CLEAR_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_IMP_CLEAR_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_IMP_CLEAR_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_LOAD_ACTUAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_LOAD_ACTUAL:String"></a>
+      <a id="ENE_LOAD_ACTUAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_LOAD_ACTUAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_LOAD_ACTUAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_LOAD_CLEAR_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_LOAD_CLEAR_HASP:String"></a>
+      <a id="ENE_LOAD_CLEAR_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_LOAD_CLEAR_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_LOAD_CLEAR_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_LOAD_CLEAR_IFM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_LOAD_CLEAR_IFM:String"></a>
+      <a id="ENE_LOAD_CLEAR_IFM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_LOAD_CLEAR_IFM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_LOAD_CLEAR_IFM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_LOAD_CLEAR_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_LOAD_CLEAR_RTM:String"></a>
+      <a id="ENE_LOAD_CLEAR_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_LOAD_CLEAR_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_LOAD_CLEAR_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_LOAD_FCST" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_LOAD_FCST:String"></a>
+      <a id="ENE_LOAD_FCST:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_LOAD_FCST</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_LOAD_FCST:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_PEAK_HOUR" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_PEAK_HOUR:String"></a>
+      <a id="ENE_PEAK_HOUR:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_PEAK_HOUR</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_PEAK_HOUR:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#ENE_PEAK_LOAD" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ENE_PEAK_LOAD:String"></a>
+      <a id="ENE_PEAK_LOAD:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ENE_PEAK_LOAD</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ENE_PEAK_LOAD:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#Element" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="Element:ch.ninecode.model.Element"></a>
+      <a id="Element:Element"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Element</span><span class="result">: <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@Element:ch.ninecode.model.Element" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#FUEL_REGION_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FUEL_REGION_value:String"></a>
+      <a id="FUEL_REGION_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">FUEL_REGION_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@FUEL_REGION_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#INVT_DATETIME" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="INVT_DATETIME:String"></a>
+      <a id="INVT_DATETIME:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">INVT_DATETIME</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@INVT_DATETIME:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOAD_ACTUAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOAD_ACTUAL:String"></a>
+      <a id="LOAD_ACTUAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOAD_ACTUAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOAD_ACTUAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOAD_CLEAR_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOAD_CLEAR_RTM:String"></a>
+      <a id="LOAD_CLEAR_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOAD_CLEAR_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOAD_CLEAR_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOSS_TOTAL_COST_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOSS_TOTAL_COST_HASP:String"></a>
+      <a id="LOSS_TOTAL_COST_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOSS_TOTAL_COST_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOSS_TOTAL_COST_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOSS_TOTAL_COST_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOSS_TOTAL_COST_RTM:String"></a>
+      <a id="LOSS_TOTAL_COST_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOSS_TOTAL_COST_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOSS_TOTAL_COST_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOSS_TOTAL_MW_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOSS_TOTAL_MW_HASP:String"></a>
+      <a id="LOSS_TOTAL_MW_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOSS_TOTAL_MW_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOSS_TOTAL_MW_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#LOSS_TOTAL_MW_RTM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LOSS_TOTAL_MW_RTM:String"></a>
+      <a id="LOSS_TOTAL_MW_RTM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LOSS_TOTAL_MW_RTM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@LOSS_TOTAL_MW_RTM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#MPM_FLAG" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MPM_FLAG:String"></a>
+      <a id="MPM_FLAG:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MPM_FLAG</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@MPM_FLAG:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#OP_RSRV_TOTAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OP_RSRV_TOTAL:String"></a>
+      <a id="OP_RSRV_TOTAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OP_RSRV_TOTAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@OP_RSRV_TOTAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#PRC_NG" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PRC_NG:String"></a>
+      <a id="PRC_NG:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRC_NG</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@PRC_NG:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#PRC_SHADOW" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PRC_SHADOW:String"></a>
+      <a id="PRC_SHADOW:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PRC_SHADOW</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@PRC_SHADOW:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RATING_ATC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RATING_ATC:String"></a>
+      <a id="RATING_ATC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RATING_ATC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RATING_ATC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_DETER_DAM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_DETER_DAM:String"></a>
+      <a id="RMR_DETER_DAM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_DETER_DAM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_DETER_DAM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_DETER_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_DETER_HASP:String"></a>
+      <a id="RMR_DETER_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_DETER_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_DETER_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_DISPATCH_DAM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_DISPATCH_DAM:String"></a>
+      <a id="RMR_DISPATCH_DAM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_DISPATCH_DAM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_DISPATCH_DAM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_DISPATCH_HASP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_DISPATCH_HASP:String"></a>
+      <a id="RMR_DISPATCH_HASP:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_DISPATCH_HASP</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_DISPATCH_HASP:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_TOTAL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_TOTAL:String"></a>
+      <a id="RMR_TOTAL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_TOTAL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_TOTAL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RMR_TOTAL_AVAIL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RMR_TOTAL_AVAIL:String"></a>
+      <a id="RMR_TOTAL_AVAIL:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RMR_TOTAL_AVAIL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RMR_TOTAL_AVAIL:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RUC_GEN_CLEAR_RUC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RUC_GEN_CLEAR_RUC:String"></a>
+      <a id="RUC_GEN_CLEAR_RUC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RUC_GEN_CLEAR_RUC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RUC_GEN_CLEAR_RUC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RUC_IMP_CLEAR_RUC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RUC_IMP_CLEAR_RUC:String"></a>
+      <a id="RUC_IMP_CLEAR_RUC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RUC_IMP_CLEAR_RUC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RUC_IMP_CLEAR_RUC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RUC_LOAD_CLEAR_RUC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RUC_LOAD_CLEAR_RUC:String"></a>
+      <a id="RUC_LOAD_CLEAR_RUC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RUC_LOAD_CLEAR_RUC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RUC_LOAD_CLEAR_RUC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#RUC_ZONE_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RUC_ZONE_value:String"></a>
+      <a id="RUC_ZONE_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RUC_ZONE_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@RUC_ZONE_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TAC_AREA_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TAC_AREA_value:String"></a>
+      <a id="TAC_AREA_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TAC_AREA_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TAC_AREA_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TINTRFCE_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TINTRFCE_value:String"></a>
+      <a id="TINTRFCE_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TINTRFCE_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TINTRFCE_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_AS_IMPORT" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_AS_IMPORT:String"></a>
+      <a id="TRNS_AS_IMPORT:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_AS_IMPORT</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_AS_IMPORT:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_ENE_IMPORT" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_ENE_IMPORT:String"></a>
+      <a id="TRNS_ENE_IMPORT:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_ENE_IMPORT</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_ENE_IMPORT:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_EQUIP_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_EQUIP_value:String"></a>
+      <a id="TRNS_EQUIP_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_EQUIP_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_EQUIP_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_RATING_CBM" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_RATING_CBM:String"></a>
+      <a id="TRNS_RATING_CBM:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_RATING_CBM</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_RATING_CBM:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_RATING_DIRECTION" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_RATING_DIRECTION:String"></a>
+      <a id="TRNS_RATING_DIRECTION:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_RATING_DIRECTION</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_RATING_DIRECTION:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_RATING_OTC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_RATING_OTC:String"></a>
+      <a id="TRNS_RATING_OTC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_RATING_OTC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_RATING_OTC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_RATING_OTC_DERATE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_RATING_OTC_DERATE:String"></a>
+      <a id="TRNS_RATING_OTC_DERATE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_RATING_OTC_DERATE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_RATING_OTC_DERATE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_RATING_TTC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_RATING_TTC:String"></a>
+      <a id="TRNS_RATING_TTC:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_RATING_TTC</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_RATING_TTC:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_TI_value" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_TI_value:String"></a>
+      <a id="TRNS_TI_value:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_TI_value</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_TI_value:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_TR_ENTMTS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_TR_ENTMTS:String"></a>
+      <a id="TRNS_TR_ENTMTS:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_TR_ENTMTS</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_TR_ENTMTS:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.OASISDataItems#TRNS_TR_USEAGE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TRNS_TR_USEAGE:String"></a>
+      <a id="TRNS_TR_USEAGE:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TRNS_TR_USEAGE</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@TRNS_TR_USEAGE:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="about:Boolean"></a>
+      <a id="about:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">about</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@about:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Flag for rdf:about elements.</p><div class="fullcomment"><div class="comment cmt"><p>Flag for rdf:about elements.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if this is an rdf:about element, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="anyNull:Boolean"></a>
+      <a id="anyNull:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">anyNull</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@anyNull:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply(i:Int):Any"></a>
+      <a id="apply(Int):Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@apply(i:Int):Any" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bitfields:Array[Int]"></a>
+      <a id="bitfields:Array[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bitfields</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@bitfields:Array[Int]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Valid fields bitmap.</p><div class="fullcomment"><div class="comment cmt"><p>Valid fields bitmap.</p><p>One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+Field order is specified by the fields array.</p><p>For classes constructed manually, we initially fill this in with the worst case scenario.
+ToDo: this won't work for classes with more than 96 fields (so far none).
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#copy" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="copy():org.apache.spark.sql.Row"></a>
+      <a id="copy():Row"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">copy</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row">Row</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@copy():org.apache.spark.sql.Row" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
+      <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">emit_attribute</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="clz">clz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="s">s: <span class="extype" name="scala.StringBuilder">StringBuilder</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Emit one XML attribute.</p><div class="fullcomment"><div class="comment cmt"><p>Emit one XML attribute.
+</p></div><dl class="paramcmts block"><dt class="param">field</dt><dd class="cmt"><p>The name of the field.</p></dd><dt class="param">value</dt><dd class="cmt"><p>The value of the field.</p></dd><dt class="param">clz</dt><dd class="cmt"><p>The class name (e.g. ACLineSegment) of this element</p></dd><dt class="param">s</dt><dd class="cmt"><p>The builder to write into.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd><div class="block">Example:
+               <ol><li class="cmt"><p>&lt;cim:Location.CoordinateSystem rdf:resource=&quot;#wgs84&quot;/&gt;</p></li></ol>
+            </div></dl></div>
+    </li><li name="ch.ninecode.model.Element#emit_element" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="emit_element(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
+      <a id="emit_element(String,Any)(String,StringBuilder):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">emit_element</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="clz">clz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="s">s: <span class="extype" name="scala.StringBuilder">StringBuilder</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@emit_element(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Emit one XML element.</p><div class="fullcomment"><div class="comment cmt"><p>Emit one XML element.
+</p></div><dl class="paramcmts block"><dt class="param">field</dt><dd class="cmt"><p>The name of the field.</p></dd><dt class="param">value</dt><dd class="cmt"><p>The value of the field.</p></dd><dt class="param">clz</dt><dd class="cmt"><p>The class name (e.g. ACLineSegment) of this element</p></dd><dt class="param">s</dt><dd class="cmt"><p>The builder to write into.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd><div class="block">Example:
+               <ol><li class="cmt"><p>&lt;cim:IdentifiedObject.name&gt;WGS 84&lt;/cim:IdentifiedObject.name&gt;</p></li></ol>
+            </div></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(o:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="o">o: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@equals(o:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
+      <a id="export:String"></a>
+      <a id="export:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">export</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@export:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a string containing this object as XML.</p><div class="fullcomment"><div class="comment cmt"><p>Return a string containing this object as XML.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The XML corresponding to this object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#export_fields" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
+      <a id="export_fields:String"></a>
+      <a id="export_fields:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">export_fields</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@export_fields:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a string containing the fields of this object suitable for inclusion in an XML object.</p><div class="fullcomment"><div class="comment cmt"><p>Return a string containing the fields of this object suitable for inclusion in an XML object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A string with the fileds coded in XML</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#fieldIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fieldIndex(name:String):Int"></a>
+      <a id="fieldIndex(String):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fieldIndex</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@fieldIndex(name:String):Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#get" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="get(i:Int):Object"></a>
+      <a id="get(Int):AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@get(i:Int):Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get the value of the field at index <code>i</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>Get the value of the field at index <code>i</code>.
+</p></div><dl class="paramcmts block"><dt class="param">i</dt><dd class="cmt"><p>The index of the field desired.</p></dd><dt>returns</dt><dd class="cmt"><p>The value stored in the field, or <code>null</code> if none.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getAs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAs[T](fieldName:String):T"></a>
+      <a id="getAs[T](String):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="fieldName">fieldName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row.getAs.T">T</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getAs[T](fieldName:String):T" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getAs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAs[T](i:Int):T"></a>
+      <a id="getAs[T](Int):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row.getAs.T">T</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getAs[T](i:Int):T" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getBoolean" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getBoolean(i:Int):Boolean"></a>
+      <a id="getBoolean(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getBoolean</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getBoolean(i:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getByte" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getByte(i:Int):Byte"></a>
+      <a id="getByte(Int):Byte"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getByte</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getByte(i:Int):Byte" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDate(i:Int):java.sql.Date"></a>
+      <a id="getDate(Int):Date"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDate</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.sql.Date">Date</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getDate(i:Int):java.sql.Date" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDecimal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDecimal(i:Int):java.math.BigDecimal"></a>
+      <a id="getDecimal(Int):BigDecimal"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDecimal</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.math.BigDecimal">BigDecimal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getDecimal(i:Int):java.math.BigDecimal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDouble(i:Int):Double"></a>
+      <a id="getDouble(Int):Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDouble</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getDouble(i:Int):Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getFloat(i:Int):Float"></a>
+      <a id="getFloat(Int):Float"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getFloat</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getFloat(i:Int):Float" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getInt(i:Int):Int"></a>
+      <a id="getInt(Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getInt</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getInt(i:Int):Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getJavaMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getJavaMap[K,V](i:Int):java.util.Map[K,V]"></a>
+      <a id="getJavaMap[K,V](Int):Map[K,V]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getJavaMap</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.Map">Map</span>[<span class="extype" name="org.apache.spark.sql.Row.getJavaMap.K">K</span>, <span class="extype" name="org.apache.spark.sql.Row.getJavaMap.V">V</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getJavaMap[K,V](i:Int):java.util.Map[K,V]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getList" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getList[T](i:Int):java.util.List[T]"></a>
+      <a id="getList[T](Int):List[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getList</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.List">List</span>[<span class="extype" name="org.apache.spark.sql.Row.getList.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getList[T](i:Int):java.util.List[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getLong(i:Int):Long"></a>
+      <a id="getLong(Int):Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getLong</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getLong(i:Int):Long" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getMap[K,V](i:Int):scala.collection.Map[K,V]"></a>
+      <a id="getMap[K,V](Int):Map[K,V]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMap</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.collection.Map">Map</span>[<span class="extype" name="org.apache.spark.sql.Row.getMap.K">K</span>, <span class="extype" name="org.apache.spark.sql.Row.getMap.V">V</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getMap[K,V](i:Int):scala.collection.Map[K,V]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSeq[T](i:Int):Seq[T]"></a>
+      <a id="getSeq[T](Int):Seq[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSeq</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.apache.spark.sql.Row.getSeq.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getSeq[T](i:Int):Seq[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getShort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getShort(i:Int):Short"></a>
+      <a id="getShort(Int):Short"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getShort</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getShort(i:Int):Short" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getString(i:Int):String"></a>
+      <a id="getString(Int):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getString</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getString(i:Int):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getStruct" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStruct(i:Int):org.apache.spark.sql.Row"></a>
+      <a id="getStruct(Int):Row"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStruct</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row">Row</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getStruct(i:Int):org.apache.spark.sql.Row" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getTimestamp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTimestamp(i:Int):java.sql.Timestamp"></a>
+      <a id="getTimestamp(Int):Timestamp"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTimestamp</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.sql.Timestamp">Timestamp</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getTimestamp(i:Int):java.sql.Timestamp" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getValuesMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getValuesMap[T](fieldNames:Seq[String]):Map[String,T]"></a>
+      <a id="getValuesMap[T](Seq[String]):Map[String,T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getValuesMap</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="fieldNames">fieldNames: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.sql.Row.getValuesMap.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@getValuesMap[T](fieldNames:Seq[String]):Map[String,T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Element#id" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="id:String"></a>
+      <a id="id:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">id</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@id:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the unique ID for the object, the mRID for IdentifiedObject derived classes.</p><div class="fullcomment"><div class="comment cmt"><p>Return the unique ID for the object, the mRID for IdentifiedObject derived classes.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The object ID.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#isNullAt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isNullAt(i:Int):Boolean"></a>
+      <a id="isNullAt(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isNullAt</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@isNullAt(i:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="length:Int"></a>
+      <a id="length:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">length</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@length:Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The number of fields in the object definition.</p><div class="fullcomment"><div class="comment cmt"><p>The number of fields in the object definition.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of defined fields for use in Row manipulations.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mask(position:Int):Boolean"></a>
+      <a id="mask(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mask</span><span class="params">(<span name="position">position: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@mask(position:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Is a field present predicate.</p><div class="fullcomment"><div class="comment cmt"><p>Is a field present predicate.</p><p>Determines if the field at the given position was encountered while parsing.
+</p></div><dl class="paramcmts block"><dt class="param">position</dt><dd class="cmt"><p>the field position in the fields array</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the field was parsed, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString(start:String,sep:String,end:String):String"></a>
+      <a id="mkString(String,String,String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="sep">sep: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="end">end: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@mkString(start:String,sep:String,end:String):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString(sep:String):String"></a>
+      <a id="mkString(String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="params">(<span name="sep">sep: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@mkString(sep:String):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString:String"></a>
+      <a id="mkString:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@mkString:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="schema:org.apache.spark.sql.types.StructType"></a>
+      <a id="schema:StructType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">schema</span><span class="result">: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@schema:org.apache.spark.sql.types.StructType" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="size:Int"></a>
+      <a id="size:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">size</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@size:Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.OASISDataItems#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="sup:ch.ninecode.model.BasicElement"></a>
+      <a id="sup:BasicElement"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sup</span><span class="result">: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@sup:ch.ninecode.model.BasicElement" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Get the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass (in this case <code>null</code>).</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.OASISDataItems">OASISDataItems</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toSeq:Seq[Any]"></a>
+      <a id="toSeq:Seq[Any]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toSeq</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@toSeq:Seq[Any]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.OASISDataItems@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="ch.ninecode.model.Element">
+              <h3>Inherited from <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></h3>
+            </div><div class="parent" name="scala.Cloneable">
+              <h3>Inherited from <span class="extype" name="scala.Cloneable">Cloneable</span></h3>
+            </div><div class="parent" name="java.lang.Cloneable">
+              <h3>Inherited from <span class="extype" name="java.lang.Cloneable">Cloneable</span></h3>
+            </div><div class="parent" name="org.apache.spark.sql.Row">
+              <h3>Inherited from <span class="extype" name="org.apache.spark.sql.Row">Row</span></h3>
+            </div><div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Hierarchy">
+              <h3>Hierarchy</h3>
+              
+            </div><div class="group" name="Row">
+              <h3>Row</h3>
+              
+            </div><div class="group" name="Serialization">
+              <h3>Serialization</h3>
+              
+            </div><div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

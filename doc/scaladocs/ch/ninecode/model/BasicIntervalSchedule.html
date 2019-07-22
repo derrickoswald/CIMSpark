@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>BasicIntervalSchedule - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.BasicIntervalSchedule</title>
-          <meta name="description" content="BasicIntervalSchedule - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.BasicIntervalSchedule" />
-          <meta name="keywords" content="BasicIntervalSchedule CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.BasicIntervalSchedule" />
+          <title>BasicIntervalSchedule - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.BasicIntervalSchedule</title>
+          <meta name="description" content="BasicIntervalSchedule - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.BasicIntervalSchedule" />
+          <meta name="keywords" content="BasicIntervalSchedule CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.BasicIntervalSchedule" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Schedule of values at points in time.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">startTime</dt><dd class="cmt"><p>The time for the first time point.</p></dd><dt class="param">value1Multiplier</dt><dd class="cmt"><p>Multiplier for value1.</p></dd><dt class="param">value1Unit</dt><dd class="cmt"><p>Value1 units of measure.</p></dd><dt class="param">value2Multiplier</dt><dd class="cmt"><p>Multiplier for value2.</p></dd><dt class="param">value2Unit</dt><dd class="cmt"><p>Value2 units of measure.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">startTime</dt><dd class="cmt"><p>The time for the first time point.
+       The value can be a time of day, not a specific date.</p></dd><dt class="param">value1Multiplier</dt><dd class="cmt"><p>Multiplier for value1.</p></dd><dt class="param">value1Unit</dt><dd class="cmt"><p>Value1 units of measure.</p></dd><dt class="param">value2Multiplier</dt><dd class="cmt"><p>Multiplier for value2.</p></dd><dt class="param">value2Unit</dt><dd class="cmt"><p>Value2 units of measure.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">startTime</dt><dd class="cmt"><p>The time for the first time point.</p></dd><dt class="param">value1Multiplier</dt><dd class="cmt"><p>Multiplier for value1.</p></dd><dt class="param">value1Unit</dt><dd class="cmt"><p>Value1 units of measure.</p></dd><dt class="param">value2Multiplier</dt><dd class="cmt"><p>Multiplier for value2.</p></dd><dt class="param">value2Unit</dt><dd class="cmt"><p>Value2 units of measure.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">startTime</dt><dd class="cmt"><p>The time for the first time point.
+       The value can be a time of day, not a specific date.</p></dd><dt class="param">value1Multiplier</dt><dd class="cmt"><p>Multiplier for value1.</p></dd><dt class="param">value1Unit</dt><dd class="cmt"><p>Value1 units of measure.</p></dd><dt class="param">value2Multiplier</dt><dd class="cmt"><p>Multiplier for value2.</p></dd><dt class="param">value2Unit</dt><dd class="cmt"><p>Value2 units of measure.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1082,7 +1084,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.BasicIntervalSchedule#startTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.BasicIntervalSchedule#startTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="startTime:String"></a>
       <a id="startTime:String"></a>
       <h4 class="signature">
@@ -1098,7 +1100,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The time for the first time point.</p>
+      <p class="shortcomment cmt">The time for the first time point.</p><div class="fullcomment"><div class="comment cmt"><p>The time for the first time point.
+       The value can be a time of day, not a specific date.</p></div></div>
     </li><li name="ch.ninecode.model.BasicIntervalSchedule#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="sup:ch.ninecode.model.IdentifiedObject"></a>
       <a id="sup:IdentifiedObject"></a>

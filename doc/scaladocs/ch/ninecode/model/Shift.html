@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Shift - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Shift</title>
-          <meta name="description" content="Shift - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Shift" />
-          <meta name="keywords" content="Shift CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Shift" />
+          <title>Shift - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Shift</title>
+          <meta name="description" content="Shift - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Shift" />
+          <meta name="keywords" content="Shift CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Shift" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,12 +52,25 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Generally referring to a period of operation or work performed.</p><p>Whether the shift is open/closed can be derived from attributes 'activityInterval.start' and 'activityInterval.end'.
+The grand total for receipts (i.e., cumulative total of all actual receipted amounts during this shift; bankable + non-bankable; excludes rounding error totals) can be derived from receipt:
+&equals;sum('Receipt.receiptAmount'); includes bankable and non-bankable receipts.
+It also has to be reconciled against:
+&equals;sum('receiptsGrandTotalBankable' + 'receiptsGrandTotalNonBankable')
+and against receipt summary:
+&equals;sum('ReceiptSummary.receiptsTotal').
+The attributes with &quot;GrandTotal&quot; defined in this class may need to be used when the source data is periodically flushed from the system and then these cannot be derived.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">activityInterval</dt><dd class="cmt"><p>Interval for activity of this shift.</p></dd><dt class="param">receiptsGrandTotalBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">receiptsGrandTotalNonBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">receiptsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">transactionsGrandTotal</dt><dd class="cmt"><p>Cumulative total of transacted amounts during this shift.
-       Values are obtained from transaction:</p></dd><dt class="param">transactionsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
-       Values are obtained from Transaction attributes:</p></dd></dl><div class="toggleContainer block">
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = true.</p></dd><dt class="param">receiptsGrandTotalNonBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = false.</p></dd><dt class="param">receiptsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptRounding).</p></dd><dt class="param">transactionsGrandTotal</dt><dd class="cmt"><p>Cumulative total of transacted amounts during this shift.
+       Values are obtained from transaction:
+       &equals;sum('Transaction.transactionAmount'). It also has to be reconciled against transaction summary:
+       &equals;sum('TransactionSummary.transactionsTotal').</p></dd><dt class="param">transactionsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
+       Values are obtained from Transaction attributes:
+       &equals;sum(Transaction.transactionRounding).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,11 +143,17 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">activityInterval</dt><dd class="cmt"><p>Interval for activity of this shift.</p></dd><dt class="param">receiptsGrandTotalBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">receiptsGrandTotalNonBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">receiptsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
-       Values are obtained from Receipt attributes:</p></dd><dt class="param">transactionsGrandTotal</dt><dd class="cmt"><p>Cumulative total of transacted amounts during this shift.
-       Values are obtained from transaction:</p></dd><dt class="param">transactionsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
-       Values are obtained from Transaction attributes:</p></dd></dl></div>
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = true.</p></dd><dt class="param">receiptsGrandTotalNonBankable</dt><dd class="cmt"><p>Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = false.</p></dd><dt class="param">receiptsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptRounding).</p></dd><dt class="param">transactionsGrandTotal</dt><dd class="cmt"><p>Cumulative total of transacted amounts during this shift.
+       Values are obtained from transaction:
+       &equals;sum('Transaction.transactionAmount'). It also has to be reconciled against transaction summary:
+       &equals;sum('TransactionSummary.transactionsTotal').</p></dd><dt class="param">transactionsGrandTotalRounding</dt><dd class="cmt"><p>Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
+       Values are obtained from Transaction attributes:
+       &equals;sum(Transaction.transactionRounding).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1092,7 +1111,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).</p><div class="fullcomment"><div class="comment cmt"><p>Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
-       Values are obtained from Receipt attributes:</p></div></div>
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = true.</p></div></div>
     </li><li name="ch.ninecode.model.Shift#receiptsGrandTotalNonBankable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="receiptsGrandTotalNonBankable:Double"></a>
       <a id="receiptsGrandTotalNonBankable:Double"></a>
@@ -1110,7 +1130,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Total of amounts receipted during this shift that cannot be manually banked (card payments for example).</p><div class="fullcomment"><div class="comment cmt"><p>Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
-       Values are obtained from Receipt attributes:</p></div></div>
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = false.</p></div></div>
     </li><li name="ch.ninecode.model.Shift#receiptsGrandTotalRounding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="receiptsGrandTotalRounding:Double"></a>
       <a id="receiptsGrandTotalRounding:Double"></a>
@@ -1128,7 +1149,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.</p><div class="fullcomment"><div class="comment cmt"><p>Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
-       Values are obtained from Receipt attributes:</p></div></div>
+       Values are obtained from Receipt attributes:
+       &equals;sum(Receipt.receiptRounding).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1248,7 +1270,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Cumulative total of transacted amounts during this shift.</p><div class="fullcomment"><div class="comment cmt"><p>Cumulative total of transacted amounts during this shift.
-       Values are obtained from transaction:</p></div></div>
+       Values are obtained from transaction:
+       &equals;sum('Transaction.transactionAmount'). It also has to be reconciled against transaction summary:
+       &equals;sum('TransactionSummary.transactionsTotal').</p></div></div>
     </li><li name="ch.ninecode.model.Shift#transactionsGrandTotalRounding" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="transactionsGrandTotalRounding:Double"></a>
       <a id="transactionsGrandTotalRounding:Double"></a>
@@ -1266,7 +1290,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.</p><div class="fullcomment"><div class="comment cmt"><p>Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
-       Values are obtained from Transaction attributes:</p></div></div>
+       Values are obtained from Transaction attributes:
+       &equals;sum(Transaction.transactionRounding).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Pss1A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Pss1A</title>
-          <meta name="description" content="Pss1A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Pss1A" />
-          <meta name="keywords" content="Pss1A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Pss1A" />
+          <title>Pss1A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Pss1A</title>
+          <meta name="description" content="Pss1A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Pss1A" />
+          <meta name="keywords" content="Pss1A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Pss1A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,9 +52,9 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Single input power system stabilizer.</p><p>It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>Notch filter parameter (A1).</p></dd><dt class="param">a2</dt><dd class="cmt"><p>Notch filter parameter (A2).</p></dd><dt class="param">a3</dt><dd class="cmt"><p>Notch filter parameter (A3).</p></dd><dt class="param">a4</dt><dd class="cmt"><p>Notch filter parameter (A4).</p></dd><dt class="param">a5</dt><dd class="cmt"><p>Notch filter parameter (A5).</p></dd><dt class="param">a6</dt><dd class="cmt"><p>Notch filter parameter (A6).</p></dd><dt class="param">a7</dt><dd class="cmt"><p>Notch filter parameter (A7).</p></dd><dt class="param">a8</dt><dd class="cmt"><p>Notch filter parameter (A8).</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Selector (Kd).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>1</sub></i>).</p></dd><dt class="param">a2</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>2</sub></i>).</p></dd><dt class="param">a3</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>3</sub></i>).</p></dd><dt class="param">a4</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>4</sub></i>).</p></dd><dt class="param">a5</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>5</sub></i>).</p></dd><dt class="param">a6</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>6</sub></i>).</p></dd><dt class="param">a7</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>7</sub></i>).</p></dd><dt class="param">a8</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>8</sub></i>).</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Selector (<i>Kd</i>).
        true = e<sup>-sTdelay</sup> used
-       false = e<sup>-sTdelay</sup> not used.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (Ks).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (T6).</p></dd><dt class="param">tdelay</dt><dd class="cmt"><p>Time constant (Tdelay).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (Vcl).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (Vcu).</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (Vrmax).</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (Vrmin).</p></dd></dl><div class="toggleContainer block">
+       false = e<sup>-sTdelay</sup> not used.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (<i>K</i><i><sub>s</sub></i>).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></dd><dt class="param">tdelay</dt><dd class="cmt"><p>Time constant (<i>Tdelay</i>) (&gt;= 0).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (<i>Vcl</i>).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (<i>Vcu</i>).</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,9 +126,9 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>Notch filter parameter (A1).</p></dd><dt class="param">a2</dt><dd class="cmt"><p>Notch filter parameter (A2).</p></dd><dt class="param">a3</dt><dd class="cmt"><p>Notch filter parameter (A3).</p></dd><dt class="param">a4</dt><dd class="cmt"><p>Notch filter parameter (A4).</p></dd><dt class="param">a5</dt><dd class="cmt"><p>Notch filter parameter (A5).</p></dd><dt class="param">a6</dt><dd class="cmt"><p>Notch filter parameter (A6).</p></dd><dt class="param">a7</dt><dd class="cmt"><p>Notch filter parameter (A7).</p></dd><dt class="param">a8</dt><dd class="cmt"><p>Notch filter parameter (A8).</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Selector (Kd).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a1</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>1</sub></i>).</p></dd><dt class="param">a2</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>2</sub></i>).</p></dd><dt class="param">a3</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>3</sub></i>).</p></dd><dt class="param">a4</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>4</sub></i>).</p></dd><dt class="param">a5</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>5</sub></i>).</p></dd><dt class="param">a6</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>6</sub></i>).</p></dd><dt class="param">a7</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>7</sub></i>).</p></dd><dt class="param">a8</dt><dd class="cmt"><p>Notch filter parameter (<i>A</i><i><sub>8</sub></i>).</p></dd><dt class="param">inputSignalType</dt><dd class="cmt"><p>Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Selector (<i>Kd</i>).
        true = e<sup>-sTdelay</sup> used
-       false = e<sup>-sTdelay</sup> not used.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (Ks).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (T1).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (T2).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (T5).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (T6).</p></dd><dt class="param">tdelay</dt><dd class="cmt"><p>Time constant (Tdelay).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (Vcl).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (Vcu).</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (Vrmax).</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (Vrmin).</p></dd></dl></div>
+       false = e<sup>-sTdelay</sup> not used.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Stabilizer gain (<i>K</i><i><sub>s</sub></i>).</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></dd><dt class="param">t2</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></dd><dt class="param">tdelay</dt><dd class="cmt"><p>Time constant (<i>Tdelay</i>) (&gt;= 0).</p></dd><dt class="param">vcl</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (<i>Vcl</i>).</p></dd><dt class="param">vcu</dt><dd class="cmt"><p>Stabilizer input cutoff threshold (<i>Vcu</i>).</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -207,7 +207,7 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss1A#a1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss1A#a1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a1:Double"></a>
       <a id="a1:Double"></a>
       <h4 class="signature">
@@ -223,8 +223,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A1).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>1</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a2:Double"></a>
       <a id="a2:Double"></a>
       <h4 class="signature">
@@ -240,8 +240,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A2).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>2</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a3:Double"></a>
       <a id="a3:Double"></a>
       <h4 class="signature">
@@ -257,8 +257,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A3).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>3</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>3</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a4:Double"></a>
       <a id="a4:Double"></a>
       <h4 class="signature">
@@ -274,8 +274,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A4).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>4</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>4</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a5:Double"></a>
       <a id="a5:Double"></a>
       <h4 class="signature">
@@ -291,8 +291,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A5).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>5</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>5</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a6:Double"></a>
       <a id="a6:Double"></a>
       <h4 class="signature">
@@ -308,8 +308,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A6).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a7" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>6</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>6</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a7:Double"></a>
       <a id="a7:Double"></a>
       <h4 class="signature">
@@ -325,8 +325,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A7).</p>
-    </li><li name="ch.ninecode.model.Pss1A#a8" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>7</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>7</sub></i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#a8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a8:Double"></a>
       <a id="a8:Double"></a>
       <h4 class="signature">
@@ -342,7 +342,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Notch filter parameter (A8).</p>
+      <p class="shortcomment cmt">Notch filter parameter (<i>A</i><i><sub>8</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Notch filter parameter (<i>A</i><i><sub>8</sub></i>).</p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -1032,7 +1032,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of input signal.</p>
+      <p class="shortcomment cmt">Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1083,10 +1083,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Selector (Kd).</p><div class="fullcomment"><div class="comment cmt"><p>Selector (Kd).
+      <p class="shortcomment cmt">Selector (<i>Kd</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Selector (<i>Kd</i>).
        true = e<sup>-sTdelay</sup> used
        false = e<sup>-sTdelay</sup> not used.</p></div></div>
-    </li><li name="ch.ninecode.model.Pss1A#ks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss1A#ks" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks:Double"></a>
       <a id="ks:Double"></a>
       <h4 class="signature">
@@ -1102,7 +1102,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer gain (Ks).</p>
+      <p class="shortcomment cmt">Stabilizer gain (<i>K</i><i><sub>s</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer gain (<i>K</i><i><sub>s</sub></i>).</p></div></div>
     </li><li name="ch.ninecode.model.Pss1A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1309,7 +1309,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss1A#t1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss1A#t1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t1:Double"></a>
       <a id="t1:Double"></a>
       <h4 class="signature">
@@ -1325,8 +1325,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T1).</p>
-    </li><li name="ch.ninecode.model.Pss1A#t2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#t2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t2:Double"></a>
       <a id="t2:Double"></a>
       <h4 class="signature">
@@ -1342,8 +1342,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T2).</p>
-    </li><li name="ch.ninecode.model.Pss1A#t3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
       <h4 class="signature">
@@ -1359,8 +1359,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T3).</p>
-    </li><li name="ch.ninecode.model.Pss1A#t4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
       <h4 class="signature">
@@ -1376,8 +1376,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T4).</p>
-    </li><li name="ch.ninecode.model.Pss1A#t5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
       <h4 class="signature">
@@ -1393,8 +1393,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Washout time constant (T5).</p>
-    </li><li name="ch.ninecode.model.Pss1A#t6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
       <h4 class="signature">
@@ -1410,8 +1410,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Transducer time constant (T6).</p>
-    </li><li name="ch.ninecode.model.Pss1A#tdelay" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#tdelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tdelay:Double"></a>
       <a id="tdelay:Double"></a>
       <h4 class="signature">
@@ -1427,7 +1427,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tdelay).</p>
+      <p class="shortcomment cmt">Time constant (<i>Tdelay</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tdelay</i>) (&gt;= 0).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1462,7 +1462,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.Pss1A#vcl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.Pss1A#vcl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vcl:Double"></a>
       <a id="vcl:Double"></a>
       <h4 class="signature">
@@ -1478,8 +1478,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer input cutoff threshold (Vcl).</p>
-    </li><li name="ch.ninecode.model.Pss1A#vcu" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Stabilizer input cutoff threshold (<i>Vcl</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer input cutoff threshold (<i>Vcl</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#vcu" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vcu:Double"></a>
       <a id="vcu:Double"></a>
       <h4 class="signature">
@@ -1495,8 +1495,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer input cutoff threshold (Vcu).</p>
-    </li><li name="ch.ninecode.model.Pss1A#vrmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Stabilizer input cutoff threshold (<i>Vcu</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer input cutoff threshold (<i>Vcu</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
       <h4 class="signature">
@@ -1512,8 +1512,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum stabilizer output (Vrmax).</p>
-    </li><li name="ch.ninecode.model.Pss1A#vrmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1A#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
       <h4 class="signature">
@@ -1529,7 +1529,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum stabilizer output (Vrmin).</p>
+      <p class="shortcomment cmt">Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

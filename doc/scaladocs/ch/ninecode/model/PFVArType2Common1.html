@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PFVArType2Common1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PFVArType2Common1</title>
-          <meta name="description" content="PFVArType2Common1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PFVArType2Common1" />
-          <meta name="keywords" content="PFVArType2Common1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PFVArType2Common1" />
+          <title>PFVArType2Common1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PFVArType2Common1</title>
+          <meta name="description" content="PFVArType2Common1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PFVArType2Common1" />
+          <meta name="keywords" content="PFVArType2Common1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PFVArType2Common1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,11 +51,12 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Power factor / Reactive power regulator.</p><p>This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType2Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType2Dynamics">PFVArControllerType2Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">j</dt><dd class="cmt"><p>Selector (J).
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Power factor / reactive power regulator.</p><p>This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
+[Footnote: Basler SCP-250 is an example of a suitable product available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of this product.]
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType2Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType2Dynamics">PFVArControllerType2Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">j</dt><dd class="cmt"><p>Selector (<i>J</i>).
        true = control mode for reactive power
-       false = control mode for power factor.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Reset gain (Ki).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (Kp).</p></dd><dt class="param">max</dt><dd class="cmt"><p>Output limit (max).</p></dd><dt class="param">ref</dt><dd class="cmt"><p>Reference value of reactive power or power factor (Ref).
-       The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></dd></dl><div class="toggleContainer block">
+       false = control mode for power factor.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Reset gain (<i>Ki</i>).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (<i>Kp</i>).</p></dd><dt class="param">max</dt><dd class="cmt"><p>Output limit (<i>max</i>).</p></dd><dt class="param">ref</dt><dd class="cmt"><p>Reference value of reactive power or power factor (<i>Ref</i>).
+       The reference value is initialised by this model. This initialisation can override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -127,10 +128,10 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType2Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType2Dynamics">PFVArControllerType2Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">j</dt><dd class="cmt"><p>Selector (J).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType2Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType2Dynamics">PFVArControllerType2Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">j</dt><dd class="cmt"><p>Selector (<i>J</i>).
        true = control mode for reactive power
-       false = control mode for power factor.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Reset gain (Ki).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (Kp).</p></dd><dt class="param">max</dt><dd class="cmt"><p>Output limit (max).</p></dd><dt class="param">ref</dt><dd class="cmt"><p>Reference value of reactive power or power factor (Ref).
-       The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></dd></dl></div>
+       false = control mode for power factor.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Reset gain (<i>Ki</i>).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Proportional gain (<i>Kp</i>).</p></dd><dt class="param">max</dt><dd class="cmt"><p>Output limit (<i>max</i>).</p></dd><dt class="param">ref</dt><dd class="cmt"><p>Reference value of reactive power or power factor (<i>Ref</i>).
+       The reference value is initialised by this model. This initialisation can override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -932,10 +933,10 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Selector (J).</p><div class="fullcomment"><div class="comment cmt"><p>Selector (J).
+      <p class="shortcomment cmt">Selector (<i>J</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Selector (<i>J</i>).
        true = control mode for reactive power
        false = control mode for power factor.</p></div></div>
-    </li><li name="ch.ninecode.model.PFVArType2Common1#ki" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PFVArType2Common1#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
       <h4 class="signature">
@@ -951,8 +952,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reset gain (Ki).</p>
-    </li><li name="ch.ninecode.model.PFVArType2Common1#kp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Reset gain (<i>Ki</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reset gain (<i>Ki</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.PFVArType2Common1#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
       <h4 class="signature">
@@ -968,7 +969,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Proportional gain (Kp).</p>
+      <p class="shortcomment cmt">Proportional gain (<i>Kp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Proportional gain (<i>Kp</i>).</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType2Common1#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1005,7 +1006,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Is a field present predicate.</p><div class="fullcomment"><div class="comment cmt"><p>Is a field present predicate.</p><p>Determines if the field at the given position was encountered while parsing.
 </p></div><dl class="paramcmts block"><dt class="param">position</dt><dd class="cmt"><p>the field position in the fields array</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the field was parsed, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.PFVArType2Common1#max" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PFVArType2Common1#max" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="max:Double"></a>
       <a id="max:Double"></a>
       <h4 class="signature">
@@ -1021,7 +1022,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Output limit (max).</p>
+      <p class="shortcomment cmt">Output limit (<i>max</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Output limit (<i>max</i>).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
       <a id="mkString(String,String,String):String"></a>
@@ -1140,8 +1141,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference value of reactive power or power factor (Ref).</p><div class="fullcomment"><div class="comment cmt"><p>Reference value of reactive power or power factor (Ref).
-       The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></div></div>
+      <p class="shortcomment cmt">Reference value of reactive power or power factor (<i>Ref</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reference value of reactive power or power factor (<i>Ref</i>).
+       The reference value is initialised by this model. This initialisation can override the value exchanged by this attribute to represent a plant operator's change of the reference setting.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>

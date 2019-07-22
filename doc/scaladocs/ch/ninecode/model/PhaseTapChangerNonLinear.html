@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PhaseTapChangerNonLinear - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PhaseTapChangerNonLinear</title>
-          <meta name="description" content="PhaseTapChangerNonLinear - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PhaseTapChangerNonLinear" />
-          <meta name="keywords" content="PhaseTapChangerNonLinear CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PhaseTapChangerNonLinear" />
+          <title>PhaseTapChangerNonLinear - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PhaseTapChangerNonLinear</title>
+          <meta name="description" content="PhaseTapChangerNonLinear - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PhaseTapChangerNonLinear" />
+          <meta name="keywords" content="PhaseTapChangerNonLinear CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PhaseTapChangerNonLinear" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,10 +51,11 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The non-linear phase tap changer describes the non-linear behavior of a phase tap changer.</p><p>This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in the IEC 61970-301 document.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">voltageStepIncrement</dt><dd class="cmt"><p>The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The non-linear phase tap changer describes the non-linear behaviour of a phase tap changer.</p><p>This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in IEC 61970-301.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">voltageStepIncrement</dt><dd class="cmt"><p>The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.
+       When the increment is negative, the voltage decreases when the tap step increases.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
        The maximum reactance (xMax) appear at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></dd></dl><div class="toggleContainer block">
+       The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,9 +127,10 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">voltageStepIncrement</dt><dd class="cmt"><p>The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Reference to the superclass object.</p></dd><dt class="param">voltageStepIncrement</dt><dd class="cmt"><p>The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.
+       When the increment is negative, the voltage decreases when the tap step increases.</p></dd><dt class="param">xMax</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
        The maximum reactance (xMax) appear at the low and high tap positions.</p></dd><dt class="param">xMin</dt><dd class="cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></dd></dl></div>
+       The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1154,7 +1156,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.PhaseTapChangerNonLinear#voltageStepIncrement" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PhaseTapChangerNonLinear#voltageStepIncrement" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="voltageStepIncrement:Double"></a>
       <a id="voltageStepIncrement:Double"></a>
       <h4 class="signature">
@@ -1170,7 +1172,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.</p>
+      <p class="shortcomment cmt">The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.</p><div class="fullcomment"><div class="comment cmt"><p>The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.
+       When the increment is negative, the voltage decreases when the tap step increases.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1275,7 +1278,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">The reactance depend on the tap position according to a &quot;u&quot; shaped curve.</p><div class="fullcomment"><div class="comment cmt"><p>The reactance depend on the tap position according to a &quot;u&quot; shaped curve.
-       The minimum reactance (xMin) appear at the mid tap position.</p></div></div>
+       The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.</p></div></div>
     </li></ol>
             </div>
 

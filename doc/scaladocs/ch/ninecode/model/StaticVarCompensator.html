@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>StaticVarCompensator - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.StaticVarCompensator</title>
-          <meta name="description" content="StaticVarCompensator - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.StaticVarCompensator" />
-          <meta name="keywords" content="StaticVarCompensator CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.StaticVarCompensator" />
+          <title>StaticVarCompensator - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.StaticVarCompensator</title>
+          <meta name="description" content="StaticVarCompensator - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.StaticVarCompensator" />
+          <meta name="keywords" content="StaticVarCompensator CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.StaticVarCompensator" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,17 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">StaticVarCompensator</span><span class="params">(<span name="sup">sup: <a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a></span>, <span name="capacitiveRating">capacitiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="inductiveRating">inductiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="q">q: <span class="extype" name="scala.Double">Double</span></span>, <span name="sVCControlMode">sVCControlMode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="slope">slope: <span class="extype" name="scala.Double">Double</span></span>, <span name="voltageSetPoint">voltageSetPoint: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">StaticVarCompensator</span><span class="params">(<span name="sup">sup: <a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a></span>, <span name="capacitiveRating">capacitiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="inductiveRating">inductiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="q">q: <span class="extype" name="scala.Double">Double</span></span>, <span name="sVCControlMode">sVCControlMode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="slope">slope: <span class="extype" name="scala.Double">Double</span></span>, <span name="voltageSetPoint">voltageSetPoint: <span class="extype" name="scala.Double">Double</span></span>, <span name="StaticVarCompensatorDynamics">StaticVarCompensatorDynamics: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A facility for providing variable and controllable shunt reactive power.</p><p>The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> Reference to the superclass object.</p></dd><dt class="param">capacitiveRating</dt><dd class="cmt"><p>Maximum available capacitive reactance.</p></dd><dt class="param">inductiveRating</dt><dd class="cmt"><p>Maximum available inductive reactance.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power injection.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">sVCControlMode</dt><dd class="cmt"><p>SVC control mode.</p></dd><dt class="param">slope</dt><dd class="cmt"><p>The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.</p></dd><dt class="param">voltageSetPoint</dt><dd class="cmt"><p>The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
-       When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A facility for providing variable and controllable shunt reactive power.</p><p>The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.</p><p>The SVC may operate in fixed MVar output mode or in voltage control mode. When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> Reference to the superclass object.</p></dd><dt class="param">capacitiveRating</dt><dd class="cmt"><p>Capacitive reactance at maximum capacitive reactive power.
+       Shall always be positive.</p></dd><dt class="param">inductiveRating</dt><dd class="cmt"><p>Inductive reactance at maximum inductive reactive power.
+       Shall always be negative.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power injection.
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution.</p></dd><dt class="param">sVCControlMode</dt><dd class="cmt"><p>SVC control mode.</p></dd><dt class="param">slope</dt><dd class="cmt"><p>The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.</p></dd><dt class="param">voltageSetPoint</dt><dd class="cmt"><p>The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
+       When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.</p></dd><dt class="param">StaticVarCompensatorDynamics</dt><dd class="cmt"><p><a href="StaticVarCompensatorDynamics.html" class="extype" name="ch.ninecode.model.StaticVarCompensatorDynamics">StaticVarCompensatorDynamics</a> Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +114,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.StaticVarCompensator#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegulatingCondEq,capacitiveRating:Double,inductiveRating:Double,q:Double,sVCControlMode:String,slope:Double,voltageSetPoint:Double):ch.ninecode.model.StaticVarCompensator"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegulatingCondEq,capacitiveRating:Double,inductiveRating:Double,q:Double,sVCControlMode:String,slope:Double,voltageSetPoint:Double,StaticVarCompensatorDynamics:String):ch.ninecode.model.StaticVarCompensator"></a>
       <a id="&lt;init&gt;:StaticVarCompensator"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +122,19 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">StaticVarCompensator</span><span class="params">(<span name="sup">sup: <a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a></span>, <span name="capacitiveRating">capacitiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="inductiveRating">inductiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="q">q: <span class="extype" name="scala.Double">Double</span></span>, <span name="sVCControlMode">sVCControlMode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="slope">slope: <span class="extype" name="scala.Double">Double</span></span>, <span name="voltageSetPoint">voltageSetPoint: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">StaticVarCompensator</span><span class="params">(<span name="sup">sup: <a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a></span>, <span name="capacitiveRating">capacitiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="inductiveRating">inductiveRating: <span class="extype" name="scala.Double">Double</span></span>, <span name="q">q: <span class="extype" name="scala.Double">Double</span></span>, <span name="sVCControlMode">sVCControlMode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="slope">slope: <span class="extype" name="scala.Double">Double</span></span>, <span name="voltageSetPoint">voltageSetPoint: <span class="extype" name="scala.Double">Double</span></span>, <span name="StaticVarCompensatorDynamics">StaticVarCompensatorDynamics: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.StaticVarCompensator@&lt;init&gt;(sup:ch.ninecode.model.RegulatingCondEq,capacitiveRating:Double,inductiveRating:Double,q:Double,sVCControlMode:String,slope:Double,voltageSetPoint:Double):ch.ninecode.model.StaticVarCompensator" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.StaticVarCompensator@&lt;init&gt;(sup:ch.ninecode.model.RegulatingCondEq,capacitiveRating:Double,inductiveRating:Double,q:Double,sVCControlMode:String,slope:Double,voltageSetPoint:Double,StaticVarCompensatorDynamics:String):ch.ninecode.model.StaticVarCompensator" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> Reference to the superclass object.</p></dd><dt class="param">capacitiveRating</dt><dd class="cmt"><p>Maximum available capacitive reactance.</p></dd><dt class="param">inductiveRating</dt><dd class="cmt"><p>Maximum available inductive reactance.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power injection.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">sVCControlMode</dt><dd class="cmt"><p>SVC control mode.</p></dd><dt class="param">slope</dt><dd class="cmt"><p>The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.</p></dd><dt class="param">voltageSetPoint</dt><dd class="cmt"><p>The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
-       When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> Reference to the superclass object.</p></dd><dt class="param">capacitiveRating</dt><dd class="cmt"><p>Capacitive reactance at maximum capacitive reactive power.
+       Shall always be positive.</p></dd><dt class="param">inductiveRating</dt><dd class="cmt"><p>Inductive reactance at maximum inductive reactive power.
+       Shall always be negative.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power injection.
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution.</p></dd><dt class="param">sVCControlMode</dt><dd class="cmt"><p>SVC control mode.</p></dd><dt class="param">slope</dt><dd class="cmt"><p>The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.</p></dd><dt class="param">voltageSetPoint</dt><dd class="cmt"><p>The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
+       When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.</p></dd><dt class="param">StaticVarCompensatorDynamics</dt><dd class="cmt"><p><a href="StaticVarCompensatorDynamics.html" class="extype" name="ch.ninecode.model.StaticVarCompensatorDynamics">StaticVarCompensatorDynamics</a> Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -207,6 +213,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.StaticVarCompensator#StaticVarCompensatorDynamics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StaticVarCompensatorDynamics:String"></a>
+      <a id="StaticVarCompensatorDynamics:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">StaticVarCompensatorDynamics</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.StaticVarCompensator@StaticVarCompensatorDynamics:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="StaticVarCompensatorDynamics.html" class="extype" name="ch.ninecode.model.StaticVarCompensatorDynamics">StaticVarCompensatorDynamics</a> Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -296,7 +319,7 @@
 Field order is specified by the fields array.</p><p>For classes constructed manually, we initially fill this in with the worst case scenario.
 ToDo: this won't work for classes with more than 96 fields (so far none).
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.StaticVarCompensator#capacitiveRating" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.StaticVarCompensator#capacitiveRating" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="capacitiveRating:Double"></a>
       <a id="capacitiveRating:Double"></a>
       <h4 class="signature">
@@ -312,7 +335,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum available capacitive reactance.</p>
+      <p class="shortcomment cmt">Capacitive reactance at maximum capacitive reactive power.</p><div class="fullcomment"><div class="comment cmt"><p>Capacitive reactance at maximum capacitive reactive power.
+       Shall always be positive.</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -897,7 +921,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return the unique ID for the object, the mRID for IdentifiedObject derived classes.</p><div class="fullcomment"><div class="comment cmt"><p>Return the unique ID for the object, the mRID for IdentifiedObject derived classes.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The object ID.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.StaticVarCompensator#inductiveRating" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.StaticVarCompensator#inductiveRating" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="inductiveRating:Double"></a>
       <a id="inductiveRating:Double"></a>
       <h4 class="signature">
@@ -913,7 +937,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum available inductive reactance.</p>
+      <p class="shortcomment cmt">Inductive reactance at maximum inductive reactive power.</p><div class="fullcomment"><div class="comment cmt"><p>Inductive reactance at maximum inductive reactive power.
+       Shall always be negative.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -1103,7 +1128,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Reactive power injection.</p><div class="fullcomment"><div class="comment cmt"><p>Reactive power injection.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></div></div>
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution.</p></div></div>
     </li><li name="ch.ninecode.model.StaticVarCompensator#sVCControlMode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="sVCControlMode:String"></a>
       <a id="sVCControlMode:String"></a>

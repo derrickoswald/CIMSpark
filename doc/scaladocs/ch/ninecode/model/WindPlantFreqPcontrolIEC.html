@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindPlantFreqPcontrolIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindPlantFreqPcontrolIEC</title>
-          <meta name="description" content="WindPlantFreqPcontrolIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindPlantFreqPcontrolIEC" />
-          <meta name="keywords" content="WindPlantFreqPcontrolIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindPlantFreqPcontrolIEC" />
+          <title>WindPlantFreqPcontrolIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindPlantFreqPcontrolIEC</title>
+          <meta name="description" content="WindPlantFreqPcontrolIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindPlantFreqPcontrolIEC" />
+          <meta name="keywords" content="WindPlantFreqPcontrolIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindPlantFreqPcontrolIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,23 +51,23 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Frequency and active power controller model.</p><p>Reference: IEC Standard 61400-27-1 Annex D.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dprefmax</dt><dd class="cmt"><p>Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">dprefmin</dt><dd class="cmt"><p>Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">dpwprefmax</dt><dd class="cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">dpwprefmin</dt><dd class="cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwpp</dt><dd class="cmt"><p>Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwppmax</dt><dd class="cmt"><p>Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwppmin</dt><dd class="cmt"><p>Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kpwpp</dt><dd class="cmt"><p>Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kwppref</dt><dd class="cmt"><p>Power reference gain (<i>K</i><sub>WPpref</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">prefmax</dt><dd class="cmt"><p>Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">prefmin</dt><dd class="cmt"><p>Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">tpft</dt><dd class="cmt"><p>Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">tpfv</dt><dd class="cmt"><p>Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">twpffiltp</dt><dd class="cmt"><p>Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">twppfiltp</dt><dd class="cmt"><p>Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this frequency and active power wind plant model.</p></dd><dt class="param">WindPlantIEC</dt><dd class="cmt"><p><a href="WindPlantIEC.html" class="extype" name="ch.ninecode.model.WindPlantIEC">WindPlantIEC</a> Wind plant model with which this wind plant frequency and active power control is associated.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Frequency and active power controller model.</p><p>Reference: IEC 61400-27-1:2015, Annex D.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dprefmax</dt><dd class="cmt"><p>Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
+       It is a case-dependent parameter.</p></dd><dt class="param">dprefmin</dt><dd class="cmt"><p>Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">dpwprefmax</dt><dd class="cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">dpwprefmin</dt><dd class="cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwpp</dt><dd class="cmt"><p>Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwppmax</dt><dd class="cmt"><p>Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwppmin</dt><dd class="cmt"><p>Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">kpwpp</dt><dd class="cmt"><p>Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kwppref</dt><dd class="cmt"><p>Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">prefmax</dt><dd class="cmt"><p>Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">prefmin</dt><dd class="cmt"><p>Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">tpft</dt><dd class="cmt"><p>Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">tpfv</dt><dd class="cmt"><p>Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">twpffiltp</dt><dd class="cmt"><p>Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">twppfiltp</dt><dd class="cmt"><p>Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this frequency and active power wind plant model.</p></dd><dt class="param">WindPlantIEC</dt><dd class="cmt"><p><a href="WindPlantIEC.html" class="extype" name="ch.ninecode.model.WindPlantIEC">WindPlantIEC</a> Wind plant model with which this wind plant frequency and active power control is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -139,22 +139,22 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dprefmax</dt><dd class="cmt"><p>Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
-       It is case dependent parameter.</p></dd><dt class="param">dprefmin</dt><dd class="cmt"><p>Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">dpwprefmax</dt><dd class="cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">dpwprefmin</dt><dd class="cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwpp</dt><dd class="cmt"><p>Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwppmax</dt><dd class="cmt"><p>Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kiwppmin</dt><dd class="cmt"><p>Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kpwpp</dt><dd class="cmt"><p>Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">kwppref</dt><dd class="cmt"><p>Power reference gain (<i>K</i><sub>WPpref</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">prefmax</dt><dd class="cmt"><p>Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">prefmin</dt><dd class="cmt"><p>Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">tpft</dt><dd class="cmt"><p>Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">tpfv</dt><dd class="cmt"><p>Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">twpffiltp</dt><dd class="cmt"><p>Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">twppfiltp</dt><dd class="cmt"><p>Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
-       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this frequency and active power wind plant model.</p></dd><dt class="param">WindPlantIEC</dt><dd class="cmt"><p><a href="WindPlantIEC.html" class="extype" name="ch.ninecode.model.WindPlantIEC">WindPlantIEC</a> Wind plant model with which this wind plant frequency and active power control is associated.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dprefmax</dt><dd class="cmt"><p>Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
+       It is a case-dependent parameter.</p></dd><dt class="param">dprefmin</dt><dd class="cmt"><p>Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">dpwprefmax</dt><dd class="cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">dpwprefmin</dt><dd class="cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwpp</dt><dd class="cmt"><p>Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwppmax</dt><dd class="cmt"><p>Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">kiwppmin</dt><dd class="cmt"><p>Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">kpwpp</dt><dd class="cmt"><p>Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">kwppref</dt><dd class="cmt"><p>Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
+       It is a project-dependent parameter.</p></dd><dt class="param">prefmax</dt><dd class="cmt"><p>Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
+       It is a project-dependent parameter.</p></dd><dt class="param">prefmin</dt><dd class="cmt"><p>Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
+       It is a project-dependent parameter.</p></dd><dt class="param">tpft</dt><dd class="cmt"><p>Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">tpfv</dt><dd class="cmt"><p>Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">twpffiltp</dt><dd class="cmt"><p>Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">twppfiltp</dt><dd class="cmt"><p>Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this frequency and active power wind plant model.</p></dd><dt class="param">WindPlantIEC</dt><dd class="cmt"><p><a href="WindPlantIEC.html" class="extype" name="ch.ninecode.model.WindPlantIEC">WindPlantIEC</a> Wind plant model with which this wind plant frequency and active power control is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -413,8 +413,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).</sub></i></sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
-       It is case dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
+       It is a case-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#dprefmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dprefmin:Double"></a>
       <a id="dprefmin:Double"></a>
@@ -431,8 +431,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).</sub></i></sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#dpwprefmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dpwprefmax:Double"></a>
       <a id="dpwprefmax:Double"></a>
@@ -449,8 +449,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#dpwprefmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dpwprefmin:Double"></a>
       <a id="dpwprefmin:Double"></a>
@@ -467,8 +467,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1062,8 +1062,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#kiwppmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kiwppmax:Double"></a>
       <a id="kiwppmax:Double"></a>
@@ -1080,8 +1080,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#kiwppmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kiwppmin:Double"></a>
       <a id="kiwppmin:Double"></a>
@@ -1098,8 +1098,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#kpwpp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpwpp:Double"></a>
       <a id="kpwpp:Double"></a>
@@ -1116,8 +1116,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#kwppref" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kwppref:Double"></a>
       <a id="kwppref:Double"></a>
@@ -1134,8 +1134,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power reference gain (<i>K</i><sub>WPpref</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Power reference gain (<i>K</i><sub>WPpref</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1290,8 +1290,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).</sub></i></sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#prefmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="prefmin:Double"></a>
       <a id="prefmin:Double"></a>
@@ -1308,8 +1308,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).</sub></i></sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1428,8 +1428,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#tpfv" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tpfv:Double"></a>
       <a id="tpfv:Double"></a>
@@ -1446,8 +1446,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#twpffiltp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="twpffiltp:Double"></a>
       <a id="twpffiltp:Double"></a>
@@ -1464,8 +1464,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindPlantFreqPcontrolIEC#twppfiltp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="twppfiltp:Double"></a>
       <a id="twppfiltp:Double"></a>
@@ -1482,8 +1482,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
-       It is project dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
+       It is a project-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

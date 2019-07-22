@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SecurityConstraintSum - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.SecurityConstraintSum</title>
-          <meta name="description" content="SecurityConstraintSum - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.SecurityConstraintSum" />
-          <meta name="keywords" content="SecurityConstraintSum CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.SecurityConstraintSum" />
+          <title>SecurityConstraintSum - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.SecurityConstraintSum</title>
+          <meta name="description" content="SecurityConstraintSum - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.SecurityConstraintSum" />
+          <meta name="keywords" content="SecurityConstraintSum CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.SecurityConstraintSum" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,7 +51,15 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.</p><p>A constraint has N (&gt;=1) constraint terms. A term is represented by an
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.</p><p>A constraint has N (&gt;=1) constraint terms. A term is represented by an instance of TerminalConstraintTerm.
+The constraint expression is:
+minValue &lt;= c1*x1 + c2*x2 + .... cn*xn + k &lt;= maxValue
+where:
+- cn is ConstraintTerm.factor
+- xn is the flow at the terminal
+Flow into the associated equipment is positive for the purpose of ConnectivityNode NodeConstraintTerm.</p><p>k is SecurityConstraintsLinear.resourceMW.
+The units of k are assumed to be same as the units of the flows, xn.  The constants, cn, are dimensionless.
+With these conventions, cn and k are all positive for a typical constraint such as &quot;weighted sum of generation shall be less than limit&quot;. Furthermore, cn are all 1.0 for a case such as &quot;interface flow shall be less than limit&quot;, assuming the terminals are chosen on the importing side of the interface.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="MarketFactors.html" class="extype" name="ch.ninecode.model.MarketFactors">MarketFactors</a> Reference to the superclass object.</p></dd><dt class="param">BaseCaseConstraintLimit</dt><dd class="cmt"><p><a href="BaseCaseConstraintLimit.html" class="extype" name="ch.ninecode.model.BaseCaseConstraintLimit">BaseCaseConstraintLimit</a> <em>undocumented</em></p></dd><dt class="param">ConstraintTerms</dt><dd class="cmt"><p><a href="ConstraintTerm.html" class="extype" name="ch.ninecode.model.ConstraintTerm">ConstraintTerm</a> <em>undocumented</em></p></dd><dt class="param">ContingencyConstraintLimits</dt><dd class="cmt"><p><a href="ContingencyConstraintLimit.html" class="extype" name="ch.ninecode.model.ContingencyConstraintLimit">ContingencyConstraintLimit</a> <em>undocumented</em></p></dd><dt class="param">DefaultConstraintLimit</dt><dd class="cmt"><p><a href="DefaultConstraintLimit.html" class="extype" name="ch.ninecode.model.DefaultConstraintLimit">DefaultConstraintLimit</a> <em>undocumented</em></p></dd><dt class="param">RTO</dt><dd class="cmt"><p><a href="RTO.html" class="extype" name="ch.ninecode.model.RTO">RTO</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

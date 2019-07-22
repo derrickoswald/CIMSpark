@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>AuxiliaryAgreement - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.AuxiliaryAgreement</title>
-          <meta name="description" content="AuxiliaryAgreement - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.AuxiliaryAgreement" />
-          <meta name="keywords" content="AuxiliaryAgreement CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.AuxiliaryAgreement" />
+          <title>AuxiliaryAgreement - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.AuxiliaryAgreement</title>
+          <meta name="description" content="AuxiliaryAgreement - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.AuxiliaryAgreement" />
+          <meta name="keywords" content="AuxiliaryAgreement CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.AuxiliaryAgreement" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An ad-hoc auxiliary account agreement associated with a customer agreement, not part of the customer's account, but typically subject to formal agreement between customer and supplier (utility).</p><p>Typically this is used to collect revenue owed by the customer for other services or arrears accrued with the utility for other services. It is typically linked to a prepaid token purchase transaction, thus forcing the customer to make a payment towards settlement of the auxiliary account balance whenever the customer needs to purchase a prepaid token for electricity.
+The present status of the auxiliary agreement can be defined in the context of the utility's business rules, for example: enabled, disabled, pending, over recovered, under recovered, written off, etc.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Agreement.html" class="extype" name="ch.ninecode.model.Agreement">Agreement</a> Reference to the superclass object.</p></dd><dt class="param">arrearsInterest</dt><dd class="cmt"><p>The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.</p></dd><dt class="param">auxCycle</dt><dd class="cmt"><p>The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
        For example: on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc.</p></dd><dt class="param">auxPriorityCode</dt><dd class="cmt"><p>The coded priority indicating the priority that this auxiliary agreement has above other auxiliary agreements (associated with the same customer agreement) when it comes to competing for settlement from a payment transaction or token purchase.</p></dd><dt class="param">fixedAmount</dt><dd class="cmt"><p>The fixed amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement.
        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.</p></dd><dt class="param">minAmount</dt><dd class="cmt"><p>The minimum amount that has to be paid at any transaction towards settling this auxiliary agreement or reducing the balance.</p></dd><dt class="param">payCycle</dt><dd class="cmt"><p>The contractually expected payment frequency (by the customer).

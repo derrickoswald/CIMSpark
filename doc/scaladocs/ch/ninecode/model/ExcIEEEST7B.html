@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcIEEEST7B - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcIEEEST7B</title>
-          <meta name="description" content="ExcIEEEST7B - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcIEEEST7B" />
-          <meta name="keywords" content="ExcIEEEST7B CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcIEEEST7B" />
+          <title>ExcIEEEST7B - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcIEEEST7B</title>
+          <meta name="description" content="ExcIEEEST7B - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcIEEEST7B" />
+          <meta name="keywords" content="ExcIEEEST7B CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcIEEEST7B" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,23 +51,24 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type ST7B model.</p><p>This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from Type PSS1A, PSS2A, or PSS2B) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>High-value gate feedback gain (K<sub>H</sub>).
-       Typical Value 1.</p></dd><dt class="param">kia</dt><dd class="cmt"><p>Voltage regulator integral gain (K<sub>IA</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kl</dt><dd class="cmt"><p>Low-value gate feedback gain (K<sub>L</sub>).
-       Typical Value 1.</p></dd><dt class="param">kpa</dt><dd class="cmt"><p>Voltage regulator proportional gain (K<sub>PA</sub>).
-       Typical Value = 40.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input selector (OELin).
-       Typical Value = noOELinput.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B</sub>).
-       Typical Value 1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C</sub>).
-       Typical Value 1.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value 1.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
-       Typical Value 1.</p></dd><dt class="param">tia</dt><dd class="cmt"><p>Feedback time constant (T<sub>IA</sub>).
-       Typical Value = 3.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input selector (UELin).
-       Typical Value = noUELinput.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum voltage reference signal (V<sub>MAX</sub>).
-       Typical Value = 1.1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum voltage reference signal (V<sub>MIN</sub>).
-       Typical Value = 0.9.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.5.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type ST7B model.</p><p>This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows the introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from PSS) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
+Reference: IEEE 421.5-2005, 7.7.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kia</dt><dd class="cmt"><p>Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kl</dt><dd class="cmt"><p>Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kpa</dt><dd class="cmt"><p>Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
+       Typical value = 40.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input selector (<i>OELin</i>).
+       Typical value = noOELinput.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tia</dt><dd class="cmt"><p>Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input selector (<i>UELin</i>).
+       Typical value = noUELinput.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
+       Typical value = 1,1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
+       Typical value = 0,9.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,5.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -139,22 +140,22 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>High-value gate feedback gain (K<sub>H</sub>).
-       Typical Value 1.</p></dd><dt class="param">kia</dt><dd class="cmt"><p>Voltage regulator integral gain (K<sub>IA</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kl</dt><dd class="cmt"><p>Low-value gate feedback gain (K<sub>L</sub>).
-       Typical Value 1.</p></dd><dt class="param">kpa</dt><dd class="cmt"><p>Voltage regulator proportional gain (K<sub>PA</sub>).
-       Typical Value = 40.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input selector (OELin).
-       Typical Value = noOELinput.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B</sub>).
-       Typical Value 1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C</sub>).
-       Typical Value 1.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value 1.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
-       Typical Value 1.</p></dd><dt class="param">tia</dt><dd class="cmt"><p>Feedback time constant (T<sub>IA</sub>).
-       Typical Value = 3.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input selector (UELin).
-       Typical Value = noUELinput.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum voltage reference signal (V<sub>MAX</sub>).
-       Typical Value = 1.1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum voltage reference signal (V<sub>MIN</sub>).
-       Typical Value = 0.9.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.5.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kia</dt><dd class="cmt"><p>Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kl</dt><dd class="cmt"><p>Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">kpa</dt><dd class="cmt"><p>Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
+       Typical value = 40.</p></dd><dt class="param">oelin</dt><dd class="cmt"><p>OEL input selector (<i>OELin</i>).
+       Typical value = noOELinput.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tg</dt><dd class="cmt"><p>Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">tia</dt><dd class="cmt"><p>Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">uelin</dt><dd class="cmt"><p>UEL input selector (<i>UELin</i>).
+       Typical value = noUELinput.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
+       Typical value = 1,1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
+       Typical value = 0,9.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,5.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -956,8 +957,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">High-value gate feedback gain (K<sub>H</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>High-value gate feedback gain (K<sub>H</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#kia" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kia:Double"></a>
       <a id="kia:Double"></a>
@@ -974,8 +975,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator integral gain (K<sub>IA</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain (K<sub>IA</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#kl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kl:Double"></a>
       <a id="kl:Double"></a>
@@ -992,8 +993,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Low-value gate feedback gain (K<sub>L</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Low-value gate feedback gain (K<sub>L</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#kpa" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpa:Double"></a>
       <a id="kpa:Double"></a>
@@ -1010,8 +1011,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator proportional gain (K<sub>PA</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain (K<sub>PA</sub>).
-       Typical Value = 40.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
+       Typical value = 40.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1166,8 +1167,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL input selector (OELin).</p><div class="fullcomment"><div class="comment cmt"><p>OEL input selector (OELin).
-       Typical Value = noOELinput.</p></div></div>
+      <p class="shortcomment cmt">OEL input selector (<i>OELin</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>OEL input selector (<i>OELin</i>).
+       Typical value = noOELinput.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1252,8 +1253,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lag time constant (T<sub>B</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (T<sub>B</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
@@ -1270,8 +1271,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lead time constant (T<sub>C</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (T<sub>C</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#tf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tf:Double"></a>
       <a id="tf:Double"></a>
@@ -1288,8 +1289,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Excitation control system stabilizer time constant (T<sub>F</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer time constant (T<sub>F</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#tg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tg:Double"></a>
       <a id="tg:Double"></a>
@@ -1306,8 +1307,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
-       Typical Value 1.</p></div></div>
+      <p class="shortcomment cmt">Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#tia" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tia:Double"></a>
       <a id="tia:Double"></a>
@@ -1324,8 +1325,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Feedback time constant (T<sub>IA</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Feedback time constant (T<sub>IA</sub>).
-       Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
+       Typical value = 3.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1376,8 +1377,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL input selector (UELin).</p><div class="fullcomment"><div class="comment cmt"><p>UEL input selector (UELin).
-       Typical Value = noUELinput.</p></div></div>
+      <p class="shortcomment cmt">UEL input selector (<i>UELin</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>UEL input selector (<i>UELin</i>).
+       Typical value = noUELinput.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#vmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmax:Double"></a>
       <a id="vmax:Double"></a>
@@ -1394,8 +1395,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage reference signal (V<sub>MAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage reference signal (V<sub>MAX</sub>).
-       Typical Value = 1.1.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
+       Typical value = 1,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#vmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vmin:Double"></a>
       <a id="vmin:Double"></a>
@@ -1412,8 +1413,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage reference signal (V<sub>MIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage reference signal (V<sub>MIN</sub>).
-       Typical Value = 0.9.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
+       Typical value = 0,9.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1430,8 +1431,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (V<sub>RMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST7B#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1448,8 +1449,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (V<sub>RMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.5.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4,5.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

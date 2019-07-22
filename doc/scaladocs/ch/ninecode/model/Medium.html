@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Medium - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Medium</title>
-          <meta name="description" content="Medium - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Medium" />
-          <meta name="keywords" content="Medium CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Medium" />
+          <title>Medium - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Medium</title>
+          <meta name="description" content="Medium - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Medium" />
+          <meta name="keywords" content="Medium CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Medium" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Medium</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="volumeSpec">volumeSpec: <span class="extype" name="scala.Double">Double</span></span>, <span name="Assets">Assets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Specification">Specification: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Medium</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="volumeSpec">volumeSpec: <span class="extype" name="scala.Double">Double</span></span>, <span name="Asset">Asset: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Specification">Specification: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of this medium.</p></dd><dt class="param">volumeSpec</dt><dd class="cmt"><p>The volume of the medium specified for this application.
-       Note that the actual volume is a type of measurement associated witht the asset.</p></dd><dt class="param">Assets</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> <em>undocumented</em></p></dd><dt class="param">Specification</dt><dd class="cmt"><p><a href="Specification.html" class="extype" name="ch.ninecode.model.Specification">Specification</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       Note that the actual volume is a type of measurement associated witht the asset.</p></dd><dt class="param">Asset</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> Medium with which this asset is filled.</p></dd><dt class="param">Specification</dt><dd class="cmt"><p><a href="Specification.html" class="extype" name="ch.ninecode.model.Specification">Specification</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Medium#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,volumeSpec:Double,Assets:List[String],Specification:String):ch.ninecode.model.Medium"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,volumeSpec:Double,Asset:List[String],Specification:String):ch.ninecode.model.Medium"></a>
       <a id="&lt;init&gt;:Medium"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Medium</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="volumeSpec">volumeSpec: <span class="extype" name="scala.Double">Double</span></span>, <span name="Assets">Assets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Specification">Specification: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Medium</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="volumeSpec">volumeSpec: <span class="extype" name="scala.Double">Double</span></span>, <span name="Asset">Asset: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Specification">Specification: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Medium@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,volumeSpec:Double,Assets:List[String],Specification:String):ch.ninecode.model.Medium" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Medium@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,volumeSpec:Double,Asset:List[String],Specification:String):ch.ninecode.model.Medium" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of this medium.</p></dd><dt class="param">volumeSpec</dt><dd class="cmt"><p>The volume of the medium specified for this application.
-       Note that the actual volume is a type of measurement associated witht the asset.</p></dd><dt class="param">Assets</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> <em>undocumented</em></p></dd><dt class="param">Specification</dt><dd class="cmt"><p><a href="Specification.html" class="extype" name="ch.ninecode.model.Specification">Specification</a> <em>undocumented</em></p></dd></dl></div>
+       Note that the actual volume is a type of measurement associated witht the asset.</p></dd><dt class="param">Asset</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> Medium with which this asset is filled.</p></dd><dt class="param">Specification</dt><dd class="cmt"><p><a href="Specification.html" class="extype" name="ch.ninecode.model.Specification">Specification</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,23 +187,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.Medium#Assets" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Assets:List[String]"></a>
-      <a id="Assets:List[String]"></a>
+    </li><li name="ch.ninecode.model.Medium#Asset" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Asset:List[String]"></a>
+      <a id="Asset:List[String]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">Assets</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">Asset</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Medium@Assets:List[String]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Medium@Asset:List[String]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> <em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> Medium with which this asset is filled.</p>
     </li><li name="ch.ninecode.model.Medium#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>

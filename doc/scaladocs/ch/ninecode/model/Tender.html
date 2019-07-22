@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Tender - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Tender</title>
-          <meta name="description" content="Tender - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Tender" />
-          <meta name="keywords" content="Tender CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Tender" />
+          <title>Tender - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Tender</title>
+          <meta name="description" content="Tender - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Tender" />
+          <meta name="keywords" content="Tender CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Tender" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Tender is what is &quot;offered&quot; by the customer towards making a payment and is often more than the required payment (hence the need for 'change').</p><p>The payment is thus that part of the Tender that goes towards settlement of a particular transaction.
+Tender is modelled as an aggregation of Cheque and Card. Both these tender types can exist in a single tender bid thus 'accountHolderName' has to exist separately in each of Cheque and Card as each could have a different account holder name.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">amount</dt><dd class="cmt"><p>Amount tendered by customer.</p></dd><dt class="param">change</dt><dd class="cmt"><p>Difference between amount tendered by customer and the amount charged by point of sale.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of tender from customer.</p></dd><dt class="param">Card</dt><dd class="cmt"><p><a href="Card.html" class="extype" name="ch.ninecode.model.Card">Card</a> Card used to tender payment.</p></dd><dt class="param">Cheque</dt><dd class="cmt"><p><a href="Cheque.html" class="extype" name="ch.ninecode.model.Cheque">Cheque</a> Cheque used to tender payment.</p></dd><dt class="param">Receipt</dt><dd class="cmt"><p><a href="Receipt.html" class="extype" name="ch.ninecode.model.Receipt">Receipt</a> Receipt that recorded this receiving of a payment in the form of tenders.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PssSB4 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PssSB4</title>
-          <meta name="description" content="PssSB4 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PssSB4" />
-          <meta name="keywords" content="PssSB4 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PssSB4" />
+          <title>PssSB4 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PssSB4</title>
+          <meta name="description" content="PssSB4 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PssSB4" />
+          <meta name="keywords" content="PssSB4 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PssSB4" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,18 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Power sensitive stabilizer model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kx</dt><dd class="cmt"><p>Gain (Kx).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time constant (Ta).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time constant (Tb).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time constant (Tc).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (Td).</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant (Te).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant (Tt).</p></dd><dt class="param">tx1</dt><dd class="cmt"><p>Reset time constant (Tx1).</p></dd><dt class="param">tx2</dt><dd class="cmt"><p>Time constant (Tx2).</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (Vsmax).</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (Vsmin).</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kx</dt><dd class="cmt"><p>Gain (<i>Kx</i>).
+       Typical value = 2,7.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,37.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 0,37.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0,035.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>Td</i>) (&gt;= 0).
+       Typical value = 0,0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,0169.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant (<i>Tt</i>) (&gt;= 0).
+       Typical value = 0,18.</p></dd><dt class="param">tx1</dt><dd class="cmt"><p>Reset time constant (<i>Tx1</i>) (&gt;= 0).
+       Typical value = 0,035.</p></dd><dt class="param">tx2</dt><dd class="cmt"><p>Time constant (<i>Tx2</i>) (&gt;= 0).
+       Typical value = 5,0.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
+       Typical value = 0,062.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
+       Typical value = -0,062.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +135,18 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kx</dt><dd class="cmt"><p>Gain (Kx).</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time constant (Ta).</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time constant (Tb).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time constant (Tc).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (Td).</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant (Te).</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant (Tt).</p></dd><dt class="param">tx1</dt><dd class="cmt"><p>Reset time constant (Tx1).</p></dd><dt class="param">tx2</dt><dd class="cmt"><p>Time constant (Tx2).</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (Vsmax).</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (Vsmin).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kx</dt><dd class="cmt"><p>Gain (<i>Kx</i>).
+       Typical value = 2,7.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,37.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 0,37.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0,035.</p></dd><dt class="param">td</dt><dd class="cmt"><p>Time constant (<i>Td</i>) (&gt;= 0).
+       Typical value = 0,0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Time constant (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,0169.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Time constant (<i>Tt</i>) (&gt;= 0).
+       Typical value = 0,18.</p></dd><dt class="param">tx1</dt><dd class="cmt"><p>Reset time constant (<i>Tx1</i>) (&gt;= 0).
+       Typical value = 0,035.</p></dd><dt class="param">tx2</dt><dd class="cmt"><p>Time constant (<i>Tx2</i>) (&gt;= 0).
+       Typical value = 5,0.</p></dd><dt class="param">vsmax</dt><dd class="cmt"><p>Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
+       Typical value = 0,062.</p></dd><dt class="param">vsmin</dt><dd class="cmt"><p>Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
+       Typical value = -0,062.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -910,7 +932,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.PssSB4#kx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PssSB4#kx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kx:Double"></a>
       <a id="kx:Double"></a>
       <h4 class="signature">
@@ -926,7 +948,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain (Kx).</p>
+      <p class="shortcomment cmt">Gain (<i>Kx</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain (<i>Kx</i>).
+       Typical value = 2,7.</p></div></div>
     </li><li name="ch.ninecode.model.PssSB4#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1133,7 +1156,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.PssSB4#ta" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PssSB4#ta" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ta:Double"></a>
       <a id="ta:Double"></a>
       <h4 class="signature">
@@ -1149,8 +1172,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Ta).</p>
-    </li><li name="ch.ninecode.model.PssSB4#tb" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Ta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,37.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
       <h4 class="signature">
@@ -1166,8 +1190,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tb).</p>
-    </li><li name="ch.ninecode.model.PssSB4#tc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Tb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 0,37.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
       <h4 class="signature">
@@ -1183,8 +1208,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tc).</p>
-    </li><li name="ch.ninecode.model.PssSB4#td" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 0,035.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#td" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="td:Double"></a>
       <a id="td:Double"></a>
       <h4 class="signature">
@@ -1200,8 +1226,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Td).</p>
-    </li><li name="ch.ninecode.model.PssSB4#te" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Td</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Td</i>) (&gt;= 0).
+       Typical value = 0,0.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
       <h4 class="signature">
@@ -1217,7 +1244,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Te).</p>
+      <p class="shortcomment cmt">Time constant (<i>Te</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Te</i>) (&gt;= 0).
+       Typical value = 0,0169.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1252,7 +1280,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.PssSB4#tt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.PssSB4#tt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tt:Double"></a>
       <a id="tt:Double"></a>
       <h4 class="signature">
@@ -1268,8 +1296,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tt).</p>
-    </li><li name="ch.ninecode.model.PssSB4#tx1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Tt</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tt</i>) (&gt;= 0).
+       Typical value = 0,18.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#tx1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx1:Double"></a>
       <a id="tx1:Double"></a>
       <h4 class="signature">
@@ -1285,8 +1314,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reset time constant (Tx1).</p>
-    </li><li name="ch.ninecode.model.PssSB4#tx2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Reset time constant (<i>Tx1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Reset time constant (<i>Tx1</i>) (&gt;= 0).
+       Typical value = 0,035.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#tx2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx2:Double"></a>
       <a id="tx2:Double"></a>
       <h4 class="signature">
@@ -1302,8 +1332,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Time constant (Tx2).</p>
-    </li><li name="ch.ninecode.model.PssSB4#vsmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Time constant (<i>Tx2</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Time constant (<i>Tx2</i>) (&gt;= 0).
+       Typical value = 5,0.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#vsmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmax:Double"></a>
       <a id="vsmax:Double"></a>
       <h4 class="signature">
@@ -1319,8 +1350,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (Vsmax).</p>
-    </li><li name="ch.ninecode.model.PssSB4#vsmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
+       Typical value = 0,062.</p></div></div>
+    </li><li name="ch.ninecode.model.PssSB4#vsmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmin:Double"></a>
       <a id="vsmin:Double"></a>
       <h4 class="signature">
@@ -1336,7 +1368,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Limiter (Vsmin).</p>
+      <p class="shortcomment cmt">Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
+       Typical value = -0,062.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

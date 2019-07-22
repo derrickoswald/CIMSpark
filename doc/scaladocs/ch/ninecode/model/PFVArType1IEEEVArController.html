@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PFVArType1IEEEVArController - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.PFVArType1IEEEVArController</title>
-          <meta name="description" content="PFVArType1IEEEVArController - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.PFVArType1IEEEVArController" />
-          <meta name="keywords" content="PFVArType1IEEEVArController CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.PFVArType1IEEEVArController" />
+          <title>PFVArType1IEEEVArController - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.PFVArType1IEEEVArController</title>
+          <meta name="description" content="PFVArType1IEEEVArController - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.PFVArType1IEEEVArController" />
+          <meta name="keywords" content="PFVArType1IEEEVArController CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.PFVArType1IEEEVArController" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,10 +51,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.</p><p>Reference: IEEE Standard 421.5-2005 Section 11.3.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">tvarc</dt><dd class="cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
-       Typical Value = 5.</p></dd><dt class="param">vvar</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).</p></dd><dt class="param">vvarcbw</dt><dd class="cmt"><p>Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
-       Typical Value = 0.02.</p></dd><dt class="param">vvarref</dt><dd class="cmt"><p>Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE VAR controller type 1 which operates by moving the voltage reference directly.</p><p>Reference: IEEE 421.5-2005, 11.3.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">tvarc</dt><dd class="cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vvar</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).</p></dd><dt class="param">vvarcbw</dt><dd class="cmt"><p>Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).
+       Typical value = 0,02.</p></dd><dt class="param">vvarref</dt><dd class="cmt"><p>Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,9 +126,9 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">tvarc</dt><dd class="cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
-       Typical Value = 5.</p></dd><dt class="param">vvar</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).</p></dd><dt class="param">vvarcbw</dt><dd class="cmt"><p>Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
-       Typical Value = 0.02.</p></dd><dt class="param">vvarref</dt><dd class="cmt"><p>Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PFVArControllerType1Dynamics.html" class="extype" name="ch.ninecode.model.PFVArControllerType1Dynamics">PFVArControllerType1Dynamics</a> Reference to the superclass object.</p></dd><dt class="param">tvarc</dt><dd class="cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></dd><dt class="param">vvar</dt><dd class="cmt"><p>Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).</p></dd><dt class="param">vvarcbw</dt><dd class="cmt"><p>Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).
+       Typical value = 0,02.</p></dd><dt class="param">vvarref</dt><dd class="cmt"><p>Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).</p></dd><dt class="param">vvtmax</dt><dd class="cmt"><p>Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).</p></dd><dt class="param">vvtmin</dt><dd class="cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1170,8 +1170,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEVArController#vvar" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vvar:Double"></a>
       <a id="vvar:Double"></a>
@@ -1205,8 +1205,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEVArController#vvarref" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vvarref:Double"></a>
       <a id="vvarref:Double"></a>
@@ -1240,7 +1240,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).</p></div></div>
     </li><li name="ch.ninecode.model.PFVArType1IEEEVArController#vvtmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vvtmin:Double"></a>
       <a id="vvtmin:Double"></a>
@@ -1257,7 +1257,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).</p></div></div>
+      <p class="shortcomment cmt">Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

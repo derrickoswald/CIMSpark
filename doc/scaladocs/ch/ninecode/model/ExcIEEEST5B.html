@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcIEEEST5B - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcIEEEST5B</title>
-          <meta name="description" content="ExcIEEEST5B - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcIEEEST5B" />
-          <meta name="keywords" content="ExcIEEEST5B CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcIEEEST5B" />
+          <title>ExcIEEEST5B - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcIEEEST5B</title>
+          <meta name="description" content="ExcIEEEST5B - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcIEEEST5B" />
+          <meta name="keywords" content="ExcIEEEST5B CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcIEEEST5B" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,25 +51,27 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents IEEE Std 421.5-2005 type ST5B model.</p><p>The Type ST5B excitation system is a variation of the Type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier regulation factor (K<sub>C</sub>).
-       Typical Value = 0.004.</p></dd><dt class="param">kr</dt><dd class="cmt"><p>Regulator gain (K<sub>R</sub>).
-       Typical Value = 200.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Firing circuit time constant (T1).
-       Typical Value = 0.004.</p></dd><dt class="param">tb1</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B1</sub>).
-       Typical Value = 6.</p></dd><dt class="param">tb2</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B2</sub>).
-       Typical Value = 0.01.</p></dd><dt class="param">tc1</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C1</sub>).
-       Typical Value = 0.8.</p></dd><dt class="param">tc2</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">tob1</dt><dd class="cmt"><p>OEL lag time constant (T<sub>OB1</sub>).
-       Typical Value = 2.</p></dd><dt class="param">tob2</dt><dd class="cmt"><p>OEL lag time constant (T<sub>OB2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">toc1</dt><dd class="cmt"><p>OEL lead time constant (T<sub>OC1</sub>).
-       Typical Value = 0.1.</p></dd><dt class="param">toc2</dt><dd class="cmt"><p>OEL lead time constant (T<sub>OC2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">tub1</dt><dd class="cmt"><p>UEL lag time constant (T<sub>UB1</sub>).
-       Typical Value = 10.</p></dd><dt class="param">tub2</dt><dd class="cmt"><p>UEL lag time constant (T<sub>UB2</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">tuc1</dt><dd class="cmt"><p>UEL lead time constant (T<sub>UC1</sub>).
-       Typical Value = 2.</p></dd><dt class="param">tuc2</dt><dd class="cmt"><p>UEL lead time constant (T<sub>UC2</sub>).
-       Typical Value = 0.1.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>IEEE 421.5-2005 type ST5B model.</p><p>The type ST5B excitation system is a variation of the type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
+The block diagram in the IEEE 421.5 standard has input signal <i>Vc </i>and does not indicate the summation point with <i>Vref</i>. The implementation of the ExcIEEEST5B shall consider summation point with <i>Vref</i>.
+Reference: IEEE 421.5-2005, 7.5.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0,004.</p></dd><dt class="param">kr</dt><dd class="cmt"><p>Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Firing circuit time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,004.</p></dd><dt class="param">tb1</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+       Typical value = 6.</p></dd><dt class="param">tb2</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">tc1</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+       Typical value = 0,8.</p></dd><dt class="param">tc2</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tob1</dt><dd class="cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tob2</dt><dd class="cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">toc1</dt><dd class="cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">toc2</dt><dd class="cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tub1</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">tub2</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">tuc1</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tuc2</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -141,24 +143,24 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier regulation factor (K<sub>C</sub>).
-       Typical Value = 0.004.</p></dd><dt class="param">kr</dt><dd class="cmt"><p>Regulator gain (K<sub>R</sub>).
-       Typical Value = 200.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Firing circuit time constant (T1).
-       Typical Value = 0.004.</p></dd><dt class="param">tb1</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B1</sub>).
-       Typical Value = 6.</p></dd><dt class="param">tb2</dt><dd class="cmt"><p>Regulator lag time constant (T<sub>B2</sub>).
-       Typical Value = 0.01.</p></dd><dt class="param">tc1</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C1</sub>).
-       Typical Value = 0.8.</p></dd><dt class="param">tc2</dt><dd class="cmt"><p>Regulator lead time constant (T<sub>C2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">tob1</dt><dd class="cmt"><p>OEL lag time constant (T<sub>OB1</sub>).
-       Typical Value = 2.</p></dd><dt class="param">tob2</dt><dd class="cmt"><p>OEL lag time constant (T<sub>OB2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">toc1</dt><dd class="cmt"><p>OEL lead time constant (T<sub>OC1</sub>).
-       Typical Value = 0.1.</p></dd><dt class="param">toc2</dt><dd class="cmt"><p>OEL lead time constant (T<sub>OC2</sub>).
-       Typical Value = 0.08.</p></dd><dt class="param">tub1</dt><dd class="cmt"><p>UEL lag time constant (T<sub>UB1</sub>).
-       Typical Value = 10.</p></dd><dt class="param">tub2</dt><dd class="cmt"><p>UEL lag time constant (T<sub>UB2</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">tuc1</dt><dd class="cmt"><p>UEL lead time constant (T<sub>UC1</sub>).
-       Typical Value = 2.</p></dd><dt class="param">tuc2</dt><dd class="cmt"><p>UEL lead time constant (T<sub>UC2</sub>).
-       Typical Value = 0.1.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0,004.</p></dd><dt class="param">kr</dt><dd class="cmt"><p>Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+       Typical value = 200.</p></dd><dt class="param">t1</dt><dd class="cmt"><p>Firing circuit time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,004.</p></dd><dt class="param">tb1</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+       Typical value = 6.</p></dd><dt class="param">tb2</dt><dd class="cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">tc1</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+       Typical value = 0,8.</p></dd><dt class="param">tc2</dt><dd class="cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tob1</dt><dd class="cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tob2</dt><dd class="cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">toc1</dt><dd class="cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">toc2</dt><dd class="cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></dd><dt class="param">tub1</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></dd><dt class="param">tub2</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">tuc1</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></dd><dt class="param">tuc2</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -960,8 +962,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier regulation factor (K<sub>C</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier regulation factor (K<sub>C</sub>).
-       Typical Value = 0.004.</p></div></div>
+      <p class="shortcomment cmt">Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+       Typical value = 0,004.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#kr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kr:Double"></a>
       <a id="kr:Double"></a>
@@ -978,8 +980,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator gain (K<sub>R</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator gain (K<sub>R</sub>).
-       Typical Value = 200.</p></div></div>
+      <p class="shortcomment cmt">Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+       Typical value = 200.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1202,8 +1204,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Firing circuit time constant (T1).</p><div class="fullcomment"><div class="comment cmt"><p>Firing circuit time constant (T1).
-       Typical Value = 0.004.</p></div></div>
+      <p class="shortcomment cmt">Firing circuit time constant (<i>T1</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Firing circuit time constant (<i>T1</i>) (&gt;= 0).
+       Typical value = 0,004.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tb1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb1:Double"></a>
       <a id="tb1:Double"></a>
@@ -1220,8 +1222,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lag time constant (T<sub>B1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (T<sub>B1</sub>).
-       Typical Value = 6.</p></div></div>
+      <p class="shortcomment cmt">Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+       Typical value = 6.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tb2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb2:Double"></a>
       <a id="tb2:Double"></a>
@@ -1238,8 +1240,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lag time constant (T<sub>B2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (T<sub>B2</sub>).
-       Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tc1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc1:Double"></a>
       <a id="tc1:Double"></a>
@@ -1256,8 +1258,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lead time constant (T<sub>C1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (T<sub>C1</sub>).
-       Typical Value = 0.8.</p></div></div>
+      <p class="shortcomment cmt">Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+       Typical value = 0,8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tc2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc2:Double"></a>
       <a id="tc2:Double"></a>
@@ -1274,8 +1276,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Regulator lead time constant (T<sub>C2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (T<sub>C2</sub>).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1326,8 +1328,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL lag time constant (T<sub>OB1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL lag time constant (T<sub>OB1</sub>).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tob2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tob2:Double"></a>
       <a id="tob2:Double"></a>
@@ -1344,8 +1346,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL lag time constant (T<sub>OB2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL lag time constant (T<sub>OB2</sub>).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#toc1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toc1:Double"></a>
       <a id="toc1:Double"></a>
@@ -1362,8 +1364,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL lead time constant (T<sub>OC1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL lead time constant (T<sub>OC1</sub>).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#toc2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toc2:Double"></a>
       <a id="toc2:Double"></a>
@@ -1380,8 +1382,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL lead time constant (T<sub>OC2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL lead time constant (T<sub>OC2</sub>).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tub1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tub1:Double"></a>
       <a id="tub1:Double"></a>
@@ -1398,8 +1400,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lag time constant (T<sub>UB1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (T<sub>UB1</sub>).
-       Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
+       Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tub2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tub2:Double"></a>
       <a id="tub2:Double"></a>
@@ -1416,8 +1418,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lag time constant (T<sub>UB2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (T<sub>UB2</sub>).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tuc1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tuc1:Double"></a>
       <a id="tuc1:Double"></a>
@@ -1434,8 +1436,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lead time constant (T<sub>UC1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (T<sub>UC1</sub>).
-       Typical Value = 2.</p></div></div>
+      <p class="shortcomment cmt">UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
+       Typical value = 2.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#tuc2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tuc2:Double"></a>
       <a id="tuc2:Double"></a>
@@ -1452,8 +1454,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lead time constant (T<sub>UC2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (T<sub>UC2</sub>).
-       Typical Value = 0.1.</p></div></div>
+      <p class="shortcomment cmt">UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
+       Typical value = 0,1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1470,8 +1472,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (V<sub>RMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (V<sub>RMAX</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+       Typical value = 5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcIEEEST5B#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1488,8 +1490,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (V<sub>RMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (V<sub>RMIN</sub>).
-       Typical Value = -4.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+       Typical value = -4.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

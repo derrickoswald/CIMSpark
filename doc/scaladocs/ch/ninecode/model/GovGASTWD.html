@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>GovGASTWD - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.GovGASTWD</title>
-          <meta name="description" content="GovGASTWD - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.GovGASTWD" />
-          <meta name="keywords" content="GovGASTWD CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.GovGASTWD" />
+          <title>GovGASTWD - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.GovGASTWD</title>
+          <meta name="description" content="GovGASTWD - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.GovGASTWD" />
+          <meta name="keywords" content="GovGASTWD CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.GovGASTWD" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,12 +51,12 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Woodward Gas turbine governor model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a</dt><dd class="cmt"><p>Valve positioner (<i>A</i>).</p></dd><dt class="param">af1</dt><dd class="cmt"><p>Exhaust temperature Parameter (Af1).</p></dd><dt class="param">af2</dt><dd class="cmt"><p>Coefficient equal to 0.5(1-speed) (Af2).</p></dd><dt class="param">b</dt><dd class="cmt"><p>Valve positioner (<i>B</i>).</p></dd><dt class="param">bf1</dt><dd class="cmt"><p>(Bf1).
-       Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.</p></dd><dt class="param">bf2</dt><dd class="cmt"><p>Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).</p></dd><dt class="param">c</dt><dd class="cmt"><p>Valve positioner (<i>C</i>).</p></dd><dt class="param">cf2</dt><dd class="cmt"><p>Coefficient defining fuel flow where power output is 0% (Cf2).
-       Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).</p></dd><dt class="param">ecr</dt><dd class="cmt"><p>Combustion reaction time delay (Ecr).</p></dd><dt class="param">etd</dt><dd class="cmt"><p>Turbine and exhaust delay (Etd).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Ratio of Fuel Adjustment (K3).</p></dd><dt class="param">k4</dt><dd class="cmt"><p>Gain of radiation shield (K4).</p></dd><dt class="param">k5</dt><dd class="cmt"><p>Gain of radiation shield (K5).</p></dd><dt class="param">k6</dt><dd class="cmt"><p>Minimum fuel flow (K6).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Drop Governor Gain (Kd).</p></dd><dt class="param">kdroop</dt><dd class="cmt"><p>(Kdroop).</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Fuel system feedback (Kf).</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Isochronous Governor Gain (Ki).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PID Proportional gain (Kp).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">t</dt><dd class="cmt"><p>Fuel Control Time Constant (T).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Radiation shield time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Thermocouple time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Temperature control time constant (T5).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Temperature control (Tc).</p></dd><dt class="param">tcd</dt><dd class="cmt"><p>Compressor discharge time constant (Tcd).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Power transducer time constant (Td).</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Fuel system time constant (Tf).</p></dd><dt class="param">tmax</dt><dd class="cmt"><p>Maximum Turbine limit (Tmax).</p></dd><dt class="param">tmin</dt><dd class="cmt"><p>Minimum Turbine limit (Tmin).</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Rated temperature (Tr).</p></dd><dt class="param">trate</dt><dd class="cmt"><p>Turbine rating (Trate).
-       Unit = MW.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Temperature controller integration rate (Tt).</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Woodward� gas turbine governor.
+[Footnote: Woodward gas turbines are an example of suitable products available commercially.</p><p>This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a</dt><dd class="cmt"><p>Valve positioner (<i>A</i>).</p></dd><dt class="param">af1</dt><dd class="cmt"><p>Exhaust temperature parameter (<i>Af1</i>).</p></dd><dt class="param">af2</dt><dd class="cmt"><p>Coefficient equal to 0,5(1-speed) (<i>Af2</i>).</p></dd><dt class="param">b</dt><dd class="cmt"><p>Valve positioner (<i>B</i>).</p></dd><dt class="param">bf1</dt><dd class="cmt"><p>(<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.</p></dd><dt class="param">bf2</dt><dd class="cmt"><p>Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).</p></dd><dt class="param">c</dt><dd class="cmt"><p>Valve positioner (<i>C</i>).</p></dd><dt class="param">cf2</dt><dd class="cmt"><p>Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
+       Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).</p></dd><dt class="param">ecr</dt><dd class="cmt"><p>Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).</p></dd><dt class="param">etd</dt><dd class="cmt"><p>Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Ratio of fuel adjustment (<i>K3</i>).</p></dd><dt class="param">k4</dt><dd class="cmt"><p>Gain of radiation shield (<i>K4</i>).</p></dd><dt class="param">k5</dt><dd class="cmt"><p>Gain of radiation shield (<i>K5</i>).</p></dd><dt class="param">k6</dt><dd class="cmt"><p>Minimum fuel flow (<i>K6</i>).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Drop governor gain (<i>Kd</i>).</p></dd><dt class="param">kdroop</dt><dd class="cmt"><p>(<i>Kdroop</i>) (&gt;= 0).</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Fuel system feedback (<i>Kf</i>).</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Isochronous Governor Gain (<i>Ki</i>).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PID proportional gain (<i>Kp</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">t</dt><dd class="cmt"><p>Fuel control time constant (<i>T</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Radiation shield time constant (<i>T3</i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Thermocouple time constant (<i>T4</i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Temperature control time constant (<i>T5</i>) (&gt;= 0).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Temperature control (<i>Tc</i>).</p></dd><dt class="param">tcd</dt><dd class="cmt"><p>Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Power transducer time constant (<i>Td</i>) (&gt;= 0).</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Fuel system time constant (<i>Tf</i>) (&gt;= 0).</p></dd><dt class="param">tmax</dt><dd class="cmt"><p>Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).</p></dd><dt class="param">tmin</dt><dd class="cmt"><p>Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Rated temperature (<i>Tr</i>).</p></dd><dt class="param">trate</dt><dd class="cmt"><p>Turbine rating (<i>Trate</i>).
+       Unit = MW.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,11 +128,10 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a</dt><dd class="cmt"><p>Valve positioner (<i>A</i>).</p></dd><dt class="param">af1</dt><dd class="cmt"><p>Exhaust temperature Parameter (Af1).</p></dd><dt class="param">af2</dt><dd class="cmt"><p>Coefficient equal to 0.5(1-speed) (Af2).</p></dd><dt class="param">b</dt><dd class="cmt"><p>Valve positioner (<i>B</i>).</p></dd><dt class="param">bf1</dt><dd class="cmt"><p>(Bf1).
-       Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.</p></dd><dt class="param">bf2</dt><dd class="cmt"><p>Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).</p></dd><dt class="param">c</dt><dd class="cmt"><p>Valve positioner (<i>C</i>).</p></dd><dt class="param">cf2</dt><dd class="cmt"><p>Coefficient defining fuel flow where power output is 0% (Cf2).
-       Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).</p></dd><dt class="param">ecr</dt><dd class="cmt"><p>Combustion reaction time delay (Ecr).</p></dd><dt class="param">etd</dt><dd class="cmt"><p>Turbine and exhaust delay (Etd).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Ratio of Fuel Adjustment (K3).</p></dd><dt class="param">k4</dt><dd class="cmt"><p>Gain of radiation shield (K4).</p></dd><dt class="param">k5</dt><dd class="cmt"><p>Gain of radiation shield (K5).</p></dd><dt class="param">k6</dt><dd class="cmt"><p>Minimum fuel flow (K6).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Drop Governor Gain (Kd).</p></dd><dt class="param">kdroop</dt><dd class="cmt"><p>(Kdroop).</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Fuel system feedback (Kf).</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Isochronous Governor Gain (Ki).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PID Proportional gain (Kp).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
-       Unit = MW.</p></dd><dt class="param">t</dt><dd class="cmt"><p>Fuel Control Time Constant (T).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Radiation shield time constant (T3).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Thermocouple time constant (T4).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Temperature control time constant (T5).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Temperature control (Tc).</p></dd><dt class="param">tcd</dt><dd class="cmt"><p>Compressor discharge time constant (Tcd).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Power transducer time constant (Td).</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Fuel system time constant (Tf).</p></dd><dt class="param">tmax</dt><dd class="cmt"><p>Maximum Turbine limit (Tmax).</p></dd><dt class="param">tmin</dt><dd class="cmt"><p>Minimum Turbine limit (Tmin).</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Rated temperature (Tr).</p></dd><dt class="param">trate</dt><dd class="cmt"><p>Turbine rating (Trate).
-       Unit = MW.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Temperature controller integration rate (Tt).</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Reference to the superclass object.</p></dd><dt class="param">a</dt><dd class="cmt"><p>Valve positioner (<i>A</i>).</p></dd><dt class="param">af1</dt><dd class="cmt"><p>Exhaust temperature parameter (<i>Af1</i>).</p></dd><dt class="param">af2</dt><dd class="cmt"><p>Coefficient equal to 0,5(1-speed) (<i>Af2</i>).</p></dd><dt class="param">b</dt><dd class="cmt"><p>Valve positioner (<i>B</i>).</p></dd><dt class="param">bf1</dt><dd class="cmt"><p>(<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.</p></dd><dt class="param">bf2</dt><dd class="cmt"><p>Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).</p></dd><dt class="param">c</dt><dd class="cmt"><p>Valve positioner (<i>C</i>).</p></dd><dt class="param">cf2</dt><dd class="cmt"><p>Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
+       Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).</p></dd><dt class="param">ecr</dt><dd class="cmt"><p>Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).</p></dd><dt class="param">etd</dt><dd class="cmt"><p>Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).</p></dd><dt class="param">k3</dt><dd class="cmt"><p>Ratio of fuel adjustment (<i>K3</i>).</p></dd><dt class="param">k4</dt><dd class="cmt"><p>Gain of radiation shield (<i>K4</i>).</p></dd><dt class="param">k5</dt><dd class="cmt"><p>Gain of radiation shield (<i>K5</i>).</p></dd><dt class="param">k6</dt><dd class="cmt"><p>Minimum fuel flow (<i>K6</i>).</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Drop governor gain (<i>Kd</i>).</p></dd><dt class="param">kdroop</dt><dd class="cmt"><p>(<i>Kdroop</i>) (&gt;= 0).</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Fuel system feedback (<i>Kf</i>).</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Isochronous Governor Gain (<i>Ki</i>).</p></dd><dt class="param">kp</dt><dd class="cmt"><p>PID proportional gain (<i>Kp</i>).</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">t</dt><dd class="cmt"><p>Fuel control time constant (<i>T</i>) (&gt;= 0).</p></dd><dt class="param">t3</dt><dd class="cmt"><p>Radiation shield time constant (<i>T3</i>) (&gt;= 0).</p></dd><dt class="param">t4</dt><dd class="cmt"><p>Thermocouple time constant (<i>T4</i>) (&gt;= 0).</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Temperature control time constant (<i>T5</i>) (&gt;= 0).</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Temperature control (<i>Tc</i>).</p></dd><dt class="param">tcd</dt><dd class="cmt"><p>Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).</p></dd><dt class="param">td</dt><dd class="cmt"><p>Power transducer time constant (<i>Td</i>) (&gt;= 0).</p></dd><dt class="param">tf</dt><dd class="cmt"><p>Fuel system time constant (<i>Tf</i>) (&gt;= 0).</p></dd><dt class="param">tmax</dt><dd class="cmt"><p>Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).</p></dd><dt class="param">tmin</dt><dd class="cmt"><p>Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).</p></dd><dt class="param">tr</dt><dd class="cmt"><p>Rated temperature (<i>Tr</i>).</p></dd><dt class="param">trate</dt><dd class="cmt"><p>Turbine rating (<i>Trate</i>).
+       Unit = MW.</p></dd><dt class="param">tt</dt><dd class="cmt"><p>Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -246,7 +245,7 @@
     </span>
       <p class="shortcomment cmt">Flag for rdf:about elements.</p><div class="fullcomment"><div class="comment cmt"><p>Flag for rdf:about elements.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if this is an rdf:about element, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#af1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#af1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="af1:Double"></a>
       <a id="af1:Double"></a>
       <h4 class="signature">
@@ -262,8 +261,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exhaust temperature Parameter (Af1).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#af2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Exhaust temperature parameter (<i>Af1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exhaust temperature parameter (<i>Af1</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#af2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="af2:Double"></a>
       <a id="af2:Double"></a>
       <h4 class="signature">
@@ -279,7 +278,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Coefficient equal to 0.5(1-speed) (Af2).</p>
+      <p class="shortcomment cmt">Coefficient equal to 0,5(1-speed) (<i>Af2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Coefficient equal to 0,5(1-speed) (<i>Af2</i>).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -364,8 +363,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(Bf1).</p><div class="fullcomment"><div class="comment cmt"><p>(Bf1).
-       Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.</p></div></div>
+      <p class="shortcomment cmt">(<i>Bf1</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.</p></div></div>
     </li><li name="ch.ninecode.model.GovGASTWD#bf2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bf2:Double"></a>
       <a id="bf2:Double"></a>
@@ -382,7 +380,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).</p></div></div>
+      <p class="shortcomment cmt">Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).</i></sub></p><div class="fullcomment"><div class="comment cmt"><p>Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).</p></div></div>
     </li><li name="ch.ninecode.model.Element#bitfields" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bitfields:Array[Int]"></a>
       <a id="bitfields:Array[Int]"></a>
@@ -436,8 +434,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Coefficient defining fuel flow where power output is 0% (Cf2).</p><div class="fullcomment"><div class="comment cmt"><p>Coefficient defining fuel flow where power output is 0% (Cf2).
-       Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).</p></div></div>
+      <p class="shortcomment cmt">Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
+       Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -479,7 +477,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovGASTWD">GovGASTWD</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#ecr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#ecr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ecr:Double"></a>
       <a id="ecr:Double"></a>
       <h4 class="signature">
@@ -495,7 +493,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Combustion reaction time delay (Ecr).</p>
+      <p class="shortcomment cmt">Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -570,7 +568,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#etd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#etd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="etd:Double"></a>
       <a id="etd:Double"></a>
       <h4 class="signature">
@@ -586,7 +584,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine and exhaust delay (Etd).</p>
+      <p class="shortcomment cmt">Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).</p></div></div>
     </li><li name="ch.ninecode.model.GovGASTWD#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
       <a id="export:String"></a>
       <a id="export:String"></a>
@@ -1090,7 +1088,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#k3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#k3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k3:Double"></a>
       <a id="k3:Double"></a>
       <h4 class="signature">
@@ -1106,8 +1104,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Ratio of Fuel Adjustment (K3).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#k4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Ratio of fuel adjustment (<i>K3</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Ratio of fuel adjustment (<i>K3</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#k4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k4:Double"></a>
       <a id="k4:Double"></a>
       <h4 class="signature">
@@ -1123,8 +1121,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain of radiation shield (K4).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#k5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Gain of radiation shield (<i>K4</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain of radiation shield (<i>K4</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#k5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k5:Double"></a>
       <a id="k5:Double"></a>
       <h4 class="signature">
@@ -1140,8 +1138,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Gain of radiation shield (K5).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#k6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Gain of radiation shield (<i>K5</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Gain of radiation shield (<i>K5</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#k6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="k6:Double"></a>
       <a id="k6:Double"></a>
       <h4 class="signature">
@@ -1157,8 +1155,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum fuel flow (K6).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#kd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Minimum fuel flow (<i>K6</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum fuel flow (<i>K6</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#kd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kd:Double"></a>
       <a id="kd:Double"></a>
       <h4 class="signature">
@@ -1174,8 +1172,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Drop Governor Gain (Kd).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#kdroop" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Drop governor gain (<i>Kd</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Drop governor gain (<i>Kd</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#kdroop" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kdroop:Double"></a>
       <a id="kdroop:Double"></a>
       <h4 class="signature">
@@ -1191,8 +1189,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">(Kdroop).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#kf" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">(<i>Kdroop</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>(<i>Kdroop</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#kf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kf:Double"></a>
       <a id="kf:Double"></a>
       <h4 class="signature">
@@ -1208,8 +1206,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fuel system feedback (Kf).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#ki" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Fuel system feedback (<i>Kf</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fuel system feedback (<i>Kf</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
       <h4 class="signature">
@@ -1225,8 +1223,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Isochronous Governor Gain (Ki).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#kp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Isochronous Governor Gain (<i>Ki</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Isochronous Governor Gain (<i>Ki</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
       <h4 class="signature">
@@ -1242,7 +1240,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PID Proportional gain (Kp).</p>
+      <p class="shortcomment cmt">PID proportional gain (<i>Kp</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PID proportional gain (<i>Kp</i>).</p></div></div>
     </li><li name="ch.ninecode.model.GovGASTWD#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1346,7 +1344,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base for power values (MWbase) (&gt; 0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt; 0).
+      <p class="shortcomment cmt">Base for power values (<i>MWbase</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (<i>MWbase</i>) (&gt; 0).
        Unit = MW.</p></div></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -1467,7 +1465,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#t" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#t" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t:Double"></a>
       <a id="t:Double"></a>
       <h4 class="signature">
@@ -1483,8 +1481,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fuel Control Time Constant (T).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#t3" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Fuel control time constant (<i>T</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fuel control time constant (<i>T</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#t3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t3:Double"></a>
       <a id="t3:Double"></a>
       <h4 class="signature">
@@ -1500,8 +1498,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Radiation shield time constant (T3).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#t4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Radiation shield time constant (<i>T3</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Radiation shield time constant (<i>T3</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#t4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t4:Double"></a>
       <a id="t4:Double"></a>
       <h4 class="signature">
@@ -1517,8 +1515,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Thermocouple time constant (T4).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#t5" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Thermocouple time constant (<i>T4</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Thermocouple time constant (<i>T4</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
       <h4 class="signature">
@@ -1534,8 +1532,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temperature control time constant (T5).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#tc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Temperature control time constant (<i>T5</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temperature control time constant (<i>T5</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
       <h4 class="signature">
@@ -1551,8 +1549,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temperature control (Tc).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#tcd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Temperature control (<i>Tc</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temperature control (<i>Tc</i>).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#tcd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tcd:Double"></a>
       <a id="tcd:Double"></a>
       <h4 class="signature">
@@ -1568,8 +1566,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Compressor discharge time constant (Tcd).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#td" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#td" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="td:Double"></a>
       <a id="td:Double"></a>
       <h4 class="signature">
@@ -1585,8 +1583,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power transducer time constant (Td).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#tf" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Power transducer time constant (<i>Td</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Power transducer time constant (<i>Td</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#tf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tf:Double"></a>
       <a id="tf:Double"></a>
       <h4 class="signature">
@@ -1602,8 +1600,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Fuel system time constant (Tf).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#tmax" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Fuel system time constant (<i>Tf</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Fuel system time constant (<i>Tf</i>) (&gt;= 0).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#tmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tmax:Double"></a>
       <a id="tmax:Double"></a>
       <h4 class="signature">
@@ -1619,8 +1617,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum Turbine limit (Tmax).</p>
-    </li><li name="ch.ninecode.model.GovGASTWD#tmin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).</p></div></div>
+    </li><li name="ch.ninecode.model.GovGASTWD#tmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tmin:Double"></a>
       <a id="tmin:Double"></a>
       <h4 class="signature">
@@ -1636,7 +1634,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum Turbine limit (Tmin).</p>
+      <p class="shortcomment cmt">Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1671,7 +1669,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#tr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#tr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tr:Double"></a>
       <a id="tr:Double"></a>
       <h4 class="signature">
@@ -1687,7 +1685,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rated temperature (Tr).</p>
+      <p class="shortcomment cmt">Rated temperature (<i>Tr</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rated temperature (<i>Tr</i>).</p></div></div>
     </li><li name="ch.ninecode.model.GovGASTWD#trate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="trate:Double"></a>
       <a id="trate:Double"></a>
@@ -1704,9 +1702,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Turbine rating (Trate).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine rating (Trate).
+      <p class="shortcomment cmt">Turbine rating (<i>Trate</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Turbine rating (<i>Trate</i>).
        Unit = MW.</p></div></div>
-    </li><li name="ch.ninecode.model.GovGASTWD#tt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.GovGASTWD#tt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tt:Double"></a>
       <a id="tt:Double"></a>
       <h4 class="signature">
@@ -1722,7 +1720,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Temperature controller integration rate (Tt).</p>
+      <p class="shortcomment cmt">Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

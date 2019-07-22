@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MarketQualificationRequirement - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.MarketQualificationRequirement</title>
-          <meta name="description" content="MarketQualificationRequirement - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.MarketQualificationRequirement" />
-          <meta name="keywords" content="MarketQualificationRequirement CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.MarketQualificationRequirement" />
+          <title>MarketQualificationRequirement - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.MarketQualificationRequirement</title>
+          <meta name="description" content="MarketQualificationRequirement - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.MarketQualificationRequirement" />
+          <meta name="keywords" content="MarketQualificationRequirement CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.MarketQualificationRequirement" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -54,7 +54,9 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Certain skills are required and shall be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p>Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization</p></dd><dt class="param">expirationDate</dt><dd class="cmt"><p>This is the terminate date of the application for the organization
        The specific organization can no longer access the application as of the terminate date</p></dd><dt class="param">qualificationID</dt><dd class="cmt"><p>Qualification identifier.</p></dd><dt class="param">status</dt><dd class="cmt"><p>The status of the privilege.
-       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       Shows the status of the user�s qualification.
+       The current statuses are: 1=New, 2=Active, 3=Refused, 4=Terminated, 5=Withdrawn
+       and it is subject to update.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,7 +130,9 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p>Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization</p></dd><dt class="param">expirationDate</dt><dd class="cmt"><p>This is the terminate date of the application for the organization
        The specific organization can no longer access the application as of the terminate date</p></dd><dt class="param">qualificationID</dt><dd class="cmt"><p>Qualification identifier.</p></dd><dt class="param">status</dt><dd class="cmt"><p>The status of the privilege.
-       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl></div>
+       Shows the status of the user�s qualification.
+       The current statuses are: 1=New, 2=Active, 3=Refused, 4=Terminated, 5=Withdrawn
+       and it is subject to update.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1172,7 +1176,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">The status of the privilege.</p><div class="fullcomment"><div class="comment cmt"><p>The status of the privilege.
-       Shows the status of the user�s qualification.</p></div></div>
+       Shows the status of the user�s qualification.
+       The current statuses are: 1=New, 2=Active, 3=Refused, 4=Terminated, 5=Withdrawn
+       and it is subject to update.</p></div></div>
     </li><li name="ch.ninecode.model.MarketQualificationRequirement#statusType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="statusType:String"></a>
       <a id="statusType:String"></a>

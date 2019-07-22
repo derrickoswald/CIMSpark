@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcPIC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcPIC</title>
-          <meta name="description" content="ExcPIC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcPIC" />
-          <meta name="keywords" content="ExcPIC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcPIC" />
+          <title>ExcPIC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcPIC</title>
+          <meta name="description" content="ExcPIC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcPIC" />
+          <meta name="keywords" content="ExcPIC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcPIC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,31 +51,31 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Proportional/Integral Regulator Excitation System Model.</p><p>This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">e1</dt><dd class="cmt"><p>Field voltage value 1 (E1).
-       Typical Value = 0.</p></dd><dt class="param">e2</dt><dd class="cmt"><p>Field voltage value 2 (E2).
-       Typical Value = 0.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Exciter maximum limit (Efdmax).
-       Typical Value = 8.</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Exciter minimum limit (Efdmin).
-       Typical Value = -0.87.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>PI controller gain (Ka).
-       Typical Value = 3.15.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Exciter regulation factor (Kc).
-       Typical Value = 0.08.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant (Ke).
-       Typical Value = 0.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Rate feedback gain (Kf).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Current source gain (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (Kp).
-       Typical Value = 6.5.</p></dd><dt class="param">se1</dt><dd class="cmt"><p>Saturation factor at E1 (Se1).
-       Typical Value = 0.</p></dd><dt class="param">se2</dt><dd class="cmt"><p>Saturation factor at E2 (Se2).
-       Typical Value = 0.</p></dd><dt class="param">ta1</dt><dd class="cmt"><p>PI controller time constant (Ta1).
-       Typical Value = 1.</p></dd><dt class="param">ta2</dt><dd class="cmt"><p>Voltage regulator time constant (Ta2).
-       Typical Value = 0.01.</p></dd><dt class="param">ta3</dt><dd class="cmt"><p>Lead time constant (Ta3).
-       Typical Value = 0.</p></dd><dt class="param">ta4</dt><dd class="cmt"><p>Lag time constant (Ta4).
-       Typical Value = 0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant (Te).
-       Typical Value = 0.</p></dd><dt class="param">tf1</dt><dd class="cmt"><p>Rate feedback time constant (Tf1).
-       Typical Value = 0.</p></dd><dt class="param">tf2</dt><dd class="cmt"><p>Rate feedback lag time constant (Tf2).
-       Typical Value = 0.</p></dd><dt class="param">vr1</dt><dd class="cmt"><p>PI maximum limit (Vr1).
-       Typical Value = 1.</p></dd><dt class="param">vr2</dt><dd class="cmt"><p>PI minimum limit (Vr2).
-       Typical Value = -0.87.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Voltage regulator maximum limit (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Voltage regulator minimum limit (Vrmin).
-       Typical Value = -0.87.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Proportional/integral regulator excitation system.</p><p>This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">e1</dt><dd class="cmt"><p>Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">e2</dt><dd class="cmt"><p>Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
+       Typical value = 8.</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
+       Typical value = -0,87.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>PI controller gain (<i>K</i><i><sub>a</sub></i>).
+       Typical value = 3,15.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
+       Typical value = 0,08.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant (<i>K</i><i><sub>e</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Current source gain (<i>K</i><i><sub>i</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>).
+       Typical value = 6,5.</p></dd><dt class="param">se1</dt><dd class="cmt"><p>Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">se2</dt><dd class="cmt"><p>Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">ta1</dt><dd class="cmt"><p>PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">ta2</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">ta3</dt><dd class="cmt"><p>Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ta4</dt><dd class="cmt"><p>Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tf1</dt><dd class="cmt"><p>Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tf2</dt><dd class="cmt"><p>Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vr1</dt><dd class="cmt"><p>PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">vr2</dt><dd class="cmt"><p>PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
+       Typical value = -0,87.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
+       Typical value = -0,87.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -147,30 +147,30 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">e1</dt><dd class="cmt"><p>Field voltage value 1 (E1).
-       Typical Value = 0.</p></dd><dt class="param">e2</dt><dd class="cmt"><p>Field voltage value 2 (E2).
-       Typical Value = 0.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Exciter maximum limit (Efdmax).
-       Typical Value = 8.</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Exciter minimum limit (Efdmin).
-       Typical Value = -0.87.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>PI controller gain (Ka).
-       Typical Value = 3.15.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Exciter regulation factor (Kc).
-       Typical Value = 0.08.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant (Ke).
-       Typical Value = 0.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Rate feedback gain (Kf).
-       Typical Value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Current source gain (Ki).
-       Typical Value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (Kp).
-       Typical Value = 6.5.</p></dd><dt class="param">se1</dt><dd class="cmt"><p>Saturation factor at E1 (Se1).
-       Typical Value = 0.</p></dd><dt class="param">se2</dt><dd class="cmt"><p>Saturation factor at E2 (Se2).
-       Typical Value = 0.</p></dd><dt class="param">ta1</dt><dd class="cmt"><p>PI controller time constant (Ta1).
-       Typical Value = 1.</p></dd><dt class="param">ta2</dt><dd class="cmt"><p>Voltage regulator time constant (Ta2).
-       Typical Value = 0.01.</p></dd><dt class="param">ta3</dt><dd class="cmt"><p>Lead time constant (Ta3).
-       Typical Value = 0.</p></dd><dt class="param">ta4</dt><dd class="cmt"><p>Lag time constant (Ta4).
-       Typical Value = 0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant (Te).
-       Typical Value = 0.</p></dd><dt class="param">tf1</dt><dd class="cmt"><p>Rate feedback time constant (Tf1).
-       Typical Value = 0.</p></dd><dt class="param">tf2</dt><dd class="cmt"><p>Rate feedback lag time constant (Tf2).
-       Typical Value = 0.</p></dd><dt class="param">vr1</dt><dd class="cmt"><p>PI maximum limit (Vr1).
-       Typical Value = 1.</p></dd><dt class="param">vr2</dt><dd class="cmt"><p>PI minimum limit (Vr2).
-       Typical Value = -0.87.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Voltage regulator maximum limit (Vrmax).
-       Typical Value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Voltage regulator minimum limit (Vrmin).
-       Typical Value = -0.87.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">e1</dt><dd class="cmt"><p>Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">e2</dt><dd class="cmt"><p>Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">efdmax</dt><dd class="cmt"><p>Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
+       Typical value = 8.</p></dd><dt class="param">efdmin</dt><dd class="cmt"><p>Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
+       Typical value = -0,87.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>PI controller gain (<i>K</i><i><sub>a</sub></i>).
+       Typical value = 3,15.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
+       Typical value = 0,08.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant (<i>K</i><i><sub>e</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">ki</dt><dd class="cmt"><p>Current source gain (<i>K</i><i><sub>i</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kp</dt><dd class="cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>).
+       Typical value = 6,5.</p></dd><dt class="param">se1</dt><dd class="cmt"><p>Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">se2</dt><dd class="cmt"><p>Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">ta1</dt><dd class="cmt"><p>PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></dd><dt class="param">ta2</dt><dd class="cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></dd><dt class="param">ta3</dt><dd class="cmt"><p>Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">ta4</dt><dd class="cmt"><p>Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tf1</dt><dd class="cmt"><p>Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tf2</dt><dd class="cmt"><p>Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vr1</dt><dd class="cmt"><p>PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">vr2</dt><dd class="cmt"><p>PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
+       Typical value = -0,87.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
+       Typical value = 1.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
+       Typical value = -0,87.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -395,8 +395,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Field voltage value 1 (E1).</p><div class="fullcomment"><div class="comment cmt"><p>Field voltage value 1 (E1).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#e2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="e2:Double"></a>
       <a id="e2:Double"></a>
@@ -413,8 +413,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Field voltage value 2 (E2).</p><div class="fullcomment"><div class="comment cmt"><p>Field voltage value 2 (E2).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#efdmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="efdmax:Double"></a>
       <a id="efdmax:Double"></a>
@@ -431,8 +431,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter maximum limit (Efdmax).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter maximum limit (Efdmax).
-       Typical Value = 8.</p></div></div>
+      <p class="shortcomment cmt">Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
+       Typical value = 8.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#efdmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="efdmin:Double"></a>
       <a id="efdmin:Double"></a>
@@ -449,8 +449,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter minimum limit (Efdmin).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter minimum limit (Efdmin).
-       Typical Value = -0.87.</p></div></div>
+      <p class="shortcomment cmt">Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
+       Typical value = -0,87.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1044,8 +1044,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller gain (Ka).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (Ka).
-       Typical Value = 3.15.</p></div></div>
+      <p class="shortcomment cmt">PI controller gain (<i>K</i><i><sub>a</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller gain (<i>K</i><i><sub>a</sub></i>).
+       Typical value = 3,15.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#kc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kc:Double"></a>
       <a id="kc:Double"></a>
@@ -1062,8 +1062,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter regulation factor (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter regulation factor (Kc).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#ke" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ke:Double"></a>
       <a id="ke:Double"></a>
@@ -1080,8 +1080,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter constant (Ke).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant (Ke).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Exciter constant (<i>K</i><i><sub>e</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant (<i>K</i><i><sub>e</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#kf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kf:Double"></a>
       <a id="kf:Double"></a>
@@ -1098,8 +1098,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rate feedback gain (Kf).</p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback gain (Kf).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Rate feedback gain (<i>K</i><i><sub>f</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#ki" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ki:Double"></a>
       <a id="ki:Double"></a>
@@ -1116,8 +1116,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Current source gain (Ki).</p><div class="fullcomment"><div class="comment cmt"><p>Current source gain (Ki).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Current source gain (<i>K</i><i><sub>i</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Current source gain (<i>K</i><i><sub>i</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#kp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kp:Double"></a>
       <a id="kp:Double"></a>
@@ -1134,8 +1134,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Potential source gain (Kp).</p><div class="fullcomment"><div class="comment cmt"><p>Potential source gain (Kp).
-       Typical Value = 6.5.</p></div></div>
+      <p class="shortcomment cmt">Potential source gain (<i>K</i><i><sub>p</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Potential source gain (<i>K</i><i><sub>p</sub></i>).
+       Typical value = 6,5.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1307,8 +1307,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Saturation factor at E1 (Se1).</p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at E1 (Se1).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#se2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="se2:Double"></a>
       <a id="se2:Double"></a>
@@ -1325,8 +1325,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Saturation factor at E2 (Se2).</p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at E2 (Se2).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).</i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="size:Int"></a>
       <a id="size:Int"></a>
@@ -1394,8 +1394,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI controller time constant (Ta1).</p><div class="fullcomment"><div class="comment cmt"><p>PI controller time constant (Ta1).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#ta2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ta2:Double"></a>
       <a id="ta2:Double"></a>
@@ -1412,8 +1412,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Ta2).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Ta2).
-       Typical Value = 0.01.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
+       Typical value = 0,01.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#ta3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ta3:Double"></a>
       <a id="ta3:Double"></a>
@@ -1430,8 +1430,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead time constant (Ta3).</p><div class="fullcomment"><div class="comment cmt"><p>Lead time constant (Ta3).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#ta4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ta4:Double"></a>
       <a id="ta4:Double"></a>
@@ -1448,8 +1448,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lag time constant (Ta4).</p><div class="fullcomment"><div class="comment cmt"><p>Lag time constant (Ta4).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
@@ -1466,8 +1466,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter time constant (Te).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant (Te).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#tf1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tf1:Double"></a>
       <a id="tf1:Double"></a>
@@ -1484,8 +1484,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rate feedback time constant (Tf1).</p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback time constant (Tf1).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#tf2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tf2:Double"></a>
       <a id="tf2:Double"></a>
@@ -1502,8 +1502,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rate feedback lag time constant (Tf2).</p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback lag time constant (Tf2).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1554,8 +1554,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI maximum limit (Vr1).</p><div class="fullcomment"><div class="comment cmt"><p>PI maximum limit (Vr1).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">PI maximum limit (<i>V</i><i><sub>r1</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#vr2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vr2:Double"></a>
       <a id="vr2:Double"></a>
@@ -1572,8 +1572,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PI minimum limit (Vr2).</p><div class="fullcomment"><div class="comment cmt"><p>PI minimum limit (Vr2).
-       Typical Value = -0.87.</p></div></div>
+      <p class="shortcomment cmt">PI minimum limit (<i>V</i><i><sub>r2</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
+       Typical value = -0,87.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1590,8 +1590,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator maximum limit (Vrmax).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator maximum limit (Vrmax).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcPIC#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1608,8 +1608,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator minimum limit (Vrmin).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator minimum limit (Vrmin).
-       Typical Value = -0.87.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
+       Typical value = -0,87.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

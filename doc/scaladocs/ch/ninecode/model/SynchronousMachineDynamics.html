@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SynchronousMachineDynamics - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.SynchronousMachineDynamics</title>
-          <meta name="description" content="SynchronousMachineDynamics - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.SynchronousMachineDynamics" />
-          <meta name="keywords" content="SynchronousMachineDynamics CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.SynchronousMachineDynamics" />
+          <title>SynchronousMachineDynamics - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.SynchronousMachineDynamics</title>
+          <meta name="description" content="SynchronousMachineDynamics - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.SynchronousMachineDynamics" />
+          <meta name="keywords" content="SynchronousMachineDynamics CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.SynchronousMachineDynamics" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,18 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SynchronousMachineDynamics</span><span class="params">(<span name="sup">sup: <a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a></span>, <span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GenICompensationForGenJ">GenICompensationForGenJ: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MechanicalLoadDynamics">MechanicalLoadDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SynchronousMachine">SynchronousMachine: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TurbineGovernorDynamics">TurbineGovernorDynamics: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SynchronousMachineDynamics</span><span class="params">(<span name="sup">sup: <a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a></span>, <span name="CrossCompoundTurbineGovernorDyanmics">CrossCompoundTurbineGovernorDyanmics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GenICompensationForGenJ">GenICompensationForGenJ: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MechanicalLoadDynamics">MechanicalLoadDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SynchronousMachine">SynchronousMachine: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TurbineGovernorDynamics">TurbineGovernorDynamics: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Synchronous machine whose behaviour is described by reference to a standard model expressed in one of the following forms:</p><ul><li>simplified (or classical), where a group of generators or motors is not modelled in detail</li><li>detailed, in equivalent circuit form</li><li>detailed, in time constant reactance form</li></ul><p>&lt;font color=&quot;#0f0f0f&quot;&gt;or by definition of a user-defined model.&lt;/font&gt;
-&lt;font color=&quot;#0f0f0f&quot;&gt;
-&lt;/font&gt;&lt;font color=&quot;#0f0f0f&quot;&gt;<b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.</p><p>In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.&lt;/font&gt;
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Excitation system model associated with this synchronous machine model.</p></dd><dt class="param">GenICompensationForGenJ</dt><dd class="cmt"><p><a href="GenICompensationForGenJ.html" class="extype" name="ch.ninecode.model.GenICompensationForGenJ">GenICompensationForGenJ</a> Compensation of voltage compensator's generator for current flow out of this  generator.</p></dd><dt class="param">MechanicalLoadDynamics</dt><dd class="cmt"><p><a href="MechanicalLoadDynamics.html" class="extype" name="ch.ninecode.model.MechanicalLoadDynamics">MechanicalLoadDynamics</a> Mechanical load model associated with this synchronous machine model.</p></dd><dt class="param">SynchronousMachine</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machine to which synchronous machine dynamics model applies.</p></dd><dt class="param">TurbineGovernorDynamics</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Synchronous machine whose behaviour is described by reference to a standard model expressed in one of the following forms:
+- simplified (or classical), where a group of generators or motors is not modelled in detail;
+- detailed, in equivalent circuit form;
+- detailed, in time constant reactance form; or
+&lt;font color=&quot;#0f0f0f&quot;&gt;- by definition of a user-defined model.&lt;/font&gt;
+&lt;font color=&quot;#0f0f0f&quot;&gt;It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.</p><p>In this case, a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as an ordinary load.&lt;/font&gt;
+&lt;font color=&quot;#0f0f0f&quot;&gt;Parameter details:&lt;/font&gt;</p><ul><li>&lt;font color=&quot;#0f0f0f&quot;&gt;Synchronous machine parameters such as <i>Xl, Xd, Xp</i> etc. are actually used as inductances in the models,&lt;/font&gt; but are commonly referred to as reactances since, at nominal frequency, the PU values are the same. However, some references use the symbol <i>L</i> instead of <i>X</i>.</li></ul></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">CrossCompoundTurbineGovernorDyanmics</dt><dd class="cmt"><p><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this high-pressure synchronous machine is associated.</p></dd><dt class="param">CrossCompoundTurbineGovernorDynamics</dt><dd class="cmt"><p><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this low-pressure synchronous machine is associated.</p></dd><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Excitation system model associated with this synchronous machine model.</p></dd><dt class="param">GenICompensationForGenJ</dt><dd class="cmt"><p><a href="GenICompensationForGenJ.html" class="extype" name="ch.ninecode.model.GenICompensationForGenJ">GenICompensationForGenJ</a> Compensation of voltage compensator's generator for current flow out of this  generator.</p></dd><dt class="param">MechanicalLoadDynamics</dt><dd class="cmt"><p><a href="MechanicalLoadDynamics.html" class="extype" name="ch.ninecode.model.MechanicalLoadDynamics">MechanicalLoadDynamics</a> Mechanical load model associated with this synchronous machine model.</p></dd><dt class="param">SynchronousMachine</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machine to which synchronous machine dynamics model applies.</p></dd><dt class="param">TurbineGovernorDynamics</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.
+       Multiplicity of greater than one is intended to support hydro units that have multiple turbines on one generator.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +115,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SynchronousMachineDynamics#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.RotatingMachineDynamics,ExcitationSystemDynamics:String,GenICompensationForGenJ:List[String],MechanicalLoadDynamics:String,SynchronousMachine:String,TurbineGovernorDynamics:List[String]):ch.ninecode.model.SynchronousMachineDynamics"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.RotatingMachineDynamics,CrossCompoundTurbineGovernorDyanmics:String,CrossCompoundTurbineGovernorDynamics:String,ExcitationSystemDynamics:String,GenICompensationForGenJ:List[String],MechanicalLoadDynamics:String,SynchronousMachine:String,TurbineGovernorDynamics:List[String]):ch.ninecode.model.SynchronousMachineDynamics"></a>
       <a id="&lt;init&gt;:SynchronousMachineDynamics"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,14 +123,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SynchronousMachineDynamics</span><span class="params">(<span name="sup">sup: <a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a></span>, <span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GenICompensationForGenJ">GenICompensationForGenJ: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MechanicalLoadDynamics">MechanicalLoadDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SynchronousMachine">SynchronousMachine: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TurbineGovernorDynamics">TurbineGovernorDynamics: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">SynchronousMachineDynamics</span><span class="params">(<span name="sup">sup: <a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a></span>, <span name="CrossCompoundTurbineGovernorDyanmics">CrossCompoundTurbineGovernorDyanmics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GenICompensationForGenJ">GenICompensationForGenJ: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MechanicalLoadDynamics">MechanicalLoadDynamics: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SynchronousMachine">SynchronousMachine: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TurbineGovernorDynamics">TurbineGovernorDynamics: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SynchronousMachineDynamics@&lt;init&gt;(sup:ch.ninecode.model.RotatingMachineDynamics,ExcitationSystemDynamics:String,GenICompensationForGenJ:List[String],MechanicalLoadDynamics:String,SynchronousMachine:String,TurbineGovernorDynamics:List[String]):ch.ninecode.model.SynchronousMachineDynamics" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SynchronousMachineDynamics@&lt;init&gt;(sup:ch.ninecode.model.RotatingMachineDynamics,CrossCompoundTurbineGovernorDyanmics:String,CrossCompoundTurbineGovernorDynamics:String,ExcitationSystemDynamics:String,GenICompensationForGenJ:List[String],MechanicalLoadDynamics:String,SynchronousMachine:String,TurbineGovernorDynamics:List[String]):ch.ninecode.model.SynchronousMachineDynamics" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Excitation system model associated with this synchronous machine model.</p></dd><dt class="param">GenICompensationForGenJ</dt><dd class="cmt"><p><a href="GenICompensationForGenJ.html" class="extype" name="ch.ninecode.model.GenICompensationForGenJ">GenICompensationForGenJ</a> Compensation of voltage compensator's generator for current flow out of this  generator.</p></dd><dt class="param">MechanicalLoadDynamics</dt><dd class="cmt"><p><a href="MechanicalLoadDynamics.html" class="extype" name="ch.ninecode.model.MechanicalLoadDynamics">MechanicalLoadDynamics</a> Mechanical load model associated with this synchronous machine model.</p></dd><dt class="param">SynchronousMachine</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machine to which synchronous machine dynamics model applies.</p></dd><dt class="param">TurbineGovernorDynamics</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RotatingMachineDynamics.html" class="extype" name="ch.ninecode.model.RotatingMachineDynamics">RotatingMachineDynamics</a> Reference to the superclass object.</p></dd><dt class="param">CrossCompoundTurbineGovernorDyanmics</dt><dd class="cmt"><p><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this high-pressure synchronous machine is associated.</p></dd><dt class="param">CrossCompoundTurbineGovernorDynamics</dt><dd class="cmt"><p><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this low-pressure synchronous machine is associated.</p></dd><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Excitation system model associated with this synchronous machine model.</p></dd><dt class="param">GenICompensationForGenJ</dt><dd class="cmt"><p><a href="GenICompensationForGenJ.html" class="extype" name="ch.ninecode.model.GenICompensationForGenJ">GenICompensationForGenJ</a> Compensation of voltage compensator's generator for current flow out of this  generator.</p></dd><dt class="param">MechanicalLoadDynamics</dt><dd class="cmt"><p><a href="MechanicalLoadDynamics.html" class="extype" name="ch.ninecode.model.MechanicalLoadDynamics">MechanicalLoadDynamics</a> Mechanical load model associated with this synchronous machine model.</p></dd><dt class="param">SynchronousMachine</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machine to which synchronous machine dynamics model applies.</p></dd><dt class="param">TurbineGovernorDynamics</dt><dd class="cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.
+       Multiplicity of greater than one is intended to support hydro units that have multiple turbines on one generator.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,6 +192,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineDynamics#CrossCompoundTurbineGovernorDyanmics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CrossCompoundTurbineGovernorDyanmics:String"></a>
+      <a id="CrossCompoundTurbineGovernorDyanmics:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CrossCompoundTurbineGovernorDyanmics</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SynchronousMachineDynamics@CrossCompoundTurbineGovernorDyanmics:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this high-pressure synchronous machine is associated.</p>
+    </li><li name="ch.ninecode.model.SynchronousMachineDynamics#CrossCompoundTurbineGovernorDynamics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CrossCompoundTurbineGovernorDynamics:String"></a>
+      <a id="CrossCompoundTurbineGovernorDynamics:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CrossCompoundTurbineGovernorDynamics</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SynchronousMachineDynamics@CrossCompoundTurbineGovernorDynamics:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CrossCompoundTurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.CrossCompoundTurbineGovernorDynamics">CrossCompoundTurbineGovernorDynamics</a> The cross-compound turbine governor with which this low-pressure synchronous machine is associated.</p>
     </li><li name="ch.ninecode.model.SynchronousMachineDynamics#ExcitationSystemDynamics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ExcitationSystemDynamics:String"></a>
       <a id="ExcitationSystemDynamics:String"></a>
@@ -273,7 +312,7 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machine to which synchronous machine dynamics model applies.</p>
-    </li><li name="ch.ninecode.model.SynchronousMachineDynamics#TurbineGovernorDynamics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.SynchronousMachineDynamics#TurbineGovernorDynamics" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="TurbineGovernorDynamics:List[String]"></a>
       <a id="TurbineGovernorDynamics:List[String]"></a>
       <h4 class="signature">
@@ -289,7 +328,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.</p>
+      <p class="shortcomment cmt"><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.</p><div class="fullcomment"><div class="comment cmt"><p><a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a> Turbine-governor model associated with this synchronous machine model.
+       Multiplicity of greater than one is intended to support hydro units that have multiple turbines on one generator.</p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

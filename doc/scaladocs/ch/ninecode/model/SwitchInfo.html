@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SwitchInfo - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.SwitchInfo</title>
-          <meta name="description" content="SwitchInfo - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.SwitchInfo" />
-          <meta name="keywords" content="SwitchInfo CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.SwitchInfo" />
+          <title>SwitchInfo - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.SwitchInfo</title>
+          <meta name="description" content="SwitchInfo - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.SwitchInfo" />
+          <meta name="keywords" content="SwitchInfo CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.SwitchInfo" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="breakingCapacity">breakingCapacity: <span class="extype" name="scala.Double">Double</span></span>, <span name="isSinglePhase">isSinglePhase: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isUnganged">isUnganged: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedVoltage">ratedVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SwitchInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="breakingCapacity">breakingCapacity: <span class="extype" name="scala.Double">Double</span></span>, <span name="gasWeightPerTank">gasWeightPerTank: <span class="extype" name="scala.Double">Double</span></span>, <span name="isSinglePhase">isSinglePhase: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isUnganged">isUnganged: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="lowPressureAlarm">lowPressureAlarm: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowPressureLockOut">lowPressureLockOut: <span class="extype" name="scala.Double">Double</span></span>, <span name="oilVolumePerTank">oilVolumePerTank: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedFrequency">ratedFrequency: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedImpulseWithstandVoltage">ratedImpulseWithstandVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedInterruptingTime">ratedInterruptingTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedVoltage">ratedVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Switch data.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">breakingCapacity</dt><dd class="cmt"><p>The maximum fault current a breaking device can break safely under prescribed conditions of use.</p></dd><dt class="param">isSinglePhase</dt><dd class="cmt"><p>If true, it is a single phase switch.</p></dd><dt class="param">isUnganged</dt><dd class="cmt"><p>If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>Rated current.</p></dd><dt class="param">ratedVoltage</dt><dd class="cmt"><p>Rated voltage.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>&lt;was Switch data.&gt;</p><p>Switch datasheet information.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">breakingCapacity</dt><dd class="cmt"><p>The maximum fault current a breaking device can break safely under prescribed conditions of use.</p></dd><dt class="param">gasWeightPerTank</dt><dd class="cmt"><p>Weight of gas in each tank of SF6 dead tank breaker.</p></dd><dt class="param">isSinglePhase</dt><dd class="cmt"><p>If true, it is a single phase switch.</p></dd><dt class="param">isUnganged</dt><dd class="cmt"><p>If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).</p></dd><dt class="param">lowPressureAlarm</dt><dd class="cmt"><p>Gas or air pressure at or below which a low pressure alarm is generated.</p></dd><dt class="param">lowPressureLockOut</dt><dd class="cmt"><p>Gas or air pressure below which the breaker will not open.</p></dd><dt class="param">oilVolumePerTank</dt><dd class="cmt"><p>Volume of oil in each tank of bulk oil breaker.</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>Rated current.</p></dd><dt class="param">ratedFrequency</dt><dd class="cmt"><p>Frequency for which switch is rated.</p></dd><dt class="param">ratedImpulseWithstandVoltage</dt><dd class="cmt"><p>Rated impulse withstand voltage, also known as BIL (Basic Impulse Level).</p></dd><dt class="param">ratedInterruptingTime</dt><dd class="cmt"><p>Switch rated interrupting time in seconds.</p></dd><dt class="param">ratedVoltage</dt><dd class="cmt"><p>Rated voltage.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SwitchInfo#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,breakingCapacity:Double,isSinglePhase:Boolean,isUnganged:Boolean,ratedCurrent:Double,ratedVoltage:Double):ch.ninecode.model.SwitchInfo"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,breakingCapacity:Double,gasWeightPerTank:Double,isSinglePhase:Boolean,isUnganged:Boolean,lowPressureAlarm:Double,lowPressureLockOut:Double,oilVolumePerTank:Double,ratedCurrent:Double,ratedFrequency:Double,ratedImpulseWithstandVoltage:Double,ratedInterruptingTime:Double,ratedVoltage:Double):ch.ninecode.model.SwitchInfo"></a>
       <a id="&lt;init&gt;:SwitchInfo"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="breakingCapacity">breakingCapacity: <span class="extype" name="scala.Double">Double</span></span>, <span name="isSinglePhase">isSinglePhase: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isUnganged">isUnganged: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedVoltage">ratedVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">SwitchInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="breakingCapacity">breakingCapacity: <span class="extype" name="scala.Double">Double</span></span>, <span name="gasWeightPerTank">gasWeightPerTank: <span class="extype" name="scala.Double">Double</span></span>, <span name="isSinglePhase">isSinglePhase: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isUnganged">isUnganged: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="lowPressureAlarm">lowPressureAlarm: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowPressureLockOut">lowPressureLockOut: <span class="extype" name="scala.Double">Double</span></span>, <span name="oilVolumePerTank">oilVolumePerTank: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedFrequency">ratedFrequency: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedImpulseWithstandVoltage">ratedImpulseWithstandVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedInterruptingTime">ratedInterruptingTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="ratedVoltage">ratedVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,breakingCapacity:Double,isSinglePhase:Boolean,isUnganged:Boolean,ratedCurrent:Double,ratedVoltage:Double):ch.ninecode.model.SwitchInfo" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,breakingCapacity:Double,gasWeightPerTank:Double,isSinglePhase:Boolean,isUnganged:Boolean,lowPressureAlarm:Double,lowPressureLockOut:Double,oilVolumePerTank:Double,ratedCurrent:Double,ratedFrequency:Double,ratedImpulseWithstandVoltage:Double,ratedInterruptingTime:Double,ratedVoltage:Double):ch.ninecode.model.SwitchInfo" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">breakingCapacity</dt><dd class="cmt"><p>The maximum fault current a breaking device can break safely under prescribed conditions of use.</p></dd><dt class="param">isSinglePhase</dt><dd class="cmt"><p>If true, it is a single phase switch.</p></dd><dt class="param">isUnganged</dt><dd class="cmt"><p>If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>Rated current.</p></dd><dt class="param">ratedVoltage</dt><dd class="cmt"><p>Rated voltage.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">breakingCapacity</dt><dd class="cmt"><p>The maximum fault current a breaking device can break safely under prescribed conditions of use.</p></dd><dt class="param">gasWeightPerTank</dt><dd class="cmt"><p>Weight of gas in each tank of SF6 dead tank breaker.</p></dd><dt class="param">isSinglePhase</dt><dd class="cmt"><p>If true, it is a single phase switch.</p></dd><dt class="param">isUnganged</dt><dd class="cmt"><p>If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).</p></dd><dt class="param">lowPressureAlarm</dt><dd class="cmt"><p>Gas or air pressure at or below which a low pressure alarm is generated.</p></dd><dt class="param">lowPressureLockOut</dt><dd class="cmt"><p>Gas or air pressure below which the breaker will not open.</p></dd><dt class="param">oilVolumePerTank</dt><dd class="cmt"><p>Volume of oil in each tank of bulk oil breaker.</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>Rated current.</p></dd><dt class="param">ratedFrequency</dt><dd class="cmt"><p>Frequency for which switch is rated.</p></dd><dt class="param">ratedImpulseWithstandVoltage</dt><dd class="cmt"><p>Rated impulse withstand voltage, also known as BIL (Basic Impulse Level).</p></dd><dt class="param">ratedInterruptingTime</dt><dd class="cmt"><p>Switch rated interrupting time in seconds.</p></dd><dt class="param">ratedVoltage</dt><dd class="cmt"><p>Rated voltage.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -500,6 +500,23 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchInfo#gasWeightPerTank" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="gasWeightPerTank:Double"></a>
+      <a id="gasWeightPerTank:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">gasWeightPerTank</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@gasWeightPerTank:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Weight of gas in each tank of SF6 dead tank breaker.</p>
     </li><li name="ch.ninecode.model.SwitchInfo#get" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="get(i:Int):Object"></a>
       <a id="get(Int):AnyRef"></a>
@@ -979,6 +996,40 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">The number of fields in the object definition.</p><div class="fullcomment"><div class="comment cmt"><p>The number of fields in the object definition.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of defined fields for use in Row manipulations.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.SwitchInfo">SwitchInfo</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchInfo#lowPressureAlarm" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="lowPressureAlarm:Double"></a>
+      <a id="lowPressureAlarm:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lowPressureAlarm</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@lowPressureAlarm:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gas or air pressure at or below which a low pressure alarm is generated.</p>
+    </li><li name="ch.ninecode.model.SwitchInfo#lowPressureLockOut" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="lowPressureLockOut:Double"></a>
+      <a id="lowPressureLockOut:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lowPressureLockOut</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@lowPressureLockOut:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Gas or air pressure below which the breaker will not open.</p>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1099,6 +1150,23 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchInfo#oilVolumePerTank" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="oilVolumePerTank:Double"></a>
+      <a id="oilVolumePerTank:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">oilVolumePerTank</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@oilVolumePerTank:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Volume of oil in each tank of bulk oil breaker.</p>
     </li><li name="ch.ninecode.model.SwitchInfo#ratedCurrent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ratedCurrent:Double"></a>
       <a id="ratedCurrent:Double"></a>
@@ -1116,6 +1184,57 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Rated current.</p>
+    </li><li name="ch.ninecode.model.SwitchInfo#ratedFrequency" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ratedFrequency:Double"></a>
+      <a id="ratedFrequency:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ratedFrequency</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@ratedFrequency:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency for which switch is rated.</p>
+    </li><li name="ch.ninecode.model.SwitchInfo#ratedImpulseWithstandVoltage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ratedImpulseWithstandVoltage:Double"></a>
+      <a id="ratedImpulseWithstandVoltage:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ratedImpulseWithstandVoltage</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@ratedImpulseWithstandVoltage:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Rated impulse withstand voltage, also known as BIL (Basic Impulse Level).</p>
+    </li><li name="ch.ninecode.model.SwitchInfo#ratedInterruptingTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ratedInterruptingTime:Double"></a>
+      <a id="ratedInterruptingTime:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ratedInterruptingTime</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchInfo@ratedInterruptingTime:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Switch rated interrupting time in seconds.</p>
     </li><li name="ch.ninecode.model.SwitchInfo#ratedVoltage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ratedVoltage:Double"></a>
       <a id="ratedVoltage:Double"></a>

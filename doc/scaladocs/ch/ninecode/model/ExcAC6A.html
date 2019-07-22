@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcAC6A - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ExcAC6A</title>
-          <meta name="description" content="ExcAC6A - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ExcAC6A" />
-          <meta name="keywords" content="ExcAC6A CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ExcAC6A" />
+          <title>ExcAC6A - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ExcAC6A</title>
+          <meta name="description" content="ExcAC6A - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ExcAC6A" />
+          <meta name="keywords" content="ExcAC6A CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ExcAC6A" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,30 +52,30 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (Ka).
-       Typical Value = 536.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.173.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (Kd).
-       Typical Value = 1.91.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (Ke).
-       Typical Value = 1.6.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>Exciter field current limiter gain (Kh).
-       Typical Value = 92.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></dd><dt class="param">seve1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-       Typical Value = 0.214.</p></dd><dt class="param">seve2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-       Typical Value = 0.044.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.086.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 9.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 3.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (Te).
-       Typical Value = 1.</p></dd><dt class="param">th</dt><dd class="cmt"><p>Exciter field current limiter time constant (Th).
-       Typical Value = 0.08.</p></dd><dt class="param">tj</dt><dd class="cmt"><p>Exciter field current limiter time constant (Tj).
-       Typical Value = 0.02.</p></dd><dt class="param">tk</dt><dd class="cmt"><p>Voltage regulator time constant (Tk).
-       Typical Value = 0.18.</p></dd><dt class="param">vamax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vamax).
-       Typical Value = 75.</p></dd><dt class="param">vamin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vamin).
-       Typical Value = -75.</p></dd><dt class="param">ve1</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
-       Typical Value = 7.4.</p></dd><dt class="param">ve2</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-       Typical Value = 5.55.</p></dd><dt class="param">vfelim</dt><dd class="cmt"><p>Exciter field current limit reference (Vfelim).
-       Typical Value = 19.</p></dd><dt class="param">vhmax</dt><dd class="cmt"><p>Maximum field current limiter signal reference (Vhmax).
-       Typical Value = 75.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 44.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -36.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+       Typical value = 536.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,173.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+       Typical value = 1,91.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (<i>Ke</i>).
+       Typical value = 1,6.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
+       Typical value = 92.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></dd><dt class="param">seve1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,214.</p></dd><dt class="param">seve2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,044.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,086.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 9.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">th</dt><dd class="cmt"><p>Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
+       Typical value = 0,08.</p></dd><dt class="param">tj</dt><dd class="cmt"><p>Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">tk</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
+       Typical value = 0,18.</p></dd><dt class="param">vamax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+       Typical value = 75.</p></dd><dt class="param">vamin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+       Typical value = -75.</p></dd><dt class="param">ve1</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+       Typical value = 7,4.</p></dd><dt class="param">ve2</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+       Typical value = 5,55.</p></dd><dt class="param">vfelim</dt><dd class="cmt"><p>Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
+       Typical value = 19.</p></dd><dt class="param">vhmax</dt><dd class="cmt"><p>Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
+       Typical value = 75.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 44.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -36.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -147,30 +147,30 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (Ka).
-       Typical Value = 536.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.173.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (Kd).
-       Typical Value = 1.91.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (Ke).
-       Typical Value = 1.6.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>Exciter field current limiter gain (Kh).
-       Typical Value = 92.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></dd><dt class="param">seve1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-       Typical Value = 0.214.</p></dd><dt class="param">seve2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-       Typical Value = 0.044.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.086.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 9.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 3.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (Te).
-       Typical Value = 1.</p></dd><dt class="param">th</dt><dd class="cmt"><p>Exciter field current limiter time constant (Th).
-       Typical Value = 0.08.</p></dd><dt class="param">tj</dt><dd class="cmt"><p>Exciter field current limiter time constant (Tj).
-       Typical Value = 0.02.</p></dd><dt class="param">tk</dt><dd class="cmt"><p>Voltage regulator time constant (Tk).
-       Typical Value = 0.18.</p></dd><dt class="param">vamax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vamax).
-       Typical Value = 75.</p></dd><dt class="param">vamin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vamin).
-       Typical Value = -75.</p></dd><dt class="param">ve1</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
-       Typical Value = 7.4.</p></dd><dt class="param">ve2</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-       Typical Value = 5.55.</p></dd><dt class="param">vfelim</dt><dd class="cmt"><p>Exciter field current limit reference (Vfelim).
-       Typical Value = 19.</p></dd><dt class="param">vhmax</dt><dd class="cmt"><p>Maximum field current limiter signal reference (Vhmax).
-       Typical Value = 75.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 44.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -36.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+       Typical value = 536.</p></dd><dt class="param">kc</dt><dd class="cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,173.</p></dd><dt class="param">kd</dt><dd class="cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+       Typical value = 1,91.</p></dd><dt class="param">ke</dt><dd class="cmt"><p>Exciter constant related to self-excited field (<i>Ke</i>).
+       Typical value = 1,6.</p></dd><dt class="param">kh</dt><dd class="cmt"><p>Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
+       Typical value = 92.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></dd><dt class="param">seve1</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,214.</p></dd><dt class="param">seve2</dt><dd class="cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,044.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,086.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 9.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 3.</p></dd><dt class="param">te</dt><dd class="cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+       Typical value = 1.</p></dd><dt class="param">th</dt><dd class="cmt"><p>Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
+       Typical value = 0,08.</p></dd><dt class="param">tj</dt><dd class="cmt"><p>Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
+       Typical value = 0,02.</p></dd><dt class="param">tk</dt><dd class="cmt"><p>Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
+       Typical value = 0,18.</p></dd><dt class="param">vamax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+       Typical value = 75.</p></dd><dt class="param">vamin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+       Typical value = -75.</p></dd><dt class="param">ve1</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+       Typical value = 7,4.</p></dd><dt class="param">ve2</dt><dd class="cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+       Typical value = 5,55.</p></dd><dt class="param">vfelim</dt><dd class="cmt"><p>Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
+       Typical value = 19.</p></dd><dt class="param">vhmax</dt><dd class="cmt"><p>Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
+       Typical value = 75.</p></dd><dt class="param">vrmax</dt><dd class="cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 44.</p></dd><dt class="param">vrmin</dt><dd class="cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -36.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -972,8 +972,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator gain (Ka).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (Ka).
-       Typical Value = 536.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator gain (<i>Ka</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+       Typical value = 536.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#kc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kc:Double"></a>
       <a id="kc:Double"></a>
@@ -990,8 +990,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (Kc).</p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (Kc).
-       Typical Value = 0.173.</p></div></div>
+      <p class="shortcomment cmt">Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+       Typical value = 0,173.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#kd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kd:Double"></a>
       <a id="kd:Double"></a>
@@ -1008,8 +1008,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Demagnetizing factor, a function of exciter alternator reactances (Kd).</p><div class="fullcomment"><div class="comment cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (Kd).
-       Typical Value = 1.91.</p></div></div>
+      <p class="shortcomment cmt">Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+       Typical value = 1,91.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#ke" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ke:Double"></a>
       <a id="ke:Double"></a>
@@ -1026,8 +1026,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter constant related to self-excited field (Ke).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant related to self-excited field (Ke).
-       Typical Value = 1.6.</p></div></div>
+      <p class="shortcomment cmt">Exciter constant related to self-excited field (<i>Ke</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter constant related to self-excited field (<i>Ke</i>).
+       Typical value = 1,6.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#kh" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kh:Double"></a>
       <a id="kh:Double"></a>
@@ -1044,8 +1044,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter field current limiter gain (Kh).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter gain (Kh).
-       Typical Value = 92.</p></div></div>
+      <p class="shortcomment cmt">Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
+       Typical value = 92.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#ks" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks:Double"></a>
       <a id="ks:Double"></a>
@@ -1062,8 +1062,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (Ks).</p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (Ks).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1235,8 +1235,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-       Typical Value = 0.214.</p></div></div>
+      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).</i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,214.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#seve2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="seve2:Double"></a>
       <a id="seve2:Double"></a>
@@ -1253,8 +1253,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-       Typical Value = 0.044.</p></div></div>
+      <p class="shortcomment cmt">Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).</i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+       Typical value = 0,044.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="size:Int"></a>
       <a id="size:Int"></a>
@@ -1322,8 +1322,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Ta).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Ta).
-       Typical Value = 0.086.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+       Typical value = 0,086.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tb:Double"></a>
       <a id="tb:Double"></a>
@@ -1340,8 +1340,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Tb).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Tb).
-       Typical Value = 9.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+       Typical value = 9.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tc:Double"></a>
       <a id="tc:Double"></a>
@@ -1358,8 +1358,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Tc).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Tc).
-       Typical Value = 3.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+       Typical value = 3.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#te" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="te:Double"></a>
       <a id="te:Double"></a>
@@ -1376,8 +1376,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter time constant, integration rate associated with exciter control (Te).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant, integration rate associated with exciter control (Te).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#th" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="th:Double"></a>
       <a id="th:Double"></a>
@@ -1394,8 +1394,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter field current limiter time constant (Th).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter time constant (Th).
-       Typical Value = 0.08.</p></div></div>
+      <p class="shortcomment cmt">Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
+       Typical value = 0,08.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#tj" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tj:Double"></a>
       <a id="tj:Double"></a>
@@ -1412,8 +1412,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter field current limiter time constant (Tj).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter time constant (Tj).
-       Typical Value = 0.02.</p></div></div>
+      <p class="shortcomment cmt">Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
+       Typical value = 0,02.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#tk" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tk:Double"></a>
       <a id="tk:Double"></a>
@@ -1430,8 +1430,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Voltage regulator time constant (Tk).</p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (Tk).
-       Typical Value = 0.18.</p></div></div>
+      <p class="shortcomment cmt">Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
+       Typical value = 0,18.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1482,8 +1482,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (Vamax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (Vamax).
-       Typical Value = 75.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+       Typical value = 75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#vamin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vamin:Double"></a>
       <a id="vamin:Double"></a>
@@ -1500,8 +1500,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (Vamin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (Vamin).
-       Typical Value = -75.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+       Typical value = -75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#ve1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ve1:Double"></a>
       <a id="ve1:Double"></a>
@@ -1518,8 +1518,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
-       Typical Value = 7.4.</p></div></div>
+      <p class="shortcomment cmt">Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+       Typical value = 7,4.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#ve2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ve2:Double"></a>
       <a id="ve2:Double"></a>
@@ -1536,8 +1536,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-       Typical Value = 5.55.</p></div></div>
+      <p class="shortcomment cmt">Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+       Typical value = 5,55.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#vfelim" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vfelim:Double"></a>
       <a id="vfelim:Double"></a>
@@ -1554,8 +1554,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Exciter field current limit reference (Vfelim).</p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limit reference (Vfelim).
-       Typical Value = 19.</p></div></div>
+      <p class="shortcomment cmt">Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
+       Typical value = 19.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#vhmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vhmax:Double"></a>
       <a id="vhmax:Double"></a>
@@ -1572,8 +1572,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum field current limiter signal reference (Vhmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum field current limiter signal reference (Vhmax).
-       Typical Value = 75.</p></div></div>
+      <p class="shortcomment cmt">Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
+       Typical value = 75.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#vrmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmax:Double"></a>
       <a id="vrmax:Double"></a>
@@ -1590,8 +1590,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum voltage regulator output (Vrmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (Vrmax).
-       Typical Value = 44.</p></div></div>
+      <p class="shortcomment cmt">Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+       Typical value = 44.</p></div></div>
     </li><li name="ch.ninecode.model.ExcAC6A#vrmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vrmin:Double"></a>
       <a id="vrmin:Double"></a>
@@ -1608,8 +1608,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum voltage regulator output (Vrmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (Vrmin).
-       Typical Value = -36.</p></div></div>
+      <p class="shortcomment cmt">Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+       Typical value = -36.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

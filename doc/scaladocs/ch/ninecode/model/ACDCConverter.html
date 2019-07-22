@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ACDCConverter - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ACDCConverter</title>
-          <meta name="description" content="ACDCConverter - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ACDCConverter" />
-          <meta name="keywords" content="ACDCConverter CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ACDCConverter" />
+          <title>ACDCConverter - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ACDCConverter</title>
+          <meta name="description" content="ACDCConverter - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ACDCConverter" />
+          <meta name="keywords" content="ACDCConverter CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ACDCConverter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -55,23 +55,27 @@
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> Reference to the superclass object.</p></dd><dt class="param">baseS</dt><dd class="cmt"><p>Base apparent power of the converter pole.</p></dd><dt class="param">idc</dt><dd class="cmt"><p>Converter DC current, also called Id.
        Converter state variable, result from power flow.</p></dd><dt class="param">idleLoss</dt><dd class="cmt"><p>Active power loss in pole at no power transfer.
        Converter configuration data used in power flow.</p></dd><dt class="param">maxUdc</dt><dd class="cmt"><p>The maximum voltage on the DC side at which the converter should operate.
-       Converter configuration data used in power flow.</p></dd><dt class="param">minUdc</dt><dd class="cmt"><p>Min allowed converter DC voltage.
+       Converter configuration data used in power flow.</p></dd><dt class="param">minUdc</dt><dd class="cmt"><p>Minimum allowed converter DC voltage.
        Converter configuration data used in power flow.</p></dd><dt class="param">numberOfValves</dt><dd class="cmt"><p>Number of valves in the converter.
        Used in loss calculations.</p></dd><dt class="param">p</dt><dd class="cmt"><p>Active power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">poleLossP</dt><dd class="cmt"><p>The active power loss at a DC Pole
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></dd><dt class="param">poleLossP</dt><dd class="cmt"><p>The active power loss at a DC Pole
        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
        For lossless operation Pdc=Pac
        For rectifier operation with losses Pdc=Pac-lossP
        For inverter operation with losses Pdc=Pac+lossP
        Converter state variable used in power flow.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">ratedUdc</dt><dd class="cmt"><p>Rated converter DC voltage, also called UdN.
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></dd><dt class="param">ratedUdc</dt><dd class="cmt"><p>Rated converter DC voltage, also called UdN.
        Converter configuration data used in power flow.</p></dd><dt class="param">resistiveLoss</dt><dd class="cmt"><p>Converter configuration data used in power flow.
        Refer to poleLossP.</p></dd><dt class="param">switchingLoss</dt><dd class="cmt"><p>Switching losses, relative to the base apparent power 'baseS'.
-       Refer to poleLossP.</p></dd><dt class="param">targetPpcc</dt><dd class="cmt"><p>Real power injection target in AC grid, at point of common coupling.</p></dd><dt class="param">targetUdc</dt><dd class="cmt"><p>Target value for DC voltage magnitude.</p></dd><dt class="param">uc</dt><dd class="cmt"><p>Line-to-line converter voltage, the voltage at the AC side of the valve.
+       Refer to poleLossP.</p></dd><dt class="param">targetPpcc</dt><dd class="cmt"><p>Real power injection target in AC grid, at point of common coupling.
+       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">targetUdc</dt><dd class="cmt"><p>Target value for DC voltage magnitude.</p></dd><dt class="param">uc</dt><dd class="cmt"><p>Line-to-line converter voltage, the voltage at the AC side of the valve.
        Converter state variable, result from power flow.</p></dd><dt class="param">udc</dt><dd class="cmt"><p>Converter voltage at the DC side, also called Ud.
        Converter state variable, result from power flow.</p></dd><dt class="param">valveU0</dt><dd class="cmt"><p>Valve threshold voltage, also called Uvalve.
-       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.</p></dd><dt class="param">DCTerminals</dt><dd class="cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> <em>undocumented</em></p></dd><dt class="param">PccTerminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.
-       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.</p></dd></dl><div class="toggleContainer block">
+       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depend on numberOfValves * valveU0.</p></dd><dt class="param">DCTerminals</dt><dd class="cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> A DC converter have DC converter terminals.
+       A converter has two DC converter terminals.</p></dd><dt class="param">PccTerminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.
+       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement shall be the sum of all flows into the transformer.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -146,23 +150,27 @@
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> Reference to the superclass object.</p></dd><dt class="param">baseS</dt><dd class="cmt"><p>Base apparent power of the converter pole.</p></dd><dt class="param">idc</dt><dd class="cmt"><p>Converter DC current, also called Id.
        Converter state variable, result from power flow.</p></dd><dt class="param">idleLoss</dt><dd class="cmt"><p>Active power loss in pole at no power transfer.
        Converter configuration data used in power flow.</p></dd><dt class="param">maxUdc</dt><dd class="cmt"><p>The maximum voltage on the DC side at which the converter should operate.
-       Converter configuration data used in power flow.</p></dd><dt class="param">minUdc</dt><dd class="cmt"><p>Min allowed converter DC voltage.
+       Converter configuration data used in power flow.</p></dd><dt class="param">minUdc</dt><dd class="cmt"><p>Minimum allowed converter DC voltage.
        Converter configuration data used in power flow.</p></dd><dt class="param">numberOfValves</dt><dd class="cmt"><p>Number of valves in the converter.
        Used in loss calculations.</p></dd><dt class="param">p</dt><dd class="cmt"><p>Active power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">poleLossP</dt><dd class="cmt"><p>The active power loss at a DC Pole
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></dd><dt class="param">poleLossP</dt><dd class="cmt"><p>The active power loss at a DC Pole
        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
        For lossless operation Pdc=Pac
        For rectifier operation with losses Pdc=Pac-lossP
        For inverter operation with losses Pdc=Pac+lossP
        Converter state variable used in power flow.</p></dd><dt class="param">q</dt><dd class="cmt"><p>Reactive power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">ratedUdc</dt><dd class="cmt"><p>Rated converter DC voltage, also called UdN.
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></dd><dt class="param">ratedUdc</dt><dd class="cmt"><p>Rated converter DC voltage, also called UdN.
        Converter configuration data used in power flow.</p></dd><dt class="param">resistiveLoss</dt><dd class="cmt"><p>Converter configuration data used in power flow.
        Refer to poleLossP.</p></dd><dt class="param">switchingLoss</dt><dd class="cmt"><p>Switching losses, relative to the base apparent power 'baseS'.
-       Refer to poleLossP.</p></dd><dt class="param">targetPpcc</dt><dd class="cmt"><p>Real power injection target in AC grid, at point of common coupling.</p></dd><dt class="param">targetUdc</dt><dd class="cmt"><p>Target value for DC voltage magnitude.</p></dd><dt class="param">uc</dt><dd class="cmt"><p>Line-to-line converter voltage, the voltage at the AC side of the valve.
+       Refer to poleLossP.</p></dd><dt class="param">targetPpcc</dt><dd class="cmt"><p>Real power injection target in AC grid, at point of common coupling.
+       Load sign convention is used, i.e. positive sign means flow out from a node.</p></dd><dt class="param">targetUdc</dt><dd class="cmt"><p>Target value for DC voltage magnitude.</p></dd><dt class="param">uc</dt><dd class="cmt"><p>Line-to-line converter voltage, the voltage at the AC side of the valve.
        Converter state variable, result from power flow.</p></dd><dt class="param">udc</dt><dd class="cmt"><p>Converter voltage at the DC side, also called Ud.
        Converter state variable, result from power flow.</p></dd><dt class="param">valveU0</dt><dd class="cmt"><p>Valve threshold voltage, also called Uvalve.
-       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.</p></dd><dt class="param">DCTerminals</dt><dd class="cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> <em>undocumented</em></p></dd><dt class="param">PccTerminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.
-       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.</p></dd></dl></div>
+       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depend on numberOfValves * valveU0.</p></dd><dt class="param">DCTerminals</dt><dd class="cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> A DC converter have DC converter terminals.
+       A converter has two DC converter terminals.</p></dd><dt class="param">PccTerminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.
+       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement shall be the sum of all flows into the transformer.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -257,7 +265,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> <em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> A DC converter have DC converter terminals.</p><div class="fullcomment"><div class="comment cmt"><p><a href="ACDCConverterDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCConverterDCTerminal">ACDCConverterDCTerminal</a> A DC converter have DC converter terminals.
+       A converter has two DC converter terminals.</p></div></div>
     </li><li name="ch.ninecode.model.ACDCConverter#PccTerminal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="PccTerminal:String"></a>
       <a id="PccTerminal:String"></a>
@@ -275,7 +284,7 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Point of common coupling terminal for this converter DC side.
-       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.</p></div></div>
+       It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement shall be the sum of all flows into the transformer.</p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -1106,7 +1115,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Min allowed converter DC voltage.</p><div class="fullcomment"><div class="comment cmt"><p>Min allowed converter DC voltage.
+      <p class="shortcomment cmt">Minimum allowed converter DC voltage.</p><div class="fullcomment"><div class="comment cmt"><p>Minimum allowed converter DC voltage.
        Converter configuration data used in power flow.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
@@ -1245,7 +1254,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Active power at the point of common coupling.</p><div class="fullcomment"><div class="comment cmt"><p>Active power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></div></div>
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></div></div>
     </li><li name="ch.ninecode.model.ACDCConverter#poleLossP" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="poleLossP:Double"></a>
       <a id="poleLossP:Double"></a>
@@ -1290,7 +1300,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Reactive power at the point of common coupling.</p><div class="fullcomment"><div class="comment cmt"><p>Reactive power at the point of common coupling.
-       Load sign convention is used, i.e. positive sign means flow out from a node.</p></div></div>
+       Load sign convention is used, i.e. positive sign means flow out from a node.
+       Starting value for a steady state solution in the case a simplified power flow model is used.</p></div></div>
     </li><li name="ch.ninecode.model.ACDCConverter#ratedUdc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ratedUdc:Double"></a>
       <a id="ratedUdc:Double"></a>
@@ -1413,7 +1424,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.ACDCConverter#targetPpcc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.ACDCConverter#targetPpcc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="targetPpcc:Double"></a>
       <a id="targetPpcc:Double"></a>
       <h4 class="signature">
@@ -1429,7 +1440,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Real power injection target in AC grid, at point of common coupling.</p>
+      <p class="shortcomment cmt">Real power injection target in AC grid, at point of common coupling.</p><div class="fullcomment"><div class="comment cmt"><p>Real power injection target in AC grid, at point of common coupling.
+       Load sign convention is used, i.e. positive sign means flow out from a node.</p></div></div>
     </li><li name="ch.ninecode.model.ACDCConverter#targetUdc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="targetUdc:Double"></a>
       <a id="targetUdc:Double"></a>
@@ -1534,7 +1546,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Valve threshold voltage, also called Uvalve.</p><div class="fullcomment"><div class="comment cmt"><p>Valve threshold voltage, also called Uvalve.
-       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.</p></div></div>
+       Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depend on numberOfValves * valveU0.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

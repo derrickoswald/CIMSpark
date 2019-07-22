@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ServiceGuarantee - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.ServiceGuarantee</title>
-          <meta name="description" content="ServiceGuarantee - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.ServiceGuarantee" />
-          <meta name="keywords" content="ServiceGuarantee CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.ServiceGuarantee" />
+          <title>ServiceGuarantee - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.ServiceGuarantee</title>
+          <meta name="description" content="ServiceGuarantee - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.ServiceGuarantee" />
+          <meta name="keywords" content="ServiceGuarantee CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.ServiceGuarantee" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,6 +52,9 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.</p><p>Note that guarantee's identifier is in the 'name' attribute and the status of the guarantee is in the 'Status.status' attribute.
+Example service requirements include:
+1) If power is not restored within 24 hours, customers can claim $50 for residential customers or $100 for commercial and industrial customers. In addition for each extra period of 12 hours the customer's supply has not been activated, the customer can claim $25.
+2) If a customer has a question about their electricity bill, the utility will investigate and respond to the inquiry within 15 working days. If utility fails to meet its guarantee, utility will automatically pay the customer $50.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">applicationPeriod</dt><dd class="cmt"><p>Period in which this service guantee applies.</p></dd><dt class="param">automaticPay</dt><dd class="cmt"><p>True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.</p></dd><dt class="param">payAmount</dt><dd class="cmt"><p>Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.</p></dd><dt class="param">serviceRequirement</dt><dd class="cmt"><p>Explanation of the requirement and conditions for satisfying it.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindContRotorRIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindContRotorRIEC</title>
-          <meta name="description" content="WindContRotorRIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindContRotorRIEC" />
-          <meta name="keywords" content="WindContRotorRIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindContRotorRIEC" />
+          <title>WindContRotorRIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindContRotorRIEC</title>
+          <meta name="description" content="WindContRotorRIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindContRotorRIEC" />
+          <meta name="keywords" content="WindContRotorRIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindContRotorRIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,16 +51,16 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Rotor resistance control model.</p><p>Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kirr</dt><dd class="cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">komegafilt</dt><dd class="cmt"><p>Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpfilt</dt><dd class="cmt"><p>Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kprr</dt><dd class="cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">rmax</dt><dd class="cmt"><p>Maximum rotor resistance (<i>r</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">rmin</dt><dd class="cmt"><p>Minimum rotor resistance (<i>r</i><sub>min</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">tomegafiltrr</dt><dd class="cmt"><p>Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">tpfiltrr</dt><dd class="cmt"><p>Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this rotor resistance control model.</p></dd><dt class="param">WindGenTurbineType2IEC</dt><dd class="cmt"><p><a href="WindGenTurbineType2IEC.html" class="extype" name="ch.ninecode.model.WindGenTurbineType2IEC">WindGenTurbineType2IEC</a> Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Rotor resistance control model.</p><p>Reference: IEC 61400-27-1:2015, 5.6.5.3.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kirr</dt><dd class="cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">komegafilt</dt><dd class="cmt"><p>Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpfilt</dt><dd class="cmt"><p>Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kprr</dt><dd class="cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">rmax</dt><dd class="cmt"><p>Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
+       It is a type-dependent parameter.</p></dd><dt class="param">rmin</dt><dd class="cmt"><p>Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
+       It is a type-dependent parameter.</p></dd><dt class="param">tomegafiltrr</dt><dd class="cmt"><p>Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">tpfiltrr</dt><dd class="cmt"><p>Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this rotor resistance control model.</p></dd><dt class="param">WindGenTurbineType2IEC</dt><dd class="cmt"><p><a href="WindGenTurbineType2IEC.html" class="extype" name="ch.ninecode.model.WindGenTurbineType2IEC">WindGenTurbineType2IEC</a> Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -132,15 +132,15 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kirr</dt><dd class="cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">komegafilt</dt><dd class="cmt"><p>Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpfilt</dt><dd class="cmt"><p>Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kprr</dt><dd class="cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">rmax</dt><dd class="cmt"><p>Maximum rotor resistance (<i>r</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">rmin</dt><dd class="cmt"><p>Minimum rotor resistance (<i>r</i><sub>min</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">tomegafiltrr</dt><dd class="cmt"><p>Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">tpfiltrr</dt><dd class="cmt"><p>Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this rotor resistance control model.</p></dd><dt class="param">WindGenTurbineType2IEC</dt><dd class="cmt"><p><a href="WindGenTurbineType2IEC.html" class="extype" name="ch.ninecode.model.WindGenTurbineType2IEC">WindGenTurbineType2IEC</a> Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kirr</dt><dd class="cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">komegafilt</dt><dd class="cmt"><p>Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpfilt</dt><dd class="cmt"><p>Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kprr</dt><dd class="cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">rmax</dt><dd class="cmt"><p>Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
+       It is a type-dependent parameter.</p></dd><dt class="param">rmin</dt><dd class="cmt"><p>Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
+       It is a type-dependent parameter.</p></dd><dt class="param">tomegafiltrr</dt><dd class="cmt"><p>Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">tpfiltrr</dt><dd class="cmt"><p>Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this rotor resistance control model.</p></dd><dt class="param">WindGenTurbineType2IEC</dt><dd class="cmt"><p><a href="WindGenTurbineType2IEC.html" class="extype" name="ch.ninecode.model.WindGenTurbineType2IEC">WindGenTurbineType2IEC</a> Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -976,8 +976,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#komegafilt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="komegafilt:Double"></a>
       <a id="komegafilt:Double"></a>
@@ -994,8 +994,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter gain for generator speed measurement (K<sub>omegafilt</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#kpfilt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpfilt:Double"></a>
       <a id="kpfilt:Double"></a>
@@ -1012,8 +1012,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#kprr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kprr:Double"></a>
       <a id="kprr:Double"></a>
@@ -1030,8 +1030,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1186,8 +1186,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum rotor resistance (<i>r</i><sub>max</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum rotor resistance (<i>r</i><sub>max</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#rmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rmin:Double"></a>
       <a id="rmin:Double"></a>
@@ -1204,8 +1204,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum rotor resistance (<i>r</i><sub>min</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum rotor resistance (<i>r</i><sub>min</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1324,8 +1324,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContRotorRIEC#tpfiltrr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tpfiltrr:Double"></a>
       <a id="tpfiltrr:Double"></a>
@@ -1342,8 +1342,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

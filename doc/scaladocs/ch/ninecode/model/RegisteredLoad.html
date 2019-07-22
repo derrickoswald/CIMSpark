@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>RegisteredLoad - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.RegisteredLoad</title>
-          <meta name="description" content="RegisteredLoad - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.RegisteredLoad" />
-          <meta name="keywords" content="RegisteredLoad CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.RegisteredLoad" />
+          <title>RegisteredLoad - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.RegisteredLoad</title>
+          <meta name="description" content="RegisteredLoad - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.RegisteredLoad" />
+          <meta name="keywords" content="RegisteredLoad CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.RegisteredLoad" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,18 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">RegisteredLoad</span><span class="params">(<span name="sup">sup: <a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a></span>, <span name="blockLoadTransferFlag">blockLoadTransferFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dynamicallyScheduledLoadResourceFlag">dynamicallyScheduledLoadResourceFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dynamicallyScheduledQualificationFlag">dynamicallyScheduledQualificationFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="loadRegistryMSS">loadRegistryMSS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="maxBaseLoad">maxBaseLoad: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxDeploymentTime">maxDeploymentTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxLoadRedTimesPerDay">maxLoadRedTimesPerDay: <span class="extype" name="scala.Int">Int</span></span>, <span name="maxLoadReduction">maxLoadReduction: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxReductionTime">maxReductionTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxWeeklyDeployment">maxWeeklyDeployment: <span class="extype" name="scala.Int">Int</span></span>, <span name="minLoadReduction">minLoadReduction: <span class="extype" name="scala.Double">Double</span></span>, <span name="minLoadReductionCost">minLoadReductionCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="minLoadReductionInterval">minLoadReductionInterval: <span class="extype" name="scala.Double">Double</span></span>, <span name="minReductionTime">minReductionTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="minTimeBetLoadRed">minTimeBetLoadRed: <span class="extype" name="scala.Double">Double</span></span>, <span name="participatingLoad">participatingLoad: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="reqNoticeTime">reqNoticeTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="resourceSubType">resourceSubType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AuxillaryObject">AuxillaryObject: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadBids">LoadBids: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadReductionPriceCurve">LoadReductionPriceCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadReductionTimeCurve">LoadReductionTimeCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktEnergyConsumer">MktEnergyConsumer: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktLoadArea">MktLoadArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="NPLCustomLoadAggregation">NPLCustomLoadAggregation: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">RegisteredLoad</span><span class="params">(<span name="sup">sup: <a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a></span>, <span name="blockLoadTransfer">blockLoadTransfer: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="dynamicallyScheduledLoadResource">dynamicallyScheduledLoadResource: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="dynamicallyScheduledQualification">dynamicallyScheduledQualification: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="AuxillaryObject">AuxillaryObject: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadBids">LoadBids: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Model of a load that is registered to participate in the market (demand reduction)
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> Reference to the superclass object.</p></dd><dt class="param">blockLoadTransferFlag</dt><dd class="cmt"><p>Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)</p></dd><dt class="param">dynamicallyScheduledLoadResourceFlag</dt><dd class="cmt"><p>Flag to indicate that a Load Resource is part of a DSR Load</p></dd><dt class="param">dynamicallyScheduledQualificationFlag</dt><dd class="cmt"><p>Qualification status (used for DSR qualification)</p></dd><dt class="param">loadRegistryMSS</dt><dd class="cmt"><p>Non-participating load registry as a MSS load</p></dd><dt class="param">maxBaseLoad</dt><dd class="cmt"><p>Maximum Base Load (MW), per Participating Load Resource</p></dd><dt class="param">maxDeploymentTime</dt><dd class="cmt"><p>Maximum Deployment time (seconds)</p></dd><dt class="param">maxLoadRedTimesPerDay</dt><dd class="cmt"><p>Maximum Number of Daily Load Curtailments</p></dd><dt class="param">maxLoadReduction</dt><dd class="cmt"><p>maximum load reduction</p></dd><dt class="param">maxReductionTime</dt><dd class="cmt"><p>Maxiimum Load Reduction Time (min), per Participating Load Resource</p></dd><dt class="param">maxWeeklyDeployment</dt><dd class="cmt"><p>Maximum weekly deployments</p></dd><dt class="param">minLoadReduction</dt><dd class="cmt"><p>Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">minLoadReductionCost</dt><dd class="cmt"><p>minimum load reduction cost.
-       Single number for the load</p></dd><dt class="param">minLoadReductionInterval</dt><dd class="cmt"><p>Shortest period load reduction shall be maintained before load can be restored to normal levels.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">minReductionTime</dt><dd class="cmt"><p>Minimum Load Reduction Time (min), per Participating Load Resource</p></dd><dt class="param">minTimeBetLoadRed</dt><dd class="cmt"><p>Shortest time that load shall be left at normal levels before a new load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">participatingLoad</dt><dd class="cmt"><p>Participating Load flag: indicates whether the load resource is participates in load reduction actions.</p></dd><dt class="param">reqNoticeTime</dt><dd class="cmt"><p>Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">resourceSubType</dt><dd class="cmt"><p>CLR	Controllable Load
-       NCLR	Non-Controllable Load</p></dd><dt class="param">AuxillaryObject</dt><dd class="cmt"><p><a href="AuxiliaryObject.html" class="extype" name="ch.ninecode.model.AuxiliaryObject">AuxiliaryObject</a> <em>undocumented</em></p></dd><dt class="param">LoadBids</dt><dd class="cmt"><p><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></p></dd><dt class="param">LoadReductionPriceCurve</dt><dd class="cmt"><p><a href="LoadReductionPriceCurve.html" class="extype" name="ch.ninecode.model.LoadReductionPriceCurve">LoadReductionPriceCurve</a> <em>undocumented</em></p></dd><dt class="param">LoadReductionTimeCurve</dt><dd class="cmt"><p><a href="LoadReductionTimeCurve.html" class="extype" name="ch.ninecode.model.LoadReductionTimeCurve">LoadReductionTimeCurve</a> <em>undocumented</em></p></dd><dt class="param">MktEnergyConsumer</dt><dd class="cmt"><p><a href="MktEnergyConsumer.html" class="extype" name="ch.ninecode.model.MktEnergyConsumer">MktEnergyConsumer</a> <em>undocumented</em></p></dd><dt class="param">MktLoadArea</dt><dd class="cmt"><p><a href="MktLoadArea.html" class="extype" name="ch.ninecode.model.MktLoadArea">MktLoadArea</a> <em>undocumented</em></p></dd><dt class="param">NPLCustomLoadAggregation</dt><dd class="cmt"><p>A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Model of a load that is registered to participate in the market.</p><p>RegisteredLoad is used to model any load that is served by the wholesale market directly. RegisteredLoads may be dispatchable or non-dispatchable and may or may not have bid curves. Examples of RegisteredLoads would include: distribution company load, energy retailer load, large bulk power system connected facility load.</p><p>Loads that are served indirectly, for example - through an energy retailer or a vertical utility, should be modeled as RegisteredDistributedResources. Examples of RegisteredDistributedResources would include: distribution level storage, distribution level generation and distribution level demand response.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> Reference to the superclass object.</p></dd><dt class="param">blockLoadTransfer</dt><dd class="cmt"><p>Emergency operating procedure - Flag to indicate that the Resource is Block Load pseudo resource.</p></dd><dt class="param">dynamicallyScheduledLoadResource</dt><dd class="cmt"><p>Flag to indicate that a Load Resource is part of a DSR Load</p></dd><dt class="param">dynamicallyScheduledQualification</dt><dd class="cmt"><p>Qualification status (used for DSR qualification).</p></dd><dt class="param">AuxillaryObject</dt><dd class="cmt"><p><a href="AuxiliaryObject.html" class="extype" name="ch.ninecode.model.AuxiliaryObject">AuxiliaryObject</a> <em>undocumented</em></p></dd><dt class="param">LoadBids</dt><dd class="cmt"><p><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -115,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.RegisteredLoad#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegisteredResource,blockLoadTransferFlag:String,dynamicallyScheduledLoadResourceFlag:String,dynamicallyScheduledQualificationFlag:String,loadRegistryMSS:String,maxBaseLoad:Double,maxDeploymentTime:Double,maxLoadRedTimesPerDay:Int,maxLoadReduction:Double,maxReductionTime:Double,maxWeeklyDeployment:Int,minLoadReduction:Double,minLoadReductionCost:Double,minLoadReductionInterval:Double,minReductionTime:Double,minTimeBetLoadRed:Double,participatingLoad:String,reqNoticeTime:Double,resourceSubType:String,AuxillaryObject:List[String],LoadBids:List[String],LoadReductionPriceCurve:List[String],LoadReductionTimeCurve:List[String],MktEnergyConsumer:List[String],MktLoadArea:String,NPLCustomLoadAggregation:String):ch.ninecode.model.RegisteredLoad"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegisteredResource,blockLoadTransfer:Boolean,dynamicallyScheduledLoadResource:Boolean,dynamicallyScheduledQualification:Boolean,AuxillaryObject:List[String],LoadBids:List[String]):ch.ninecode.model.RegisteredLoad"></a>
       <a id="&lt;init&gt;:RegisteredLoad"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -123,20 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RegisteredLoad</span><span class="params">(<span name="sup">sup: <a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a></span>, <span name="blockLoadTransferFlag">blockLoadTransferFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dynamicallyScheduledLoadResourceFlag">dynamicallyScheduledLoadResourceFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dynamicallyScheduledQualificationFlag">dynamicallyScheduledQualificationFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="loadRegistryMSS">loadRegistryMSS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="maxBaseLoad">maxBaseLoad: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxDeploymentTime">maxDeploymentTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxLoadRedTimesPerDay">maxLoadRedTimesPerDay: <span class="extype" name="scala.Int">Int</span></span>, <span name="maxLoadReduction">maxLoadReduction: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxReductionTime">maxReductionTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxWeeklyDeployment">maxWeeklyDeployment: <span class="extype" name="scala.Int">Int</span></span>, <span name="minLoadReduction">minLoadReduction: <span class="extype" name="scala.Double">Double</span></span>, <span name="minLoadReductionCost">minLoadReductionCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="minLoadReductionInterval">minLoadReductionInterval: <span class="extype" name="scala.Double">Double</span></span>, <span name="minReductionTime">minReductionTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="minTimeBetLoadRed">minTimeBetLoadRed: <span class="extype" name="scala.Double">Double</span></span>, <span name="participatingLoad">participatingLoad: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="reqNoticeTime">reqNoticeTime: <span class="extype" name="scala.Double">Double</span></span>, <span name="resourceSubType">resourceSubType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AuxillaryObject">AuxillaryObject: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadBids">LoadBids: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadReductionPriceCurve">LoadReductionPriceCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadReductionTimeCurve">LoadReductionTimeCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktEnergyConsumer">MktEnergyConsumer: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktLoadArea">MktLoadArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="NPLCustomLoadAggregation">NPLCustomLoadAggregation: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">RegisteredLoad</span><span class="params">(<span name="sup">sup: <a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a></span>, <span name="blockLoadTransfer">blockLoadTransfer: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="dynamicallyScheduledLoadResource">dynamicallyScheduledLoadResource: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="dynamicallyScheduledQualification">dynamicallyScheduledQualification: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="AuxillaryObject">AuxillaryObject: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadBids">LoadBids: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@&lt;init&gt;(sup:ch.ninecode.model.RegisteredResource,blockLoadTransferFlag:String,dynamicallyScheduledLoadResourceFlag:String,dynamicallyScheduledQualificationFlag:String,loadRegistryMSS:String,maxBaseLoad:Double,maxDeploymentTime:Double,maxLoadRedTimesPerDay:Int,maxLoadReduction:Double,maxReductionTime:Double,maxWeeklyDeployment:Int,minLoadReduction:Double,minLoadReductionCost:Double,minLoadReductionInterval:Double,minReductionTime:Double,minTimeBetLoadRed:Double,participatingLoad:String,reqNoticeTime:Double,resourceSubType:String,AuxillaryObject:List[String],LoadBids:List[String],LoadReductionPriceCurve:List[String],LoadReductionTimeCurve:List[String],MktEnergyConsumer:List[String],MktLoadArea:String,NPLCustomLoadAggregation:String):ch.ninecode.model.RegisteredLoad" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@&lt;init&gt;(sup:ch.ninecode.model.RegisteredResource,blockLoadTransfer:Boolean,dynamicallyScheduledLoadResource:Boolean,dynamicallyScheduledQualification:Boolean,AuxillaryObject:List[String],LoadBids:List[String]):ch.ninecode.model.RegisteredLoad" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> Reference to the superclass object.</p></dd><dt class="param">blockLoadTransferFlag</dt><dd class="cmt"><p>Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)</p></dd><dt class="param">dynamicallyScheduledLoadResourceFlag</dt><dd class="cmt"><p>Flag to indicate that a Load Resource is part of a DSR Load</p></dd><dt class="param">dynamicallyScheduledQualificationFlag</dt><dd class="cmt"><p>Qualification status (used for DSR qualification)</p></dd><dt class="param">loadRegistryMSS</dt><dd class="cmt"><p>Non-participating load registry as a MSS load</p></dd><dt class="param">maxBaseLoad</dt><dd class="cmt"><p>Maximum Base Load (MW), per Participating Load Resource</p></dd><dt class="param">maxDeploymentTime</dt><dd class="cmt"><p>Maximum Deployment time (seconds)</p></dd><dt class="param">maxLoadRedTimesPerDay</dt><dd class="cmt"><p>Maximum Number of Daily Load Curtailments</p></dd><dt class="param">maxLoadReduction</dt><dd class="cmt"><p>maximum load reduction</p></dd><dt class="param">maxReductionTime</dt><dd class="cmt"><p>Maxiimum Load Reduction Time (min), per Participating Load Resource</p></dd><dt class="param">maxWeeklyDeployment</dt><dd class="cmt"><p>Maximum weekly deployments</p></dd><dt class="param">minLoadReduction</dt><dd class="cmt"><p>Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">minLoadReductionCost</dt><dd class="cmt"><p>minimum load reduction cost.
-       Single number for the load</p></dd><dt class="param">minLoadReductionInterval</dt><dd class="cmt"><p>Shortest period load reduction shall be maintained before load can be restored to normal levels.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">minReductionTime</dt><dd class="cmt"><p>Minimum Load Reduction Time (min), per Participating Load Resource</p></dd><dt class="param">minTimeBetLoadRed</dt><dd class="cmt"><p>Shortest time that load shall be left at normal levels before a new load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">participatingLoad</dt><dd class="cmt"><p>Participating Load flag: indicates whether the load resource is participates in load reduction actions.</p></dd><dt class="param">reqNoticeTime</dt><dd class="cmt"><p>Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></dd><dt class="param">resourceSubType</dt><dd class="cmt"><p>CLR	Controllable Load
-       NCLR	Non-Controllable Load</p></dd><dt class="param">AuxillaryObject</dt><dd class="cmt"><p><a href="AuxiliaryObject.html" class="extype" name="ch.ninecode.model.AuxiliaryObject">AuxiliaryObject</a> <em>undocumented</em></p></dd><dt class="param">LoadBids</dt><dd class="cmt"><p><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></p></dd><dt class="param">LoadReductionPriceCurve</dt><dd class="cmt"><p><a href="LoadReductionPriceCurve.html" class="extype" name="ch.ninecode.model.LoadReductionPriceCurve">LoadReductionPriceCurve</a> <em>undocumented</em></p></dd><dt class="param">LoadReductionTimeCurve</dt><dd class="cmt"><p><a href="LoadReductionTimeCurve.html" class="extype" name="ch.ninecode.model.LoadReductionTimeCurve">LoadReductionTimeCurve</a> <em>undocumented</em></p></dd><dt class="param">MktEnergyConsumer</dt><dd class="cmt"><p><a href="MktEnergyConsumer.html" class="extype" name="ch.ninecode.model.MktEnergyConsumer">MktEnergyConsumer</a> <em>undocumented</em></p></dd><dt class="param">MktLoadArea</dt><dd class="cmt"><p><a href="MktLoadArea.html" class="extype" name="ch.ninecode.model.MktLoadArea">MktLoadArea</a> <em>undocumented</em></p></dd><dt class="param">NPLCustomLoadAggregation</dt><dd class="cmt"><p>A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> Reference to the superclass object.</p></dd><dt class="param">blockLoadTransfer</dt><dd class="cmt"><p>Emergency operating procedure - Flag to indicate that the Resource is Block Load pseudo resource.</p></dd><dt class="param">dynamicallyScheduledLoadResource</dt><dd class="cmt"><p>Flag to indicate that a Load Resource is part of a DSR Load</p></dd><dt class="param">dynamicallyScheduledQualification</dt><dd class="cmt"><p>Qualification status (used for DSR qualification).</p></dd><dt class="param">AuxillaryObject</dt><dd class="cmt"><p><a href="AuxiliaryObject.html" class="extype" name="ch.ninecode.model.AuxiliaryObject">AuxiliaryObject</a> <em>undocumented</em></p></dd><dt class="param">LoadBids</dt><dd class="cmt"><p><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -231,91 +219,6 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="LoadBid.html" class="extype" name="ch.ninecode.model.LoadBid">LoadBid</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#LoadReductionPriceCurve" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="LoadReductionPriceCurve:List[String]"></a>
-      <a id="LoadReductionPriceCurve:List[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">LoadReductionPriceCurve</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@LoadReductionPriceCurve:List[String]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"><a href="LoadReductionPriceCurve.html" class="extype" name="ch.ninecode.model.LoadReductionPriceCurve">LoadReductionPriceCurve</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="LoadReductionPriceCurve.html" class="extype" name="ch.ninecode.model.LoadReductionPriceCurve">LoadReductionPriceCurve</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#LoadReductionTimeCurve" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="LoadReductionTimeCurve:List[String]"></a>
-      <a id="LoadReductionTimeCurve:List[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">LoadReductionTimeCurve</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@LoadReductionTimeCurve:List[String]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"><a href="LoadReductionTimeCurve.html" class="extype" name="ch.ninecode.model.LoadReductionTimeCurve">LoadReductionTimeCurve</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="LoadReductionTimeCurve.html" class="extype" name="ch.ninecode.model.LoadReductionTimeCurve">LoadReductionTimeCurve</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#MktEnergyConsumer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="MktEnergyConsumer:List[String]"></a>
-      <a id="MktEnergyConsumer:List[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">MktEnergyConsumer</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@MktEnergyConsumer:List[String]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"><a href="MktEnergyConsumer.html" class="extype" name="ch.ninecode.model.MktEnergyConsumer">MktEnergyConsumer</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MktEnergyConsumer.html" class="extype" name="ch.ninecode.model.MktEnergyConsumer">MktEnergyConsumer</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#MktLoadArea" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="MktLoadArea:String"></a>
-      <a id="MktLoadArea:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">MktLoadArea</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@MktLoadArea:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"><a href="MktLoadArea.html" class="extype" name="ch.ninecode.model.MktLoadArea">MktLoadArea</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MktLoadArea.html" class="extype" name="ch.ninecode.model.MktLoadArea">MktLoadArea</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#NPLCustomLoadAggregation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="NPLCustomLoadAggregation:String"></a>
-      <a id="NPLCustomLoadAggregation:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">NPLCustomLoadAggregation</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@NPLCustomLoadAggregation:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.</p>
     </li><li name="ch.ninecode.model.RegisteredLoad#RegisteredResource" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="RegisteredResource:ch.ninecode.model.RegisteredResource"></a>
       <a id="RegisteredResource:RegisteredResource"></a>
@@ -423,23 +326,23 @@
 Field order is specified by the fields array.</p><p>For classes constructed manually, we initially fill this in with the worst case scenario.
 ToDo: this won't work for classes with more than 96 fields (so far none).
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#blockLoadTransferFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="blockLoadTransferFlag:String"></a>
-      <a id="blockLoadTransferFlag:String"></a>
+    </li><li name="ch.ninecode.model.RegisteredLoad#blockLoadTransfer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="blockLoadTransfer:Boolean"></a>
+      <a id="blockLoadTransfer:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">blockLoadTransferFlag</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">blockLoadTransfer</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@blockLoadTransferFlag:String" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@blockLoadTransfer:Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)</p>
+      <p class="shortcomment cmt">Emergency operating procedure - Flag to indicate that the Resource is Block Load pseudo resource.</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -481,40 +384,40 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#dynamicallyScheduledLoadResourceFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="dynamicallyScheduledLoadResourceFlag:String"></a>
-      <a id="dynamicallyScheduledLoadResourceFlag:String"></a>
+    </li><li name="ch.ninecode.model.RegisteredLoad#dynamicallyScheduledLoadResource" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="dynamicallyScheduledLoadResource:Boolean"></a>
+      <a id="dynamicallyScheduledLoadResource:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">dynamicallyScheduledLoadResourceFlag</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">dynamicallyScheduledLoadResource</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@dynamicallyScheduledLoadResourceFlag:String" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@dynamicallyScheduledLoadResource:Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Flag to indicate that a Load Resource is part of a DSR Load</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#dynamicallyScheduledQualificationFlag" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="dynamicallyScheduledQualificationFlag:String"></a>
-      <a id="dynamicallyScheduledQualificationFlag:String"></a>
+    </li><li name="ch.ninecode.model.RegisteredLoad#dynamicallyScheduledQualification" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="dynamicallyScheduledQualification:Boolean"></a>
+      <a id="dynamicallyScheduledQualification:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">dynamicallyScheduledQualificationFlag</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">dynamicallyScheduledQualification</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@dynamicallyScheduledQualificationFlag:String" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@dynamicallyScheduledQualification:Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Qualification status (used for DSR qualification)</p>
+      <p class="shortcomment cmt">Qualification status (used for DSR qualification).</p>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -1110,23 +1013,6 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">The number of fields in the object definition.</p><div class="fullcomment"><div class="comment cmt"><p>The number of fields in the object definition.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of defined fields for use in Row manipulations.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#loadRegistryMSS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="loadRegistryMSS:String"></a>
-      <a id="loadRegistryMSS:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">loadRegistryMSS</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@loadRegistryMSS:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Non-participating load registry as a MSS load</p>
     </li><li name="ch.ninecode.model.Element#mask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mask(position:Int):Boolean"></a>
       <a id="mask(Int):Boolean"></a>
@@ -1145,197 +1031,6 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>
       <p class="shortcomment cmt">Is a field present predicate.</p><div class="fullcomment"><div class="comment cmt"><p>Is a field present predicate.</p><p>Determines if the field at the given position was encountered while parsing.
 </p></div><dl class="paramcmts block"><dt class="param">position</dt><dd class="cmt"><p>the field position in the fields array</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the field was parsed, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxBaseLoad" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxBaseLoad:Double"></a>
-      <a id="maxBaseLoad:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxBaseLoad</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxBaseLoad:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Maximum Base Load (MW), per Participating Load Resource</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxDeploymentTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxDeploymentTime:Double"></a>
-      <a id="maxDeploymentTime:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxDeploymentTime</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxDeploymentTime:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Maximum Deployment time (seconds)</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxLoadRedTimesPerDay" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxLoadRedTimesPerDay:Int"></a>
-      <a id="maxLoadRedTimesPerDay:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxLoadRedTimesPerDay</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxLoadRedTimesPerDay:Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Maximum Number of Daily Load Curtailments</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxLoadReduction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxLoadReduction:Double"></a>
-      <a id="maxLoadReduction:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxLoadReduction</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxLoadReduction:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">maximum load reduction</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxReductionTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxReductionTime:Double"></a>
-      <a id="maxReductionTime:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxReductionTime</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxReductionTime:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Maxiimum Load Reduction Time (min), per Participating Load Resource</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#maxWeeklyDeployment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="maxWeeklyDeployment:Int"></a>
-      <a id="maxWeeklyDeployment:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">maxWeeklyDeployment</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@maxWeeklyDeployment:Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Maximum weekly deployments</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#minLoadReduction" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="minLoadReduction:Double"></a>
-      <a id="minLoadReduction:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">minLoadReduction</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@minLoadReduction:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Minimum MW for a load reduction (e.g., MW rating of a discrete pump.</p><div class="fullcomment"><div class="comment cmt"><p>Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#minLoadReductionCost" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="minLoadReductionCost:Double"></a>
-      <a id="minLoadReductionCost:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">minLoadReductionCost</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@minLoadReductionCost:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">minimum load reduction cost.</p><div class="fullcomment"><div class="comment cmt"><p>minimum load reduction cost.
-       Single number for the load</p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#minLoadReductionInterval" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="minLoadReductionInterval:Double"></a>
-      <a id="minLoadReductionInterval:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">minLoadReductionInterval</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@minLoadReductionInterval:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Shortest period load reduction shall be maintained before load can be restored to normal levels.</p><div class="fullcomment"><div class="comment cmt"><p>Shortest period load reduction shall be maintained before load can be restored to normal levels.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#minReductionTime" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="minReductionTime:Double"></a>
-      <a id="minReductionTime:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">minReductionTime</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@minReductionTime:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Minimum Load Reduction Time (min), per Participating Load Resource</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#minTimeBetLoadRed" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="minTimeBetLoadRed:Double"></a>
-      <a id="minTimeBetLoadRed:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">minTimeBetLoadRed</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@minTimeBetLoadRed:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Shortest time that load shall be left at normal levels before a new load reduction.</p><div class="fullcomment"><div class="comment cmt"><p>Shortest time that load shall be left at normal levels before a new load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkString(start:String,sep:String,end:String):String"></a>
       <a id="mkString(String,String,String):String"></a>
@@ -1438,59 +1133,6 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#participatingLoad" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="participatingLoad:String"></a>
-      <a id="participatingLoad:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">participatingLoad</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@participatingLoad:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Participating Load flag: indicates whether the load resource is participates in load reduction actions.</p>
-    </li><li name="ch.ninecode.model.RegisteredLoad#reqNoticeTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="reqNoticeTime:Double"></a>
-      <a id="reqNoticeTime:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">reqNoticeTime</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@reqNoticeTime:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.</p><div class="fullcomment"><div class="comment cmt"><p>Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
-       This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.</p></div></div>
-    </li><li name="ch.ninecode.model.RegisteredLoad#resourceSubType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="resourceSubType:String"></a>
-      <a id="resourceSubType:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">resourceSubType</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegisteredLoad@resourceSubType:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">CLR	Controllable Load
-       NCLR	Non-Controllable Load</p>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>

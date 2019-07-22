@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DispatchInstReply - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.DispatchInstReply</title>
-          <meta name="description" content="DispatchInstReply - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.DispatchInstReply" />
-          <meta name="keywords" content="DispatchInstReply CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.DispatchInstReply" />
+          <title>DispatchInstReply - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.DispatchInstReply</title>
+          <meta name="description" content="DispatchInstReply - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.DispatchInstReply" />
+          <meta name="keywords" content="DispatchInstReply CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.DispatchInstReply" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,10 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Response from registered resource acknowleging receipt of dispatch instructions
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Response from registered resource acknowledging receipt of dispatch instructions.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">acceptMW</dt><dd class="cmt"><p>The accepted mw amount by the responder. aka response mw.</p></dd><dt class="param">acceptStatus</dt><dd class="cmt"><p>The accept status submitted by the responder. enumeration type needs to be defined</p></dd><dt class="param">certificationName</dt><dd class="cmt"><p>The Subject DN is the X509 Certificate Subject DN.
-       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).</p></dd><dt class="param">clearedMW</dt><dd class="cmt"><p>MW amount associated with instruction.
+       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+       The Subject ID normally includes more than just the user name (Common Name), it can also contain information such as City, Company ID, etc.</p></dd><dt class="param">clearedMW</dt><dd class="cmt"><p>MW amount associated with instruction.
        For 5 minute binding dispatches, this is the Goto MW or DOT</p></dd><dt class="param">instructionTime</dt><dd class="cmt"><p>The target date/time for the received instruction.</p></dd><dt class="param">instructionType</dt><dd class="cmt"><p>instruction type:
        commitment
        out of sequence
@@ -130,7 +131,8 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">acceptMW</dt><dd class="cmt"><p>The accepted mw amount by the responder. aka response mw.</p></dd><dt class="param">acceptStatus</dt><dd class="cmt"><p>The accept status submitted by the responder. enumeration type needs to be defined</p></dd><dt class="param">certificationName</dt><dd class="cmt"><p>The Subject DN is the X509 Certificate Subject DN.
-       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).</p></dd><dt class="param">clearedMW</dt><dd class="cmt"><p>MW amount associated with instruction.
+       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+       The Subject ID normally includes more than just the user name (Common Name), it can also contain information such as City, Company ID, etc.</p></dd><dt class="param">clearedMW</dt><dd class="cmt"><p>MW amount associated with instruction.
        For 5 minute binding dispatches, this is the Goto MW or DOT</p></dd><dt class="param">instructionTime</dt><dd class="cmt"><p>The target date/time for the received instruction.</p></dd><dt class="param">instructionType</dt><dd class="cmt"><p>instruction type:
        commitment
        out of sequence
@@ -370,7 +372,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">The Subject DN is the X509 Certificate Subject DN.</p><div class="fullcomment"><div class="comment cmt"><p>The Subject DN is the X509 Certificate Subject DN.
-       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).</p></div></div>
+       This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+       The Subject ID normally includes more than just the user name (Common Name), it can also contain information such as City, Company ID, etc.</p></div></div>
     </li><li name="ch.ninecode.model.DispatchInstReply#clearedMW" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clearedMW:Double"></a>
       <a id="clearedMW:Double"></a>

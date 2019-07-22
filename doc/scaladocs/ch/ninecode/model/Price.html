@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Price - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Price</title>
-          <meta name="description" content="Price - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Price" />
-          <meta name="keywords" content="Price CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Price" />
+          <title>Price - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Price</title>
+          <meta name="description" content="Price - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Price" />
+          <meta name="keywords" content="Price CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Price" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Price</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="amount">amount: <span class="extype" name="scala.Double">Double</span></span>, <span name="category">category: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="direction">direction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Point">Point: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Price</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="amount">amount: <span class="extype" name="scala.Double">Double</span></span>, <span name="category">category: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="direction">direction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Point">Point: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TimeSeries">TimeSeries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The cost corresponding to a specific measure and expressed in a currency.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">amount</dt><dd class="cmt"><p>A number of monetary units specified in a unit of currency.</p></dd><dt class="param">category</dt><dd class="cmt"><p>The category of a price to be used in a price calculation.
-       The price category is mutually agreed between System Operators.</p></dd><dt class="param">direction</dt><dd class="cmt"><p>The direction indicates whether a System Operator pays the Market Parties or inverse.</p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       The price category is mutually agreed between System Operators.</p></dd><dt class="param">direction</dt><dd class="cmt"><p>The direction indicates whether a System Operator pays the Market Parties or inverse.</p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd><dt class="param">TimeSeries</dt><dd class="cmt"><p><a href="TimeSeries.html" class="extype" name="ch.ninecode.model.TimeSeries">TimeSeries</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Price#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,amount:Double,category:String,direction:String,Point:String):ch.ninecode.model.Price"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,amount:Double,category:String,direction:String,Domain:List[String],Point:String,TimeSeries:List[String]):ch.ninecode.model.Price"></a>
       <a id="&lt;init&gt;:Price"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Price</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="amount">amount: <span class="extype" name="scala.Double">Double</span></span>, <span name="category">category: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="direction">direction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Point">Point: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Price</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="amount">amount: <span class="extype" name="scala.Double">Double</span></span>, <span name="category">category: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="direction">direction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Point">Point: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TimeSeries">TimeSeries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Price@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,amount:Double,category:String,direction:String,Point:String):ch.ninecode.model.Price" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Price@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,amount:Double,category:String,direction:String,Domain:List[String],Point:String,TimeSeries:List[String]):ch.ninecode.model.Price" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">amount</dt><dd class="cmt"><p>A number of monetary units specified in a unit of currency.</p></dd><dt class="param">category</dt><dd class="cmt"><p>The category of a price to be used in a price calculation.
-       The price category is mutually agreed between System Operators.</p></dd><dt class="param">direction</dt><dd class="cmt"><p>The direction indicates whether a System Operator pays the Market Parties or inverse.</p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd></dl></div>
+       The price category is mutually agreed between System Operators.</p></dd><dt class="param">direction</dt><dd class="cmt"><p>The direction indicates whether a System Operator pays the Market Parties or inverse.</p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd><dt class="param">TimeSeries</dt><dd class="cmt"><p><a href="TimeSeries.html" class="extype" name="ch.ninecode.model.TimeSeries">TimeSeries</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,6 +187,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Price#Domain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Domain:List[String]"></a>
+      <a id="Domain:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Domain</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Price@Domain:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Price#Element" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Element:ch.ninecode.model.Element"></a>
       <a id="Element:Element"></a>
@@ -222,6 +239,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.Price#TimeSeries" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TimeSeries:List[String]"></a>
+      <a id="TimeSeries:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TimeSeries</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Price@TimeSeries:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TimeSeries.html" class="extype" name="ch.ninecode.model.TimeSeries">TimeSeries</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="TimeSeries.html" class="extype" name="ch.ninecode.model.TimeSeries">TimeSeries</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

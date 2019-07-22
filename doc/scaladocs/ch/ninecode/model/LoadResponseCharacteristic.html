@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LoadResponseCharacteristic - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.LoadResponseCharacteristic</title>
-          <meta name="description" content="LoadResponseCharacteristic - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.LoadResponseCharacteristic" />
-          <meta name="keywords" content="LoadResponseCharacteristic CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.LoadResponseCharacteristic" />
+          <title>LoadResponseCharacteristic - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.LoadResponseCharacteristic</title>
+          <meta name="description" content="LoadResponseCharacteristic - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.LoadResponseCharacteristic" />
+          <meta name="keywords" content="LoadResponseCharacteristic CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.LoadResponseCharacteristic" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,9 +51,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.</p><p>This is not related to demand response.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.</p><p>This is not related to demand response.</p><p>If LoadResponseCharacteristic.exponentModel is True, the voltage exponents are specified and used as to calculate:</p><p>Active power component = Pnominal * (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent</p><p>Reactive power component = Qnominal * (Voltage/cim:BaseVoltage.nominalVoltage)** cim:LoadResponseCharacteristic.qVoltageExponent</p><p>Where  * means &quot;multiply&quot; and ** is &quot;raised to power of&quot;.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">exponentModel</dt><dd class="cmt"><p>Indicates the exponential voltage dependency model is to be used.
-       If false, the coefficient model is to be used.</p></dd><dt class="param">pConstantCurrent</dt><dd class="cmt"><p>Portion of active power load modeled as constant current.</p></dd><dt class="param">pConstantImpedance</dt><dd class="cmt"><p>Portion of active power load modeled as constant impedance.</p></dd><dt class="param">pConstantPower</dt><dd class="cmt"><p>Portion of active power load modeled as constant power.</p></dd><dt class="param">pFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting active power.</p></dd><dt class="param">pVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting real power.</p></dd><dt class="param">qConstantCurrent</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant current.</p></dd><dt class="param">qConstantImpedance</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant impedance.</p></dd><dt class="param">qConstantPower</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant power.</p></dd><dt class="param">qFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting reactive power.</p></dd><dt class="param">qVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting reactive power.</p></dd><dt class="param">EnergyConsumer</dt><dd class="cmt"><p><a href="EnergyConsumer.html" class="extype" name="ch.ninecode.model.EnergyConsumer">EnergyConsumer</a> The set of loads that have the response characteristics.</p></dd></dl><div class="toggleContainer block">
+       If false, the coefficient model is to be used.
+       The exponential voltage dependency model consist of the attributes</p><ul><li>pVoltageExponent</li><li>qVoltageExponent.
+       The coefficient model consist of the attributes</li><li>pConstantImpedance</li><li>pConstantCurrent</li><li>pConstantPower</li><li>qConstantImpedance</li><li>qConstantCurrent</li><li>qConstantPower.
+       The sum of pConstantImpedance, pConstantCurrent and pConstantPower shall equal 1.
+       The sum of qConstantImpedance, qConstantCurrent and qConstantPower shall equal 1.</li></ul></dd><dt class="param">pConstantCurrent</dt><dd class="cmt"><p>Portion of active power load modelled as constant current.</p></dd><dt class="param">pConstantImpedance</dt><dd class="cmt"><p>Portion of active power load modelled as constant impedance.</p></dd><dt class="param">pConstantPower</dt><dd class="cmt"><p>Portion of active power load modelled as constant power.</p></dd><dt class="param">pFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting active power.</p></dd><dt class="param">pVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting real power.</p></dd><dt class="param">qConstantCurrent</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant current.</p></dd><dt class="param">qConstantImpedance</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant impedance.</p></dd><dt class="param">qConstantPower</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant power.</p></dd><dt class="param">qFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting reactive power.</p></dd><dt class="param">qVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting reactive power.</p></dd><dt class="param">EnergyConsumer</dt><dd class="cmt"><p><a href="EnergyConsumer.html" class="extype" name="ch.ninecode.model.EnergyConsumer">EnergyConsumer</a> The set of loads that have the response characteristics.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,7 +130,11 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">exponentModel</dt><dd class="cmt"><p>Indicates the exponential voltage dependency model is to be used.
-       If false, the coefficient model is to be used.</p></dd><dt class="param">pConstantCurrent</dt><dd class="cmt"><p>Portion of active power load modeled as constant current.</p></dd><dt class="param">pConstantImpedance</dt><dd class="cmt"><p>Portion of active power load modeled as constant impedance.</p></dd><dt class="param">pConstantPower</dt><dd class="cmt"><p>Portion of active power load modeled as constant power.</p></dd><dt class="param">pFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting active power.</p></dd><dt class="param">pVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting real power.</p></dd><dt class="param">qConstantCurrent</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant current.</p></dd><dt class="param">qConstantImpedance</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant impedance.</p></dd><dt class="param">qConstantPower</dt><dd class="cmt"><p>Portion of reactive power load modeled as constant power.</p></dd><dt class="param">qFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting reactive power.</p></dd><dt class="param">qVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting reactive power.</p></dd><dt class="param">EnergyConsumer</dt><dd class="cmt"><p><a href="EnergyConsumer.html" class="extype" name="ch.ninecode.model.EnergyConsumer">EnergyConsumer</a> The set of loads that have the response characteristics.</p></dd></dl></div>
+       If false, the coefficient model is to be used.
+       The exponential voltage dependency model consist of the attributes</p><ul><li>pVoltageExponent</li><li>qVoltageExponent.
+       The coefficient model consist of the attributes</li><li>pConstantImpedance</li><li>pConstantCurrent</li><li>pConstantPower</li><li>qConstantImpedance</li><li>qConstantCurrent</li><li>qConstantPower.
+       The sum of pConstantImpedance, pConstantCurrent and pConstantPower shall equal 1.
+       The sum of qConstantImpedance, qConstantCurrent and qConstantPower shall equal 1.</li></ul></dd><dt class="param">pConstantCurrent</dt><dd class="cmt"><p>Portion of active power load modelled as constant current.</p></dd><dt class="param">pConstantImpedance</dt><dd class="cmt"><p>Portion of active power load modelled as constant impedance.</p></dd><dt class="param">pConstantPower</dt><dd class="cmt"><p>Portion of active power load modelled as constant power.</p></dd><dt class="param">pFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting active power.</p></dd><dt class="param">pVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting real power.</p></dd><dt class="param">qConstantCurrent</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant current.</p></dd><dt class="param">qConstantImpedance</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant impedance.</p></dd><dt class="param">qConstantPower</dt><dd class="cmt"><p>Portion of reactive power load modelled as constant power.</p></dd><dt class="param">qFrequencyExponent</dt><dd class="cmt"><p>Exponent of per unit frequency effecting reactive power.</p></dd><dt class="param">qVoltageExponent</dt><dd class="cmt"><p>Exponent of per unit voltage effecting reactive power.</p></dd><dt class="param">EnergyConsumer</dt><dd class="cmt"><p><a href="EnergyConsumer.html" class="extype" name="ch.ninecode.model.EnergyConsumer">EnergyConsumer</a> The set of loads that have the response characteristics.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -443,7 +451,11 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <p class="shortcomment cmt">Indicates the exponential voltage dependency model is to be used.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates the exponential voltage dependency model is to be used.
-       If false, the coefficient model is to be used.</p></div></div>
+       If false, the coefficient model is to be used.
+       The exponential voltage dependency model consist of the attributes</p><ul><li>pVoltageExponent</li><li>qVoltageExponent.
+       The coefficient model consist of the attributes</li><li>pConstantImpedance</li><li>pConstantCurrent</li><li>pConstantPower</li><li>qConstantImpedance</li><li>qConstantCurrent</li><li>qConstantPower.
+       The sum of pConstantImpedance, pConstantCurrent and pConstantPower shall equal 1.
+       The sum of qConstantImpedance, qConstantCurrent and qConstantPower shall equal 1.</li></ul></div></div>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
       <a id="export:String"></a>
       <a id="export:String"></a>
@@ -1101,7 +1113,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of active power load modeled as constant current.</p>
+      <p class="shortcomment cmt">Portion of active power load modelled as constant current.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#pConstantImpedance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="pConstantImpedance:Double"></a>
       <a id="pConstantImpedance:Double"></a>
@@ -1118,7 +1130,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of active power load modeled as constant impedance.</p>
+      <p class="shortcomment cmt">Portion of active power load modelled as constant impedance.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#pConstantPower" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="pConstantPower:Double"></a>
       <a id="pConstantPower:Double"></a>
@@ -1135,7 +1147,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of active power load modeled as constant power.</p>
+      <p class="shortcomment cmt">Portion of active power load modelled as constant power.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#pFrequencyExponent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="pFrequencyExponent:Double"></a>
       <a id="pFrequencyExponent:Double"></a>
@@ -1186,7 +1198,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of reactive power load modeled as constant current.</p>
+      <p class="shortcomment cmt">Portion of reactive power load modelled as constant current.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#qConstantImpedance" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="qConstantImpedance:Double"></a>
       <a id="qConstantImpedance:Double"></a>
@@ -1203,7 +1215,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of reactive power load modeled as constant impedance.</p>
+      <p class="shortcomment cmt">Portion of reactive power load modelled as constant impedance.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#qConstantPower" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="qConstantPower:Double"></a>
       <a id="qConstantPower:Double"></a>
@@ -1220,7 +1232,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Portion of reactive power load modeled as constant power.</p>
+      <p class="shortcomment cmt">Portion of reactive power load modelled as constant power.</p>
     </li><li name="ch.ninecode.model.LoadResponseCharacteristic#qFrequencyExponent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="qFrequencyExponent:Double"></a>
       <a id="qFrequencyExponent:Double"></a>

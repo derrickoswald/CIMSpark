@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Pss1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.Pss1</title>
-          <meta name="description" content="Pss1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.Pss1" />
-          <meta name="keywords" content="Pss1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.Pss1" />
+          <title>Pss1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.Pss1</title>
+          <meta name="description" content="Pss1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.Pss1" />
+          <meta name="keywords" content="Pss1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.Pss1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,29 +47,29 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Pss1</span><span class="params">(<span name="sup">sup: <a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a></span>, <span name="kf">kf: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpe">kpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="ks">ks: <span class="extype" name="scala.Double">Double</span></span>, <span name="kw">kw: <span class="extype" name="scala.Double">Double</span></span>, <span name="pmin">pmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="t10">t10: <span class="extype" name="scala.Double">Double</span></span>, <span name="t5">t5: <span class="extype" name="scala.Double">Double</span></span>, <span name="t6">t6: <span class="extype" name="scala.Double">Double</span></span>, <span name="t7">t7: <span class="extype" name="scala.Double">Double</span></span>, <span name="t8">t8: <span class="extype" name="scala.Double">Double</span></span>, <span name="t9">t9: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpe">tpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="vadat">vadat: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vsmn">vsmn: <span class="extype" name="scala.Double">Double</span></span>, <span name="vsmx">vsmx: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Pss1</span><span class="params">(<span name="sup">sup: <a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a></span>, <span name="kf">kf: <span class="extype" name="scala.Double">Double</span></span>, <span name="komega">komega: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpe">kpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="ks">ks: <span class="extype" name="scala.Double">Double</span></span>, <span name="pmin">pmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="t10">t10: <span class="extype" name="scala.Double">Double</span></span>, <span name="t5">t5: <span class="extype" name="scala.Double">Double</span></span>, <span name="t6">t6: <span class="extype" name="scala.Double">Double</span></span>, <span name="t7">t7: <span class="extype" name="scala.Double">Double</span></span>, <span name="t8">t8: <span class="extype" name="scala.Double">Double</span></span>, <span name="t9">t9: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpe">tpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="vadat">vadat: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vsmn">vsmn: <span class="extype" name="scala.Double">Double</span></span>, <span name="vsmx">vsmx: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Italian PSS - three input PSS (speed, frequency, power).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Frequency power input gain (K<sub>F</sub>).
-       Typical Value = 5.</p></dd><dt class="param">kpe</dt><dd class="cmt"><p>Electric power input gain (K<sub>PE</sub>).
-       Typical Value = 0.3.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>PSS gain (K<sub>S</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kw</dt><dd class="cmt"><p>Shaft speed power input gain (K<sub>W</sub>).
-       Typical Value = 0.</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Minimum power PSS enabling (P<sub>MIN</sub>).
-       Typical Value = 0.25.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>10</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout (T<sub>5</sub>).
-       Typical Value = 3.5.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (T<sub>6</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>7</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>8</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>9</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tpe</dt><dd class="cmt"><p>Electric power filter time constant (T<sub>PE</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">vadat</dt><dd class="cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (V<sub>adAt</sub>).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (Generator Power is greater than Pmin)&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (Pe is smaller than Pmin).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical Value = true.&lt;/font&gt;</p></dd><dt class="param">vsmn</dt><dd class="cmt"><p>Stabilizer output max limit (V<sub>SMN</sub>).
-       Typical Value = -0.06.</p></dd><dt class="param">vsmx</dt><dd class="cmt"><p>Stabilizer output min limit (V<sub>SMX</sub>).
-       Typical Value = 0.06.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Italian PSS with three inputs (speed, frequency, power).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
+       Typical value = 5.</p></dd><dt class="param">komega</dt><dd class="cmt"><p>Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kpe</dt><dd class="cmt"><p>Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+       Typical value = 0,3.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>PSS gain (<i>Ks</i>).
+       Typical value = 1.</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Minimum power PSS enabling (<i>Pmin</i>).
+       Typical value = 0,25.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+       Typical value = 3,5.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></dd><dt class="param">tpe</dt><dd class="cmt"><p>Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">vadat</dt><dd class="cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (<i>V</i><i><sub>ADAT</sub></i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (generator power is greater than <i>Pmin</i>)&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (<i>Pe</i> is smaller than <i>Pmin</i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical value = true.&lt;/font&gt;</p></dd><dt class="param">vsmn</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+       Typical value = -0,06.</p></dd><dt class="param">vsmx</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+       Typical value = 0,06.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,7 +126,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Pss1#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemStabilizerDynamics,kf:Double,kpe:Double,ks:Double,kw:Double,pmin:Double,t10:Double,t5:Double,t6:Double,t7:Double,t8:Double,t9:Double,tpe:Double,vadat:Boolean,vsmn:Double,vsmx:Double):ch.ninecode.model.Pss1"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemStabilizerDynamics,kf:Double,komega:Double,kpe:Double,ks:Double,pmin:Double,t10:Double,t5:Double,t6:Double,t7:Double,t8:Double,t9:Double,tpe:Double,vadat:Boolean,vsmn:Double,vsmx:Double):ch.ninecode.model.Pss1"></a>
       <a id="&lt;init&gt;:Pss1"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -134,31 +134,31 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Pss1</span><span class="params">(<span name="sup">sup: <a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a></span>, <span name="kf">kf: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpe">kpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="ks">ks: <span class="extype" name="scala.Double">Double</span></span>, <span name="kw">kw: <span class="extype" name="scala.Double">Double</span></span>, <span name="pmin">pmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="t10">t10: <span class="extype" name="scala.Double">Double</span></span>, <span name="t5">t5: <span class="extype" name="scala.Double">Double</span></span>, <span name="t6">t6: <span class="extype" name="scala.Double">Double</span></span>, <span name="t7">t7: <span class="extype" name="scala.Double">Double</span></span>, <span name="t8">t8: <span class="extype" name="scala.Double">Double</span></span>, <span name="t9">t9: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpe">tpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="vadat">vadat: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vsmn">vsmn: <span class="extype" name="scala.Double">Double</span></span>, <span name="vsmx">vsmx: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">Pss1</span><span class="params">(<span name="sup">sup: <a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a></span>, <span name="kf">kf: <span class="extype" name="scala.Double">Double</span></span>, <span name="komega">komega: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpe">kpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="ks">ks: <span class="extype" name="scala.Double">Double</span></span>, <span name="pmin">pmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="t10">t10: <span class="extype" name="scala.Double">Double</span></span>, <span name="t5">t5: <span class="extype" name="scala.Double">Double</span></span>, <span name="t6">t6: <span class="extype" name="scala.Double">Double</span></span>, <span name="t7">t7: <span class="extype" name="scala.Double">Double</span></span>, <span name="t8">t8: <span class="extype" name="scala.Double">Double</span></span>, <span name="t9">t9: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpe">tpe: <span class="extype" name="scala.Double">Double</span></span>, <span name="vadat">vadat: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vsmn">vsmn: <span class="extype" name="scala.Double">Double</span></span>, <span name="vsmx">vsmx: <span class="extype" name="scala.Double">Double</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Pss1@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemStabilizerDynamics,kf:Double,kpe:Double,ks:Double,kw:Double,pmin:Double,t10:Double,t5:Double,t6:Double,t7:Double,t8:Double,t9:Double,tpe:Double,vadat:Boolean,vsmn:Double,vsmx:Double):ch.ninecode.model.Pss1" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Pss1@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemStabilizerDynamics,kf:Double,komega:Double,kpe:Double,ks:Double,pmin:Double,t10:Double,t5:Double,t6:Double,t7:Double,t8:Double,t9:Double,tpe:Double,vadat:Boolean,vsmn:Double,vsmx:Double):ch.ninecode.model.Pss1" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Frequency power input gain (K<sub>F</sub>).
-       Typical Value = 5.</p></dd><dt class="param">kpe</dt><dd class="cmt"><p>Electric power input gain (K<sub>PE</sub>).
-       Typical Value = 0.3.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>PSS gain (K<sub>S</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kw</dt><dd class="cmt"><p>Shaft speed power input gain (K<sub>W</sub>).
-       Typical Value = 0.</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Minimum power PSS enabling (P<sub>MIN</sub>).
-       Typical Value = 0.25.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>10</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout (T<sub>5</sub>).
-       Typical Value = 3.5.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (T<sub>6</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>7</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>8</sub>).
-       Typical Value = 0.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lead/lag time constant (T<sub>9</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tpe</dt><dd class="cmt"><p>Electric power filter time constant (T<sub>PE</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">vadat</dt><dd class="cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (V<sub>adAt</sub>).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (Generator Power is greater than Pmin)&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (Pe is smaller than Pmin).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical Value = true.&lt;/font&gt;</p></dd><dt class="param">vsmn</dt><dd class="cmt"><p>Stabilizer output max limit (V<sub>SMN</sub>).
-       Typical Value = -0.06.</p></dd><dt class="param">vsmx</dt><dd class="cmt"><p>Stabilizer output min limit (V<sub>SMX</sub>).
-       Typical Value = 0.06.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemStabilizerDynamics.html" class="extype" name="ch.ninecode.model.PowerSystemStabilizerDynamics">PowerSystemStabilizerDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kf</dt><dd class="cmt"><p>Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
+       Typical value = 5.</p></dd><dt class="param">komega</dt><dd class="cmt"><p>Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kpe</dt><dd class="cmt"><p>Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+       Typical value = 0,3.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>PSS gain (<i>Ks</i>).
+       Typical value = 1.</p></dd><dt class="param">pmin</dt><dd class="cmt"><p>Minimum power PSS enabling (<i>Pmin</i>).
+       Typical value = 0,25.</p></dd><dt class="param">t10</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t5</dt><dd class="cmt"><p>Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+       Typical value = 3,5.</p></dd><dt class="param">t6</dt><dd class="cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t7</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></dd><dt class="param">t8</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">t9</dt><dd class="cmt"><p>Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></dd><dt class="param">tpe</dt><dd class="cmt"><p>Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">vadat</dt><dd class="cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (<i>V</i><i><sub>ADAT</sub></i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (generator power is greater than <i>Pmin</i>)&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (<i>Pe</i> is smaller than <i>Pmin</i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical value = true.&lt;/font&gt;</p></dd><dt class="param">vsmn</dt><dd class="cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+       Typical value = -0,06.</p></dd><dt class="param">vsmx</dt><dd class="cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+       Typical value = 0,06.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -960,8 +960,26 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Frequency power input gain (K<sub>F</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Frequency power input gain (K<sub>F</sub>).
-       Typical Value = 5.</p></div></div>
+      <p class="shortcomment cmt">Frequency power input gain (<i>K</i><i><sub>F</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
+       Typical value = 5.</p></div></div>
+    </li><li name="ch.ninecode.model.Pss1#komega" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="komega:Double"></a>
+      <a id="komega:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">komega</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Pss1@komega:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#kpe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpe:Double"></a>
       <a id="kpe:Double"></a>
@@ -978,8 +996,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Electric power input gain (K<sub>PE</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Electric power input gain (K<sub>PE</sub>).
-       Typical Value = 0.3.</p></div></div>
+      <p class="shortcomment cmt">Electric power input gain (<i>K</i><i><sub>PE</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+       Typical value = 0,3.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#ks" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ks:Double"></a>
       <a id="ks:Double"></a>
@@ -996,26 +1014,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">PSS gain (K<sub>S</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>PSS gain (K<sub>S</sub>).
-       Typical Value = 1.</p></div></div>
-    </li><li name="ch.ninecode.model.Pss1#kw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="kw:Double"></a>
-      <a id="kw:Double"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">kw</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Pss1@kw:Double" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Shaft speed power input gain (K<sub>W</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Shaft speed power input gain (K<sub>W</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">PSS gain (<i>Ks</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>PSS gain (<i>Ks</i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1170,8 +1170,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum power PSS enabling (P<sub>MIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Minimum power PSS enabling (P<sub>MIN</sub>).
-       Typical Value = 0.25.</p></div></div>
+      <p class="shortcomment cmt">Minimum power PSS enabling (<i>Pmin</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum power PSS enabling (<i>Pmin</i>).
+       Typical value = 0,25.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="schema:org.apache.spark.sql.types.StructType"></a>
       <a id="schema:StructType"></a>
@@ -1256,8 +1256,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T<sub>10</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T<sub>10</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#t5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t5:Double"></a>
       <a id="t5:Double"></a>
@@ -1274,8 +1274,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Washout (T<sub>5</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Washout (T<sub>5</sub>).
-       Typical Value = 3.5.</p></div></div>
+      <p class="shortcomment cmt">Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+       Typical value = 3,5.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#t6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t6:Double"></a>
       <a id="t6:Double"></a>
@@ -1292,8 +1292,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Filter time constant (T<sub>6</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (T<sub>6</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#t7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t7:Double"></a>
       <a id="t7:Double"></a>
@@ -1310,8 +1310,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T<sub>7</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T<sub>7</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#t8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t8:Double"></a>
       <a id="t8:Double"></a>
@@ -1328,8 +1328,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T<sub>8</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T<sub>8</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#t9" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t9:Double"></a>
       <a id="t9:Double"></a>
@@ -1346,8 +1346,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Lead/lag time constant (T<sub>9</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (T<sub>9</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+       If = 0, both blocks are bypassed.  Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1398,8 +1398,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Electric power filter time constant (T<sub>PE</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Electric power filter time constant (T<sub>PE</sub>).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#vadat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vadat:Boolean"></a>
       <a id="vadat:Boolean"></a>
@@ -1416,13 +1416,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (V<sub>adAt</sub>).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (Generator Power is greater than Pmin)&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (Pe is smaller than Pmin).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical Value = true.&lt;/font&gt;</sub></p><div class="fullcomment"><div class="comment cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (V<sub>adAt</sub>).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (Generator Power is greater than Pmin)&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (Pe is smaller than Pmin).&lt;/font&gt;
-       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical Value = true.&lt;/font&gt;</p></div></div>
+      <p class="shortcomment cmt">&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (<i>V</i><i><sub>ADAT</sub></i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (generator power is greater than <i>Pmin</i>)&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (<i>Pe</i> is smaller than <i>Pmin</i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical value = true.&lt;/font&gt;</i></i></i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>&lt;font color=&quot;#0f0f0f&quot;&gt;Signal selector (<i>V</i><i><sub>ADAT</sub></i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;true = closed (generator power is greater than <i>Pmin</i>)&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;false = open (<i>Pe</i> is smaller than <i>Pmin</i>).&lt;/font&gt;
+       &lt;font color=&quot;#0f0f0f&quot;&gt;Typical value = true.&lt;/font&gt;</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#vsmn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmn:Double"></a>
       <a id="vsmn:Double"></a>
@@ -1439,8 +1439,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output max limit (V<sub>SMN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output max limit (V<sub>SMN</sub>).
-       Typical Value = -0.06.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+       Typical value = -0,06.</p></div></div>
     </li><li name="ch.ninecode.model.Pss1#vsmx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vsmx:Double"></a>
       <a id="vsmx:Double"></a>
@@ -1457,8 +1457,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Stabilizer output min limit (V<sub>SMX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output min limit (V<sub>SMX</sub>).
-       Typical Value = 0.06.</p></div></div>
+      <p class="shortcomment cmt">Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+       Typical value = 0,06.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

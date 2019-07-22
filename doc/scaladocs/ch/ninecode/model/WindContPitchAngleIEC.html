@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindContPitchAngleIEC - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.WindContPitchAngleIEC</title>
-          <meta name="description" content="WindContPitchAngleIEC - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.WindContPitchAngleIEC" />
-          <meta name="keywords" content="WindContPitchAngleIEC CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.WindContPitchAngleIEC" />
+          <title>WindContPitchAngleIEC - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.WindContPitchAngleIEC</title>
+          <meta name="description" content="WindContPitchAngleIEC - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.WindContPitchAngleIEC" />
+          <meta name="keywords" content="WindContPitchAngleIEC CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.WindContPitchAngleIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,18 +51,18 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Pitch angle control model.</p><p>Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dthetamax</dt><dd class="cmt"><p>Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></dd><dt class="param">dthetamin</dt><dd class="cmt"><p>Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></dd><dt class="param">kic</dt><dd class="cmt"><p>Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kiomega</dt><dd class="cmt"><p>Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpc</dt><dd class="cmt"><p>Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpomega</dt><dd class="cmt"><p>Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpx</dt><dd class="cmt"><p>Pitch cross coupling gain (K<sub>PX</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">thetamax</dt><dd class="cmt"><p>Maximum pitch angle (<i>theta</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">thetamin</dt><dd class="cmt"><p>Minimum pitch angle (<i>theta</i><sub>min</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">ttheta</dt><dd class="cmt"><p>Pitch time constant (t<i>theta</i>).
-       It is type dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this pitch control model is associated.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Pitch angle control model.</p><p>Reference: IEC 61400-27-1:2015, 5.6.5.2.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dthetamax</dt><dd class="cmt"><p>Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
+       It is a type-dependent parameter. Unit = degrees / s.</p></dd><dt class="param">dthetamin</dt><dd class="cmt"><p>Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
+       It is a type-dependent parameter. Unit = degrees / s.</p></dd><dt class="param">kic</dt><dd class="cmt"><p>Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kiomega</dt><dd class="cmt"><p>Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpc</dt><dd class="cmt"><p>Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpomega</dt><dd class="cmt"><p>Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpx</dt><dd class="cmt"><p>Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetamax</dt><dd class="cmt"><p>Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetamin</dt><dd class="cmt"><p>Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
+       It is a type-dependent parameter.</p></dd><dt class="param">ttheta</dt><dd class="cmt"><p>Pitch time constant (<i>ttheta</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this pitch control model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -134,17 +134,17 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dthetamax</dt><dd class="cmt"><p>Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></dd><dt class="param">dthetamin</dt><dd class="cmt"><p>Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></dd><dt class="param">kic</dt><dd class="cmt"><p>Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kiomega</dt><dd class="cmt"><p>Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpc</dt><dd class="cmt"><p>Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpomega</dt><dd class="cmt"><p>Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">kpx</dt><dd class="cmt"><p>Pitch cross coupling gain (K<sub>PX</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">thetamax</dt><dd class="cmt"><p>Maximum pitch angle (<i>theta</i><sub>max</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">thetamin</dt><dd class="cmt"><p>Minimum pitch angle (<i>theta</i><sub>min</sub>).
-       It is type dependent parameter.</p></dd><dt class="param">ttheta</dt><dd class="cmt"><p>Pitch time constant (t<i>theta</i>).
-       It is type dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this pitch control model is associated.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">dthetamax</dt><dd class="cmt"><p>Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
+       It is a type-dependent parameter. Unit = degrees / s.</p></dd><dt class="param">dthetamin</dt><dd class="cmt"><p>Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
+       It is a type-dependent parameter. Unit = degrees / s.</p></dd><dt class="param">kic</dt><dd class="cmt"><p>Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kiomega</dt><dd class="cmt"><p>Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpc</dt><dd class="cmt"><p>Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpomega</dt><dd class="cmt"><p>Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">kpx</dt><dd class="cmt"><p>Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetamax</dt><dd class="cmt"><p>Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
+       It is a type-dependent parameter.</p></dd><dt class="param">thetamin</dt><dd class="cmt"><p>Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
+       It is a type-dependent parameter.</p></dd><dt class="param">ttheta</dt><dd class="cmt"><p>Pitch time constant (<i>ttheta</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></dd><dt class="param">WindTurbineType3IEC</dt><dd class="cmt"><p><a href="WindTurbineType3IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3IEC">WindTurbineType3IEC</a> Wind turbine type 3 model with which this pitch control model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -386,8 +386,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></div></div>
+      <p class="shortcomment cmt">Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
+       It is a type-dependent parameter. Unit = degrees / s.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#dthetamin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dthetamin:Double"></a>
       <a id="dthetamin:Double"></a>
@@ -404,8 +404,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
-       It is type dependent parameter. Unit = degrees/sec.</p></div></div>
+      <p class="shortcomment cmt">Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).</i></i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
+       It is a type-dependent parameter. Unit = degrees / s.</p></div></div>
     </li><li name="ch.ninecode.model.Element#emit_attribute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="emit_attribute(field:String,value:Any)(implicitclz:String,implicits:StringBuilder):Unit"></a>
       <a id="emit_attribute(String,Any)(String,StringBuilder):Unit"></a>
@@ -999,8 +999,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power PI controller integration gain (<i>K</i><sub>Ic</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#kiomega" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kiomega:Double"></a>
       <a id="kiomega:Double"></a>
@@ -1017,8 +1017,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#kpc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpc:Double"></a>
       <a id="kpc:Double"></a>
@@ -1035,8 +1035,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#kpomega" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpomega:Double"></a>
       <a id="kpomega:Double"></a>
@@ -1053,8 +1053,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#kpx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kpx:Double"></a>
       <a id="kpx:Double"></a>
@@ -1071,8 +1071,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Pitch cross coupling gain (K<sub>PX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>Pitch cross coupling gain (K<sub>PX</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1295,8 +1295,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Maximum pitch angle (<i>theta</i><sub>max</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch angle (<i>theta</i><sub>max</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="ch.ninecode.model.WindContPitchAngleIEC#thetamin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="thetamin:Double"></a>
       <a id="thetamin:Double"></a>
@@ -1313,8 +1313,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Minimum pitch angle (<i>theta</i><sub>min</sub>).</sub></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum pitch angle (<i>theta</i><sub>min</sub>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1365,8 +1365,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Pitch time constant (t<i>theta</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>Pitch time constant (t<i>theta</i>).
-       It is type dependent parameter.</p></div></div>
+      <p class="shortcomment cmt">Pitch time constant (<i>ttheta</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Pitch time constant (<i>ttheta</i>) (&gt;= 0).
+       It is a type-dependent parameter.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -229,7 +229,7 @@ extends
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
-case class ResourceCertification
+case class ResourceCertification2
 (
     override val sup: BasicElement,
     certifiedDAM: String,
@@ -263,7 +263,7 @@ extends
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
     def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ResourceCertification] }
+    override def copy (): Row = { clone ().asInstanceOf[ResourceCertification2] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -275,10 +275,10 @@ extends
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = ResourceCertification.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceCertification.fields (position), x))
+        implicit val clz: String = ResourceCertification2.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification2.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification2.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceCertification2.fields (position), x))
         emitattr (0, certifiedDAM)
         emitattr (1, certifiedNonspinDAM)
         emitelem (2, certifiedNonspinDAMMw)
@@ -297,13 +297,13 @@ extends
     }
     override def export: String =
     {
-        "\t<cim:ResourceCertification rdf:ID=\"%s\">\n%s\t</cim:ResourceCertification>".format (id, export_fields)
+        "\t<cim:ResourceCertification2 rdf:ID=\"%s\">\n%s\t</cim:ResourceCertification2>".format (id, export_fields)
     }
 }
 
-object ResourceCertification
+object ResourceCertification2
 extends
-    Parseable[ResourceCertification]
+    Parseable[ResourceCertification2]
 {
     override val fields: Array[String] = Array[String] (
         "certifiedDAM",
@@ -339,11 +339,11 @@ extends
     val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
     val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
-    def parse (context: Context): ResourceCertification =
+    def parse (context: Context): ResourceCertification2 =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
-        val ret = ResourceCertification (
+        val ret = ResourceCertification2 (
             BasicElement.parse (context),
             mask (certifiedDAM (), 0),
             mask (certifiedNonspinDAM (), 1),
@@ -372,7 +372,7 @@ private[ninecode] object _InfMarketOperations
         List (
             BilateralTransaction.register,
             Participation.register,
-            ResourceCertification.register
+            ResourceCertification2.register
         )
     }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>UnderexcLimIEEE1 - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.UnderexcLimIEEE1</title>
-          <meta name="description" content="UnderexcLimIEEE1 - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.UnderexcLimIEEE1" />
-          <meta name="keywords" content="UnderexcLimIEEE1 CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.UnderexcLimIEEE1" />
+          <title>UnderexcLimIEEE1 - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.UnderexcLimIEEE1</title>
+          <meta name="description" content="UnderexcLimIEEE1 - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.UnderexcLimIEEE1" />
+          <meta name="keywords" content="UnderexcLimIEEE1 CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.UnderexcLimIEEE1" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,21 +51,21 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The class represents the Type UEL1 model which has a circular limit boundary when plotted in terms of machine reactive power vs. real power output.</p><p>Reference: IEEE UEL1 421.5-2005 Section 10.1.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kuc</dt><dd class="cmt"><p>UEL center setting (K<sub>UC</sub>).
-       Typical Value = 1.38.</p></dd><dt class="param">kuf</dt><dd class="cmt"><p>UEL excitation system stabilizer gain (K<sub>UF</sub>).
-       Typical Value = 3.3.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>UEL integral gain (K<sub>UI</sub>).
-       Typical Value = 0.</p></dd><dt class="param">kul</dt><dd class="cmt"><p>UEL proportional gain (K<sub>UL</sub>).
-       Typical Value = 100.</p></dd><dt class="param">kur</dt><dd class="cmt"><p>UEL radius setting (K<sub>UR</sub>).
-       Typical Value = 1.95.</p></dd><dt class="param">tu1</dt><dd class="cmt"><p>UEL lead time constant (T<sub>U1</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tu2</dt><dd class="cmt"><p>UEL lag time constant (T<sub>U2</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">tu3</dt><dd class="cmt"><p>UEL lead time constant (T<sub>U3</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tu4</dt><dd class="cmt"><p>UEL lag time constant (T<sub>U4</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vucmax</dt><dd class="cmt"><p>UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
-       Typical Value = 5.8.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>UEL integrator output maximum limit (V<sub>UIMAX</sub>).</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>UEL integrator output minimum limit (V<sub>UIMIN</sub>).</p></dd><dt class="param">vulmax</dt><dd class="cmt"><p>UEL output maximum limit (V<sub>ULMAX</sub>).
-       Typical Value = 18.</p></dd><dt class="param">vulmin</dt><dd class="cmt"><p>UEL output minimum limit (V<sub>ULMIN</sub>).
-       Typical Value = -18.</p></dd><dt class="param">vurmax</dt><dd class="cmt"><p>UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
-       Typical Value = 5.8.</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Type UEL1 model which has a circular limit boundary when plotted in terms of machine reactive power vs. real power output.</p><p>Reference: IEEE UEL1 421.5-2005, 10.1.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kuc</dt><dd class="cmt"><p>UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
+       Typical value = 1,38.</p></dd><dt class="param">kuf</dt><dd class="cmt"><p>UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+       Typical value = 3,3.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kul</dt><dd class="cmt"><p>UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+       Typical value = 100.</p></dd><dt class="param">kur</dt><dd class="cmt"><p>UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
+       Typical value = 1,95.</p></dd><dt class="param">tu1</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tu2</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">tu3</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tu4</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vucmax</dt><dd class="cmt"><p>UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
+       Typical value = 5,8.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).</p></dd><dt class="param">vulmax</dt><dd class="cmt"><p>UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
+       Typical value = 18.</p></dd><dt class="param">vulmin</dt><dd class="cmt"><p>UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
+       Typical value = -18.</p></dd><dt class="param">vurmax</dt><dd class="cmt"><p>UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
+       Typical value = 5,8.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -137,20 +137,20 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kuc</dt><dd class="cmt"><p>UEL center setting (K<sub>UC</sub>).
-       Typical Value = 1.38.</p></dd><dt class="param">kuf</dt><dd class="cmt"><p>UEL excitation system stabilizer gain (K<sub>UF</sub>).
-       Typical Value = 3.3.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>UEL integral gain (K<sub>UI</sub>).
-       Typical Value = 0.</p></dd><dt class="param">kul</dt><dd class="cmt"><p>UEL proportional gain (K<sub>UL</sub>).
-       Typical Value = 100.</p></dd><dt class="param">kur</dt><dd class="cmt"><p>UEL radius setting (K<sub>UR</sub>).
-       Typical Value = 1.95.</p></dd><dt class="param">tu1</dt><dd class="cmt"><p>UEL lead time constant (T<sub>U1</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tu2</dt><dd class="cmt"><p>UEL lag time constant (T<sub>U2</sub>).
-       Typical Value = 0.05.</p></dd><dt class="param">tu3</dt><dd class="cmt"><p>UEL lead time constant (T<sub>U3</sub>).
-       Typical Value = 0.</p></dd><dt class="param">tu4</dt><dd class="cmt"><p>UEL lag time constant (T<sub>U4</sub>).
-       Typical Value = 0.</p></dd><dt class="param">vucmax</dt><dd class="cmt"><p>UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
-       Typical Value = 5.8.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>UEL integrator output maximum limit (V<sub>UIMAX</sub>).</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>UEL integrator output minimum limit (V<sub>UIMIN</sub>).</p></dd><dt class="param">vulmax</dt><dd class="cmt"><p>UEL output maximum limit (V<sub>ULMAX</sub>).
-       Typical Value = 18.</p></dd><dt class="param">vulmin</dt><dd class="cmt"><p>UEL output minimum limit (V<sub>ULMIN</sub>).
-       Typical Value = -18.</p></dd><dt class="param">vurmax</dt><dd class="cmt"><p>UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
-       Typical Value = 5.8.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="UnderexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.UnderexcitationLimiterDynamics">UnderexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">kuc</dt><dd class="cmt"><p>UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
+       Typical value = 1,38.</p></dd><dt class="param">kuf</dt><dd class="cmt"><p>UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+       Typical value = 3,3.</p></dd><dt class="param">kui</dt><dd class="cmt"><p>UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0.</p></dd><dt class="param">kul</dt><dd class="cmt"><p>UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+       Typical value = 100.</p></dd><dt class="param">kur</dt><dd class="cmt"><p>UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
+       Typical value = 1,95.</p></dd><dt class="param">tu1</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tu2</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></dd><dt class="param">tu3</dt><dd class="cmt"><p>UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tu4</dt><dd class="cmt"><p>UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">vucmax</dt><dd class="cmt"><p>UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
+       Typical value = 5,8.</p></dd><dt class="param">vuimax</dt><dd class="cmt"><p>UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).</p></dd><dt class="param">vuimin</dt><dd class="cmt"><p>UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).</p></dd><dt class="param">vulmax</dt><dd class="cmt"><p>UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
+       Typical value = 18.</p></dd><dt class="param">vulmin</dt><dd class="cmt"><p>UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
+       Typical value = -18.</p></dd><dt class="param">vurmax</dt><dd class="cmt"><p>UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
+       Typical value = 5,8.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -952,8 +952,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL center setting (K<sub>UC</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL center setting (K<sub>UC</sub>).
-       Typical Value = 1.38.</p></div></div>
+      <p class="shortcomment cmt">UEL centre setting (<i>K</i><i><sub>UC</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
+       Typical value = 1,38.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#kuf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kuf:Double"></a>
       <a id="kuf:Double"></a>
@@ -970,8 +970,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL excitation system stabilizer gain (K<sub>UF</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL excitation system stabilizer gain (K<sub>UF</sub>).
-       Typical Value = 3.3.</p></div></div>
+      <p class="shortcomment cmt">UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+       Typical value = 3,3.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#kui" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kui:Double"></a>
       <a id="kui:Double"></a>
@@ -988,8 +988,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL integral gain (K<sub>UI</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL integral gain (K<sub>UI</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">UEL integral gain (<i>K</i><i><sub>UI</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#kul" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kul:Double"></a>
       <a id="kul:Double"></a>
@@ -1006,8 +1006,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL proportional gain (K<sub>UL</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL proportional gain (K<sub>UL</sub>).
-       Typical Value = 100.</p></div></div>
+      <p class="shortcomment cmt">UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+       Typical value = 100.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#kur" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kur:Double"></a>
       <a id="kur:Double"></a>
@@ -1024,8 +1024,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL radius setting (K<sub>UR</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL radius setting (K<sub>UR</sub>).
-       Typical Value = 1.95.</p></div></div>
+      <p class="shortcomment cmt">UEL radius setting (<i>K</i><i><sub>UR</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
+       Typical value = 1,95.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1282,8 +1282,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lead time constant (T<sub>U1</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (T<sub>U1</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#tu2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tu2:Double"></a>
       <a id="tu2:Double"></a>
@@ -1300,8 +1300,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lag time constant (T<sub>U2</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (T<sub>U2</sub>).
-       Typical Value = 0.05.</p></div></div>
+      <p class="shortcomment cmt">UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+       Typical value = 0,05.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#tu3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tu3:Double"></a>
       <a id="tu3:Double"></a>
@@ -1318,8 +1318,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lead time constant (T<sub>U3</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (T<sub>U3</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#tu4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tu4:Double"></a>
       <a id="tu4:Double"></a>
@@ -1336,8 +1336,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL lag time constant (T<sub>U4</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (T<sub>U4</sub>).
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vucmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vucmax:Double"></a>
       <a id="vucmax:Double"></a>
@@ -1354,8 +1354,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
-       Typical Value = 5.8.</p></div></div>
+      <p class="shortcomment cmt">UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
+       Typical value = 5,8.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vuimax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vuimax:Double"></a>
       <a id="vuimax:Double"></a>
@@ -1372,7 +1372,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL integrator output maximum limit (V<sub>UIMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL integrator output maximum limit (V<sub>UIMAX</sub>).</p></div></div>
+      <p class="shortcomment cmt">UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vuimin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vuimin:Double"></a>
       <a id="vuimin:Double"></a>
@@ -1389,7 +1389,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL integrator output minimum limit (V<sub>UIMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL integrator output minimum limit (V<sub>UIMIN</sub>).</p></div></div>
+      <p class="shortcomment cmt">UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vulmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vulmax:Double"></a>
       <a id="vulmax:Double"></a>
@@ -1406,8 +1406,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL output maximum limit (V<sub>ULMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL output maximum limit (V<sub>ULMAX</sub>).
-       Typical Value = 18.</p></div></div>
+      <p class="shortcomment cmt">UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
+       Typical value = 18.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vulmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vulmin:Double"></a>
       <a id="vulmin:Double"></a>
@@ -1424,8 +1424,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL output minimum limit (V<sub>ULMIN</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL output minimum limit (V<sub>ULMIN</sub>).
-       Typical Value = -18.</p></div></div>
+      <p class="shortcomment cmt">UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
+       Typical value = -18.</p></div></div>
     </li><li name="ch.ninecode.model.UnderexcLimIEEE1#vurmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="vurmax:Double"></a>
       <a id="vurmax:Double"></a>
@@ -1442,8 +1442,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
-       Typical Value = 5.8.</p></div></div>
+      <p class="shortcomment cmt">UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
+       Typical value = 5,8.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

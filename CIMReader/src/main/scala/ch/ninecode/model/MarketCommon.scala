@@ -493,7 +493,7 @@ extends
  * @param ResourceAncillaryServiceQualification [[ch.ninecode.model.ResourceCertification ResourceCertification]] RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
  * @param ResourceAwardInstruction [[ch.ninecode.model.ResourceAwardInstruction ResourceAwardInstruction]] <em>undocumented</em>
  * @param ResourceCapacity [[ch.ninecode.model.ResourceCapacity ResourceCapacity]] <em>undocumented</em>
- * @param ResourceCertification [[ch.ninecode.model.ResourceCertification ResourceCertification]] <em>undocumented</em>
+ * @param ResourceCertification [[ch.ninecode.model.ResourceCertification2 ResourceCertification2]] <em>undocumented</em>
  * @param ResourceDispatchResults [[ch.ninecode.model.ResourceDispatchResults ResourceDispatchResults]] <em>undocumented</em>
  * @param ResourceGroups [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @param ResourceLoadFollowingInst [[ch.ninecode.model.ResourceLoadFollowingInst ResourceLoadFollowingInst]] <em>undocumented</em>
@@ -800,7 +800,7 @@ extends
         Relationship ("ResourceAncillaryServiceQualification", "ResourceCertification", "0..*", "1"),
         Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "0..*", "0..1"),
         Relationship ("ResourceCapacity", "ResourceCapacity", "0..*", "0..*"),
-        Relationship ("ResourceCertification", "ResourceCertification", "0..*", "0..*"),
+        Relationship ("ResourceCertification", "ResourceCertification2", "0..*", "0..*"),
         Relationship ("ResourceDispatchResults", "ResourceDispatchResults", "0..*", "0..1"),
         Relationship ("ResourceGroups", "ResourceGroup", "0..*", "1..*"),
         Relationship ("ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1"),

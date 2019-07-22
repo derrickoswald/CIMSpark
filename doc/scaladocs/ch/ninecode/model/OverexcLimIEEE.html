@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>OverexcLimIEEE - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.OverexcLimIEEE</title>
-          <meta name="description" content="OverexcLimIEEE - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.OverexcLimIEEE" />
-          <meta name="keywords" content="OverexcLimIEEE CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.OverexcLimIEEE" />
+          <title>OverexcLimIEEE - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.OverexcLimIEEE</title>
+          <meta name="description" content="OverexcLimIEEE - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.OverexcLimIEEE" />
+          <meta name="keywords" content="OverexcLimIEEE CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.OverexcLimIEEE" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,13 +52,14 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.</p><p>It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OverexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.OverexcitationLimiterDynamics">OverexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">hyst</dt><dd class="cmt"><p>OEL pickup/drop-out hysteresis (HYST).
-       Typical Value = 0.03.</p></dd><dt class="param">ifdlim</dt><dd class="cmt"><p>OEL timed field current limit (I<sub>FDLIM</sub>).
-       Typical Value = 1.05.</p></dd><dt class="param">ifdmax</dt><dd class="cmt"><p>OEL instantaneous field current limit (I<sub>FDMAX</sub>).
-       Typical Value = 1.5.</p></dd><dt class="param">itfpu</dt><dd class="cmt"><p>OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
-       Typical Value = 1.05.</p></dd><dt class="param">kcd</dt><dd class="cmt"><p>OEL cooldown gain (K<sub>CD</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kramp</dt><dd class="cmt"><p>OEL ramped limit rate (K<sub>RAMP</sub>).
-       Unit = PU/sec.  Typical Value = 10.</p></dd></dl><div class="toggleContainer block">
+Reference: IEEE OEL 421.5-2005, 9.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OverexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.OverexcitationLimiterDynamics">OverexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">hyst</dt><dd class="cmt"><p>OEL pickup/drop-out hysteresis (<i>HYST</i>).
+       Typical value = 0,03.</p></dd><dt class="param">ifdlim</dt><dd class="cmt"><p>OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).
+       Typical value = 1,05.</p></dd><dt class="param">ifdmax</dt><dd class="cmt"><p>OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).
+       Typical value = 1,5.</p></dd><dt class="param">itfpu</dt><dd class="cmt"><p>OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).
+       Typical value = 1,05.</p></dd><dt class="param">kcd</dt><dd class="cmt"><p>OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">kramp</dt><dd class="cmt"><p>OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).
+       Unit = PU / s.  Typical value = 10.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -130,13 +131,13 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OverexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.OverexcitationLimiterDynamics">OverexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">hyst</dt><dd class="cmt"><p>OEL pickup/drop-out hysteresis (HYST).
-       Typical Value = 0.03.</p></dd><dt class="param">ifdlim</dt><dd class="cmt"><p>OEL timed field current limit (I<sub>FDLIM</sub>).
-       Typical Value = 1.05.</p></dd><dt class="param">ifdmax</dt><dd class="cmt"><p>OEL instantaneous field current limit (I<sub>FDMAX</sub>).
-       Typical Value = 1.5.</p></dd><dt class="param">itfpu</dt><dd class="cmt"><p>OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
-       Typical Value = 1.05.</p></dd><dt class="param">kcd</dt><dd class="cmt"><p>OEL cooldown gain (K<sub>CD</sub>).
-       Typical Value = 1.</p></dd><dt class="param">kramp</dt><dd class="cmt"><p>OEL ramped limit rate (K<sub>RAMP</sub>).
-       Unit = PU/sec.  Typical Value = 10.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OverexcitationLimiterDynamics.html" class="extype" name="ch.ninecode.model.OverexcitationLimiterDynamics">OverexcitationLimiterDynamics</a> Reference to the superclass object.</p></dd><dt class="param">hyst</dt><dd class="cmt"><p>OEL pickup/drop-out hysteresis (<i>HYST</i>).
+       Typical value = 0,03.</p></dd><dt class="param">ifdlim</dt><dd class="cmt"><p>OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).
+       Typical value = 1,05.</p></dd><dt class="param">ifdmax</dt><dd class="cmt"><p>OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).
+       Typical value = 1,5.</p></dd><dt class="param">itfpu</dt><dd class="cmt"><p>OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).
+       Typical value = 1,05.</p></dd><dt class="param">kcd</dt><dd class="cmt"><p>OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).
+       Typical value = 1.</p></dd><dt class="param">kramp</dt><dd class="cmt"><p>OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).
+       Unit = PU / s.  Typical value = 10.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -886,8 +887,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL pickup/drop-out hysteresis (HYST).</p><div class="fullcomment"><div class="comment cmt"><p>OEL pickup/drop-out hysteresis (HYST).
-       Typical Value = 0.03.</p></div></div>
+      <p class="shortcomment cmt">OEL pickup/drop-out hysteresis (<i>HYST</i>).</i></p><div class="fullcomment"><div class="comment cmt"><p>OEL pickup/drop-out hysteresis (<i>HYST</i>).
+       Typical value = 0,03.</p></div></div>
     </li><li name="ch.ninecode.model.Element#id" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="id:String"></a>
       <a id="id:String"></a>
@@ -922,8 +923,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL timed field current limit (I<sub>FDLIM</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL timed field current limit (I<sub>FDLIM</sub>).
-       Typical Value = 1.05.</p></div></div>
+      <p class="shortcomment cmt">OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).
+       Typical value = 1,05.</p></div></div>
     </li><li name="ch.ninecode.model.OverexcLimIEEE#ifdmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ifdmax:Double"></a>
       <a id="ifdmax:Double"></a>
@@ -940,8 +941,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL instantaneous field current limit (I<sub>FDMAX</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL instantaneous field current limit (I<sub>FDMAX</sub>).
-       Typical Value = 1.5.</p></div></div>
+      <p class="shortcomment cmt">OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).
+       Typical value = 1,5.</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -992,8 +993,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL timed field current limiter pickup level (I<sub>TFPU</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
-       Typical Value = 1.05.</p></div></div>
+      <p class="shortcomment cmt">OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).
+       Typical value = 1,05.</p></div></div>
     </li><li name="ch.ninecode.model.OverexcLimIEEE#kcd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kcd:Double"></a>
       <a id="kcd:Double"></a>
@@ -1010,8 +1011,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL cooldown gain (K<sub>CD</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL cooldown gain (K<sub>CD</sub>).
-       Typical Value = 1.</p></div></div>
+      <p class="shortcomment cmt">OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).
+       Typical value = 1.</p></div></div>
     </li><li name="ch.ninecode.model.OverexcLimIEEE#kramp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="kramp:Double"></a>
       <a id="kramp:Double"></a>
@@ -1028,8 +1029,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">OEL ramped limit rate (K<sub>RAMP</sub>).</sub></p><div class="fullcomment"><div class="comment cmt"><p>OEL ramped limit rate (K<sub>RAMP</sub>).
-       Unit = PU/sec.  Typical Value = 10.</p></div></div>
+      <p class="shortcomment cmt">OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).</i></i></p><div class="fullcomment"><div class="comment cmt"><p>OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).
+       Unit = PU / s.  Typical value = 10.</p></div></div>
     </li><li name="ch.ninecode.model.OverexcLimIEEE#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>

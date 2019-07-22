@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SynchronousMachineTimeConstantReactance - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.SynchronousMachineTimeConstantReactance</title>
-          <meta name="description" content="SynchronousMachineTimeConstantReactance - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.SynchronousMachineTimeConstantReactance" />
-          <meta name="keywords" content="SynchronousMachineTimeConstantReactance CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.SynchronousMachineTimeConstantReactance" />
+          <title>SynchronousMachineTimeConstantReactance - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.SynchronousMachineTimeConstantReactance</title>
+          <meta name="description" content="SynchronousMachineTimeConstantReactance - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.SynchronousMachineTimeConstantReactance" />
+          <meta name="keywords" content="SynchronousMachineTimeConstantReactance CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.SynchronousMachineTimeConstantReactance" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -51,22 +51,42 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
-<b>
-</b><b>Parameter notes:</b></p><ul><li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <b>T'do</b>.</li></ul><p><b>
-</b>The parameters used for models expressed in time constant reactance form include:</p><ul><li>RotatingMachine.ratedS (MVAbase)</li><li>RotatingMachineDynamics.damping (D)</li><li>RotatingMachineDynamics.inertia (H)</li><li>RotatingMachineDynamics.saturationFactor (S1)</li><li>RotatingMachineDynamics.saturationFactor120 (S12)</li><li>RotatingMachineDynamics.statorLeakageReactance (Xl)</li><li>RotatingMachineDynamics.statorResistance (Rs)</li><li>SynchronousMachineTimeConstantReactance.ks (Ks)</li><li>SynchronousMachineDetailed.saturationFactorQAxis (S1q)</li><li>SynchronousMachineDetailed.saturationFactor120QAxis (S12q)</li><li>SynchronousMachineDetailed.efdBaseRatio</li><li>SynchronousMachineDetailed.ifdBaseType</li><li>SynchronousMachineDetailed.ifdBaseValue, if present</li><li>.xDirectSync (Xd)</li><li>.xDirectTrans (X'd)</li><li>.xDirectSubtrans (X<i>d)</i></li><li>.xQuadSync (Xq)</li><li>.xQuadTrans (X'q)</li><li>.xQuadSubtrans (X<i>q)</i></li><li>.tpdo (T'do)</li><li>.tppdo (T<i>do)</i></li><li>.tpqo (T'qo)</li><li>.tppqo (T<i>qo)</i></li><li>.tc.</li></ul></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Saturation loading correction factor (Ks) (&gt;= 0).
-       Used only by Type J model.  Typical Value = 0.</p></dd><dt class="param">modelType</dt><dd class="cmt"><p>Type of synchronous machine model used in Dynamic simulation applications.</p></dd><dt class="param">rotorType</dt><dd class="cmt"><p>Type of rotor on physical machine.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Damping time constant for �Canay� reactance.
-       Typical Value = 0.</p></dd><dt class="param">tpdo</dt><dd class="cmt"><p>Direct-axis transient rotor time constant (T'do) (&gt; T<i>do).
-       Typical Value = 5.</i></p></dd><dt class="param">tppdo</dt><dd class="cmt"><p>Direct-axis subtransient rotor time constant (T<i>do) (&gt; 0).
-       Typical Value = 0.03.</i></p></dd><dt class="param">tppqo</dt><dd class="cmt"><p>Quadrature-axis subtransient rotor time constant (T<i>qo) (&gt; 0).
-       Typical Value = 0.03.</i></p></dd><dt class="param">tpqo</dt><dd class="cmt"><p>Quadrature-axis transient rotor time constant (T'qo) (&gt; T<i>qo).
-       Typical Value = 0.5.</i></p></dd><dt class="param">xDirectSubtrans</dt><dd class="cmt"><p>Direct-axis subtransient reactance (unsaturated) (X<i>d) (&gt; Xl).
-       Typical Value = 0.2.</i></p></dd><dt class="param">xDirectSync</dt><dd class="cmt"><p>Direct-axis synchronous reactance (Xd) (&gt;= X'd).
-       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.</p></dd><dt class="param">xDirectTrans</dt><dd class="cmt"><p>Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X<i>d).
-       Typical Value = 0.5.</i></p></dd><dt class="param">xQuadSubtrans</dt><dd class="cmt"><p>Quadrature-axis subtransient reactance (X<i>q) (&gt; Xl).
-       Typical Value = 0.2.</i></p></dd><dt class="param">xQuadSync</dt><dd class="cmt"><p>Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
-       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.</p></dd><dt class="param">xQuadTrans</dt><dd class="cmt"><p>Quadrature-axis transient reactance (X'q) (&gt; =X<i>q).
-       Typical Value = 0.3.</i></p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.</p><p>Parameter details:</p><ul><li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <i>T'do</i>.</li><li>The parameters used for models expressed in time constant reactance form include:</li></ul><p>- RotatingMachine.ratedS (<i>MVAbase</i>);
+- RotatingMachineDynamics.damping (<i>D</i>);
+- RotatingMachineDynamics.inertia (<i>H</i>);
+- RotatingMachineDynamics.saturationFactor (<i>S1</i>);
+- RotatingMachineDynamics.saturationFactor120 (<i>S12</i>);
+- RotatingMachineDynamics.statorLeakageReactance (<i>Xl</i>);
+- RotatingMachineDynamics.statorResistance (<i>Rs</i>);
+- SynchronousMachineTimeConstantReactance.ks (<i>Ks</i>);
+- SynchronousMachineDetailed.saturationFactorQAxis (<i>S1q</i>);
+- SynchronousMachineDetailed.saturationFactor120QAxis (<i>S12q</i>);
+- SynchronousMachineDetailed.efdBaseRatio;
+- SynchronousMachineDetailed.ifdBaseType;
+- .xDirectSync (<i>Xd</i>);
+- .xDirectTrans (<i>X'd</i>);
+- .xDirectSubtrans (<i>X''d</i>);
+- .xQuadSync (<i>Xq</i>);
+- .xQuadTrans (<i>X'q</i>);
+- .xQuadSubtrans (<i>X''q</i>);
+- .tpdo (<i>T'do</i>);
+- .tppdo (<i>T''do</i>);
+- .tpqo (<i>T'qo</i>);
+- .tppqo (<i>T''qo</i>);
+- .tc.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).
+       Used only by type J model.  Typical value = 0.</p></dd><dt class="param">modelType</dt><dd class="cmt"><p>Type of synchronous machine model used in dynamic simulation applications.</p></dd><dt class="param">rotorType</dt><dd class="cmt"><p>Type of rotor on physical machine.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Damping time constant for �Canay� reactance (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tpdo</dt><dd class="cmt"><p>Direct-axis transient rotor time constant (<i>T'do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).
+       Typical value = 5.</p></dd><dt class="param">tppdo</dt><dd class="cmt"><p>Direct-axis subtransient rotor time constant (<i>T''do</i>) (&gt; 0).
+       Typical value = 0,03.</p></dd><dt class="param">tppqo</dt><dd class="cmt"><p>Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (&gt; 0).
+       Typical value = 0,03.</p></dd><dt class="param">tpqo</dt><dd class="cmt"><p>Quadrature-axis transient rotor time constant (<i>T'qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo).
+       Typical value = 0,5.</p></dd><dt class="param">xDirectSubtrans</dt><dd class="cmt"><p>Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></dd><dt class="param">xDirectSync</dt><dd class="cmt"><p>Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans).
+       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.</p></dd><dt class="param">xDirectTrans</dt><dd class="cmt"><p>Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).
+       Typical value = 0,5.</p></dd><dt class="param">xQuadSubtrans</dt><dd class="cmt"><p>Quadrature-axis subtransient reactance (<i>X''q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></dd><dt class="param">xQuadSync</dt><dd class="cmt"><p>Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans).
+       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.</p></dd><dt class="param">xQuadTrans</dt><dd class="cmt"><p>Quadrature-axis transient reactance (<i>X'q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).
+       Typical value = 0,3.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -138,19 +158,19 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Saturation loading correction factor (Ks) (&gt;= 0).
-       Used only by Type J model.  Typical Value = 0.</p></dd><dt class="param">modelType</dt><dd class="cmt"><p>Type of synchronous machine model used in Dynamic simulation applications.</p></dd><dt class="param">rotorType</dt><dd class="cmt"><p>Type of rotor on physical machine.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Damping time constant for �Canay� reactance.
-       Typical Value = 0.</p></dd><dt class="param">tpdo</dt><dd class="cmt"><p>Direct-axis transient rotor time constant (T'do) (&gt; T<i>do).
-       Typical Value = 5.</i></p></dd><dt class="param">tppdo</dt><dd class="cmt"><p>Direct-axis subtransient rotor time constant (T<i>do) (&gt; 0).
-       Typical Value = 0.03.</i></p></dd><dt class="param">tppqo</dt><dd class="cmt"><p>Quadrature-axis subtransient rotor time constant (T<i>qo) (&gt; 0).
-       Typical Value = 0.03.</i></p></dd><dt class="param">tpqo</dt><dd class="cmt"><p>Quadrature-axis transient rotor time constant (T'qo) (&gt; T<i>qo).
-       Typical Value = 0.5.</i></p></dd><dt class="param">xDirectSubtrans</dt><dd class="cmt"><p>Direct-axis subtransient reactance (unsaturated) (X<i>d) (&gt; Xl).
-       Typical Value = 0.2.</i></p></dd><dt class="param">xDirectSync</dt><dd class="cmt"><p>Direct-axis synchronous reactance (Xd) (&gt;= X'd).
-       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.</p></dd><dt class="param">xDirectTrans</dt><dd class="cmt"><p>Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X<i>d).
-       Typical Value = 0.5.</i></p></dd><dt class="param">xQuadSubtrans</dt><dd class="cmt"><p>Quadrature-axis subtransient reactance (X<i>q) (&gt; Xl).
-       Typical Value = 0.2.</i></p></dd><dt class="param">xQuadSync</dt><dd class="cmt"><p>Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
-       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.</p></dd><dt class="param">xQuadTrans</dt><dd class="cmt"><p>Quadrature-axis transient reactance (X'q) (&gt; =X<i>q).
-       Typical Value = 0.3.</i></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">ks</dt><dd class="cmt"><p>Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).
+       Used only by type J model.  Typical value = 0.</p></dd><dt class="param">modelType</dt><dd class="cmt"><p>Type of synchronous machine model used in dynamic simulation applications.</p></dd><dt class="param">rotorType</dt><dd class="cmt"><p>Type of rotor on physical machine.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Damping time constant for �Canay� reactance (&gt;= 0).
+       Typical value = 0.</p></dd><dt class="param">tpdo</dt><dd class="cmt"><p>Direct-axis transient rotor time constant (<i>T'do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).
+       Typical value = 5.</p></dd><dt class="param">tppdo</dt><dd class="cmt"><p>Direct-axis subtransient rotor time constant (<i>T''do</i>) (&gt; 0).
+       Typical value = 0,03.</p></dd><dt class="param">tppqo</dt><dd class="cmt"><p>Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (&gt; 0).
+       Typical value = 0,03.</p></dd><dt class="param">tpqo</dt><dd class="cmt"><p>Quadrature-axis transient rotor time constant (<i>T'qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo).
+       Typical value = 0,5.</p></dd><dt class="param">xDirectSubtrans</dt><dd class="cmt"><p>Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></dd><dt class="param">xDirectSync</dt><dd class="cmt"><p>Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans).
+       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.</p></dd><dt class="param">xDirectTrans</dt><dd class="cmt"><p>Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).
+       Typical value = 0,5.</p></dd><dt class="param">xQuadSubtrans</dt><dd class="cmt"><p>Quadrature-axis subtransient reactance (<i>X''q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></dd><dt class="param">xQuadSync</dt><dd class="cmt"><p>Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans).
+       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.</p></dd><dt class="param">xQuadTrans</dt><dd class="cmt"><p>Quadrature-axis transient reactance (<i>X'q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).
+       Typical value = 0,3.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -952,8 +972,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Saturation loading correction factor (Ks) (&gt;= 0).</p><div class="fullcomment"><div class="comment cmt"><p>Saturation loading correction factor (Ks) (&gt;= 0).
-       Used only by Type J model.  Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).
+       Used only by type J model.  Typical value = 0.</p></div></div>
     </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
       <a id="length:Int"></a>
       <a id="length:Int"></a>
@@ -1057,7 +1077,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Type of synchronous machine model used in Dynamic simulation applications.</p>
+      <p class="shortcomment cmt">Type of synchronous machine model used in dynamic simulation applications.</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -1210,8 +1230,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Damping time constant for �Canay� reactance.</p><div class="fullcomment"><div class="comment cmt"><p>Damping time constant for �Canay� reactance.
-       Typical Value = 0.</p></div></div>
+      <p class="shortcomment cmt">Damping time constant for �Canay� reactance (&gt;= 0).</p><div class="fullcomment"><div class="comment cmt"><p>Damping time constant for �Canay� reactance (&gt;= 0).
+       Typical value = 0.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSeq:Seq[Any]"></a>
       <a id="toSeq:Seq[Any]"></a>
@@ -1246,7 +1266,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tpdo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tpdo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tpdo:Double"></a>
       <a id="tpdo:Double"></a>
       <h4 class="signature">
@@ -1262,9 +1282,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Direct-axis transient rotor time constant (T'do) (&gt; T<i>do).
-       Typical Value = 5.</i></p>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tppdo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Direct-axis transient rotor time constant (<i>T'do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).</i></p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis transient rotor time constant (<i>T'do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).
+       Typical value = 5.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tppdo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tppdo:Double"></a>
       <a id="tppdo:Double"></a>
       <h4 class="signature">
@@ -1280,9 +1300,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Direct-axis subtransient rotor time constant (T<i>do) (&gt; 0).
-       Typical Value = 0.03.</i></p>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tppqo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Direct-axis subtransient rotor time constant (<i>T''do</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis subtransient rotor time constant (<i>T''do</i>) (&gt; 0).
+       Typical value = 0,03.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tppqo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tppqo:Double"></a>
       <a id="tppqo:Double"></a>
       <h4 class="signature">
@@ -1298,9 +1318,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Quadrature-axis subtransient rotor time constant (T<i>qo) (&gt; 0).
-       Typical Value = 0.03.</i></p>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tpqo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (&gt; 0).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (&gt; 0).
+       Typical value = 0,03.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#tpqo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tpqo:Double"></a>
       <a id="tpqo:Double"></a>
       <h4 class="signature">
@@ -1316,8 +1336,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Quadrature-axis transient rotor time constant (T'qo) (&gt; T<i>qo).
-       Typical Value = 0.5.</i></p>
+      <p class="shortcomment cmt">Quadrature-axis transient rotor time constant (<i>T'qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis transient rotor time constant (<i>T'qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo).
+       Typical value = 0,5.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -1387,7 +1407,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xDirectSubtrans" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xDirectSubtrans" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xDirectSubtrans:Double"></a>
       <a id="xDirectSubtrans:Double"></a>
       <h4 class="signature">
@@ -1403,8 +1423,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Direct-axis subtransient reactance (unsaturated) (X<i>d) (&gt; Xl).
-       Typical Value = 0.2.</i></p>
+      <p class="shortcomment cmt">Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).</i></p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xDirectSync" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xDirectSync:Double"></a>
       <a id="xDirectSync:Double"></a>
@@ -1421,9 +1441,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Direct-axis synchronous reactance (Xd) (&gt;= X'd).</p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis synchronous reactance (Xd) (&gt;= X'd).
-       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.</p></div></div>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xDirectTrans" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans).</i></p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans).
+       The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xDirectTrans" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xDirectTrans:Double"></a>
       <a id="xDirectTrans:Double"></a>
       <h4 class="signature">
@@ -1439,9 +1459,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X<i>d).
-       Typical Value = 0.5.</i></p>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xQuadSubtrans" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).</i></p><div class="fullcomment"><div class="comment cmt"><p>Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).
+       Typical value = 0,5.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xQuadSubtrans" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xQuadSubtrans:Double"></a>
       <a id="xQuadSubtrans:Double"></a>
       <h4 class="signature">
@@ -1457,8 +1477,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Quadrature-axis subtransient reactance (X<i>q) (&gt; Xl).
-       Typical Value = 0.2.</i></p>
+      <p class="shortcomment cmt">Quadrature-axis subtransient reactance (<i>X''q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis subtransient reactance (<i>X''q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+       Typical value = 0,2.</p></div></div>
     </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xQuadSync" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xQuadSync:Double"></a>
       <a id="xQuadSync:Double"></a>
@@ -1475,9 +1495,9 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).</p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
-       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.</p></div></div>
-    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xQuadTrans" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans).
+       The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.</p></div></div>
+    </li><li name="ch.ninecode.model.SynchronousMachineTimeConstantReactance#xQuadTrans" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="xQuadTrans:Double"></a>
       <a id="xQuadTrans:Double"></a>
       <h4 class="signature">
@@ -1493,8 +1513,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Quadrature-axis transient reactance (X'q) (&gt; =X<i>q).
-       Typical Value = 0.3.</i></p>
+      <p class="shortcomment cmt">Quadrature-axis transient reactance (<i>X'q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).</i></p><div class="fullcomment"><div class="comment cmt"><p>Quadrature-axis transient reactance (<i>X'q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).
+       Typical value = 0,3.</p></div></div>
     </li></ol>
             </div>
 

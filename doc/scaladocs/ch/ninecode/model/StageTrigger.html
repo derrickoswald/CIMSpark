@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>StageTrigger - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.model.StageTrigger</title>
-          <meta name="description" content="StageTrigger - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.model.StageTrigger" />
-          <meta name="keywords" content="StageTrigger CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.model.StageTrigger" />
+          <title>StageTrigger - CIMReader 2.11-2.4.3-4.0.0 API - ch.ninecode.model.StageTrigger</title>
+          <meta name="description" content="StageTrigger - CIMReader 2.11 - 2.4.3 - 4.0.0 API - ch.ninecode.model.StageTrigger" />
+          <meta name="keywords" content="StageTrigger CIMReader 2.11 2.4.3 4.0.0 API ch.ninecode.model.StageTrigger" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -54,7 +54,7 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">armed</dt><dd class="cmt"><p>The status of the class set by operation or by signal.
        Optional field that will override other status fields.</p></dd><dt class="param">normalArmed</dt><dd class="cmt"><p>The default/normal value used when other active signal/values are missing.</p></dd><dt class="param">priority</dt><dd class="cmt"><p>Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
-       A trigger with the highest priority will trigger first.</p></dd><dt class="param">GateArmed</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">GateComCondition</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">GateTrigger</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">ProtectiveActionCollection</dt><dd class="cmt"><p><a href="ProtectiveActionCollection.html" class="extype" name="ch.ninecode.model.ProtectiveActionCollection">ProtectiveActionCollection</a> <em>undocumented</em></p></dd><dt class="param">Stage</dt><dd class="cmt"><p><a href="Stage.html" class="extype" name="ch.ninecode.model.Stage">Stage</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       A trigger with the highest priority will trigger first.</p></dd><dt class="param">GateArmed</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> Association to a Gate that through a gate logic and input pin defines arming of the StageTrigger.</p></dd><dt class="param">GateComCondition</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> For the StageTrigger to active the set of protective actions the condition for communication needs to be met (true).</p></dd><dt class="param">GateTrigger</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> The Gate result that trigger the StageTrigger and thereby executing the a set of protective actions.</p></dd><dt class="param">ProtectiveActionCollection</dt><dd class="cmt"><p><a href="ProtectiveActionCollection.html" class="extype" name="ch.ninecode.model.ProtectiveActionCollection">ProtectiveActionCollection</a> <em>undocumented</em></p></dd><dt class="param">Stage</dt><dd class="cmt"><p><a href="Stage.html" class="extype" name="ch.ninecode.model.Stage">Stage</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,7 +128,7 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">armed</dt><dd class="cmt"><p>The status of the class set by operation or by signal.
        Optional field that will override other status fields.</p></dd><dt class="param">normalArmed</dt><dd class="cmt"><p>The default/normal value used when other active signal/values are missing.</p></dd><dt class="param">priority</dt><dd class="cmt"><p>Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
-       A trigger with the highest priority will trigger first.</p></dd><dt class="param">GateArmed</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">GateComCondition</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">GateTrigger</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></dd><dt class="param">ProtectiveActionCollection</dt><dd class="cmt"><p><a href="ProtectiveActionCollection.html" class="extype" name="ch.ninecode.model.ProtectiveActionCollection">ProtectiveActionCollection</a> <em>undocumented</em></p></dd><dt class="param">Stage</dt><dd class="cmt"><p><a href="Stage.html" class="extype" name="ch.ninecode.model.Stage">Stage</a> <em>undocumented</em></p></dd></dl></div>
+       A trigger with the highest priority will trigger first.</p></dd><dt class="param">GateArmed</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> Association to a Gate that through a gate logic and input pin defines arming of the StageTrigger.</p></dd><dt class="param">GateComCondition</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> For the StageTrigger to active the set of protective actions the condition for communication needs to be met (true).</p></dd><dt class="param">GateTrigger</dt><dd class="cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> The Gate result that trigger the StageTrigger and thereby executing the a set of protective actions.</p></dd><dt class="param">ProtectiveActionCollection</dt><dd class="cmt"><p><a href="ProtectiveActionCollection.html" class="extype" name="ch.ninecode.model.ProtectiveActionCollection">ProtectiveActionCollection</a> <em>undocumented</em></p></dd><dt class="param">Stage</dt><dd class="cmt"><p><a href="Stage.html" class="extype" name="ch.ninecode.model.Stage">Stage</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -189,7 +189,7 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.StageTrigger#GateArmed" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.StageTrigger#GateArmed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GateArmed:String"></a>
       <a id="GateArmed:String"></a>
       <h4 class="signature">
@@ -205,8 +205,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.StageTrigger#GateComCondition" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> Association to a Gate that through a gate logic and input pin defines arming of the StageTrigger.</p>
+    </li><li name="ch.ninecode.model.StageTrigger#GateComCondition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GateComCondition:String"></a>
       <a id="GateComCondition:String"></a>
       <h4 class="signature">
@@ -222,8 +222,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></div></div>
-    </li><li name="ch.ninecode.model.StageTrigger#GateTrigger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> For the StageTrigger to active the set of protective actions the condition for communication needs to be met (true).</p>
+    </li><li name="ch.ninecode.model.StageTrigger#GateTrigger" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GateTrigger:String"></a>
       <a id="GateTrigger:String"></a>
       <h4 class="signature">
@@ -239,7 +239,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> <em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="Gate.html" class="extype" name="ch.ninecode.model.Gate">Gate</a> The Gate result that trigger the StageTrigger and thereby executing the a set of protective actions.</p>
     </li><li name="ch.ninecode.model.StageTrigger#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
