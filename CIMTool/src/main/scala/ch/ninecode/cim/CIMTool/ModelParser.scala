@@ -240,7 +240,7 @@ case class ModelParser (db: Database)
 object ModelParser
 {
     val VERSION = "17"
-    val SCALA = true
+    val SCALA = false
 
     def main (args : Array[String])
     {
@@ -372,6 +372,19 @@ object ModelParser
                     )
                     do_package (p)
                     do_package (p_no_wires)
+                }
+                // shenanigans to avoid the circular dependency between the Assets package and the InfAssets package
+                else if ("InfAssets" == p.name)
+                {
+                    // put all classes derived from Assets in InfAssets2
+                    val p_sub_assets = p.copy (name = "InfAssets2")
+                    parser.classes.foreach (
+                        cls ⇒
+                            if (cls._2.pkg == p && (null != cls._2.sup) && cls._2.sup.pkg.name == "Assets")
+                                cls._2.pkg = p_sub_assets
+                    )
+                    do_package (p)
+                    do_package (p_sub_assets)
                 }
                 else
                     do_package (p)
