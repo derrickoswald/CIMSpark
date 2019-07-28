@@ -1,4 +1,4 @@
-package ch.ninecode.cim.CIMTool
+package ch.ninecode.cim.tool
 
 import java.util.Map
 

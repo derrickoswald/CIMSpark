@@ -1,10 +1,15 @@
-package ch.ninecode.cim.CIMTool
+package ch.ninecode.cim.tool
+
+import java.io.File
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
 
 import scala.collection.mutable
 
-case class JavaScript (parser: ModelParser, pkg: Package)
+case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
-    def parses (): Iterable[(String, String)] =
+    def parses (pkg: Package): Iterable[(String, String)] =
     {
         val ret = mutable.Set[(String, String)]()
 
@@ -14,7 +19,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
         ret
     }
 
-    def asText (): String =
+    def asText (pkg: Package): String =
     {
         val requires = mutable.Set[Package]()
         val provides = mutable.Set[(String,String)]()
@@ -509,12 +514,12 @@ case class JavaScript (parser: ModelParser, pkg: Package)
         {
             val v = new StringBuilder ()
             val r = scala.collection.mutable.SortedSet[String]()
-            requires.foreach ((p) => r.add (p.name))
+            requires.foreach (p => r.add (p.name))
 
             v.append ("""define
                 |(
                 |    ["model/base"""".stripMargin)
-            val includes = r.map ((p) => "\"model/" + p + "\"").mkString (", ")
+            val includes = r.map (p => "\"model/" + p + "\"").mkString (", ")
             if (includes != "")
                 v.append (""", """)
             v.append (includes)
@@ -534,7 +539,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             v.append ("""        return (
                 |            {
                 |""".stripMargin)
-            val functions = provides.map ((p) => "                " + p._1 + ": " + p._2).mkString (",\n")
+            val functions = provides.map (p => "                " + p._1 + ": " + p._2).mkString (",\n")
             v.append (functions)
             v.append ("""
                 |            }
@@ -546,5 +551,59 @@ case class JavaScript (parser: ModelParser, pkg: Package)
         }
         else
             ""
+    }
+
+    def generate (): Unit =
+    {
+        new File ("%s/model".format (options.directory)).mkdirs
+
+        val files = scala.collection.mutable.SortedSet[String]()
+        def do_package (p: Package): Unit =
+        {
+            val js = JavaScript (parser, options)
+            val s = js.asText (p)
+            if (s.trim != "")
+            {
+                files.add (p.name)
+                val file = "%s/model/%s.js:".format (options.directory, p.name)
+                println (file)
+                Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
+            }
+        }
+        for (pkg <- parser.packages)
+        {
+            val p = pkg._2
+            // shenanigans to avoid the circular dependency between the Wires package and the LoadModel package
+            if ("LoadModel" == p.name)
+            {
+                // put all classes that don't depend on Wires in LoadModel
+                val p_no_wires = p.copy (name = "LoadModel2")
+                parser.classes.foreach (
+                    cls ⇒
+                        if (cls._2.pkg == p && cls._2.sup.pkg.name == "Wires")
+                            cls._2.pkg = p_no_wires
+                )
+                do_package (p)
+                do_package (p_no_wires)
+            }
+            // shenanigans to avoid the circular dependency between the Assets package and the InfAssets package
+            else if ("InfAssets" == p.name)
+            {
+                // put all classes derived from Assets in InfAssets2
+                val p_sub_assets = p.copy (name = "InfAssets2")
+                parser.classes.foreach (
+                    cls ⇒
+                        if (cls._2.pkg == p && (null != cls._2.sup) && cls._2.sup.pkg.name == "Assets")
+                            cls._2.pkg = p_sub_assets
+                )
+                do_package (p)
+                do_package (p_sub_assets)
+            }
+            else
+                do_package (p)
+        }
+        val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
+        val fn = """    function (base, """ + files.mkString (""", """) + """)"""
+        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
     }
 }

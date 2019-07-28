@@ -16,6 +16,7 @@
         <version.dependency.jackcess>2.1.10</version.dependency.jackcess>
         <version.dependency.jena>3.4.0</version.dependency.jena>
         <version.dependency.commons-logging>1.2</version.dependency.commons-logging>
+        <version.dependency.slf4j>1.7.26</version.dependency.slf4j>
         <version.dependency.commons-lang>2.6</version.dependency.commons-lang>
     </properties>
 
@@ -34,6 +35,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.scopt}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
            <groupId>org.apache.jena</groupId>
            <artifactId>apache-jena-libs</artifactId>
            <type>pom</type>
@@ -44,6 +52,12 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>${version.dependency.commons-logging}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${version.dependency.slf4j}</version>
         </dependency>
 
         <dependency>
@@ -70,6 +84,13 @@
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <!-- see http://davidb.github.com/scala-maven-plugin -->
@@ -105,7 +126,6 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <!-- disable scalatest -->
             <plugin>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest-maven-plugin</artifactId>
@@ -113,9 +133,8 @@
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
-                    <skipTests>true</skipTests>
-                    <filereports>StackSuite.txt</filereports>
-                    <suites>samples.StackSuite</suites>
+                    <filereports>CIMToolSuite.txt</filereports>
+                    <suites>ch.ninecode.cim.tool.CIMToolSuite</suites>
                 </configuration>
                 <executions>
                     <execution>
@@ -144,7 +163,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>ch.ninecode.cim.CIMTool.ModelParser</mainClass>
+                                    <mainClass>ch.ninecode.cim.tool.CIMTool</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

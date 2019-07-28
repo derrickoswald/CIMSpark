@@ -1,9 +1,14 @@
-package ch.ninecode.cim.CIMTool
+package ch.ninecode.cim.tool
+
+import java.io.File
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
 
 import scala.collection.mutable
 import scala.collection.SortedSet
 
-case class Scala (parser: ModelParser, pkg: Package)
+case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
     def valid_class_name (s: String): String =
     {
@@ -93,7 +98,7 @@ case class Scala (parser: ModelParser, pkg: Package)
         stupid_name
     }
 
-    val register: String =
+    def register (pkg: Package): String =
     {
         "_" + valid_class_name (pkg.name)
     }
@@ -179,7 +184,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             Member (name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "List()", "", referenced_class)
     }
 
-    def asText (): String =
+    def asText (pkg: Package): String =
     {
         val case_classes = parser.classesFor (pkg)
         val p = new StringBuilder ()
@@ -392,7 +397,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             v.append (p.toString)
 
             v.append ("""private[ninecode] object """)
-            v.append (register)
+            v.append (register (pkg))
             v.append ("""
                 |{
                 |    def register: List[ClassInfo] =
@@ -407,5 +412,85 @@ case class Scala (parser: ModelParser, pkg: Package)
         }
         else
             ""
+    }
+
+    def generate (): Unit =
+    {
+        new File ("%s/model".format (options.directory)).mkdirs
+
+        val packages = scala.collection.mutable.SortedSet[(String, Int)]()
+        for (pkg <- parser.packages)
+        {
+            val scala = Scala (parser, options)
+            packages.add ((scala.register (pkg._2), pkg._1))
+        }
+        val register = new StringBuilder ()
+        register.append ("""    def classes: List[ClassInfo] =
+                           |        List (
+                           |""".stripMargin)
+        var registers: List[String] = List[String]()
+        val pkgdoc = new StringBuilder ()
+        pkgdoc.append (
+            """package ch.ninecode
+              |
+              |/**
+              | * ==Overview==
+              | * Provides Common Information Model (CIM) classes for electrical, topological, asset, spatial
+              | * and other categories of objects that are germane to electric network operations.
+              | *
+              | * Some examples are shown in the following image:
+              | *
+              | * <img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/information.svg" width="700">
+              | *
+              | * These classes are the types of, and objects contained in, the RDD that are created by the CIMReader,
+              | * e.g. RDD[Switch].
+              | *
+              | * Classes are nested according to the hierarchical package structure found in CIM.
+              | *
+              | * Each class has the reference to its parent class, available as the generic <code>sup</code> field,
+              | * and also as a typed reference of the same name as the parent class.
+              | *
+              | * This is illustrated in the following image, where the object with id TE1932 (a Switch) is found in
+              | * RDD[Switch] and all RDD for which the relation 'a Switch "Is A" <em>X</em>' holds,
+              | * e.g. RDD[ConductingEquipment]:
+              | *
+              | * <img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/nested.svg" width="700">
+              | *
+              | * The packages and their descriptions are itemized below.
+              | *
+              | * A short summary of all classes is found below that.
+              | * The classes can be ordered by package (Grouped) or alphabetically.
+              | * The classes are also listed in the panel on the left for easy reference.
+              |""".stripMargin)
+        var package_docs: List[String] = List[String]()
+        for (q <- packages)
+        {
+            val pkg = parser.packages (q._2)
+            val scala = Scala (parser, options)
+            val s = scala.asText (pkg)
+            if (s.trim != "")
+            {
+                val file = "%s/model/%s.scala".format (options.directory, pkg.name)
+                println (file)
+                Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
+                registers = registers :+ """            """ + scala.register (pkg) + """.register"""
+                package_docs = package_docs :+ """ *"""
+                package_docs = package_docs :+ """ * ===""".stripMargin + pkg.name + """==="""
+                package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
+            }
+        }
+        register.append (registers.mkString (",\n"))
+        register.append ("""
+                           |        ).flatten
+                           |""".stripMargin)
+        Files.write (Paths.get ("%s/chim_register.scala".format (options.directory)), register.toString.getBytes (StandardCharsets.UTF_8))
+        pkgdoc.append (package_docs.mkString ("\n"))
+        pkgdoc.append ("""
+                         | */
+                         |package object model
+                         |{
+                         |}
+                         |""".stripMargin)
+        Files.write (Paths.get ("%s/model/package.scala".format (options.directory)), pkgdoc.toString.getBytes (StandardCharsets.UTF_8))
     }
 }
