@@ -316,6 +316,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "DiagramObject")
                                 List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "SvStatus")
+                                Some ((e.id, ref.asInstanceOf[List[String]].head))
                             else if (!relation.multiple)
                                 Some ((e.id, mrid))
                             else

@@ -1,12 +1,12 @@
 package ch.ninecode.cim
 
 import java.io.File
+import java.util
 import java.util.HashMap
 import java.util.Map
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
-
 import ch.ninecode.model._
 
 class CIMExportSuite
@@ -39,7 +39,7 @@ class CIMExportSuite
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    val DEMO_DATA = FILE_DEPOT + "DemoData.rdf"
+    val DEMO_DATA: String = FILE_DEPOT + "DemoData.rdf"
 
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
@@ -147,13 +147,13 @@ class CIMExportSuite
                   |		<cim:IdentifiedObject.description>Transformer Station</cim:IdentifiedObject.description>
                   |		<cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
                   |		<cim:Asset.critical>false</cim:Asset.critical>
-                  |		<cim:Asset.initialLossOfLife>0.0</cim:Asset.initialLossOfLife>
-                  |		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
+                  |		<cim:Asset.lifecycleDate rdf:resource="#STA196_lifecycle"/>
                   |		<cim:Asset.purchasePrice>0.0</cim:Asset.purchasePrice>
                   |		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
                   |		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
                   |		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
                   |		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
+                  |		<cim:Facility.kind>Substation</cim:Facility.kind>
                   |	</cim:Facility>""".stripMargin
 
             val parser = new CHIM (xml)
@@ -170,7 +170,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             val elements = readFile (filenames_micro.mkString (","), options)
             println (elements.count + " elements")
@@ -183,7 +183,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             options.put ("ch.ninecode.cim.do_normalize", "true")
             val elements = readFile (filenames_real.mkString (","), options)
@@ -197,7 +197,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
@@ -230,7 +230,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
@@ -263,7 +263,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
