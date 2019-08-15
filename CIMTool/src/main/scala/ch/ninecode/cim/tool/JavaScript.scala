@@ -319,16 +319,24 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     ref match
                     {
                         case Some (x) ⇒
-                            s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);}); return false;'>{{%s}}</a></div>{{/%s}}\\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                            s.append (
+                                """                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{%s}}");}); return false;'>{{%s}}</a></div>{{/%s}}
+""".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
                         case None ⇒
-                            s.append ("                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
+                            s.append (
+                                """                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}
+""".format (attribute.name, attribute.name, attribute.name, attribute.name))
                     }
                 }
                 for (role <- roles)
                     if (role.upper == 1)
-                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);}); return false;'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
+                        s.append (
+                            """                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{%s}}");}); return false;'>{{%s}}</a></div>{{/%s}}
+""".format (role.name, role.name, role.name, role.name, role.name))
                     else
-                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name))
+                        s.append (
+                            """                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/%s}}
+""".format (role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                     |                    </fieldset>
@@ -565,7 +573,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             if (s.trim != "")
             {
                 files.add (p.name)
-                val file = "%s/model/%s.js:".format (options.directory, p.name)
+                val file = "%s/model/%s.js".format (options.directory, p.name)
                 println (file)
                 Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
             }
