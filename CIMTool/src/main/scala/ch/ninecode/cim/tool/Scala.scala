@@ -5,11 +5,16 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import scala.collection.mutable
 import scala.collection.SortedSet
 
 case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
+    val log: Logger = LoggerFactory.getLogger (getClass)
+
     def valid_class_name (s: String): String =
     {
         val name = s match
@@ -417,12 +422,12 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def generate (): Unit =
     {
         new File ("%s/model".format (options.directory)).mkdirs
+        val sc = Scala (parser, options)
 
         val packages = scala.collection.mutable.SortedSet[(String, Int)]()
         for (pkg <- parser.packages)
         {
-            val scala = Scala (parser, options)
-            packages.add ((scala.register (pkg._2), pkg._1))
+            packages.add ((sc.register (pkg._2), pkg._1))
         }
         val register = new StringBuilder ()
         register.append ("""    def classes: List[ClassInfo] =
@@ -466,18 +471,19 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         for (q <- packages)
         {
             val pkg = parser.packages (q._2)
-            val scala = Scala (parser, options)
-            val s = scala.asText (pkg)
+            val s = sc.asText (pkg)
             if (s.trim != "")
             {
                 val file = "%s/model/%s.scala".format (options.directory, pkg.name)
-                println (file)
+                log.info (file)
                 Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
-                registers = registers :+ """            """ + scala.register (pkg) + """.register"""
+                registers = registers :+ """            """ + sc.register (pkg) + """.register"""
                 package_docs = package_docs :+ """ *"""
                 package_docs = package_docs :+ """ * ===""".stripMargin + pkg.name + """==="""
                 package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
             }
+            else
+                log.debug ("no text generated for package %s (%s)".format (pkg.xuid, pkg.name))
         }
         register.append (registers.mkString (",\n"))
         register.append ("""

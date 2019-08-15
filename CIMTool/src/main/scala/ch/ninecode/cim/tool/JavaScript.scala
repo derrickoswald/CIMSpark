@@ -5,19 +5,14 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import scala.collection.mutable
 
 case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
-    def parses (pkg: Package): Iterable[(String, String)] =
-    {
-        val ret = mutable.Set[(String, String)]()
-
-        for (cls <- parser.classes.filter (_._2.pkg == pkg))
-            ret.add (("cim:" + cls._2.name, "parse_" + cls._2.name.replace ("-", "_")))
-
-        ret
-    }
+    val log: Logger = LoggerFactory.getLogger (getClass)
 
     def asText (pkg: Package): String =
     {
@@ -53,6 +48,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             else
                 dag.children.find (get (name)(_) != null) match { case Some (d) ⇒ d case None ⇒ null }
         }
+        @scala.annotation.tailrec
         def add (joes: List[Joe]): Unit =
         {
             if (joes.nonEmpty)
@@ -76,7 +72,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         // read out the graph breadth first (or at least every superclass is ahead of it's subclasses)
         def read (dags: List[DAG]): List[Joe] =
         {
-            dags.map (_.parent) ++: dags.flatMap (x ⇒ read (x.children))
+            dags.map (_.parent) ++ dags.flatMap (x ⇒ read (x.children))
         }
 
         val bunch2 = read (graph.children)
@@ -318,7 +314,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     val ref = parser.classes.find (x ⇒ x._2.name == attribute.typ && x._2.pkg.name != "Domain" && x._2.stereotype != "enumeration" )
                     ref match
                     {
-                        case Some (x) ⇒
+                        case Some (_) ⇒
                             s.append (
                                 """                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{%s}}");}); return false;'>{{%s}}</a></div>{{/%s}}
 """.format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
@@ -564,19 +560,21 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
     def generate (): Unit =
     {
         new File ("%s/model".format (options.directory)).mkdirs
+        val js = JavaScript (parser, options)
 
         val files = scala.collection.mutable.SortedSet[String]()
-        def do_package (p: Package): Unit =
+        def do_package (pkg: Package): Unit =
         {
-            val js = JavaScript (parser, options)
-            val s = js.asText (p)
+            val s = js.asText (pkg)
             if (s.trim != "")
             {
-                files.add (p.name)
-                val file = "%s/model/%s.js".format (options.directory, p.name)
-                println (file)
+                files.add (pkg.name)
+                val file = "%s/model/%s.js".format (options.directory, pkg.name)
+                log.info (file)
                 Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
             }
+            else
+                log.debug ("no text generated for package %s (%s)".format (pkg.xuid, pkg.name))
         }
         for (pkg <- parser.packages)
         {

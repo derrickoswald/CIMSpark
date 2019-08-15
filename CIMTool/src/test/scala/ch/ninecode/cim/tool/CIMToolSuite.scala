@@ -18,11 +18,11 @@ class CIMToolSuite extends FunSuite
 
     test ("CIM100 Scala")
     {
-        main (Array ("--unittest", "--cim", "CIM100", "--target", "Scala", "--directory", "cim100/scala"))
+        main (Array ("--unittest", "--log", "INFO", "--cim", "CIM100", "--target", "Scala", "--directory", "cim100/scala"))
     }
 
     test ("CIM100 JavaScript")
     {
-        main (Array ("--unittest", "--cim", "CIM100", "--target", "JavaScript", "--directory", "cim100/javascript"))
+        main (Array ("--unittest", "--log", "INFO", "--cim", "CIM100", "--target", "JavaScript", "--directory", "cim100/javascript"))
     }
 }

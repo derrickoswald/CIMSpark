@@ -2,12 +2,23 @@ package ch.ninecode.cim.tool
 
 import scopt.OptionParser
 
+object LogLevels extends Enumeration
+{
+    type LogLevels = Value
+    val TRACE, DEBUG, INFO, WARN, ERROR = Value
+}
+
 final case class CIMToolOptions (
 
     /**
      * True when running unit tests.
      */
     unittest: Boolean = false,
+
+    /**
+     * Logging level for messages.
+     */
+    loglevel: LogLevels.Value = LogLevels.WARN,
 
     /**
      * Version of CIM to generate.
@@ -41,6 +52,8 @@ class CIMToolOptionParser (APPLICATION_NAME: String, APPLICATION_VERSION: String
 
     implicit val VersionRead: CIMVersionReader = new CIMVersionReader
     implicit val TargetRead: TargetReader = new TargetReader
+    implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
+
     override def terminate (exitState: Either[String, Unit]): Unit =
     {
         if (justInfo && !unittest)
@@ -55,6 +68,10 @@ class CIMToolOptionParser (APPLICATION_NAME: String, APPLICATION_VERSION: String
         hidden ().
         action ((_, c) ⇒ { unittest = true; c.copy (unittest = true) }).
         text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
+
+    opt [LogLevels.Value]("log").
+        action ((x, c) ⇒ c.copy (loglevel = x)).
+        text ("log level, one of " + LogLevels.values.iterator.mkString (",") + " [%s]".format (default.loglevel))
 
     opt [CIMVersion]("cim").
         action ((x, c) ⇒ c.copy (cim = x)).
@@ -73,11 +90,8 @@ class CIMToolOptionParser (APPLICATION_NAME: String, APPLICATION_VERSION: String
         validate (Unit ⇒ { helpout = true; Right ("") })
 
     version ("version").
-        validate (
-            Unit ⇒
-            {
-                versionout = true; Right ("") }).
-                text ("Scala: %s, Spark: %s, %s: %s".format (
+        validate (Unit ⇒ { versionout = true; Right ("") }).
+        text ("Scala: %s, Spark: %s, %s: %s".format (
                 APPLICATION_VERSION.split ("-")(0),
                 APPLICATION_VERSION.split ("-")(1),
                 APPLICATION_NAME,
