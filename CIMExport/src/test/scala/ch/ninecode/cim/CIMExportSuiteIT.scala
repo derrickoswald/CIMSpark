@@ -5,8 +5,10 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.util.Properties
 import java.util.zip.ZipInputStream
 
+import ch.ninecode.cim.CIMExportMain.getClass
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
@@ -17,6 +19,16 @@ class CIMExportSuiteIT
 {
     import CIMExportSuiteIT._
 
+    val properties: Properties =
+    {
+        val in = this.getClass.getResourceAsStream ("/configuration.properties")
+        val p = new Properties ()
+        p.load (in)
+        in.close ()
+        p
+    }
+    val PORT: String = properties.getProperty ("nativeTransportPort")
+
     @Test def Main ()
     {
         CIMExportMain.main (
@@ -26,6 +38,8 @@ class CIMExportSuiteIT
                 "--logging", "INFO",
                 "--transformers",
                 "--cassandra",
+                "--host", "localhost",
+                "--port", PORT,
                 "--keyspace", "test",
                 "--replication", "1",
                 DEMO_DATA))

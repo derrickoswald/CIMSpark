@@ -23,13 +23,13 @@ object CIMExportMain
 {
     val properties: Properties =
     {
-        val in = this.getClass.getResourceAsStream ("/app.properties")
+        val in = this.getClass.getResourceAsStream ("/application.properties")
         val p = new Properties ()
         p.load (in)
         in.close ()
         p
     }
-    val APPLICATION_NAME: String = getClass.getName.substring (getClass.getName.lastIndexOf (".") + 1, getClass.getName.length - 1)
+    val APPLICATION_NAME: String = properties.getProperty ("artifactId")
     val APPLICATION_VERSION: String = properties.getProperty ("version")
     val SPARK: String = properties.getProperty ("spark")
 
@@ -76,6 +76,7 @@ object CIMExportMain
         outputdir: String = "simulation/",
         cassandra: Boolean = false,
         host: String = "localhost",
+        port: Int = 9042,
         keyspace: String = "cimexport",
         replication: Int = 2,
         files: Seq[String] = Seq()
@@ -161,6 +162,10 @@ object CIMExportMain
             action ((x, c) ⇒ c.copy (host = x)).
             text ("Cassandra connection host (listen_address or seed in cassandra.yaml) [%s]".format (default.host))
 
+        opt [Int]("port").valueName ("<port_number>").
+            action ((x, c) ⇒ c.copy (port = x)).
+            text ("Cassandra connection port [%s]".format (default.port))
+
         opt [String]("keyspace").valueName ("<name>").
             action ((x, c) ⇒ c.copy (keyspace = x)).
             text ("keyspace to use if Cassandra is specified [%s]".format (default.keyspace))
@@ -231,6 +236,7 @@ object CIMExportMain
                 configuration.registerKryoClasses (CIMClasses.list)
                 // choose which Cassandra
                 configuration.set ("spark.cassandra.connection.host", arguments.host)
+                configuration.set ("spark.cassandra.connection.port", arguments.port.toString)
 
                 val session_builder = SparkSession.builder ()
                 val session = session_builder.config (configuration).getOrCreate ()

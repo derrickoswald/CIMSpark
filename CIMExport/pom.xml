@@ -162,6 +162,12 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <!-- NOTE: in order to get maven and scala to work together in Eclipse
@@ -232,6 +238,7 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
                 <executions>
@@ -240,6 +247,30 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>reserve-network-port</id>
+                        <goals>
+                            <goal>reserve-network-port</goal>
+                        </goals>
+                        <!-- reserve the ports in the phase before process-test-resources (where the resources are filtered and copied) -->
+                        <phase>generate-test-resources</phase>
+                        <configuration>
+                            <portNames>
+                                <portName>cassandra.jmxPort</portName>
+                                <portName>cassandra.rpcPort</portName>
+                                <portName>cassandra.stopPort</portName>
+                                <portName>cassandra.storagePort</portName>
+                                <portName>cassandra.nativeTransportPort</portName>
+                            </portNames>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
