@@ -10,6 +10,10 @@
     <artifactId>CIMExport</artifactId>
     <name>${project.artifactId}</name>
 
+    <properties>
+        <version.dependency.slf4j>1.7.28</version.dependency.slf4j>
+    </properties>
+
     <description>Export Spark RDD as CIM files</description>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMExport</url>
@@ -117,6 +121,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.dependency.slf4j}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${version.dependency.scala}</artifactId>
             <version>${version.dependency.scalatest}</version>
@@ -216,6 +227,43 @@
                         <id>test</id>
                         <goals>
                             <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cassandra-maven-plugin</artifactId>
+                <version>3.6</version>
+                <configuration>
+                    <clusterSize>1</clusterSize>
+                    <startNativeTransport>true</startNativeTransport>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>${version.dependency.slf4j}</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>

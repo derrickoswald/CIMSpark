@@ -61,6 +61,7 @@ object CIMExportMain
         quiet: Boolean = false,
         log_level: LogLevels.Value = LogLevels.OFF,
         // see https://spark.apache.org/docs/latest/configuration.html
+        master: String = "",
         sparkopts: Map[String,String] = Map (
             "spark.graphx.pregel.checkpointInterval" → "8",
             "spark.serializer" → "org.apache.spark.serializer.KryoSerializer",
@@ -76,6 +77,7 @@ object CIMExportMain
         cassandra: Boolean = false,
         host: String = "localhost",
         keyspace: String = "cimexport",
+        replication: Int = 2,
         files: Seq[String] = Seq()
     )
 
@@ -119,6 +121,10 @@ object CIMExportMain
             action ((x, c) => c.copy (log_level = x)).
             text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.log_level))
 
+        opt [String]("master").valueName ("MASTER_URL").
+            action ((x, c) ⇒ c.copy (master = x)).
+            text ("local[*], spark://host:port, mesos://host:port, yarn [%s]".format (default.master))
+
         opt[Map[String,String]]("sparkopts").valueName ("k1=v1,k2=v2").
             action ((x, c) => c.copy (sparkopts = x)).
             text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
@@ -157,7 +163,11 @@ object CIMExportMain
 
         opt [String]("keyspace").valueName ("<name>").
             action ((x, c) ⇒ c.copy (keyspace = x)).
-            text ("keyspace to use if cassandra specified [%s]".format (default.keyspace))
+            text ("keyspace to use if Cassandra is specified [%s]".format (default.keyspace))
+
+        opt [Int]("replication").valueName ("<number>").
+            action ((x, c) ⇒ c.copy (replication = x)).
+            text ("replication factor to use if Cassandra is specified and the keyspace doesn't exist [%s]".format (default.replication))
 
         arg[String]("<CIM> <CIM> ...").unbounded ().
             action ((x, c) => c.copy (files = c.files :+ x)).
@@ -211,6 +221,8 @@ object CIMExportMain
 
                 val configuration = new SparkConf ()
                 configuration.setAppName (APPLICATION_NAME)
+                if ("" != arguments.master)
+                    configuration.setMaster (arguments.master)
                 if (arguments.sparkopts.nonEmpty)
                     arguments.sparkopts.map ((pair: (String, String)) => configuration.set (pair._1, pair._2))
                 // get the necessary jar files to send to the cluster
@@ -244,7 +256,7 @@ object CIMExportMain
                     if (arguments.islands)
                         export.exportAllIslands (arguments.outputdir)
                     else if (arguments.transformers)
-                        export.exportAllTransformers (filelist, arguments.outputdir, arguments.cassandra, arguments.keyspace)
+                        export.exportAllTransformers (filelist, arguments.outputdir, arguments.cassandra, arguments.keyspace, arguments.replication)
                 }
                 finally
                 {

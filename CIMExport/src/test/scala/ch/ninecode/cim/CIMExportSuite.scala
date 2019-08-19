@@ -2,8 +2,6 @@ package ch.ninecode.cim
 
 import java.io.File
 import java.util
-import java.util.HashMap
-import java.util.Map
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
@@ -257,32 +255,5 @@ class CIMExportSuite
                     assert (errors.isEmpty, "reference errors")
                 }
             )
-    }
-
-    test ("ExportAllTransformersCassandra")
-    {
-        implicit spark: SparkSession ⇒
-
-            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
-            options.put ("ch.ninecode.cim.do_topo_islands", "true")
-            val elements = readFile (DEMO_DATA, options)
-            println (elements.count + " elements")
-            val start = System.nanoTime
-            val export = new CIMExport (spark)
-            export.exportAllTransformers (source = DEMO_DATA, cassandra = true, keyspace = "test")
-            println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
-    }
-
-    test ("Main")
-    {
-        implicit spark: SparkSession ⇒
-            CIMExportMain.main (
-                Array (
-                    "--unittest",
-                    "--logging", "INFO",
-                    "--transformers",
-                    "--cassandra",
-                    "--keyspace", "test",
-                    DEMO_DATA))
     }
 }
