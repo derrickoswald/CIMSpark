@@ -11,6 +11,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
+        <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
         <version.dependency.slf4j>1.7.28</version.dependency.slf4j>
     </properties>
 
@@ -118,6 +119,13 @@
             <artifactId>spark-graphx_${version.dependency.scala}</artifactId>
             <version>${version.dependency.spark}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.datastax.oss</groupId>
+            <artifactId>java-driver-core</artifactId>
+            <version>${version.dependency.cassandra_driver}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

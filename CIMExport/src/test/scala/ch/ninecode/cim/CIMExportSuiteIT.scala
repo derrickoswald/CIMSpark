@@ -8,7 +8,11 @@ import java.io.IOException
 import java.util.Properties
 import java.util.zip.ZipInputStream
 
-import ch.ninecode.cim.CIMExportMain.getClass
+import scala.collection.JavaConverters._
+
+import com.datastax.driver.core.Cluster
+import com.datastax.driver.core.Session
+
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
@@ -27,10 +31,21 @@ class CIMExportSuiteIT
         in.close ()
         p
     }
-    val PORT: String = properties.getProperty ("nativeTransportPort")
+    val port: String = properties.getProperty ("nativeTransportPort")
+    val PORT: String = if ("" == port) "9042" else port
+    val KEYSPACE = "test"
 
     @Test def Main ()
     {
+        val cluster = Cluster.builder.addContactPoint ("localhost").withPort (PORT.toInt).build
+        val session: Session = cluster.connect
+
+        val keyspaces = session.execute ("select * from system_schema.keyspaces where keyspace_name='%s'".format (KEYSPACE)).all
+        val count = if (0 == keyspaces.size)
+            0
+        else
+            session.execute ("select * from %s.export".format (KEYSPACE)).all.size
+
         CIMExportMain.main (
             Array (
                 "--unittest",
@@ -40,9 +55,22 @@ class CIMExportSuiteIT
                 "--cassandra",
                 "--host", "localhost",
                 "--port", PORT,
-                "--keyspace", "test",
+                "--keyspace", KEYSPACE,
                 "--replication", "1",
                 DEMO_DATA))
+
+        val exports = session.execute ("select * from %s.export".format (KEYSPACE)).all
+        assert (exports.size == count + 1)
+        val times = for (export ← exports.asScala)
+            yield (export.getString ("id"), export.getTimestamp ("runtime"))
+        val id = times.maxBy (x ⇒ x._2)._1
+        val transformers = session.execute ("select * from %s.transformers where id='%s'".format (KEYSPACE, id)).all
+        assert (transformers.size == 2)
+        for (trafo ← transformers.asScala)
+        {
+            val name = trafo.getString ("name")
+            assert (name == "TX0001" || name == "TX0002")
+        }
     }
 }
 
