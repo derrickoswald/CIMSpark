@@ -5,13 +5,9 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
-import java.net.Inet4Address
-import java.net.InetAddress
-import java.net.NetworkInterface
 import java.util
 import java.util.zip.ZipInputStream
 
-import scala.collection.JavaConverters._
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 import org.apache.spark.SparkConf
