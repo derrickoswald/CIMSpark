@@ -12,7 +12,8 @@
 
     <properties>
         <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
-        <version.dependency.slf4j>1.7.16</version.dependency.slf4j>
+        <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
+        <version.dependency.log4j>2.12.1</version.dependency.log4j>
     </properties>
 
     <description>Export Spark RDD as CIM files</description>
@@ -278,17 +279,21 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cassandra-maven-plugin</artifactId>
-                <version>3.6</version>
+                <version>${version.dependency.cassandra_maven}</version>
                 <configuration>
                     <clusterSize>1</clusterSize>
                     <startNativeTransport>true</startNativeTransport>
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-simple</artifactId>
-                        <version>${version.dependency.slf4j}</version>
-                        <scope>runtime</scope>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-cassandra</artifactId>
+                        <version>${version.dependency.log4j}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-slf4j-impl</artifactId>
+                        <version>${version.dependency.log4j}</version>
                     </dependency>
                 </dependencies>
                 <executions>
