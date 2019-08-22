@@ -33,8 +33,6 @@ object CIMExportMain
     val APPLICATION_VERSION: String = properties.getProperty ("version")
     val SPARK: String = properties.getProperty ("spark")
 
-    private val log = LoggerFactory.getLogger (APPLICATION_NAME)
-
     object LogLevels extends Enumeration
     {
         type LogLevels = Value

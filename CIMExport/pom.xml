@@ -12,7 +12,7 @@
 
     <properties>
         <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
-        <version.dependency.slf4j>1.7.28</version.dependency.slf4j>
+        <version.dependency.slf4j>1.7.16</version.dependency.slf4j>
     </properties>
 
     <description>Export Spark RDD as CIM files</description>
@@ -126,13 +126,6 @@
             <artifactId>java-driver-core</artifactId>
             <version>${version.dependency.cassandra_driver}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${version.dependency.slf4j}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
