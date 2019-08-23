@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @group InfParticipantInterfaces
  * @groupname InfParticipantInterfaces Package InfParticipantInterfaces
  */
-case class WheelingReferenceSchedule
+final case class WheelingReferenceSchedule
 (
     override val sup: BidHourlySchedule,
     value: String
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

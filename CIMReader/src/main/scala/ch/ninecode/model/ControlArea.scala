@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
-case class AltGeneratingUnitMeas
+final case class AltGeneratingUnitMeas
 (
     override val sup: IdentifiedObject,
     priority: Int,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -112,7 +112,7 @@ extends
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
-case class AltTieMeas
+final case class AltTieMeas
 (
     override val sup: IdentifiedObject,
     priority: Int,
@@ -141,7 +141,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -210,7 +210,7 @@ extends
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
-case class ControlArea
+final case class ControlArea
 (
     override val sup: PowerSystemResource,
     netInterchange: Double,
@@ -242,7 +242,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -251,7 +251,7 @@ extends
         implicit val clz: String = ControlArea.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ControlArea.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlArea.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ControlArea.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ControlArea.fields (position), x))
         emitelem (0, netInterchange)
         emitelem (1, pTolerance)
         emitattr (2, `type`)
@@ -322,7 +322,7 @@ extends
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
-case class ControlAreaGeneratingUnit
+final case class ControlAreaGeneratingUnit
 (
     override val sup: IdentifiedObject,
     AltGeneratingUnitMeas: List[String],
@@ -351,7 +351,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -359,7 +359,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ControlAreaGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlAreaGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ControlAreaGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ControlAreaGeneratingUnit.fields (position), x))
         emitattrs (0, AltGeneratingUnitMeas)
         emitattr (1, ControlArea)
         emitattr (2, GeneratingUnit)
@@ -417,7 +417,7 @@ extends
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
-case class TieFlow
+final case class TieFlow
 (
     override val sup: IdentifiedObject,
     positiveFlowIn: Boolean,
@@ -447,7 +447,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -456,7 +456,7 @@ extends
         implicit val clz: String = TieFlow.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TieFlow.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieFlow.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TieFlow.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TieFlow.fields (position), x))
         emitelem (0, positiveFlowIn)
         emitattrs (1, AltTieMeas)
         emitattr (2, ControlArea)

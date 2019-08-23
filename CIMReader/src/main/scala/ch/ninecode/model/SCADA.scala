@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
 This package also supports alarm presentation but it is not expected to be used by other applications.
  */
-case class CommunicationLink
+final case class CommunicationLink
 (
     override val sup: PowerSystemResource,
     BilateralExchangeActor: String,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -56,7 +56,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CommunicationLink.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CommunicationLink.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CommunicationLink.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CommunicationLink.fields (position), x))
         emitattr (0, BilateralExchangeActor)
         emitattrs (1, RemoteUnits)
         s.toString
@@ -109,7 +109,7 @@ extends
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
 This package also supports alarm presentation but it is not expected to be used by other applications.
  */
-case class RemoteControl
+final case class RemoteControl
 (
     override val sup: RemotePoint,
     actuatorMaximum: Double,
@@ -139,7 +139,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -206,7 +206,7 @@ extends
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
 This package also supports alarm presentation but it is not expected to be used by other applications.
  */
-case class RemotePoint
+final case class RemotePoint
 (
     override val sup: IdentifiedObject,
     RemoteUnit: String
@@ -233,7 +233,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -289,7 +289,7 @@ extends
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
 This package also supports alarm presentation but it is not expected to be used by other applications.
  */
-case class RemoteSource
+final case class RemoteSource
 (
     override val sup: RemotePoint,
     deadband: Double,
@@ -320,7 +320,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -393,7 +393,7 @@ extends
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
 This package also supports alarm presentation but it is not expected to be used by other applications.
  */
-case class RemoteUnit
+final case class RemoteUnit
 (
     override val sup: PowerSystemResource,
     remoteUnitType: String,
@@ -422,7 +422,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -430,7 +430,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RemoteUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RemoteUnit.fields (position), x))
         emitattr (0, remoteUnitType)
         emitattrs (1, CommunicationLinks)
         emitattrs (2, RemotePoints)

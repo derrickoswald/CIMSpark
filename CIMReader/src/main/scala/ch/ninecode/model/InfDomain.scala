@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class ADSInstructionTypeCommitment
+final case class ADSInstructionTypeCommitment
 (
     override val sup: BasicElement,
     SHUT_DOWN: String,
@@ -40,7 +40,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -96,7 +96,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class ADSInstructionTypeOOS
+final case class ADSInstructionTypeOOS
 (
     override val sup: BasicElement,
     FIXED_CONSTRAINT: String,
@@ -125,7 +125,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -183,7 +183,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class AdderType
+final case class AdderType
 (
     override val sup: BasicElement,
     BASELINE: String,
@@ -211,7 +211,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -259,7 +259,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class AlarmDisplayType
+final case class AlarmDisplayType
 (
     override val sup: BasicElement,
     Appear: String,
@@ -288,7 +288,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -340,7 +340,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class AllocationEnergyTypeCode
+final case class AllocationEnergyTypeCode
 (
     override val sup: BasicElement,
     ACNG: String,
@@ -402,7 +402,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -592,7 +592,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class AncillaryCommodityType
+final case class AncillaryCommodityType
 (
     override val sup: BasicElement,
     NONSPIN: String,
@@ -622,7 +622,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -678,7 +678,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class BidPriceCapType
+final case class BidPriceCapType
 (
     override val sup: BasicElement,
     AS: String,
@@ -707,7 +707,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -759,7 +759,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class CleanTradeProductType
+final case class CleanTradeProductType
 (
     override val sup: BasicElement,
     APN: String,
@@ -792,7 +792,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -866,7 +866,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class CurrentStatusSC
+final case class CurrentStatusSC
 (
     override val sup: BasicElement,
     ACTIVE: String,
@@ -894,7 +894,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -942,7 +942,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class DAMMarketType
+final case class DAMMarketType
 (
     override val sup: BasicElement,
     DAM: String
@@ -969,7 +969,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1013,7 +1013,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class DispatchAcceptStatus
+final case class DispatchAcceptStatus
 (
     override val sup: BasicElement,
     ACCEPT: String,
@@ -1045,7 +1045,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1109,7 +1109,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class DispatchTransactionType
+final case class DispatchTransactionType
 (
     override val sup: BasicElement,
     Purchase: String,
@@ -1137,7 +1137,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1224,7 +1224,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class EnergyTypeCode
+final case class EnergyTypeCode
 (
     override val sup: BasicElement,
     DABE: String,
@@ -1268,7 +1268,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1380,7 +1380,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class JobFlagType
+final case class JobFlagType
 (
     override val sup: BasicElement,
     CREATED: String,
@@ -1409,7 +1409,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1461,7 +1461,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class JobScheduleType
+final case class JobScheduleType
 (
     override val sup: BasicElement,
     CRITICAL: String,
@@ -1489,7 +1489,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1537,7 +1537,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class JobStartEndType
+final case class JobStartEndType
 (
     override val sup: BasicElement,
     END: String,
@@ -1566,7 +1566,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1618,7 +1618,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class LFCResourceType
+final case class LFCResourceType
 (
     override val sup: BasicElement,
     GEN: String,
@@ -1646,7 +1646,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1694,7 +1694,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class LoadFollowingCapacityType
+final case class LoadFollowingCapacityType
 (
     override val sup: BasicElement,
     DOWN: String,
@@ -1722,7 +1722,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1778,7 +1778,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MQSDELType
+final case class MQSDELType
 (
     override val sup: BasicElement,
     ADD: String,
@@ -1807,7 +1807,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1871,7 +1871,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketProductTypeAsReq
+final case class MarketProductTypeAsReq
 (
     override val sup: BasicElement,
     AS: String,
@@ -1902,7 +1902,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1962,7 +1962,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketScheduleServices
+final case class MarketScheduleServices
 (
     override val sup: BasicElement,
     retrieveDefaultBidCurves: String,
@@ -1993,7 +1993,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2060,7 +2060,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketStatementDescription
+final case class MarketStatementDescription
 (
     override val sup: BasicElement,
     DAILY_INITIAL_CREDIT: String,
@@ -2091,7 +2091,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2155,7 +2155,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketStatementDocStatus
+final case class MarketStatementDocStatus
 (
     override val sup: BasicElement,
     APPROVED: String,
@@ -2183,7 +2183,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2236,7 +2236,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketStatementDocType
+final case class MarketStatementDocType
 (
     override val sup: BasicElement,
     CREDIT: String,
@@ -2265,7 +2265,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2325,7 +2325,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MarketStatementLineItemAliasName
+final case class MarketStatementLineItemAliasName
 (
     override val sup: BasicElement,
     CHARGE_CODE_INTERVAL_DETAIL: String,
@@ -2357,7 +2357,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2455,7 +2455,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MeasurementTypeEMS
+final case class MeasurementTypeEMS
 (
     override val sup: BasicElement,
     ACE: String,
@@ -2497,7 +2497,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2601,7 +2601,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class MktSubClassType
+final case class MktSubClassType
 (
     override val sup: BasicElement,
     Branch_Group_Derates: String,
@@ -2639,7 +2639,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2727,7 +2727,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISBidReportType
+final case class OASISBidReportType
 (
     override val sup: BasicElement,
     BIDS_PUBLIC: String
@@ -2754,7 +2754,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2798,7 +2798,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISDataItems
+final case class OASISDataItems
 (
     override val sup: BasicElement,
     AS_CLEAR_ASMP_IFM: String,
@@ -2930,7 +2930,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3394,7 +3394,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISErrCode
+final case class OASISErrCode
 (
     override val sup: BasicElement,
     _1000: String,
@@ -3431,7 +3431,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3515,7 +3515,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISErrDescription
+final case class OASISErrDescription
 (
     override val sup: BasicElement,
     Data_can_be_requested_for_period_of_31_days_only: String,
@@ -3551,7 +3551,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3631,7 +3631,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISIntervalType
+final case class OASISIntervalType
 (
     override val sup: BasicElement,
     BEGINNING: String,
@@ -3659,7 +3659,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3707,7 +3707,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISMarketType
+final case class OASISMarketType
 (
     override val sup: BasicElement,
     All: String,
@@ -3739,7 +3739,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3803,7 +3803,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISMasterType
+final case class OASISMasterType
 (
     override val sup: BasicElement,
     ATL_APNODE: String,
@@ -3848,7 +3848,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3964,7 +3964,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISMeasType
+final case class OASISMeasType
 (
     override val sup: BasicElement,
     percent: String,
@@ -3999,7 +3999,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4075,7 +4075,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISReportType
+final case class OASISReportType
 (
     override val sup: BasicElement,
     AS_DA_RESULT: String,
@@ -4129,7 +4129,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4281,7 +4281,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OASISStatusType
+final case class OASISStatusType
 (
     override val sup: BasicElement,
     Data_Transfer_Procedure_Initiated: String,
@@ -4313,7 +4313,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4383,7 +4383,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OrganisationCode
+final case class OrganisationCode
 (
     override val sup: BasicElement,
     BILL_TO: String,
@@ -4413,7 +4413,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4473,7 +4473,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class OrganisationType
+final case class OrganisationType
 (
     override val sup: BasicElement,
     CUSTOMER: String,
@@ -4501,7 +4501,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4557,7 +4557,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class PriceSetFlag
+final case class PriceSetFlag
 (
     override val sup: BasicElement,
     N: String,
@@ -4586,7 +4586,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4644,7 +4644,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class RequestorRmrTest
+final case class RequestorRmrTest
 (
     override val sup: BasicElement,
     ISO: String,
@@ -4672,7 +4672,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4720,7 +4720,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class ResourceCertificationCategory
+final case class ResourceCertificationCategory
 (
     override val sup: BasicElement,
     DAM: String,
@@ -4750,7 +4750,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4806,7 +4806,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class ResourceCertificationType
+final case class ResourceCertificationType
 (
     override val sup: BasicElement,
     GT: String,
@@ -4837,7 +4837,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4897,7 +4897,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SchedClassType
+final case class SchedClassType
 (
     override val sup: BasicElement,
     F: String,
@@ -4926,7 +4926,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4978,7 +4978,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SegmentCurveType
+final case class SegmentCurveType
 (
     override val sup: BasicElement,
     CONSULTATIVE: String,
@@ -5006,7 +5006,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5054,7 +5054,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SelfSchedTypeCleanBid
+final case class SelfSchedTypeCleanBid
 (
     override val sup: BasicElement,
     BAS: String,
@@ -5091,7 +5091,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5175,7 +5175,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SelfSchedTypeRawBid
+final case class SelfSchedTypeRawBid
 (
     override val sup: BasicElement,
     BAS: String,
@@ -5211,7 +5211,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5319,7 +5319,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SelfScheduleType
+final case class SelfScheduleType
 (
     override val sup: BasicElement,
     BAS: String,
@@ -5361,7 +5361,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5468,7 +5468,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SelfScheduleTypeMB
+final case class SelfScheduleTypeMB
 (
     override val sup: BasicElement,
     RMR: String
@@ -5495,7 +5495,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5539,7 +5539,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SourceSinkFlag
+final case class SourceSinkFlag
 (
     override val sup: BasicElement,
     CSNK: String,
@@ -5567,7 +5567,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5615,7 +5615,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SourceSinkType
+final case class SourceSinkType
 (
     override val sup: BasicElement,
     Neither: String,
@@ -5644,7 +5644,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5696,7 +5696,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SpinningEventNameType
+final case class SpinningEventNameType
 (
     override val sup: BasicElement,
     EASTERN: String,
@@ -5726,7 +5726,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5782,7 +5782,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SpinningEventType
+final case class SpinningEventType
 (
     override val sup: BasicElement,
     AA: String,
@@ -5811,7 +5811,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5863,7 +5863,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class SystemType
+final case class SystemType
 (
     override val sup: BasicElement,
     OASIS: String
@@ -5890,7 +5890,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5934,7 +5934,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class TimeZoneType
+final case class TimeZoneType
 (
     override val sup: BasicElement,
     PPT: String
@@ -5961,7 +5961,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6005,7 +6005,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class TradeProductType
+final case class TradeProductType
 (
     override val sup: BasicElement,
     APN: String,
@@ -6038,7 +6038,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6106,7 +6106,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class UOMType
+final case class UOMType
 (
     override val sup: BasicElement,
     percent: String,
@@ -6143,7 +6143,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6233,7 +6233,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class UnitTypeEMS
+final case class UnitTypeEMS
 (
     override val sup: BasicElement,
     FLAG: String,
@@ -6261,7 +6261,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6316,7 +6316,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class ZoneType
+final case class ZoneType
 (
     override val sup: BasicElement,
     ASREGION: String,
@@ -6347,7 +6347,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6413,7 +6413,7 @@ extends
  * @group InfDomain
  * @groupname InfDomain Package InfDomain
  */
-case class runTypeCAISO
+final case class runTypeCAISO
 (
     override val sup: BasicElement,
     P: String,
@@ -6441,7 +6441,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
-case class BusNameMarker
+final case class BusNameMarker
 (
     override val sup: IdentifiedObject,
     priority: Int,
@@ -53,7 +53,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -62,7 +62,7 @@ extends
         implicit val clz: String = BusNameMarker.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusNameMarker.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusNameMarker.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BusNameMarker.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BusNameMarker.fields (position), x))
         emitelem (0, priority)
         emitattr (1, ReportingGroup)
         emitattrs (2, Terminal)
@@ -126,7 +126,7 @@ extends
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
-case class TopologicalIsland
+final case class TopologicalIsland
 (
     override val sup: IdentifiedObject,
     AngleRefTopologicalNode: String,
@@ -154,7 +154,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -162,7 +162,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TopologicalIsland.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalIsland.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TopologicalIsland.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TopologicalIsland.fields (position), x))
         emitattr (0, AngleRefTopologicalNode)
         emitattrs (1, TopologicalNodes)
         s.toString
@@ -232,7 +232,7 @@ extends
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
-case class TopologicalNode
+final case class TopologicalNode
 (
     override val sup: IdentifiedObject,
     pInjection: Double,
@@ -270,7 +270,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -279,7 +279,7 @@ extends
         implicit val clz: String = TopologicalNode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TopologicalNode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TopologicalNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TopologicalNode.fields (position), x))
         emitelem (0, pInjection)
         emitelem (1, qInjection)
         emitattr (2, AngleRefTopologicalIsland)

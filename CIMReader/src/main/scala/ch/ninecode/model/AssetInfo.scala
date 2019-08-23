@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class BusbarSectionInfo
+final case class BusbarSectionInfo
 (
     override val sup: AssetInfo,
     ratedCurrent: Double,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -107,7 +107,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class BushingInfo
+final case class BushingInfo
 (
     override val sup: AssetInfo,
     c1Capacitance: Double,
@@ -142,7 +142,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -232,7 +232,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class CableInfo
+final case class CableInfo
 (
     override val sup: WireInfo,
     constructionKind: String,
@@ -268,7 +268,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -357,7 +357,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class ConcentricNeutralCableInfo
+final case class ConcentricNeutralCableInfo
 (
     override val sup: CableInfo,
     diameterOverNeutral: Double,
@@ -388,7 +388,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -452,7 +452,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class InterrupterUnitInfo
+final case class InterrupterUnitInfo
 (
     override val sup: AssetInfo,
     interruptingMedium: String
@@ -479,7 +479,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -534,7 +534,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class NoLoadTest
+final case class NoLoadTest
 (
     override val sup: TransformerTest,
     energisedEndVoltage: Double,
@@ -566,7 +566,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -646,7 +646,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class OpenCircuitTest
+final case class OpenCircuitTest
 (
     override val sup: TransformerTest,
     energisedEndStep: Int,
@@ -679,7 +679,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -763,7 +763,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class OperatingMechanismInfo
+final case class OperatingMechanismInfo
 (
     override val sup: AssetInfo,
     closeAmps: Double,
@@ -797,7 +797,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -873,7 +873,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class OverheadWireInfo
+final case class OverheadWireInfo
 (
     override val sup: WireInfo
 )
@@ -899,7 +899,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -936,7 +936,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class PowerTransformerInfo
+final case class PowerTransformerInfo
 (
     override val sup: AssetInfo,
     TransformerTankInfos: List[String]
@@ -963,14 +963,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerTransformerInfo.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerTransformerInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PowerTransformerInfo.fields (position), x))
         emitattrs (0, TransformerTankInfos)
         s.toString
     }
@@ -1027,7 +1027,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class ShortCircuitTest
+final case class ShortCircuitTest
 (
     override val sup: TransformerTest,
     current: Double,
@@ -1064,7 +1064,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1073,7 +1073,7 @@ extends
         implicit val clz: String = ShortCircuitTest.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShortCircuitTest.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShortCircuitTest.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ShortCircuitTest.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ShortCircuitTest.fields (position), x))
         emitelem (0, current)
         emitelem (1, energisedEndStep)
         emitelem (2, groundedEndStep)
@@ -1162,7 +1162,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class ShuntCompensatorInfo
+final case class ShuntCompensatorInfo
 (
     override val sup: AssetInfo,
     maxPowerLoss: Double,
@@ -1193,7 +1193,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1274,7 +1274,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class SwitchInfo
+final case class SwitchInfo
 (
     override val sup: AssetInfo,
     breakingCapacity: Double,
@@ -1312,7 +1312,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1419,7 +1419,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class TapChangerInfo
+final case class TapChangerInfo
 (
     override val sup: AssetInfo,
     bil: Double,
@@ -1460,7 +1460,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1565,7 +1565,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class TapeShieldCableInfo
+final case class TapeShieldCableInfo
 (
     override val sup: CableInfo,
     tapeLap: Double,
@@ -1593,7 +1593,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1666,7 +1666,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class TransformerEndInfo
+final case class TransformerEndInfo
 (
     override val sup: AssetInfo,
     connectionKind: String,
@@ -1711,7 +1711,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1720,7 +1720,7 @@ extends
         implicit val clz: String = TransformerEndInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerEndInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerEndInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerEndInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerEndInfo.fields (position), x))
         emitattr (0, connectionKind)
         emitelem (1, emergencyS)
         emitelem (2, endNumber)
@@ -1846,7 +1846,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class TransformerTankInfo
+final case class TransformerTankInfo
 (
     override val sup: AssetInfo,
     PowerTransformerInfo: String,
@@ -1874,7 +1874,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1882,7 +1882,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerTankInfo.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerTankInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerTankInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerTankInfo.fields (position), x))
         emitattr (0, PowerTransformerInfo)
         emitattrs (1, TransformerEndInfos)
         s.toString
@@ -1932,7 +1932,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class TransformerTest
+final case class TransformerTest
 (
     override val sup: IdentifiedObject,
     basePower: Double,
@@ -1960,7 +1960,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2013,7 +2013,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WireAssemblyInfo
+final case class WireAssemblyInfo
 (
     override val sup: AssetInfo,
     PerLengthLineParameter: List[String],
@@ -2041,14 +2041,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WireAssemblyInfo.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireAssemblyInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireAssemblyInfo.fields (position), x))
         emitattrs (0, PerLengthLineParameter)
         emitattrs (1, WirePhaseInfo)
         s.toString
@@ -2113,7 +2113,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WireInfo
+final case class WireInfo
 (
     override val sup: AssetInfo,
     coreRadius: Double,
@@ -2155,7 +2155,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2164,7 +2164,7 @@ extends
         implicit val clz: String = WireInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireInfo.fields (position), x))
         emitelem (0, coreRadius)
         emitelem (1, coreStrandCount)
         emitelem (2, gmr)
@@ -2271,7 +2271,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WirePhaseInfo
+final case class WirePhaseInfo
 (
     override val sup: BasicElement,
     phaseInfo: String,
@@ -2301,7 +2301,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2369,7 +2369,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WirePosition
+final case class WirePosition
 (
     override val sup: IdentifiedObject,
     xCoord: Double,
@@ -2399,7 +2399,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2408,7 +2408,7 @@ extends
         implicit val clz: String = WirePosition.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WirePosition.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WirePosition.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WirePosition.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WirePosition.fields (position), x))
         emitelem (0, xCoord)
         emitelem (1, yCoord)
         emitattrs (2, WirePhaseInfo)
@@ -2473,7 +2473,7 @@ extends
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WireSpacing
+final case class WireSpacing
 (
     override val sup: IdentifiedObject,
     isCable: Boolean,
@@ -2506,7 +2506,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2515,7 +2515,7 @@ extends
         implicit val clz: String = WireSpacing.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSpacing.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSpacing.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireSpacing.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireSpacing.fields (position), x))
         emitelem (0, isCable)
         emitelem (1, phaseWireCount)
         emitelem (2, phaseWireSpacing)

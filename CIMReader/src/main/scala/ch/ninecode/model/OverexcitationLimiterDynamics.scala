@@ -25,7 +25,7 @@ import ch.ninecode.cim.Relationship
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
-case class OverexcLim2
+final case class OverexcLim2
 (
     override val sup: OverexcitationLimiterDynamics,
     ifdlim: Double,
@@ -55,7 +55,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -129,7 +129,7 @@ extends
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
-case class OverexcLimIEEE
+final case class OverexcLimIEEE
 (
     override val sup: OverexcitationLimiterDynamics,
     hyst: Double,
@@ -161,7 +161,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -247,7 +247,7 @@ extends
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
-case class OverexcLimX1
+final case class OverexcLimX1
 (
     override val sup: OverexcitationLimiterDynamics,
     efd1: Double,
@@ -283,7 +283,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -388,7 +388,7 @@ extends
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
-case class OverexcLimX2
+final case class OverexcLimX2
 (
     override val sup: OverexcitationLimiterDynamics,
     efd1: Double,
@@ -425,7 +425,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -513,7 +513,7 @@ extends
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
-case class OverexcitationLimiterDynamics
+final case class OverexcitationLimiterDynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String
@@ -540,7 +540,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

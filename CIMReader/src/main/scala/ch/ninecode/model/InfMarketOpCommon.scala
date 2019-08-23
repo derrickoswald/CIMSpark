@@ -124,7 +124,7 @@ import ch.ninecode.cim.Relationship
  * @group InfMarketOpCommon
  * @groupname InfMarketOpCommon Package InfMarketOpCommon
  */
-case class MarketRoleKind
+final case class MarketRoleKind
 (
     override val sup: BasicElement,
     balancingAuthority: String,
@@ -204,7 +204,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

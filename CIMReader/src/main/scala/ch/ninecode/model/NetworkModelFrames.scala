@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class AssemblyDescription
+final case class AssemblyDescription
 (
     override val sup: IdentifiedObject,
     ModelSpecification: List[String]
@@ -42,14 +42,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssemblyDescription.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssemblyDescription.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AssemblyDescription.fields (position), x))
         emitattrs (0, ModelSpecification)
         s.toString
     }
@@ -91,7 +91,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class AssemblyManifest
+final case class AssemblyManifest
 (
     override val sup: IdentifiedObject
 )
@@ -117,7 +117,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -152,7 +152,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class CompleteModelToBeDeleted
+final case class CompleteModelToBeDeleted
 (
     override val sup: ModelToBeDeleted
 )
@@ -178,7 +178,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -217,7 +217,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class FrameworkPart
+final case class FrameworkPart
 (
     override val sup: ModelAuthoritySet,
     Frame: String,
@@ -245,7 +245,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -299,7 +299,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class LoadModelPartVersion
+final case class LoadModelPartVersion
 (
     override val sup: BasicElement
 )
@@ -325,7 +325,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -361,7 +361,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class ModelAuthority
+final case class ModelAuthority
 (
     override val sup: IdentifiedObject,
     ModelingAuthoritySets: List[String]
@@ -388,14 +388,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelAuthority.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelAuthority.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelAuthority.fields (position), x))
         emitattrs (0, ModelingAuthoritySets)
         s.toString
     }
@@ -441,7 +441,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class ModelAuthoritySet
+final case class ModelAuthoritySet
 (
     override val sup: IdentifiedObject,
     ModelSpecification: List[String],
@@ -469,7 +469,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -477,7 +477,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelAuthoritySet.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ModelAuthoritySet.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelAuthoritySet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelAuthoritySet.fields (position), x))
         emitattrs (0, ModelSpecification)
         emitattr (1, ModelingAuthority)
         s.toString
@@ -529,7 +529,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class ModelPartSpecification
+final case class ModelPartSpecification
 (
     override val sup: IdentifiedObject,
     AssemblyDescription: List[String],
@@ -558,7 +558,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -566,7 +566,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelPartSpecification.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ModelPartSpecification.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelPartSpecification.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelPartSpecification.fields (position), x))
         emitattrs (0, AssemblyDescription)
         emitattr (1, FrameworkPart)
         emitattrs (2, Model)
@@ -621,7 +621,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class ModelPartVersion
+final case class ModelPartVersion
 (
     override val sup: ModelToBeDeleted,
     ModelSpecification: String
@@ -648,7 +648,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -697,7 +697,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class ModelToBeDeleted
+final case class ModelToBeDeleted
 (
     override val sup: IdentifiedObject
 )
@@ -723,7 +723,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -758,7 +758,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class NetworkBoundary
+final case class NetworkBoundary
 (
     override val sup: FrameworkPart
 )
@@ -784,7 +784,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -820,7 +820,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class NetworkFrame
+final case class NetworkFrame
 (
     override val sup: FrameworkPart,
     FrameworkPart_attr: List[String]
@@ -847,14 +847,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkFrame.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkFrame.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkFrame.fields (position), x))
         emitattrs (0, FrameworkPart_attr)
         s.toString
     }
@@ -896,7 +896,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class NetworkModelCaseDefinition
+final case class NetworkModelCaseDefinition
 (
     override val sup: BasicElement
 )
@@ -922,7 +922,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -955,7 +955,7 @@ extends
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
-case class Operation
+final case class Operation
 (
     override val sup: BasicElement
 )
@@ -981,7 +981,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group AlternateModels
  * @groupname AlternateModels Package AlternateModels
  */
-case class AlternateModel
+final case class AlternateModel
 (
     override val sup: IdentifiedObject,
     AlternateModelGroup: String,
@@ -40,7 +40,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -92,7 +92,7 @@ extends
  * @group AlternateModels
  * @groupname AlternateModels Package AlternateModels
  */
-case class AlternateModelGroup
+final case class AlternateModelGroup
 (
     override val sup: IdentifiedObject,
     AlternateModel: List[String]
@@ -119,14 +119,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AlternateModelGroup.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AlternateModelGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AlternateModelGroup.fields (position), x))
         emitattrs (0, AlternateModel)
         s.toString
     }

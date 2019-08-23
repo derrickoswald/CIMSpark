@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
-case class CurrentRelay
+final case class CurrentRelay
 (
     override val sup: ProtectionEquipment,
     currentLimit1: Double,
@@ -55,7 +55,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -138,7 +138,7 @@ extends
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
-case class ProtectionEquipment
+final case class ProtectionEquipment
 (
     override val sup: Equipment,
     highLimit: Double,
@@ -173,7 +173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -182,7 +182,7 @@ extends
         implicit val clz: String = ProtectionEquipment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectionEquipment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectionEquipment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectionEquipment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ProtectionEquipment.fields (position), x))
         emitelem (0, highLimit)
         emitelem (1, lowLimit)
         emitelem (2, powerDirectionFlag)
@@ -262,7 +262,7 @@ extends
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
-case class RecloseSequence
+final case class RecloseSequence
 (
     override val sup: IdentifiedObject,
     recloseDelay: Double,
@@ -291,7 +291,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -355,7 +355,7 @@ extends
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
-case class SynchrocheckRelay
+final case class SynchrocheckRelay
 (
     override val sup: ProtectionEquipment,
     maxAngleDiff: Double,
@@ -384,7 +384,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

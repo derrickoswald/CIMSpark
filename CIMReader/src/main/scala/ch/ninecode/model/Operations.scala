@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class ClearanceAction
+final case class ClearanceAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -105,7 +105,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class ClearanceDocument
+final case class ClearanceDocument
 (
     override val sup: SafetyDocument,
     mustBeDeenergised: Boolean,
@@ -135,7 +135,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -144,7 +144,7 @@ extends
         implicit val clz: String = ClearanceDocument.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ClearanceDocument.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ClearanceDocument.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ClearanceDocument.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ClearanceDocument.fields (position), x))
         emitelem (0, mustBeDeenergised)
         emitelem (1, mustBeGrounded)
         emitattr (2, ClearanceAction)
@@ -203,7 +203,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class ControlAction
+final case class ControlAction
 (
     override val sup: SwitchingAction,
     analogValue: Double,
@@ -232,7 +232,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -293,7 +293,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class CutAction
+final case class CutAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -321,7 +321,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -377,7 +377,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class EnergySourceAction
+final case class EnergySourceAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -405,7 +405,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -464,7 +464,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class EstimatedRestorationTime
+final case class EstimatedRestorationTime
 (
     override val sup: BasicElement,
     confidenceKind: String,
@@ -494,7 +494,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -503,7 +503,7 @@ extends
         implicit val clz: String = EstimatedRestorationTime.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EstimatedRestorationTime.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EstimatedRestorationTime.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EstimatedRestorationTime.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EstimatedRestorationTime.fields (position), x))
         emitattr (0, confidenceKind)
         emitelem (1, ert)
         emitelem (2, ertSource)
@@ -560,7 +560,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class FieldSafetySupervisor
+final case class FieldSafetySupervisor
 (
     override val sup: CrewMember,
     IssuedSafetyDocuments: List[String],
@@ -588,14 +588,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FieldSafetySupervisor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FieldSafetySupervisor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FieldSafetySupervisor.fields (position), x))
         emitattrs (0, IssuedSafetyDocuments)
         emitattrs (1, ReleasedSafetyDocuments)
         s.toString
@@ -644,7 +644,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class GenericAction
+final case class GenericAction
 (
     override val sup: SwitchingAction,
     PowerSystemResource: String
@@ -671,7 +671,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -727,7 +727,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class GroundAction
+final case class GroundAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -757,7 +757,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -832,7 +832,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class Incident
+final case class Incident
 (
     override val sup: Document,
     cause: String,
@@ -867,7 +867,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -876,7 +876,7 @@ extends
         implicit val clz: String = Incident.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Incident.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Incident.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Incident.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Incident.fields (position), x))
         emitelem (0, cause)
         emitattrs (1, CustomerNotifications)
         emitattrs (2, IncidentHazard)
@@ -964,7 +964,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class JumperAction
+final case class JumperAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -994,7 +994,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1002,7 +1002,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = JumperAction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (JumperAction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (JumperAction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (JumperAction.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, AlongACLineSegments)
         emitattrs (2, JumpedEquipments)
@@ -1060,7 +1060,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class MeasurementAction
+final case class MeasurementAction
 (
     override val sup: SwitchingAction,
     Measurement: String
@@ -1087,7 +1087,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1143,7 +1143,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OperationalRestriction
+final case class OperationalRestriction
 (
     override val sup: Document,
     activePeriod: String,
@@ -1173,7 +1173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1181,7 +1181,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OperationalRestriction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalRestriction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OperationalRestriction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OperationalRestriction.fields (position), x))
         emitattr (0, activePeriod)
         emitattr (1, restrictedValue)
         emitattrs (2, Equipments)
@@ -1240,7 +1240,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OperationalTag
+final case class OperationalTag
 (
     override val sup: Document,
     Asset: String,
@@ -1269,7 +1269,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1331,7 +1331,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OperationalUpdatedRating
+final case class OperationalUpdatedRating
 (
     override val sup: OperationalRestriction,
     changeType: String,
@@ -1359,7 +1359,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1416,7 +1416,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OperationsSafetySupervisor
+final case class OperationsSafetySupervisor
 (
     override val sup: Operator,
     IssuedSafetyDocuments: List[String],
@@ -1444,14 +1444,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OperationsSafetySupervisor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OperationsSafetySupervisor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OperationsSafetySupervisor.fields (position), x))
         emitattrs (0, IssuedSafetyDocuments)
         emitattrs (1, ReleasedSafetyDocuments)
         s.toString
@@ -1539,7 +1539,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class Outage
+final case class Outage
 (
     override val sup: Document,
     actualPeriod: String,
@@ -1587,7 +1587,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1596,7 +1596,7 @@ extends
         implicit val clz: String = Outage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Outage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Outage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Outage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Outage.fields (position), x))
         emitattr (0, actualPeriod)
         emitelem (1, communityDescriptor)
         emitelem (2, customersRestored)
@@ -1738,7 +1738,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OutageArea
+final case class OutageArea
 (
     override val sup: BasicElement,
     earliestReportedTime: String,
@@ -1768,7 +1768,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1777,7 +1777,7 @@ extends
         implicit val clz: String = OutageArea.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OutageArea.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OutageArea.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OutageArea.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OutageArea.fields (position), x))
         emitelem (0, earliestReportedTime)
         emitelem (1, metersServed)
         emitattr (2, outageAreaKind)
@@ -1835,7 +1835,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OutageOrder
+final case class OutageOrder
 (
     override val sup: Document,
     comment: String,
@@ -1864,7 +1864,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1873,7 +1873,7 @@ extends
         implicit val clz: String = OutageOrder.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OutageOrder.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OutageOrder.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OutageOrder.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OutageOrder.fields (position), x))
         emitelem (0, comment)
         emitattrs (1, Location)
         emitattr (2, OutagePlan)
@@ -1935,7 +1935,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class OutagePlan
+final case class OutagePlan
 (
     override val sup: Document,
     approvedDateTime: String,
@@ -1969,7 +1969,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1978,7 +1978,7 @@ extends
         implicit val clz: String = OutagePlan.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OutagePlan.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OutagePlan.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OutagePlan.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OutagePlan.fields (position), x))
         emitelem (0, approvedDateTime)
         emitelem (1, cancelledDateTime)
         emitattr (2, plannedPeriod)
@@ -2054,7 +2054,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class PSREvent
+final case class PSREvent
 (
     override val sup: ActivityRecord,
     kind: String,
@@ -2082,7 +2082,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2134,7 +2134,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class PlannedOutage
+final case class PlannedOutage
 (
     override val sup: Outage,
     reason: String,
@@ -2164,7 +2164,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2173,7 +2173,7 @@ extends
         implicit val clz: String = PlannedOutage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PlannedOutage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PlannedOutage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PlannedOutage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PlannedOutage.fields (position), x))
         emitelem (0, reason)
         emitattr (1, FieldDispatchHistory)
         emitattr (2, OutagePlan)
@@ -2237,7 +2237,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SafetyDocument
+final case class SafetyDocument
 (
     override val sup: Document,
     issuedDateTime: String,
@@ -2270,7 +2270,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2353,7 +2353,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class ServicePointOutageSummary
+final case class ServicePointOutageSummary
 (
     override val sup: BasicElement,
     criticalCount: Int,
@@ -2381,7 +2381,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2435,7 +2435,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchAction
+final case class SwitchAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -2464,7 +2464,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2532,7 +2532,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingAction
+final case class SwitchingAction
 (
     override val sup: IdentifiedObject,
     description: String,
@@ -2567,7 +2567,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2576,7 +2576,7 @@ extends
         implicit val clz: String = SwitchingAction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingAction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingAction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingAction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingAction.fields (position), x))
         emitelem (0, description)
         emitelem (1, executedDateTime)
         emitelem (2, isFreeSequence)
@@ -2657,7 +2657,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingEvent
+final case class SwitchingEvent
 (
     override val sup: ActivityRecord,
     SwitchingAction: String
@@ -2684,7 +2684,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2738,7 +2738,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingOrder
+final case class SwitchingOrder
 (
     override val sup: Document,
     comment: String,
@@ -2768,7 +2768,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2777,7 +2777,7 @@ extends
         implicit val clz: String = SwitchingOrder.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingOrder.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingOrder.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingOrder.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingOrder.fields (position), x))
         emitelem (0, comment)
         emitattr (1, plannedExecutionInterval)
         emitattrs (2, Location)
@@ -2848,7 +2848,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingPlan
+final case class SwitchingPlan
 (
     override val sup: Document,
     approvedDateTime: String,
@@ -2886,7 +2886,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2895,7 +2895,7 @@ extends
         implicit val clz: String = SwitchingPlan.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingPlan.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingPlan.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingPlan.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingPlan.fields (position), x))
         emitelem (0, approvedDateTime)
         emitelem (1, cancelledDateTime)
         emitattr (2, plannedPeriod)
@@ -3000,7 +3000,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingPlanRequest
+final case class SwitchingPlanRequest
 (
     override val sup: Document,
     comment: String,
@@ -3038,7 +3038,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3047,7 +3047,7 @@ extends
         implicit val clz: String = SwitchingPlanRequest.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingPlanRequest.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingPlanRequest.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingPlanRequest.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingPlanRequest.fields (position), x))
         emitelem (0, comment)
         emitelem (1, equipmentToBeIsolated)
         emitattr (2, forwardSwitchingDateTimeInterval)
@@ -3138,7 +3138,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingStep
+final case class SwitchingStep
 (
     override val sup: BasicElement,
     sequenceNumber: Int,
@@ -3167,7 +3167,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3233,7 +3233,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class SwitchingStepGroup
+final case class SwitchingStepGroup
 (
     override val sup: BasicElement,
     description: String,
@@ -3265,7 +3265,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3274,7 +3274,7 @@ extends
         implicit val clz: String = SwitchingStepGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingStepGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingStepGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingStepGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingStepGroup.fields (position), x))
         emitelem (0, description)
         emitelem (1, isFreeSequence)
         emitelem (2, purpose)
@@ -3340,7 +3340,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class TagAction
+final case class TagAction
 (
     override val sup: SwitchingAction,
     kind: String,
@@ -3368,7 +3368,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3426,7 +3426,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class TroubleOrder
+final case class TroubleOrder
 (
     override val sup: Document,
     comment: String,
@@ -3456,7 +3456,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3538,7 +3538,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class UnplannedOutage
+final case class UnplannedOutage
 (
     override val sup: Outage,
     cause: String,
@@ -3569,7 +3569,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3578,7 +3578,7 @@ extends
         implicit val clz: String = UnplannedOutage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnplannedOutage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UnplannedOutage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UnplannedOutage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UnplannedOutage.fields (position), x))
         emitelem (0, cause)
         emitattr (1, causeKind)
         emitelem (2, reportedStartTime)
@@ -3640,7 +3640,7 @@ extends
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
-case class VerificationAction
+final case class VerificationAction
 (
     override val sup: SwitchingAction,
     verificationCondition: String,
@@ -3668,7 +3668,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

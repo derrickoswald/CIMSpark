@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class CrossCompoundTurbineGovernorDynamics
+final case class CrossCompoundTurbineGovernorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     HighPressureSynchronousMachineDynamics: String,
@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -189,7 +189,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovCT1
+final case class GovCT1
 (
     override val sup: TurbineGovernorDynamics,
     aset: Double,
@@ -250,7 +250,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -552,7 +552,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovCT2
+final case class GovCT2
 (
     override val sup: TurbineGovernorDynamics,
     aset: Double,
@@ -634,7 +634,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -924,7 +924,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGAST
+final case class GovGAST
 (
     override val sup: TurbineGovernorDynamics,
     at: Double,
@@ -960,7 +960,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1113,7 +1113,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGAST1
+final case class GovGAST1
 (
     override val sup: TurbineGovernorDynamics,
     a: Double,
@@ -1173,7 +1173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1395,7 +1395,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGAST2
+final case class GovGAST2
 (
     override val sup: TurbineGovernorDynamics,
     a: Double,
@@ -1453,7 +1453,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1668,7 +1668,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGAST3
+final case class GovGAST3
 (
     override val sup: TurbineGovernorDynamics,
     bca: Double,
@@ -1715,7 +1715,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1866,7 +1866,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGAST4
+final case class GovGAST4
 (
     override val sup: TurbineGovernorDynamics,
     bp: Double,
@@ -1903,7 +1903,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2031,7 +2031,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovGASTWD
+final case class GovGASTWD
 (
     override val sup: TurbineGovernorDynamics,
     a: Double,
@@ -2090,7 +2090,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2295,7 +2295,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydro1
+final case class GovHydro1
 (
     override val sup: TurbineGovernorDynamics,
     at: Double,
@@ -2335,7 +2335,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2494,7 +2494,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydro2
+final case class GovHydro2
 (
     override val sup: TurbineGovernorDynamics,
     aturb: Double,
@@ -2549,7 +2549,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2786,7 +2786,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydro3
+final case class GovHydro3
 (
     override val sup: TurbineGovernorDynamics,
     at: Double,
@@ -2848,7 +2848,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3116,7 +3116,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydro4
+final case class GovHydro4
 (
     override val sup: TurbineGovernorDynamics,
     at: Double,
@@ -3181,7 +3181,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3457,7 +3457,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroDD
+final case class GovHydroDD
 (
     override val sup: TurbineGovernorDynamics,
     aturb: Double,
@@ -3518,7 +3518,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3762,7 +3762,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroFrancis
+final case class GovHydroFrancis
 (
     override val sup: TurbineGovernorDynamics,
     am: Double,
@@ -3815,7 +3815,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3984,7 +3984,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroIEEE0
+final case class GovHydroIEEE0
 (
     override val sup: TurbineGovernorDynamics,
     k: Double,
@@ -4018,7 +4018,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4149,7 +4149,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroIEEE2
+final case class GovHydroIEEE2
 (
     override val sup: TurbineGovernorDynamics,
     aturb: Double,
@@ -4201,7 +4201,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4420,7 +4420,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroPID
+final case class GovHydroPID
 (
     override val sup: TurbineGovernorDynamics,
     aturb: Double,
@@ -4479,7 +4479,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4703,7 +4703,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroPID2
+final case class GovHydroPID2
 (
     override val sup: TurbineGovernorDynamics,
     atw: Double,
@@ -4751,7 +4751,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4950,7 +4950,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroPelton
+final case class GovHydroPelton
 (
     override val sup: TurbineGovernorDynamics,
     av0: Double,
@@ -5004,7 +5004,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5249,7 +5249,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroR
+final case class GovHydroR
 (
     override val sup: TurbineGovernorDynamics,
     at: Double,
@@ -5317,7 +5317,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5621,7 +5621,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroWEH
+final case class GovHydroWEH
 (
     override val sup: TurbineGovernorDynamics,
     db: Double,
@@ -5698,7 +5698,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5982,7 +5982,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovHydroWPID
+final case class GovHydroWPID
 (
     override val sup: TurbineGovernorDynamics,
     d: Double,
@@ -6030,7 +6030,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6179,7 +6179,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteam0
+final case class GovSteam0
 (
     override val sup: TurbineGovernorDynamics,
     dt: Double,
@@ -6213,7 +6213,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6374,7 +6374,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteam1
+final case class GovSteam1
 (
     override val sup: TurbineGovernorDynamics,
     db1: Double,
@@ -6439,7 +6439,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6656,7 +6656,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteam2
+final case class GovSteam2
 (
     override val sup: TurbineGovernorDynamics,
     dbf: Double,
@@ -6690,7 +6690,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6803,7 +6803,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamBB
+final case class GovSteamBB
 (
     override val sup: TurbineGovernorDynamics,
     fcut: Double,
@@ -6846,7 +6846,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6995,7 +6995,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamCC
+final case class GovSteamCC
 (
     override val sup: CrossCompoundTurbineGovernorDynamics,
     dhp: Double,
@@ -7038,7 +7038,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7221,7 +7221,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamEU
+final case class GovSteamEU
 (
     override val sup: TurbineGovernorDynamics,
     chc: Double,
@@ -7282,7 +7282,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7480,7 +7480,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamFV2
+final case class GovSteamFV2
 (
     override val sup: TurbineGovernorDynamics,
     dt: Double,
@@ -7518,7 +7518,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7673,7 +7673,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamFV3
+final case class GovSteamFV3
 (
     override val sup: TurbineGovernorDynamics,
     gv1: Double,
@@ -7730,7 +7730,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8001,7 +8001,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamFV4
+final case class GovSteamFV4
 (
     override val sup: TurbineGovernorDynamics,
     cpsmn: Double,
@@ -8078,7 +8078,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8370,7 +8370,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamIEEE1
+final case class GovSteamIEEE1
 (
     override val sup: TurbineGovernorDynamics,
     k: Double,
@@ -8417,7 +8417,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8559,7 +8559,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class GovSteamSGO
+final case class GovSteamSGO
 (
     override val sup: TurbineGovernorDynamics,
     k1: Double,
@@ -8597,7 +8597,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8695,7 +8695,7 @@ extends
 Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
 A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
-case class TurbineGovernorDynamics
+final case class TurbineGovernorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     AsynchronousMachineDynamics: String,
@@ -8724,7 +8724,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class BlockDispatchComponent
+final case class BlockDispatchComponent
 (
     override val sup: EnergyComponent
 )
@@ -38,7 +38,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -71,7 +71,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class BlockDispatchInstruction
+final case class BlockDispatchInstruction
 (
     override val sup: IdentifiedObject
 )
@@ -97,7 +97,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -130,7 +130,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class BlockDispatchOrder
+final case class BlockDispatchOrder
 (
     override val sup: IdentifiedObject,
     p: Double,
@@ -158,7 +158,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -206,7 +206,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class EnergyComponent
+final case class EnergyComponent
 (
     override val sup: IdentifiedObject
 )
@@ -232,7 +232,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -265,7 +265,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class EnergyGroup
+final case class EnergyGroup
 (
     override val sup: PowerSystemResource,
     isSlack: Boolean,
@@ -293,7 +293,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -341,7 +341,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class EnergyTypeReference
+final case class EnergyTypeReference
 (
     override val sup: IdentifiedObject,
     kind: String
@@ -368,7 +368,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -412,7 +412,7 @@ extends
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
-case class ProportionalDistributionComponent
+final case class ProportionalDistributionComponent
 (
     override val sup: EnergyComponent,
     distributionFactor: Double
@@ -439,7 +439,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

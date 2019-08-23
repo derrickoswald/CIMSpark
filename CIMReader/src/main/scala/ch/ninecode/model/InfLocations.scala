@@ -28,7 +28,7 @@ import ch.ninecode.cim.Relationship
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class LandProperty
+final case class LandProperty
 (
     override val sup: IdentifiedObject,
     demographicKind: String,
@@ -65,7 +65,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -74,7 +74,7 @@ extends
         implicit val clz: String = LandProperty.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LandProperty.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LandProperty.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LandProperty.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LandProperty.fields (position), x))
         emitattr (0, demographicKind)
         emitelem (1, externalRecordReference)
         emitattr (2, kind)
@@ -167,7 +167,7 @@ extends
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class LocationGrant
+final case class LocationGrant
 (
     override val sup: Agreement,
     propertyData: String,
@@ -195,7 +195,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -252,7 +252,7 @@ extends
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class RedLine
+final case class RedLine
 (
     override val sup: IdentifiedObject,
     status: String
@@ -279,7 +279,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -330,7 +330,7 @@ extends
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class RightOfWay
+final case class RightOfWay
 (
     override val sup: Agreement,
     propertyData: String,
@@ -358,7 +358,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -366,7 +366,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RightOfWay.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RightOfWay.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RightOfWay.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RightOfWay.fields (position), x))
         emitelem (0, propertyData)
         emitattrs (1, LandProperties)
         s.toString
@@ -416,7 +416,7 @@ extends
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class Route
+final case class Route
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -446,7 +446,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -455,7 +455,7 @@ extends
         implicit val clz: String = Route.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Route.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Route.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Route.fields (position), x))
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Crews)
@@ -513,7 +513,7 @@ extends
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
-case class Zone
+final case class Zone
 (
     override val sup: Location,
     kind: String
@@ -540,7 +540,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

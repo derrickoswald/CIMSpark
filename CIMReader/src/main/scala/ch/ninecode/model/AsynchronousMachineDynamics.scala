@@ -27,7 +27,7 @@ import ch.ninecode.cim.Relationship
 The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
-case class AsynchronousMachineDynamics
+final case class AsynchronousMachineDynamics
 (
     override val sup: RotatingMachineDynamics,
     AsynchronousMachine: String,
@@ -57,7 +57,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -142,7 +142,7 @@ extends
 The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
-case class AsynchronousMachineEquivalentCircuit
+final case class AsynchronousMachineEquivalentCircuit
 (
     override val sup: AsynchronousMachineDynamics,
     rr1: Double,
@@ -173,7 +173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -266,7 +266,7 @@ extends
 The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
-case class AsynchronousMachineTimeConstantReactance
+final case class AsynchronousMachineTimeConstantReactance
 (
     override val sup: AsynchronousMachineDynamics,
     tpo: Double,
@@ -297,7 +297,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

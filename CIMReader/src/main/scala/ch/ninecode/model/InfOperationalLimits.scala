@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class EnvironmentalDependentLimit
+final case class EnvironmentalDependentLimit
 (
     override val sup: LimitDependency
 )
@@ -42,7 +42,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -82,7 +82,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class EquipmentLimitSeriesComponent
+final case class EquipmentLimitSeriesComponent
 (
     override val sup: IdentifiedObject,
     Equipment: String,
@@ -110,7 +110,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -170,7 +170,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class LimitDependency
+final case class LimitDependency
 (
     override val sup: IdentifiedObject,
     Equipment: String,
@@ -198,7 +198,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -206,7 +206,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LimitDependency.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LimitDependency.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LimitDependency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LimitDependency.fields (position), x))
         emitattr (0, Equipment)
         emitattrs (1, OperationalLimit)
         s.toString
@@ -257,7 +257,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class LimitScalingLimit
+final case class LimitScalingLimit
 (
     override val sup: LimitDependency,
     limitScalingPercent: Double,
@@ -285,7 +285,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -347,7 +347,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class OperatonalLimitTypeScaling
+final case class OperatonalLimitTypeScaling
 (
     override val sup: BasicElement,
     scalingPercent: Double,
@@ -376,7 +376,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -435,7 +435,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledActivePowerLimitValue
+final case class ScheduledActivePowerLimitValue
 (
     override val sup: ScheduledLimitValue,
     value: Double
@@ -462,7 +462,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -511,7 +511,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledApparentPowerLimitValue
+final case class ScheduledApparentPowerLimitValue
 (
     override val sup: ScheduledLimitValue,
     value: Double
@@ -538,7 +538,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -587,7 +587,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledCurrentLimitValue
+final case class ScheduledCurrentLimitValue
 (
     override val sup: ScheduledLimitValue,
     value: Double
@@ -614,7 +614,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -660,7 +660,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledLimitDependency
+final case class ScheduledLimitDependency
 (
     override val sup: LimitDependency,
     ScheduledLimitValues: List[String]
@@ -687,14 +687,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ScheduledLimitDependency.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledLimitDependency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ScheduledLimitDependency.fields (position), x))
         emitattrs (0, ScheduledLimitValues)
         s.toString
     }
@@ -741,7 +741,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledLimitValue
+final case class ScheduledLimitValue
 (
     override val sup: IdentifiedObject,
     ScheduledLimitDependency: String,
@@ -769,7 +769,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -826,7 +826,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class ScheduledVoltageLimitValue
+final case class ScheduledVoltageLimitValue
 (
     override val sup: ScheduledLimitValue,
     value: Double
@@ -853,7 +853,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -904,7 +904,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class SeriesEquipmentDependentLimit
+final case class SeriesEquipmentDependentLimit
 (
     override val sup: LimitDependency,
     EquipmentLimitSeriesComponent: List[String]
@@ -931,14 +931,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SeriesEquipmentDependentLimit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SeriesEquipmentDependentLimit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SeriesEquipmentDependentLimit.fields (position), x))
         emitattrs (0, EquipmentLimitSeriesComponent)
         s.toString
     }
@@ -985,7 +985,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class TemperatureDependentLimitPoint
+final case class TemperatureDependentLimitPoint
 (
     override val sup: BasicElement,
     limitPercent: Double,
@@ -1014,7 +1014,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1075,7 +1075,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class TemperatureDependentLimitTable
+final case class TemperatureDependentLimitTable
 (
     override val sup: EnvironmentalDependentLimit,
     TemperatureLimitTablePoint: List[String]
@@ -1102,14 +1102,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TemperatureDependentLimitTable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TemperatureDependentLimitTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TemperatureDependentLimitTable.fields (position), x))
         emitattrs (0, TemperatureLimitTablePoint)
         s.toString
     }
@@ -1158,7 +1158,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class TemperaturePolynomialLimit
+final case class TemperaturePolynomialLimit
 (
     override val sup: EnvironmentalDependentLimit,
     coefficient0: Double,
@@ -1189,7 +1189,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1254,7 +1254,7 @@ extends
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
 These classes would likely go into the OperationalLimits package.
  */
-case class WeatherStation
+final case class WeatherStation
 (
     override val sup: PowerSystemResource,
     Equipment: List[String]
@@ -1281,14 +1281,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WeatherStation.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WeatherStation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WeatherStation.fields (position), x))
         emitattrs (0, Equipment)
         s.toString
     }

@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class AssetAnalog
+final case class AssetAnalog
 (
     override val sup: Analog,
     detectionLimit: Double,
@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -114,7 +114,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class AssetDiscrete
+final case class AssetDiscrete
 (
     override val sup: Discrete,
     TestStandard: String
@@ -141,7 +141,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -192,7 +192,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class AssetStringMeasurement
+final case class AssetStringMeasurement
 (
     override val sup: StringMeasurement,
     kind: String,
@@ -220,7 +220,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -274,7 +274,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class AssetTemperaturePressureAnalog
+final case class AssetTemperaturePressureAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -301,7 +301,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -350,7 +350,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class CalculationMethodHierarchy
+final case class CalculationMethodHierarchy
 (
     override val sup: IdentifiedObject,
     CalculationMethodOrder: List[String],
@@ -379,7 +379,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -387,7 +387,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CalculationMethodHierarchy.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CalculationMethodHierarchy.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CalculationMethodHierarchy.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CalculationMethodHierarchy.fields (position), x))
         emitattrs (0, CalculationMethodOrder)
         emitattrs (1, Measurement)
         emitattr (2, MeasurementValue)
@@ -442,7 +442,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class CalculationMethodOrder
+final case class CalculationMethodOrder
 (
     override val sup: BasicElement,
     order: Int,
@@ -471,7 +471,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -531,7 +531,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class InspectionAnalog
+final case class InspectionAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -558,7 +558,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -605,7 +605,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class InspectionDiscrete
+final case class InspectionDiscrete
 (
     override val sup: AssetDiscrete,
     kind: String
@@ -632,7 +632,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -679,7 +679,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisFluidAnalog
+final case class OilAnalysisFluidAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -706,7 +706,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -753,7 +753,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisFluidDiscrete
+final case class OilAnalysisFluidDiscrete
 (
     override val sup: AssetDiscrete,
     kind: String
@@ -780,7 +780,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -827,7 +827,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisGasAnalog
+final case class OilAnalysisGasAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -854,7 +854,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -901,7 +901,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisMetalsAnalog
+final case class OilAnalysisMetalsAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -928,7 +928,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -975,7 +975,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisMoistureAnalog
+final case class OilAnalysisMoistureAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -1002,7 +1002,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1049,7 +1049,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisPCBAnalog
+final case class OilAnalysisPCBAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -1076,7 +1076,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1123,7 +1123,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisPCBDiscrete
+final case class OilAnalysisPCBDiscrete
 (
     override val sup: AssetDiscrete,
     kind: String
@@ -1150,7 +1150,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1197,7 +1197,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisPaperAnalog
+final case class OilAnalysisPaperAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -1224,7 +1224,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1271,7 +1271,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisParticleAnalog
+final case class OilAnalysisParticleAnalog
 (
     override val sup: AssetAnalog,
     kind: String
@@ -1298,7 +1298,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1345,7 +1345,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class OilAnalysisParticleDiscrete
+final case class OilAnalysisParticleDiscrete
 (
     override val sup: AssetDiscrete,
     kind: String
@@ -1372,7 +1372,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1424,7 +1424,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class PeriodicStatisticalCalculation
+final case class PeriodicStatisticalCalculation
 (
     override val sup: StatisticalCalculation,
     calculationIntervalMagnitude: Int,
@@ -1452,7 +1452,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1506,7 +1506,7 @@ extends
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
-case class StatisticalCalculation
+final case class StatisticalCalculation
 (
     override val sup: IdentifiedObject,
     calculationMode: String,
@@ -1535,7 +1535,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1543,7 +1543,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StatisticalCalculation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StatisticalCalculation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StatisticalCalculation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (StatisticalCalculation.fields (position), x))
         emitattr (0, calculationMode)
         emitattr (1, calculationTechnique)
         emitattrs (2, CalculationMethodOrder)

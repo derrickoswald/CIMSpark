@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class BilateralExchangeActor
+final case class BilateralExchangeActor
 (
     override val sup: IdentifiedObject,
     CommunicationLink: List[String],
@@ -51,14 +51,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BilateralExchangeActor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BilateralExchangeActor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BilateralExchangeActor.fields (position), x))
         emitattrs (0, CommunicationLink)
         emitattrs (1, ConsumerBilateralExchange)
         emitattrs (2, ProvidedBilateralIOPoint)
@@ -118,7 +118,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class BilateralExchangeAgreement
+final case class BilateralExchangeAgreement
 (
     override val sup: IdentifiedObject,
     Consumer: String,
@@ -146,7 +146,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -208,7 +208,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ICCPInformationMessage
+final case class ICCPInformationMessage
 (
     override val sup: IdentifiedObject,
     localReference: String,
@@ -237,7 +237,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -246,7 +246,7 @@ extends
         implicit val clz: String = ICCPInformationMessage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ICCPInformationMessage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPInformationMessage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ICCPInformationMessage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ICCPInformationMessage.fields (position), x))
         emitelem (0, localReference)
         emitattr (1, scope)
         emitattrs (2, TASE2BilateralTable)
@@ -308,7 +308,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ICCPProvidedPoint
+final case class ICCPProvidedPoint
 (
     override val sup: ProvidedBilateralPoint,
     accessPriviledge: String,
@@ -338,7 +338,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -397,7 +397,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ICCPVCC
+final case class ICCPVCC
 (
     override val sup: BilateralExchangeActor
 )
@@ -423,7 +423,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -477,7 +477,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ICCPVirtualControlCentre
+final case class ICCPVirtualControlCentre
 (
     override val sup: BilateralExchangeActor,
     applicationSecurityRequirement: String,
@@ -515,7 +515,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -608,7 +608,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class IOPointSource
+final case class IOPointSource
 (
     override val sup: MeasurementValueSource,
     IOPoint: List[String]
@@ -635,14 +635,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IOPointSource.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IOPointSource.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (IOPointSource.fields (position), x))
         emitattrs (0, IOPoint)
         s.toString
     }
@@ -691,7 +691,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class IPAccessPoint
+final case class IPAccessPoint
 (
     override val sup: CommunicationLink,
     address: String,
@@ -721,7 +721,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -790,7 +790,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ISOUpperLayer
+final case class ISOUpperLayer
 (
     override val sup: TCPAccessPoint,
     aeInvoke: Int,
@@ -824,7 +824,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -832,7 +832,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ISOUpperLayer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ISOUpperLayer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ISOUpperLayer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ISOUpperLayer.fields (position), x))
         emitelem (0, aeInvoke)
         emitelem (1, aeQual)
         emitelem (2, apInvoke)
@@ -905,7 +905,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class ProvidedBilateralPoint
+final case class ProvidedBilateralPoint
 (
     override val sup: IdentifiedObject,
     BilateralExchangeActor: String,
@@ -933,7 +933,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -995,7 +995,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class PublicX509Certificate
+final case class PublicX509Certificate
 (
     override val sup: BasicElement,
     issuerName: String,
@@ -1025,7 +1025,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1097,7 +1097,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class TASE2BilateralTable
+final case class TASE2BilateralTable
 (
     override val sup: BilateralExchangeAgreement,
     bilateralTableID: String,
@@ -1127,7 +1127,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1135,7 +1135,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TASE2BilateralTable.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TASE2BilateralTable.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TASE2BilateralTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TASE2BilateralTable.fields (position), x))
         emitelem (0, bilateralTableID)
         emitelem (1, bilateralTableVersion)
         emitelem (2, tase2version)
@@ -1199,7 +1199,7 @@ extends
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
-case class TCPAccessPoint
+final case class TCPAccessPoint
 (
     override val sup: IPAccessPoint,
     keepAliveTime: Int,
@@ -1228,7 +1228,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1236,7 +1236,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TCPAccessPoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TCPAccessPoint.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TCPAccessPoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TCPAccessPoint.fields (position), x))
         emitelem (0, keepAliveTime)
         emitelem (1, port)
         emitattrs (2, PublicX509Certificate)

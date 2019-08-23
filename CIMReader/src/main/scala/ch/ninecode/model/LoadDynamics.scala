@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadAggregate
+final case class LoadAggregate
 (
     override val sup: LoadDynamics,
     LoadMotor: String,
@@ -50,7 +50,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -131,7 +131,7 @@ extends
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadComposite
+final case class LoadComposite
 (
     override val sup: LoadDynamics,
     epfd: Double,
@@ -168,7 +168,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -261,7 +261,7 @@ extends
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadDynamics
+final case class LoadDynamics
 (
     override val sup: IdentifiedObject,
     EnergyConsumer: List[String]
@@ -288,14 +288,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadDynamics.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadDynamics.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LoadDynamics.fields (position), x))
         emitattrs (0, EnergyConsumer)
         s.toString
     }
@@ -349,7 +349,7 @@ extends
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadGenericNonLinear
+final case class LoadGenericNonLinear
 (
     override val sup: LoadDynamics,
     bs: Double,
@@ -382,7 +382,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -489,7 +489,7 @@ extends
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadMotor
+final case class LoadMotor
 (
     override val sup: IdentifiedObject,
     d: Double,
@@ -529,7 +529,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -671,7 +671,7 @@ extends
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
 Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
-case class LoadStatic
+final case class LoadStatic
 (
     override val sup: IdentifiedObject,
     ep1: Double,
@@ -715,7 +715,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

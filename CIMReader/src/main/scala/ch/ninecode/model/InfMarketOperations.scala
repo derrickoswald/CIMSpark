@@ -30,7 +30,7 @@ import ch.ninecode.cim.Relationship
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
-case class BilateralTransaction
+final case class BilateralTransaction
 (
     override val sup: BasicElement,
     curtailTimeMax: Int,
@@ -64,7 +64,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -140,7 +140,7 @@ extends
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
-case class Participation
+final case class Participation
 (
     override val sup: IdentifiedObject,
     factor: Double
@@ -167,7 +167,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -229,7 +229,7 @@ extends
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
-case class ResourceCertification2
+final case class ResourceCertification2
 (
     override val sup: BasicElement,
     certifiedDAM: String,
@@ -269,7 +269,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -278,7 +278,7 @@ extends
         implicit val clz: String = ResourceCertification2.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification2.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification2.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceCertification2.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceCertification2.fields (position), x))
         emitattr (0, certifiedDAM)
         emitattr (1, certifiedNonspinDAM)
         emitelem (2, certifiedNonspinDAMMw)

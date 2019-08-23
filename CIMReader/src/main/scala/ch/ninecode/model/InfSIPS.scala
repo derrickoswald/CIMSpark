@@ -25,7 +25,7 @@ import ch.ninecode.cim.Relationship
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class Gate
+final case class Gate
 (
     override val sup: IdentifiedObject,
     kind: String,
@@ -61,7 +61,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -69,7 +69,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Gate.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Gate.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Gate.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Gate.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, GateInputPin)
         emitattrs (2, PinGate)
@@ -166,7 +166,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class GateInputPin
+final case class GateInputPin
 (
     override val sup: IdentifiedObject,
     aDLogicKind: String,
@@ -199,7 +199,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -277,7 +277,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class MeasurementCalculator
+final case class MeasurementCalculator
 (
     override val sup: IdentifiedObject,
     kind: String,
@@ -306,7 +306,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -314,7 +314,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementCalculator.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementCalculator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementCalculator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MeasurementCalculator.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, MeasurementCalculatorInput)
         emitattrs (2, PinMeasurement)
@@ -373,7 +373,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class MeasurementCalculatorInput
+final case class MeasurementCalculatorInput
 (
     override val sup: IdentifiedObject,
     absoluteValue: Boolean,
@@ -403,7 +403,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -469,7 +469,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class PinBranchGroup
+final case class PinBranchGroup
 (
     override val sup: GateInputPin,
     kind: String,
@@ -497,7 +497,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -553,7 +553,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class PinEquipment
+final case class PinEquipment
 (
     override val sup: GateInputPin,
     kind: String,
@@ -581,7 +581,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -636,7 +636,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class PinGate
+final case class PinGate
 (
     override val sup: GateInputPin,
     GateOutput: String
@@ -663,7 +663,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -715,7 +715,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class PinMeasurement
+final case class PinMeasurement
 (
     override val sup: GateInputPin,
     Measurement: String,
@@ -743,7 +743,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -800,7 +800,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class PinTerminal
+final case class PinTerminal
 (
     override val sup: GateInputPin,
     kind: String,
@@ -828,7 +828,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -889,7 +889,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class ProtectiveAction
+final case class ProtectiveAction
 (
     override val sup: IdentifiedObject,
     enabled: Boolean,
@@ -921,7 +921,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1007,7 +1007,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class ProtectiveActionAdjustment
+final case class ProtectiveActionAdjustment
 (
     override val sup: ProtectiveAction,
     byPercentage: Double,
@@ -1041,7 +1041,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1124,7 +1124,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class ProtectiveActionCollection
+final case class ProtectiveActionCollection
 (
     override val sup: IdentifiedObject,
     ProtectiveAction: List[String],
@@ -1152,14 +1152,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveActionCollection.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectiveActionCollection.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ProtectiveActionCollection.fields (position), x))
         emitattrs (0, ProtectiveAction)
         emitattrs (1, StageTrigger)
         s.toString
@@ -1209,7 +1209,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class ProtectiveActionEquipment
+final case class ProtectiveActionEquipment
 (
     override val sup: ProtectiveAction,
     inService: Boolean,
@@ -1237,7 +1237,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1296,7 +1296,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class ProtectiveActionRegulation
+final case class ProtectiveActionRegulation
 (
     override val sup: ProtectiveAction,
     isRegulating: Boolean,
@@ -1325,7 +1325,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1391,7 +1391,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class RemedialActionScheme
+final case class RemedialActionScheme
 (
     override val sup: PowerSystemResource,
     armed: Boolean,
@@ -1423,7 +1423,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1432,7 +1432,7 @@ extends
         implicit val clz: String = RemedialActionScheme.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemedialActionScheme.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemedialActionScheme.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RemedialActionScheme.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RemedialActionScheme.fields (position), x))
         emitelem (0, armed)
         emitattr (1, kind)
         emitelem (2, normalArmed)
@@ -1501,7 +1501,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class Stage
+final case class Stage
 (
     override val sup: IdentifiedObject,
     priority: Int,
@@ -1530,7 +1530,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1539,7 +1539,7 @@ extends
         implicit val clz: String = Stage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Stage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Stage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Stage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Stage.fields (position), x))
         emitelem (0, priority)
         emitattr (1, RemedialActionScheme)
         emitattrs (2, StageTrigger)
@@ -1601,7 +1601,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class StageTrigger
+final case class StageTrigger
 (
     override val sup: IdentifiedObject,
     armed: Boolean,
@@ -1635,7 +1635,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1720,7 +1720,7 @@ extends
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
-case class TriggerCondition
+final case class TriggerCondition
 (
     override val sup: IdentifiedObject,
     GateTrigger: String,
@@ -1748,7 +1748,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

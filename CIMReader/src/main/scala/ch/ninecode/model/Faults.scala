@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
-case class EquipmentFault
+final case class EquipmentFault
 (
     override val sup: Fault,
     Terminal: String
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -105,7 +105,7 @@ extends
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
-case class Fault
+final case class Fault
 (
     override val sup: IdentifiedObject,
     impedance: String,
@@ -139,7 +139,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -148,7 +148,7 @@ extends
         implicit val clz: String = Fault.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Fault.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Fault.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Fault.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Fault.fields (position), x))
         emitattr (0, impedance)
         emitattr (1, kind)
         emitelem (2, occurredDateTime)
@@ -225,7 +225,7 @@ extends
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
-case class FaultCauseType
+final case class FaultCauseType
 (
     override val sup: IdentifiedObject,
     ConfigurationEvent: List[String],
@@ -253,14 +253,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FaultCauseType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FaultCauseType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FaultCauseType.fields (position), x))
         emitattrs (0, ConfigurationEvent)
         emitattrs (1, Faults)
         s.toString
@@ -312,7 +312,7 @@ extends
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
-case class FaultImpedance
+final case class FaultImpedance
 (
     override val sup: BasicElement,
     rGround: Double,
@@ -342,7 +342,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -403,7 +403,7 @@ extends
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
-case class LineFault
+final case class LineFault
 (
     override val sup: Fault,
     lengthFromTerminal1: Double,
@@ -431,7 +431,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

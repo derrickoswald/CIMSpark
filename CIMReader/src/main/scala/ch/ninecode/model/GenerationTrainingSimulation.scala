@@ -36,7 +36,7 @@ import ch.ninecode.cim.Relationship
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class BWRSteamSupply
+final case class BWRSteamSupply
 (
     override val sup: SteamSupply,
     highPowerLimit: Double,
@@ -83,7 +83,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -211,7 +211,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class CTTempActivePowerCurve
+final case class CTTempActivePowerCurve
 (
     override val sup: Curve,
     CombustionTurbine: String
@@ -238,7 +238,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -302,7 +302,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class CombustionTurbine
+final case class CombustionTurbine
 (
     override val sup: PrimeMover,
     ambientTemp: Double,
@@ -339,7 +339,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -433,7 +433,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class DrumBoiler
+final case class DrumBoiler
 (
     override val sup: FossilSteamSupply,
     drumBoilerRating: Double
@@ -460,7 +460,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -535,7 +535,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class FossilSteamSupply
+final case class FossilSteamSupply
 (
     override val sup: SteamSupply,
     auxPowerVersusFrequency: Double,
@@ -587,7 +587,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -737,7 +737,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class HeatRecoveryBoiler
+final case class HeatRecoveryBoiler
 (
     override val sup: FossilSteamSupply,
     steamSupplyRating2: Double,
@@ -765,7 +765,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -773,7 +773,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = HeatRecoveryBoiler.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HeatRecoveryBoiler.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HeatRecoveryBoiler.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (HeatRecoveryBoiler.fields (position), x))
         emitelem (0, steamSupplyRating2)
         emitattrs (1, CombustionTurbines)
         s.toString
@@ -833,7 +833,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class HydroTurbine
+final case class HydroTurbine
 (
     override val sup: PrimeMover,
     gateRateLimit: Double,
@@ -870,7 +870,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -978,7 +978,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class PWRSteamSupply
+final case class PWRSteamSupply
 (
     override val sup: SteamSupply,
     coldLegFBLagTC: Double,
@@ -1024,7 +1024,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1149,7 +1149,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class PrimeMover
+final case class PrimeMover
 (
     override val sup: PowerSystemResource,
     primeMoverRating: Double,
@@ -1177,7 +1177,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1185,7 +1185,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PrimeMover.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PrimeMover.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PrimeMover.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PrimeMover.fields (position), x))
         emitelem (0, primeMoverRating)
         emitattrs (1, SynchronousMachines)
         s.toString
@@ -1234,7 +1234,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class SteamSupply
+final case class SteamSupply
 (
     override val sup: PowerSystemResource,
     steamSupplyRating: Double,
@@ -1262,7 +1262,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1270,7 +1270,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SteamSupply.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SteamSupply.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SteamSupply.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SteamSupply.fields (position), x))
         emitelem (0, steamSupplyRating)
         emitattrs (1, SteamTurbines)
         s.toString
@@ -1330,7 +1330,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class SteamTurbine
+final case class SteamTurbine
 (
     override val sup: PrimeMover,
     crossoverTC: Double,
@@ -1369,7 +1369,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1377,7 +1377,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SteamTurbine.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SteamTurbine.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SteamTurbine.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SteamTurbine.fields (position), x))
         emitelem (0, crossoverTC)
         emitelem (1, reheater1TC)
         emitelem (2, reheater2TC)
@@ -1468,7 +1468,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class Subcritical
+final case class Subcritical
 (
     override val sup: FossilSteamSupply
 )
@@ -1494,7 +1494,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1530,7 +1530,7 @@ extends
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
-case class Supercritical
+final case class Supercritical
 (
     override val sup: FossilSteamSupply
 )
@@ -1556,7 +1556,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

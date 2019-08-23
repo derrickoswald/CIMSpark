@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
-case class CRROrgRole
+final case class CRROrgRole
 (
     override val sup: OrganisationRole,
     kind: String,
@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -115,7 +115,7 @@ extends
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
-case class CRRSegment
+final case class CRRSegment
 (
     override val sup: IdentifiedObject,
     amount: Double,
@@ -149,7 +149,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -158,7 +158,7 @@ extends
         implicit val clz: String = CRRSegment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRRSegment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRRSegment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CRRSegment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CRRSegment.fields (position), x))
         emitelem (0, amount)
         emitelem (1, clearingPrice)
         emitelem (2, endDateTime)
@@ -246,7 +246,7 @@ extends
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
-case class CongestionRevenueRight
+final case class CongestionRevenueRight
 (
     override val sup: Document,
     cRRcategory: String,
@@ -281,7 +281,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -290,7 +290,7 @@ extends
         implicit val clz: String = CongestionRevenueRight.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CongestionRevenueRight.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CongestionRevenueRight.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CongestionRevenueRight.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CongestionRevenueRight.fields (position), x))
         emitattr (0, cRRcategory)
         emitattr (1, cRRtype)
         emitattr (2, hedgeType)

@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @groupname StaticVarCompensatorDynamics Package StaticVarCompensatorDynamics
  * @groupdesc StaticVarCompensatorDynamics Static var compensator (SVC) models.
  */
-case class StaticVarCompensatorDynamics
+final case class StaticVarCompensatorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     StaticVarCompensator: String
@@ -43,7 +43,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

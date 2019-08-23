@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindAeroConstIEC
+final case class WindAeroConstIEC
 (
     override val sup: IdentifiedObject,
     WindGenTurbineType1aIEC: String
@@ -50,7 +50,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -112,7 +112,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindAeroOneDimIEC
+final case class WindAeroOneDimIEC
 (
     override val sup: IdentifiedObject,
     ka: Double,
@@ -141,7 +141,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -222,7 +222,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindAeroTwoDimIEC
+final case class WindAeroTwoDimIEC
 (
     override val sup: IdentifiedObject,
     dpomega: Double,
@@ -256,7 +256,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -363,7 +363,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContCurrLimIEC
+final case class WindContCurrLimIEC
 (
     override val sup: IdentifiedObject,
     imax: Double,
@@ -398,7 +398,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -407,7 +407,7 @@ extends
         implicit val clz: String = WindContCurrLimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContCurrLimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContCurrLimIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContCurrLimIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContCurrLimIEC.fields (position), x))
         emitelem (0, imax)
         emitelem (1, imaxdip)
         emitelem (2, kpqu)
@@ -540,7 +540,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContPType3IEC
+final case class WindContPType3IEC
 (
     override val sup: IdentifiedObject,
     dpmax: Double,
@@ -591,7 +591,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -600,7 +600,7 @@ extends
         implicit val clz: String = WindContPType3IEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType3IEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType3IEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContPType3IEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContPType3IEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dprefmax)
         emitelem (2, dprefmin)
@@ -754,7 +754,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContPType4aIEC
+final case class WindContPType4aIEC
 (
     override val sup: IdentifiedObject,
     dpmaxp4a: Double,
@@ -784,7 +784,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -863,7 +863,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContPType4bIEC
+final case class WindContPType4bIEC
 (
     override val sup: IdentifiedObject,
     dpmaxp4b: Double,
@@ -894,7 +894,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -989,7 +989,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContPitchAngleIEC
+final case class WindContPitchAngleIEC
 (
     override val sup: IdentifiedObject,
     dthetamax: Double,
@@ -1026,7 +1026,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1171,7 +1171,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContQIEC
+final case class WindContQIEC
 (
     override val sup: IdentifiedObject,
     iqh1: Double,
@@ -1221,7 +1221,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1376,7 +1376,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContQLimIEC
+final case class WindContQLimIEC
 (
     override val sup: IdentifiedObject,
     qmax: Double,
@@ -1405,7 +1405,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1477,7 +1477,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContQPQULimIEC
+final case class WindContQPQULimIEC
 (
     override val sup: IdentifiedObject,
     tpfiltql: Double,
@@ -1507,7 +1507,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1516,7 +1516,7 @@ extends
         implicit val clz: String = WindContQPQULimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQPQULimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQPQULimIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContQPQULimIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContQPQULimIEC.fields (position), x))
         emitelem (0, tpfiltql)
         emitelem (1, tufiltql)
         emitattrs (2, WindDynamicsLookupTable)
@@ -1597,7 +1597,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindContRotorRIEC
+final case class WindContRotorRIEC
 (
     override val sup: IdentifiedObject,
     kirr: Double,
@@ -1633,7 +1633,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1642,7 +1642,7 @@ extends
         implicit val clz: String = WindContRotorRIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContRotorRIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContRotorRIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContRotorRIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContRotorRIEC.fields (position), x))
         emitelem (0, kirr)
         emitelem (1, komegafilt)
         emitelem (2, kpfilt)
@@ -1740,7 +1740,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindDynamicsLookupTable
+final case class WindDynamicsLookupTable
 (
     override val sup: IdentifiedObject,
     input: Double,
@@ -1779,7 +1779,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1894,7 +1894,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenTurbineType1aIEC
+final case class WindGenTurbineType1aIEC
 (
     override val sup: WindTurbineType1or2IEC,
     WindAeroConstIEC: String
@@ -1921,7 +1921,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1979,7 +1979,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenTurbineType1bIEC
+final case class WindGenTurbineType1bIEC
 (
     override val sup: WindTurbineType1or2IEC,
     WindPitchContPowerIEC: String
@@ -2006,7 +2006,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2065,7 +2065,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenTurbineType2IEC
+final case class WindGenTurbineType2IEC
 (
     override val sup: WindTurbineType1or2IEC,
     WindContRotorRIEC: String,
@@ -2093,7 +2093,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2160,7 +2160,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenType3IEC
+final case class WindGenType3IEC
 (
     override val sup: IdentifiedObject,
     dipmax: Double,
@@ -2190,7 +2190,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2265,7 +2265,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenType3aIEC
+final case class WindGenType3aIEC
 (
     override val sup: WindGenType3IEC,
     kpc: Double,
@@ -2294,7 +2294,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2369,7 +2369,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenType3bIEC
+final case class WindGenType3bIEC
 (
     override val sup: WindGenType3IEC,
     mwtcwp: Boolean,
@@ -2399,7 +2399,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2407,7 +2407,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3bIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3bIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindGenType3bIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindGenType3bIEC.fields (position), x))
         emitelem (0, mwtcwp)
         emitelem (1, tg)
         emitelem (2, two)
@@ -2479,7 +2479,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindGenType4IEC
+final case class WindGenType4IEC
 (
     override val sup: IdentifiedObject,
     dipmax: Double,
@@ -2511,7 +2511,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2601,7 +2601,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindMechIEC
+final case class WindMechIEC
 (
     override val sup: IdentifiedObject,
     cdrt: Double,
@@ -2634,7 +2634,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2735,7 +2735,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindPitchContPowerIEC
+final case class WindPitchContPowerIEC
 (
     override val sup: IdentifiedObject,
     dpmax: Double,
@@ -2771,7 +2771,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2780,7 +2780,7 @@ extends
         implicit val clz: String = WindPitchContPowerIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPitchContPowerIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPitchContPowerIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPitchContPowerIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPitchContPowerIEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dpmin)
         emitelem (2, pmin)
@@ -2868,7 +2868,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindPlantDynamics
+final case class WindPlantDynamics
 (
     override val sup: DynamicsFunctionBlock,
     RemoteInputSignal: String,
@@ -2896,7 +2896,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2904,7 +2904,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantDynamics.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantDynamics.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantDynamics.fields (position), x))
         emitattr (0, RemoteInputSignal)
         emitattrs (1, WindTurbineType3or4Dynamics)
         s.toString
@@ -2991,7 +2991,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindPlantFreqPcontrolIEC
+final case class WindPlantFreqPcontrolIEC
 (
     override val sup: IdentifiedObject,
     dprefmax: Double,
@@ -3034,7 +3034,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3043,7 +3043,7 @@ extends
         implicit val clz: String = WindPlantFreqPcontrolIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantFreqPcontrolIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantFreqPcontrolIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
         emitelem (0, dprefmax)
         emitelem (1, dprefmin)
         emitelem (2, dpwprefmax)
@@ -3160,7 +3160,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindPlantIEC
+final case class WindPlantIEC
 (
     override val sup: WindPlantDynamics,
     WindPlantFreqPcontrolIEC: String,
@@ -3188,7 +3188,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3288,7 +3288,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindPlantReactiveControlIEC
+final case class WindPlantReactiveControlIEC
 (
     override val sup: IdentifiedObject,
     dxrefmax: Double,
@@ -3334,7 +3334,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3343,7 +3343,7 @@ extends
         implicit val clz: String = WindPlantReactiveControlIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantReactiveControlIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantReactiveControlIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
         emitelem (0, dxrefmax)
         emitelem (1, dxrefmin)
         emitelem (2, kiwpx)
@@ -3489,7 +3489,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindProtectionIEC
+final case class WindProtectionIEC
 (
     override val sup: IdentifiedObject,
     dfimax: Double,
@@ -3525,7 +3525,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3534,7 +3534,7 @@ extends
         implicit val clz: String = WindProtectionIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindProtectionIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindProtectionIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindProtectionIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindProtectionIEC.fields (position), x))
         emitelem (0, dfimax)
         emitelem (1, fover)
         emitelem (2, funder)
@@ -3629,7 +3629,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindRefFrameRotIEC
+final case class WindRefFrameRotIEC
 (
     override val sup: IdentifiedObject,
     tpll: Double,
@@ -3659,7 +3659,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3731,7 +3731,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType1or2Dynamics
+final case class WindTurbineType1or2Dynamics
 (
     override val sup: DynamicsFunctionBlock,
     AsynchronousMachineDynamics: String,
@@ -3759,7 +3759,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3824,7 +3824,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType1or2IEC
+final case class WindTurbineType1or2IEC
 (
     override val sup: WindTurbineType1or2Dynamics,
     WindMechIEC: String,
@@ -3852,7 +3852,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3918,7 +3918,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType3IEC
+final case class WindTurbineType3IEC
 (
     override val sup: WindTurbineType3or4IEC,
     WindAeroOneDimIEC: String,
@@ -3950,7 +3950,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4033,7 +4033,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType3or4Dynamics
+final case class WindTurbineType3or4Dynamics
 (
     override val sup: DynamicsFunctionBlock,
     PowerElectronicsConnection: String,
@@ -4062,7 +4062,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4133,7 +4133,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType3or4IEC
+final case class WindTurbineType3or4IEC
 (
     override val sup: WindTurbineType3or4Dynamics,
     WIndContQIEC: String,
@@ -4165,7 +4165,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4246,7 +4246,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType4IEC
+final case class WindTurbineType4IEC
 (
     override val sup: WindTurbineType3or4IEC,
     WindGenType3aIEC: String
@@ -4273,7 +4273,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4332,7 +4332,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType4aIEC
+final case class WindTurbineType4aIEC
 (
     override val sup: WindTurbineType4IEC,
     WindContPType4aIEC: String,
@@ -4360,7 +4360,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4425,7 +4425,7 @@ extends
 - type 4: wind turbines connected to the grid through a full size power converter.
 Models included in this package are according to IEC 61400-27-1:2015.
  */
-case class WindTurbineType4bIEC
+final case class WindTurbineType4bIEC
 (
     override val sup: WindTurbineType4IEC,
     WindContPType4bIEC: String,
@@ -4454,7 +4454,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

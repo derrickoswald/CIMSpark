@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @groupname PackageDependencies Package PackageDependencies
  * @groupdesc PackageDependencies This package shows all the root level subpackage dependencies of the combined CIM model.
  */
-case class PackageDependenciesCIMVersion
+final case class PackageDependenciesCIMVersion
 (
     override val sup: BasicElement,
     date: String,
@@ -49,7 +49,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

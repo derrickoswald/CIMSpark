@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class ControlAreaOperator
+final case class ControlAreaOperator
 (
     override val sup: Organisation,
     CAChildOf: List[String],
@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -55,7 +55,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ControlAreaOperator.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlAreaOperator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ControlAreaOperator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ControlAreaOperator.fields (position), x))
         emitattrs (0, CAChildOf)
         emitattr (1, ControlledBy)
         s.toString
@@ -104,7 +104,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class CustomerConsumer
+final case class CustomerConsumer
 (
     override val sup: Organisation,
     CustChildOf: List[String]
@@ -131,14 +131,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CustomerConsumer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerConsumer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CustomerConsumer.fields (position), x))
         emitattrs (0, CustChildOf)
         s.toString
     }
@@ -182,7 +182,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class GenerationProvider
+final case class GenerationProvider
 (
     override val sup: Organisation,
     ProvidedBy: List[String]
@@ -209,14 +209,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GenerationProvider.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GenerationProvider.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (GenerationProvider.fields (position), x))
         emitattrs (0, ProvidedBy)
         s.toString
     }
@@ -261,7 +261,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class IntSchedAgreement
+final case class IntSchedAgreement
 (
     override val sup: Agreement,
     defaultIntegrationMethod: String
@@ -288,7 +288,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -337,7 +337,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class Marketer
+final case class Marketer
 (
     override val sup: Organisation,
     HoldsTitleTo_EnergyProducts: List[String],
@@ -365,14 +365,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Marketer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Marketer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Marketer.fields (position), x))
         emitattrs (0, HoldsTitleTo_EnergyProducts)
         emitattrs (1, Resells_EnergyProduct)
         s.toString
@@ -420,7 +420,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class OpenAccessProduct
+final case class OpenAccessProduct
 (
     override val sup: Agreement
 )
@@ -446,7 +446,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -480,7 +480,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class TransmissionProduct
+final case class TransmissionProduct
 (
     override val sup: IdentifiedObject,
     transmissionProductType: String,
@@ -509,7 +509,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -518,7 +518,7 @@ extends
         implicit val clz: String = TransmissionProduct.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransmissionProduct.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransmissionProduct.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransmissionProduct.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransmissionProduct.fields (position), x))
         emitelem (0, transmissionProductType)
         emitattrs (1, LocationFor)
         emitattr (2, TransmissionProvider)
@@ -575,7 +575,7 @@ extends
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
-case class TransmissionProvider
+final case class TransmissionProvider
 (
     override val sup: Organisation,
     For: List[String],
@@ -603,14 +603,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransmissionProvider.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransmissionProvider.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransmissionProvider.fields (position), x))
         emitattrs (0, For)
         emitattrs (1, TransmissionProducts)
         s.toString

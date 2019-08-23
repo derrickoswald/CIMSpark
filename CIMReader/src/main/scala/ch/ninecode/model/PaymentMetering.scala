@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class AccountMovement
+final case class AccountMovement
 (
     override val sup: BasicElement,
     amount: Double,
@@ -49,7 +49,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -108,7 +108,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class AccountingUnit
+final case class AccountingUnit
 (
     override val sup: BasicElement,
     energyUnit: Double,
@@ -138,7 +138,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -207,7 +207,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class AuxiliaryAccount
+final case class AuxiliaryAccount
 (
     override val sup: Document,
     balance: Double,
@@ -241,7 +241,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -250,7 +250,7 @@ extends
         implicit val clz: String = AuxiliaryAccount.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryAccount.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryAccount.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AuxiliaryAccount.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AuxiliaryAccount.fields (position), x))
         emitelem (0, balance)
         emitattr (1, due)
         emitattr (2, lastCredit)
@@ -345,7 +345,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class AuxiliaryAgreement
+final case class AuxiliaryAgreement
 (
     override val sup: Agreement,
     arrearsInterest: Double,
@@ -382,7 +382,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -391,7 +391,7 @@ extends
         implicit val clz: String = AuxiliaryAgreement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryAgreement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryAgreement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AuxiliaryAgreement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AuxiliaryAgreement.fields (position), x))
         emitelem (0, arrearsInterest)
         emitelem (1, auxCycle)
         emitelem (2, auxPriorityCode)
@@ -480,7 +480,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class BankAccountDetail
+final case class BankAccountDetail
 (
     override val sup: BasicElement,
     accountNumber: String,
@@ -511,7 +511,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -579,7 +579,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Card
+final case class Card
 (
     override val sup: BasicElement,
     accountHolderName: String,
@@ -610,7 +610,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -681,7 +681,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Cashier
+final case class Cashier
 (
     override val sup: IdentifiedObject,
     electronicAddress: String,
@@ -709,7 +709,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -717,7 +717,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Cashier.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Cashier.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Cashier.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Cashier.fields (position), x))
         emitattr (0, electronicAddress)
         emitattrs (1, CashierShifts)
         s.toString
@@ -769,7 +769,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class CashierShift
+final case class CashierShift
 (
     override val sup: Shift,
     cashFloat: Double,
@@ -800,7 +800,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -809,7 +809,7 @@ extends
         implicit val clz: String = CashierShift.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CashierShift.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CashierShift.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CashierShift.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CashierShift.fields (position), x))
         emitelem (0, cashFloat)
         emitattr (1, Cashier)
         emitattr (2, PointOfSale)
@@ -881,7 +881,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Charge
+final case class Charge
 (
     override val sup: IdentifiedObject,
     fixedPortion: String,
@@ -915,7 +915,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -924,7 +924,7 @@ extends
         implicit val clz: String = Charge.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Charge.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Charge.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Charge.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Charge.fields (position), x))
         emitattr (0, fixedPortion)
         emitattr (1, kind)
         emitelem (2, variablePortion)
@@ -1006,7 +1006,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Cheque
+final case class Cheque
 (
     override val sup: BasicElement,
     bankAccountDetail: String,
@@ -1038,7 +1038,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1119,7 +1119,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class ConsumptionTariffInterval
+final case class ConsumptionTariffInterval
 (
     override val sup: BasicElement,
     sequenceNumber: Int,
@@ -1151,7 +1151,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1160,7 +1160,7 @@ extends
         implicit val clz: String = ConsumptionTariffInterval.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConsumptionTariffInterval.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConsumptionTariffInterval.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConsumptionTariffInterval.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConsumptionTariffInterval.fields (position), x))
         emitelem (0, sequenceNumber)
         emitelem (1, startValue)
         emitattrs (2, Charges)
@@ -1232,7 +1232,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Due
+final case class Due
 (
     override val sup: BasicElement,
     arrears: Double,
@@ -1263,7 +1263,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1330,7 +1330,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class LineDetail
+final case class LineDetail
 (
     override val sup: BasicElement,
     amount: Double,
@@ -1360,7 +1360,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1426,7 +1426,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class MerchantAccount
+final case class MerchantAccount
 (
     override val sup: Document,
     currentBalance: Double,
@@ -1457,7 +1457,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1466,7 +1466,7 @@ extends
         implicit val clz: String = MerchantAccount.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MerchantAccount.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MerchantAccount.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MerchantAccount.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MerchantAccount.fields (position), x))
         emitelem (0, currentBalance)
         emitelem (1, provisionalBalance)
         emitattr (2, MerchantAgreement)
@@ -1530,7 +1530,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class MerchantAgreement
+final case class MerchantAgreement
 (
     override val sup: Agreement,
     MerchantAccounts: List[String]
@@ -1557,14 +1557,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MerchantAgreement.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MerchantAgreement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MerchantAgreement.fields (position), x))
         emitattrs (0, MerchantAccounts)
         s.toString
     }
@@ -1609,7 +1609,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class PointOfSale
+final case class PointOfSale
 (
     override val sup: IdentifiedObject,
     location: String,
@@ -1637,7 +1637,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1645,7 +1645,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PointOfSale.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PointOfSale.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PointOfSale.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PointOfSale.fields (position), x))
         emitelem (0, location)
         emitattrs (1, CashierShifts)
         s.toString
@@ -1698,7 +1698,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Receipt
+final case class Receipt
 (
     override val sup: IdentifiedObject,
     isBankable: Boolean,
@@ -1730,7 +1730,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1739,7 +1739,7 @@ extends
         implicit val clz: String = Receipt.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Receipt.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Receipt.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Receipt.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Receipt.fields (position), x))
         emitelem (0, isBankable)
         emitattr (1, line)
         emitattr (2, CashierShift)
@@ -1811,7 +1811,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class ServiceSupplier
+final case class ServiceSupplier
 (
     override val sup: OrganisationRole,
     issuerIdentificationNumber: String,
@@ -1842,7 +1842,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1851,7 +1851,7 @@ extends
         implicit val clz: String = ServiceSupplier.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceSupplier.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ServiceSupplier.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ServiceSupplier.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ServiceSupplier.fields (position), x))
         emitelem (0, issuerIdentificationNumber)
         emitattr (1, kind)
         emitattrs (2, BankAccounts)
@@ -1938,7 +1938,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Shift
+final case class Shift
 (
     override val sup: IdentifiedObject,
     activityInterval: String,
@@ -1970,7 +1970,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2045,7 +2045,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class TariffProfile
+final case class TariffProfile
 (
     override val sup: Document,
     tariffCycle: String,
@@ -2075,7 +2075,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2083,7 +2083,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TariffProfile.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TariffProfile.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TariffProfile.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TariffProfile.fields (position), x))
         emitelem (0, tariffCycle)
         emitattrs (1, ConsumptionTariffIntervals)
         emitattrs (2, Tariffs)
@@ -2149,7 +2149,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Tender
+final case class Tender
 (
     override val sup: IdentifiedObject,
     amount: Double,
@@ -2181,7 +2181,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2262,7 +2262,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class TimeTariffInterval
+final case class TimeTariffInterval
 (
     override val sup: BasicElement,
     sequenceNumber: Int,
@@ -2293,7 +2293,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2301,7 +2301,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TimeTariffInterval.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeTariffInterval.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TimeTariffInterval.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TimeTariffInterval.fields (position), x))
         emitelem (0, sequenceNumber)
         emitelem (1, startTime)
         emitattrs (2, Charges)
@@ -2379,7 +2379,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Transaction
+final case class Transaction
 (
     override val sup: IdentifiedObject,
     diverseReference: String,
@@ -2421,7 +2421,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2430,7 +2430,7 @@ extends
         implicit val clz: String = Transaction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Transaction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Transaction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Transaction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Transaction.fields (position), x))
         emitelem (0, diverseReference)
         emitelem (1, donorReference)
         emitattr (2, kind)
@@ -2542,7 +2542,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Transactor
+final case class Transactor
 (
     override val sup: IdentifiedObject,
     MerchantAccounts: List[String]
@@ -2569,14 +2569,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Transactor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Transactor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Transactor.fields (position), x))
         emitattrs (0, MerchantAccounts)
         s.toString
     }
@@ -2622,7 +2622,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class Vendor
+final case class Vendor
 (
     override val sup: IdentifiedObject,
     VendorShifts: List[String]
@@ -2649,14 +2649,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Vendor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Vendor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Vendor.fields (position), x))
         emitattrs (0, VendorShifts)
         s.toString
     }
@@ -2708,7 +2708,7 @@ extends
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
-case class VendorShift
+final case class VendorShift
 (
     override val sup: Shift,
     merchantDebitAmount: Double,
@@ -2740,7 +2740,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2749,7 +2749,7 @@ extends
         implicit val clz: String = VendorShift.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VendorShift.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VendorShift.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VendorShift.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (VendorShift.fields (position), x))
         emitelem (0, merchantDebitAmount)
         emitelem (1, posted)
         emitattr (2, MerchantAccount)

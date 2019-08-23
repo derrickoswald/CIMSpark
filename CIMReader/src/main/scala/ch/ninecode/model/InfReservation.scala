@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @group InfReservation
  * @groupname InfReservation Package InfReservation
  */
-case class TiePoint
+final case class TiePoint
 (
     override val sup: IdentifiedObject,
     tiePointMWRating: Double,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -56,7 +56,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TiePoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TiePoint.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TiePoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TiePoint.fields (position), x))
         emitelem (0, tiePointMWRating)
         emitattrs (1, ByMktMeasurement)
         emitattrs (2, ForMktMeasurement)

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group Feeder
  * @groupname Feeder Package Feeder
  */
-case class Circuit
+final case class Circuit
 (
     override val sup: Line,
     EndBay: List[String],
@@ -40,14 +40,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Circuit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Circuit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Circuit.fields (position), x))
         emitattrs (0, EndBay)
         emitattrs (1, EndTerminal)
         s.toString

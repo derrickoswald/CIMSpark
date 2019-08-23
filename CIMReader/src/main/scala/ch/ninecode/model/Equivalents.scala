@@ -59,7 +59,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
-case class EquivalentBranch
+final case class EquivalentBranch
 (
     override val sup: EquivalentEquipment,
     negativeR12: Double,
@@ -101,7 +101,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -211,7 +211,7 @@ extends
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
-case class EquivalentEquipment
+final case class EquivalentEquipment
 (
     override val sup: ConductingEquipment,
     EquivalentNetwork: String
@@ -238,7 +238,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -325,7 +325,7 @@ extends
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
-case class EquivalentInjection
+final case class EquivalentInjection
 (
     override val sup: EquivalentEquipment,
     maxP: Double,
@@ -367,7 +367,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -481,7 +481,7 @@ extends
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
-case class EquivalentNetwork
+final case class EquivalentNetwork
 (
     override val sup: ConnectivityNodeContainer,
     EquivalentEquipments: List[String]
@@ -508,14 +508,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentNetwork.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EquivalentNetwork.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EquivalentNetwork.fields (position), x))
         emitattrs (0, EquivalentEquipments)
         s.toString
     }
@@ -560,7 +560,7 @@ extends
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
-case class EquivalentShunt
+final case class EquivalentShunt
 (
     override val sup: EquivalentEquipment,
     b: Double,
@@ -588,7 +588,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

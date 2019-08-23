@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
  * @group unused
  * @groupname unused Package unused
  */
-case class ModelFrameType
+final case class ModelFrameType
 (
     override val sup: IdentifiedObject,
     ModelFrame: List[String]
@@ -42,14 +42,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelFrameType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelFrameType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelFrameType.fields (position), x))
         emitattrs (0, ModelFrame)
         s.toString
     }

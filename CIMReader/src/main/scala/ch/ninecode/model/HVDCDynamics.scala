@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @groupname HVDCDynamics Package HVDCDynamics
  * @groupdesc HVDCDynamics High voltage direct current (HVDC) models.
  */
-case class CSCDynamics
+final case class CSCDynamics
 (
     override val sup: HVDCDynamics,
     CSConverter: String
@@ -43,7 +43,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -93,7 +93,7 @@ extends
  * @groupname HVDCDynamics Package HVDCDynamics
  * @groupdesc HVDCDynamics High voltage direct current (HVDC) models.
  */
-case class HVDCDynamics
+final case class HVDCDynamics
 (
     override val sup: DynamicsFunctionBlock
 )
@@ -119,7 +119,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -156,7 +156,7 @@ extends
  * @groupname HVDCDynamics Package HVDCDynamics
  * @groupdesc HVDCDynamics High voltage direct current (HVDC) models.
  */
-case class VSCDynamics
+final case class VSCDynamics
 (
     override val sup: HVDCDynamics,
     VsConverter: String
@@ -183,7 +183,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

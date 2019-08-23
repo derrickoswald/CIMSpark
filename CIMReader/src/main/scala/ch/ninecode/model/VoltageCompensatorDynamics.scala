@@ -26,7 +26,7 @@ import ch.ninecode.cim.Relationship
 <font color="#0f0f0f">
 </font>
  */
-case class GenICompensationForGenJ
+final case class GenICompensationForGenJ
 (
     override val sup: IdentifiedObject,
     rcij: Double,
@@ -56,7 +56,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -140,7 +140,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class VCompIEEEType1
+final case class VCompIEEEType1
 (
     override val sup: VoltageCompensatorDynamics,
     rc: Double,
@@ -169,7 +169,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -241,7 +241,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class VCompIEEEType2
+final case class VCompIEEEType2
 (
     override val sup: VoltageCompensatorDynamics,
     tr: Double,
@@ -269,7 +269,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -277,7 +277,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VCompIEEEType2.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VCompIEEEType2.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VCompIEEEType2.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (VCompIEEEType2.fields (position), x))
         emitelem (0, tr)
         emitattrs (1, GenICompensationForGenJ)
         s.toString
@@ -333,7 +333,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class VoltageCompensatorDynamics
+final case class VoltageCompensatorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String,
@@ -361,7 +361,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

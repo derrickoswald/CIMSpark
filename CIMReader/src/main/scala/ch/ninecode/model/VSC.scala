@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class BlockingFunction
+final case class BlockingFunction
 (
     override val sup: BasicElement,
     Delay: String,
@@ -40,7 +40,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -100,7 +100,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class DCvoltageControl
+final case class DCvoltageControl
 (
     override val sup: BasicElement,
     kivdc: Double,
@@ -132,7 +132,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -201,7 +201,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class PFmode
+final case class PFmode
 (
     override val sup: BasicElement,
     Delay: String,
@@ -229,7 +229,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -281,7 +281,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class Pcontrol
+final case class Pcontrol
 (
     override val sup: BasicElement,
     Delay: String,
@@ -309,7 +309,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -361,7 +361,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class Qlimiter
+final case class Qlimiter
 (
     override val sup: BasicElement,
     Delay: String,
@@ -389,7 +389,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -441,7 +441,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class Qmode
+final case class Qmode
 (
     override val sup: BasicElement,
     Delay: String,
@@ -469,7 +469,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -521,7 +521,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class Qregulator
+final case class Qregulator
 (
     override val sup: BasicElement,
     Delay: String,
@@ -550,7 +550,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -558,7 +558,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Qregulator.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Qregulator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Qregulator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Qregulator.fields (position), x))
         emitattr (0, Delay)
         emitattrs (1, HVDClookUpTable)
         emitattr (2, VSCtype1)
@@ -608,7 +608,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class Umode
+final case class Umode
 (
     override val sup: BasicElement,
     Delay: String,
@@ -636,7 +636,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -688,7 +688,7 @@ extends
  * @group VSC
  * @groupname VSC Package VSC
  */
-case class VSCtype1
+final case class VSCtype1
 (
     override val sup: VSCDynamics,
     BlockingFunction: String,
@@ -722,7 +722,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

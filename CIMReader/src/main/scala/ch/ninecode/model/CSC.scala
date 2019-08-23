@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class CCAinverter
+final case class CCAinverter
 (
     override val sup: BasicElement
 )
@@ -38,7 +38,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -71,7 +71,7 @@ extends
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class CCArectifierControl
+final case class CCArectifierControl
 (
     override val sup: BasicElement
 )
@@ -97,7 +97,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -130,7 +130,7 @@ extends
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class CSCtype1
+final case class CSCtype1
 (
     override val sup: CSCDynamics
 )
@@ -156,7 +156,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -189,7 +189,7 @@ extends
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class IdcInverterControl
+final case class IdcInverterControl
 (
     override val sup: BasicElement
 )
@@ -215,7 +215,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -248,7 +248,7 @@ extends
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class IgnAngleContInverter
+final case class IgnAngleContInverter
 (
     override val sup: BasicElement
 )
@@ -274,7 +274,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -307,7 +307,7 @@ extends
  * @group CSC
  * @groupname CSC Package CSC
  */
-case class VDCOL
+final case class VDCOL
 (
     override val sup: BasicElement
 )
@@ -333,7 +333,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

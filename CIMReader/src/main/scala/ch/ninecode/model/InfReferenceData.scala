@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @group InfReferenceData
  * @groupname InfReferenceData Package InfReferenceData
  */
-case class LoadReductionTimeCurve
+final case class LoadReductionTimeCurve
 (
     override val sup: Curve,
     loadReductionTimeCurveType: String
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -110,7 +110,7 @@ extends
  * @group InfReferenceData
  * @groupname InfReferenceData Package InfReferenceData
  */
-case class RegisteredControllableLoad
+final case class RegisteredControllableLoad
 (
     override val sup: BasicElement,
     maxBaseLoad: Double,
@@ -148,7 +148,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class BaseWork
+final case class BaseWork
 (
     override val sup: Document,
     kind: String,
@@ -53,7 +53,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -61,7 +61,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BaseWork.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseWork.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BaseWork.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BaseWork.fields (position), x))
         emitattr (0, kind)
         emitattr (1, priority)
         emitattr (2, statusKind)
@@ -130,7 +130,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class InternalLocation
+final case class InternalLocation
 (
     override val sup: WorkLocation,
     buildingName: String,
@@ -160,7 +160,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -223,7 +223,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class MaintenanceLocation
+final case class MaintenanceLocation
 (
     override val sup: WorkLocation,
     block: String,
@@ -253,7 +253,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -316,7 +316,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class MaintenanceWorkTask
+final case class MaintenanceWorkTask
 (
     override val sup: WorkTask,
     breakerMaintenanceKind: String,
@@ -344,7 +344,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -400,7 +400,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class MaterialItem
+final case class MaterialItem
 (
     override val sup: IdentifiedObject,
     quantity: String,
@@ -429,7 +429,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -491,7 +491,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class RepairItem
+final case class RepairItem
 (
     override val sup: BasicElement,
     breakerRepairItem: String,
@@ -520,7 +520,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -528,7 +528,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RepairItem.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RepairItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RepairItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RepairItem.fields (position), x))
         emitattr (0, breakerRepairItem)
         emitattr (1, transformerRepairItem)
         emitattrs (2, RepairWorkTask)
@@ -583,7 +583,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class RepairWorkTask
+final case class RepairWorkTask
 (
     override val sup: WorkTask,
     emergency: Boolean,
@@ -611,7 +611,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -619,7 +619,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RepairWorkTask.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RepairWorkTask.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RepairWorkTask.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RepairWorkTask.fields (position), x))
         emitelem (0, emergency)
         emitattrs (1, BreakerRepairItem)
         s.toString
@@ -667,7 +667,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class Tool
+final case class Tool
 (
     override val sup: WorkAsset,
     lastCalibrationDate: String
@@ -694,7 +694,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -745,7 +745,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class Vehicle
+final case class Vehicle
 (
     override val sup: WorkAsset,
     odometerReadDateTime: String,
@@ -774,7 +774,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -843,7 +843,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class Work
+final case class Work
 (
     override val sup: BaseWork,
     requestDateTime: String,
@@ -882,7 +882,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -891,7 +891,7 @@ extends
         implicit val clz: String = Work.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Work.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Work.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Work.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Work.fields (position), x))
         emitelem (0, requestDateTime)
         emitelem (1, workOrderNumber)
         emitattrs (2, Appointments)
@@ -994,7 +994,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkActivityRecord
+final case class WorkActivityRecord
 (
     override val sup: ActivityRecord,
     percentComplete: Double,
@@ -1022,7 +1022,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1079,7 +1079,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkAsset
+final case class WorkAsset
 (
     override val sup: Asset,
     CUWorkEquipmentAsset: String,
@@ -1107,7 +1107,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1165,7 +1165,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkLocation
+final case class WorkLocation
 (
     override val sup: Location,
     BaseWorks: List[String],
@@ -1194,7 +1194,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1202,7 +1202,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkLocation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkLocation.fields (position), x))
         emitattrs (0, BaseWorks)
         emitattrs (1, DesignLocations)
         emitattr (2, OneCallRequest)
@@ -1273,7 +1273,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkTask
+final case class WorkTask
 (
     override val sup: BaseWork,
     completedDateTime: String,
@@ -1317,7 +1317,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1326,7 +1326,7 @@ extends
         implicit val clz: String = WorkTask.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkTask.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTask.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkTask.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkTask.fields (position), x))
         emitelem (0, completedDateTime)
         emitelem (1, contractorCost)
         emitelem (2, crewETA)
@@ -1445,7 +1445,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkTimeSchedule
+final case class WorkTimeSchedule
 (
     override val sup: TimeSchedule,
     kind: String,
@@ -1473,7 +1473,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1534,7 +1534,7 @@ extends
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
-case class WorkTimeScheduleKind
+final case class WorkTimeScheduleKind
 (
     override val sup: BasicElement,
     actual: String,
@@ -1566,7 +1566,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @group EnvDomain
  * @groupname EnvDomain Package EnvDomain
  */
-case class RelativeDisplacement
+final case class RelativeDisplacement
 (
     override val sup: BasicElement,
     displacement: Double,
@@ -44,7 +44,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

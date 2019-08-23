@@ -32,7 +32,7 @@ import ch.ninecode.cim.Relationship
  * @group InfTypeAsset
  * @groupname InfTypeAsset Package InfTypeAsset
  */
-case class GeneratorTypeAsset
+final case class GeneratorTypeAsset
 (
     override val sup: CatalogAssetType,
     maxP: Double,
@@ -74,7 +74,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -184,7 +184,7 @@ extends
  * @group InfTypeAsset
  * @groupname InfTypeAsset Package InfTypeAsset
  */
-case class TypeAssetCatalogue
+final case class TypeAssetCatalogue
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -212,7 +212,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -220,7 +220,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TypeAssetCatalogue.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TypeAssetCatalogue.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TypeAssetCatalogue.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TypeAssetCatalogue.fields (position), x))
         emitattr (0, status)
         emitattrs (1, TypeAssets)
         s.toString

@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class Diagram
+final case class Diagram
 (
     override val sup: IdentifiedObject,
     orientation: String,
@@ -57,7 +57,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -66,7 +66,7 @@ extends
         implicit val clz: String = Diagram.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Diagram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Diagram.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Diagram.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Diagram.fields (position), x))
         emitattr (0, orientation)
         emitelem (1, x1InitialView)
         emitelem (2, x2InitialView)
@@ -156,7 +156,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class DiagramObject
+final case class DiagramObject
 (
     override val sup: IdentifiedObject,
     drawingOrder: Int,
@@ -192,7 +192,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -201,7 +201,7 @@ extends
         implicit val clz: String = DiagramObject.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagramObject.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagramObject.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObject.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DiagramObject.fields (position), x))
         emitelem (0, drawingOrder)
         emitelem (1, isPolygon)
         emitelem (2, offsetX)
@@ -285,7 +285,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class DiagramObjectGluePoint
+final case class DiagramObjectGluePoint
 (
     override val sup: BasicElement,
     DiagramObjectPoints: List[String]
@@ -312,14 +312,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramObjectGluePoint.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObjectGluePoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DiagramObjectGluePoint.fields (position), x))
         emitattrs (0, DiagramObjectPoints)
         s.toString
     }
@@ -370,7 +370,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class DiagramObjectPoint
+final case class DiagramObjectPoint
 (
     override val sup: BasicElement,
     sequenceNumber: Int,
@@ -402,7 +402,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -477,7 +477,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class DiagramObjectStyle
+final case class DiagramObjectStyle
 (
     override val sup: IdentifiedObject,
     StyledObjects: List[String]
@@ -504,14 +504,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramObjectStyle.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObjectStyle.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DiagramObjectStyle.fields (position), x))
         emitattrs (0, StyledObjects)
         s.toString
     }
@@ -557,7 +557,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class DiagramStyle
+final case class DiagramStyle
 (
     override val sup: IdentifiedObject,
     Diagram: List[String]
@@ -584,14 +584,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramStyle.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramStyle.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DiagramStyle.fields (position), x))
         emitattrs (0, Diagram)
         s.toString
     }
@@ -635,7 +635,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class TextDiagramObject
+final case class TextDiagramObject
 (
     override val sup: DiagramObject,
     text: String
@@ -662,7 +662,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -716,7 +716,7 @@ extends
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
-case class VisibilityLayer
+final case class VisibilityLayer
 (
     override val sup: IdentifiedObject,
     drawingOrder: Int,
@@ -744,7 +744,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -752,7 +752,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VisibilityLayer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VisibilityLayer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VisibilityLayer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (VisibilityLayer.fields (position), x))
         emitelem (0, drawingOrder)
         emitattrs (1, VisibleObjects)
         s.toString

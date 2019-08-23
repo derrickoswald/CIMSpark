@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class DateInterval
+final case class DateInterval
 (
     override val sup: BasicElement,
     end: String,
@@ -50,7 +50,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -110,7 +110,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class DateTimeInterval
+final case class DateTimeInterval
 (
     override val sup: BasicElement,
     end: String,
@@ -138,7 +138,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -198,7 +198,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class DecimalQuantity
+final case class DecimalQuantity
 (
     override val sup: BasicElement,
     currency: String,
@@ -228,7 +228,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -296,7 +296,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class FloatQuantity
+final case class FloatQuantity
 (
     override val sup: BasicElement,
     multiplier: String,
@@ -325,7 +325,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -389,7 +389,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class IntegerQuantity
+final case class IntegerQuantity
 (
     override val sup: BasicElement,
     multiplier: String,
@@ -418,7 +418,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -481,7 +481,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class MonthDayInterval
+final case class MonthDayInterval
 (
     override val sup: BasicElement,
     end: String,
@@ -509,7 +509,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -568,7 +568,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class StringQuantity
+final case class StringQuantity
 (
     override val sup: BasicElement,
     multiplier: String,
@@ -597,7 +597,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -660,7 +660,7 @@ extends
 &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
 For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
-case class TimeInterval
+final case class TimeInterval
 (
     override val sup: BasicElement,
     end: String,
@@ -688,7 +688,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

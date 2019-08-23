@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PowerSystemStabilizerDynamics
+final case class PowerSystemStabilizerDynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -53,7 +53,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemStabilizerDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemStabilizerDynamics.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerSystemStabilizerDynamics.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PowerSystemStabilizerDynamics.fields (position), x))
         emitattr (0, ExcitationSystemDynamics)
         emitattrs (1, RemoteInputSignal)
         s.toString
@@ -133,7 +133,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class Pss1
+final case class Pss1
 (
     override val sup: PowerSystemStabilizerDynamics,
     kf: Double,
@@ -174,7 +174,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -303,7 +303,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class Pss1A
+final case class Pss1A
 (
     override val sup: PowerSystemStabilizerDynamics,
     a1: Double,
@@ -351,7 +351,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -543,7 +543,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class Pss2B
+final case class Pss2B
 (
     override val sup: PowerSystemStabilizerDynamics,
     a: Double,
@@ -598,7 +598,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -777,7 +777,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class Pss2ST
+final case class Pss2ST
 (
     override val sup: PowerSystemStabilizerDynamics,
     inputSignal1Type: String,
@@ -821,7 +821,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -977,7 +977,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class Pss5
+final case class Pss5
 (
     override val sup: PowerSystemStabilizerDynamics,
     ctw2: Boolean,
@@ -1020,7 +1020,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1153,7 +1153,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssELIN2
+final case class PssELIN2
 (
     override val sup: PowerSystemStabilizerDynamics,
     apss: Double,
@@ -1190,7 +1190,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1304,7 +1304,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssIEEE1A
+final case class PssIEEE1A
 (
     override val sup: PowerSystemStabilizerDynamics,
     a1: Double,
@@ -1342,7 +1342,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1491,7 +1491,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssIEEE2B
+final case class PssIEEE2B
 (
     override val sup: PowerSystemStabilizerDynamics,
     inputSignal1Type: String,
@@ -1544,7 +1544,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1734,7 +1734,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssIEEE3B
+final case class PssIEEE3B
 (
     override val sup: PowerSystemStabilizerDynamics,
     a1: Double,
@@ -1777,7 +1777,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2020,7 +2020,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssIEEE4B
+final case class PssIEEE4B
 (
     override val sup: PowerSystemStabilizerDynamics,
     bwh1: Double,
@@ -2113,7 +2113,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2446,7 +2446,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssPTIST1
+final case class PssPTIST1
 (
     override val sup: PowerSystemStabilizerDynamics,
     dtc: Double,
@@ -2483,7 +2483,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2619,7 +2619,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssPTIST3
+final case class PssPTIST3
 (
     override val sup: PowerSystemStabilizerDynamics,
     a0: Double,
@@ -2679,7 +2679,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2880,7 +2880,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssRQB
+final case class PssRQB
 (
     override val sup: PowerSystemStabilizerDynamics,
     kdpm: Double,
@@ -2916,7 +2916,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3021,7 +3021,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssSB4
+final case class PssSB4
 (
     override val sup: PowerSystemStabilizerDynamics,
     kx: Double,
@@ -3058,7 +3058,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3174,7 +3174,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssSH
+final case class PssSH
 (
     override val sup: PowerSystemStabilizerDynamics,
     k: Double,
@@ -3213,7 +3213,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3330,7 +3330,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssSK
+final case class PssSK
 (
     override val sup: PowerSystemStabilizerDynamics,
     k1: Double,
@@ -3367,7 +3367,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3473,7 +3473,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssSTAB2A
+final case class PssSTAB2A
 (
     override val sup: PowerSystemStabilizerDynamics,
     hlim: Double,
@@ -3507,7 +3507,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3618,7 +3618,7 @@ extends
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
-case class PssWECC
+final case class PssWECC
 (
     override val sup: PowerSystemStabilizerDynamics,
     inputSignal1Type: String,
@@ -3662,7 +3662,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

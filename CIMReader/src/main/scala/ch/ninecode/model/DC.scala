@@ -57,7 +57,7 @@ import ch.ninecode.cim.Relationship
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class ACDCConverter
+final case class ACDCConverter
 (
     override val sup: ConductingEquipment,
     baseS: Double,
@@ -102,7 +102,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -111,7 +111,7 @@ extends
         implicit val clz: String = ACDCConverter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACDCConverter.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACDCConverter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ACDCConverter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ACDCConverter.fields (position), x))
         emitelem (0, baseS)
         emitelem (1, idc)
         emitelem (2, idleLoss)
@@ -231,7 +231,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class ACDCConverterDCTerminal
+final case class ACDCConverterDCTerminal
 (
     override val sup: DCBaseTerminal,
     polarity: String,
@@ -259,7 +259,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -341,7 +341,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class CsConverter
+final case class CsConverter
 (
     override val sup: ACDCConverter,
     alpha: Double,
@@ -382,7 +382,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -494,7 +494,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCBaseTerminal
+final case class DCBaseTerminal
 (
     override val sup: ACDCTerminal,
     DCNode: String,
@@ -522,7 +522,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -577,7 +577,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCBreaker
+final case class DCBreaker
 (
     override val sup: DCSwitch
 )
@@ -603,7 +603,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -639,7 +639,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCBusbar
+final case class DCBusbar
 (
     override val sup: DCConductingEquipment
 )
@@ -665,7 +665,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -703,7 +703,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCChopper
+final case class DCChopper
 (
     override val sup: DCConductingEquipment
 )
@@ -729,7 +729,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -769,7 +769,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCConductingEquipment
+final case class DCConductingEquipment
 (
     override val sup: Equipment,
     ratedUdc: Double,
@@ -798,7 +798,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -806,7 +806,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCConductingEquipment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DCConductingEquipment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCConductingEquipment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DCConductingEquipment.fields (position), x))
         emitelem (0, ratedUdc)
         emitattrs (1, DCTerminals)
         emitattrs (2, ProtectiveActionAdjustment)
@@ -860,7 +860,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCConverterUnit
+final case class DCConverterUnit
 (
     override val sup: DCEquipmentContainer,
     operationMode: String,
@@ -888,7 +888,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -942,7 +942,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCDisconnector
+final case class DCDisconnector
 (
     override val sup: DCSwitch
 )
@@ -968,7 +968,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1008,7 +1008,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCEquipmentContainer
+final case class DCEquipmentContainer
 (
     override val sup: EquipmentContainer,
     DCNodes: List[String],
@@ -1036,14 +1036,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCEquipmentContainer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCEquipmentContainer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DCEquipmentContainer.fields (position), x))
         emitattrs (0, DCNodes)
         emitattrs (1, DCTopologicalNode)
         s.toString
@@ -1093,7 +1093,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCGround
+final case class DCGround
 (
     override val sup: DCConductingEquipment,
     inductance: Double,
@@ -1121,7 +1121,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1173,7 +1173,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCLine
+final case class DCLine
 (
     override val sup: DCEquipmentContainer,
     Region: String
@@ -1200,7 +1200,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1257,7 +1257,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCLineSegment
+final case class DCLineSegment
 (
     override val sup: DCConductingEquipment,
     capacitance: Double,
@@ -1288,7 +1288,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1359,7 +1359,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCNode
+final case class DCNode
 (
     override val sup: IdentifiedObject,
     DCEquipmentContainer: String,
@@ -1388,7 +1388,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1396,7 +1396,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DCNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
         emitattrs (1, DCTerminals)
         emitattr (2, DCTopologicalNode)
@@ -1453,7 +1453,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCSeriesDevice
+final case class DCSeriesDevice
 (
     override val sup: DCConductingEquipment,
     inductance: Double,
@@ -1481,7 +1481,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1536,7 +1536,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCShunt
+final case class DCShunt
 (
     override val sup: DCConductingEquipment,
     capacitance: Double,
@@ -1564,7 +1564,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1615,7 +1615,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCSwitch
+final case class DCSwitch
 (
     override val sup: DCConductingEquipment
 )
@@ -1641,7 +1641,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1678,7 +1678,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCTerminal
+final case class DCTerminal
 (
     override val sup: DCBaseTerminal,
     DCConductingEquipment: String
@@ -1705,7 +1705,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1760,7 +1760,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCTopologicalIsland
+final case class DCTopologicalIsland
 (
     override val sup: IdentifiedObject,
     DCTopologicalNodes: List[String]
@@ -1787,14 +1787,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCTopologicalIsland.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalIsland.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DCTopologicalIsland.fields (position), x))
         emitattrs (0, DCTopologicalNodes)
         s.toString
     }
@@ -1843,7 +1843,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class DCTopologicalNode
+final case class DCTopologicalNode
 (
     override val sup: IdentifiedObject,
     DCEquipmentContainer: String,
@@ -1873,7 +1873,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1881,7 +1881,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCTopologicalNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DCTopologicalNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
         emitattrs (1, DCNodes)
         emitattrs (2, DCTerminals)
@@ -1943,7 +1943,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class PerLengthDCLineParameter
+final case class PerLengthDCLineParameter
 (
     override val sup: PerLengthLineParameter,
     capacitance: Double,
@@ -1973,7 +1973,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1981,7 +1981,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthDCLineParameter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthDCLineParameter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthDCLineParameter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PerLengthDCLineParameter.fields (position), x))
         emitelem (0, capacitance)
         emitelem (1, inductance)
         emitelem (2, resistance)
@@ -2037,7 +2037,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class VsCapabilityCurve
+final case class VsCapabilityCurve
 (
     override val sup: Curve,
     VsConverterDCSides: List[String]
@@ -2064,14 +2064,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VsCapabilityCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VsCapabilityCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (VsCapabilityCurve.fields (position), x))
         emitattrs (0, VsConverterDCSides)
         s.toString
     }
@@ -2133,7 +2133,7 @@ extends
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
-case class VsConverter
+final case class VsConverter
 (
     override val sup: ACDCConverter,
     delta: Double,
@@ -2172,7 +2172,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

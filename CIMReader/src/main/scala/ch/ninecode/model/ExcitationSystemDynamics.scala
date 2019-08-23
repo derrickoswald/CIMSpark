@@ -63,7 +63,7 @@ import ch.ninecode.cim.Relationship
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC1A
+final case class ExcAC1A
 (
     override val sup: ExcitationSystemDynamics,
     hvlvgates: Boolean,
@@ -111,7 +111,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -304,7 +304,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC2A
+final case class ExcAC2A
 (
     override val sup: ExcitationSystemDynamics,
     hvgate: Boolean,
@@ -358,7 +358,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -567,7 +567,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC3A
+final case class ExcAC3A
 (
     override val sup: ExcitationSystemDynamics,
     efdn: Double,
@@ -619,7 +619,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -786,7 +786,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC4A
+final case class ExcAC4A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -821,7 +821,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -938,7 +938,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC5A
+final case class ExcAC5A
 (
     override val sup: ExcitationSystemDynamics,
     a: Double,
@@ -982,7 +982,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1145,7 +1145,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC6A
+final case class ExcAC6A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -1194,7 +1194,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1392,7 +1392,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAC8B
+final case class ExcAC8B
 (
     override val sup: ExcitationSystemDynamics,
     inlim: Boolean,
@@ -1445,7 +1445,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1634,7 +1634,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcANS
+final case class ExcANS
 (
     override val sup: ExcitationSystemDynamics,
     blint: Int,
@@ -1674,7 +1674,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1801,7 +1801,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR1
+final case class ExcAVR1
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -1839,7 +1839,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1960,7 +1960,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR2
+final case class ExcAVR2
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -1999,7 +1999,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2122,7 +2122,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR3
+final case class ExcAVR3
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -2160,7 +2160,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2285,7 +2285,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR4
+final case class ExcAVR4
 (
     override val sup: ExcitationSystemDynamics,
     imul: Boolean,
@@ -2325,7 +2325,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2431,7 +2431,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR5
+final case class ExcAVR5
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -2460,7 +2460,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2559,7 +2559,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcAVR7
+final case class ExcAVR7
 (
     override val sup: ExcitationSystemDynamics,
     a1: Double,
@@ -2606,7 +2606,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2761,7 +2761,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcBBC
+final case class ExcBBC
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -2798,7 +2798,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2897,7 +2897,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcCZ
+final case class ExcCZ
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -2933,7 +2933,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3057,7 +3057,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcDC1A
+final case class ExcDC1A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -3101,7 +3101,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3261,7 +3261,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcDC2A
+final case class ExcDC2A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -3305,7 +3305,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3461,7 +3461,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcDC3A
+final case class ExcDC3A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -3503,7 +3503,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3644,7 +3644,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcDC3A1
+final case class ExcDC3A1
 (
     override val sup: ExcitationSystemDynamics,
     exclim: Boolean,
@@ -3684,7 +3684,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3817,7 +3817,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcELIN1
+final case class ExcELIN1
 (
     override val sup: ExcitationSystemDynamics,
     dpnf: Double,
@@ -3858,7 +3858,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4019,7 +4019,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcELIN2
+final case class ExcELIN2
 (
     override val sup: ExcitationSystemDynamics,
     efdbas: Double,
@@ -4072,7 +4072,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4249,7 +4249,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcHU
+final case class ExcHU
 (
     override val sup: ExcitationSystemDynamics,
     ae: Double,
@@ -4287,7 +4287,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4419,7 +4419,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC1A
+final case class ExcIEEEAC1A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -4463,7 +4463,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4625,7 +4625,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC2A
+final case class ExcIEEEAC2A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -4672,7 +4672,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4846,7 +4846,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC3A
+final case class ExcIEEEAC3A
 (
     override val sup: ExcitationSystemDynamics,
     efdn: Double,
@@ -4893,7 +4893,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5043,7 +5043,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC4A
+final case class ExcIEEEAC4A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -5078,7 +5078,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5190,7 +5190,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC5A
+final case class ExcIEEEAC5A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -5230,7 +5230,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5378,7 +5378,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC6A
+final case class ExcIEEEAC6A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -5426,7 +5426,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5614,7 +5614,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC7B
+final case class ExcIEEEAC7B
 (
     override val sup: ExcitationSystemDynamics,
     kc: Double,
@@ -5666,7 +5666,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5854,7 +5854,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEAC8B
+final case class ExcIEEEAC8B
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -5898,7 +5898,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6055,7 +6055,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEDC1A
+final case class ExcIEEEDC1A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -6097,7 +6097,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6244,7 +6244,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEDC2A
+final case class ExcIEEEDC2A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -6286,7 +6286,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6423,7 +6423,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEDC3A
+final case class ExcIEEEDC3A
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -6460,7 +6460,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6594,7 +6594,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEDC4B
+final case class ExcIEEEDC4B
 (
     override val sup: ExcitationSystemDynamics,
     efd1: Double,
@@ -6639,7 +6639,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6803,7 +6803,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST1A
+final case class ExcIEEEST1A
 (
     override val sup: ExcitationSystemDynamics,
     ilr: Double,
@@ -6848,7 +6848,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7001,7 +7001,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST2A
+final case class ExcIEEEST2A
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -7040,7 +7040,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7180,7 +7180,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST3A
+final case class ExcIEEEST3A
 (
     override val sup: ExcitationSystemDynamics,
     ka: Double,
@@ -7226,7 +7226,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7386,7 +7386,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST4B
+final case class ExcIEEEST4B
 (
     override val sup: ExcitationSystemDynamics,
     kc: Double,
@@ -7428,7 +7428,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7575,7 +7575,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST5B
+final case class ExcIEEEST5B
 (
     override val sup: ExcitationSystemDynamics,
     kc: Double,
@@ -7618,7 +7618,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7762,7 +7762,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST6B
+final case class ExcIEEEST6B
 (
     override val sup: ExcitationSystemDynamics,
     ilr: Double,
@@ -7802,7 +7802,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7937,7 +7937,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcIEEEST7B
+final case class ExcIEEEST7B
 (
     override val sup: ExcitationSystemDynamics,
     kh: Double,
@@ -7978,7 +7978,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8108,7 +8108,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcNI
+final case class ExcNI
 (
     override val sup: ExcitationSystemDynamics,
     busFedSelector: Boolean,
@@ -8144,7 +8144,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8248,7 +8248,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcOEX3T
+final case class ExcOEX3T
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -8293,7 +8293,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8462,7 +8462,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcPIC
+final case class ExcPIC
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -8511,7 +8511,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8722,7 +8722,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcREXS
+final case class ExcREXS
 (
     override val sup: ExcitationSystemDynamics,
     e1: Double,
@@ -8784,7 +8784,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9002,7 +9002,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcRQB
+final case class ExcRQB
 (
     override val sup: ExcitationSystemDynamics,
     ki0: Double,
@@ -9041,7 +9041,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9155,7 +9155,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcSCRX
+final case class ExcSCRX
 (
     override val sup: ExcitationSystemDynamics,
     cswitch: Boolean,
@@ -9189,7 +9189,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9286,7 +9286,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcSEXS
+final case class ExcSEXS
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -9322,7 +9322,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9473,7 +9473,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcSK
+final case class ExcSK
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -9531,7 +9531,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9740,7 +9740,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST1A
+final case class ExcST1A
 (
     override val sup: ExcitationSystemDynamics,
     ilr: Double,
@@ -9784,7 +9784,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -9933,7 +9933,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST2A
+final case class ExcST2A
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -9974,7 +9974,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -10119,7 +10119,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST3A
+final case class ExcST3A
 (
     override val sup: ExcitationSystemDynamics,
     efdmax: Double,
@@ -10165,7 +10165,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -10332,7 +10332,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST4B
+final case class ExcST4B
 (
     override val sup: ExcitationSystemDynamics,
     kc: Double,
@@ -10377,7 +10377,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -10550,7 +10550,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST6B
+final case class ExcST6B
 (
     override val sup: ExcitationSystemDynamics,
     ilr: Double,
@@ -10599,7 +10599,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -10769,7 +10769,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcST7B
+final case class ExcST7B
 (
     override val sup: ExcitationSystemDynamics,
     kh: Double,
@@ -10811,7 +10811,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -10929,7 +10929,7 @@ extends
 The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
 The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
-case class ExcitationSystemDynamics
+final case class ExcitationSystemDynamics
 (
     override val sup: DynamicsFunctionBlock,
     DiscontinuousExcitationControlDynamics: String,
@@ -10963,7 +10963,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
-case class InterTieClearing
+final case class InterTieClearing
 (
     override val sup: MarketFactors,
     InterTieResults: List[String]
@@ -44,14 +44,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InterTieClearing.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InterTieClearing.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (InterTieClearing.fields (position), x))
         emitattrs (0, InterTieResults)
         s.toString
     }
@@ -99,7 +99,7 @@ extends
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
-case class InterTieResults
+final case class InterTieResults
 (
     override val sup: BasicElement,
     baseMW: Double,
@@ -129,7 +129,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -204,7 +204,7 @@ extends
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
-case class MarketCaseClearing
+final case class MarketCaseClearing
 (
     override val sup: MarketFactors,
     caseType: String,
@@ -234,7 +234,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -242,7 +242,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketCaseClearing.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketCaseClearing.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketCaseClearing.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketCaseClearing.fields (position), x))
         emitelem (0, caseType)
         emitelem (1, modifiedDate)
         emitelem (2, postedDate)
@@ -299,7 +299,7 @@ extends
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
-case class SecurityConstraintsClearing
+final case class SecurityConstraintsClearing
 (
     override val sup: MarketFactors,
     mwFlow: Double,
@@ -328,7 +328,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

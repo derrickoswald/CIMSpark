@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
-case class FTR
+final case class FTR
 (
     override val sup: Agreement,
     action: String,
@@ -56,7 +56,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -65,7 +65,7 @@ extends
         implicit val clz: String = FTR.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FTR.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FTR.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FTR.fields (position), x))
         emitelem (0, action)
         emitelem (1, baseEnergy)
         emitelem (2, `class`)
@@ -140,7 +140,7 @@ extends
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
-case class ViolationLimit
+final case class ViolationLimit
 (
     override val sup: Limit,
     enforced: Boolean,
@@ -169,7 +169,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

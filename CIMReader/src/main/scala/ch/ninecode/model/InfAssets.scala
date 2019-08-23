@@ -36,7 +36,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class AssetPropertyCurve
+final case class AssetPropertyCurve
 (
     override val sup: Curve,
     Assets: List[String],
@@ -64,7 +64,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -72,7 +72,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetPropertyCurve.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetPropertyCurve.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetPropertyCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AssetPropertyCurve.fields (position), x))
         emitattrs (0, Assets)
         emitattr (1, Specification)
         s.toString
@@ -143,7 +143,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class BushingInsulationPF
+final case class BushingInsulationPF
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -173,7 +173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -260,7 +260,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class CoolingPowerRating
+final case class CoolingPowerRating
 (
     override val sup: IdentifiedObject,
     coolingKind: String,
@@ -290,7 +290,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -299,7 +299,7 @@ extends
         implicit val clz: String = CoolingPowerRating.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoolingPowerRating.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CoolingPowerRating.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CoolingPowerRating.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CoolingPowerRating.fields (position), x))
         emitattr (0, coolingKind)
         emitelem (1, powerRating)
         emitelem (2, stage)
@@ -380,7 +380,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class DimensionsInfo
+final case class DimensionsInfo
 (
     override val sup: IdentifiedObject,
     orientation: String,
@@ -412,7 +412,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -420,7 +420,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DimensionsInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DimensionsInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DimensionsInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DimensionsInfo.fields (position), x))
         emitelem (0, orientation)
         emitelem (1, sizeDepth)
         emitelem (2, sizeDiameter)
@@ -514,7 +514,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class Pole
+final case class Pole
 (
     override val sup: Structure,
     baseKind: String,
@@ -552,7 +552,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -561,7 +561,7 @@ extends
         implicit val clz: String = Pole.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pole.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Pole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Pole.fields (position), x))
         emitattr (0, baseKind)
         emitelem (1, breastBlock)
         emitelem (2, classification)
@@ -669,7 +669,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class Reconditioning
+final case class Reconditioning
 (
     override val sup: IdentifiedObject,
     dateTime: String,
@@ -699,7 +699,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -708,7 +708,7 @@ extends
         implicit val clz: String = Reconditioning.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reconditioning.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reconditioning.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reconditioning.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Reconditioning.fields (position), x))
         emitelem (0, dateTime)
         emitattr (1, Asset)
         emitattrs (2, PowerRatings)
@@ -786,7 +786,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class ReliabilityInfo
+final case class ReliabilityInfo
 (
     override val sup: IdentifiedObject,
     mTTR: Double,
@@ -816,7 +816,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -825,7 +825,7 @@ extends
         implicit val clz: String = ReliabilityInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReliabilityInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReliabilityInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReliabilityInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ReliabilityInfo.fields (position), x))
         emitelem (0, mTTR)
         emitelem (1, momFailureRate)
         emitattrs (2, Assets)
@@ -909,7 +909,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class Specification
+final case class Specification
 (
     override val sup: Document,
     AssetProperites: List[String],
@@ -942,14 +942,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Specification.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Specification.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Specification.fields (position), x))
         emitattrs (0, AssetProperites)
         emitattrs (1, AssetPropertyCurves)
         emitattrs (2, DimensionsInfos)
@@ -1043,7 +1043,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class Tower
+final case class Tower
 (
     override val sup: Structure,
     constructionKind: String
@@ -1070,7 +1070,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1158,7 +1158,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class TransformerObservation
+final case class TransformerObservation
 (
     override val sup: IdentifiedObject,
     bushingTemp: Double,
@@ -1203,7 +1203,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1212,7 +1212,7 @@ extends
         implicit val clz: String = TransformerObservation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerObservation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerObservation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerObservation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerObservation.fields (position), x))
         emitelem (0, bushingTemp)
         emitelem (1, dga)
         emitelem (2, freqResp)
@@ -1352,7 +1352,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class UndergroundStructure
+final case class UndergroundStructure
 (
     override val sup: Structure,
     hasVentilation: Boolean,
@@ -1382,7 +1382,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1467,7 +1467,7 @@ Point assets are those assets whose physical location can be described in terms 
 Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
 Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
-case class WindingInsulation
+final case class WindingInsulation
 (
     override val sup: IdentifiedObject,
     insulationPFStatus: String,
@@ -1500,7 +1500,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

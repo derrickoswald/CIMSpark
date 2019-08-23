@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class AlertTypeList
+final case class AlertTypeList
 (
     override val sup: IdentifiedObject,
     version: String,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -57,7 +57,7 @@ extends
         implicit val clz: String = AlertTypeList.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AlertTypeList.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AlertTypeList.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AlertTypeList.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AlertTypeList.fields (position), x))
         emitelem (0, version)
         emitattrs (1, EnvironmentalAlert)
         emitattr (2, EnvironmentalDataAuthority)
@@ -109,7 +109,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class AtmosphericAnalog
+final case class AtmosphericAnalog
 (
     override val sup: EnvironmentalAnalog,
     kind: String
@@ -136,7 +136,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -188,7 +188,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class AtmosphericPhenomenon
+final case class AtmosphericPhenomenon
 (
     override val sup: EnvironmentalPhenomenon,
     altitude: String,
@@ -220,7 +220,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -292,7 +292,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class ClassificationCondition
+final case class ClassificationCondition
 (
     override val sup: IdentifiedObject,
     duration: Double,
@@ -323,7 +323,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -332,7 +332,7 @@ extends
         implicit val clz: String = ClassificationCondition.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ClassificationCondition.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ClassificationCondition.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ClassificationCondition.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ClassificationCondition.fields (position), x))
         emitelem (0, duration)
         emitattr (1, test)
         emitattrs (2, EnvironmentalAnalog)
@@ -393,7 +393,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class CloudCondition
+final case class CloudCondition
 (
     override val sup: AtmosphericPhenomenon,
     kind: String
@@ -420,7 +420,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -469,7 +469,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Cyclone
+final case class Cyclone
 (
     override val sup: AtmosphericPhenomenon,
     centralPressure: Double,
@@ -498,7 +498,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -557,7 +557,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Earthquake
+final case class Earthquake
 (
     override val sup: GeosphericPhenomenon,
     focalDepth: String,
@@ -586,7 +586,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -650,7 +650,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalAlert
+final case class EnvironmentalAlert
 (
     override val sup: ActivityRecord,
     alertType: String,
@@ -683,7 +683,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -692,7 +692,7 @@ extends
         implicit val clz: String = EnvironmentalAlert.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnvironmentalAlert.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnvironmentalAlert.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalAlert.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalAlert.fields (position), x))
         emitelem (0, alertType)
         emitelem (1, cancelledDateTime)
         emitelem (2, headline)
@@ -764,7 +764,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalAnalog
+final case class EnvironmentalAnalog
 (
     override val sup: Analog,
     ClassificationCondition: String,
@@ -794,7 +794,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -865,7 +865,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalCodedValue
+final case class EnvironmentalCodedValue
 (
     override val sup: StringMeasurementValue,
     coverageKind: String,
@@ -895,7 +895,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -956,7 +956,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalDataAuthority
+final case class EnvironmentalDataAuthority
 (
     override val sup: OrganisationRole,
     AlertTypeList: List[String],
@@ -984,14 +984,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnvironmentalDataAuthority.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalDataAuthority.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalDataAuthority.fields (position), x))
         emitattrs (0, AlertTypeList)
         emitattrs (1, PhenomenonClassification)
         s.toString
@@ -1042,7 +1042,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalDataProvider
+final case class EnvironmentalDataProvider
 (
     override val sup: OrganisationRole,
     EnvironmentalAlert: List[String],
@@ -1070,14 +1070,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnvironmentalDataProvider.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalDataProvider.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalDataProvider.fields (position), x))
         emitattrs (0, EnvironmentalAlert)
         emitattrs (1, EnvironmentalInformation)
         s.toString
@@ -1126,7 +1126,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalDiscrete
+final case class EnvironmentalDiscrete
 (
     override val sup: Discrete,
     kind: String,
@@ -1154,7 +1154,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1214,7 +1214,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalEvent
+final case class EnvironmentalEvent
 (
     override val sup: ActivityRecord,
     EnvironmentalInformation: List[String]
@@ -1241,14 +1241,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnvironmentalEvent.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalEvent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalEvent.fields (position), x))
         emitattrs (0, EnvironmentalInformation)
         s.toString
     }
@@ -1297,7 +1297,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalInformation
+final case class EnvironmentalInformation
 (
     override val sup: IdentifiedObject,
     created: String,
@@ -1330,7 +1330,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1339,7 +1339,7 @@ extends
         implicit val clz: String = EnvironmentalInformation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnvironmentalInformation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnvironmentalInformation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalInformation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalInformation.fields (position), x))
         emitelem (0, created)
         emitattrs (1, EnvironmentalAnalog)
         emitattr (2, EnvironmentalDataProvider)
@@ -1417,7 +1417,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalLocationType
+final case class EnvironmentalLocationType
 (
     override val sup: BasicElement,
     kind: String,
@@ -1447,7 +1447,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1455,7 +1455,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnvironmentalLocationType.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnvironmentalLocationType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalLocationType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalLocationType.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, EnvironmentalAlert)
         emitattrs (2, EnvironmentalPhenomenon)
@@ -1515,7 +1515,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalPhenomenon
+final case class EnvironmentalPhenomenon
 (
     override val sup: BasicElement,
     timeInterval: String,
@@ -1545,7 +1545,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1553,7 +1553,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnvironmentalPhenomenon.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnvironmentalPhenomenon.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalPhenomenon.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalPhenomenon.fields (position), x))
         emitattr (0, timeInterval)
         emitattr (1, EnvironmentalInformation)
         emitattrs (2, EnvironmentalLocationKind)
@@ -1611,7 +1611,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class EnvironmentalStringMeasurement
+final case class EnvironmentalStringMeasurement
 (
     override val sup: StringMeasurement,
     ClassificationCondition: String,
@@ -1639,7 +1639,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1695,7 +1695,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Fire
+final case class Fire
 (
     override val sup: GeosphericPhenomenon
 )
@@ -1721,7 +1721,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1756,7 +1756,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Flood
+final case class Flood
 (
     override val sup: HydrosphericPhenomenon
 )
@@ -1782,7 +1782,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1819,7 +1819,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Forecast
+final case class Forecast
 (
     override val sup: EnvironmentalInformation,
     validFor: String
@@ -1846,7 +1846,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1893,7 +1893,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class GeosphericAnalog
+final case class GeosphericAnalog
 (
     override val sup: EnvironmentalAnalog,
     kind: String
@@ -1920,7 +1920,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1966,7 +1966,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class GeosphericPhenomenon
+final case class GeosphericPhenomenon
 (
     override val sup: EnvironmentalPhenomenon
 )
@@ -1992,7 +1992,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2028,7 +2028,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Hurricane
+final case class Hurricane
 (
     override val sup: Cyclone,
     category: Int
@@ -2055,7 +2055,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2102,7 +2102,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class HydrosphericAnalog
+final case class HydrosphericAnalog
 (
     override val sup: EnvironmentalAnalog,
     kind: String
@@ -2129,7 +2129,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2175,7 +2175,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class HydrosphericPhenomenon
+final case class HydrosphericPhenomenon
 (
     override val sup: EnvironmentalPhenomenon
 )
@@ -2201,7 +2201,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2236,7 +2236,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Landslide
+final case class Landslide
 (
     override val sup: GeosphericPhenomenon
 )
@@ -2262,7 +2262,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2304,7 +2304,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class LightningStrike
+final case class LightningStrike
 (
     override val sup: GeosphericPhenomenon,
     errorEllipseConfidence: Double,
@@ -2336,7 +2336,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2407,7 +2407,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class MagneticStorm
+final case class MagneticStorm
 (
     override val sup: SpacePhenomenon,
     changeDst: Double
@@ -2434,7 +2434,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2480,7 +2480,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Observation
+final case class Observation
 (
     override val sup: EnvironmentalInformation
 )
@@ -2506,7 +2506,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2544,7 +2544,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class PhenomenonClassification
+final case class PhenomenonClassification
 (
     override val sup: IdentifiedObject,
     ClassificationCondition: List[String],
@@ -2573,7 +2573,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2581,7 +2581,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhenomenonClassification.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhenomenonClassification.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PhenomenonClassification.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PhenomenonClassification.fields (position), x))
         emitattrs (0, ClassificationCondition)
         emitattr (1, EnvironmentalDataAuthority)
         emitattrs (2, EnvironmentalPhenomenon)
@@ -2640,7 +2640,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class ReportingCapability
+final case class ReportingCapability
 (
     override val sup: BasicElement,
     reportingIntervalPeriod: Int,
@@ -2671,7 +2671,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2680,7 +2680,7 @@ extends
         implicit val clz: String = ReportingCapability.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReportingCapability.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReportingCapability.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReportingCapability.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ReportingCapability.fields (position), x))
         emitelem (0, reportingIntervalPeriod)
         emitattr (1, reportingIntervalType)
         emitattr (2, reportingMethod)
@@ -2740,7 +2740,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class SpaceAnalog
+final case class SpaceAnalog
 (
     override val sup: EnvironmentalAnalog,
     kind: String
@@ -2767,7 +2767,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2813,7 +2813,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class SpacePhenomenon
+final case class SpacePhenomenon
 (
     override val sup: EnvironmentalPhenomenon
 )
@@ -2839,7 +2839,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2876,7 +2876,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Tornado
+final case class Tornado
 (
     override val sup: AtmosphericPhenomenon,
     fScale: String,
@@ -2904,7 +2904,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2961,7 +2961,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class TropicalCycloneAustralia
+final case class TropicalCycloneAustralia
 (
     override val sup: Cyclone,
     category: Int
@@ -2988,7 +2988,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3038,7 +3038,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Tsunami
+final case class Tsunami
 (
     override val sup: HydrosphericPhenomenon,
     intensity: Int,
@@ -3066,7 +3066,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3118,7 +3118,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class VolcanicAshCloud
+final case class VolcanicAshCloud
 (
     override val sup: AtmosphericPhenomenon,
     density: Double,
@@ -3146,7 +3146,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3196,7 +3196,7 @@ extends
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
-case class Whirlpool
+final case class Whirlpool
 (
     override val sup: HydrosphericPhenomenon
 )
@@ -3222,7 +3222,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

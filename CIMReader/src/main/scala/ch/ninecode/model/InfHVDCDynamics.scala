@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  * @group InfHVDCDynamics
  * @groupname InfHVDCDynamics Package InfHVDCDynamics
  */
-case class Delay
+final case class Delay
 (
     override val sup: BasicElement,
     tm: Double,
@@ -58,7 +58,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -145,7 +145,7 @@ extends
  * @group InfHVDCDynamics
  * @groupname InfHVDCDynamics Package InfHVDCDynamics
  */
-case class HVDCLookUpTable
+final case class HVDCLookUpTable
 (
     override val sup: BasicElement,
     functionKind: String,
@@ -176,7 +176,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

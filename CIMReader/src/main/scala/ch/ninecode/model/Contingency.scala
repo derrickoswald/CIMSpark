@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.
  */
-case class Contingency
+final case class Contingency
 (
     override val sup: IdentifiedObject,
     mustStudy: Boolean,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -53,7 +53,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Contingency.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Contingency.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Contingency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Contingency.fields (position), x))
         emitelem (0, mustStudy)
         emitattrs (1, ContingencyElement)
         s.toString
@@ -101,7 +101,7 @@ extends
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.
  */
-case class ContingencyElement
+final case class ContingencyElement
 (
     override val sup: IdentifiedObject,
     Contingency: String
@@ -128,7 +128,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -181,7 +181,7 @@ extends
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.
  */
-case class ContingencyEquipment
+final case class ContingencyEquipment
 (
     override val sup: ContingencyElement,
     contingentStatus: String,
@@ -209,7 +209,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

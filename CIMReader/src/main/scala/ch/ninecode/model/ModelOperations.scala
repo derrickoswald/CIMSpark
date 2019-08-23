@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class DatasetArg
+final case class DatasetArg
 (
     override val sup: ModelOperationArg,
     Dataset: String,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -97,7 +97,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class DatasetArgDescription
+final case class DatasetArgDescription
 (
     override val sup: ModelOperationArgDescription,
     OperationDatasetArg: List[String]
@@ -124,14 +124,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DatasetArgDescription.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DatasetArgDescription.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DatasetArgDescription.fields (position), x))
         emitattrs (0, OperationDatasetArg)
         s.toString
     }
@@ -175,7 +175,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class IncrementalDatasetArg
+final case class IncrementalDatasetArg
 (
     override val sup: ModelOperationArg,
     IncrementalDataset: String,
@@ -203,7 +203,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -255,7 +255,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class IncrementalDatasetArgDescription
+final case class IncrementalDatasetArgDescription
 (
     override val sup: ModelOperationArgDescription,
     IncrementalDatasetArg: List[String]
@@ -282,14 +282,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IncrementalDatasetArgDescription.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IncrementalDatasetArgDescription.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (IncrementalDatasetArgDescription.fields (position), x))
         emitattrs (0, IncrementalDatasetArg)
         s.toString
     }
@@ -336,7 +336,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class ModelOperation
+final case class ModelOperation
 (
     override val sup: IdentifiedObject,
     sequenceNumber: Int,
@@ -366,7 +366,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -375,7 +375,7 @@ extends
         implicit val clz: String = ModelOperation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ModelOperation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ModelOperation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelOperation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelOperation.fields (position), x))
         emitelem (0, sequenceNumber)
         emitattrs (1, ModelOperationArg)
         emitattr (2, ModelOperationDescription)
@@ -436,7 +436,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class ModelOperationArg
+final case class ModelOperationArg
 (
     override val sup: IdentifiedObject,
     sequenceNumber: Int,
@@ -464,7 +464,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -524,7 +524,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class ModelOperationArgDescription
+final case class ModelOperationArgDescription
 (
     override val sup: IdentifiedObject,
     multiplicityMaximum: Int,
@@ -553,7 +553,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -615,7 +615,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class ModelOperationDescription
+final case class ModelOperationDescription
 (
     override val sup: IdentifiedObject,
     ModelOperation: List[String],
@@ -643,14 +643,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelOperationDescription.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelOperationDescription.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelOperationDescription.fields (position), x))
         emitattrs (0, ModelOperation)
         emitattrs (1, OperationDatasetArgDescription)
         s.toString
@@ -700,7 +700,7 @@ extends
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
-case class ModelOperationSequence
+final case class ModelOperationSequence
 (
     override val sup: IdentifiedObject,
     ModelOperation: List[String]
@@ -727,14 +727,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelOperationSequence.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelOperationSequence.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ModelOperationSequence.fields (position), x))
         emitattrs (0, ModelOperation)
         s.toString
     }

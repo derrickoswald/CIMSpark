@@ -29,7 +29,7 @@ import ch.ninecode.cim.Relationship
  * @groupname LoadControl Package LoadControl
  * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ConnectDisconnectFunction
+final case class ConnectDisconnectFunction
 (
     override val sup: EndDeviceFunction,
     eventCount: Int,
@@ -64,7 +64,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -73,7 +73,7 @@ extends
         implicit val clz: String = ConnectDisconnectFunction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConnectDisconnectFunction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectDisconnectFunction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConnectDisconnectFunction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConnectDisconnectFunction.fields (position), x))
         emitelem (0, eventCount)
         emitelem (1, isConnected)
         emitelem (2, isDelayedDiscon)
@@ -161,7 +161,7 @@ extends
  * @groupname LoadControl Package LoadControl
  * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class RemoteConnectDisconnectInfo
+final case class RemoteConnectDisconnectInfo
 (
     override val sup: BasicElement,
     armedTimeout: Double,
@@ -199,7 +199,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

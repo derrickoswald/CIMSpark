@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class AuxiliaryEquipment
+final case class AuxiliaryEquipment
 (
     override val sup: Equipment,
     Terminal: String
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -102,7 +102,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class CurrentTransformer
+final case class CurrentTransformer
 (
     override val sup: Sensor,
     accuracyClass: String,
@@ -133,7 +133,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -198,7 +198,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class FaultIndicator
+final case class FaultIndicator
 (
     override val sup: AuxiliaryEquipment
 )
@@ -224,7 +224,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -260,7 +260,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class FlowSensor
+final case class FlowSensor
 (
     override val sup: ConductingEquipment
 )
@@ -286,7 +286,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -322,7 +322,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class PostLineSensor
+final case class PostLineSensor
 (
     override val sup: Sensor
 )
@@ -348,7 +348,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -390,7 +390,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class PotentialTransformer
+final case class PotentialTransformer
 (
     override val sup: Sensor,
     accuracyClass: String,
@@ -420,7 +420,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -480,7 +480,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class Sensor
+final case class Sensor
 (
     override val sup: AuxiliaryEquipment
 )
@@ -506,7 +506,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -542,7 +542,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class SurgeArrester
+final case class SurgeArrester
 (
     override val sup: AuxiliaryEquipment
 )
@@ -568,7 +568,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -604,7 +604,7 @@ extends
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
-case class WaveTrap
+final case class WaveTrap
 (
     override val sup: AuxiliaryEquipment
 )
@@ -630,7 +630,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

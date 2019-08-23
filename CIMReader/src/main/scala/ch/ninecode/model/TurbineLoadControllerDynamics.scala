@@ -47,7 +47,7 @@ import ch.ninecode.cim.Relationship
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
  * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
  */
-case class TurbLCFB1
+final case class TurbLCFB1
 (
     override val sup: TurbineLoadControllerDynamics,
     db: Double,
@@ -85,7 +85,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -177,7 +177,7 @@ extends
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
  * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
  */
-case class TurbineLoadControllerDynamics
+final case class TurbineLoadControllerDynamics
 (
     override val sup: DynamicsFunctionBlock,
     TurbineGovernorDynamics: String
@@ -204,7 +204,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -27,7 +27,7 @@ package ch.ninecode
  *
  * A short summary of all classes is found below that.
  * The classes can be ordered by package (Grouped) or alphabetically.
- * The classes are alos listed in the panel on the left for easy reference.
+ * The classes are also listed in the panel on the left for easy reference.
  *
  * ===AlternateModels===
 

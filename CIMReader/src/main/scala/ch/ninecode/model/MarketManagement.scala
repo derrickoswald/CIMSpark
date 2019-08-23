@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class AceTariffType
+final case class AceTariffType
 (
     override val sup: BasicElement,
     `type`: String,
@@ -49,7 +49,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -57,7 +57,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AceTariffType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AceTariffType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AceTariffType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AceTariffType.fields (position), x))
         emitelem (0, `type`)
         emitattrs (1, MarketDocument)
         emitattrs (2, Point)
@@ -119,7 +119,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class AttributeInstanceComponent
+final case class AttributeInstanceComponent
 (
     override val sup: BasicElement,
     attribute: String,
@@ -150,7 +150,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -158,7 +158,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AttributeInstanceComponent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AttributeInstanceComponent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AttributeInstanceComponent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AttributeInstanceComponent.fields (position), x))
         emitelem (0, attribute)
         emitelem (1, attributeValue)
         emitelem (2, position)
@@ -225,7 +225,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Auction
+final case class Auction
 (
     override val sup: IdentifiedObject,
     allocationMode: String,
@@ -258,7 +258,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -266,7 +266,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Auction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Auction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Auction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Auction.fields (position), x))
         emitelem (0, allocationMode)
         emitelem (1, cancelled)
         emitelem (2, category)
@@ -346,7 +346,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class BidTimeSeries
+final case class BidTimeSeries
 (
     override val sup: TimeSeries,
     blockBid: String,
@@ -381,7 +381,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -463,7 +463,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class ConstraintDuration
+final case class ConstraintDuration
 (
     override val sup: BasicElement,
     duration: String,
@@ -492,7 +492,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -500,7 +500,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConstraintDuration.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConstraintDuration.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConstraintDuration.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConstraintDuration.fields (position), x))
         emitelem (0, duration)
         emitelem (1, `type`)
         emitattrs (2, TimeSeries)
@@ -555,7 +555,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class DateAndOrTime
+final case class DateAndOrTime
 (
     override val sup: BasicElement,
     date: String,
@@ -585,7 +585,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -593,7 +593,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DateAndOrTime.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DateAndOrTime.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DateAndOrTime.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DateAndOrTime.fields (position), x))
         emitelem (0, date)
         emitelem (1, time)
         emitattrs (2, MarketDocument)
@@ -654,7 +654,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Domain
+final case class Domain
 (
     override val sup: IdentifiedObject,
     MarketDocument: List[String],
@@ -685,14 +685,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Domain.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Domain.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Domain.fields (position), x))
         emitattrs (0, MarketDocument)
         emitattrs (1, Price)
         emitattrs (2, Quantity)
@@ -758,7 +758,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class FlowDirection
+final case class FlowDirection
 (
     override val sup: BasicElement,
     direction: String,
@@ -787,7 +787,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -795,7 +795,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FlowDirection.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FlowDirection.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FlowDirection.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FlowDirection.fields (position), x))
         emitelem (0, direction)
         emitattrs (1, Point)
         emitattrs (2, TimeSeries)
@@ -847,7 +847,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class MarketAgreement
+final case class MarketAgreement
 (
     override val sup: MarketDocument
 )
@@ -873,7 +873,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -920,7 +920,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class MarketDocument
+final case class MarketDocument
 (
     override val sup: Document,
     AceTariffType: List[String],
@@ -957,14 +957,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketDocument.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketDocument.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketDocument.fields (position), x))
         emitattrs (0, AceTariffType)
         emitattrs (1, AttributeInstanceComponent)
         emitattrs (2, DateAndOrTime)
@@ -1058,7 +1058,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class MarketEvaluationPoint
+final case class MarketEvaluationPoint
 (
     override val sup: UsagePoint,
     TimeSeries: List[String]
@@ -1085,14 +1085,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketEvaluationPoint.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketEvaluationPoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketEvaluationPoint.fields (position), x))
         emitattrs (0, TimeSeries)
         s.toString
     }
@@ -1138,7 +1138,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class MarketObjectStatus
+final case class MarketObjectStatus
 (
     override val sup: BasicElement,
     status: String,
@@ -1167,7 +1167,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1175,7 +1175,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketObjectStatus.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketObjectStatus.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketObjectStatus.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketObjectStatus.fields (position), x))
         emitelem (0, status)
         emitattrs (1, RegisteredResource)
         emitattrs (2, TimeSeries)
@@ -1229,7 +1229,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class MktPSRType
+final case class MktPSRType
 (
     override val sup: PSRType,
     psrType: String,
@@ -1257,7 +1257,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1265,7 +1265,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktPSRType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktPSRType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktPSRType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktPSRType.fields (position), x))
         emitelem (0, psrType)
         emitattrs (1, TimeSeries)
         s.toString
@@ -1318,7 +1318,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Period
+final case class Period
 (
     override val sup: BasicElement,
     resolution: String,
@@ -1350,7 +1350,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1359,7 +1359,7 @@ extends
         implicit val clz: String = Period.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Period.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Period.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Period.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Period.fields (position), x))
         emitelem (0, resolution)
         emitattr (1, timeInterval)
         emitattrs (2, MarketDocument)
@@ -1437,7 +1437,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Point
+final case class Point
 (
     override val sup: BasicElement,
     position: Int,
@@ -1474,7 +1474,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1483,7 +1483,7 @@ extends
         implicit val clz: String = Point.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Point.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Point.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Point.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Point.fields (position), x))
         emitelem (0, position)
         emitelem (1, quality)
         emitelem (2, quantity)
@@ -1579,7 +1579,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Price
+final case class Price
 (
     override val sup: BasicElement,
     amount: Double,
@@ -1611,7 +1611,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1620,7 +1620,7 @@ extends
         implicit val clz: String = Price.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Price.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Price.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Price.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Price.fields (position), x))
         emitelem (0, amount)
         emitelem (1, category)
         emitelem (2, direction)
@@ -1689,7 +1689,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Process
+final case class Process
 (
     override val sup: IdentifiedObject,
     classificationType: String,
@@ -1718,7 +1718,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1726,7 +1726,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Process.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Process.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Process.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Process.fields (position), x))
         emitelem (0, classificationType)
         emitelem (1, processType)
         emitattrs (2, MarketDocument)
@@ -1789,7 +1789,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Quantity
+final case class Quantity
 (
     override val sup: BasicElement,
     quality: String,
@@ -1822,7 +1822,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1830,7 +1830,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Quantity.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Quantity.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Quantity.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Quantity.fields (position), x))
         emitelem (0, quality)
         emitelem (1, quantity)
         emitelem (2, `type`)
@@ -1907,7 +1907,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Reason
+final case class Reason
 (
     override val sup: BasicElement,
     code: String,
@@ -1940,7 +1940,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1948,7 +1948,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Reason.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reason.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reason.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Reason.fields (position), x))
         emitelem (0, code)
         emitelem (1, text)
         emitattrs (2, MarketDocument)
@@ -2024,7 +2024,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Series
+final case class Series
 (
     override val sup: TimeSeries,
     lastUpdateDate: String,
@@ -2055,7 +2055,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2063,7 +2063,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Series.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Series.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Series.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Series.fields (position), x))
         emitelem (0, lastUpdateDate)
         emitelem (1, methodType)
         emitelem (2, registrationDate)
@@ -2148,7 +2148,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class TimeSeries
+final case class TimeSeries
 (
     override val sup: IdentifiedObject,
     businessType: String,
@@ -2199,7 +2199,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2207,7 +2207,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TimeSeries.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeSeries.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TimeSeries.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TimeSeries.fields (position), x))
         emitelem (0, businessType)
         emitelem (1, cancelledTS)
         emitelem (2, curveType)
@@ -2367,7 +2367,7 @@ extends
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
-case class Unit_
+final case class Unit_
 (
     override val sup: BasicElement,
     name: String,
@@ -2396,7 +2396,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2404,7 +2404,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Unit_.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Unit_.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Unit_.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Unit_.fields (position), x))
         emitelem (0, name)
         emitattrs (1, AceTariffType)
         emitattrs (2, TimeSeries)

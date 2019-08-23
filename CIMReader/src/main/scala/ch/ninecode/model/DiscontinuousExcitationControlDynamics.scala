@@ -53,7 +53,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
-case class DiscExcContIEEEDEC1A
+final case class DiscExcContIEEEDEC1A
 (
     override val sup: DiscontinuousExcitationControlDynamics,
     esc: Double,
@@ -97,7 +97,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -221,7 +221,7 @@ extends
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
-case class DiscExcContIEEEDEC2A
+final case class DiscExcContIEEEDEC2A
 (
     override val sup: DiscontinuousExcitationControlDynamics,
     td1: Double,
@@ -252,7 +252,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -321,7 +321,7 @@ extends
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
-case class DiscExcContIEEEDEC3A
+final case class DiscExcContIEEEDEC3A
 (
     override val sup: DiscontinuousExcitationControlDynamics,
     tdr: Double,
@@ -349,7 +349,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -403,7 +403,7 @@ extends
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
-case class DiscontinuousExcitationControlDynamics
+final case class DiscontinuousExcitationControlDynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String,
@@ -431,7 +431,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

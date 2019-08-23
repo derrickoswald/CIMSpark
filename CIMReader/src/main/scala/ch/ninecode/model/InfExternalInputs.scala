@@ -17,7 +17,7 @@ import ch.ninecode.cim.Relationship
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
-case class ReserveReq
+final case class ReserveReq
 (
     override val sup: ResourceGroupReq,
     MarketProduct: String,
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -110,7 +110,7 @@ extends
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
-case class ReserveReqCurve
+final case class ReserveReqCurve
 (
     override val sup: Curve,
     ReserveReq: String
@@ -137,7 +137,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -190,7 +190,7 @@ extends
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
-case class ResourceGroup
+final case class ResourceGroup
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -220,7 +220,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -229,7 +229,7 @@ extends
         implicit val clz: String = ResourceGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceGroup.fields (position), x))
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, RegisteredResources)
@@ -286,7 +286,7 @@ extends
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
-case class ResourceGroupReq
+final case class ResourceGroupReq
 (
     override val sup: IdentifiedObject,
     RTOs: List[String],
@@ -314,7 +314,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -322,7 +322,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceGroupReq.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroupReq.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceGroupReq.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceGroupReq.fields (position), x))
         emitattrs (0, RTOs)
         emitattr (1, ResourceGroup)
         s.toString
@@ -374,7 +374,7 @@ extends
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
-case class SensitivityPriceCurve
+final case class SensitivityPriceCurve
 (
     override val sup: Curve,
     ReserveReq: String
@@ -401,7 +401,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
-case class AvailablityPlan
+final case class AvailablityPlan
 (
     override val sup: IdentifiedObject,
     validPeriod: String
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -90,7 +90,7 @@ extends
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
-case class EquipmentUnavailabilitySchedule
+final case class EquipmentUnavailabilitySchedule
 (
     override val sup: IdentifiedObject
 )
@@ -116,7 +116,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -150,7 +150,7 @@ extends
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
-case class UnavailabilityScheduleDependency
+final case class UnavailabilityScheduleDependency
 (
     override val sup: IdentifiedObject,
     UnavailabilityScheduleDependsOn: String,
@@ -178,7 +178,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -236,7 +236,7 @@ extends
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
-case class UnavailabilitySwitchAction
+final case class UnavailabilitySwitchAction
 (
     override val sup: IdentifiedObject,
     open: Boolean
@@ -263,7 +263,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -312,7 +312,7 @@ extends
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
-case class UnavailablitySchedule
+final case class UnavailablitySchedule
 (
     override val sup: IdentifiedObject,
     DependsOn: List[String],
@@ -340,14 +340,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnavailablitySchedule.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UnavailablitySchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UnavailablitySchedule.fields (position), x))
         emitattrs (0, DependsOn)
         emitattrs (1, Impacts)
         s.toString

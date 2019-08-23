@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class BaseReading
+final case class BaseReading
 (
     override val sup: MeasurementValue,
     reportedDateTime: String,
@@ -53,7 +53,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -62,7 +62,7 @@ extends
         implicit val clz: String = BaseReading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BaseReading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseReading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BaseReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BaseReading.fields (position), x))
         emitelem (0, reportedDateTime)
         emitelem (1, source)
         emitattr (2, timePeriod)
@@ -126,7 +126,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class Channel
+final case class Channel
 (
     override val sup: IdentifiedObject,
     isVirtual: Boolean,
@@ -155,7 +155,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -220,7 +220,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ComFunction
+final case class ComFunction
 (
     override val sup: EndDeviceFunction,
     amrAddress: String,
@@ -251,7 +251,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -324,7 +324,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ComModule
+final case class ComModule
 (
     override val sup: Asset,
     amrSystem: String,
@@ -354,7 +354,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -362,7 +362,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ComModule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ComModule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ComModule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ComModule.fields (position), x))
         emitelem (0, amrSystem)
         emitelem (1, supportsAutonomousDst)
         emitelem (2, timeZoneOffset)
@@ -429,7 +429,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ControlledAppliance
+final case class ControlledAppliance
 (
     override val sup: BasicElement,
     isElectricVehicle: Boolean,
@@ -467,7 +467,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -564,7 +564,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class DemandResponseProgram
+final case class DemandResponseProgram
 (
     override val sup: IdentifiedObject,
     `type`: String,
@@ -595,7 +595,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -604,7 +604,7 @@ extends
         implicit val clz: String = DemandResponseProgram.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DemandResponseProgram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DemandResponseProgram.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DemandResponseProgram.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DemandResponseProgram.fields (position), x))
         emitelem (0, `type`)
         emitattr (1, validityInterval)
         emitattrs (2, CustomerAgreements)
@@ -685,7 +685,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDevice
+final case class EndDevice
 (
     override val sup: AssetContainer,
     amrSystem: String,
@@ -726,7 +726,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -735,7 +735,7 @@ extends
         implicit val clz: String = EndDevice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDevice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDevice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDevice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDevice.fields (position), x))
         emitelem (0, amrSystem)
         emitelem (1, installCode)
         emitelem (2, isPan)
@@ -847,7 +847,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceAction
+final case class EndDeviceAction
 (
     override val sup: BasicElement,
     command: String,
@@ -878,7 +878,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -963,7 +963,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceCapability
+final case class EndDeviceCapability
 (
     override val sup: BasicElement,
     autonomousDst: Boolean,
@@ -1007,7 +1007,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1142,7 +1142,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceControl
+final case class EndDeviceControl
 (
     override val sup: IdentifiedObject,
     drProgramLevel: Int,
@@ -1183,7 +1183,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1192,7 +1192,7 @@ extends
         implicit val clz: String = EndDeviceControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceControl.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceControl.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceControl.fields (position), x))
         emitelem (0, drProgramLevel)
         emitelem (1, drProgramMandatory)
         emitelem (2, issuerID)
@@ -1307,7 +1307,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceControlType
+final case class EndDeviceControlType
 (
     override val sup: IdentifiedObject,
     domain: String,
@@ -1338,7 +1338,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1346,7 +1346,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EndDeviceControlType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceControlType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceControlType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceControlType.fields (position), x))
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
@@ -1414,7 +1414,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceEvent
+final case class EndDeviceEvent
 (
     override val sup: ActivityRecord,
     issuerID: String,
@@ -1448,7 +1448,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1457,7 +1457,7 @@ extends
         implicit val clz: String = EndDeviceEvent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceEvent.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceEvent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceEvent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceEvent.fields (position), x))
         emitelem (0, issuerID)
         emitelem (1, issuerTrackingID)
         emitelem (2, userID)
@@ -1535,7 +1535,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceEventDetail
+final case class EndDeviceEventDetail
 (
     override val sup: BasicElement,
     name: String,
@@ -1564,7 +1564,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1633,7 +1633,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceEventType
+final case class EndDeviceEventType
 (
     override val sup: IdentifiedObject,
     domain: String,
@@ -1664,7 +1664,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1672,7 +1672,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EndDeviceEventType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceEventType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceEventType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceEventType.fields (position), x))
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
@@ -1734,7 +1734,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceFunction
+final case class EndDeviceFunction
 (
     override val sup: AssetFunction,
     enabled: Boolean,
@@ -1763,7 +1763,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1772,7 +1772,7 @@ extends
         implicit val clz: String = EndDeviceFunction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceFunction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceFunction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceFunction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceFunction.fields (position), x))
         emitelem (0, enabled)
         emitattr (1, EndDevice)
         emitattrs (2, Registers)
@@ -1837,7 +1837,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceGroup
+final case class EndDeviceGroup
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -1874,7 +1874,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1883,7 +1883,7 @@ extends
         implicit val clz: String = EndDeviceGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceGroup.fields (position), x))
         emitattr (0, status)
         emitelem (1, `type`)
         emitattr (2, version)
@@ -1979,7 +1979,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceInfo
+final case class EndDeviceInfo
 (
     override val sup: AssetInfo,
     capability: String,
@@ -2011,7 +2011,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2020,7 +2020,7 @@ extends
         implicit val clz: String = EndDeviceInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EndDeviceInfo.fields (position), x))
         emitattr (0, capability)
         emitelem (1, isSolidState)
         emitelem (2, phaseCount)
@@ -2088,7 +2088,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class EndDeviceTiming
+final case class EndDeviceTiming
 (
     override val sup: BasicElement,
     duration: Double,
@@ -2118,7 +2118,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2220,7 +2220,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class IntervalBlock
+final case class IntervalBlock
 (
     override val sup: BasicElement,
     IntervalReadings: List[String],
@@ -2250,7 +2250,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2258,7 +2258,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntervalBlock.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IntervalBlock.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IntervalBlock.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (IntervalBlock.fields (position), x))
         emitattrs (0, IntervalReadings)
         emitattr (1, MeterReading)
         emitattr (2, PendingCalculation)
@@ -2320,7 +2320,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class IntervalReading
+final case class IntervalReading
 (
     override val sup: BaseReading,
     IntervalBlocks: List[String]
@@ -2347,14 +2347,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntervalReading.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IntervalReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (IntervalReading.fields (position), x))
         emitattrs (0, IntervalBlocks)
         s.toString
     }
@@ -2407,7 +2407,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class Meter
+final case class Meter
 (
     override val sup: EndDevice,
     connectionCategory: String,
@@ -2440,7 +2440,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2448,7 +2448,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Meter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Meter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Meter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Meter.fields (position), x))
         emitelem (0, connectionCategory)
         emitelem (1, formNumber)
         emitattrs (2, MeterMultipliers)
@@ -2522,7 +2522,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class MeterMultiplier
+final case class MeterMultiplier
 (
     override val sup: IdentifiedObject,
     kind: String,
@@ -2551,7 +2551,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2618,7 +2618,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class MeterReading
+final case class MeterReading
 (
     override val sup: IdentifiedObject,
     isCoincidentTrigger: Boolean,
@@ -2652,7 +2652,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2661,7 +2661,7 @@ extends
         implicit val clz: String = MeterReading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeterReading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeterReading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeterReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MeterReading.fields (position), x))
         emitelem (0, isCoincidentTrigger)
         emitattr (1, valuesInterval)
         emitattr (2, CustomerAgreement)
@@ -2740,7 +2740,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class MeterWorkTask
+final case class MeterWorkTask
 (
     override val sup: WorkTask,
     Meter: String,
@@ -2769,7 +2769,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2832,7 +2832,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class MetrologyRequirement
+final case class MetrologyRequirement
 (
     override val sup: IdentifiedObject,
     reason: String,
@@ -2861,7 +2861,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2869,7 +2869,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MetrologyRequirement.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MetrologyRequirement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MetrologyRequirement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MetrologyRequirement.fields (position), x))
         emitattr (0, reason)
         emitattrs (1, ReadingTypes)
         emitattrs (2, UsagePoints)
@@ -2942,7 +2942,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class PanDemandResponse
+final case class PanDemandResponse
 (
     override val sup: EndDeviceAction,
     appliance: String,
@@ -2980,7 +2980,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3079,7 +3079,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class PanDisplay
+final case class PanDisplay
 (
     override val sup: EndDeviceAction,
     confirmationRequired: Boolean,
@@ -3109,7 +3109,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3171,7 +3171,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class PanPricing
+final case class PanPricing
 (
     override val sup: EndDeviceAction,
     providerID: Int,
@@ -3199,7 +3199,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3207,7 +3207,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PanPricing.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PanPricing.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PanPricing.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PanPricing.fields (position), x))
         emitelem (0, providerID)
         emitattrs (1, PanPricingDetails)
         s.toString
@@ -3270,7 +3270,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class PanPricingDetail
+final case class PanPricingDetail
 (
     override val sup: BasicElement,
     alternateCostDelivered: Double,
@@ -3310,7 +3310,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3423,7 +3423,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class PendingCalculation
+final case class PendingCalculation
 (
     override val sup: BasicElement,
     multiplyBeforeAdd: Boolean,
@@ -3456,7 +3456,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3465,7 +3465,7 @@ extends
         implicit val clz: String = PendingCalculation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PendingCalculation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PendingCalculation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PendingCalculation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PendingCalculation.fields (position), x))
         emitelem (0, multiplyBeforeAdd)
         emitelem (1, offset)
         emitelem (2, scalarDenominator)
@@ -3536,7 +3536,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class RationalNumber
+final case class RationalNumber
 (
     override val sup: BasicElement,
     denominator: Int,
@@ -3564,7 +3564,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3622,7 +3622,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class Reading
+final case class Reading
 (
     override val sup: BaseReading,
     position: Int,
@@ -3653,7 +3653,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3662,7 +3662,7 @@ extends
         implicit val clz: String = Reading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Reading.fields (position), x))
         emitelem (0, position)
         emitattr (1, reason)
         emitelem (2, valueMissing)
@@ -3726,7 +3726,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ReadingInterharmonic
+final case class ReadingInterharmonic
 (
     override val sup: BasicElement,
     denominator: Int,
@@ -3754,7 +3754,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3812,7 +3812,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ReadingQuality
+final case class ReadingQuality
 (
     override val sup: BasicElement,
     comment: String,
@@ -3843,7 +3843,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3917,7 +3917,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ReadingQualityType
+final case class ReadingQualityType
 (
     override val sup: IdentifiedObject,
     category: String,
@@ -3947,7 +3947,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3955,7 +3955,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReadingQualityType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReadingQualityType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReadingQualityType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ReadingQualityType.fields (position), x))
         emitelem (0, category)
         emitelem (1, subCategory)
         emitelem (2, systemId)
@@ -4045,7 +4045,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ReadingType
+final case class ReadingType
 (
     override val sup: IdentifiedObject,
     accumulation: String,
@@ -4093,7 +4093,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4102,7 +4102,7 @@ extends
         implicit val clz: String = ReadingType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReadingType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReadingType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReadingType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ReadingType.fields (position), x))
         emitattr (0, accumulation)
         emitattr (1, aggregate)
         emitattr (2, argument)
@@ -4246,7 +4246,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class Register
+final case class Register
 (
     override val sup: IdentifiedObject,
     isVirtual: Boolean,
@@ -4280,7 +4280,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4289,7 +4289,7 @@ extends
         implicit val clz: String = Register.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Register.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Register.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Register.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Register.fields (position), x))
         emitelem (0, isVirtual)
         emitelem (1, leftDigitCount)
         emitelem (2, rightDigitCount)
@@ -4365,7 +4365,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class ServiceMultiplier
+final case class ServiceMultiplier
 (
     override val sup: IdentifiedObject,
     kind: String,
@@ -4394,7 +4394,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4456,7 +4456,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class SimpleEndDeviceFunction
+final case class SimpleEndDeviceFunction
 (
     override val sup: EndDeviceFunction,
     kind: String
@@ -4483,7 +4483,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4578,7 +4578,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class UsagePoint
+final case class UsagePoint
 (
     override val sup: IdentifiedObject,
     amiBillingReady: String,
@@ -4643,7 +4643,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4652,7 +4652,7 @@ extends
         implicit val clz: String = UsagePoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePoint.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UsagePoint.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UsagePoint.fields (position), x))
         emitattr (0, amiBillingReady)
         emitelem (1, checkBilling)
         emitelem (2, connectionCategory)
@@ -4871,7 +4871,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class UsagePointGroup
+final case class UsagePointGroup
 (
     override val sup: IdentifiedObject,
     `type`: String,
@@ -4901,7 +4901,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4909,7 +4909,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UsagePointGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePointGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePointGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UsagePointGroup.fields (position), x))
         emitelem (0, `type`)
         emitattrs (1, DemandResponsePrograms)
         emitattrs (2, EndDeviceControls)
@@ -4972,7 +4972,7 @@ extends
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
-case class UsagePointLocation
+final case class UsagePointLocation
 (
     override val sup: Location,
     accessMethod: String,
@@ -5002,7 +5002,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5010,7 +5010,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UsagePointLocation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePointLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePointLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UsagePointLocation.fields (position), x))
         emitelem (0, accessMethod)
         emitelem (1, remark)
         emitelem (2, siteAccessProblem)

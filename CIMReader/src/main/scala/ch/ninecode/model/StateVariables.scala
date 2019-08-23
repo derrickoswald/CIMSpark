@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class StateVariable
+final case class StateVariable
 (
     override val sup: BasicElement
 )
@@ -41,7 +41,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -86,7 +86,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvInjection
+final case class SvInjection
 (
     override val sup: StateVariable,
     pInjection: Double,
@@ -116,7 +116,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -188,7 +188,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvPowerFlow
+final case class SvPowerFlow
 (
     override val sup: StateVariable,
     p: Double,
@@ -218,7 +218,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -286,7 +286,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvShuntCompensatorSections
+final case class SvShuntCompensatorSections
 (
     override val sup: StateVariable,
     phase: String,
@@ -315,7 +315,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -379,7 +379,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvStatus
+final case class SvStatus
 (
     override val sup: StateVariable,
     inService: Boolean,
@@ -408,7 +408,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -471,7 +471,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvSwitch
+final case class SvSwitch
 (
     override val sup: StateVariable,
     open: Boolean,
@@ -500,7 +500,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -562,7 +562,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvTapStep
+final case class SvTapStep
 (
     override val sup: StateVariable,
     position: Double,
@@ -590,7 +590,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -650,7 +650,7 @@ extends
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
-case class SvVoltage
+final case class SvVoltage
 (
     override val sup: StateVariable,
     angle: Double,
@@ -680,7 +680,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
  * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
  */
-case class MechLoad1
+final case class MechLoad1
 (
     override val sup: MechanicalLoadDynamics,
     a: Double,
@@ -49,7 +49,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -112,7 +112,7 @@ extends
  * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
  * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
  */
-case class MechanicalLoadDynamics
+final case class MechanicalLoadDynamics
 (
     override val sup: DynamicsFunctionBlock,
     AsynchronousMachineDynamics: String,
@@ -140,7 +140,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

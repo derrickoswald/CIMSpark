@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname IEC61970 Package IEC61970
  * @groupdesc IEC61970 Top package for IEC 61970.
  */
-case class IEC61970CIMVersion
+final case class IEC61970CIMVersion
 (
     override val sup: BasicElement,
     date: String,
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

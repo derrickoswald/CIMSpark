@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class AccountNotification
+final case class AccountNotification
 (
     override val sup: BasicElement,
     customerNotificationType: String,
@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -135,7 +135,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class Customer
+final case class Customer
 (
     override val sup: OrganisationRole,
     kind: String,
@@ -177,7 +177,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -186,7 +186,7 @@ extends
         implicit val clz: String = Customer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Customer.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Customer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Customer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Customer.fields (position), x))
         emitattr (0, kind)
         emitelem (1, locale)
         emitattr (2, priority)
@@ -309,7 +309,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class CustomerAccount
+final case class CustomerAccount
 (
     override val sup: Document,
     billingCycle: String,
@@ -345,7 +345,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -354,7 +354,7 @@ extends
         implicit val clz: String = CustomerAccount.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerAccount.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerAccount.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerAccount.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CustomerAccount.fields (position), x))
         emitelem (0, billingCycle)
         emitelem (1, budgetBill)
         emitelem (2, lastBillAmount)
@@ -455,7 +455,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class CustomerAgreement
+final case class CustomerAgreement
 (
     override val sup: Agreement,
     isPrePay: Boolean,
@@ -495,7 +495,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -504,7 +504,7 @@ extends
         implicit val clz: String = CustomerAgreement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerAgreement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerAgreement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerAgreement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CustomerAgreement.fields (position), x))
         emitelem (0, isPrePay)
         emitelem (1, loadMgmt)
         emitelem (2, shutOffDateTime)
@@ -617,7 +617,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class CustomerNotification
+final case class CustomerNotification
 (
     override val sup: BasicElement,
     contactType: String,
@@ -651,7 +651,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -660,7 +660,7 @@ extends
         implicit val clz: String = CustomerNotification.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerNotification.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerNotification.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerNotification.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CustomerNotification.fields (position), x))
         emitelem (0, contactType)
         emitelem (1, contactValue)
         emitelem (2, earliestDateTimeToCall)
@@ -737,7 +737,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class IncidentHazard
+final case class IncidentHazard
 (
     override val sup: Hazard,
     Incident: String,
@@ -765,7 +765,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -834,7 +834,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class PricingStructure
+final case class PricingStructure
 (
     override val sup: Document,
     code: String,
@@ -871,7 +871,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -880,7 +880,7 @@ extends
         implicit val clz: String = PricingStructure.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PricingStructure.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PricingStructure.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PricingStructure.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PricingStructure.fields (position), x))
         emitelem (0, code)
         emitelem (1, dailyCeilingUsage)
         emitelem (2, dailyEstimatedUsage)
@@ -972,7 +972,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class ServiceCategory
+final case class ServiceCategory
 (
     override val sup: IdentifiedObject,
     kind: String,
@@ -1003,7 +1003,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1011,7 +1011,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ServiceCategory.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ServiceCategory.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ServiceCategory.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ServiceCategory.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, ConfigurationEvents)
         emitattrs (2, CustomerAgreements)
@@ -1083,7 +1083,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class ServiceLocation
+final case class ServiceLocation
 (
     override val sup: WorkLocation,
     accessMethod: String,
@@ -1116,7 +1116,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1124,7 +1124,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ServiceLocation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ServiceLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ServiceLocation.fields (position), x))
         emitelem (0, accessMethod)
         emitelem (1, needsInspection)
         emitelem (2, siteAccessProblem)
@@ -1200,7 +1200,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class Tariff
+final case class Tariff
 (
     override val sup: Document,
     endDate: String,
@@ -1230,7 +1230,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1238,7 +1238,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Tariff.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Tariff.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Tariff.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Tariff.fields (position), x))
         emitelem (0, endDate)
         emitelem (1, startDate)
         emitattrs (2, PricingStructures)
@@ -1292,7 +1292,7 @@ extends
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
-case class TroubleTicket
+final case class TroubleTicket
 (
     override val sup: Document,
     comment: String,
@@ -1331,7 +1331,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1340,7 +1340,7 @@ extends
         implicit val clz: String = TroubleTicket.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TroubleTicket.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TroubleTicket.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TroubleTicket.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TroubleTicket.fields (position), x))
         emitelem (0, comment)
         emitelem (1, dateTimeOfReport)
         emitelem (2, firstResponderStatus)

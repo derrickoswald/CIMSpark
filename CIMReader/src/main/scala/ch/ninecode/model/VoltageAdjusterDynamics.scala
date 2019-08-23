@@ -29,7 +29,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
-case class VAdjIEEE
+final case class VAdjIEEE
 (
     override val sup: VoltageAdjusterDynamics,
     adjslew: Double,
@@ -61,7 +61,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -130,7 +130,7 @@ extends
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
-case class VoltageAdjusterDynamics
+final case class VoltageAdjusterDynamics
 (
     override val sup: DynamicsFunctionBlock,
     PFVArControllerType1Dynamics: String
@@ -157,7 +157,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

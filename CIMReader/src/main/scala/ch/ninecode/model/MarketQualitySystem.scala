@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class AllocationResult
+final case class AllocationResult
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -59,7 +59,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AllocationResult.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AllocationResult.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AllocationResult.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AllocationResult.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -128,7 +128,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class AllocationResultValues
+final case class AllocationResultValues
 (
     override val sup: BasicElement,
     aggregateType: String,
@@ -161,7 +161,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -242,7 +242,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class AuxiliaryCost
+final case class AuxiliaryCost
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -273,7 +273,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -282,7 +282,7 @@ extends
         implicit val clz: String = AuxiliaryCost.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryCost.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryCost.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AuxiliaryCost.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AuxiliaryCost.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)
@@ -343,7 +343,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class AuxiliaryObject
+final case class AuxiliaryObject
 (
     override val sup: BasicElement,
     RegisteredGenerator: String,
@@ -371,7 +371,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -437,7 +437,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class AuxiliaryValues
+final case class AuxiliaryValues
 (
     override val sup: AuxiliaryObject,
     availUndispatchedQ: Double,
@@ -474,7 +474,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -571,7 +571,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class ExpectedEnergy
+final case class ExpectedEnergy
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -601,7 +601,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -609,7 +609,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExpectedEnergy.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExpectedEnergy.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ExpectedEnergy.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ExpectedEnergy.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -668,7 +668,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class ExpectedEnergyValues
+final case class ExpectedEnergyValues
 (
     override val sup: BasicElement,
     energyTypeCode: String,
@@ -698,7 +698,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -766,7 +766,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class FiveMinAuxiliaryData
+final case class FiveMinAuxiliaryData
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -796,7 +796,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -804,7 +804,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FiveMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FiveMinAuxiliaryData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FiveMinAuxiliaryData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FiveMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -863,7 +863,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class TenMinAuxiliaryData
+final case class TenMinAuxiliaryData
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -893,7 +893,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -901,7 +901,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TenMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TenMinAuxiliaryData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TenMinAuxiliaryData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TenMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -961,7 +961,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class TradingHubPrice
+final case class TradingHubPrice
 (
     override val sup: BasicElement,
     intervalStartTime: String,
@@ -992,7 +992,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1001,7 +1001,7 @@ extends
         implicit val clz: String = TradingHubPrice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradingHubPrice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradingHubPrice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TradingHubPrice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TradingHubPrice.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)
@@ -1064,7 +1064,7 @@ extends
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
-case class TradingHubValues
+final case class TradingHubValues
 (
     override val sup: BasicElement,
     price: Double,
@@ -1093,7 +1093,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

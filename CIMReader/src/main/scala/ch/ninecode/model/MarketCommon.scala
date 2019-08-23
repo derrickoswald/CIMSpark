@@ -26,7 +26,7 @@ import ch.ninecode.cim.Relationship
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class EnvironmentalMonitoringStation
+final case class EnvironmentalMonitoringStation
 (
     override val sup: IdentifiedObject,
     dstObserved: Boolean,
@@ -60,7 +60,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -69,7 +69,7 @@ extends
         implicit val clz: String = EnvironmentalMonitoringStation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnvironmentalMonitoringStation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnvironmentalMonitoringStation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnvironmentalMonitoringStation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnvironmentalMonitoringStation.fields (position), x))
         emitelem (0, dstObserved)
         emitelem (1, isNetworked)
         emitelem (2, timeZoneOffset)
@@ -153,7 +153,7 @@ extends
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class MarketParticipant
+final case class MarketParticipant
 (
     override val sup: Organisation,
     Bid: List[String],
@@ -186,14 +186,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketParticipant.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketParticipant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketParticipant.fields (position), x))
         emitattrs (0, Bid)
         emitattrs (1, MarketDocument)
         emitattrs (2, MarketPerson)
@@ -269,7 +269,7 @@ extends
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class MarketRole
+final case class MarketRole
 (
     override val sup: OrganisationRole,
     `type`: String,
@@ -297,7 +297,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -305,7 +305,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketRole.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketRole.fields (position), x))
         emitelem (0, `type`)
         emitattrs (1, MarketParticipant)
         s.toString
@@ -353,7 +353,7 @@ extends
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class MktGeneratingUnit
+final case class MktGeneratingUnit
 (
     override val sup: GeneratingUnit,
     GeneratingUnitDynamicValues: List[String]
@@ -380,14 +380,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktGeneratingUnit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktGeneratingUnit.fields (position), x))
         emitattrs (0, GeneratingUnitDynamicValues)
         s.toString
     }
@@ -506,7 +506,7 @@ extends
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class RegisteredResource
+final case class RegisteredResource
 (
     override val sup: PowerSystemResource,
     commercialOpDate: String,
@@ -601,7 +601,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -610,7 +610,7 @@ extends
         implicit val clz: String = RegisteredResource.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegisteredResource.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegisteredResource.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RegisteredResource.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RegisteredResource.fields (position), x))
         emitelem (0, commercialOpDate)
         emitattr (1, contingencyAvailFlag)
         emitelem (2, dispatchable)
@@ -985,7 +985,7 @@ extends
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  */
-case class ResourceCapacity
+final case class ResourceCapacity
 (
     override val sup: BasicElement,
     capacityType: String,
@@ -1017,7 +1017,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1026,7 +1026,7 @@ extends
         implicit val clz: String = ResourceCapacity.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCapacity.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCapacity.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceCapacity.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceCapacity.fields (position), x))
         emitattr (0, capacityType)
         emitelem (1, defaultCapacity)
         emitelem (2, maximumCapacity)

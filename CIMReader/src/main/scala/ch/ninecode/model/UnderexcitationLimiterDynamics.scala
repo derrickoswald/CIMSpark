@@ -31,7 +31,7 @@ import ch.ninecode.cim.Relationship
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcLim2Simplified
+final case class UnderexcLim2Simplified
 (
     override val sup: UnderexcitationLimiterDynamics,
     kui: Double,
@@ -64,7 +64,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -165,7 +165,7 @@ extends
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcLimIEEE1
+final case class UnderexcLimIEEE1
 (
     override val sup: UnderexcitationLimiterDynamics,
     kuc: Double,
@@ -206,7 +206,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -379,7 +379,7 @@ extends
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcLimIEEE2
+final case class UnderexcLimIEEE2
 (
     override val sup: UnderexcitationLimiterDynamics,
     k1: Double,
@@ -445,7 +445,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -654,7 +654,7 @@ extends
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcLimX1
+final case class UnderexcLimX1
 (
     override val sup: UnderexcitationLimiterDynamics,
     k: Double,
@@ -686,7 +686,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -760,7 +760,7 @@ extends
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcLimX2
+final case class UnderexcLimX2
 (
     override val sup: UnderexcitationLimiterDynamics,
     kf2: Double,
@@ -793,7 +793,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -866,7 +866,7 @@ extends
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
-case class UnderexcitationLimiterDynamics
+final case class UnderexcitationLimiterDynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String,
@@ -894,7 +894,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

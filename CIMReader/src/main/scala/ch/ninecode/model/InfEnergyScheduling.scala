@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class AreaReserveSpec
+final case class AreaReserveSpec
 (
     override val sup: BasicElement,
     lowerRegMarginReqt: Double,
@@ -57,7 +57,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -65,7 +65,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AreaReserveSpec.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AreaReserveSpec.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AreaReserveSpec.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AreaReserveSpec.fields (position), x))
         emitelem (0, lowerRegMarginReqt)
         emitelem (1, opReserveReqt)
         emitelem (2, primaryReserveReqt)
@@ -139,7 +139,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class CurrentEmergencyScheduledInterchange
+final case class CurrentEmergencyScheduledInterchange
 (
     override val sup: IdentifiedObject,
     emergencyScheduleMW: Double,
@@ -169,7 +169,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -236,7 +236,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class CurrentScheduledInterchange
+final case class CurrentScheduledInterchange
 (
     override val sup: BasicElement,
     currentNetTieMW: Double,
@@ -265,7 +265,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -327,7 +327,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class CurtailmentProfile
+final case class CurtailmentProfile
 (
     override val sup: Profile,
     EnergyTransaction: String
@@ -354,7 +354,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -411,7 +411,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class DynamicSchedule
+final case class DynamicSchedule
 (
     override val sup: BasicIntervalSchedule,
     dynSchedSignRev: Boolean,
@@ -442,7 +442,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -516,7 +516,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class EnergyProduct
+final case class EnergyProduct
 (
     override val sup: Agreement,
     EnergyTransactions: List[String],
@@ -546,7 +546,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -554,7 +554,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyProduct.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyProduct.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergyProduct.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnergyProduct.fields (position), x))
         emitattrs (0, EnergyTransactions)
         emitattr (1, GenerationProvider)
         emitattrs (2, ResoldBy_Marketer)
@@ -615,7 +615,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class InadvertentAccount
+final case class InadvertentAccount
 (
     override val sup: BasicElement,
     SubControlArea: String
@@ -642,7 +642,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -696,7 +696,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class InternalControlArea
+final case class InternalControlArea
 (
     override val sup: IdentifiedObject,
     CurrentEmergencySI: List[String],
@@ -724,7 +724,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -732,7 +732,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InternalControlArea.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InternalControlArea.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InternalControlArea.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (InternalControlArea.fields (position), x))
         emitattrs (0, CurrentEmergencySI)
         emitattr (1, CurrentScheduledInterchange)
         s.toString
@@ -783,7 +783,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class LossProfile
+final case class LossProfile
 (
     override val sup: Profile,
     EnergyTransaction: String,
@@ -811,7 +811,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -864,7 +864,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class TieLine
+final case class TieLine
 (
     override val sup: IdentifiedObject,
     EnergyTransaction: String,
@@ -895,7 +895,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -903,7 +903,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TieLine.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieLine.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TieLine.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TieLine.fields (position), x))
         emitattr (0, EnergyTransaction)
         emitattrs (1, ParentOfA)
         emitattr (2, ParentOfB)
@@ -968,7 +968,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class TransmissionCorridor
+final case class TransmissionCorridor
 (
     override val sup: PowerSystemResource,
     ContainedIn: List[String],
@@ -996,14 +996,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransmissionCorridor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransmissionCorridor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransmissionCorridor.fields (position), x))
         emitattrs (0, ContainedIn)
         emitattrs (1, TransmissionRightOfWays)
         s.toString
@@ -1053,7 +1053,7 @@ extends
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
-case class TransmissionRightOfWay
+final case class TransmissionRightOfWay
 (
     override val sup: PowerSystemResource,
     MktLine: List[String],
@@ -1081,7 +1081,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1089,7 +1089,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransmissionRightOfWay.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransmissionRightOfWay.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransmissionRightOfWay.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransmissionRightOfWay.fields (position), x))
         emitattrs (0, MktLine)
         emitattr (1, TransmissionCorridor)
         s.toString

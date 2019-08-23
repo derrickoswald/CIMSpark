@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
-case class PFVArControllerType1Dynamics
+final case class PFVArControllerType1Dynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -123,7 +123,7 @@ extends
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
-case class PFVArType1IEEEPFController
+final case class PFVArType1IEEEPFController
 (
     override val sup: PFVArControllerType1Dynamics,
     ovex: Boolean,
@@ -157,7 +157,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -243,7 +243,7 @@ extends
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
-case class PFVArType1IEEEVArController
+final case class PFVArType1IEEEVArController
 (
     override val sup: PFVArControllerType1Dynamics,
     tvarc: Double,
@@ -275,7 +275,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

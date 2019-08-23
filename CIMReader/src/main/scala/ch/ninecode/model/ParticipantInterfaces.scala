@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ActionRequest
+final case class ActionRequest
 (
     override val sup: BasicElement,
     actionName: String,
@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -55,7 +55,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ActionRequest.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ActionRequest.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ActionRequest.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ActionRequest.fields (position), x))
         emitattr (0, actionName)
         emitattrs (1, Bid)
         emitattrs (2, Trade)
@@ -112,7 +112,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class AreaLoadBid
+final case class AreaLoadBid
 (
     override val sup: Bid,
     demandBidMW: Double,
@@ -140,7 +140,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -148,7 +148,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AreaLoadBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AreaLoadBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AreaLoadBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AreaLoadBid.fields (position), x))
         emitelem (0, demandBidMW)
         emitattrs (1, LoadBid)
         s.toString
@@ -199,7 +199,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class AttributeProperty
+final case class AttributeProperty
 (
     override val sup: BasicElement,
     propertyName: String,
@@ -229,7 +229,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -304,7 +304,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class Bid
+final case class Bid
 (
     override val sup: Document,
     marketType: String,
@@ -342,7 +342,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -351,7 +351,7 @@ extends
         implicit val clz: String = Bid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Bid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Bid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Bid.fields (position), x))
         emitattr (0, marketType)
         emitelem (1, startTime)
         emitelem (2, stopTime)
@@ -450,7 +450,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidDistributionFactor
+final case class BidDistributionFactor
 (
     override val sup: BasicElement,
     timeIntervalEnd: String,
@@ -480,7 +480,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -489,7 +489,7 @@ extends
         implicit val clz: String = BidDistributionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidDistributionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidDistributionFactor.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidDistributionFactor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BidDistributionFactor.fields (position), x))
         emitelem (0, timeIntervalEnd)
         emitelem (1, timeIntervalStart)
         emitattrs (2, PnodeDistributionFactor)
@@ -555,7 +555,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidError
+final case class BidError
 (
     override val sup: IdentifiedObject,
     componentType: String,
@@ -591,7 +591,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -600,7 +600,7 @@ extends
         implicit val clz: String = BidError.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidError.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidError.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidError.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BidError.fields (position), x))
         emitelem (0, componentType)
         emitelem (1, endTime)
         emitelem (2, errMessage)
@@ -681,7 +681,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidHourlyProductSchedule
+final case class BidHourlyProductSchedule
 (
     override val sup: RegularIntervalSchedule,
     ProductBid: String
@@ -708,7 +708,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -759,7 +759,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidHourlySchedule
+final case class BidHourlySchedule
 (
     override val sup: RegularIntervalSchedule,
     Bid: String
@@ -786,7 +786,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -837,7 +837,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidPriceCurve
+final case class BidPriceCurve
 (
     override val sup: Curve,
     BidSchedule: List[String]
@@ -864,14 +864,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidPriceCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidPriceCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BidPriceCurve.fields (position), x))
         emitattrs (0, BidSchedule)
         s.toString
     }
@@ -928,7 +928,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidPriceSchedule
+final case class BidPriceSchedule
 (
     override val sup: RegularIntervalSchedule,
     bidType: String,
@@ -958,7 +958,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1053,7 +1053,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidSelfSched
+final case class BidSelfSched
 (
     override val sup: RegularIntervalSchedule,
     balancingFlag: String,
@@ -1094,7 +1094,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1208,7 +1208,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class BidSet
+final case class BidSet
 (
     override val sup: IdentifiedObject,
     GeneratingBids: List[String]
@@ -1235,14 +1235,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BidSet.fields (position), x))
         emitattrs (0, GeneratingBids)
         s.toString
     }
@@ -1295,7 +1295,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ChargeComponent
+final case class ChargeComponent
 (
     override val sup: IdentifiedObject,
     deleteStatus: String,
@@ -1331,7 +1331,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1339,7 +1339,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChargeComponent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeComponent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeComponent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ChargeComponent.fields (position), x))
         emitelem (0, deleteStatus)
         emitelem (1, effectiveDate)
         emitelem (2, equation)
@@ -1429,7 +1429,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ChargeGroup
+final case class ChargeGroup
 (
     override val sup: IdentifiedObject,
     effectiveDate: String,
@@ -1462,7 +1462,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1471,7 +1471,7 @@ extends
         implicit val clz: String = ChargeGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ChargeGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ChargeGroup.fields (position), x))
         emitelem (0, effectiveDate)
         emitelem (1, marketCode)
         emitelem (2, terminationDate)
@@ -1556,7 +1556,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ChargeType
+final case class ChargeType
 (
     override val sup: Document,
     chargeOrder: String,
@@ -1593,7 +1593,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1601,7 +1601,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChargeType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ChargeType.fields (position), x))
         emitelem (0, chargeOrder)
         emitelem (1, chargeVersion)
         emitelem (2, effectiveDate)
@@ -1705,7 +1705,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class DispatchInstReply
+final case class DispatchInstReply
 (
     override val sup: IdentifiedObject,
     acceptMW: Double,
@@ -1741,7 +1741,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1830,7 +1830,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class EnergyPriceCurve
+final case class EnergyPriceCurve
 (
     override val sup: BasicElement,
     EnergyTransactions: List[String],
@@ -1858,14 +1858,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyPriceCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergyPriceCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnergyPriceCurve.fields (position), x))
         emitattrs (0, EnergyTransactions)
         emitattrs (1, FTRs)
         s.toString
@@ -1943,7 +1943,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class GeneratingBid
+final case class GeneratingBid
 (
     override val sup: ResourceBid,
     combinedCycleUnitOffer: String,
@@ -1993,7 +1993,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2002,7 +2002,7 @@ extends
         implicit val clz: String = GeneratingBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratingBid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GeneratingBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GeneratingBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (GeneratingBid.fields (position), x))
         emitelem (0, combinedCycleUnitOffer)
         emitelem (1, downTimeMax)
         emitelem (2, installedCapacity)
@@ -2148,7 +2148,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class HourlyPreDispatchSchedule
+final case class HourlyPreDispatchSchedule
 (
     override val sup: BidHourlySchedule,
     value: Boolean
@@ -2175,7 +2175,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2225,7 +2225,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class InterTieBid
+final case class InterTieBid
 (
     override val sup: ResourceBid,
     minHourlyBlock_1: Int,
@@ -2254,7 +2254,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2263,7 +2263,7 @@ extends
         implicit val clz: String = InterTieBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InterTieBid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterTieBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InterTieBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (InterTieBid.fields (position), x))
         emitelem (0, minHourlyBlock_1)
         emitattrs (1, RampRateCurve)
         emitattr (2, RegisteredInterTie)
@@ -2323,7 +2323,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class InterTieDispatchResponse
+final case class InterTieDispatchResponse
 (
     override val sup: BasicElement,
     acceptMW: Double,
@@ -2355,7 +2355,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2447,7 +2447,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class LoadBid
+final case class LoadBid
 (
     override val sup: ResourceBid,
     dropRampRate: Double,
@@ -2491,7 +2491,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2500,7 +2500,7 @@ extends
         implicit val clz: String = LoadBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadBid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LoadBid.fields (position), x))
         emitelem (0, dropRampRate)
         emitelem (1, loadRedInitiationCost)
         emitelem (2, loadRedInitiationTime)
@@ -2620,7 +2620,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class LoadFollowingInst
+final case class LoadFollowingInst
 (
     override val sup: BasicElement,
     endTime: String,
@@ -2651,7 +2651,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2721,7 +2721,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class LoadReductionPriceCurve
+final case class LoadReductionPriceCurve
 (
     override val sup: Curve,
     LoadBid: String
@@ -2748,7 +2748,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2813,7 +2813,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class MajorChargeGroup
+final case class MajorChargeGroup
 (
     override val sup: IdentifiedObject,
     effectiveDate: String,
@@ -2851,7 +2851,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2859,7 +2859,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MajorChargeGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MajorChargeGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MajorChargeGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MajorChargeGroup.fields (position), x))
         emitelem (0, effectiveDate)
         emitelem (1, frequencyType)
         emitelem (2, invoiceType)
@@ -2953,7 +2953,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class MarketScheduledEvent
+final case class MarketScheduledEvent
 (
     override val sup: IdentifiedObject,
     category: String,
@@ -2983,7 +2983,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3049,7 +3049,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class NotificationTimeCurve
+final case class NotificationTimeCurve
 (
     override val sup: Curve,
     GeneratingBids: List[String]
@@ -3076,14 +3076,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NotificationTimeCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NotificationTimeCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NotificationTimeCurve.fields (position), x))
         emitattrs (0, GeneratingBids)
         s.toString
     }
@@ -3129,7 +3129,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class OpenTieSchedule
+final case class OpenTieSchedule
 (
     override val sup: BidHourlySchedule,
     value: Boolean
@@ -3156,7 +3156,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3209,7 +3209,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ProductBid
+final case class ProductBid
 (
     override val sup: IdentifiedObject,
     Bid: String,
@@ -3241,7 +3241,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3249,7 +3249,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProductBid.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProductBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProductBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ProductBid.fields (position), x))
         emitattr (0, Bid)
         emitattrs (1, BidDistributionFactor)
         emitattrs (2, BidHourlyProductSchedule)
@@ -3320,7 +3320,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class PumpingCostSchedule
+final case class PumpingCostSchedule
 (
     override val sup: BidHourlyProductSchedule,
     value: Double
@@ -3347,7 +3347,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3399,7 +3399,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class PumpingLevelSchedule
+final case class PumpingLevelSchedule
 (
     override val sup: BidHourlyProductSchedule,
     value: Double
@@ -3426,7 +3426,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3476,7 +3476,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class PumpingShutDownCostSchedule
+final case class PumpingShutDownCostSchedule
 (
     override val sup: BidHourlyProductSchedule,
     value: Double
@@ -3503,7 +3503,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3558,7 +3558,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class RampRateCurve
+final case class RampRateCurve
 (
     override val sup: Curve,
     condition: String,
@@ -3591,7 +3591,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3599,7 +3599,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RampRateCurve.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RampRateCurve.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RampRateCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RampRateCurve.fields (position), x))
         emitattr (0, condition)
         emitattr (1, constraintRampType)
         emitattr (2, rampRateType)
@@ -3702,7 +3702,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class ResourceBid
+final case class ResourceBid
 (
     override val sup: Bid,
     aggregationFlag: Int,
@@ -3744,7 +3744,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3753,7 +3753,7 @@ extends
         implicit val clz: String = ResourceBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceBid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceBid.fields (position), x))
         emitelem (0, aggregationFlag)
         emitelem (1, bidStatus)
         emitelem (2, commodityType)
@@ -3860,7 +3860,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class StartUpCostCurve
+final case class StartUpCostCurve
 (
     override val sup: Curve,
     GeneratingBid: List[String],
@@ -3888,14 +3888,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StartUpCostCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StartUpCostCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (StartUpCostCurve.fields (position), x))
         emitattrs (0, GeneratingBid)
         emitattrs (1, RegisteredGenerators)
         s.toString
@@ -3947,7 +3947,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class StartUpTimeCurve
+final case class StartUpTimeCurve
 (
     override val sup: Curve,
     GeneratingBid: List[String],
@@ -3975,7 +3975,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3983,7 +3983,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StartUpTimeCurve.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StartUpTimeCurve.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StartUpTimeCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (StartUpTimeCurve.fields (position), x))
         emitattrs (0, GeneratingBid)
         emitattr (1, RegisteredGenerator)
         s.toString
@@ -4058,7 +4058,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class Trade
+final case class Trade
 (
     override val sup: IdentifiedObject,
     adjustedTradeQuantity: Double,
@@ -4108,7 +4108,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4117,7 +4117,7 @@ extends
         implicit val clz: String = Trade.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Trade.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Trade.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Trade.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Trade.fields (position), x))
         emitelem (0, adjustedTradeQuantity)
         emitelem (1, counterTradeQuantity)
         emitelem (2, dependOnTradeName)
@@ -4267,7 +4267,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class TradeError
+final case class TradeError
 (
     override val sup: IdentifiedObject,
     endTime: String,
@@ -4300,7 +4300,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4395,7 +4395,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class TradeProduct
+final case class TradeProduct
 (
     override val sup: BasicElement,
     tradeProductType: String,
@@ -4424,7 +4424,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4433,7 +4433,7 @@ extends
         implicit val clz: String = TradeProduct.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradeProduct.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradeProduct.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TradeProduct.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TradeProduct.fields (position), x))
         emitelem (0, tradeProductType)
         emitattr (1, tradeType)
         emitattrs (2, Trade)
@@ -4493,7 +4493,7 @@ extends
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
-case class TransactionBid
+final case class TransactionBid
 (
     override val sup: Bid,
     demandTransaction: Boolean,
@@ -4527,7 +4527,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4536,7 +4536,7 @@ extends
         implicit val clz: String = TransactionBid.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransactionBid.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransactionBid.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransactionBid.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransactionBid.fields (position), x))
         emitelem (0, demandTransaction)
         emitelem (1, dispatchable)
         emitelem (2, payCongestion)

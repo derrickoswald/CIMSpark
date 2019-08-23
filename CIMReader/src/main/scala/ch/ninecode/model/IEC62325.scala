@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname IEC62325 Package IEC62325
  * @groupdesc IEC62325 The IEC 62325 subpackages of the CIM are developed, standardized and maintained by the IEC TC57.
  */
-case class IEC62325CIMVersion
+final case class IEC62325CIMVersion
 (
     override val sup: BasicElement,
     date: String,
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

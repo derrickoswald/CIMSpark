@@ -13,7 +13,7 @@ import ch.ninecode.cim.Relationship
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class AnnotatedProjectDependency
+final case class AnnotatedProjectDependency
 (
     override val sup: IdentifiedObject,
     dependencyType: String,
@@ -42,7 +42,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -99,7 +99,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class CurrentState
+final case class CurrentState
 (
     override val sup: IdentifiedObject
 )
@@ -125,7 +125,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -163,7 +163,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class DifferentialModel
+final case class DifferentialModel
 (
     override val sup: BasicElement
 )
@@ -189,7 +189,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -228,7 +228,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProject
+final case class NetworkModelProject
 (
     override val sup: NetworkModelProjectComponent,
     ContainedProject: List[String]
@@ -255,14 +255,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProject.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProject.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProject.fields (position), x))
         emitattrs (0, ContainedProject)
         s.toString
     }
@@ -303,7 +303,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProject2
+final case class NetworkModelProject2
 (
     override val sup: NetworkModelProjectComponent2,
     Child: List[String]
@@ -330,14 +330,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProject2.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProject2.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProject2.fields (position), x))
         emitattrs (0, Child)
         s.toString
     }
@@ -383,7 +383,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectChange
+final case class NetworkModelProjectChange
 (
     override val sup: NetworkModelProjectComponent,
     NetworkModelProjectChangeVersion: List[String]
@@ -410,14 +410,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectChange.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProjectChange.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectChange.fields (position), x))
         emitattrs (0, NetworkModelProjectChangeVersion)
         s.toString
     }
@@ -471,7 +471,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectChangeVersion
+final case class NetworkModelProjectChangeVersion
 (
     override val sup: IdentifiedObject,
     comment: String,
@@ -505,7 +505,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -586,7 +586,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectCollection
+final case class NetworkModelProjectCollection
 (
     override val sup: BasicElement
 )
@@ -612,7 +612,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -651,7 +651,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectComponent
+final case class NetworkModelProjectComponent
 (
     override val sup: IdentifiedObject,
     ContainingProject: String,
@@ -680,7 +680,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -688,7 +688,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectComponent.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectComponent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProjectComponent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectComponent.fields (position), x))
         emitattr (0, ContainingProject)
         emitattrs (1, ProjectARelationships)
         emitattrs (2, ProjectBRelationships)
@@ -739,7 +739,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectComponent2
+final case class NetworkModelProjectComponent2
 (
     override val sup: IdentifiedObject,
     closed: String,
@@ -770,7 +770,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -835,7 +835,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectDocument
+final case class NetworkModelProjectDocument
 (
     override val sup: BasicElement
 )
@@ -861,7 +861,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -901,7 +901,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectRelationship
+final case class NetworkModelProjectRelationship
 (
     override val sup: IdentifiedObject,
     ProjectA: String,
@@ -929,7 +929,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -982,7 +982,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectStage
+final case class NetworkModelProjectStage
 (
     override val sup: NetworkModelProjectComponent2,
     changesetVersion: Int,
@@ -1014,7 +1014,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1023,7 +1023,7 @@ extends
         implicit val clz: String = NetworkModelProjectStage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NetworkModelProjectStage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectStage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProjectStage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectStage.fields (position), x))
         emitelem (0, changesetVersion)
         emitelem (1, commissionedDate)
         emitelem (2, plannedCommissionedDate)
@@ -1091,7 +1091,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class NetworkModelProjectState
+final case class NetworkModelProjectState
 (
     override val sup: IdentifiedObject,
     NetworkModelProjectChangeVersion: List[String]
@@ -1118,14 +1118,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectState.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NetworkModelProjectState.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectState.fields (position), x))
         emitattrs (0, NetworkModelProjectChangeVersion)
         s.toString
     }
@@ -1172,7 +1172,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class PowerSystemProjectLifecycleToBeDeleted
+final case class PowerSystemProjectLifecycleToBeDeleted
 (
     override val sup: BasicElement,
     cancelled: String,
@@ -1202,7 +1202,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1264,7 +1264,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class ProjectAlternative
+final case class ProjectAlternative
 (
     override val sup: NetworkModelProjectRelationship
 )
@@ -1290,7 +1290,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1326,7 +1326,7 @@ extends
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
-case class ProjectDependency
+final case class ProjectDependency
 (
     override val sup: NetworkModelProjectRelationship
 )
@@ -1352,7 +1352,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

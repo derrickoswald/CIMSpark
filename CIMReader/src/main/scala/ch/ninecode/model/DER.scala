@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  * @group DER
  * @groupname DER Package DER
  */
-case class DERCurveData
+final case class DERCurveData
 (
     override val sup: BasicElement,
     intervalNumber: Int,
@@ -45,7 +45,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -118,7 +118,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DERFunction
+final case class DERFunction
 (
     override val sup: BasicElement,
     connectDisconnect: Boolean,
@@ -154,7 +154,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -162,7 +162,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERFunction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERFunction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DERFunction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERFunction.fields (position), x))
         emitelem (0, connectDisconnect)
         emitelem (1, frequencyWattCurveFunction)
         emitelem (2, maxRealPowerLimiting)
@@ -238,7 +238,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DERGroupDispatch
+final case class DERGroupDispatch
 (
     override val sup: IdentifiedObject,
     EndDeviceGroup: List[String]
@@ -265,14 +265,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERGroupDispatch.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DERGroupDispatch.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERGroupDispatch.fields (position), x))
         emitattrs (0, EndDeviceGroup)
         s.toString
     }
@@ -312,7 +312,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DERGroupForecast
+final case class DERGroupForecast
 (
     override val sup: IdentifiedObject,
     predictionCreationDate: String,
@@ -340,7 +340,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -348,7 +348,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERGroupForecast.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERGroupForecast.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DERGroupForecast.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERGroupForecast.fields (position), x))
         emitelem (0, predictionCreationDate)
         emitattrs (1, EndDeviceGroup)
         s.toString
@@ -392,7 +392,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DERMonitorableParameter
+final case class DERMonitorableParameter
 (
     override val sup: BasicElement,
     flowDirection: String,
@@ -427,7 +427,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -436,7 +436,7 @@ extends
         implicit val clz: String = DERMonitorableParameter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERMonitorableParameter.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DERMonitorableParameter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DERMonitorableParameter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERMonitorableParameter.fields (position), x))
         emitattr (0, flowDirection)
         emitattr (1, yMultiplier)
         emitattr (2, yUnit)
@@ -510,7 +510,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DispatchSchedule
+final case class DispatchSchedule
 (
     override val sup: BasicElement,
     confidence: Double,
@@ -544,7 +544,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -553,7 +553,7 @@ extends
         implicit val clz: String = DispatchSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DispatchSchedule.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DispatchSchedule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DispatchSchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DispatchSchedule.fields (position), x))
         emitelem (0, confidence)
         emitattr (1, curveStyleKind)
         emitelem (2, numberOfIntervals)
@@ -622,7 +622,7 @@ extends
  * @group DER
  * @groupname DER Package DER
  */
-case class DispatchablePowerCapability
+final case class DispatchablePowerCapability
 (
     override val sup: BasicElement,
     currentActivePower: Double,
@@ -659,7 +659,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

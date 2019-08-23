@@ -32,7 +32,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class AccessPermit
+final case class AccessPermit
 (
     override val sup: WorkDocument,
     applicationNumber: String,
@@ -63,7 +63,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -140,7 +140,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Assignment
+final case class Assignment
 (
     override val sup: WorkDocument,
     effectivePeriod: String,
@@ -168,7 +168,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -176,7 +176,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Assignment.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Assignment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Assignment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Assignment.fields (position), x))
         emitattr (0, effectivePeriod)
         emitattrs (1, Crews)
         s.toString
@@ -236,7 +236,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class BusinessCase
+final case class BusinessCase
 (
     override val sup: WorkDocument,
     corporateCode: String,
@@ -265,7 +265,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -273,7 +273,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BusinessCase.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusinessCase.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BusinessCase.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BusinessCase.fields (position), x))
         emitelem (0, corporateCode)
         emitattrs (1, Projects)
         emitattrs (2, Works)
@@ -337,7 +337,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CUAllowableAction
+final case class CUAllowableAction
 (
     override val sup: WorkIdentifiedObject,
     status: String,
@@ -365,7 +365,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -373,7 +373,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CUAllowableAction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUAllowableAction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUAllowableAction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CUAllowableAction.fields (position), x))
         emitattr (0, status)
         emitattrs (1, CompatibleUnits)
         s.toString
@@ -434,7 +434,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CUContractorItem
+final case class CUContractorItem
 (
     override val sup: WorkIdentifiedObject,
     activityCode: String,
@@ -464,7 +464,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -473,7 +473,7 @@ extends
         implicit val clz: String = CUContractorItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CUContractorItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUContractorItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUContractorItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CUContractorItem.fields (position), x))
         emitelem (0, activityCode)
         emitelem (1, bidAmount)
         emitattr (2, status)
@@ -543,7 +543,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CUGroup
+final case class CUGroup
 (
     override val sup: WorkIdentifiedObject,
     status: String,
@@ -574,7 +574,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -582,7 +582,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CUGroup.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CUGroup.fields (position), x))
         emitattr (0, status)
         emitattrs (1, ChildCUGroups)
         emitattrs (2, CompatibleUnits)
@@ -657,7 +657,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CULaborCode
+final case class CULaborCode
 (
     override val sup: WorkIdentifiedObject,
     code: String,
@@ -686,7 +686,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -695,7 +695,7 @@ extends
         implicit val clz: String = CULaborCode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CULaborCode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CULaborCode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CULaborCode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CULaborCode.fields (position), x))
         emitelem (0, code)
         emitattr (1, status)
         emitattrs (2, CULaborItems)
@@ -763,7 +763,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CULaborItem
+final case class CULaborItem
 (
     override val sup: WorkIdentifiedObject,
     activityCode: String,
@@ -796,7 +796,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -805,7 +805,7 @@ extends
         implicit val clz: String = CULaborItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CULaborItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CULaborItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CULaborItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CULaborItem.fields (position), x))
         emitelem (0, activityCode)
         emitelem (1, laborDuration)
         emitelem (2, laborRate)
@@ -892,7 +892,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CUMaterialItem
+final case class CUMaterialItem
 (
     override val sup: WorkIdentifiedObject,
     corporateCode: String,
@@ -924,7 +924,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -933,7 +933,7 @@ extends
         implicit val clz: String = CUMaterialItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CUMaterialItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUMaterialItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUMaterialItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CUMaterialItem.fields (position), x))
         emitelem (0, corporateCode)
         emitattr (1, quantity)
         emitattr (2, status)
@@ -1013,7 +1013,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CUWorkEquipmentItem
+final case class CUWorkEquipmentItem
 (
     override val sup: WorkIdentifiedObject,
     equipCode: String,
@@ -1044,7 +1044,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1053,7 +1053,7 @@ extends
         implicit val clz: String = CUWorkEquipmentItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CUWorkEquipmentItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUWorkEquipmentItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUWorkEquipmentItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CUWorkEquipmentItem.fields (position), x))
         emitelem (0, equipCode)
         emitelem (1, rate)
         emitattr (2, status)
@@ -1130,7 +1130,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Capability
+final case class Capability
 (
     override val sup: WorkIdentifiedObject,
     performanceFactor: String,
@@ -1163,7 +1163,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1172,7 +1172,7 @@ extends
         implicit val clz: String = Capability.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Capability.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Capability.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Capability.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Capability.fields (position), x))
         emitelem (0, performanceFactor)
         emitattr (1, status)
         emitelem (2, `type`)
@@ -1264,7 +1264,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CompatibleUnit
+final case class CompatibleUnit
 (
     override val sup: WorkDocument,
     estCost: Double,
@@ -1303,7 +1303,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1312,7 +1312,7 @@ extends
         implicit val clz: String = CompatibleUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CompatibleUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CompatibleUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CompatibleUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CompatibleUnit.fields (position), x))
         emitelem (0, estCost)
         emitelem (1, quantity)
         emitattr (2, CUAllowableAction)
@@ -1429,7 +1429,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class ConditionFactor
+final case class ConditionFactor
 (
     override val sup: WorkIdentifiedObject,
     cfValue: String,
@@ -1461,7 +1461,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1470,7 +1470,7 @@ extends
         implicit val clz: String = ConditionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConditionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConditionFactor.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConditionFactor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConditionFactor.fields (position), x))
         emitelem (0, cfValue)
         emitattr (1, kind)
         emitattr (2, status)
@@ -1552,7 +1552,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class ContractorItem
+final case class ContractorItem
 (
     override val sup: WorkIdentifiedObject,
     activityCode: String,
@@ -1585,7 +1585,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1594,7 +1594,7 @@ extends
         implicit val clz: String = ContractorItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ContractorItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ContractorItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ContractorItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ContractorItem.fields (position), x))
         emitelem (0, activityCode)
         emitelem (1, bidAmount)
         emitelem (2, cost)
@@ -1685,7 +1685,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class CostType
+final case class CostType
 (
     override val sup: WorkIdentifiedObject,
     amountAssignable: Boolean,
@@ -1721,7 +1721,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1730,7 +1730,7 @@ extends
         implicit val clz: String = CostType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CostType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CostType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CostType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CostType.fields (position), x))
         emitelem (0, amountAssignable)
         emitelem (1, code)
         emitelem (2, level)
@@ -1836,7 +1836,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Design
+final case class Design
 (
     override val sup: WorkDocument,
     costEstimate: Double,
@@ -1873,7 +1873,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1882,7 +1882,7 @@ extends
         implicit val clz: String = Design.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Design.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Design.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Design.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Design.fields (position), x))
         emitelem (0, costEstimate)
         emitattr (1, kind)
         emitelem (2, price)
@@ -1992,7 +1992,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class DesignLocation
+final case class DesignLocation
 (
     override val sup: WorkIdentifiedObject,
     spanLength: Double,
@@ -2026,7 +2026,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2035,7 +2035,7 @@ extends
         implicit val clz: String = DesignLocation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DesignLocation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DesignLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DesignLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DesignLocation.fields (position), x))
         emitelem (0, spanLength)
         emitattr (1, status)
         emitattrs (2, ConditionFactors)
@@ -2135,7 +2135,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class DesignLocationCU
+final case class DesignLocationCU
 (
     override val sup: WorkIdentifiedObject,
     cuAccount: String,
@@ -2174,7 +2174,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2183,7 +2183,7 @@ extends
         implicit val clz: String = DesignLocationCU.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DesignLocationCU.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DesignLocationCU.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DesignLocationCU.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DesignLocationCU.fields (position), x))
         emitelem (0, cuAccount)
         emitattr (1, cuAction)
         emitattr (2, cuQuantity)
@@ -2299,7 +2299,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class InfoQuestion
+final case class InfoQuestion
 (
     override val sup: WorkDocument,
     answer: String,
@@ -2332,7 +2332,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2422,7 +2422,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class LaborItem
+final case class LaborItem
 (
     override val sup: WorkIdentifiedObject,
     activityCode: String,
@@ -2456,7 +2456,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2465,7 +2465,7 @@ extends
         implicit val clz: String = LaborItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LaborItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LaborItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LaborItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LaborItem.fields (position), x))
         emitelem (0, activityCode)
         emitelem (1, cost)
         emitelem (2, laborDuration)
@@ -2559,7 +2559,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class MiscCostItem
+final case class MiscCostItem
 (
     override val sup: WorkIdentifiedObject,
     account: String,
@@ -2594,7 +2594,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2690,7 +2690,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class NonStandardItem
+final case class NonStandardItem
 (
     override val sup: WorkDocument,
     amount: Double
@@ -2717,7 +2717,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2785,7 +2785,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class OldWorkTask
+final case class OldWorkTask
 (
     override val sup: WorkTask,
     Capabilities: List[String],
@@ -2822,7 +2822,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2830,7 +2830,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldWorkTask.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldWorkTask.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OldWorkTask.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OldWorkTask.fields (position), x))
         emitattrs (0, Capabilities)
         emitattrs (1, ContractorItems)
         emitattr (2, Design)
@@ -2937,7 +2937,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class OneCallRequest
+final case class OneCallRequest
 (
     override val sup: WorkDocument,
     explosivesUsed: Boolean,
@@ -2967,7 +2967,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2975,7 +2975,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OneCallRequest.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OneCallRequest.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OneCallRequest.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OneCallRequest.fields (position), x))
         emitelem (0, explosivesUsed)
         emitelem (1, markedIndicator)
         emitelem (2, markingInstruction)
@@ -3045,7 +3045,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class OverheadCost
+final case class OverheadCost
 (
     override val sup: WorkIdentifiedObject,
     code: String,
@@ -3076,7 +3076,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3085,7 +3085,7 @@ extends
         implicit val clz: String = OverheadCost.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverheadCost.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OverheadCost.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OverheadCost.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OverheadCost.fields (position), x))
         emitelem (0, code)
         emitelem (1, cost)
         emitattr (2, status)
@@ -3163,7 +3163,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Project
+final case class Project
 (
     override val sup: WorkDocument,
     budget: Double,
@@ -3195,7 +3195,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3204,7 +3204,7 @@ extends
         implicit val clz: String = Project.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Project.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Project.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Project.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Project.fields (position), x))
         emitelem (0, budget)
         emitattr (1, BusinessCase)
         emitattr (2, ErpProjectAccounting)
@@ -3289,7 +3289,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class PropertyUnit
+final case class PropertyUnit
 (
     override val sup: WorkIdentifiedObject,
     accountingUsage: String,
@@ -3322,7 +3322,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3331,7 +3331,7 @@ extends
         implicit val clz: String = PropertyUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PropertyUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PropertyUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PropertyUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PropertyUnit.fields (position), x))
         emitelem (0, accountingUsage)
         emitattr (1, activityCode)
         emitelem (2, propertyAccount)
@@ -3415,7 +3415,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class QualificationRequirement
+final case class QualificationRequirement
 (
     override val sup: WorkIdentifiedObject,
     qualificationID: String,
@@ -3446,7 +3446,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3454,7 +3454,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = QualificationRequirement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (QualificationRequirement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (QualificationRequirement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (QualificationRequirement.fields (position), x))
         emitelem (0, qualificationID)
         emitattrs (1, CULaborItems)
         emitattrs (2, Skills)
@@ -3529,7 +3529,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Regulation
+final case class Regulation
 (
     override val sup: WorkDocument,
     referenceNumber: String
@@ -3556,7 +3556,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3618,7 +3618,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class ShiftPattern
+final case class ShiftPattern
 (
     override val sup: WorkIdentifiedObject,
     assignmentType: String,
@@ -3649,7 +3649,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3658,7 +3658,7 @@ extends
         implicit val clz: String = ShiftPattern.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShiftPattern.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShiftPattern.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ShiftPattern.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ShiftPattern.fields (position), x))
         emitelem (0, assignmentType)
         emitelem (1, cycleCount)
         emitattr (2, status)
@@ -3739,7 +3739,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class TypeMaterial
+final case class TypeMaterial
 (
     override val sup: WorkDocument,
     costType: String,
@@ -3773,7 +3773,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3781,7 +3781,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TypeMaterial.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TypeMaterial.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TypeMaterial.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TypeMaterial.fields (position), x))
         emitelem (0, costType)
         emitelem (1, estUnitCost)
         emitelem (2, quantity)
@@ -3869,7 +3869,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class Usage
+final case class Usage
 (
     override val sup: WorkIdentifiedObject,
     status: String,
@@ -3897,7 +3897,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3976,7 +3976,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class WorkCostDetail
+final case class WorkCostDetail
 (
     override val sup: WorkDocument,
     amount: Double,
@@ -4016,7 +4016,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4025,7 +4025,7 @@ extends
         implicit val clz: String = WorkCostDetail.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkCostDetail.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkCostDetail.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkCostDetail.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkCostDetail.fields (position), x))
         emitelem (0, amount)
         emitelem (1, isDebit)
         emitelem (2, transactionDateTime)
@@ -4143,7 +4143,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class WorkCostSummary
+final case class WorkCostSummary
 (
     override val sup: WorkDocument,
     WorkCostDetail: String
@@ -4170,7 +4170,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4232,7 +4232,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class WorkDocument
+final case class WorkDocument
 (
     override val sup: Document
 )
@@ -4258,7 +4258,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4308,7 +4308,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class WorkFlowStep
+final case class WorkFlowStep
 (
     override val sup: WorkIdentifiedObject,
     sequenceNumber: Int,
@@ -4338,7 +4338,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4347,7 +4347,7 @@ extends
         implicit val clz: String = WorkFlowStep.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkFlowStep.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkFlowStep.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkFlowStep.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkFlowStep.fields (position), x))
         emitelem (0, sequenceNumber)
         emitattr (1, status)
         emitattr (2, Work)
@@ -4415,7 +4415,7 @@ The Work Standards package is used for the definition of compatible units (CULab
 This package is used for inspection and maintenance (InspectionDataSet, Procedure).
 The WorkService package defines Appointment class".
  */
-case class WorkIdentifiedObject
+final case class WorkIdentifiedObject
 (
     override val sup: IdentifiedObject
 )
@@ -4441,7 +4441,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

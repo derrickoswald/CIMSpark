@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class AirCompressor
+final case class AirCompressor
 (
     override val sup: PowerSystemResource,
     airCompressorRating: Double,
@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -110,7 +110,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class BatteryUnit
+final case class BatteryUnit
 (
     override val sup: PowerElectronicsUnit,
     batteryState: String,
@@ -139,7 +139,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -199,7 +199,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class CAESPlant
+final case class CAESPlant
 (
     override val sup: PowerSystemResource,
     energyStorageCapacity: Double,
@@ -229,7 +229,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -302,7 +302,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class CogenerationPlant
+final case class CogenerationPlant
 (
     override val sup: PowerSystemResource,
     cogenHPSendoutRating: Double,
@@ -335,7 +335,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -344,7 +344,7 @@ extends
         implicit val clz: String = CogenerationPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CogenerationPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CogenerationPlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CogenerationPlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CogenerationPlant.fields (position), x))
         emitelem (0, cogenHPSendoutRating)
         emitelem (1, cogenHPSteamRating)
         emitelem (2, cogenLPSendoutRating)
@@ -414,7 +414,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class CombinedCyclePlant
+final case class CombinedCyclePlant
 (
     override val sup: PowerSystemResource,
     combCyclePlantRating: Double,
@@ -442,7 +442,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -450,7 +450,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CombinedCyclePlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CombinedCyclePlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CombinedCyclePlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CombinedCyclePlant.fields (position), x))
         emitelem (0, combCyclePlantRating)
         emitattrs (1, ThermalGeneratingUnits)
         s.toString
@@ -503,7 +503,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class EmissionAccount
+final case class EmissionAccount
 (
     override val sup: Curve,
     emissionType: String,
@@ -532,7 +532,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -597,7 +597,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class EmissionCurve
+final case class EmissionCurve
 (
     override val sup: Curve,
     emissionContent: Double,
@@ -627,7 +627,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -706,7 +706,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class FossilFuel
+final case class FossilFuel
 (
     override val sup: IdentifiedObject,
     fossilFuelType: String,
@@ -744,7 +744,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -753,7 +753,7 @@ extends
         implicit val clz: String = FossilFuel.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FossilFuel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FossilFuel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FossilFuel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FossilFuel.fields (position), x))
         emitattr (0, fossilFuelType)
         emitelem (1, fuelCost)
         emitelem (2, fuelDispatchCost)
@@ -848,7 +848,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class FuelAllocationSchedule
+final case class FuelAllocationSchedule
 (
     override val sup: Curve,
     fuelAllocationEndDate: String,
@@ -881,7 +881,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -961,7 +961,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class GenUnitOpCostCurve
+final case class GenUnitOpCostCurve
 (
     override val sup: Curve,
     isNetGrossP: Boolean,
@@ -989,7 +989,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1047,7 +1047,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class GenUnitOpSchedule
+final case class GenUnitOpSchedule
 (
     override val sup: RegularIntervalSchedule,
     GeneratingUnit: String
@@ -1074,7 +1074,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1177,7 +1177,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class GeneratingUnit
+final case class GeneratingUnit
 (
     override val sup: Equipment,
     allocSpinResP: Double,
@@ -1245,7 +1245,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1254,7 +1254,7 @@ extends
         implicit val clz: String = GeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (GeneratingUnit.fields (position), x))
         emitelem (0, allocSpinResP)
         emitelem (1, autoCntrlMarginP)
         emitelem (2, baseP)
@@ -1468,7 +1468,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class GrossToNetActivePowerCurve
+final case class GrossToNetActivePowerCurve
 (
     override val sup: Curve,
     GeneratingUnit: String
@@ -1495,7 +1495,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1553,7 +1553,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HeatInputCurve
+final case class HeatInputCurve
 (
     override val sup: Curve,
     auxPowerMult: Double,
@@ -1585,7 +1585,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1660,7 +1660,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HeatRateCurve
+final case class HeatRateCurve
 (
     override val sup: Curve,
     isNetGrossP: Boolean,
@@ -1688,7 +1688,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1748,7 +1748,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HydroGeneratingEfficiencyCurve
+final case class HydroGeneratingEfficiencyCurve
 (
     override val sup: Curve,
     HydroGeneratingUnit: String
@@ -1775,7 +1775,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1833,7 +1833,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HydroGeneratingUnit
+final case class HydroGeneratingUnit
 (
     override val sup: GeneratingUnit,
     dropHeight: Double,
@@ -1867,7 +1867,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1876,7 +1876,7 @@ extends
         implicit val clz: String = HydroGeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HydroGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (HydroGeneratingUnit.fields (position), x))
         emitelem (0, dropHeight)
         emitattr (1, energyConversionCapability)
         emitelem (2, hydroUnitWaterCost)
@@ -1965,7 +1965,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HydroPowerPlant
+final case class HydroPowerPlant
 (
     override val sup: PowerSystemResource,
     dischargeTravelDelay: Double,
@@ -2004,7 +2004,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2013,7 +2013,7 @@ extends
         implicit val clz: String = HydroPowerPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroPowerPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroPowerPlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HydroPowerPlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (HydroPowerPlant.fields (position), x))
         emitelem (0, dischargeTravelDelay)
         emitelem (1, genRatedP)
         emitattr (2, hydroPlantStorageType)
@@ -2115,7 +2115,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HydroPump
+final case class HydroPump
 (
     override val sup: Equipment,
     pumpDischAtMaxHead: Double,
@@ -2148,7 +2148,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2228,7 +2228,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class HydroPumpOpSchedule
+final case class HydroPumpOpSchedule
 (
     override val sup: RegularIntervalSchedule,
     HydroPump: String
@@ -2255,7 +2255,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2309,7 +2309,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class IncrementalHeatRateCurve
+final case class IncrementalHeatRateCurve
 (
     override val sup: Curve,
     isNetGrossP: Boolean,
@@ -2337,7 +2337,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2395,7 +2395,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class InflowForecast
+final case class InflowForecast
 (
     override val sup: RegularIntervalSchedule,
     Reservoir: String
@@ -2422,7 +2422,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2475,7 +2475,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class LevelVsVolumeCurve
+final case class LevelVsVolumeCurve
 (
     override val sup: Curve,
     Reservoir: String
@@ -2502,7 +2502,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2552,7 +2552,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class NuclearGeneratingUnit
+final case class NuclearGeneratingUnit
 (
     override val sup: GeneratingUnit
 )
@@ -2578,7 +2578,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2617,7 +2617,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class PenstockLossCurve
+final case class PenstockLossCurve
 (
     override val sup: Curve,
     HydroGeneratingUnit: String
@@ -2644,7 +2644,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2694,7 +2694,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class PhotoVoltaicUnit
+final case class PhotoVoltaicUnit
 (
     override val sup: PowerElectronicsUnit
 )
@@ -2720,7 +2720,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2761,7 +2761,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class PowerElectronicsUnit
+final case class PowerElectronicsUnit
 (
     override val sup: Equipment,
     maxP: Double,
@@ -2790,7 +2790,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2849,7 +2849,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class PowerElectronicsWindUnit
+final case class PowerElectronicsWindUnit
 (
     override val sup: PowerElectronicsUnit
 )
@@ -2875,7 +2875,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2932,7 +2932,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class Reservoir
+final case class Reservoir
 (
     override val sup: PowerSystemResource,
     activeStorageCapacity: Double,
@@ -2976,7 +2976,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2985,7 +2985,7 @@ extends
         implicit val clz: String = Reservoir.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reservoir.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reservoir.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reservoir.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Reservoir.fields (position), x))
         emitelem (0, activeStorageCapacity)
         emitelem (1, energyStorageRating)
         emitelem (2, fullSupplyLevel)
@@ -3105,7 +3105,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class ShutdownCurve
+final case class ShutdownCurve
 (
     override val sup: Curve,
     shutdownCost: Double,
@@ -3134,7 +3134,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3195,7 +3195,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class SolarGeneratingUnit
+final case class SolarGeneratingUnit
 (
     override val sup: GeneratingUnit
 )
@@ -3221,7 +3221,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3259,7 +3259,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class StartIgnFuelCurve
+final case class StartIgnFuelCurve
 (
     override val sup: Curve,
     ignitionFuelType: String,
@@ -3287,7 +3287,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3343,7 +3343,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class StartMainFuelCurve
+final case class StartMainFuelCurve
 (
     override val sup: Curve,
     mainFuelType: String,
@@ -3371,7 +3371,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3427,7 +3427,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class StartRampCurve
+final case class StartRampCurve
 (
     override val sup: Curve,
     hotStandbyRamp: Double,
@@ -3455,7 +3455,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3526,7 +3526,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class StartupModel
+final case class StartupModel
 (
     override val sup: IdentifiedObject,
     fixedMaintCost: Double,
@@ -3566,7 +3566,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3673,7 +3673,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class SteamSendoutSchedule
+final case class SteamSendoutSchedule
 (
     override val sup: RegularIntervalSchedule,
     CogenerationPlant: String
@@ -3700,7 +3700,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3753,7 +3753,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class TailbayLossCurve
+final case class TailbayLossCurve
 (
     override val sup: Curve,
     HydroGeneratingUnit: String
@@ -3780,7 +3780,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3835,7 +3835,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class TargetLevelSchedule
+final case class TargetLevelSchedule
 (
     override val sup: Curve,
     highLevelLimit: Double,
@@ -3864,7 +3864,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3936,7 +3936,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class ThermalGeneratingUnit
+final case class ThermalGeneratingUnit
 (
     override val sup: GeneratingUnit,
     oMCost: Double,
@@ -3975,7 +3975,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3984,7 +3984,7 @@ extends
         implicit val clz: String = ThermalGeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ThermalGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ThermalGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ThermalGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ThermalGeneratingUnit.fields (position), x))
         emitelem (0, oMCost)
         emitattr (1, CAESPlant)
         emitattr (2, CogenerationPlant)
@@ -4089,7 +4089,7 @@ extends
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
-case class WindGeneratingUnit
+final case class WindGeneratingUnit
 (
     override val sup: GeneratingUnit,
     windGenUnitType: String
@@ -4116,7 +4116,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

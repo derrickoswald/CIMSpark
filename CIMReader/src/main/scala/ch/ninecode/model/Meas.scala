@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Accumulator
+final case class Accumulator
 (
     override val sup: Measurement,
     maxValue: Int,
@@ -48,7 +48,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -56,7 +56,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Accumulator.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Accumulator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Accumulator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Accumulator.fields (position), x))
         emitelem (0, maxValue)
         emitattrs (1, AccumulatorValues)
         emitattrs (2, LimitSets)
@@ -111,7 +111,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AccumulatorLimit
+final case class AccumulatorLimit
 (
     override val sup: Limit,
     value: Int,
@@ -139,7 +139,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -196,7 +196,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AccumulatorLimitSet
+final case class AccumulatorLimitSet
 (
     override val sup: LimitSet,
     Limits: List[String],
@@ -224,14 +224,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AccumulatorLimitSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AccumulatorLimitSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AccumulatorLimitSet.fields (position), x))
         emitattrs (0, Limits)
         emitattrs (1, Measurements)
         s.toString
@@ -280,7 +280,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AccumulatorReset
+final case class AccumulatorReset
 (
     override val sup: Control,
     AccumulatorValue: String
@@ -307,7 +307,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -361,7 +361,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AccumulatorValue
+final case class AccumulatorValue
 (
     override val sup: MeasurementValue,
     value: Int,
@@ -390,7 +390,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -458,7 +458,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Analog
+final case class Analog
 (
     override val sup: Measurement,
     maxValue: Double,
@@ -490,7 +490,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -498,7 +498,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Analog.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Analog.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Analog.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Analog.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitelem (2, normalValue)
@@ -567,7 +567,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AnalogControl
+final case class AnalogControl
 (
     override val sup: Control,
     maxValue: Double,
@@ -596,7 +596,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -657,7 +657,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AnalogLimit
+final case class AnalogLimit
 (
     override val sup: Limit,
     value: Double,
@@ -685,7 +685,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -742,7 +742,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AnalogLimitSet
+final case class AnalogLimitSet
 (
     override val sup: LimitSet,
     Limits: List[String],
@@ -770,14 +770,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AnalogLimitSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AnalogLimitSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AnalogLimitSet.fields (position), x))
         emitattrs (0, Limits)
         emitattrs (1, Measurements)
         s.toString
@@ -830,7 +830,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class AnalogValue
+final case class AnalogValue
 (
     override val sup: MeasurementValue,
     value: Double,
@@ -861,7 +861,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -870,7 +870,7 @@ extends
         implicit val clz: String = AnalogValue.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogValue.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogValue.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AnalogValue.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AnalogValue.fields (position), x))
         emitelem (0, value)
         emitattrs (1, AltGeneratingUnit)
         emitattrs (2, AltTieMeas)
@@ -936,7 +936,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Command
+final case class Command
 (
     override val sup: Control,
     normalValue: Int,
@@ -966,7 +966,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1041,7 +1041,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Control
+final case class Control
 (
     override val sup: IOPoint,
     controlType: String,
@@ -1075,7 +1075,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1163,7 +1163,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Discrete
+final case class Discrete
 (
     override val sup: Measurement,
     maxValue: Int,
@@ -1194,7 +1194,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1203,7 +1203,7 @@ extends
         implicit val clz: String = Discrete.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Discrete.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Discrete.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Discrete.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Discrete.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitelem (2, normalValue)
@@ -1266,7 +1266,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class DiscreteValue
+final case class DiscreteValue
 (
     override val sup: MeasurementValue,
     value: Int,
@@ -1295,7 +1295,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1359,7 +1359,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class IOPoint
+final case class IOPoint
 (
     override val sup: IdentifiedObject,
     BilateralToIOPoint: List[String],
@@ -1387,7 +1387,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1395,7 +1395,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IOPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IOPoint.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IOPoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (IOPoint.fields (position), x))
         emitattrs (0, BilateralToIOPoint)
         emitattr (1, IOPointSource)
         s.toString
@@ -1446,7 +1446,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Limit
+final case class Limit
 (
     override val sup: IdentifiedObject,
     Procedures: List[String]
@@ -1473,14 +1473,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Limit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Limit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Limit.fields (position), x))
         emitattrs (0, Procedures)
         s.toString
     }
@@ -1526,7 +1526,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class LimitSet
+final case class LimitSet
 (
     override val sup: IdentifiedObject,
     isPercentageLimits: Boolean
@@ -1553,7 +1553,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1626,7 +1626,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Measurement
+final case class Measurement
 (
     override val sup: IdentifiedObject,
     measurementType: String,
@@ -1667,7 +1667,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1676,7 +1676,7 @@ extends
         implicit val clz: String = Measurement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Measurement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Measurement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Measurement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Measurement.fields (position), x))
         emitelem (0, measurementType)
         emitattr (1, phases)
         emitelem (2, uncefactUnitCode)
@@ -1795,7 +1795,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class MeasurementValue
+final case class MeasurementValue
 (
     override val sup: IOPoint,
     sensorAccuracy: Double,
@@ -1829,7 +1829,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1838,7 +1838,7 @@ extends
         implicit val clz: String = MeasurementValue.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeasurementValue.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementValue.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementValue.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MeasurementValue.fields (position), x))
         emitelem (0, sensorAccuracy)
         emitelem (1, timeStamp)
         emitattr (2, CalculationMethodHierarchy)
@@ -1917,7 +1917,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class MeasurementValueQuality
+final case class MeasurementValueQuality
 (
     override val sup: Quality61850,
     MeasurementValue: String
@@ -1944,7 +1944,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1997,7 +1997,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class MeasurementValueSource
+final case class MeasurementValueSource
 (
     override val sup: IdentifiedObject,
     MeasurementValues: List[String]
@@ -2024,14 +2024,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementValueSource.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementValueSource.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MeasurementValueSource.fields (position), x))
         emitattrs (0, MeasurementValues)
         s.toString
     }
@@ -2090,7 +2090,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class Quality61850
+final case class Quality61850
 (
     override val sup: BasicElement,
     badReference: Boolean,
@@ -2128,7 +2128,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2223,7 +2223,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class RaiseLowerCommand
+final case class RaiseLowerCommand
 (
     override val sup: AnalogControl,
     ValueAliasSet: String
@@ -2250,7 +2250,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2302,7 +2302,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class SetPoint
+final case class SetPoint
 (
     override val sup: AnalogControl,
     normalValue: Double,
@@ -2330,7 +2330,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2382,7 +2382,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class StringMeasurement
+final case class StringMeasurement
 (
     override val sup: Measurement,
     StringMeasurementValues: List[String]
@@ -2409,14 +2409,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StringMeasurement.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StringMeasurement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (StringMeasurement.fields (position), x))
         emitattrs (0, StringMeasurementValues)
         s.toString
     }
@@ -2461,7 +2461,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class StringMeasurementValue
+final case class StringMeasurementValue
 (
     override val sup: MeasurementValue,
     value: String,
@@ -2489,7 +2489,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2550,7 +2550,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class ValueAliasSet
+final case class ValueAliasSet
 (
     override val sup: IdentifiedObject,
     Commands: List[String],
@@ -2580,14 +2580,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ValueAliasSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ValueAliasSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ValueAliasSet.fields (position), x))
         emitattrs (0, Commands)
         emitattrs (1, Discretes)
         emitattrs (2, RaiseLowerCommands)
@@ -2647,7 +2647,7 @@ extends
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
-case class ValueToAlias
+final case class ValueToAlias
 (
     override val sup: IdentifiedObject,
     value: Int,
@@ -2675,7 +2675,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

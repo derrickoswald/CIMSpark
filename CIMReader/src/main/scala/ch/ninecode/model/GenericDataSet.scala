@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ChangeSet
+final case class ChangeSet
 (
     override val sup: DataSet,
     ChangeSetMember: List[String],
@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -59,7 +59,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChangeSet.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ChangeSet.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChangeSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ChangeSet.fields (position), x))
         emitattrs (0, ChangeSetMember)
         emitattrs (1, IncrementalDatasetArg)
         emitattr (2, NMProjectStage)
@@ -121,7 +121,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ChangeSetMember
+final case class ChangeSetMember
 (
     override val sup: BasicElement,
     Changeset: String,
@@ -150,7 +150,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -221,7 +221,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class DataSet
+final case class DataSet
 (
     override val sup: BasicElement,
     description: String,
@@ -252,7 +252,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -261,7 +261,7 @@ extends
         implicit val clz: String = DataSet.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DataSet.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DataSet.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DataSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DataSet.fields (position), x))
         emitelem (0, description)
         emitelem (1, mRID)
         emitelem (2, name)
@@ -319,7 +319,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class GenericDataSetVersion
+final case class GenericDataSetVersion
 (
     override val sup: BasicElement,
     majorVersion: String,
@@ -348,7 +348,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -407,7 +407,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class InstanceSet
+final case class InstanceSet
 (
     override val sup: DataSet,
     DatasetArg: List[String],
@@ -435,14 +435,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InstanceSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InstanceSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (InstanceSet.fields (position), x))
         emitattrs (0, DatasetArg)
         emitattrs (1, InstanceSetMember)
         s.toString
@@ -490,7 +490,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ObjectCreation
+final case class ObjectCreation
 (
     override val sup: ChangeSetMember
 )
@@ -516,7 +516,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -552,7 +552,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ObjectDeletion
+final case class ObjectDeletion
 (
     override val sup: ChangeSetMember
 )
@@ -578,7 +578,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -615,7 +615,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ObjectModification
+final case class ObjectModification
 (
     override val sup: ChangeSetMember,
     ObjectReverseModification: String
@@ -642,7 +642,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -694,7 +694,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class ObjectReverseModification
+final case class ObjectReverseModification
 (
     override val sup: ChangeSetMember,
     ObjectModification: String
@@ -721,7 +721,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -774,7 +774,7 @@ extends
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
-case class Profile2
+final case class Profile2
 (
     override val sup: IdentifiedObject,
     DataSet: List[String]
@@ -801,14 +801,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Profile2.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Profile2.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Profile2.fields (position), x))
         emitattrs (0, DataSet)
         s.toString
     }

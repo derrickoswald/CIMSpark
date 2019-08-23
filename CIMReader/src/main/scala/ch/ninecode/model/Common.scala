@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ActivityRecord
+final case class ActivityRecord
 (
     override val sup: IdentifiedObject,
     createdDateTime: String,
@@ -55,7 +55,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -64,7 +64,7 @@ extends
         implicit val clz: String = ActivityRecord.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ActivityRecord.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ActivityRecord.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ActivityRecord.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ActivityRecord.fields (position), x))
         emitelem (0, createdDateTime)
         emitelem (1, reason)
         emitelem (2, severity)
@@ -137,7 +137,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Agreement
+final case class Agreement
 (
     override val sup: Document,
     signDate: String,
@@ -165,7 +165,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -221,7 +221,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Appointment
+final case class Appointment
 (
     override val sup: IdentifiedObject,
     callAhead: Boolean,
@@ -251,7 +251,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -260,7 +260,7 @@ extends
         implicit val clz: String = Appointment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Appointment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Appointment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Appointment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Appointment.fields (position), x))
         emitelem (0, callAhead)
         emitattr (1, meetingInterval)
         emitattrs (2, Persons)
@@ -317,7 +317,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Approver
+final case class Approver
 (
     override val sup: DocumentPersonRole,
     Documents: List[String]
@@ -344,14 +344,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Approver.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Approver.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Approver.fields (position), x))
         emitattrs (0, Documents)
         s.toString
     }
@@ -396,7 +396,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Author
+final case class Author
 (
     override val sup: DocumentPersonRole,
     ActivityRecords: List[String],
@@ -424,14 +424,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Author.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Author.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Author.fields (position), x))
         emitattrs (0, ActivityRecords)
         emitattrs (1, Documents)
         s.toString
@@ -491,7 +491,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ConfigurationEvent
+final case class ConfigurationEvent
 (
     override val sup: ActivityRecord,
     effectiveDateTime: String,
@@ -529,7 +529,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -637,7 +637,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class CoordinateSystem
+final case class CoordinateSystem
 (
     override val sup: IdentifiedObject,
     crsUrn: String,
@@ -665,7 +665,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -673,7 +673,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CoordinateSystem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoordinateSystem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CoordinateSystem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CoordinateSystem.fields (position), x))
         emitelem (0, crsUrn)
         emitattrs (1, Locations)
         s.toString
@@ -729,7 +729,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Crew
+final case class Crew
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -764,7 +764,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -772,7 +772,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Crew.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Crew.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Crew.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Crew.fields (position), x))
         emitattr (0, status)
         emitattrs (1, CrewMembers)
         emitattr (2, CrewType)
@@ -856,7 +856,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class CrewMember
+final case class CrewMember
 (
     override val sup: OperationPersonRole,
     Crew: String
@@ -883,7 +883,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -936,7 +936,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class CrewType
+final case class CrewType
 (
     override val sup: IdentifiedObject,
     Crews: List[String]
@@ -963,14 +963,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CrewType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CrewType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CrewType.fields (position), x))
         emitattrs (0, Crews)
         s.toString
     }
@@ -1035,7 +1035,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Document
+final case class Document
 (
     override val sup: IdentifiedObject,
     authorName: String,
@@ -1077,7 +1077,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1086,7 +1086,7 @@ extends
         implicit val clz: String = Document.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Document.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Document.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Document.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Document.fields (position), x))
         emitelem (0, authorName)
         emitelem (1, comment)
         emitelem (2, createdDateTime)
@@ -1196,7 +1196,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class DocumentPersonRole
+final case class DocumentPersonRole
 (
     override val sup: PersonRole
 )
@@ -1222,7 +1222,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1259,7 +1259,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Editor
+final case class Editor
 (
     override val sup: DocumentPersonRole,
     Documents: List[String]
@@ -1286,14 +1286,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Editor.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Editor.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Editor.fields (position), x))
         emitattrs (0, Documents)
         s.toString
     }
@@ -1344,7 +1344,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ElectronicAddress
+final case class ElectronicAddress
 (
     override val sup: BasicElement,
     email1: String,
@@ -1378,7 +1378,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1451,7 +1451,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ExtensionItem
+final case class ExtensionItem
 (
     override val sup: BasicElement,
     extName: String,
@@ -1480,7 +1480,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1533,7 +1533,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ExtensionsList
+final case class ExtensionsList
 (
     override val sup: BasicElement,
     extensionsItem: String
@@ -1560,7 +1560,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1614,7 +1614,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class FieldDispatchHistory
+final case class FieldDispatchHistory
 (
     override val sup: IdentifiedObject,
     Crew: String,
@@ -1644,7 +1644,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1652,7 +1652,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FieldDispatchHistory.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FieldDispatchHistory.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FieldDispatchHistory.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FieldDispatchHistory.fields (position), x))
         emitattr (0, Crew)
         emitattrs (1, FieldDispatchStep)
         emitattr (2, PlannedOutage)
@@ -1716,7 +1716,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class FieldDispatchStep
+final case class FieldDispatchStep
 (
     override val sup: BasicElement,
     dispatchStatus: String,
@@ -1747,7 +1747,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1816,7 +1816,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Hazard
+final case class Hazard
 (
     override val sup: IdentifiedObject,
     status: String,
@@ -1844,7 +1844,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1900,7 +1900,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Issuer
+final case class Issuer
 (
     override val sup: DocumentPersonRole,
     Documents: List[String]
@@ -1927,14 +1927,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Issuer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Issuer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Issuer.fields (position), x))
         emitattrs (0, Documents)
         s.toString
     }
@@ -2009,7 +2009,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Location
+final case class Location
 (
     override val sup: IdentifiedObject,
     direction: String,
@@ -2062,7 +2062,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2071,7 +2071,7 @@ extends
         implicit val clz: String = Location.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Location.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Location.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Location.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Location.fields (position), x))
         emitelem (0, direction)
         emitattr (1, electronicAddress)
         emitelem (2, geoInfoReference)
@@ -2241,7 +2241,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class OperationPersonRole
+final case class OperationPersonRole
 (
     override val sup: PersonRole
 )
@@ -2267,7 +2267,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2305,7 +2305,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Operator
+final case class Operator
 (
     override val sup: OperationPersonRole,
     Incidents: List[String],
@@ -2333,14 +2333,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Operator.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Operator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Operator.fields (position), x))
         emitattrs (0, Incidents)
         emitattrs (1, SwitchingSteps)
         s.toString
@@ -2396,7 +2396,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Organisation
+final case class Organisation
 (
     override val sup: IdentifiedObject,
     electronicAddress: String,
@@ -2430,7 +2430,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2438,7 +2438,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Organisation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Organisation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Organisation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Organisation.fields (position), x))
         emitattr (0, electronicAddress)
         emitattr (1, phone1)
         emitattr (2, phone2)
@@ -2518,7 +2518,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class OrganisationRole
+final case class OrganisationRole
 (
     override val sup: IdentifiedObject,
     ConfigurationEvents: List[String],
@@ -2546,7 +2546,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2554,7 +2554,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OrganisationRole.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OrganisationRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OrganisationRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OrganisationRole.fields (position), x))
         emitattrs (0, ConfigurationEvents)
         emitattr (1, Organisation)
         s.toString
@@ -2605,7 +2605,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Ownership
+final case class Ownership
 (
     override val sup: IdentifiedObject,
     share: Double,
@@ -2634,7 +2634,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2692,7 +2692,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ParentOrganization
+final case class ParentOrganization
 (
     override val sup: Organisation,
     Organisation_attr: List[String]
@@ -2719,14 +2719,14 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ParentOrganization.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ParentOrganization.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ParentOrganization.fields (position), x))
         emitattrs (0, Organisation_attr)
         s.toString
     }
@@ -2779,7 +2779,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Person
+final case class Person
 (
     override val sup: IdentifiedObject,
     electronicAddress: String,
@@ -2815,7 +2815,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2824,7 +2824,7 @@ extends
         implicit val clz: String = Person.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Person.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Person.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Person.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Person.fields (position), x))
         emitattr (0, electronicAddress)
         emitelem (1, firstName)
         emitattr (2, landlinePhone)
@@ -2904,7 +2904,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class PersonRole
+final case class PersonRole
 (
     override val sup: IdentifiedObject,
     Appointments: List[String],
@@ -2933,7 +2933,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2941,7 +2941,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonRole.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PersonRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PersonRole.fields (position), x))
         emitattrs (0, Appointments)
         emitattrs (1, ConfigurationEvents)
         emitattr (2, Person)
@@ -3002,7 +3002,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class PositionPoint
+final case class PositionPoint
 (
     override val sup: BasicElement,
     groupNumber: Int,
@@ -3034,7 +3034,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3108,7 +3108,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Priority
+final case class Priority
 (
     override val sup: BasicElement,
     justification: String,
@@ -3137,7 +3137,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3197,7 +3197,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ScheduledEvent
+final case class ScheduledEvent
 (
     override val sup: IdentifiedObject,
     duration: Double,
@@ -3228,7 +3228,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3237,7 +3237,7 @@ extends
         implicit val clz: String = ScheduledEvent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledEvent.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledEvent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledEvent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ScheduledEvent.fields (position), x))
         emitelem (0, duration)
         emitattr (1, status)
         emitelem (2, `type`)
@@ -3303,7 +3303,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class ScheduledEventData
+final case class ScheduledEventData
 (
     override val sup: BasicElement,
     estimatedWindow: String,
@@ -3334,7 +3334,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3342,7 +3342,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ScheduledEventData.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledEventData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledEventData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ScheduledEventData.fields (position), x))
         emitattr (0, estimatedWindow)
         emitattr (1, requestedWindow)
         emitattr (2, status)
@@ -3407,7 +3407,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Status
+final case class Status
 (
     override val sup: BasicElement,
     dateTime: String,
@@ -3437,7 +3437,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3502,7 +3502,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class StreetAddress
+final case class StreetAddress
 (
     override val sup: BasicElement,
     language: String,
@@ -3534,7 +3534,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3623,7 +3623,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class StreetDetail
+final case class StreetDetail
 (
     override val sup: BasicElement,
     addressGeneral: String,
@@ -3662,7 +3662,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3765,7 +3765,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class TelephoneNumber
+final case class TelephoneNumber
 (
     override val sup: BasicElement,
     areaCode: String,
@@ -3799,7 +3799,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3881,7 +3881,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class TimePoint
+final case class TimePoint
 (
     override val sup: IdentifiedObject,
     dateTime: String,
@@ -3913,7 +3913,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3995,7 +3995,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class TimeSchedule
+final case class TimeSchedule
 (
     override val sup: Document,
     disabled: Boolean,
@@ -4027,7 +4027,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4036,7 +4036,7 @@ extends
         implicit val clz: String = TimeSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeSchedule.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TimeSchedule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TimeSchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TimeSchedule.fields (position), x))
         emitelem (0, disabled)
         emitelem (1, offset)
         emitelem (2, recurrencePattern)
@@ -4105,7 +4105,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class TownDetail
+final case class TownDetail
 (
     override val sup: BasicElement,
     code: String,
@@ -4136,7 +4136,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4208,7 +4208,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class UserAttribute
+final case class UserAttribute
 (
     override val sup: BasicElement,
     name: String,
@@ -4243,7 +4243,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4252,7 +4252,7 @@ extends
         implicit val clz: String = UserAttribute.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UserAttribute.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UserAttribute.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UserAttribute.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (UserAttribute.fields (position), x))
         emitelem (0, name)
         emitelem (1, sequenceNumber)
         emitattr (2, value)
@@ -4338,7 +4338,7 @@ extends
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
-case class Version
+final case class Version
 (
     override val sup: BasicElement,
     date: String,
@@ -4368,7 +4368,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

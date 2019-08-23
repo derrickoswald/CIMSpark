@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
 <font color="#0f0f0f">
 </font>
  */
-case class PFVArControllerType2Dynamics
+final case class PFVArControllerType2Dynamics
 (
     override val sup: DynamicsFunctionBlock,
     ExcitationSystemDynamics: String
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -110,7 +110,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class PFVArType2Common1
+final case class PFVArType2Common1
 (
     override val sup: PFVArControllerType2Dynamics,
     j: Boolean,
@@ -141,7 +141,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -222,7 +222,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class PFVArType2IEEEPFController
+final case class PFVArType2IEEEPFController
 (
     override val sup: PFVArControllerType2Dynamics,
     exlon: Boolean,
@@ -255,7 +255,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -341,7 +341,7 @@ extends
 <font color="#0f0f0f">
 </font>
  */
-case class PFVArType2IEEEVArController
+final case class PFVArType2IEEEVArController
 (
     override val sup: PFVArControllerType2Dynamics,
     exlon: Boolean,
@@ -374,7 +374,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =

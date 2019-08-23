@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  * @groupdesc StandardModels This subclause contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
 In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
  */
-case class DynamicsFunctionBlock
+final case class DynamicsFunctionBlock
 (
     override val sup: IdentifiedObject,
     enabled: Boolean
@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -106,7 +106,7 @@ extends
  * @groupdesc StandardModels This subclause contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
 In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
  */
-case class RotatingMachineDynamics
+final case class RotatingMachineDynamics
 (
     override val sup: DynamicsFunctionBlock,
     damping: Double,
@@ -138,7 +138,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index ${i}")
     }
     override def length: Int = productArity
     override def export_fields: String =
