@@ -29,8 +29,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case "String" => "`String`"
             case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
-                s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
-                if (identifier.endsWith ("_")) identifier + "1" else identifier
+                s.replace (" ", "_").replace ("-", "_").replace ("/", "_").replace (".", "_").replace (",", "_")
+                if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         if (name == "Unit")
             "Unit_"
@@ -58,13 +58,13 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""").replace (""":""", """_""").replace ("""(""", """_""").replace (""")""", """_""")
-                if (identifier.endsWith ("_")) identifier + "1" else identifier
+                if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         val stupid_name =
             if (name == attribute.cls.name)
-                name + "_attr"
+                s"${name}_attr"
             else if ((attribute.cls.sup != null) && (name == attribute.cls.sup.name))
-                name + "_attr"
+                s"${name}_attr"
             else
                 name
         stupid_name
@@ -91,13 +91,13 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
-                if (identifier.endsWith ("_")) identifier + "1" else identifier
+                if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         val stupid_name =
             if (name == role.src.name)
-                name + "_attr"
+                s"${name}_attr"
             else if ((role.src.sup != null) && (name == role.src.sup.name))
-                name + "_attr"
+                s"${name}_attr"
             else
                 name
         stupid_name
@@ -105,7 +105,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
     def register (pkg: Package): String =
     {
-        "_" + valid_class_name (pkg.name)
+        "_%s".format (valid_class_name (pkg.name))
     }
 
     def details (classes: SortedSet[Class]) (attribute: Attribute): Member =
@@ -118,7 +118,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case Some (dom) =>
                 dom.stereotype match
                 {
-                    case "Primitive" ⇒
+                    case "Primitive" =>
                         dom.name match
                         {
                             case "Time" =>
@@ -137,17 +137,17 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                             case _ =>
                                 throw new Exception ("""unknown primitive type "%s"""".format (dom.name))
                         }
-                    case "enumeration" ⇒
+                    case "enumeration" =>
                         Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
-                    case "Compound" ⇒
+                    case "Compound" =>
                         Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "",
                             classes.find (_.name == attribute.typ) match
                             {
-                                case Some (clz: Class) ⇒ valid_class_name (clz.name)
-                                case None ⇒ null
+                                case Some (clz: Class) => valid_class_name (clz.name)
+                                case None => null
                             }
                         )
-                    case "CIMDatatype" ⇒
+                    case "CIMDatatype" =>
                         dom.value match
                         {
                             case "Time" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
@@ -169,9 +169,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case None =>
                 classes.find (_.name == attribute.typ) match
                 {
-                    case Some (clz: Class) ⇒
+                    case Some (clz: Class) =>
                         Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", valid_class_name (clz.name))
-                    case None ⇒
+                    case None =>
                         Member (name, variable, false, comment, true, "0..1", "", "String", "null", "", null)
                 }
         }
@@ -228,8 +228,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
             val s = new StringBuilder ()
             val n = if (null != pkg.notes) pkg.notes else ""
-            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, n).asText)
-            s.append ("case class ")
+            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package %s".format (pkg.name), n).asText)
+            s.append ("final case class ")
             s.append (name)
             s.append ("""
                 |(
@@ -290,7 +290,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |        if (i < productArity)
             |            productElement (i).asInstanceOf[AnyRef]
             |        else
-            |            throw new IllegalArgumentException ("invalid property index " + i)
+            |            throw new IllegalArgumentException (s"invalid property index ${i}")
             |    }
             |    override def length: Int = productArity
             |    override def export_fields: String =
@@ -303,11 +303,11 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     |""".stripMargin.format (name))
                 if (fields.exists (!_.reference))
                     s.append ("        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (%s.fields (position), value)\n".format (name))
-                if (fields.exists (x ⇒ x.reference && !x.multiple))
+                if (fields.exists (x => x.reference && !x.multiple))
                     s.append ("        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (%s.fields (position), value)\n".format (name))
                 if (fields.exists (_.multiple))
-                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (%s.fields (position), x))\n".format (name))
-                s.append (fields.iterator.zipWithIndex.map (x ⇒ (if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem") + " (" + x._2 + ", " + x._1.variable + ")").mkString ("        ", "\n        ", "\n"))
+                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (%s.fields (position), x))\n".format (name))
+                s.append (fields.iterator.zipWithIndex.map (x => { val emit = if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem"; s"${emit} (${x._2}, ${x._1.variable})" }).mkString ("        ", "\n        ", "\n"))
                 s.append ("        s.toString\n")
             }
             else
@@ -330,7 +330,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             if (any)
             {
                 // output the fields map
-                s.append (fields.iterator.map ("\"" + _.name + "\"").mkString ("    override val fields: Array[String] = Array[String] (\n        ", ",\n        ", "\n    )\n"))
+                s.append (fields.iterator.map (x => "\"%s\"".format (x.name)).mkString ("    override val fields: Array[String] = Array[String] (\n        ", ",\n        ", "\n    )\n"))
 
                 // output the relations list
                 val relationships = members.filter (member => (member.name != "sup") && (null != member.referenced_class))
@@ -349,7 +349,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     else
                         "parse_element (element"
                 }
-                s.append (fields.iterator.zipWithIndex.map (x ⇒ "val " + x._1.variable + ": %s = ".format (if (x._1.multiple) "FielderMultiple" else "Fielder") + pa (x._1) + " (cls, fields(" + x._2 + ")))").mkString ("    ", "\n    ", "\n"))
+                s.append (fields.iterator.zipWithIndex.map (x => { val fielder = if (x._1.multiple) "FielderMultiple" else "Fielder"; s"val ${x._1.variable}: ${fielder} = ${pa (x._1)} (cls, fields(${x._2})))" }).mkString ("    ", "\n    ", "\n"))
             }
             // output the parse method
             s.append ("""
@@ -359,20 +359,20 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |""".stripMargin.format (name))
             if (any)
             {
-                val initializer = (for (i ← 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
+                val initializer = (for (i <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
                 s.append ("        implicit var bitfields: Array[Int] = Array(%s)\n".format (initializer))
             }
             if (identified_object)
                 s.append ("        val base = BasicElement.parse (context)\n")
             s.append ("        val ret = %s (\n".format (name))
             // add field parser calls
+            def wrap (members: Iterator[(Member, String)]): String =
+                members.map (x => if (x._1.function != "") s"${x._1.function} (${x._2})" else x._2).mkString ("            ", ",\n            ", "\n")
             s.append (
                 if (identified_object)
-                    members.iterator.zipWithIndex.map (x ⇒ (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else (if (x._1.multiple) "masks" else "mask") + " (" + x._1.variable + " (), " + (x._2 - 1) + ")"))
-                        .map (x ⇒ if (x._1.function != "") x._1.function + " (" + x._2 + ")" else x._2).mkString ("            ", ",\n            ", "\n")
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else { val mask = if (x._1.multiple) "masks" else "mask"; s"$mask (${x._1.variable} (), ${x._2 - 1})"})))
                 else
-                    members.iterator.zipWithIndex.map (x ⇒ (x._1, if (x._1.name == "sup") x._1.datatype + ".parse (context)" else (if (x._1.multiple) "masks" else "mask") + " (" + x._1.variable + " (), " + (x._2 - 1) + ")"))
-                        .map (x ⇒ if (x._1.function != "") x._1.function + " (" + x._2 + ")" else x._2).mkString ("            ", ",\n            ", "\n")
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else { val mask = if (x._1.multiple) "masks" else "mask"; s"$mask (${x._1.variable} (), ${x._2 - 1})" })))
             )
             s.append ("        )\n")
             if (any)
@@ -408,7 +408,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 |    def register: List[ClassInfo] =
                 |    {
                 |""".stripMargin)
-            v.append (case_classes.map (cls ⇒ valid_class_name (cls.name) + ".register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
+            v.append (case_classes.map (cls => s"${valid_class_name (cls.name)}.register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
             v.append ("""
                 |    }
                 |}""".stripMargin)
@@ -477,9 +477,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 val file = "%s/model/%s.scala".format (options.directory, pkg.name)
                 log.info (file)
                 Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
-                registers = registers :+ """            """ + sc.register (pkg) + """.register"""
-                package_docs = package_docs :+ """ *"""
-                package_docs = package_docs :+ """ * ===""".stripMargin + pkg.name + """==="""
+                registers = registers :+ """            %s.register""".format (sc.register (pkg))
+                package_docs = package_docs :+ " *"
+                package_docs = package_docs :+ s" * ===${pkg.name}==="
                 package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
             }
             else

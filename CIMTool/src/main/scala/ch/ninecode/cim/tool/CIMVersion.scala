@@ -20,7 +20,7 @@ package ch.ninecode.cim.tool
     {
         val CIMVersions: List[CIMVersion] = List (cim14, cim15, cim16, ENTSOE, cim100)
         def arity = 1
-        def reads: String => CIMVersion = (s: String) ⇒ CIMVersions.find (_.name == s).getOrElse (
+        def reads: String => CIMVersion = (s: String) => CIMVersions.find (_.name == s).getOrElse (
             {
                 val fallback = cim100
                 val log: Logger = LoggerFactory.getLogger (getClass)

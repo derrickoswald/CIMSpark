@@ -17,5 +17,5 @@ case class Package (
     parent: Package = null)
 {
     def this (row: Row) = this (row.getXUID, row.getName, row.getName.equals ("Model"), row.getNotes, null)
-    override def toString: String = (if (null != parent) parent.name + ":" else "") + name +  (if (global) " global" else "")
+    override def toString: String = "%s%s%s".format (if (null != parent) s"${parent.name}:" else "", name, if (global) " global" else "")
 }

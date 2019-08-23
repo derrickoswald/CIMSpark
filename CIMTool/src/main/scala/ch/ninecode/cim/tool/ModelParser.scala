@@ -33,13 +33,13 @@ case class ModelParser (modelfile: File)
         val packs = getPackageTable
             .iterator
             .map (Row (_))
-            .map (row ⇒ (row.getPackageID, (row.getParentID, new Package (row))))
+            .map (row => (row.getPackageID, (row.getParentID, new Package (row))))
             .toMap
 
         // adjust parent values
         val global = packs.values.map (_._2).find (_.global).orNull
         packs.mapValues (
-            row ⇒
+            row =>
             {
                 val (parent, pkg) = row
                 if (pkg.global)
@@ -56,11 +56,11 @@ case class ModelParser (modelfile: File)
         val clses = getObjectTable
             .iterator
             .map (Row (_))
-            .filter (row ⇒ !skip.contains (row.getObjectType))
-            .map (row ⇒ (row.getObjectID, row))
+            .filter (row => !skip.contains (row.getObjectType))
+            .map (row => (row.getObjectID, row))
             .toMap
             .mapValues (
-                row ⇒
+                row =>
                 {
                     val pkg = packages.getOrElse (row.getPackageID, globalPackage)
                     val typ = row.getObjectType
@@ -73,7 +73,7 @@ case class ModelParser (modelfile: File)
         // get a map of superclass id values
         val supers = (
             for (
-                row ← getConnectorTable.iterator.map (Row (_));
+                row <- getConnectorTable.iterator.map (Row (_));
                 typ = row.getConnectorType
                 if typ.equals ("Generalization")
             )
@@ -81,7 +81,7 @@ case class ModelParser (modelfile: File)
             ).toMap
 
         // adjust superclasses
-        for ((id, cls) ← clses)
+        for ((id, cls) <- clses)
             yield
                 if (supers.contains (id))
                     (id, cls.copy (sup = clses.getOrElse (supers(id), null)))
@@ -94,7 +94,7 @@ case class ModelParser (modelfile: File)
         val ret = scala.collection.mutable.Map[ID,List[Attribute]] ()
 
         for (
-            row ← getAttributeTable.iterator.map (Row (_));
+            row <- getAttributeTable.iterator.map (Row (_));
             cls_id = row.getObjectID;
             cls = classes.getOrElse (cls_id, null)
         )
@@ -115,38 +115,38 @@ case class ModelParser (modelfile: File)
                     ret.put (cls_id, List (attribute))
             }
             else
-                println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
+                println (s"Could not find the domain of attribute '${row.getName}'. Domain ID = ${cls_id}")
 
         ret.toMap
     }
 
     def extractAssociations: Set[Role] =
     {
-        val ret = scala.collection.mutable.Set[Role] ()
-        for (
-            row ← getConnectorTable.iterator.map (Row (_));
+        val ret = for (
+            row <- getConnectorTable.iterator.map (Row (_));
             typ = row.getConnectorType
             if typ.equals ("Association") || typ.equals ("Aggregation");
             src = classes.getOrElse (row.getStartObjectID, null);
             dst = classes.getOrElse (row.getEndObjectID, null)
             if (null != src) && (null != dst)
         )
+            yield
             {
                 val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
                 val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
                 rolea.mate = roleb
                 roleb.mate = rolea
-                ret.add (rolea)
-                ret.add (roleb)
+                rolea :: roleb :: Nil
             }
-        ret.toSet
+
+        ret.flatten.toSet
     }
 
     def extractDomains: Set[Domain] =
     {
         val noenum = Set[String]()
         val ret = for (
-            row ← getObjectTable.iterator.map (Row (_))
+            row <- getObjectTable.iterator.map (Row (_))
             if row.getObjectType.equals ("Class");
             cls_id = row.getObjectID;
             xuid = row.getXUID;
@@ -198,10 +198,10 @@ case class ModelParser (modelfile: File)
             (cls.stereotype != "CIMDatatype") &&
             (cls.stereotype != "Primitive")
 
-        SortedSet[Class](classes.values.filter (cls ⇒ cls.pkg == pkg && stereo (cls)).toSeq:_*)
+        SortedSet[Class](classes.values.filter (cls => cls.pkg == pkg && stereo (cls)).toSeq:_*)
     }
 
-    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (ID, Class)) ⇒ c._1 case _ ⇒ 0 } }
+    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (ID, Class)) => c._1 case _ => 0 } }
     def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
-    def rolesFor (cls: Class): List[Role] = roles.filter (r ⇒ r.src == cls && r.name != "").toList
+    def rolesFor (cls: Class): List[Role] = roles.filter (r => r.src == cls && r.name != "").toList
 }

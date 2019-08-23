@@ -22,5 +22,5 @@ case class Attribute (
     classifier: Class,
     dflt: String)
 {
-    override def toString: String = pkg.name + ":" + cls.name + "." + name + " " + typ + (if (null != classifier) " (" + classifier.name + ")" else "")
+    override def toString: String = "%s:%s.%s %s %s".format (pkg.name, cls.name, name, typ, if (null != classifier) s" (${classifier.name})" else "")
 }

@@ -18,7 +18,7 @@ case class Class (
     sup: Class = null)
 {
     def this (row: Row, pkg: Package) = this (row.getXUID, Class.kludgeName (row, pkg), row.getNote, pkg, if (row.hasStereotype) row.getStereotype else null, null)
-    override def toString: String = pkg.name + ":" + name + (if (null != stereotype) " (" + stereotype + ")" else "") + (if (null != sup) " subclass of " + sup.name else "")
+    override def toString: String = "%s:%s%s%s".format (pkg.name, name, (if (null != stereotype) s" ($stereotype)" else ""), (if (null != sup) s" subclass of ${sup.name}" else ""))
 }
 
 object Class
@@ -36,19 +36,19 @@ object Class
         val name = row.getName
         pkg.name match
         {
-            case "GenericDataSet" ⇒
+            case "GenericDataSet" =>
                 name match
                 {
-                    case "Profile" ⇒ "Profile2"
-                    case _ ⇒ name
+                    case "Profile" => "Profile2"
+                    case _ => name
                 }
-            case "InfMarketOperations" ⇒
+            case "InfMarketOperations" =>
                 name match
                 {
-                    case "ResourceCertification" ⇒ "ResourceCertification2"
-                    case _ ⇒ name
+                    case "ResourceCertification" => "ResourceCertification2"
+                    case _ => name
                 }
-            case _ ⇒
+            case _ =>
                 name
         }
     }

@@ -66,31 +66,31 @@ class CIMToolOptionParser (APPLICATION_NAME: String, APPLICATION_VERSION: String
 
     opt [Unit]("unittest").
         hidden ().
-        action ((_, c) ⇒ { unittest = true; c.copy (unittest = true) }).
+        action ((_, c) => { unittest = true; c.copy (unittest = true) }).
         text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
 
     opt [LogLevels.Value]("log").
-        action ((x, c) ⇒ c.copy (loglevel = x)).
-        text ("log level, one of " + LogLevels.values.iterator.mkString (",") + " [%s]".format (default.loglevel))
+        action ((x, c) => c.copy (loglevel = x)).
+        text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.loglevel))
 
     opt [CIMVersion]("cim").
-        action ((x, c) ⇒ c.copy (cim = x)).
+        action ((x, c) => c.copy (cim = x)).
         text ("cim version, one of %s [%s]".format (VersionRead.versions.mkString (","), default.cim.name))
 
     opt [Target]("target").
-        action ((x, c) ⇒ c.copy (target = x)).
+        action ((x, c) => c.copy (target = x)).
         text ("output target language, one of %s [%s]".format (TargetRead.languages.mkString (","), default.target.name))
 
     opt [String]("directory").
-        action ((x, c) ⇒ c.copy (directory = x)).
+        action ((x, c) => c.copy (directory = x)).
         text ("output directory [%s]".format (default.directory))
 
     help ("help").
         hidden ().
-        validate (Unit ⇒ { helpout = true; Right ("") })
+        validate (Unit => { helpout = true; Right (Unit) })
 
     version ("version").
-        validate (Unit ⇒ { versionout = true; Right ("") }).
+        validate (Unit => { versionout = true; Right (Unit) }).
         text ("Scala: %s, Spark: %s, %s: %s".format (
                 APPLICATION_VERSION.split ("-")(0),
                 APPLICATION_VERSION.split ("-")(1),

@@ -17,7 +17,7 @@ package ch.ninecode.cim.tool
     {
         val generators: List[Target] = List (scalalanguage, javascriptlanguage)
         def arity = 1
-        def reads: String => Target = (s: String) ⇒ generators.find (_.name == s).getOrElse (
+        def reads: String => Target = (s: String) => generators.find (_.name == s).getOrElse (
             {
                 val fallback = scalalanguage
                 val log: Logger = LoggerFactory.getLogger (getClass)

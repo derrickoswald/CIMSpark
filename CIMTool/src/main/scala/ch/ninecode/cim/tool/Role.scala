@@ -28,5 +28,5 @@ case class Role (
     lazy val lower: Int = if (card.equals ("*") || card.startsWith ("0..")) 0 else 1
     lazy val many_to_many: Boolean = ((card == "0..*") || (card == "1..*")) && ((mate.card == "0..*") || (mate.card == "1..*"))
     override def hashCode: Int = xuid.hashCode
-    override def toString: String = name + " from " + src.name + " to " + dst.name + " " + card + " to " + mate.card
+    override def toString: String = "%s from %s to %s %s:%s".format (name, src.name, dst.name, card, mate.card)
 }

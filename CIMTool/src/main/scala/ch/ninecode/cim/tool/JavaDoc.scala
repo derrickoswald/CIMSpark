@@ -7,19 +7,18 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
     lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
     val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
     val (summary, body) =
-        if (null == note)
-            ("", "")
-        else
+        if (null != note)
         {
             val n = note.replace ("\r\n", "\n").split ("\n").map (_.trim).mkString ("\n")
             val matcher = regex.matcher (n)
-            val found = matcher.find ()
-            if (found)
+            if (matcher.find ())
                 ({ (if (null != matcher.group (1)) matcher.group (1) else matcher.group (3)).trim },
                  { (if (null != matcher.group (2)) matcher.group (2) else matcher.group (4)).trim })
             else
                 (n.trim, "")
         }
+    else
+        ("", "")
 
     def edit (s: String): String =
     {
@@ -29,7 +28,7 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         val l2 = l1.replace ("$", "\\$")
         // remove leading equals signs to avoid looking like a heading
         val l3 = l2.split ('\n')
-        val l4 = l3.map (l => if (l.startsWith ("=")) "&equals;" + l.substring (1) else l)
+        val l4 = l3.map (l => if (l.startsWith ("=")) s"&equals;${l.substring (1)}" else l)
         l4.mkString ("\n")
     }
 
@@ -82,7 +81,7 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
             s.append ("""
                         | *""".stripMargin)
             for (member <- members)
-                s.append ("\n" + member.javaDoc)
+                s.append (s"\n${member.javaDoc}")
         }
         if ("" != group)
             addGroupStuff (s)
@@ -94,18 +93,10 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         val s = contents
         if ("" != contents)
         {
-            val s = new StringBuilder ()
-
-            s.append (
-                """/**
-                  |""".stripMargin)
-            s.append (contents)
-            s.append (
-                """
-                  | */
-                  |""".stripMargin)
-
-            s.toString.split ("\n").map (st => spaces + st).mkString ("\n") + "\n"
+           s"""/**
+              |$contents
+              | */
+              |""".stripMargin.split ("\n").map (st => s"${spaces}$st").mkString ("", "\n", "\n")
         }
         else
             ""

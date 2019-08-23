@@ -1,5 +1,7 @@
 package ch.ninecode.cim.tool
 
+import scala.collection._
+
 /**
  * CIM domain.
  *
@@ -17,5 +19,8 @@ case class Domain (
     note: String,
     stereotype: String,
     pkg: Package,
-    enumeration: scala.collection.immutable.Set[String],
+    enumeration: immutable.Set[String],
     value: String)
+{
+    override def toString: String = "%s:%s%s".format (pkg.name, name, if (null != stereotype) s" stereotype: $stereotype" else "")
+}

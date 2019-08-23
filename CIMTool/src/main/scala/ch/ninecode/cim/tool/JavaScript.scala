@@ -23,7 +23,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         val classes: List[(Int, Class)] = parser.classes.filter (_._2.pkg == pkg).toList
         case class Joe (name: String, superclass: String, superclass_package: String, objectID: Int, cls: Class)
         val bunch: List[Joe] = classes.map (
-            cls ⇒
+            cls =>
             {
                 val (superclass, superclass_package) =
                     if (null != cls._2.sup)
@@ -46,7 +46,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             if (dag.parent.name == name)
                 dag
             else
-                dag.children.find (get (name)(_) != null) match { case Some (d) ⇒ d case None ⇒ null }
+                dag.children.find (get (name)(_) != null) match { case Some (d) => d case None => null }
         }
         @scala.annotation.tailrec
         def add (joes: List[Joe]): Unit =
@@ -72,17 +72,17 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         // read out the graph breadth first (or at least every superclass is ahead of it's subclasses)
         def read (dags: List[DAG]): List[Joe] =
         {
-            dags.map (_.parent) ++ dags.flatMap (x ⇒ read (x.children))
+            dags.map (_.parent) ++ dags.flatMap (x => read (x.children))
         }
 
         val bunch2 = read (graph.children)
-        val classes2 = bunch2.map (x ⇒ x.cls)
+        val classes2 = bunch2.map (x => x.cls)
 
         def valid_attribute_name (name: String): String =
         {
             val n = name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("/", "_").replace ("-", "_").replace ("%", "_")
             if (n.charAt (0).isDigit)
-                "_" + n
+                s"_$n"
             else
                 n
         }
@@ -131,7 +131,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
 
                 // output enumeration declaration
                 s.append ("        let %s =\n        {\n".format (name))
-                s.append (attributes.map (attribute ⇒ """            "%s": "%s"""".format (valid_attribute_name (attribute.name), attribute.name)).mkString (",\n"))
+                s.append (attributes.map (attribute => """            "%s": "%s"""".format (valid_attribute_name (attribute.name), attribute.name)).mkString (",\n"))
                 s.append ("\n        };\n        Object.freeze (%s);\n\n".format (name))
             }
 
@@ -163,7 +163,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     if (null != cls.sup)
                     {
                         val sup_pkg = cls.sup.pkg
-                        val superclass_package = if (sup_pkg != pkg) { requires.add (sup_pkg); sup_pkg.name + "." } else ""
+                        val superclass_package = if (sup_pkg != pkg) { requires.add (sup_pkg); s"${sup_pkg.name}." } else ""
                         val superclass = cls.sup.name
                         (superclass_package, superclass)
                     }
@@ -311,14 +311,14 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
                 {
-                    val ref = parser.classes.find (x ⇒ x._2.name == attribute.typ && x._2.pkg.name != "Domain" && x._2.stereotype != "enumeration" )
+                    val ref = parser.classes.find (x => x._2.name == attribute.typ && x._2.pkg.name != "Domain" && x._2.stereotype != "enumeration" )
                     ref match
                     {
-                        case Some (_) ⇒
+                        case Some (_) =>
                             s.append (
                                 """                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{%s}}");}); return false;'>{{%s}}</a></div>{{/%s}}
 """.format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
-                        case None ⇒
+                        case None =>
                             s.append (
                                 """                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}
 """.format (attribute.name, attribute.name, attribute.name, attribute.name))
@@ -347,9 +347,9 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |            condition (obj)
                     |            {
                     |                super.condition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ isEnumeration (x.typ)))
+                for (attribute <- attributes.filter (x => isEnumeration (x.typ)))
                 {
-                    val varname = attribute.name + attribute.typ
+                    val varname = s"${attribute.name}${attribute.typ}"
                     val qualifiedname = if (enumerations.contains (attribute.typ))
                         attribute.typ // local enumeration
                     else
@@ -362,12 +362,12 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                             // add it to requires if necessary
                             if (!requires.contains (domain.pkg))
                                 requires.add (domain.pkg)
-                            domain.pkg.name + "." + attribute.typ
+                            s"${domain.pkg.name}.${attribute.typ}"
                         }
                     }
                     s.append ("\n                obj[\"%s\"] = [{ id: '', selected: (!obj[\"%s\"])}]; for (let property in %s) obj[\"%s\"].push ({ id: property, selected: obj[\"%s\"] && obj[\"%s\"].endsWith ('.' + property)});".format (varname, attribute.name, qualifiedname, varname, attribute.name, attribute.name))
                 }
-                for (role ← roles.filter (_.upper != 1))
+                for (role <- roles.filter (_.upper != 1))
                 {
                     val n = valid_role_name (role.name)
                     s.append ("\n                if (obj[\"%s\"]) obj[\"%s_string\"] = obj[\"%s\"].join ();".format (n, n, n))
@@ -381,13 +381,18 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |            uncondition (obj)
                     |            {
                     |                super.uncondition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ isEnumeration (x.typ)))
+                for (attribute <- attributes.filter (x => isEnumeration (x.typ)))
                 {
-                    val varname = attribute.name.replace ("""/""", """\/""") + attribute.typ
-                    s.append ("\n                delete obj[\"%s\"];".format (varname))
+                    val attr = attribute.name.replace ("""/""", """\/""")
+                    s.append (s"""
+                    |                delete obj["${attr}${attribute.typ}"];""".stripMargin)
                 }
-                for (role ← roles.filter (_.upper != 1))
-                    s.append ("\n                delete obj[\"%s_string\"];".format (valid_role_name (role.name)))
+                for (role <- roles.filter (_.upper != 1))
+                {
+                    val rol = valid_role_name (role.name)
+                    s.append (s"""
+                    |                delete obj["${rol}_string"];""".stripMargin)
+                }
                 s.append ("""
                     |            }
                     |""".stripMargin)
@@ -409,7 +414,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 {
                     if (isEnumeration (attribute.typ))
                     {
-                        val varname = attribute.name + attribute.typ
+                        val varname = s"${attribute.name}${attribute.typ}"
                         // output a selection (needs condition(obj) to get the array of strings)
                         s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, varname, varname))
                     }
@@ -444,7 +449,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |            {
                     |%s                obj = obj || { id: id, cls: "%s" };
                     |                super.submit (id, obj);
-                    |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                let temp;\n\n" else "", cls.name))
+                    |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r => r.upper == 1 || r.many_to_many)) "                let temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
                     if (isEnumeration (attribute.typ))
                     {
@@ -460,7 +465,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                                 // add it to requires if necessary
                                 if (!requires.contains (domain.pkg))
                                     requires.add (pkg)
-                                domain.pkg.name + "." + attribute.typ
+                                s"${domain.pkg.name}.${attribute.typ}"
                             }
                         }
                         s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualifiedname, attribute.name, attribute.name, attribute.typ, attribute.name))
@@ -495,7 +500,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                         |                    super.relations ().concat (
                         |                        [
                         |""".stripMargin)
-                    val array = roles.map (role ⇒ """["%s", "%s", "%s", "%s", "%s"]""".format (valid_role_name (role.name), role.card, role.mate.card, valid_role_name (role.dst.name), role.mate.name))
+                    val array = roles.map (role => """["%s", "%s", "%s", "%s", "%s"]""".format (valid_role_name (role.name), role.card, role.mate.card, valid_role_name (role.dst.name), role.mate.name))
                     s.append (array.mkString ("                            ", ",\n                            ", "\n"))
                     s.append (
                         """                        ]
@@ -523,7 +528,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             v.append ("""define
                 |(
                 |    ["model/base"""".stripMargin)
-            val includes = r.map (p => "\"model/" + p + "\"").mkString (", ")
+            val includes = r.map (p => s""""model/${p}"""").mkString (", ")
             if (includes != "")
                 v.append (""", """)
             v.append (includes)
@@ -543,7 +548,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             v.append ("""        return (
                 |            {
                 |""".stripMargin)
-            val functions = provides.map (p => "                " + p._1 + ": " + p._2).mkString (",\n")
+            val functions = provides.map (p => s"                ${p._1}: ${p._2}").mkString (",\n")
             v.append (functions)
             v.append ("""
                 |            }
@@ -585,7 +590,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 // put all classes that don't depend on Wires in LoadModel
                 val p_no_wires = p.copy (name = "LoadModel2")
                 parser.classes.foreach (
-                    cls ⇒
+                    cls =>
                         if (cls._2.pkg == p && cls._2.sup.pkg.name == "Wires")
                             cls._2.pkg = p_no_wires
                 )
@@ -598,7 +603,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 // put all classes derived from Assets in InfAssets2
                 val p_sub_assets = p.copy (name = "InfAssets2")
                 parser.classes.foreach (
-                    cls ⇒
+                    cls =>
                         if (cls._2.pkg == p && (null != cls._2.sup) && cls._2.sup.pkg.name == "Assets")
                             cls._2.pkg = p_sub_assets
                 )
@@ -608,8 +613,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             else
                 do_package (p)
         }
-        val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
-        val fn = """    function (base, """ + files.mkString (""", """) + """)"""
-        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
+        val decl = s"""    ["model/base", ${files.map (f => s"""model/${f}""").mkString ("\"", "\", \"", "\"],")}"""
+        val fn = s"""    function (base, ${files.mkString (", ")})"""
+        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), s"${decl}\n${fn}".getBytes (StandardCharsets.UTF_8))
     }
 }
