@@ -45,9 +45,9 @@ with
         // process any rdf:about elements
         maybe__about match
         {
-            case Some (abouts: Iterable[Element]) ⇒
+            case Some (abouts: Iterable[Element]) =>
                 val fields = (for (i <- 0 until original.length) yield original.get (i)).toArray
-                for (about ← abouts)
+                for (about <- abouts)
                     if (clz.getCanonicalName == about.getClass.getCanonicalName) // check the class is the same
                     {
                         for (i <- 0 until original.length - 1)
@@ -65,7 +65,7 @@ with
                 val n = c.newInstance (fields: _*).asInstanceOf[Element]
                 n.bitfields  = bitfields
                 n
-            case None ⇒
+            case None =>
                 original
         }
     }

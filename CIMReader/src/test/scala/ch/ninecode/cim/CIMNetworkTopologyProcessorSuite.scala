@@ -19,25 +19,25 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip files
-        new Unzip ().unzip (FILE_DEPOT + "DemoData.zip", FILE_DEPOT)
-        new Unzip ().unzip (FILE_DEPOT + "DemoData_unknown_voltage.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData_unknown_voltage.zip", FILE_DEPOT)
 
         // run the tests
         val ret  = super.run (testName, args)
 
         // erase the unpacked files
-        deleteRecursive (new File (FILE_DEPOT + "DemoData.rdf"))
-        deleteRecursive (new File (FILE_DEPOT + "DemoData_unknown_voltage.rdf"))
+        deleteRecursive (new File (s"${FILE_DEPOT}DemoData.rdf"))
+        deleteRecursive (new File (s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"))
         ret
     }
 
     test ("Basic")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
             val start = System.nanoTime ()
 
-            val filename = FILE_DEPOT + "DemoData.rdf"
+            val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
             assert (elements.count == 1738, "# elements before")
 
@@ -65,11 +65,11 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
     test ("TopologicalNode")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
             val start = System.nanoTime ()
 
-            val filename = FILE_DEPOT + "DemoData_unknown_voltage.rdf"
+            val filename = s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"
             val elements = readFile (filename)
             assert (elements.count == 1742, "# elements before")
 
@@ -98,11 +98,11 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
     test ("Islands")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
             val start = System.nanoTime ()
 
-            val filename = FILE_DEPOT + "DemoData.rdf"
+            val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
             assert (elements.count == 1738, "# elements before")
 
@@ -133,11 +133,11 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
     test ("TopologicalIsland")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
             val start = System.nanoTime ()
 
-            val filename = FILE_DEPOT + "DemoData_unknown_voltage.rdf"
+            val filename = s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"
             val elements = readFile (filename)
             assert (elements.count == 1742, "# elements before")
 
@@ -168,7 +168,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
     test ("Auto")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
             def readFileAuto (context: SQLContext, filename: String): DataFrame =
             {
@@ -179,7 +179,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val start = System.nanoTime ()
 
-            val filename = FILE_DEPOT + "DemoData.rdf"
+            val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements= readFileAuto (session.sqlContext, filename)
             assert (elements.count == 1802, "# elements")
 

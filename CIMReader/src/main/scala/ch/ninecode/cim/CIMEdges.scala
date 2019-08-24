@@ -25,7 +25,7 @@ with Serializable
     def get_extremum (): RDD[Extremum] =
     {
         val points = getOrElse[PositionPoint]
-        val point_seq_op = (x: Extremum, p: PositionPoint) ⇒
+        val point_seq_op = (x: Extremum, p: PositionPoint) =>
         {
             if (null == x)
                 new Extremum (p.Location, p.sequenceNumber, p.xPosition, p.yPosition, p.sequenceNumber, p.xPosition, p.yPosition)
@@ -46,7 +46,7 @@ with Serializable
                 x
             }
         }
-        val point_comb_op = (l: Extremum, r: Extremum) ⇒
+        val point_comb_op = (l: Extremum, r: Extremum) =>
         {
             if (r.min_index < l.min_index)
             {
@@ -69,7 +69,7 @@ with Serializable
     {
         arg match
         {
-            case (e: Element, Some (it: Iterable[Terminal])) ⇒
+            case (e: Element, Some (it: Iterable[Terminal])) =>
                 var ret = List[PreEdge] ()
 
                 // sort terminals by sequence number
@@ -178,9 +178,11 @@ with Serializable
                         do_switch (o.asInstanceOf[Jumper].Switch)
                     case Some(o) if o.getClass == classOf[Junction] =>
                         do_conducting (o.asInstanceOf[Junction].Connector.ConductingEquipment)
-                    // LinearShuntCompensator
+                    case Some(o) if o.getClass == classOf[LinearShuntCompensator] =>
+                        do_conducting (o.asInstanceOf[LinearShuntCompensator].ShuntCompensator.RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     // LoadBreakSwitch
-                    // NonlinearShuntCompensator
+                    case Some(o) if o.getClass == classOf[NonlinearShuntCompensator] =>
+                        do_conducting (o.asInstanceOf[NonlinearShuntCompensator].ShuntCompensator.RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     // PetersenCoil
                     case Some(o) if o.getClass == classOf[PowerTransformer] =>
                         do_conducting (o.asInstanceOf[PowerTransformer].ConductingEquipment)
@@ -194,10 +196,12 @@ with Serializable
                     // Sectionalizer
                     // SeriesCompensator
                     // ShuntCompensator
-                    // StaticVarCompensator
+                    case Some(o) if o.getClass == classOf[StaticVarCompensator] =>
+                        do_conducting (o.asInstanceOf[StaticVarCompensator].RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[Switch] =>
                         do_switch (o.asInstanceOf[Switch])
-                    // SynchronousMachine
+                    case Some(o) if o.getClass == classOf[SynchronousMachine] =>
+                        do_conducting (o.asInstanceOf[SynchronousMachine].RotatingMachine.RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[TransformerEnd] =>
                         val te = o.asInstanceOf[TransformerEnd]
                         bucket.voltage = te.BaseVoltage
@@ -217,6 +221,9 @@ with Serializable
                         val up = o.asInstanceOf[UsagePoint]
                         bucket.voltage = up.nominalServiceVoltage.toString
                         bucket.location = up.UsagePointLocation
+                    case Some(o) if o.getClass == classOf[RegulatingControl] =>
+                        val c = o.asInstanceOf[RegulatingControl]
+                        do_resource (c.PowerSystemResource)
                 }
 
                 // make a pre-edge for each pair of terminals
@@ -294,7 +301,7 @@ with Serializable
                         list
                 }
                 ret
-            case (_, None) ⇒
+            case (_, None) =>
                 List[PreEdge] ()
         }
     }

@@ -247,7 +247,7 @@ trait Parser
                 ret = string.toBoolean
             catch
             {
-                case _: Throwable ⇒ throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable => throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number())
             }
 
         ret
@@ -268,7 +268,7 @@ trait Parser
                 ret = string.trim.toInt
             catch
             {
-                case _: Throwable ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable => throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number())
             }
 
         ret
@@ -289,7 +289,7 @@ trait Parser
                 ret = string.trim.toDouble
             catch
             {
-                case _: Throwable ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
+                case _: Throwable => throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
             }
 
         ret

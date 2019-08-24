@@ -53,7 +53,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.4.3-4.0.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -147,7 +147,7 @@ import ch.ninecode.model._
 ```
 * One can then read in a CIM file:
 ```scala
-val elements = spark.read.cim ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
+val elements = spark.read.cim ("hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml")
 ```
 
 * Since transform evaluation is lazy, one needs to trigger the actual reading of the file by, for example, asking for the count:
@@ -242,7 +242,7 @@ import ch.ninecode.model._
 val opts = new HashMap[String,String]()
 opts.put("ch.ninecode.cim.make_edges", "true")
 opts.put("ch.ninecode.cim.do_topo_islands", "true")
-val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
+val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml")
 element.count
 val edges = sc.getPersistentRDDs.filter(_._2.name == "Edges").head._2.asInstanceOf[RDD[TopoEdge]]
 edges.first
@@ -271,7 +271,7 @@ there is a stand-alone application built in to the CIMReader called CIMServerJDB
 The program can be executed usng spark-submit with the name of the CIMServerJDBC jar file
 that includes all necessary dependencies and the CIM file:
 
-    spark-submit /opt/code/CIMServerJDBC-2.11-2.0.2-2.2.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    spark-submit /opt/code/CIMServerJDBC-2.11-2.4.3-4.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml"
     ...
     Press [Return] to exit...
 
@@ -331,7 +331,7 @@ If you have a data file in HDFS (it cannot be local, it must be on the cluster):
 
 ```
 # read the data file
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/bkw_cim_export_haelig.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
 head (sql ("select * from elements")) # triggers evaluation
 
 # read the edges RDD as an R data frame

@@ -11,29 +11,29 @@ class CIMIntegrityCheckSuite extends ch.ninecode.SparkSuite
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip files
-        new Unzip ().unzip (FILE_DEPOT + "DemoData.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
 
         // run the tests
         val ret  = super.run (testName, args)
 
         // erase the unpacked files
-        deleteRecursive (new File (FILE_DEPOT + "DemoData.rdf"))
+        deleteRecursive (new File (s"${FILE_DEPOT}DemoData.rdf"))
 
         ret
     }
 
     test ("Integrity")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
-            val filename = FILE_DEPOT + "DemoData.rdf"
+            val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
             assert (1738 == elements.count, "# elements")
             val check = new CIMIntegrityChecker (spark)
             val errors = check.checkAll match
             {
-                case Some (string) ⇒ string;
-                case None ⇒ "no errors"
+                case Some (string) => string;
+                case None => "no errors"
             }
             assert (errors == "no errors", "expected no errors")
     }

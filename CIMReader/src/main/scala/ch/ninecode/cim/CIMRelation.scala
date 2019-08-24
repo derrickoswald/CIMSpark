@@ -44,9 +44,9 @@ class CIMRelation (
     def parseState (text: String): State =
         text match
         {
-            case "ForceTrue" ⇒ ForceTrue
-            case "ForceFalse" ⇒ ForceFalse
-            case _ ⇒ Unforced
+            case "ForceTrue" => ForceTrue
+            case "ForceFalse" => ForceFalse
+            case _ => Unforced
         }
 
     val paths: Array[String] = location.inputFiles
@@ -127,7 +127,7 @@ class CIMRelation (
         // ToDo: See if this is faster
 //        // aggregate the set of class names
 //        val names = rdd.aggregate (Set[String]()) (
-//            (set: Set[String], x: Element) ⇒
+//            (set: Set[String], x: Element) =>
 //            {
 //                var ret = List[String]()
 //                var clz = x
@@ -139,7 +139,7 @@ class CIMRelation (
 //                }
 //                ret.map (x => x.substring (x.lastIndexOf (".") + 1)).toSet.union (set)
 //            },
-//            (set1: Set[String], set2: Set[String]) ⇒ set1.union (set2)
+//            (set1: Set[String], set2: Set[String]) => set1.union (set2)
 //        )
         val names = rdd.flatMap (
             (x: Element) => // hierarchy: List[String]
@@ -155,7 +155,7 @@ class CIMRelation (
 
                 ret.map (x => x.substring (x.lastIndexOf (".") + 1))
             }
-        ).map (s ⇒ (s, s)).reduceByKey ((x, _) => x).map (_._1).collect
+        ).map (s => (s, s)).reduceByKey ((x, _) => x).map (_._1).collect
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {

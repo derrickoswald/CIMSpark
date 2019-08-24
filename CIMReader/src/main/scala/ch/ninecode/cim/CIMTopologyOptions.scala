@@ -75,8 +75,8 @@ object CIMTopologyOptions
     def parseState (text: String): State =
         text match
         {
-            case "ForceTrue" ⇒ ForceTrue
-            case "ForceFalse" ⇒ ForceFalse
-            case _ ⇒ Unforced
+            case "ForceTrue" => ForceTrue
+            case "ForceFalse" => ForceFalse
+            case _ => Unforced
         }
 }

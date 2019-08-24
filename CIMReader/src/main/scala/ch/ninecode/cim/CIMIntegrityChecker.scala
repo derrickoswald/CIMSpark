@@ -139,7 +139,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
     {
         if (info.relations.nonEmpty)
         {
-            val s = info.relations.map (check (classes, info)).fold ("")((a, b) ⇒ a match { case "" ⇒ b; case string1: String ⇒ b match { case "" ⇒ a; case string2: String ⇒ string1 + "\n" + string2 }})
+            val s = info.relations.map (check (classes, info)).fold ("")((a, b) => a match { case "" => b; case string1: String => b match { case "" => a; case string2: String => string1 + "\n" + string2 }})
             if (s != "")
                 Some (s)
             else
@@ -153,7 +153,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
     {
         val classes: List[ClassInfo] = new CHIM ("").classes
         val errors: Seq[Option[String]] = classes.map (checkClass (classes))
-        errors.fold (None) ((a, b) ⇒ a match { case None ⇒ b; case Some (string1) ⇒ b match { case Some (string2) ⇒ Some (string1 + "\n" + string2); case None ⇒ a }})
+        errors.fold (None) ((a, b) => a match { case None => b; case Some (string1) => b match { case Some (string2) => Some (string1 + "\n" + string2); case None => a }})
     }
 }
 

@@ -26,7 +26,7 @@ package object cim
      */
     implicit class CIMDataFrameWriter[T] (writer: DataFrameWriter[T])
     {
-        def cim: String ⇒ Unit = writer.format ("ch.ninecode.cim").save
+        def cim: String => Unit = writer.format ("ch.ninecode.cim").save
     }
 
     /**
@@ -35,6 +35,6 @@ package object cim
      */
     implicit class CIMDataFrameReader (reader: DataFrameReader)
     {
-        def cim: String ⇒ DataFrame = reader.format ("ch.ninecode.cim").load
+        def cim: String => DataFrame = reader.format ("ch.ninecode.cim").load
     }
 }

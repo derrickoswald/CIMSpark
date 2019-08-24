@@ -69,7 +69,7 @@ with
             val relationships = companion[Parser](name).relations
             val fields = companion[Parser](name).fields
             val onesies = relationships.filter (_.heavyside)
-            onesies.foreach (relationship ⇒
+            onesies.foreach (relationship =>
                 {
                     val list = clz.get (fields.indexOf (relationship.field) + 1).asInstanceOf[List[String]]
                     if (null != list && list.nonEmpty) // could also check bitfields instead of checking for null
@@ -138,7 +138,7 @@ with
         val element = arg._2._1
         val relations = arg._2._2
 
-        val new_element = relations.foldLeft (element) ((element, relation) ⇒ set (element, relation.parent_class, relation.relationship.field, null, false))
+        val new_element = relations.foldLeft (element) ((element, relation) => set (element, relation.parent_class, relation.relationship.field, null, false))
         (id, new_element)
     }
 
@@ -154,13 +154,13 @@ with
         val element = arg._2._1
         val relations = arg._2._2
 
-        val new_element = relations.foldLeft (element) ((element, relation) ⇒ set (element, relation.relationship.clazz, relation.parent_class, relation.parent))
+        val new_element = relations.foldLeft (element) ((element, relation) => set (element, relation.relationship.clazz, relation.parent_class, relation.parent))
         (id, new_element)
     }
 
 //    def replace (arg: (String, (Element, Option[Element]))): (String, Element) =
 //    {
-//        (arg._1, arg._2._2 match { case Some (element) ⇒ element case None ⇒ arg._2._1 })
+//        (arg._1, arg._2._2 match { case Some (element) => element case None => arg._2._1 })
 //    }
 
     def do_normalization (): RDD[Element] =
@@ -186,7 +186,7 @@ with
         val cleaned = elements.subtractByKey (fixed).union (fixed).persist (storage)
 
         // invert the relation
-        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap (relation ⇒ relation.referred.map (id ⇒ (id, relation))).groupByKey.persist (storage)
+        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap (relation => relation.referred.map (id => (id, relation))).groupByKey.persist (storage)
 
         // get the fixed objects
         val fixed2: RDD[(String, Element)] = cleaned.join (fixme).map (add).persist (storage)

@@ -4,54 +4,62 @@ import java.io.File
 
 import org.apache.spark.sql.SparkSession
 
-class CIMSparkSuite extends ch.ninecode.SparkSuite with org.scalatest.BeforeAndAfter
+class CIMSparkSuite extends ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
 
     // test file names
-    val FILENAME: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
+    val FILENAME: String = s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml"
 
-    before
+    // number of elements in the file
+    // get number of lines at the top level with:
+    // grep -P "^[\t]<cim" RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml | wc
+    val ELEMENTS1x = 127686
+
+    override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip file
-        if (!new File (FILENAME).exists)
-            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.zip", FILE_DEPOT)
-    }
-
-    after
-    {
-        deleteRecursive (new File (FILENAME))
+        new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
+        // run the tests
+        val ret  = super.run (testName, args)
+        // erase the unpacked files
+        deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid/"))
+        deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid_Error/"))
+        deleteRecursive (new File (s"${FILE_DEPOT}MiniGrid/"))
+        deleteRecursive (new File (s"${FILE_DEPOT}SmallGrid/"))
+        deleteRecursive (new File (s"${FILE_DEPOT}RealGrid/"))
+        ret
     }
 
     test ("Basic")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
         val options = new java.util.HashMap[String, String] ().asInstanceOf[java.util.Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.make_edges", "true")
         options.put ("ch.ninecode.cim.do_topo_islands", "true")
         val elements = readFile (FILENAME, options)
-        println (elements.count () + " elements")
+        assert (elements.count () === ELEMENTS1x)
         val edges = session.sqlContext.sql ("select * from edges")
         val count = edges.count
         markup ("edge count: " + count)
-        assert (count === 760)
+        assert (count === 8348)
     }
 
     test ("Dedup")
     {
-        implicit session: SparkSession ⇒
+        implicit session: SparkSession =>
 
         val options = new java.util.HashMap[String, String] ().asInstanceOf[java.util.Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         val elements1 = readFile (FILENAME, options)
         val count1 = elements1.count ()
-        println (count1 + " elements")
+        assert (count1 === ELEMENTS1x)
         options.put ("ch.ninecode.cim.do_deduplication", "true")
         val elements2 = readFile (FILENAME + "," + FILENAME, options)
         val count2 = elements2.count ()
-        println (count2 + " elements")
         assert (count1 === count2)
     }
 }

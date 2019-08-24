@@ -1,6 +1,6 @@
 # assumes the file is on hdfs:
 # bash-4.1# hdfs dfs -mkdir /data/
-# bash-4.1# hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf /data/
+# bash-4.1# hdfs dfs -put /opt/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml /data/
 
 # assumes the user is created if necessary:
 # bash-4.1# groupadd supergroup
@@ -11,15 +11,15 @@
 pre = proc.time ()
 
 # set up the Spark system
-Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
-Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
+Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.4.3-bin-hadoop2.7/conf")
+Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.3-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-1.8.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/CIMReader/target/CIMReader-2.11-2.4.3-4.0.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 
 begin = proc.time ()
 
 # read the data file and process topologically and make the edge RDD
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20161220_Kiental im Oberland_V11_assets_preview.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false', 'ch.ninecode.cim.do_join' 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false', 'ch.ninecode.cim.do_join' 'false')")
 head (sql ("select * from elements")) # triggers evaluation
 
 post = proc.time ()
