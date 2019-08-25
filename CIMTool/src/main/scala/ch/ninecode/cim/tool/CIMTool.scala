@@ -37,12 +37,12 @@ object CIMTool
 
     def main (args : Array[String])
     {
-        val optionparser = new CIMToolOptionParser (APPLICATION_NAME, APPLICATION_VERSION)
+        val optionparser = new CIMToolOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 
         optionparser.parse (args, CIMToolOptions ()) match
         {
             case Some (options) =>
-                if (!optionparser.justInfo)
+                if (options.valid)
                 {
                     System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString);
                     val log: Logger = LoggerFactory.getLogger (getClass)
