@@ -231,7 +231,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |
                     |                if (null == obj.mRID)
                     |                    obj.mRID = obj.id;
-                    |                if ((null != obj.mRID) && (obj.id != obj.mRID))
+                    |                if ((null != obj.mRID) && (obj.id !== obj.mRID))
                     |                {
                     |                    if ("undefined" !== typeof (console))
                     |                        console.log ("***Warning*** rdf:ID !== mRID [" + obj.id + " !== " + obj.mRID + "]");
@@ -385,7 +385,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 {
                     val attr = attribute.name.replace ("""/""", """\/""")
                     s.append (s"""
-                    |                delete obj["${attr}${attribute.typ}"];""".stripMargin)
+                    |                delete obj["$attr${attribute.typ}"];""".stripMargin)
                 }
                 for (role <- roles.filter (_.upper != 1))
                 {
@@ -528,7 +528,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             v.append ("""define
                 |(
                 |    ["model/base"""".stripMargin)
-            val includes = r.map (p => s""""model/${p}"""").mkString (", ")
+            val includes = r.map (p => s""""model/$p"""").mkString (", ")
             if (includes != "")
                 v.append (""", """)
             v.append (includes)
@@ -613,8 +613,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             else
                 do_package (p)
         }
-        val decl = s"""    ["model/base", ${files.map (f => s"""model/${f}""").mkString ("\"", "\", \"", "\"],")}"""
+        val decl = s"""    ["model/base", ${files.map (f => s"""model/$f""").mkString ("\"", "\", \"", "\"],")}"""
         val fn = s"""    function (base, ${files.mkString (", ")})"""
-        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), s"${decl}\n${fn}".getBytes (StandardCharsets.UTF_8))
+        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), s"$decl\n$fn".getBytes (StandardCharsets.UTF_8))
     }
 }

@@ -3,7 +3,7 @@ package ch.ninecode.cim.tool
 object LogLevels extends Enumeration
 {
     type LogLevels = Value
-    val TRACE, DEBUG, INFO, WARN, ERROR = Value
+    val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
 }
 
 final case class CIMToolOptions (

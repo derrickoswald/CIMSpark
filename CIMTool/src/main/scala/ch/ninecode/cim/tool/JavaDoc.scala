@@ -2,7 +2,13 @@ package ch.ninecode.cim.tool
 
 import java.util.regex.Pattern
 
-case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List(), group: String = "", group_name: String = "", group_description: String = "")
+case class JavaDoc (
+    note: String,
+    leftpad: Int,
+    members: Iterable[Member] = List(),
+    group: String = null,
+    group_name: String = null,
+    group_description: String = null)
 {
     lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
     val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
@@ -39,29 +45,12 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
 
     def addGroupStuff (s: StringBuilder): Unit =
     {
-        s.append ("""
-          | * @group """.stripMargin)
-        s.append (group)
-        if ("" != group_name)
-        {
-            s.append (
-                """
-                    | * @groupname """.stripMargin)
-            s.append (group)
-            s.append (" ")
-            s.append (group_name)
-        }
-        if ("" != group_description)
-        {
-            s.
-            append (
-            """
-                | * @groupdesc """.stripMargin)
-            s.append (group)
-            s.append (" ")
-            s.append (group_description)
-        }
-
+        if ((null != group) && ("" != group))
+            s.append (s"\n * @group $group")
+        if ((null != group_name) && ("" != group_name))
+            s.append (s"\n * @groupname $group $group_name")
+        if ((null != group_description) && ("" != group_description))
+            s.append (s"\n * @groupdesc $group $group_description")
     }
 
     def contents: String =
@@ -83,18 +72,17 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
             for (member <- members)
                 s.append (s"\n${member.javaDoc}")
         }
-        if ("" != group)
-            addGroupStuff (s)
+        addGroupStuff (s)
         s.toString
     }
 
     def asText: String =
     {
         val s = contents
-        if ("" != contents)
+        if ("" != s)
         {
            s"""/**
-              |$contents
+              |$s
               | */
               |""".stripMargin.split ("\n").map (st => s"${spaces}$st").mkString ("", "\n", "\n")
         }

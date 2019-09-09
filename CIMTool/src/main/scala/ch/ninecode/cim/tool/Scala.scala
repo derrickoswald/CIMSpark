@@ -227,8 +227,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                         .union (parser.rolesFor (cls).map (details).toSet)
             val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
             val s = new StringBuilder ()
-            val n = if (null != pkg.notes) pkg.notes else ""
-            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package %s".format (pkg.name), n).asText)
+            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package %s".format (pkg.name), pkg.notes).asText)
             s.append ("final case class ")
             s.append (name)
             s.append ("""
@@ -296,7 +295,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |    override def export_fields: String =
             |    {
             |""".stripMargin.format (name))
-            if (fields.exists (_.name != sup))
+            if (fields.exists (_.name != "sup"))
             {
                 s.append ("""        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
                     |        implicit val clz: String = %s.cls
@@ -307,7 +306,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     s.append ("        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (%s.fields (position), value)\n".format (name))
                 if (fields.exists (_.multiple))
                     s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (%s.fields (position), x))\n".format (name))
-                s.append (fields.iterator.zipWithIndex.map (x => { val emit = if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem"; s"${emit} (${x._2}, ${x._1.variable})" }).mkString ("        ", "\n        ", "\n"))
+                s.append (fields.iterator.zipWithIndex.map (x => { val emit = if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem"; s"$emit (${x._2}, ${x._1.variable})" }).mkString ("        ", "\n        ", "\n"))
                 s.append ("        s.toString\n")
             }
             else
@@ -349,7 +348,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     else
                         "parse_element (element"
                 }
-                s.append (fields.iterator.zipWithIndex.map (x => { val fielder = if (x._1.multiple) "FielderMultiple" else "Fielder"; s"val ${x._1.variable}: ${fielder} = ${pa (x._1)} (cls, fields(${x._2})))" }).mkString ("    ", "\n    ", "\n"))
+                s.append (fields.iterator.zipWithIndex.map (x => { val fielder = if (x._1.multiple) "FielderMultiple" else "Fielder"; s"val ${x._1.variable}: $fielder = ${pa (x._1)} (cls, fields(${x._2})))" }).mkString ("    ", "\n    ", "\n"))
             }
             // output the parse method
             s.append ("""
