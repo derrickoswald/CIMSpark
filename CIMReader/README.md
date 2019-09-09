@@ -343,7 +343,7 @@ terminals = sql ("select * from Terminal")
 rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
 
 # example to read a three-way join of RDD
-switch = sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
+switch = sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 1")
 rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 ```
 
