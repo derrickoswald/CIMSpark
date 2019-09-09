@@ -21,7 +21,7 @@ The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
 
 The architecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
 
-![CIMReader Architecture](https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Architecture.svg "High level architecture diagram")
+![CIMReader Architecture](https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/CIMReader/img/Architecture.svg "High level architecture diagram")
 
 # Building
 
