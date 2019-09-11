@@ -18,7 +18,7 @@ version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1
 services:
   sandbox:
     container_name: spark_master
-    image: derrickoswald/spark-docker
+    image: derrickoswald/spark-docker:latest
     command: start-spark master
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
@@ -41,7 +41,7 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
   worker:
-    image: derrickoswald/spark-docker
+    image: derrickoswald/spark-docker:latest
     command: start-spark worker sandbox
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator

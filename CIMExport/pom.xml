@@ -283,6 +283,13 @@
                 <configuration>
                     <clusterSize>1</clusterSize>
                     <startNativeTransport>true</startNativeTransport>
+                    <yaml>
+rpc_port: ${cassandra.rpcPort}
+storage_port: ${cassandra.storagePort}
+native_transport_port: ${cassandra.nativeTransportPort}
+enable_user_defined_functions: true
+enable_scripted_user_defined_functions: true
+                    </yaml>
                 </configuration>
                 <dependencies>
                     <dependency>

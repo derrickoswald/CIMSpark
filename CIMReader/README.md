@@ -49,7 +49,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 **NOTE: The unit tests can be skipped if you add the magic incantation `mvn -DskipTests package`**
 
-**NOTE: The artifact can also be installed into the local Maven repository if you skip the gpg signing step: `mvn -DskipTests -Dgpg.skip install`**
+**NOTE: The artifact can also be installed into the local Maven repository if you skip the gpg signing step: `mvn -Dmaven.test.skip=true -DskipTests -DskipITs -Dgpg.skip install`**
 
 ## Jar Naming Scheme
 
