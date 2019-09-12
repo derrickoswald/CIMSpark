@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory
 /*
  * Create the schema in Cassandra.
  */
-case class Schema (session: SparkSession, keyspace: String, replication: Int = 2, verbose: Boolean)
+case class Schema (session: SparkSession, keyspace: String, replication: Int = 1, verbose: Boolean)
 {
     if (verbose)
         org.apache.log4j.LogManager.getLogger (getClass.getName).setLevel (org.apache.log4j.Level.INFO)
@@ -26,7 +26,7 @@ case class Schema (session: SparkSession, keyspace: String, replication: Int = 2
     def editor: String ⇒ String =
     {
         val DEFAULT_KEYSPACE = """cimexport"""
-        val DEFAULT_REPLICATION = 2
+        val DEFAULT_REPLICATION = 1
         val REPLICATION_TRIGGER = """'replication_factor': """
 
         val old_replication_string = REPLICATION_TRIGGER + DEFAULT_REPLICATION.toString

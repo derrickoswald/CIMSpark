@@ -22,7 +22,7 @@ cd CIMSpark/CIMExport
 ```
 * Invoke the package or install command:
 ```
-mvn package
+mvn -Dmaven.test.skip=true -DskipTests -DskipITs install
 ```
 
 This should produce a jar file in the target/ directory.

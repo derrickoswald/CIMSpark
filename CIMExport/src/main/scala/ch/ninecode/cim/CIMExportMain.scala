@@ -76,7 +76,7 @@ object CIMExportMain
         host: String = "localhost",
         port: Int = 9042,
         keyspace: String = "cimexport",
-        replication: Int = 2,
+        replication: Int = 1,
         files: Seq[String] = Seq()
     )
 

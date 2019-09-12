@@ -446,7 +446,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * @param keyspace If <b>cassandra</b> is true, use this keyspace in Cassandra.
      * @return the number of transformers processed
      */
-    def exportAllTransformers (source: String, directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport", replication: Int = 2): Int =
+    def exportAllTransformers (source: String, directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport", replication: Int = 1): Int =
     {
         // get transformer low voltage pins
         val transformers: RDD[Item] = getOrElse [PowerTransformerEnd]

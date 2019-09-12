@@ -1,4 +1,4 @@
-create keyspace if not exists cimexport with replication = {'class': 'SimpleStrategy', 'replication_factor': 2 };
+create keyspace if not exists cimexport with replication = {'class': 'SimpleStrategy', 'replication_factor': 1 };
 
 create type if not exists cimexport.polygon_data (type text, coordinates list<frozen <list<frozen <list<double>>>>>);
 
