@@ -10,6 +10,61 @@
     <packaging>pom</packaging>
     <name>CIM-Spark interface.</name>
 
+    <description>Software using Apache Spark and the Common Information Model (CIM)</description>
+    <inceptionYear>2015</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark</url>
+    <organization>
+        <name>9code GmbH</name>
+        <url>http://9code.ch</url>
+    </organization>
+    <scm>
+        <url>git@github.com:derrickoswald/CIMSpark.git</url>
+        <connection>scm:git:git@github.com:derrickoswald/CIMSpark.git</connection>
+        <developerConnection>scm:git:git@github.com:derrickoswald/CIMSpark.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/derrickoswald/CIMSpark/issues</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <comments>see https://github.com/derrickoswald/CIMSpark/blob/master/LICENSE.md</comments>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Derrick Oswald</name>
+            <email>derrick.oswald@9code.ch</email>
+            <id>derrickoswald</id>
+            <organization>9code GmbH</organization>
+            <organizationUrl>http://9code.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <keybase>https://keybase.io/derrickoswald</keybase>
+                <picUrl>https://secure.gravatar.com/avatar/d659afe3730a534914c5555640d326b3</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Markus Jung</name>
+            <email>markus.jung@nis.ch</email>
+            <id>mastermaeg</id>
+            <organization>NIS AG</organization>
+            <organizationUrl>http://www.nis.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Markus.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
     <properties>
 
         <encoding>UTF-8</encoding>
@@ -18,6 +73,10 @@
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Plugin versions -->
+        <version.dependency.maven-enforcer-plugin>1.4.1</version.dependency.maven-enforcer-plugin>
+        <version.dependency.maven-deploy-plugin>2.8.2</version.dependency.maven-deploy-plugin>
 
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
@@ -46,31 +105,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-enforcer-plugin</artifactId>
-                                        <versionRange>[1.2,)</versionRange>
-                                        <goals>
-                                            <goal>enforce</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
+		    <version>${version.dependency.maven-enforcer-plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -94,8 +129,43 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- deploy artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.dependency.maven-deploy-plugin}</version>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <modules>
         <module>CIMTool</module>
