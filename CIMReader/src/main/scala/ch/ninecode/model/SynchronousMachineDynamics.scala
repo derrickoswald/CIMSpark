@@ -60,7 +60,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -99,7 +99,7 @@ extends
     def parse (context: Context): SynchronousMachineDetailed =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineDetailed (
             SynchronousMachineDynamics.parse (context),
             toDouble (mask (efdBaseRatio (), 0)),
@@ -173,7 +173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -230,7 +230,7 @@ extends
     def parse (context: Context): SynchronousMachineDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
             mask (CrossCompoundTurbineGovernorDyanmics (), 0),
@@ -327,7 +327,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -386,7 +386,7 @@ extends
     def parse (context: Context): SynchronousMachineEquivalentCircuit =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineEquivalentCircuit (
             SynchronousMachineDetailed.parse (context),
             toDouble (mask (r1d (), 0)),
@@ -449,7 +449,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -581,7 +581,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -650,7 +650,7 @@ extends
     def parse (context: Context): SynchronousMachineTimeConstantReactance =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineTimeConstantReactance (
             SynchronousMachineDetailed.parse (context),
             toDouble (mask (ks (), 0)),

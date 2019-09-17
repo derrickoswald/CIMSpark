@@ -40,7 +40,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -76,7 +76,7 @@ extends
     def parse (context: Context): BlockingFunction =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BlockingFunction (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -132,7 +132,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -181,7 +181,7 @@ extends
     def parse (context: Context): DCvoltageControl =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DCvoltageControl (
             BasicElement.parse (context),
             toDouble (mask (kivdc (), 0)),
@@ -229,7 +229,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -265,7 +265,7 @@ extends
     def parse (context: Context): PFmode =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PFmode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -309,7 +309,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -345,7 +345,7 @@ extends
     def parse (context: Context): Pcontrol =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pcontrol (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -389,7 +389,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -425,7 +425,7 @@ extends
     def parse (context: Context): Qlimiter =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qlimiter (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -469,7 +469,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -505,7 +505,7 @@ extends
     def parse (context: Context): Qmode =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qmode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -550,7 +550,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -591,7 +591,7 @@ extends
     def parse (context: Context): Qregulator =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qregulator (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -636,7 +636,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -672,7 +672,7 @@ extends
     def parse (context: Context): Umode =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Umode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -722,7 +722,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -782,7 +782,7 @@ extends
     def parse (context: Context): VSCtype1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = VSCtype1 (
             VSCDynamics.parse (context),
             mask (BlockingFunction (), 0),

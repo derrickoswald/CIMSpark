@@ -101,7 +101,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -175,7 +175,7 @@ extends
     def parse (context: Context): EquivalentBranch =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentBranch (
             EquivalentEquipment.parse (context),
             toDouble (mask (negativeR12 (), 0)),
@@ -238,7 +238,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -270,7 +270,7 @@ extends
     def parse (context: Context): EquivalentEquipment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentEquipment (
             ConductingEquipment.parse (context),
             mask (EquivalentNetwork (), 0)
@@ -367,7 +367,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -445,7 +445,7 @@ extends
     def parse (context: Context): EquivalentInjection =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentInjection (
             EquivalentEquipment.parse (context),
             toDouble (mask (maxP (), 0)),
@@ -508,7 +508,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -540,7 +540,7 @@ extends
     def parse (context: Context): EquivalentNetwork =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentNetwork (
             ConnectivityNodeContainer.parse (context),
             masks (EquivalentEquipments (), 0)
@@ -588,7 +588,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -620,7 +620,7 @@ extends
     def parse (context: Context): EquivalentShunt =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentShunt (
             EquivalentEquipment.parse (context),
             toDouble (mask (b (), 0)),

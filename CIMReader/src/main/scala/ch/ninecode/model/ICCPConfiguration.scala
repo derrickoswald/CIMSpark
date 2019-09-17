@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -95,7 +95,7 @@ extends
     def parse (context: Context): BilateralExchangeActor =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BilateralExchangeActor (
             IdentifiedObject.parse (context),
             masks (CommunicationLink (), 0),
@@ -146,7 +146,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -182,7 +182,7 @@ extends
     def parse (context: Context): BilateralExchangeAgreement =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BilateralExchangeAgreement (
             IdentifiedObject.parse (context),
             mask (Consumer (), 0),
@@ -237,7 +237,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -277,7 +277,7 @@ extends
     def parse (context: Context): ICCPInformationMessage =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPInformationMessage (
             IdentifiedObject.parse (context),
             mask (localReference (), 0),
@@ -338,7 +338,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -376,7 +376,7 @@ extends
     def parse (context: Context): ICCPProvidedPoint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPProvidedPoint (
             ProvidedBilateralPoint.parse (context),
             mask (accessPriviledge (), 0),
@@ -423,7 +423,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -515,7 +515,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -578,7 +578,7 @@ extends
     def parse (context: Context): ICCPVirtualControlCentre =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPVirtualControlCentre (
             BilateralExchangeActor.parse (context),
             mask (applicationSecurityRequirement (), 0),
@@ -635,7 +635,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -667,7 +667,7 @@ extends
     def parse (context: Context): IOPointSource =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = IOPointSource (
             MeasurementValueSource.parse (context),
             masks (IOPoint (), 0)
@@ -721,7 +721,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -760,7 +760,7 @@ extends
     def parse (context: Context): IPAccessPoint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = IPAccessPoint (
             CommunicationLink.parse (context),
             mask (address (), 0),
@@ -824,7 +824,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -878,7 +878,7 @@ extends
     def parse (context: Context): ISOUpperLayer =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ISOUpperLayer (
             TCPAccessPoint.parse (context),
             toInteger (mask (aeInvoke (), 0)),
@@ -933,7 +933,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -969,7 +969,7 @@ extends
     def parse (context: Context): ProvidedBilateralPoint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ProvidedBilateralPoint (
             IdentifiedObject.parse (context),
             mask (BilateralExchangeActor (), 0),
@@ -1025,7 +1025,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1068,7 +1068,7 @@ extends
     def parse (context: Context): PublicX509Certificate =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PublicX509Certificate (
             BasicElement.parse (context),
             mask (issuerName (), 0),
@@ -1127,7 +1127,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1169,7 +1169,7 @@ extends
     def parse (context: Context): TASE2BilateralTable =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TASE2BilateralTable (
             BilateralExchangeAgreement.parse (context),
             mask (bilateralTableID (), 0),
@@ -1228,7 +1228,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1267,7 +1267,7 @@ extends
     def parse (context: Context): TCPAccessPoint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TCPAccessPoint (
             IPAccessPoint.parse (context),
             toInteger (mask (keepAliveTime (), 0)),

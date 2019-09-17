@@ -44,7 +44,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -76,7 +76,7 @@ extends
     def parse (context: Context): SVC =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SVC (
             ShuntCompensator.parse (context),
             toDouble (mask (capacitiveRating (), 0)),
@@ -159,7 +159,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -243,7 +243,7 @@ extends
     def parse (context: Context): ShuntCompensatorControl =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ShuntCompensatorControl (
             RegulatingControl.parse (context),
             toInteger (mask (branchDirect (), 0)),

@@ -51,7 +51,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -93,7 +93,7 @@ extends
     def parse (context: Context): AssetAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetAnalog (
             Analog.parse (context),
             toDouble (mask (detectionLimit (), 0)),
@@ -141,7 +141,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -173,7 +173,7 @@ extends
     def parse (context: Context): AssetDiscrete =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetDiscrete (
             Discrete.parse (context),
             mask (TestStandard (), 0)
@@ -220,7 +220,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -255,7 +255,7 @@ extends
     def parse (context: Context): AssetStringMeasurement =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetStringMeasurement (
             StringMeasurement.parse (context),
             mask (kind (), 0),
@@ -301,7 +301,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -330,7 +330,7 @@ extends
     def parse (context: Context): AssetTemperaturePressureAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetTemperaturePressureAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -379,7 +379,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -420,7 +420,7 @@ extends
     def parse (context: Context): CalculationMethodHierarchy =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CalculationMethodHierarchy (
             IdentifiedObject.parse (context),
             masks (CalculationMethodOrder (), 0),
@@ -471,7 +471,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -511,7 +511,7 @@ extends
     def parse (context: Context): CalculationMethodOrder =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CalculationMethodOrder (
             BasicElement.parse (context),
             toInteger (mask (order (), 0)),
@@ -558,7 +558,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -587,7 +587,7 @@ extends
     def parse (context: Context): InspectionAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = InspectionAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -632,7 +632,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -661,7 +661,7 @@ extends
     def parse (context: Context): InspectionDiscrete =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = InspectionDiscrete (
             AssetDiscrete.parse (context),
             mask (kind (), 0)
@@ -706,7 +706,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -735,7 +735,7 @@ extends
     def parse (context: Context): OilAnalysisFluidAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisFluidAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -780,7 +780,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -809,7 +809,7 @@ extends
     def parse (context: Context): OilAnalysisFluidDiscrete =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisFluidDiscrete (
             AssetDiscrete.parse (context),
             mask (kind (), 0)
@@ -854,7 +854,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -883,7 +883,7 @@ extends
     def parse (context: Context): OilAnalysisGasAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisGasAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -928,7 +928,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -957,7 +957,7 @@ extends
     def parse (context: Context): OilAnalysisMetalsAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisMetalsAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -1002,7 +1002,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1031,7 +1031,7 @@ extends
     def parse (context: Context): OilAnalysisMoistureAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisMoistureAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -1076,7 +1076,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1105,7 +1105,7 @@ extends
     def parse (context: Context): OilAnalysisPCBAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisPCBAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -1150,7 +1150,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1179,7 +1179,7 @@ extends
     def parse (context: Context): OilAnalysisPCBDiscrete =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisPCBDiscrete (
             AssetDiscrete.parse (context),
             mask (kind (), 0)
@@ -1224,7 +1224,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1253,7 +1253,7 @@ extends
     def parse (context: Context): OilAnalysisPaperAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisPaperAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -1298,7 +1298,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1327,7 +1327,7 @@ extends
     def parse (context: Context): OilAnalysisParticleAnalog =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisParticleAnalog (
             AssetAnalog.parse (context),
             mask (kind (), 0)
@@ -1372,7 +1372,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1401,7 +1401,7 @@ extends
     def parse (context: Context): OilAnalysisParticleDiscrete =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OilAnalysisParticleDiscrete (
             AssetDiscrete.parse (context),
             mask (kind (), 0)
@@ -1452,7 +1452,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1485,7 +1485,7 @@ extends
     def parse (context: Context): PeriodicStatisticalCalculation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PeriodicStatisticalCalculation (
             StatisticalCalculation.parse (context),
             toInteger (mask (calculationIntervalMagnitude (), 0)),
@@ -1535,7 +1535,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1574,7 +1574,7 @@ extends
     def parse (context: Context): StatisticalCalculation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = StatisticalCalculation (
             IdentifiedObject.parse (context),
             mask (calculationMode (), 0),

@@ -97,7 +97,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -177,7 +177,7 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC1A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (esc (), 0)),
@@ -252,7 +252,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -293,7 +293,7 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC2A =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC2A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (td1 (), 0)),
@@ -349,7 +349,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -381,7 +381,7 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC3A =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC3A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (tdr (), 0)),
@@ -431,7 +431,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -467,7 +467,7 @@ extends
     def parse (context: Context): DiscontinuousExcitationControlDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscontinuousExcitationControlDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),

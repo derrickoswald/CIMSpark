@@ -47,7 +47,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -83,7 +83,7 @@ extends
     def parse (context: Context): CrossCompoundTurbineGovernorDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CrossCompoundTurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (HighPressureSynchronousMachineDynamics (), 0),
@@ -250,7 +250,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -382,7 +382,7 @@ extends
     def parse (context: Context): GovCT1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovCT1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -634,7 +634,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -829,7 +829,7 @@ extends
     def parse (context: Context): GovCT2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovCT2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -960,7 +960,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1016,7 +1016,7 @@ extends
     def parse (context: Context): GovGAST =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -1173,7 +1173,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1301,7 +1301,7 @@ extends
     def parse (context: Context): GovGAST1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1453,7 +1453,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1575,7 +1575,7 @@ extends
     def parse (context: Context): GovGAST2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1715,7 +1715,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1804,7 +1804,7 @@ extends
     def parse (context: Context): GovGAST3 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bca (), 0)),
@@ -1903,7 +1903,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -1962,7 +1962,7 @@ extends
     def parse (context: Context): GovGAST4 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bp (), 0)),
@@ -2090,7 +2090,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2215,7 +2215,7 @@ extends
     def parse (context: Context): GovGASTWD =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGASTWD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -2335,7 +2335,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2403,7 +2403,7 @@ extends
     def parse (context: Context): GovHydro1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydro1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -2549,7 +2549,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2662,7 +2662,7 @@ extends
     def parse (context: Context): GovHydro2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydro2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -2848,7 +2848,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -2982,7 +2982,7 @@ extends
     def parse (context: Context): GovHydro3 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3181,7 +3181,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3325,7 +3325,7 @@ extends
     def parse (context: Context): GovHydro4 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3518,7 +3518,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3649,7 +3649,7 @@ extends
     def parse (context: Context): GovHydroDD =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroDD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -3815,7 +3815,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -3923,7 +3923,7 @@ extends
     def parse (context: Context): GovHydroFrancis =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroFrancis (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (am (), 0)),
@@ -4018,7 +4018,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4068,7 +4068,7 @@ extends
     def parse (context: Context): GovHydroIEEE0 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -4201,7 +4201,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4305,7 +4305,7 @@ extends
     def parse (context: Context): GovHydroIEEE2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -4479,7 +4479,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4604,7 +4604,7 @@ extends
     def parse (context: Context): GovHydroPID =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -4751,7 +4751,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -4843,7 +4843,7 @@ extends
     def parse (context: Context): GovHydroPID2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroPID2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (atw (), 0)),
@@ -5004,7 +5004,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5114,7 +5114,7 @@ extends
     def parse (context: Context): GovHydroPelton =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroPelton (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (av0 (), 0)),
@@ -5317,7 +5317,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5469,7 +5469,7 @@ extends
     def parse (context: Context): GovHydroR =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroR (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -5698,7 +5698,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -5877,7 +5877,7 @@ extends
     def parse (context: Context): GovHydroWEH =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroWEH (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db (), 0)),
@@ -6030,7 +6030,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6122,7 +6122,7 @@ extends
     def parse (context: Context): GovHydroWPID =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroWPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (d (), 0)),
@@ -6213,7 +6213,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6263,7 +6263,7 @@ extends
     def parse (context: Context): GovSteam0 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteam0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -6439,7 +6439,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6582,7 +6582,7 @@ extends
     def parse (context: Context): GovSteam1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteam1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db1 (), 0)),
@@ -6690,7 +6690,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6740,7 +6740,7 @@ extends
     def parse (context: Context): GovSteam2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteam2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dbf (), 0)),
@@ -6846,7 +6846,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -6923,7 +6923,7 @@ extends
     def parse (context: Context): GovSteamBB =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamBB (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (fcut (), 0)),
@@ -7038,7 +7038,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7115,7 +7115,7 @@ extends
     def parse (context: Context): GovSteamCC =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamCC (
             CrossCompoundTurbineGovernorDynamics.parse (context),
             toDouble (mask (dhp (), 0)),
@@ -7282,7 +7282,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7413,7 +7413,7 @@ extends
     def parse (context: Context): GovSteamEU =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamEU (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (chc (), 0)),
@@ -7518,7 +7518,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7580,7 +7580,7 @@ extends
     def parse (context: Context): GovSteamFV2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -7730,7 +7730,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -7849,7 +7849,7 @@ extends
     def parse (context: Context): GovSteamFV3 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (gv1 (), 0)),
@@ -8078,7 +8078,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8257,7 +8257,7 @@ extends
     def parse (context: Context): GovSteamFV4 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamFV4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (cpsmn (), 0)),
@@ -8417,7 +8417,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8506,7 +8506,7 @@ extends
     def parse (context: Context): GovSteamIEEE1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamIEEE1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -8597,7 +8597,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8659,7 +8659,7 @@ extends
     def parse (context: Context): GovSteamSGO =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamSGO (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -8724,7 +8724,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -8764,7 +8764,7 @@ extends
     def parse (context: Context): TurbineGovernorDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),

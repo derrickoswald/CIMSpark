@@ -53,7 +53,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -98,7 +98,7 @@ extends
     def parse (context: Context): BusNameMarker =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BusNameMarker (
             IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
@@ -154,7 +154,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -191,7 +191,7 @@ extends
     def parse (context: Context): TopologicalIsland =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TopologicalIsland (
             IdentifiedObject.parse (context),
             mask (AngleRefTopologicalNode (), 0),
@@ -270,7 +270,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -346,7 +346,7 @@ extends
     def parse (context: Context): TopologicalNode =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TopologicalNode (
             IdentifiedObject.parse (context),
             toDouble (mask (pInjection (), 0)),

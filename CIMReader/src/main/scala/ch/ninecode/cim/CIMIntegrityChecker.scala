@@ -110,7 +110,8 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
         type parent = companion.subsetter.basetype
         type parentrdd = companion.subsetter.rddtype
 
-        log.info ("%s.%s => %s".format (info.name, relation.field, relation.clazz))
+        if (log.isDebugEnabled)
+            log.debug (s"${info.name}.${relation.field} => ${relation.clazz}")
         val cc: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == info.name)
         if (cc.nonEmpty)
         {

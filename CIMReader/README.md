@@ -45,7 +45,7 @@ This should produce a jar file in the target/ directory.
 **NOTE: The sbt project file uses the bintray plugin which can be installed by adding (or creating) to project/plugins.sbt the line: 
 _addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.4")_.
 If you use sbt, the jar file will be in a subdirectory of target/ based on the version of the Scala library used,
-e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, that is, the name will be cimscala_2.11-??.** 
+e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, that is, the name will be cimreader_2.11-??.** 
 
 **NOTE: The unit tests can be skipped if you add the magic incantation `mvn -DskipTests package`**
 
@@ -53,9 +53,9 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.4.3-4.0.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.4.3-4.0..jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
-The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
+The first version number is the Scala library version. This follows [Scala library naming semantics](https://github.com/scalacenter/scaladex).
 
 The second version number is the [Spark version](https://spark.apache.org/downloads.html).
 
@@ -268,10 +268,10 @@ All RDD are also exposed as temporary tables, so one can use SQL syntax to const
 
 To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance,
 there is a stand-alone application built in to the CIMReader called CIMServerJDBC.
-The program can be executed usng spark-submit with the name of the CIMServerJDBC jar file
+The program can be executed using spark-submit with the name of the CIMServerJDBC jar file
 that includes all necessary dependencies and the CIM file:
 
-    spark-submit /opt/code/CIMServerJDBC-2.11-2.4.3-4.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml"
+    spark-submit /opt/code/CIMServerJDBC-2.11-2.4.3-4.0.-jar-with-dependencies.jar "hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml"
     ...
     Press [Return] to exit...
 
@@ -324,7 +324,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 # set up the Spark system
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.3-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-2.11-2.4.3-4.0.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-2.11-2.4.3-4.0..jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):

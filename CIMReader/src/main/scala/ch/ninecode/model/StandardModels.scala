@@ -46,7 +46,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -75,7 +75,7 @@ extends
     def parse (context: Context): DynamicsFunctionBlock =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DynamicsFunctionBlock (
             IdentifiedObject.parse (context),
             toBoolean (mask (enabled (), 0))
@@ -138,7 +138,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -182,7 +182,7 @@ extends
     def parse (context: Context): RotatingMachineDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RotatingMachineDynamics (
             DynamicsFunctionBlock.parse (context),
             toDouble (mask (damping (), 0)),

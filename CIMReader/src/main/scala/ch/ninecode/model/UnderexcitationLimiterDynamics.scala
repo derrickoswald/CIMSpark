@@ -64,7 +64,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -111,7 +111,7 @@ extends
     def parse (context: Context): UnderexcLim2Simplified =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLim2Simplified (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kui (), 0)),
@@ -206,7 +206,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -277,7 +277,7 @@ extends
     def parse (context: Context): UnderexcLimIEEE1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimIEEE1 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kuc (), 0)),
@@ -445,7 +445,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -591,7 +591,7 @@ extends
     def parse (context: Context): UnderexcLimIEEE2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = UnderexcLimIEEE2 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -686,7 +686,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -730,7 +730,7 @@ extends
     def parse (context: Context): UnderexcLimX1 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimX1 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -793,7 +793,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -840,7 +840,7 @@ extends
     def parse (context: Context): UnderexcLimX2 =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimX2 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kf2 (), 0)),
@@ -894,7 +894,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index ${i}")
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
     override def export_fields: String =
@@ -930,7 +930,7 @@ extends
     def parse (context: Context): UnderexcitationLimiterDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),

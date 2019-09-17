@@ -5,7 +5,7 @@
         <groupId>ch.ninecode.cim</groupId>
         <artifactId>CIMSpark</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>2.11-2.4.3-4.0.1</version>
+        <version>2.11-2.4.3-4.0.2</version>
     </parent>
     <artifactId>CIMExport</artifactId>
     <name>${project.artifactId}</name>
