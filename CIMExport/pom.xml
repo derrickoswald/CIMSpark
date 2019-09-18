@@ -337,7 +337,7 @@ enable_scripted_user_defined_functions: true
                         </configuration>
                     </execution>
                 </executions>
-	    </plugin>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>

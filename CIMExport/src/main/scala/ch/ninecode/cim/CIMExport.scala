@@ -250,7 +250,14 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     type KeyedItem = (Key, Item)
     type Clazz = String
 
-    def dependents (relations: Map[String, List[Relationship]]) (element: Element): List[(mRID, mRID)] =
+    /**
+     * Find the list of dependents that should be included for the given element.
+     * @param relations the list of relation descriptions
+     * @param stop a set of Terminal mRID that will limit the dependency check
+     * @param element the element to check
+     * @return the dependents as pairs of mRID ("if you include me, include him")
+     */
+    def dependents (relations: Map[String, List[Relationship]], stop: Set[String]) (element: Element): List[(mRID, mRID)] =
     {
         var e = element
         var list = List[(mRID, mRID)] ()
@@ -273,9 +280,15 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                             if (relation.field == "TopologicalIsland")
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "TopologicalNode")
-                                List ((e.id, mrid), (mrid, e.id))
+                                if (stop.contains (e.id))
+                                    None
+                                else
+                                    List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "ConnectivityNode")
-                                List ((e.id, mrid), (mrid, e.id))
+                                if (stop.contains (e.id))
+                                    None
+                                else
+                                    List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "Location")
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "PerLengthParameters")
@@ -309,9 +322,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * Export related.
      *
      * @param what a PairRDD, the keys are mrid to check, and the values are the name we will save to
+     * @param stop a set of Terminal mRID that will limit the dependency check
      * @return the number of related groups processed
      */
-    def labelRelated (what: RDD[Item]): RDD[(Island, Element)] =
+    def labelRelated (what: RDD[Item], stop: Set[String] = Set ()): RDD[(Island, Element)] =
     {
         // the to do list is a PairRDD, the keys are mrid to check,
         // and the values are the name to label the related items
@@ -322,7 +336,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // make a mapping of mRID to mRID
         // "if you include me, you have to include him" and vice-versa for some relations
         val relationships = classes.map (x ⇒ (x.name, x.relations)).toMap
-        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships)).persist (storage)
+        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships, stop)).persist (storage)
 
         // done is a list of keyed PairRDD, the keys are mRID_Island and each pair is an mRID and the Island it belongs to
         var done: List[RDD[KeyedItem]] = List ()
@@ -409,6 +423,45 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         classname.substring (classname.lastIndexOf (".") + 1)
     }
 
+    def doctor_stop_terminals (elements: Iterable[Element], stopTerminals: Set[String]): Iterable[Element] =
+    {
+        // null out the stop terminal node references
+        elements.map (
+            element =>
+            {
+                if (!stopTerminals.contains (element.id))
+                    element
+                else
+                {
+                    val t = element.asInstanceOf[Terminal]
+                    val terminal = Terminal (
+                        t.ACDCTerminal,
+                        t.phases,
+                        t.AuxiliaryEquipment,
+                        t.BranchGroupTerminal,
+                        t.Bushing,
+                        t.Circuit,
+                        t.ConductingEquipment,
+                        null, // ConnectivityNode
+                        t.ConverterDCSides,
+                        t.EquipmentFaults,
+                        t.HasFirstMutualCoupling,
+                        t.HasSecondMutualCoupling,
+                        t.NormalHeadFeeder,
+                        t.PinTerminal,
+                        t.RegulatingControl,
+                        t.RemoteInputSignal,
+                        t.SvPowerFlow,
+                        t.TieFlow,
+                        null, // TopologicalNode
+                        t.TransformerEnd
+                    )
+                    terminal.asInstanceOf[Element]
+                }
+            }
+        )
+    }
+
     /**
      * Export every transformer service area.
      *
@@ -421,7 +474,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // get transformer low voltage pins
         val term_by_node = getOrElse [Terminal].map (y ⇒ (y.id, y.TopologicalNode))
         val node_by_island = getOrElse [TopologicalNode].map (z ⇒ (z.id, z.TopologicalIsland))
-        val transformers: RDD[Item] = getOrElse [PowerTransformerEnd]
+        val ends = getOrElse [PowerTransformerEnd]
+        val transformers: RDD[Item] = ends
             .filter (_.TransformerEnd.endNumber != 1)
             .map (x ⇒ (x.TransformerEnd.Terminal, x.PowerTransformer))
             .join (term_by_node).values
@@ -434,7 +488,9 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val count = transformers.count
         log.info (s"exporting $count transformer${if (count == 1) "" else "s"}")
 
-        val labeled = labelRelated (transformers)
+        // only traverse from Terminal to a node if it's not a stop terminal
+        val stopTerminals = ends.flatMap (end => if (end.TransformerEnd.endNumber == 1) List (end.TransformerEnd.Terminal) else List ()).collect.toSet
+        val labeled = labelRelated (transformers, stopTerminals)
         val trafokreise = labeled.groupByKey
         var total = 0
 
@@ -468,9 +524,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                     {
                         val transformer = group._1
                         val elements = group._2
+                        val fixed_elements = doctor_stop_terminals (elements, stopTerminals)
                         log.info (s"exporting $transformer")
-                        val (filesize, zipdata) = export_iterable_blob (elements, transformer)
-                        (id, transformer, elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
+                        val (filesize, zipdata) = export_iterable_blob (fixed_elements, transformer)
+                        (id, transformer, fixed_elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
                     }
                 )
                 trafos.saveToCassandra (options.keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
@@ -576,9 +633,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 {
                     val transformer = group._1
                     val elements = group._2
+                    val fixed_elements = doctor_stop_terminals (elements, stopTerminals)
                     val filename = dir + transformer + ".rdf"
                     log.info (s"exporting $filename")
-                    export_iterable_file (elements, filename)
+                    export_iterable_file (fixed_elements, filename)
                     1
                 }
             ).sum.toInt
