@@ -77,6 +77,14 @@
         <!-- Plugin versions -->
         <version.dependency.maven-enforcer-plugin>1.4.1</version.dependency.maven-enforcer-plugin>
         <version.dependency.maven-deploy-plugin>2.8.2</version.dependency.maven-deploy-plugin>
+        <version.dependency.maven-failsafe-plugin>2.22.2</version.dependency.maven-failsafe-plugin>
+        <version.dependency.maven-surefire-plugin>2.18.1</version.dependency.maven-surefire-plugin>
+        <version.dependency.build-helper-maven-plugin>3.0.0</version.dependency.build-helper-maven-plugin>
+        <version.dependency.build-helper-maven-plugin>3.0.0</version.dependency.build-helper-maven-plugin>
+        <version.dependency.maven-gpg-plugin>1.6</version.dependency.maven-gpg-plugin>
+        <version.dependency.maven-source-plugin>3.1.0</version.dependency.maven-source-plugin>
+        <version.dependency.maven-site-plugin>3.8.2</version.dependency.maven-site-plugin>
+        <version.dependency.maven-project-info-reports-plugin>3.0.0</version.dependency.maven-project-info-reports-plugin>
 
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
@@ -96,6 +104,7 @@
         <!-- test versions -->
         <version.dependency.junit>4.12</version.dependency.junit>
         <version.dependency.scalatest>3.0.8</version.dependency.scalatest>
+        <version.dependency.scalatest-maven-plugin>2.0.0</version.dependency.scalatest-maven-plugin>
 
     </properties>
 
@@ -105,7 +114,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-		    <version>${version.dependency.maven-enforcer-plugin}</version>
+                    <version>${version.dependency.maven-enforcer-plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -133,7 +142,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>${version.dependency.maven-gpg-plugin}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>

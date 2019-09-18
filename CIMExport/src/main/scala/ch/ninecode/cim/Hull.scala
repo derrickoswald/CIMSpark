@@ -66,12 +66,4 @@ object Hull extends Serializable
 
         min :: pp.sortBy (angle).foldLeft (List.empty [Point])(add)
     }
-
-    //    def main (args: Array[String]): Unit =
-    //    {
-    //        val pp = Array[Point] ((8, 9), (3, 5), (4, 4), (1, 7), (3, 4), (4, 5), (6, 6), (5, 7), (3, 8))
-    //        println (pp.mkString)
-    //        val hull = scan (pp.toList).toArray[Point]
-    //        println (hull.mkString)
-    //    }
 }

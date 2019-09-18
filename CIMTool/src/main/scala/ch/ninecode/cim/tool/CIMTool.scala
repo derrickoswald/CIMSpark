@@ -44,7 +44,7 @@ object CIMTool
             case Some (options) =>
                 if (options.valid)
                 {
-                    System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString);
+                    System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
                     val log: Logger = LoggerFactory.getLogger (getClass)
                     val file = options.cim.file
                     log.info ("""generating CIM classes from file "%s"""".format (file))

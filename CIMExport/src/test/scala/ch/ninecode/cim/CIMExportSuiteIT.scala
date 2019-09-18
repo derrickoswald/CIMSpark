@@ -50,7 +50,7 @@ class CIMExportSuiteIT
             Array (
                 "--unittest",
                 "--master", "local[2]",
-                "--logging", "INFO",
+                "--log", "INFO",
                 "--transformers",
                 "--cassandra",
                 "--host", "localhost",
@@ -78,7 +78,7 @@ object CIMExportSuiteIT
 {
     val FILE_DEPOT = "data/"
 
-    val DEMO_DATA: String = FILE_DEPOT + "DemoData.rdf"
+    val DEMO_DATA: String = s"${FILE_DEPOT}DemoData.rdf"
 
     /**
      * This utility extracts files and directories of a standard zip file to
@@ -149,7 +149,7 @@ object CIMExportSuiteIT
     @BeforeClass def before ()
     {
         // unpack the zip file
-        new Unzip ().unzip (FILE_DEPOT + "DemoData.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
     }
 
     @AfterClass def after ()

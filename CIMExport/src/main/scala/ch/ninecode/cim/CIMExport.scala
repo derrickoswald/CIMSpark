@@ -114,22 +114,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      *
      * @param elements The elements to export.
      * @param filename The name of the file to write.
-     * @param about The about string for the CIM file header.
      * @param temp The temporary directory to build the text file in.
      */
-    def export (elements: RDD[Element], filename: String, about: String = "", temp: String = "/tmp/export.rdf"): Unit =
+    def export (elements: RDD[Element], filename: String, temp: String = "/tmp/export.rdf"): Unit =
     {
-        val ldt = LocalDateTime.now.toString
-        // ToDo: Model.scenarioTime and Model.version
         val header =
 """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="%s">
-		<md:Model.created>%s</md:Model.created>
-		<md:Model.description>CIMExport</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>""".format (about, ldt)
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
         val tailer = """</rdf:RDF>"""
 
         // setup
@@ -160,22 +151,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      *
      * @param elements The elements to export.
      * @param filename The name of the file to write.
-     * @param about The about string for the CIM file header.
      */
-    def export_iterable_file (elements: Iterable[Element], filename: String, about: String = ""): Unit =
+    def export_iterable_file (elements: Iterable[Element], filename: String): Unit =
     {
-        val ldt = LocalDateTime.now.toString
-        // ToDo: Model.scenarioTime and Model.version
         val header =
-            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="%s">
-		<md:Model.created>%s</md:Model.created>
-		<md:Model.description>CIMExport</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>
-""".format (about, ldt)
+"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
         val tailer =
             """
 </rdf:RDF>"""
@@ -203,23 +184,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      *
      * @param elements The elements to export.
      * @param transformer The name of the transformer service area.
-     * @param about The about string for the CIM file header.
      * @return A Tuple2 with uncompressed size and compressed bytes.
      */
-    def export_iterable_blob (elements: Iterable[Element], transformer: String, about: String = ""): (Int, Array[Byte]) =
+    def export_iterable_blob (elements: Iterable[Element], transformer: String): (Int, Array[Byte]) =
     {
-        val ldt = LocalDateTime.now.toString
-        // ToDo: Model.scenarioTime and Model.version
         val header =
-            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="%s">
-		<md:Model.created>%s</md:Model.created>
-		<md:Model.description>CIMExport</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>
-""".format (about, ldt)
+"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
         val tailer =
             """</rdf:RDF>"""
 
@@ -233,7 +204,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val bos = new ByteArrayOutputStream ()
         val zos = new ZipOutputStream (bos)
         zos.setLevel (9)
-        val name = "%s.rdf".format (transformer)
+        val name = s"$transformer.rdf"
         zos.putNextEntry (new ZipEntry (name))
         zos.write (data, 0, data.length)
         zos.finish ()
@@ -265,12 +236,11 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
       * to avoid having to redo that processing again.
       *
       * @param filename The name of the file to write.
-      * @param about The about string for the CIM file header.
       */
-    def exportAll (filename: String, about: String = ""):Unit =
+    def exportAll (filename: String):Unit =
     {
         val elements = getOrElse[Element]("Elements")
-        export (elements, filename, about)
+        export (elements, filename)
     }
 
     type Island = String
@@ -380,7 +350,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             .persist (storage)
 
         val ret = getOrElse[Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
-        log.info ("%s elements".format (ret.count))
+        log.info (s"${ret.count} elements")
         done.foreach (_.unpersist (false))
         ying_yang.unpersist (false)
         ret
@@ -398,8 +368,9 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // start with the island
         val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x ⇒ (x.id, filename)).persist (storage)
         val labeled = labelRelated (todo)
-        export (labeled.map (_._2), dir + filename)
-        log.info ("exported island %s".format (dir + filename))
+        val file = s"$dir$filename"
+        export (labeled.map (_._2), file)
+        log.info (s"exported island $dir$filename")
     }
 
     /**
@@ -413,7 +384,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // start with all islands
         val islands = getOrElse[TopologicalIsland].map (_.id)
         val count = islands.count
-        log.info ("exporting %s island%s".format (count, if (count == 1) "" else "s"))
+        log.info (s"exporting $count island${if (count == 1) "" else "s"}")
 
         val todo = islands.map (pair).persist (storage)
         val labeled = labelRelated (todo)
@@ -423,12 +394,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 val island = group._1
                 val elements = group._2
                 val filename = dir + island + ".rdf"
-                log.info ("exporting %s".format (filename))
-                export_iterable_file (elements, filename, island)
+                log.info (s"exporting $filename")
+                export_iterable_file (elements, filename)
                 1
             }
         ).sum.toInt
-        log.info ("exported %s island%s".format (total, if (total == 1) "" else "s"))
+        log.info (s"exported $total island${if (total == 1) "" else "s"}")
         total
     }
 
@@ -440,65 +411,71 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Export every transformer service area.
-     * @param source The source file names as a comma delimited list.
-     * @param directory The name of the directory to write the CIM files.
-     * @param cassandra If <code>true</code> output metadata to Cassandra.
-     * @param keyspace If <b>cassandra</b> is true, use this keyspace in Cassandra.
+     *
+     * @param options the export options
      * @return the number of transformers processed
      */
-    def exportAllTransformers (source: String, directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport", replication: Int = 1): Int =
+    def exportAllTransformers (options: ExportOptions): Int =
     {
+        val source = options.files.mkString (",")
         // get transformer low voltage pins
+        val term_by_node = getOrElse [Terminal].map (y ⇒ (y.id, y.TopologicalNode))
+        val node_by_island = getOrElse [TopologicalNode].map (z ⇒ (z.id, z.TopologicalIsland))
         val transformers: RDD[Item] = getOrElse [PowerTransformerEnd]
             .filter (_.TransformerEnd.endNumber != 1)
             .map (x ⇒ (x.TransformerEnd.Terminal, x.PowerTransformer))
-            .join (getOrElse [Terminal].map (y ⇒ (y.id, y.TopologicalNode))).values
+            .join (term_by_node).values
             .map (_.swap)
-            .join (getOrElse [TopologicalNode].map (z ⇒ (z.id, z.TopologicalIsland))).values
+            .join (node_by_island).values
             .map (_.swap)
             .groupByKey
             .mapValues (_.toArray.sortWith (_ < _).mkString ("_"))
             .persist (storage)
         val count = transformers.count
-        log.info ("exporting %s transformer%s".format (count, if (count == 1) "" else "s"))
+        log.info (s"exporting $count transformer${if (count == 1) "" else "s"}")
 
         val labeled = labelRelated (transformers)
         val trafokreise = labeled.groupByKey
         var total = 0
 
-        if (cassandra)
+        if (options.cassandra)
         {
             type Key = String
             type Value = String
             type KeyValue = (Key, Value)
             type KeyValueList = Iterable[KeyValue]
 
-            val schema = Schema (session, keyspace, replication, true)
+            val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
             if (schema.make)
             {
                 val id = java.util.UUID.randomUUID.toString
                 val time = new Date ().getTime
                 val fs = FileSystem.get (spark.sparkContext.hadoopConfiguration)
-                val path = new Path (source)
-                val file = fs.getFileStatus (path)
-                val filetime = file.getModificationTime
-                val filesize = file.getLen
+                var filesize = 0L
+                var filetime = 0L
+                for (file <- options.files)
+                {
+                    val path = new Path (file)
+                    val status = fs.getFileStatus (path)
+                    filetime = status.getModificationTime
+                    filesize = filesize + status.getLen
+                }
                 val export = spark.sparkContext.parallelize (Seq ((id, time, source, filetime, filesize)))
-                export.saveToCassandra (keyspace, "export", SomeColumns ("id", "runtime", "filename", "filetime", "filesize"))
+                export.saveToCassandra (options.keyspace, "export", SomeColumns ("id", "runtime", "filename", "filetime", "filesize"))
 
                 val trafos = trafokreise.map (
                     group ⇒
                     {
                         val transformer = group._1
                         val elements = group._2
-                        log.info ("exporting %s".format (transformer))
+                        log.info (s"exporting $transformer")
                         val (filesize, zipdata) = export_iterable_blob (elements, transformer)
                         (id, transformer, elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
                     }
                 )
-                trafos.saveToCassandra (keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
+                trafos.saveToCassandra (options.keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
                 total = trafos.count.toInt
-                log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+                log.info (s"exported $total transformer${if (total == 1) "" else "s"}")
 
                 // create a convex hull for each transformer service area
                 val json: RDD[(String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)])] = trafokreise.map (
@@ -523,7 +500,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                         (id, transformer, "Feature", geometry, properties)
                     }
                 )
-                json.saveToCassandra (keyspace, "transformer_service_area", SomeColumns ("id", "name", "type", "geometry", "properties"))
+                json.saveToCassandra (options.keyspace, "transformer_service_area", SomeColumns ("id", "name", "type", "geometry", "properties"))
 
                 /**
                  * Index of normalOpen field in Switch bitmask.
@@ -556,7 +533,11 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                         true
                 }
 
-                // get the list of open switches straddling island boundaries
+                /**
+                 * Get the list of open switches straddling island boundaries.
+                 *
+                 * Provides a list of normally open switches that join two transformer service areas.
+                 */
                 def switchp (item: (Island, Element)): Option[(mRID, Island)] =
                 {
                     val island = item._1
@@ -584,24 +565,24 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 }
                 val switches = labeled.flatMap (switchp).groupByKey.filter (_._2.size > 1)
                         .map (x ⇒ (id, x._1, x._2.head, x._2.tail.head))
-                switches.saveToCassandra (keyspace, "boundary_switches", SomeColumns ("id", "mrid", "island1", "island2"))
+                switches.saveToCassandra (options.keyspace, "boundary_switches", SomeColumns ("id", "mrid", "island1", "island2"))
             }
         }
         else
         {
-            val dir = if (directory.endsWith ("/")) directory else directory + "/"
+            val dir = if (options.outputdir.endsWith ("/")) options.outputdir else s"${options.outputdir}/"
             total = trafokreise.map (
                 group ⇒
                 {
                     val transformer = group._1
                     val elements = group._2
                     val filename = dir + transformer + ".rdf"
-                    log.info ("exporting %s".format (filename))
-                    export_iterable_file (elements, filename, transformer)
+                    log.info (s"exporting $filename")
+                    export_iterable_file (elements, filename)
                     1
                 }
             ).sum.toInt
-            log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+            log.info (s"exported $total transformer${if (total == 1) "" else "s"}")
         }
 
         total

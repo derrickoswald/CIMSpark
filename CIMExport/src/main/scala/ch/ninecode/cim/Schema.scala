@@ -3,6 +3,7 @@ package ch.ninecode.cim
 import scala.io.Source
 
 import com.datastax.spark.connector.cql.CassandraConnector
+import org.apache.log4j.Level
 import org.apache.spark.sql.SparkSession
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -10,10 +11,9 @@ import org.slf4j.LoggerFactory
 /*
  * Create the schema in Cassandra.
  */
-case class Schema (session: SparkSession, keyspace: String, replication: Int = 1, verbose: Boolean)
+case class Schema (session: SparkSession, keyspace: String, replication: Int = 1, loglevel: Level)
 {
-    if (verbose)
-        org.apache.log4j.LogManager.getLogger (getClass.getName).setLevel (org.apache.log4j.Level.INFO)
+    org.apache.log4j.LogManager.getLogger (getClass.getName).setLevel (loglevel)
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     val RESOURCE = """/export_schema.sql"""
@@ -29,8 +29,8 @@ case class Schema (session: SparkSession, keyspace: String, replication: Int = 1
         val DEFAULT_REPLICATION = 1
         val REPLICATION_TRIGGER = """'replication_factor': """
 
-        val old_replication_string = REPLICATION_TRIGGER + DEFAULT_REPLICATION.toString
-        val new_replication_string = REPLICATION_TRIGGER + replication.toString
+        val old_replication_string = s"$REPLICATION_TRIGGER ${DEFAULT_REPLICATION.toString}"
+        val new_replication_string = s"$REPLICATION_TRIGGER ${replication.toString}"
 
         /**
          * The edit function.

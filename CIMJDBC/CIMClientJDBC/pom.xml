@@ -16,14 +16,15 @@
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <version.dependency.hive-jdbc>1.2.1.spark2</version.dependency.hive-jdbc>
     </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.apache.hive</groupId>
+            <groupId>org.spark-project.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>2.1.0</version>
+            <version>${version.dependency.hive-jdbc}</version>
         </dependency>
 
     </dependencies>

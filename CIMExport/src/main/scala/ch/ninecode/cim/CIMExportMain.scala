@@ -6,7 +6,6 @@ import java.util.Properties
 
 import scala.tools.nsc.io.Jar
 import scala.util.Random
-import scopt.OptionParser
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
@@ -32,150 +31,6 @@ object CIMExportMain
     val APPLICATION_NAME: String = properties.getProperty ("artifactId")
     val APPLICATION_VERSION: String = properties.getProperty ("version")
     val SPARK: String = properties.getProperty ("spark")
-
-    object LogLevels extends Enumeration
-    {
-        type LogLevels = Value
-        val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
-    }
-    implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
-
-    implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
-        s =>
-        {
-            var ret = Map[String, String] ()
-            val ss = s.split (",")
-            for (p <- ss)
-            {
-                val kv = p.split ("=")
-                ret = ret + ((kv(0), kv(1)))
-            }
-            ret
-        }
-    )
-
-    case class Arguments (
-        unittest: Boolean = false,
-        quiet: Boolean = false,
-        log_level: LogLevels.Value = LogLevels.OFF,
-        // see https://spark.apache.org/docs/latest/configuration.html
-        master: String = "",
-        sparkopts: Map[String,String] = Map (
-            "spark.graphx.pregel.checkpointInterval" → "8",
-            "spark.serializer" → "org.apache.spark.serializer.KryoSerializer",
-            "spark.ui.showConsoleProgress" → "false"),
-        cimopts: Map[String,String] = Map (
-            "ch.ninecode.cim.do_topo_islands" → "true"
-        ),
-        all: Boolean = false,
-        islands: Boolean = false,
-        transformers: Boolean = false,
-        outputfile: String = "export.rdf",
-        outputdir: String = "simulation/",
-        cassandra: Boolean = false,
-        host: String = "localhost",
-        port: Int = 9042,
-        keyspace: String = "cimexport",
-        replication: Int = 1,
-        files: Seq[String] = Seq()
-    )
-
-    var do_exit = true
-
-    val parser: OptionParser[Arguments] = new scopt.OptionParser[Arguments](APPLICATION_NAME)
-    {
-        head (APPLICATION_NAME, APPLICATION_VERSION)
-
-        val default = new Arguments
-
-        override def terminate (exitState: Either[String, Unit]): Unit =
-            if (do_exit)
-                exitState match
-                {
-                    case Left (_) => sys.exit (1)
-                    case Right (_) => sys.exit (0)
-                }
-
-        note ("Extracts subsets of CIM files based on topology.\n")
-
-        help ("help").text ("prints this usage text")
-
-        version ("version").text ("Scala: %s, Spark: %s, %s: %s".format (
-            APPLICATION_VERSION.split ("-")(0),
-            APPLICATION_VERSION.split ("-")(1),
-            APPLICATION_NAME,
-            APPLICATION_VERSION.split ("-")(2)
-        ))
-
-        opt [Unit]("unittest").
-            hidden ().
-            action ((_, c) ⇒ c.copy (unittest = true)).
-            text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
-
-        opt[Unit]("quiet").
-            action ((_, c) => c.copy (quiet = true)).
-            text ("suppress informational messages [%s]".format (default.quiet))
-
-        opt[LogLevels.Value]("logging").
-            action ((x, c) => c.copy (log_level = x)).
-            text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.log_level))
-
-        opt [String]("master").valueName ("MASTER_URL").
-            action ((x, c) ⇒ c.copy (master = x)).
-            text ("local[*], spark://host:port, mesos://host:port, yarn [%s]".format (default.master))
-
-        opt[Map[String,String]]("sparkopts").valueName ("k1=v1,k2=v2").
-            action ((x, c) => c.copy (sparkopts = x)).
-            text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
-
-        opt[Map[String,String]]("cimopts").valueName ("k1=v1,k2=v2").
-            action ((x, c) => c.copy (cimopts = x)).
-            text ("CIMReader options [%s]".format (default.cimopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
-
-        opt[Unit]("all").
-            action ((_, c) => c.copy (all = true)).
-            text ("export entire processed file [%s]".format (default.all))
-
-        opt[Unit]("islands").
-            action ((_, c) => c.copy (islands = true)).
-            text ("export topological islands [%s]".format (default.islands))
-
-        opt[Unit]("transformers").
-            action ((_, c) => c.copy (transformers = true)).
-            text ("export transformer service areas [%s]".format (default.transformers))
-
-        opt[String]("outputfile").valueName ("<file>").
-            action ((x, c) => c.copy (outputfile = x)).
-            text ("output file name [%s]".format (default.outputfile))
-
-        opt[String]("outputdir").valueName ("<dir>").
-            action ((x, c) => c.copy (outputdir = x)).
-            text ("output directory name [%s]".format (default.outputdir))
-
-        opt[Unit]("cassandra").
-            action ((_, c) => c.copy (cassandra = true)).
-            text ("output transformer metadata to cassandra [%s]".format (default.cassandra))
-
-        opt [String]("host").valueName ("<cassandra>").
-            action ((x, c) ⇒ c.copy (host = x)).
-            text ("Cassandra connection host (listen_address or seed in cassandra.yaml) [%s]".format (default.host))
-
-        opt [Int]("port").valueName ("<port_number>").
-            action ((x, c) ⇒ c.copy (port = x)).
-            text ("Cassandra connection port [%s]".format (default.port))
-
-        opt [String]("keyspace").valueName ("<name>").
-            action ((x, c) ⇒ c.copy (keyspace = x)).
-            text ("keyspace to use if Cassandra is specified [%s]".format (default.keyspace))
-
-        opt [Int]("replication").valueName ("<number>").
-            action ((x, c) ⇒ c.copy (replication = x)).
-            text ("replication factor to use if Cassandra is specified and the keyspace doesn't exist [%s]".format (default.replication))
-
-        arg[String]("<CIM> <CIM> ...").unbounded ().
-            action ((x, c) => c.copy (files = c.files :+ x)).
-            text ("CIM rdf files to process")
-    }
 
     def jarForObject (obj: Object): String =
     {
@@ -209,69 +64,69 @@ object CIMExportMain
      */
     def main (args:Array[String])
     {
-        do_exit = !args.contains ("--unittest")
+        val optionparser = new CIMExportOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 
-        parser.parse (args, Arguments ()) match
+        optionparser.parse (args, ExportOptions ()) match
         {
-            case Some (arguments) =>
-                if (!arguments.quiet)
-                    org.apache.log4j.LogManager.getLogger (APPLICATION_NAME).setLevel (org.apache.log4j.Level.INFO)
-                if (!arguments.quiet)
-                    org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMExport").setLevel (org.apache.log4j.Level.INFO)
-                if (!arguments.quiet)
-                    org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMNetworkTopologyProcessor").setLevel (org.apache.log4j.Level.INFO)
-                val log = LoggerFactory.getLogger (APPLICATION_NAME)
-
-                val configuration = new SparkConf ()
-                configuration.setAppName (APPLICATION_NAME)
-                if ("" != arguments.master)
-                    configuration.setMaster (arguments.master)
-                if (arguments.sparkopts.nonEmpty)
-                    arguments.sparkopts.map ((pair: (String, String)) => configuration.set (pair._1, pair._2))
-                // get the necessary jar files to send to the cluster
-                configuration.setJars (Array (jarForObject (new DefaultSource ())))
-                // register for Kryo serialization
-                configuration.registerKryoClasses (CIMClasses.list)
-                // choose which Cassandra
-                configuration.set ("spark.cassandra.connection.host", arguments.host)
-                configuration.set ("spark.cassandra.connection.port", arguments.port.toString)
-
-                val session_builder = SparkSession.builder ()
-                val session = session_builder.config (configuration).getOrCreate ()
-                val version = session.version
-                log.info (s"Spark $version session established")
-                if (version.take (SPARK.length) != SPARK.take (version.length))
-                    log.warn (s"Spark version ($version) does not match the version ($SPARK) used to build $APPLICATION_NAME")
-
-                try
+            case Some (options) =>
+                if (options.valid)
                 {
-                    // read the file
-                    val reader_options = scala.collection.mutable.HashMap[String, String] ()
-                    arguments.cimopts.map ((pair: (String, String)) => reader_options.put (pair._1, pair._2))
-                    val filelist = arguments.files.mkString (",")
-                    reader_options.put ("path", filelist)
-                    log.info ("reading CIM files %s".format (filelist))
-                    val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
-                    log.info ("" + elements.count + " elements")
+                    if (options.loglevel != LogLevels.OFF)
+                    {
+                        org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMExport").setLevel (LogLevels.toLog4j (options.loglevel))
+                        org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMNetworkTopologyProcessor").setLevel (LogLevels.toLog4j (options.loglevel))
+                    }
+                    val log = LoggerFactory.getLogger (this.getClass)
 
-                    val export = new CIMExport (session)
-                    if (arguments.all)
-                        export.exportAll (arguments.outputfile)
-                    if (arguments.islands)
-                        export.exportAllIslands (arguments.outputdir)
-                    else if (arguments.transformers)
-                        export.exportAllTransformers (filelist, arguments.outputdir, arguments.cassandra, arguments.keyspace, arguments.replication)
+                    val configuration = new SparkConf ()
+                    configuration.setAppName (APPLICATION_NAME)
+                    if ("" != options.master)
+                        configuration.setMaster (options.master)
+                    if (options.sparkopts.nonEmpty)
+                        options.sparkopts.map (pair => configuration.set (pair._1, pair._2))
+                    // get the necessary jar files to send to the cluster
+                    configuration.setJars (Array (jarForObject (new DefaultSource ())))
+                    // register for Kryo serialization
+                    configuration.registerKryoClasses (CIMClasses.list)
+                    // choose which Cassandra
+                    configuration.set ("spark.cassandra.connection.host", options.host)
+                    configuration.set ("spark.cassandra.connection.port", options.port.toString)
+
+                    val session_builder = SparkSession.builder ()
+                    val session = session_builder.config (configuration).getOrCreate ()
+                    val version = session.version
+                    log.info (s"Spark $version session established")
+                    if (version.take (SPARK.length) != SPARK.take (version.length))
+                        log.warn (s"Spark version ($version) does not match the version ($SPARK) used to build $APPLICATION_NAME")
+
+                    try
+                    {
+                        // read the file
+                        val reader_options = scala.collection.mutable.HashMap[String, String] ()
+                        options.cimopts.map (pair => reader_options.put (pair._1, pair._2))
+                        val filelist = options.files.mkString (",")
+                        reader_options.put ("path", filelist)
+                        log.info (s"reading CIM files $filelist")
+                        val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (options.files:_*)
+                        log.info (s"${elements.count} elements")
+
+                        val export = new CIMExport (session)
+                        if (options.all)
+                            export.exportAll (options.outputfile)
+                        if (options.islands)
+                            export.exportAllIslands (options.outputdir)
+                        else if (options.transformers)
+                            export.exportAllTransformers (options)
+                    }
+                    finally
+                    {
+                        session.stop ()
+                    }
                 }
-                finally
-                {
-                    session.stop ()
-                }
-                if (do_exit)
+                if (!options.unittest)
                     sys.exit (0)
-
             case None =>
-                if (do_exit)
-                    sys.exit (1)
+                sys.exit (1)
         }
     }
 }

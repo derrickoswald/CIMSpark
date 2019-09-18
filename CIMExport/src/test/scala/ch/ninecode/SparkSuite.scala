@@ -119,10 +119,10 @@ class SparkSuite extends fixture.FunSuite
         finally session.stop() // clean up the fixture
     }
 
-    def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String] ())(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: Map[String, String] = Map[String, String] ())(implicit spark: SparkSession): DataFrame =
     {
-        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
-        spark.read.format ("ch.ninecode.cim").options (options).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
+        val o = options + ("StorageLevel" -> "MEMORY_AND_DISK_SER")
+        spark.read.format ("ch.ninecode.cim").options (o).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
     }
 
     /**

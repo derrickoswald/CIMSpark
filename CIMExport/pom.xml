@@ -14,6 +14,7 @@
         <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
         <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
         <version.dependency.log4j>2.12.1</version.dependency.log4j>
+        <version.dependency.netty-all>4.1.41.Final</version.dependency.netty-all>
     </properties>
 
     <description>Export Spark RDD as CIM files</description>
@@ -150,7 +151,7 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
-                <version>4.1.17.Final</version>
+                <version>${version.dependency.netty-all}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -214,7 +215,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>${version.dependency.maven-surefire-plugin}</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
@@ -223,7 +224,7 @@
             <plugin>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>${version.dependency.scalatest-maven-plugin}</version>
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
@@ -242,7 +243,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${version.dependency.maven-failsafe-plugin}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -255,7 +256,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${version.dependency.build-helper-maven-plugin}</version>
                 <executions>
                     <execution>
                         <id>reserve-network-port</id>

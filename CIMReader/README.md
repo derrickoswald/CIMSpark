@@ -291,7 +291,7 @@ the maven pom:
     <dependency>
         <groupId>org.spark-project.hive</groupId>
         <artifactId>hive-jdbc</artifactId>
-        <version>1.2.1.spark</version>
+        <version>1.2.1.spark2</version>
     </dependency>
 
 Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).

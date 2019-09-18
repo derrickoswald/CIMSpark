@@ -203,7 +203,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>${version.dependency.maven-surefire-plugin}</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
@@ -212,7 +212,7 @@
             <plugin>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>${version.dependency.scalatest-maven-plugin}</version>
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
@@ -232,7 +232,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${version.dependency.maven-source-plugin}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -247,7 +247,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>${version.dependency.maven-gpg-plugin}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -265,13 +265,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-		<version>${version.dependency.maven-deploy-plugin}</version>
+                <version>${version.dependency.maven-deploy-plugin}</version>
             </plugin>
             <!-- site generation -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.6</version>
+                <version>${version.dependency.maven-site-plugin}</version>
                 <configuration>
                     <locales>en,de,fr</locales>
                 </configuration>
@@ -279,7 +279,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
+                <version>${version.dependency.maven-project-info-reports-plugin}</version>
             </plugin>
         </plugins>
     </build>
