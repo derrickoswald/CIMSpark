@@ -38,8 +38,5 @@ The easiest way to get your own instance of CIMSpark up and running is to use Do
 ```
 clone CIMSpark repo
 cd CIMSpark/CIMReader/src/test/resources; ./start-docker
-clone CIMApplication repo
-cd CIMApplication; ./make-docker; ./start-docker sandbox beach
-browse to http://localhost:9080/cimweb/
-```
+``
 
