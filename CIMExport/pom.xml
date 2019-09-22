@@ -10,7 +10,7 @@
     <artifactId>CIMExport</artifactId>
     <name>${project.artifactId}</name>
 
-    <description>Export Spark RDD as CIM files</description>
+    <description>Export Spark RDD as CIM files partitioned by topological island or transformer service area</description>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMExport</url>
     <organization>
@@ -51,6 +51,23 @@
             </properties>
         </developer>
     </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
+        <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
+        <version.dependency.log4j>2.12.1</version.dependency.log4j>
+        <version.dependency.netty-all>4.1.41.Final</version.dependency.netty-all>
+    </properties>
 
     <dependencies>
 
@@ -189,6 +206,29 @@
                             </args>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <goals>
+                                <goal>doc</goal>
+                            </goals>
+                            <reportOutputDirectory>${project.build.directory}/doc</reportOutputDirectory>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>doc-jar</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <!-- disable surefire -->
@@ -244,14 +284,45 @@
                         </configuration>
                     </execution>
                 </executions>
-	    </plugin>
+            </plugin>
+            <!-- source jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- deploy artifacts -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>${version.dependency.maven-deploy-plugin}</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>
