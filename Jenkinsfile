@@ -1,6 +1,11 @@
-#!/usr/bin/env groovy
 pipeline {
     agent any
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
     stages {
         stage ('Initialize') {
             steps {
@@ -11,9 +16,15 @@ pipeline {
             }
         }
 
-        stage ('Build') {
+        stage ('Compile') {
             steps {
-                sh 'mvn -DskipTests -Dgpg.skip clean install' 
+                sh 'mvn compile'
+            }
+        }
+
+        stage ('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
