@@ -1,7 +1,8 @@
 CIMExport
 ======
 
-Generate Common Information Model (CIM) RDF files from Spark data structures.
+Generate Common Information Model (CIM) RDF files from Spark data structures.| [![Maven Central](https://img.shields.io/maven-central/v/ch.ninecode.cim/CIMExport.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ch.ninecode.cim%22%20AND%20a:%22CIMExport%22)
+:---         |          ---:
 
 # Overview
 

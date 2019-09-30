@@ -1,7 +1,8 @@
 CIMSpark
 ======
 
-Spark access to Common Information Model (CIM) files.
+Spark access to Common Information Model (CIM) files. | [![Maven Central](https://img.shields.io/maven-central/v/ch.ninecode.cim/CIMSpark.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ch.ninecode.cim%22%20AND%20a:%22CIMSpark%22)
+:---         |          ---:
 
 # Overview
 
