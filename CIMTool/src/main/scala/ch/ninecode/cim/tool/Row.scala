@@ -1,10 +1,8 @@
 package ch.ninecode.cim.tool
 
-import java.util.Map
-
-case class Row (fields: Map[String,Object])
+case class Row (fields: com.healthmarketscience.jackcess.Row)
 {
-    def this (raw: Object) = this (raw.asInstanceOf[Map[String,Object]])
+    def this (raw: Object) = this (raw.asInstanceOf[com.healthmarketscience.jackcess.Row])
 
     def getInt (name: String): Int =
     {

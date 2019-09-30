@@ -31,7 +31,7 @@ final case class CIMToolOptions (
     /**
      * Target language.
      */
-    target: Target = scalalanguage,
+    target: Target = scala_language,
 
     /**
      * Output directory

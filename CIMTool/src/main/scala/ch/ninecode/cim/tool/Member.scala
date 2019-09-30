@@ -4,7 +4,7 @@ package ch.ninecode.cim.tool
 case class Member (
     name: String,
     variable: String,
-    overrid: Boolean,
+    over: Boolean,
     comment: String,
     reference: Boolean,
     this_cardinality: String,

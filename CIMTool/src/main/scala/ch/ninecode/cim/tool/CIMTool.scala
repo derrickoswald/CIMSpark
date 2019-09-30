@@ -37,9 +37,9 @@ object CIMTool
 
     def main (args : Array[String])
     {
-        val optionparser = new CIMToolOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
+        val optionsparser = new CIMToolOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 
-        optionparser.parse (args, CIMToolOptions ()) match
+        optionsparser.parse (args, CIMToolOptions ()) match
         {
             case Some (options) =>
                 if (options.valid)
@@ -47,8 +47,8 @@ object CIMTool
                     System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
                     val log: Logger = LoggerFactory.getLogger (getClass)
                     val file = options.cim.file
-                    log.info ("""generating CIM classes from file "%s"""".format (file))
-                    val parser = ModelParser (new File (s"private_data/${file}"))
+                    log.info (s"""generating CIM classes from file "$file"""")
+                    val parser = ModelParser (new File (s"private_data/$file"))
                     options.target.generator (parser, options).generate ()
                 }
                 if (!options.unittest)

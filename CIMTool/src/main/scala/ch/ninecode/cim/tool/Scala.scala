@@ -199,6 +199,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
             implicit val ordering: Ordering[Member] = new Ordering[Member]
             {
+                def unquote (variable: String): String = if ('`' == variable.charAt (0)) variable.substring (1, variable.length - 1) else variable
                 def compare (a: Member, b: Member): Int =
                     if (a.name == "sup")
                         -1
@@ -206,8 +207,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                         1
                     else
                     {
-                        val a_ = if (a.variable.charAt (0) == '`') a.variable.substring (1, a.variable.length - 1) else a.variable
-                        val b_ = if (b.variable.charAt (0) == '`') b.variable.substring (1, b.variable.length - 1) else b.variable
+                        val a_ = unquote (a.variable)
+                        val b_ = unquote (b.variable)
                         if (a_.charAt (0).isLower)
                             if (b_.charAt (0).isLower)
                                 a_.compareTo (b_)
@@ -244,7 +245,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 }
                 initializers.append (product.initializer)
                 s.append ("""    """)
-                if (product.overrid) s.append ("""override val """)
+                if (product.over) s.append ("""override val """)
                 s.append (product.variable)
                 s.append (""": """)
                 s.append (product.datatype)
@@ -358,7 +359,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |""".stripMargin.format (name))
             if (any)
             {
-                val initializer = (for (i <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
+                val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
                 s.append ("        implicit val bitfields: Array[Int] = Array(%s)\n".format (initializer))
             }
             if (identified_object)
@@ -367,11 +368,16 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             // add field parser calls
             def wrap (members: Iterator[(Member, String)]): String =
                 members.map (x => if (x._1.function != "") s"${x._1.function} (${x._2})" else x._2).mkString ("            ", ",\n            ", "\n")
+            def masker (x: (Member, Int)): String =
+            {
+                val mask = if (x._1.multiple) "masks" else "mask"
+                s"$mask (${x._1.variable} (), ${x._2 - 1})"
+            }
             s.append (
                 if (identified_object)
-                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else { val mask = if (x._1.multiple) "masks" else "mask"; s"$mask (${x._1.variable} (), ${x._2 - 1})"})))
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else masker (x) )))
                 else
-                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else { val mask = if (x._1.multiple) "masks" else "mask"; s"$mask (${x._1.variable} (), ${x._2 - 1})" })))
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else masker (x))))
             )
             s.append ("        )\n")
             if (any)
@@ -433,8 +439,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                            |        List (
                            |""".stripMargin)
         var registers: List[String] = List[String]()
-        val pkgdoc = new StringBuilder ()
-        pkgdoc.append (
+        val pkg_doc = new StringBuilder ()
+        pkg_doc.append (
             """package ch.ninecode
               |
               |/**
@@ -489,13 +495,13 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                            |        ).flatten
                            |""".stripMargin)
         Files.write (Paths.get ("%s/chim_register.scala".format (options.directory)), register.toString.getBytes (StandardCharsets.UTF_8))
-        pkgdoc.append (package_docs.mkString ("\n"))
-        pkgdoc.append ("""
+        pkg_doc.append (package_docs.mkString ("\n"))
+        pkg_doc.append ("""
                          | */
                          |package object model
                          |{
                          |}
                          |""".stripMargin)
-        Files.write (Paths.get ("%s/model/package.scala".format (options.directory)), pkgdoc.toString.getBytes (StandardCharsets.UTF_8))
+        Files.write (Paths.get ("%s/model/package.scala".format (options.directory)), pkg_doc.toString.getBytes (StandardCharsets.UTF_8))
     }
 }

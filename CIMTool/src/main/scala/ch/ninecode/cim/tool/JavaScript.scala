@@ -49,12 +49,12 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 dag.children.find (get (name)(_) != null) match { case Some (d) => d case None => null }
         }
         @scala.annotation.tailrec
-        def add (joes: List[Joe]): Unit =
+        def add (list: List[Joe]): Unit =
         {
-            if (joes.nonEmpty)
+            if (list.nonEmpty)
             {
-                val head = joes.head
-                val rest = joes.tail
+                val head = list.head
+                val rest = list.tail
                 val name = if (head.superclass_package == "") head.superclass else "Element" // outside our package might as well be Element
                 val dag = get (name) (graph)
                 if (null != dag)
@@ -146,13 +146,13 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
             // get name
             val name = cls.name.replace ("-", "_")
             // MarketManagement has a class called Domain that conflicts with the Domain package
-            val internalname = if (name == "Domain") "Domain_" else name
+            val internal = if (name == "Domain") "Domain_" else name
             val attributes = parser.attributesFor (cls)
             val roles = parser.rolesFor (cls)
 
             if (cls.stereotype != "enumeration")
             {
-                provides.add ((name, internalname))
+                provides.add ((name, internal))
 
                 // add javaDoc
                 if (null != cls.note)
@@ -171,7 +171,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                         ("base.", "Element")
 
                 // output class declaration
-                s.append ("        class %s extends %s%s".format (internalname, superclass_package, superclass))
+                s.append ("        class %s extends %s%s".format (internal, superclass_package, superclass))
                 // output constructor and store function
                 s.append ("""
                     |        {
@@ -349,8 +349,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |                super.condition (obj);""".stripMargin)
                 for (attribute <- attributes.filter (x => isEnumeration (x.typ)))
                 {
-                    val varname = s"${attribute.name}${attribute.typ}"
-                    val qualifiedname = if (enumerations.contains (attribute.typ))
+                    val variable = s"${attribute.name}${attribute.typ}"
+                    val qualified = if (enumerations.contains (attribute.typ))
                         attribute.typ // local enumeration
                     else
                     {
@@ -365,7 +365,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                             s"${domain.pkg.name}.${attribute.typ}"
                         }
                     }
-                    s.append ("\n                obj[\"%s\"] = [{ id: '', selected: (!obj[\"%s\"])}]; for (let property in %s) obj[\"%s\"].push ({ id: property, selected: obj[\"%s\"] && obj[\"%s\"].endsWith ('.' + property)});".format (varname, attribute.name, qualifiedname, varname, attribute.name, attribute.name))
+                    s.append ("\n                obj[\"%s\"] = [{ id: '', selected: (!obj[\"%s\"])}]; for (let property in %s) obj[\"%s\"].push ({ id: property, selected: obj[\"%s\"] && obj[\"%s\"].endsWith ('.' + property)});".format (variable, attribute.name, qualified, variable, attribute.name, attribute.name))
                 }
                 for (role <- roles.filter (_.upper != 1))
                 {
@@ -414,9 +414,9 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 {
                     if (isEnumeration (attribute.typ))
                     {
-                        val varname = s"${attribute.name}${attribute.typ}"
+                        val variable = s"${attribute.name}${attribute.typ}"
                         // output a selection (needs condition(obj) to get the array of strings)
-                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, varname, varname))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, variable, variable))
                     }
                     else
                         attribute.typ match
@@ -453,7 +453,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 for (attribute <- attributes)
                     if (isEnumeration (attribute.typ))
                     {
-                        val qualifiedname = if (enumerations.contains (attribute.typ))
+                        val qualified = if (enumerations.contains (attribute.typ))
                             attribute.typ // local enumeration
                         else
                         {
@@ -468,7 +468,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                                 s"${domain.pkg.name}.${attribute.typ}"
                             }
                         }
-                        s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualifiedname, attribute.name, attribute.name, attribute.typ, attribute.name))
+                        s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualified, attribute.name, attribute.name, attribute.typ, attribute.name))
                     }
                     else
                         attribute.typ match

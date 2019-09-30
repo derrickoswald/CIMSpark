@@ -10,7 +10,7 @@ case class JavaDoc (
     group_name: String = null,
     group_description: String = null)
 {
-    lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
+    lazy val spaces: String = (for (_ <- 0 until leftpad) yield " ").mkString ("")
     val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
     val (summary, body) =
         if (null != note)
@@ -84,7 +84,7 @@ case class JavaDoc (
            s"""/**
               |$s
               | */
-              |""".stripMargin.split ("\n").map (st => s"${spaces}$st").mkString ("", "\n", "\n")
+              |""".stripMargin.split ("\n").map (st => s"$spaces$st").mkString ("", "\n", "\n")
         }
         else
             ""

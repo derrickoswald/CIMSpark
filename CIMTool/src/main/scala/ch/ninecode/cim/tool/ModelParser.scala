@@ -9,11 +9,11 @@ import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.DatabaseBuilder
 import com.healthmarketscience.jackcess.Table
 
-case class ModelParser (modelfile: File)
+case class ModelParser (model: File)
 {
     type ID = Int
 
-    val db: Database = DatabaseBuilder.open (modelfile)
+    val db: Database = DatabaseBuilder.open (model)
 
     lazy val getPackageTable: Table =   db.getTable ("t_package")
     lazy val getObjectTable: Table =    db.getTable ("t_object")
@@ -32,7 +32,7 @@ case class ModelParser (modelfile: File)
     {
         val packs = getPackageTable
             .iterator
-            .map (Row (_))
+            .map (Row)
             .map (row => (row.getPackageID, (row.getParentID, new Package (row))))
             .toMap
 
@@ -53,9 +53,9 @@ case class ModelParser (modelfile: File)
     def extractClasses: Map[ID, Class] =
     {
         val skip = Array ("Boundary", "Note", "Package", "Text", "Object", "Constraint")
-        val clses = getObjectTable
+        val classes = getObjectTable
             .iterator
-            .map (Row (_))
+            .map (Row)
             .filter (row => !skip.contains (row.getObjectType))
             .map (row => (row.getObjectID, row))
             .toMap
@@ -73,7 +73,7 @@ case class ModelParser (modelfile: File)
         // get a map of superclass id values
         val supers = (
             for (
-                row <- getConnectorTable.iterator.map (Row (_));
+                row <- getConnectorTable.iterator.map (Row);
                 typ = row.getConnectorType
                 if typ.equals ("Generalization")
             )
@@ -81,10 +81,10 @@ case class ModelParser (modelfile: File)
             ).toMap
 
         // adjust superclasses
-        for ((id, cls) <- clses)
+        for ((id, cls) <- classes)
             yield
                 if (supers.contains (id))
-                    (id, cls.copy (sup = clses.getOrElse (supers(id), null)))
+                    (id, cls.copy (sup = classes.getOrElse (supers(id), null)))
                 else
                     (id, cls)
     }
@@ -94,7 +94,7 @@ case class ModelParser (modelfile: File)
         val ret = scala.collection.mutable.Map[ID,List[Attribute]] ()
 
         for (
-            row <- getAttributeTable.iterator.map (Row (_));
+            row <- getAttributeTable.iterator.map (Row);
             cls_id = row.getObjectID;
             cls = classes.getOrElse (cls_id, null)
         )
@@ -115,7 +115,7 @@ case class ModelParser (modelfile: File)
                     ret.put (cls_id, List (attribute))
             }
             else
-                println (s"Could not find the domain of attribute '${row.getName}'. Domain ID = ${cls_id}")
+                println (s"Could not find the domain of attribute '${row.getName}'. Domain ID = $cls_id")
 
         ret.toMap
     }
@@ -123,7 +123,7 @@ case class ModelParser (modelfile: File)
     def extractAssociations: Set[Role] =
     {
         val ret = for (
-            row <- getConnectorTable.iterator.map (Row (_));
+            row <- getConnectorTable.iterator.map (Row);
             typ = row.getConnectorType
             if typ.equals ("Association") || typ.equals ("Aggregation");
             src = classes.getOrElse (row.getStartObjectID, null);
@@ -132,11 +132,11 @@ case class ModelParser (modelfile: File)
         )
             yield
             {
-                val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
-                val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
-                rolea.mate = roleb
-                roleb.mate = rolea
-                rolea :: roleb :: Nil
+                val role_1 = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
+                val role_2 = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
+                role_1.mate = role_2
+                role_2.mate = role_1
+                role_1 :: role_2 :: Nil
             }
 
         ret.flatten.toSet
@@ -144,9 +144,9 @@ case class ModelParser (modelfile: File)
 
     def extractDomains: Set[Domain] =
     {
-        val noenum = Set[String]()
+        val empty = Set[String]()
         val ret = for (
-            row <- getObjectTable.iterator.map (Row (_))
+            row <- getObjectTable.iterator.map (Row)
             if row.getObjectType.equals ("Class");
             cls_id = row.getObjectID;
             xuid = row.getXUID;
@@ -156,15 +156,11 @@ case class ModelParser (modelfile: File)
             domain = stereotype match
             {
                 case "Primitive" =>
-                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, "")
-                case "CIMDatatype" =>
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), empty, "")
+                case "CIMDatatype" | "Compound"=>
                     val details = attributes(cls_id)
                     val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
-                case "Compound" =>
-                    val details = attributes(cls_id)
-                    val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), empty, value)
                 case "enumeration" =>
                     val enumeration = if (attributes.contains (cls_id)) attributes(cls_id).map (_.name).toSet else Set[String]()
                     Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
