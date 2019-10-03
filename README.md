@@ -1,5 +1,6 @@
 CIMSpark
 ======
+[![Build Status](http://jenkins.zoephos.com/job/CIMSpark/job/ci-getting-started/badge/icon)](http://jenkins.zoephos.com/job/CIMSpark/job/ci-getting-started/)
 
 Spark access to Common Information Model (CIM) files.
 
