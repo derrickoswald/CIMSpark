@@ -32,12 +32,3 @@ This project has four components covering the following topics:
 
 Each of these is described more fully in its module README.
 
-# Getting Started
-
-The easiest way to get your own instance of CIMSpark up and running is to use Docker. This repo comes with a docker-compose file to help you get started. 
-
-```
-clone CIMSpark repo
-cd CIMSpark/CIMReader/src/test/resources; ./start-docker
-``
-
