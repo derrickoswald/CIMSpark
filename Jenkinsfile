@@ -13,7 +13,7 @@ pipeline {
         stage ('Compile') {
             withMaven(
                 // Maven installation declared in the Jenkins "Global Tool Configuration"
-                maven: 'maven-3',
+                maven: 'maven-3') {
                 // Run the maven build
                 sh "mvn clean verify"
             }
