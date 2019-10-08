@@ -565,7 +565,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             Terminal = List (),
             TopologicalIsland = island
         )
-        node.bitfields = Array (Integer.parseInt ("10000011000", 2))
+        node.bitfields = Array (Integer.parseInt ("100000101000", 2))
         node
     }
 
