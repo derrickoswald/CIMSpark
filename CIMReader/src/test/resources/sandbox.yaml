@@ -30,8 +30,8 @@ services:
       - "6066:6066" # Standalone Master REST port (spark.master.rest.port)
       - "7077:7077" # Driver to Standalone Master, as in master = spark://sandbox:7077
       - "8020:8020" # DFS Namenode IPC, e.g. hdfs dfs -fs hdfs://sandbox:8020 -ls
-      - "7080:8080" # Standalone Master Web UI
-      - "7081:8081" # Standalone Worker Web UI
+      - "8080:8080" # Standalone Master Web UI
+      - "8081:8081" # Standalone Worker Web UI
       - "10000:10000" # Thriftserver JDBC port
       - "10001:10001" # Thriftserver HTTP protocol JDBC port
       - "50010:50010" # DFS Datanode data transfer
