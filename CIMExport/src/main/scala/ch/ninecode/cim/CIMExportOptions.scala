@@ -1,7 +1,7 @@
 package ch.ninecode.cim
 
 /**
- * Loggin level enumeration.
+ * Logging level enumeration.
  */
 object LogLevels extends Enumeration
 {
