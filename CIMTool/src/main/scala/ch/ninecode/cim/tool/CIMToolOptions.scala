@@ -6,36 +6,21 @@ object LogLevels extends Enumeration
     val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
 }
 
+/**
+ * Options when running CIMTool.
+ *
+ * @param valid     <code>false</code> if either help or version requested (i.e. don't proceed with execution).
+ * @param unittest  <code>true</code> when running unit tests.
+ * @param loglevel  Logging level for messages.
+ * @param cim       Version of CIM to generate.
+ * @param target    Target language. See [[ch.ninecode.cim.tool.Target]]
+ * @param directory Output directory.
+ */
 final case class CIMToolOptions (
-
-    /**
-     * False if either help or version requested (i.e. don't proceed with execution).
-     */
     var valid: Boolean = true,
-
-    /**
-     * True when running unit tests.
-     */
     unittest: Boolean = false,
-
-    /**
-     * Logging level for messages.
-     */
     loglevel: LogLevels.Value = LogLevels.WARN,
-
-    /**
-     * Version of CIM to generate.
-     */
     cim: CIMVersion = cim100,
-
-    /**
-     * Target language.
-     */
     target: Target = scala_language,
-
-    /**
-     * Output directory
-     */
     directory: String = "target"
-
 )

@@ -8,10 +8,15 @@ import org.apache.spark.sql.SparkSession
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-/*
+/**
  * Create the schema in Cassandra.
+ *
+ * @param session     The Spark session for access to Cassandra.
+ * @param keyspace    The keyspace name to create.
+ * @param replication The Cassandra replication factor for the keyspace (if it needs to be created).
+ * @param loglevel    The logging level, e.g. ERROR or INFO.
  */
-case class Schema (session: SparkSession, keyspace: String, replication: Int = 1, loglevel: Level)
+final case class Schema (session: SparkSession, keyspace: String, replication: Int = 1, loglevel: Level)
 {
     org.apache.log4j.LogManager.getLogger (getClass.getName).setLevel (loglevel)
     implicit val log: Logger = LoggerFactory.getLogger (getClass)

@@ -20,101 +20,49 @@ object LogLevels extends Enumeration
         }
 }
 
+/**
+ * Options for CIM export.
+ *
+ * @param valid        <code>false</code> if either help or version requested (i.e. don't proceed with execution).
+ * @param unittest     <code>true</code> when running unit tests.
+ * @param loglevel     Logging level for messages.
+ * @param master       Spark master URL. See [[https://spark.apache.org/docs/latest/submitting-applications.html#master-urls]].
+ * @param sparkopts    Spark options. See [[https://spark.apache.org/docs/latest/configuration.html]].
+ * @param cimopts      CIMReader options. See [[https://github.com/derrickoswald/CIMSpark/tree/master/CIMReader#reader-api]].
+ * @param all          Export the entire "as-read-in" CIM file. Useful after doing some processing, such as stripe de-duplicating or topological processing to avoid having to redo that processing again.
+ * @param islands      If <code>true</code>, export every topological island.
+ * @param transformers If <code>true</code>, export every transformer service area.
+ * @param outputfile   The output file name for --all option.
+ * @param outputdir    Output directory for --islands and --transformers option without --cassandra option.
+ * @param cassandra    Save the output of the --transformers option to Cassandra instead of files.
+ * @param host         The Cassandra seed node to save the transformers to.
+ * @param port         The Cassandra native transport port to connect to.
+ * @param keyspace     The keyspace to store the transformers under (table transformer_service_area).
+ * @param replication  The Casandra keyspace replication factor to use - if the keyspace needs to be created.
+ * @param files        The list of CIM files to process.
+ */
 final case class ExportOptions
 (
-    /**
-     * False if either help or version requested (i.e. don't proceed with execution).
-     */
     var valid: Boolean = true,
-
-    /**
-     * True when running unit tests.
-     */
     unittest: Boolean = false,
-
-    /**
-     * Logging level for messages.
-     */
     loglevel: LogLevels.Value = LogLevels.OFF,
-
-    /**
-     * Spark master URL.
-     * See https://spark.apache.org/docs/latest/submitting-applications.html#master-urls.
-     */
     master: String = "",
-
-    /**
-     * Spark options.
-     * See https://spark.apache.org/docs/latest/configuration.html.
-     */
     sparkopts: Map[String,String] = Map (
         "spark.graphx.pregel.checkpointInterval" → "8",
         "spark.serializer" → "org.apache.spark.serializer.KryoSerializer",
         "spark.ui.showConsoleProgress" → "false"),
-
-    /**
-     * CIMReader options.
-     * See https://github.com/derrickoswald/CIMSpark/tree/master/CIMReader#reader-api.
-     */
     cimopts: Map[String,String] = Map (
         "ch.ninecode.cim.do_topo_islands" → "true"
     ),
-
-    /**
-     * Export the entire "as-read-in" CIM file.
-     *
-     * Useful after doing some processing, such as stripe de-duplicating or topological processing,
-     * to avoid having to redo that processing again.
-     */
     all: Boolean = false,
-
-    /**
-     * If <code>true</code>, export every topological island.
-     */
     islands: Boolean = false,
-
-    /**
-     * If <code>true</code>, export every transformer service area.
-     */
     transformers: Boolean = false,
-
-    /**
-     * Output file name for --all option.
-     */
     outputfile: String = "export.rdf",
-
-    /**
-     * Output directory for --islands and --transformers option.
-     */
     outputdir: String = "simulation/",
-
-    /**
-     * Save the output of the --transformes option to Cassandra instead of files.
-     */
     cassandra: Boolean = false,
-
-    /**
-     * The Cassandra seed node to save the transformers to.
-     */
     host: String = "localhost",
-
-    /**
-     * The Cassandra native transport port to connect to.
-     */
     port: Int = 9042,
-
-    /**
-     * The keyspace to store the transformers under (table transformer_service_area).
-     */
     keyspace: String = "cimexport",
-
-    /**
-     * The Casandra keyspace replication factor to use - if the keyspace needs to be created.
-     */
     replication: Int = 1,
-
-    /**
-     * The list of CIM files to process.
-     */
     files: Seq[String] = Seq()
 )
