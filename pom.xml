@@ -64,6 +64,18 @@
                 <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Markus.jpg</picUrl>
             </properties>
         </developer>
+        <developer>
+            <name>Mike Heinen</name>
+            <email>mbheinen@gmail.com</email>
+            <id>mbheinen</id>
+            <timezone>-6</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://avatars1.githubusercontent.com/u/6753163</picUrl>
+            </properties>
+        </developer>
     </developers>
     <properties>
 
@@ -151,6 +163,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
+                            <!--suppress UnresolvedMavenProperty -->
                             <keyname>${gpg.keyname}</keyname>
                         </configuration>
                     </execution>
