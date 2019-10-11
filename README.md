@@ -1,6 +1,6 @@
 CIMSpark
 ======
-[![Build Status](http://jenkins.zoephos.com/job/CIMSpark/job/ci-getting-started/badge/icon)](http://jenkins.zoephos.com/job/CIMSpark/job/ci-getting-started/)
+[![Build Status](http://jenkins.zoephos.com/job/CIMSpark/job/master/badge/icon)](http://jenkins.zoephos.com/job/CIMSpark/job/master/)
 
 Spark access to Common Information Model (CIM) files. | [![Maven Central](https://img.shields.io/maven-central/v/ch.ninecode.cim/CIMSpark.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ch.ninecode.cim%22%20AND%20a:%22CIMSpark%22)
 :---         |          ---:
