@@ -22,7 +22,7 @@ import scopt.OptionParser
  *
  * The program is usually run on the master node with a command like:
  * {{{
- * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.4.3-4.0.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-&lt;version&gt;-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
  * }}}
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,

@@ -6,7 +6,7 @@
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMSpark</artifactId>
     <!-- version>${version.dependency.scala}-${version.dependency.spark}-CIMSPARK_VERSION</version -->
-    <version>2.11-2.4.3-4.0.2</version>
+    <version>2.11-2.4.4-4.1.0</version>
     <packaging>pom</packaging>
     <name>CIM-Spark interface.</name>
 
@@ -105,7 +105,7 @@
 
         <!-- Spark versions -->
         <version.dependency.hadoop>2.7.6</version.dependency.hadoop>
-        <version.dependency.spark>2.4.3</version.dependency.spark>
+        <version.dependency.spark>2.4.4</version.dependency.spark>
         <version.dependency.cassandra_spark>2.4.1</version.dependency.cassandra_spark>
 
         <!-- Component versions -->

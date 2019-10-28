@@ -11,10 +11,10 @@
 pre = proc.time ()
 
 # set up the Spark system
-Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.4.3-bin-hadoop2.7/conf")
-Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.3-bin-hadoop2.7")
+Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.4.4-bin-hadoop2.7/conf")
+Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.4-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/CIMReader/target/CIMReader-2.11-2.4.3-4.0.2.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/CIMReader/target/CIMReader-2.11-2.4.4-4.1.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 
 begin = proc.time ()
 

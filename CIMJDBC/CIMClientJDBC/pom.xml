@@ -4,7 +4,7 @@
         <groupId>ch.ninecode.cim</groupId>
         <artifactId>CIMJDBC</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>2.11-2.4.3-4.0.2</version>
+        <version>2.11-2.4.4-4.1.0</version>
     </parent>
     <artifactId>CIMClientJDBC</artifactId>
     <name>${project.artifactId}</name>
