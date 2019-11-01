@@ -35,7 +35,7 @@ with
      * @return the companion object as type T
      */
     def companion[T] (name : String) (implicit man: Manifest[T]) : T =
-        Class.forName (name + "$").getField ("MODULE$").get (man.runtimeClass).asInstanceOf[T]
+        Class.forName (s"${name}$$").getField ("MODULE$").get (man.runtimeClass).asInstanceOf[T]
 
     /**
      * A denormalized relation to be fixed.

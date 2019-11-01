@@ -186,7 +186,7 @@ trait CIMRDD
         rdds.find (_._2.name == name) match
         {
             case Some ((_: Int, old: RDD[_])) =>
-                old.name = name + "_old" + Random.nextInt (99999999)
+                old.name = s"${name}_old${Random.nextInt (99999999)}"
             case Some (_) =>
             case None =>
         }

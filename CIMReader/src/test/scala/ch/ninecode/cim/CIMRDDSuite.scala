@@ -133,7 +133,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
                     if (int.count () != 0)
                     {
                         val i1 = int.collect ()
-                        println ("There were non-zero intersections between rdd1 and rdd2 (" + i1.length + ") like:")
+                        println (s"There were non-zero intersections between rdd1 and rdd2 (${i1.length}) like:")
                         for (i <- i1.indices)
                             println (i1 (i))
                     }
@@ -155,7 +155,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
             if (unknowns.count () != 0)
             {
                 val u = unknowns.first ()
-                markup ("There were non-zero unknowns (" + unknowns.count () + ") like @line " + u.line + " when parsing text starting at " + u.start + " and last parse ending at " + u.end + " with internal text '" + u.guts + "'")
+                markup (s"There were non-zero unknowns (${unknowns.count ()}) like @line ${u.line} when parsing text starting at ${u.start} and last parse ending at ${u.end} with internal text '${u.guts}'")
             }
             assert (rdd.count () === ELEMENTS2x)
     }
@@ -166,7 +166,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
 
             val rdd1 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2x)))
             val rdd2 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3x)))
-            val rdd3 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2x + "," + FILENAME3x)))
+            val rdd3 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", s"$FILENAME2x,$FILENAME3x")))
             assert (rdd1.count () === ELEMENTS2x)
             assert (rdd2.count () === ELEMENTS3x)
             assert (rdd3.count () === (ELEMENTS2x + ELEMENTS3x))

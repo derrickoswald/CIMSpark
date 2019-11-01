@@ -53,11 +53,11 @@ class CIMExportOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: Str
 
     opt[Map[String,String]]("sparkopts").valueName ("k1=v1,k2=v2").
         action ((x, c) => c.copy (sparkopts = x)).
-        text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+        text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ s"${x._1}=${x._2}").mkString (",")))
 
     opt[Map[String,String]]("cimopts").valueName ("k1=v1,k2=v2").
         action ((x, c) => c.copy (cimopts = x)).
-        text ("CIMReader options [%s]".format (default.cimopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+        text ("CIMReader options [%s]".format (default.cimopts.map (x ⇒ s"${x._1}=${x._2}").mkString (",")))
 
     opt[Unit]("all").
         action ((_, c) => c.copy (all = true)).

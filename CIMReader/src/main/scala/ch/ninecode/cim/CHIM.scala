@@ -53,7 +53,7 @@ trait Parser
      */
     def element (cls: String, name: String): Expression =
     {
-        val trigger = namespace + """:""" + cls + """.""" + name
+        val trigger = s"$namespace:$cls.$name"
         (Pattern.compile ("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>"""), 1)
     }
 
@@ -66,7 +66,7 @@ trait Parser
      */
     def attribute (cls: String, name: String): Expression =
     {
-        val trigger = namespace + """:""" + cls + """.""" + name
+        val trigger = s"$namespace:$cls.$name"
         (Pattern.compile ("""<""" + trigger + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
     }
 
@@ -247,7 +247,7 @@ trait Parser
                 ret = string.toBoolean
             catch
             {
-                case _: Throwable => throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable => throw new Exception (s"unparsable boolean ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -268,7 +268,7 @@ trait Parser
                 ret = string.trim.toInt
             catch
             {
-                case _: Throwable => throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable => throw new Exception (s"unparsable integer ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -289,7 +289,7 @@ trait Parser
                 ret = string.trim.toDouble
             catch
             {
-                case _: Throwable => throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
+                case _: Throwable => throw new Exception (s"unparsable double ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -501,7 +501,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
             _Work.register,
             _unused.register
         ).flatten
-    lazy val parsers: List[(String, Parseable[Product])] = classes.map (x => (Parser.namespace + ":" + x.name, x.parseable))
+    lazy val parsers: List[(String, Parseable[Product])] = classes.map (x => (s"${Parser.namespace}:${x.name}", x.parseable))
     lazy val lookup: HashMap[String, Parseable[Product]] = HashMap (parsers: _*)
 
     def progress (): Float =
@@ -552,8 +552,8 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                         }
                         else
                         {
-                            val snippet = if (unknown.length > 50) unknown.substring (0, 50) + "..." else unknown
-                            context.errors += "Unknown content \"" + snippet + "\" at line " + context.line_number ()
+                            val snippet = if (unknown.length > 50) s"${unknown.substring (0, 50)}..." else unknown
+                            context.errors += s"""Unknown content "$snippet" at line ${context.line_number ()}"""
                             ret = false
                         }
                     }
@@ -695,11 +695,11 @@ object CHIM
             }
             println ()
 
-            println ("reading %g seconds".format (reading / 1e6))
-            println ("parsing %g seconds".format (parsing / 1e6))
-            println (result.size + " identified elements parsed")
+            println (f"reading ${reading / 1e6}%g seconds")
+            println (f"parsing ${parsing / 1e6}%g seconds")
+            println (s"${result.size} identified elements parsed")
             val subset = result.values.filter (_.getClass == classOf[Unknown])
-            println (subset.size + " unknown elements")
+            println (s"${subset.size} unknown elements")
         }
         else
             println ("CIM XML input file not specified")

@@ -15,6 +15,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 {
     val log: Logger = LoggerFactory.getLogger (getClass)
 
+    def prefix (s: String): String = if (s.charAt (0).isDigit) "_" else ""
+
+    def substitute (s: String): String = s.replace (" ", "_").replace ("-", "_").replace ("/", "_").replace (".", "_").replace (",", "_")
+
     def valid_class_name (s: String): String =
     {
         val name = s match
@@ -28,8 +32,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case "Boolean" => "`Boolean`"
             case "String" => "`String`"
             case _ =>
-                val identifier = (if (s.charAt (0).isDigit) "_" else "") +
-                s.replace (" ", "_").replace ("-", "_").replace ("/", "_").replace (".", "_").replace (",", "_")
+                val identifier = s"${prefix (s)}${substitute (s)}"
                 if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         if (name == "Unit")
@@ -56,8 +59,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case "default" => "`default`"
             case "native" => "`native`"
             case _ =>
-                val identifier = (if (s.charAt (0).isDigit) "_" else "") +
-                s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""").replace (""":""", """_""").replace ("""(""", """_""").replace (""")""", """_""")
+                val identifier = s"${prefix (s)}${substitute (s)}"
                 if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         val stupid_name =
@@ -89,8 +91,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             case "native" => "`native`"
             case "" => "unknown" // ToDo: WTF?
             case _ => 
-                val identifier = (if (s.charAt (0).isDigit) "_" else "") +
-                s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
+                val identifier = s"${prefix (s)}${substitute (s)}"
                 if (identifier.endsWith ("_")) s"${identifier}1" else identifier
         }
         val stupid_name =

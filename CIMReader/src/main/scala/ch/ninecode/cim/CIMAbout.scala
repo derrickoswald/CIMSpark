@@ -27,7 +27,7 @@ with
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     /**
-     * Apply drf:about elements to the primary element.
+     * Apply rdf:about elements to the primary element.
      *
      * @param arg The primary element and any rdf:about elements.
      * @return The new element if there were rdf:about elements to merge,

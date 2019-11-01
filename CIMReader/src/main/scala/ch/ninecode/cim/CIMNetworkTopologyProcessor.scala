@@ -189,7 +189,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             case line:               ACLineSegment =>      !((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
             case _:                  Conductor =>          true
             case _ =>
-                log.warn ("topological node processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
+                log.warn (s"topological node processor encountered edge with unhandled class '${element.getClass.getName}', assumed zero impedance")
                 true
         }
     }
@@ -252,7 +252,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             case _:                  ACLineSegment =>      true
             case _:                  Conductor =>          true
             case _ =>
-                log.warn ("topological island processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
+                log.warn (s"topological island processor encountered edge with unhandled class '${element.getClass.getName}', assumed zero impedance")
                 true
         }
     }
@@ -287,7 +287,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 }
         }
         //else // shouldn't happen, terminals always reference ConductingEquipment, right?
-        // throw new Exception ("element " + e.id + " is not derived from ConductingEquipment")
+        // throw new Exception (s"element ${e.id} is not derived from ConductingEquipment")
         // ProtectionEquipment and CurrentRelay are emitted with terminals even though they shouldn't be
 
 
@@ -430,7 +430,10 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             if (options.debug)
                 if ((null != a.voltage) && (null != b.voltage))
                     if (a.voltage != b.voltage)
-                        log.error ("conflicting node voltages, merging: %s into %s".format (if (a.node <= b.node) b.node_label + ":" + b.voltage else a.node_label + ":" + a.voltage, if (a.node <= b.node) a.node_label + ":" + a.voltage else b.node_label + ":" + b.voltage))
+                        if (a.node <= b.node)
+                            log.error (s"conflicting node voltages, merging: ${b.toString} into ${a.toString}")
+                        else
+                            log.error (s"conflicting node voltages, merging: ${a.toString} into ${b.toString}")
             if (a.node <= b.node) a else b
         }
 
@@ -486,11 +489,11 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 case t1 :: Nil =>
                     t1.id
                 case t1 :: _ =>
-                    trafos (terminals) + "_terminal_" + t1.ACDCTerminal.sequenceNumber
+                    s"${trafos (terminals)}_terminal_${t1.ACDCTerminal.sequenceNumber}"
                 case _ =>
                     cn.id
             }
-        val name = base + "_island"
+        val name = s"${base}_island"
         val basic = BasicElement (
             null,
             mRID = name
@@ -773,7 +776,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             // create a new TopologicalIsland RDD
             val new_ti = islands.values
             if (options.debug && log.isDebugEnabled)
-                log.debug (new_ti.count + " islands identified")
+                log.debug (s"{new_ti.count} islands identified")
 
             // swap the old TopologicalIsland RDD for the new one
             if (!old_ti.isEmpty)
@@ -786,14 +789,14 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
             val nodes = nodes_with_islands.groupBy (_._1.node).map (x => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
-                log.debug (nodes.count + " nodes")
+                log.debug (s"${nodes.count} nodes")
             (nodes, new_ti)
         }
         else
         {
             val nodes = graph.vertices.values.groupBy (_.node).map (x => (x._1, x._2.head, None)).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
-                log.debug (nodes.count + " nodes")
+                log.debug (s"${nodes.count} nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
         }
 

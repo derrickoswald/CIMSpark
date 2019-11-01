@@ -12,3 +12,6 @@ case class CIMVD (
     var node: VertexId = Long.MaxValue,
     var node_label: String = "",
     var voltage: String = null)
+{
+    override def toString: String = s"$node_label:$voltage"
+}

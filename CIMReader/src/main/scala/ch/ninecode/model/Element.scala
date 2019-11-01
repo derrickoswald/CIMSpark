@@ -112,7 +112,7 @@ with
         if (0 == i)
             sup
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
 
     /**
@@ -261,7 +261,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
 }
@@ -331,7 +331,7 @@ extends
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException ("invalid property index " + i)
+            throw new IllegalArgumentException (s"invalid property index $i")
     }
     override def length: Int = productArity
 }
@@ -349,7 +349,7 @@ extends
     def parse(context: Context): Unknown =
     {
         if (Context.DEBUG && (context.errors.size < Context.MAXERRORS))
-            context.errors += "Unknown element \"" + name + "\" at line " + context.line_number()
+            context.errors += s"""Unknown element "$name" at line ${context.line_number()}"""
         Unknown (
             BasicElement.parse(context),
             context.subxml,

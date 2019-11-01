@@ -58,7 +58,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         {
             case e::t =>
                 if (element != e)
-                    log.warn ("element " + element.id + " has a non-identical duplicate")
+                    log.warn (s"element ${element.id} has a non-identical duplicate")
                 check (element, t)
             case Nil =>
         }

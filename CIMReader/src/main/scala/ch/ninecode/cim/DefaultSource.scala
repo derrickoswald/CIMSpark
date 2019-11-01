@@ -21,7 +21,7 @@ extends
     {
         val session = sqlContext.sparkSession
         val files = parameters.getOrElse ("path", sys.error("'path' must be specified for CIM data."))
-        log.info ("createRelation for files " + files)
+        log.info (s"createRelation for files $files")
         val allPaths: Seq[String] = files.split (",")
         val globbedPaths = allPaths.flatMap
         {

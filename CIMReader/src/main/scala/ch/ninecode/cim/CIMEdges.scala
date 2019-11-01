@@ -273,7 +273,7 @@ with Serializable
                         // three (or more terminal device - which we assume is a transformer
                         // sequence number 1 at index 0 is the high side of a transformer
                         // make edges to each of the secondaries
-                        log.warn ("equipment with " + terminals.length + " terminals: " + terminals(0).ConductingEquipment)
+                        log.warn (s"equipment with ${terminals.length} terminals: ${terminals(0).ConductingEquipment}")
                         var i = 0
                         var list = List[PreEdge] ()
                         while (i < terminals.length - 1)

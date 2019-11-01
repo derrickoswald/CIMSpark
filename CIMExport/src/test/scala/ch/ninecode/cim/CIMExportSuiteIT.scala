@@ -61,12 +61,12 @@ class CIMExportSuiteIT
 
         val exports = session.execute ("select * from %s.export".format (KEYSPACE)).all
         assert (exports.size == count + 1)
-        val times = for (export ← exports.asScala)
+        val times = for (export <- exports.asScala)
             yield (export.getString ("id"), export.getTimestamp ("runtime"))
         val id = times.maxBy (x ⇒ x._2)._1
         val transformers = session.execute ("select * from %s.transformers where id='%s'".format (KEYSPACE, id)).all
         assert (transformers.size == 2)
-        for (trafo ← transformers.asScala)
+        for (trafo <- transformers.asScala)
         {
             val name = trafo.getString ("name")
             assert (name == "TX0001" || name == "TX0002")
@@ -109,7 +109,7 @@ object CIMExportSuiteIT
             // iterates over entries in the zip file
             while (null != entry)
             {
-                val path = directory + entry.getName
+                val path = s"$directory${entry.getName}"
                 val time = entry.getLastModifiedTime
                 if (!entry.isDirectory)
                 {

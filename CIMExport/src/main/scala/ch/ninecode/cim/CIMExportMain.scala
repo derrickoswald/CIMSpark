@@ -47,9 +47,9 @@ object CIMExportMain
         if (!ret.toLowerCase ().endsWith (".jar"))
         {
             // as an aid to debugging, make jar in tmp and pass that name
-            val name = "/tmp/" + Random.nextInt (99999999) + ".jar"
+            val name = s"/tmp/${Random.nextInt (99999999)}.jar"
             val writer = new Jar (new scala.reflect.io.File (new java.io.File (name))).jarWriter ()
-            writer.addDirectory (new scala.reflect.io.Directory (new java.io.File (ret + "ch/")), "ch/")
+            writer.addDirectory (new scala.reflect.io.Directory (new java.io.File (s"${ret}ch/")), "ch/")
             writer.close ()
             ret = name
         }

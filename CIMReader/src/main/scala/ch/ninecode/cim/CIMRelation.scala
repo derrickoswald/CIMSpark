@@ -95,8 +95,8 @@ class CIMRelation (
         storage = _StorageLevel
     )
 
-    log.info ("parameters: " + parameters.toString)
-    log.info ("storage: " + _StorageLevel.description)
+    log.info (s"parameters: ${parameters.toString}")
+    log.info (s"storage: ${_StorageLevel.description}")
 
     def sqlContext: SQLContext = spark.sqlContext
 
@@ -170,7 +170,7 @@ class CIMRelation (
                 // p.s. Scala's type system is a shit show of kludgy code
                 if (names.contains (subsetter.cls))
                 {
-                    log.debug ("building " + subsetter.cls)
+                    log.debug (s"building ${subsetter.cls}")
                     subsetter.make (spark.sqlContext, rdd, _StorageLevel)
                 }
             }

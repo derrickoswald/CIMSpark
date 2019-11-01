@@ -127,7 +127,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
      */
     override def toString: String =
     {
-        "\"" + subxml.substring (0, 50) + "...\" @ " + end + " character " + last_byte + " byte"
+        s""""${subxml.substring (0, 50)}..." @ $end character $last_byte byte"""
     }
 }
 

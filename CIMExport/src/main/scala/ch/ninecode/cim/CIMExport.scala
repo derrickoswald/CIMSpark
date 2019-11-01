@@ -142,7 +142,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         hdfs.delete (directory, true)
         // delete the stupid .crc file
         val index = filename.lastIndexOf ("/")
-        val crc = if (-1 != index) filename.substring (0, index + 1) + "." + filename.substring (index + 1) + ".crc" else "." + filename + ".crc"
+        val crc = if (-1 != index) s"${filename.substring (0, index + 1)}.${filename.substring (index + 1)}.crc" else s".$filename.crc"
         hdfs.delete (new Path (crc), false)
     }
 
@@ -175,7 +175,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
         // delete the stupid .crc file
         val index = filename.lastIndexOf ("/")
-        val crc = if (-1 != index) filename.substring (0, index + 1) + "." + filename.substring (index + 1) + ".crc" else "." + filename + ".crc"
+        val crc = if (-1 != index) s"${filename.substring (0, index + 1)}.${filename.substring (index + 1)}.crc" else s".$filename.crc"
         hdfs.delete (new Path (crc), false)
     }
 
@@ -329,7 +329,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     {
         // the to do list is a PairRDD, the keys are mrid to check,
         // and the values are the name to label the related items
-        var todo = what.keyBy (x ⇒ x._1 + x._2)
+        var todo = what.keyBy (x ⇒ s"${x._1}${x._2}")
 
         val classes = new CHIM ("").classes
 
@@ -345,7 +345,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         {
             val next: RDD[(mRID, (Island, mRID))] = todo.values.join (ying_yang).persist (storage)
             done = done ++ Seq (todo)
-            var new_todo: RDD[KeyedItem] = next.values.map (_.swap).keyBy (x ⇒ x._1 + x._2)
+            var new_todo: RDD[KeyedItem] = next.values.map (_.swap).keyBy (x ⇒ s"${x._1}${x._2}")
             done.foreach (d ⇒ new_todo = new_todo.subtractByKey (d))
             new_todo.persist (storage)
             next.unpersist (false)
@@ -378,7 +378,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def exportIsland (island: String, filename: String, directory: String = "simulation/"): Unit =
     {
-        val dir = if (directory.endsWith ("/")) directory else directory + "/"
+        val dir = if (directory.endsWith ("/")) directory else s"$directory/"
         // start with the island
         val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x ⇒ (x.id, filename)).persist (storage)
         val labeled = labelRelated (todo)
@@ -394,7 +394,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def exportAllIslands (directory: String = "simulation/"): Int =
     {
-        val dir = if (directory.endsWith ("/")) directory else directory + "/"
+        val dir = if (directory.endsWith ("/")) directory else s"$directory/"
         // start with all islands
         val islands = getOrElse[TopologicalIsland].map (_.id)
         val count = islands.count
@@ -407,7 +407,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             {
                 val island = group._1
                 val elements = group._2
-                val filename = dir + island + ".rdf"
+                val filename = s"$dir$island.rdf"
                 log.info (s"exporting $filename")
                 export_iterable_file (elements, filename)
                 1
@@ -634,7 +634,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                     val transformer = group._1
                     val elements = group._2
                     val fixed_elements = doctor_stop_terminals (elements, stopTerminals)
-                    val filename = dir + transformer + ".rdf"
+                    val filename = s"$dir$transformer.rdf"
                     log.info (s"exporting $filename")
                     export_iterable_file (fixed_elements, filename)
                     1

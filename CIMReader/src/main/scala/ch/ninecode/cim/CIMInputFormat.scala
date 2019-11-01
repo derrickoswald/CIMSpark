@@ -42,7 +42,7 @@ class CIMInputFormat extends FileInputFormat[String, Element]
         // which would be checked here.
         val ret = super.getSplits (context)
 
-        log.info ("getSplits: " + ret.size() + " splits returned")
+        log.info (s"getSplits: ${ret.size()} splits returned")
         ret
     }
 
@@ -55,8 +55,8 @@ class CIMInputFormat extends FileInputFormat[String, Element]
     def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
         log.info ("createRecordReader")
-        log.info ("split: " + split.toString)
-        log.info ("context: " + context.getTaskAttemptID.toString)
+        log.info (s"split: ${split.toString}")
+        log.info (s"context: ${context.getTaskAttemptID.toString}")
         new CIMRecordReader ()
     }
 }

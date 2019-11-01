@@ -51,7 +51,7 @@ class SparkSuite extends fixture.FunSuite
             // iterates over entries in the zip file
             while (null != entry)
             {
-                val path = directory + entry.getName
+                val path = s"$directory${entry.getName}"
                 val time = entry.getLastModifiedTime
                 if (!entry.isDirectory)
                 {

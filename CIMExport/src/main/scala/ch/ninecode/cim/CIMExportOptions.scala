@@ -48,11 +48,11 @@ final case class ExportOptions
     loglevel: LogLevels.Value = LogLevels.OFF,
     master: String = "",
     sparkopts: Map[String,String] = Map (
-        "spark.graphx.pregel.checkpointInterval" → "8",
-        "spark.serializer" → "org.apache.spark.serializer.KryoSerializer",
-        "spark.ui.showConsoleProgress" → "false"),
+        "spark.graphx.pregel.checkpointInterval" -> "8",
+        "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer",
+        "spark.ui.showConsoleProgress" -> "false"),
     cimopts: Map[String,String] = Map (
-        "ch.ninecode.cim.do_topo_islands" → "true"
+        "ch.ninecode.cim.do_topo_islands" -> "true"
     ),
     all: Boolean = false,
     islands: Boolean = false,

@@ -44,7 +44,7 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
         assert (elements.count () === ELEMENTS1x)
         val edges = session.sqlContext.sql ("select * from edges")
         val count = edges.count
-        markup ("edge count: " + count)
+        markup (s"edge count: $count")
         assert (count === 8348)
     }
 
@@ -58,7 +58,7 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
         val count1 = elements1.count ()
         assert (count1 === ELEMENTS1x)
         options.put ("ch.ninecode.cim.do_deduplication", "true")
-        val elements2 = readFile (FILENAME + "," + FILENAME, options)
+        val elements2 = readFile (s"$FILENAME,$FILENAME", options)
         val count2 = elements2.count ()
         assert (count1 === count2)
     }

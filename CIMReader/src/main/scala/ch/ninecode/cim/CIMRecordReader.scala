@@ -17,8 +17,8 @@ class CIMRecordReader extends RecordReader[String, Element]
     def initialize (genericSplit: InputSplit, context: TaskAttemptContext): Unit =
     {
         log.info ("initialize")
-        log.info ("genericSplit: " + genericSplit.toString)
-        log.info ("context: " + context.getTaskAttemptID.toString)
+        log.info (s"genericSplit: ${genericSplit.toString}")
+        log.info (s"context: ${context.getTaskAttemptID.toString}")
         val job = context.getConfiguration
         val split = genericSplit.asInstanceOf[FileSplit]
         val start = split.getStart
@@ -67,7 +67,7 @@ class CIMRecordReader extends RecordReader[String, Element]
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + first) and converting to characters
-        log.debug ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
+        log.debug (s"XML text starting at byte offset ${start + first} of length $len characters begins with: ${xml.substring (0, 120)}")
         cim = new CHIM (xml, first, first + len, start, start + bytes)
     }
 

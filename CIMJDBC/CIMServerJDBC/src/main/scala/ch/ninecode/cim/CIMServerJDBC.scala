@@ -134,7 +134,7 @@ object CIMServerJDBC
 
         opt[Map[String,String]]("opts").valueName ("k1=v1,k2=v2").
             action ((x, c) => c.copy (opts = x)).
-            text ("other Spark options [%s]".format (default.opts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+            text (s"other Spark options [${default.opts.map (x ⇒ s"{x._1}=${x._2}").mkString (",")}]")
 
         opt[String]("storage_level").
             action ((x, c) => c.copy (storage = x)).
@@ -176,7 +176,7 @@ object CIMServerJDBC
         if (!ret.toLowerCase ().endsWith (".jar"))
         {
             // as an aid to debugging, make jar in tmp and pass that name
-            val name = "/tmp/" + Random.nextInt (99999999) + ".jar"
+            val name = s"/tmp/${Random.nextInt (99999999)}.jar"
             val writer = new Jar (new scala.reflect.io.File (new java.io.File (name))).jarWriter ()
             writer.addDirectory (new scala.reflect.io.Directory (new java.io.File (ret + "ch/")), "ch/")
             writer.close ()
@@ -248,11 +248,11 @@ object CIMServerJDBC
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
                         elements.explain
                     else
-                        log.info ("" + elements.count + " elements")
+                        log.info (s"${elements.count} elements")
 
                     // start the thrift JDBC server
                     HiveThriftServer2.startWithContext (session.sqlContext)
-                    log.info ("thriftserver started on port " + arguments.port)
+                    log.info (s"thriftserver started on port ${arguments.port}")
 
 //                    log.info ("databases")
 //                    val databases = session.sqlContext.sql ("show databases")

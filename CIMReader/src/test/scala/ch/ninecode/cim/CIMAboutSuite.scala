@@ -15,9 +15,9 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
     {
         // unpack the zip file
         new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
-        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_BE_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
-        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_NL_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
-        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BD_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_BE_v2.zip", s"${FILE_DEPOT}MicroGrid/BaseCase_BC/")
+        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_NL_v2.zip", s"${FILE_DEPOT}MicroGrid/BaseCase_BC/")
+        new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BD_v2.zip", s"${FILE_DEPOT}MicroGrid/BaseCase_BC/")
         // run the tests
         val ret  = super.run (testName, args)
         // erase the unpacked files

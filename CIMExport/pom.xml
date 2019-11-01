@@ -339,10 +339,24 @@ enable_scripted_user_defined_functions: true
                 </dependencies>
                 <executions>
                     <execution>
+                        <id>create-integration-test-data</id>
+                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipITs}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>remove-data-after-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
                             <goal>stop</goal>
                         </goals>
+                        <configuration>
+                            <skip>${skipITs}</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
