@@ -15,6 +15,7 @@ Schema version.
     version - the schema version, increment for each schema script change
     time    - schema creation time
 ';
+
 insert into cimexport.version (program, build, version, time) values ('${artifactId} ${version}', '${buildNumber}', '8', toTimestamp(now())) if not exists;
 
 create table if not exists cimexport.export (
