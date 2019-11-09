@@ -2,6 +2,21 @@ create keyspace if not exists cimexport with replication = {'class': 'SimpleStra
 
 create type if not exists cimexport.polygon_data (type text, coordinates list<frozen <list<frozen <list<double>>>>>);
 
+create table if not exists cimexport.version (
+    program text,
+    build text,
+    version text,
+    time timestamp,
+    primary key ((program), version)
+) with clustering order by (version asc) and comment = '
+Schema version.
+    program - the name and version of the program that created the schema
+    build   - the git commit hash when the program was built
+    version - the schema version, increment for each schema script change
+    time    - schema creation time
+';
+insert into cimexport.version (program, build, version, time) values ('${artifactId} ${version}', '${buildNumber}', '8', toTimestamp(now())) if not exists;
+
 create table if not exists cimexport.export (
     id text,
     runtime timestamp,

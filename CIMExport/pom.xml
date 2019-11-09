@@ -360,6 +360,23 @@ enable_scripted_user_defined_functions: true
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>${version.dependency.buildnumber-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
             <!-- assembly for stand-alone program -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

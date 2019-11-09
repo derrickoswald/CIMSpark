@@ -97,6 +97,7 @@
         <version.dependency.maven-source-plugin>3.1.0</version.dependency.maven-source-plugin>
         <version.dependency.maven-site-plugin>3.8.2</version.dependency.maven-site-plugin>
         <version.dependency.maven-project-info-reports-plugin>3.0.0</version.dependency.maven-project-info-reports-plugin>
+        <version.dependency.buildnumber-maven-plugin>1.4</version.dependency.buildnumber-maven-plugin>
 
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
