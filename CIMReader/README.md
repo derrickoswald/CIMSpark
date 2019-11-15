@@ -235,13 +235,10 @@ to set the size of FileInputFormat splits (default 64M) which establishes the nu
 For example, to enable edge creation and topological island formation, use:
 
 ```scala
-import scala.collection.mutable.HashMap
 import org.apache.spark.rdd.RDD
 import ch.ninecode.cim._
 import ch.ninecode.model._
-val opts = new HashMap[String,String]()
-opts.put("ch.ninecode.cim.make_edges", "true")
-opts.put("ch.ninecode.cim.do_topo_islands", "true")
+val opts = Map[String,String]("ch.ninecode.cim.make_edges" -> "true", "ch.ninecode.cim.do_topo_islands" -> "true")
 val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml")
 element.count
 val edges = sc.getPersistentRDDs.filter(_._2.name == "Edges").head._2.asInstanceOf[RDD[TopoEdge]]
