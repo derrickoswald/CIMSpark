@@ -23,19 +23,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class AssetAnalog
 (
-    override val sup: Analog,
-    detectionLimit: Double,
-    precision: Double,
-    reportingTemperature: Double,
-    TestStandard: String
+    override val sup: Analog = null,
+    detectionLimit: Double = 0.0,
+    precision: Double = 0.0,
+    reportingTemperature: Double = 0.0,
+    TestStandard: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -116,16 +112,12 @@ extends
  */
 final case class AssetDiscrete
 (
-    override val sup: Discrete,
-    TestStandard: String
+    override val sup: Discrete = null,
+    TestStandard: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -194,17 +186,13 @@ extends
  */
 final case class AssetStringMeasurement
 (
-    override val sup: StringMeasurement,
-    kind: String,
-    TestStandard: String
+    override val sup: StringMeasurement = null,
+    kind: String = null,
+    TestStandard: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -276,16 +264,12 @@ extends
  */
 final case class AssetTemperaturePressureAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -352,18 +336,14 @@ extends
  */
 final case class CalculationMethodHierarchy
 (
-    override val sup: IdentifiedObject,
-    CalculationMethodOrder: List[String],
-    Measurement: List[String],
-    MeasurementValue: String
+    override val sup: IdentifiedObject = null,
+    CalculationMethodOrder: List[String] = List(),
+    Measurement: List[String] = List(),
+    MeasurementValue: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -444,18 +424,14 @@ extends
  */
 final case class CalculationMethodOrder
 (
-    override val sup: BasicElement,
-    order: Int,
-    CalculationMethodHierarchy: String,
-    StatisicalCalculation: String
+    override val sup: BasicElement = null,
+    order: Int = 0,
+    CalculationMethodHierarchy: String = null,
+    StatisicalCalculation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -533,16 +509,12 @@ extends
  */
 final case class InspectionAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -607,16 +579,12 @@ extends
  */
 final case class InspectionDiscrete
 (
-    override val sup: AssetDiscrete,
-    kind: String
+    override val sup: AssetDiscrete = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -681,16 +649,12 @@ extends
  */
 final case class OilAnalysisFluidAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -755,16 +719,12 @@ extends
  */
 final case class OilAnalysisFluidDiscrete
 (
-    override val sup: AssetDiscrete,
-    kind: String
+    override val sup: AssetDiscrete = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -829,16 +789,12 @@ extends
  */
 final case class OilAnalysisGasAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -903,16 +859,12 @@ extends
  */
 final case class OilAnalysisMetalsAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -977,16 +929,12 @@ extends
  */
 final case class OilAnalysisMoistureAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1051,16 +999,12 @@ extends
  */
 final case class OilAnalysisPCBAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1125,16 +1069,12 @@ extends
  */
 final case class OilAnalysisPCBDiscrete
 (
-    override val sup: AssetDiscrete,
-    kind: String
+    override val sup: AssetDiscrete = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1199,16 +1139,12 @@ extends
  */
 final case class OilAnalysisPaperAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1273,16 +1209,12 @@ extends
  */
 final case class OilAnalysisParticleAnalog
 (
-    override val sup: AssetAnalog,
-    kind: String
+    override val sup: AssetAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1347,16 +1279,12 @@ extends
  */
 final case class OilAnalysisParticleDiscrete
 (
-    override val sup: AssetDiscrete,
-    kind: String
+    override val sup: AssetDiscrete = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1426,17 +1354,13 @@ extends
  */
 final case class PeriodicStatisticalCalculation
 (
-    override val sup: StatisticalCalculation,
-    calculationIntervalMagnitude: Int,
-    calculationIntervalUnit: String
+    override val sup: StatisticalCalculation = null,
+    calculationIntervalMagnitude: Int = 0,
+    calculationIntervalUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -1508,18 +1432,14 @@ extends
  */
 final case class StatisticalCalculation
 (
-    override val sup: IdentifiedObject,
-    calculationMode: String,
-    calculationTechnique: String,
-    CalculationMethodOrder: List[String]
+    override val sup: IdentifiedObject = null,
+    calculationMode: String = null,
+    calculationTechnique: String = null,
+    CalculationMethodOrder: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *

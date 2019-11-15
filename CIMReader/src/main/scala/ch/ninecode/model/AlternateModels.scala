@@ -14,17 +14,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class AlternateModel
 (
-    override val sup: IdentifiedObject,
-    AlternateModelGroup: String,
-    Dataset: String
+    override val sup: IdentifiedObject = null,
+    AlternateModelGroup: String = null,
+    Dataset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -94,16 +90,12 @@ extends
  */
 final case class AlternateModelGroup
 (
-    override val sup: IdentifiedObject,
-    AlternateModel: List[String]
+    override val sup: IdentifiedObject = null,
+    AlternateModel: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

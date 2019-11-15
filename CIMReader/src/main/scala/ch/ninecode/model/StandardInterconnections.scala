@@ -29,25 +29,21 @@ In the interconnection diagrams, boxes which are black in colour represent funct
  */
 final case class RemoteInputSignal
 (
-    override val sup: IdentifiedObject,
-    remoteSignalType: String,
-    DiscontinuousExcitationControlDynamics: String,
-    PFVArControllerType1Dynamics: String,
-    PowerSystemStabilizerDynamics: String,
-    Terminal: String,
-    UnderexcitationLimiterDynamics: String,
-    VoltageCompensatorDynamics: String,
-    WindPlantDynamics: String,
-    WindTurbineType1or2Dynamics: String,
-    WindTurbineType3or4Dynamics: String
+    override val sup: IdentifiedObject = null,
+    remoteSignalType: String = null,
+    DiscontinuousExcitationControlDynamics: String = null,
+    PFVArControllerType1Dynamics: String = null,
+    PowerSystemStabilizerDynamics: String = null,
+    Terminal: String = null,
+    UnderexcitationLimiterDynamics: String = null,
+    VoltageCompensatorDynamics: String = null,
+    WindPlantDynamics: String = null,
+    WindTurbineType1or2Dynamics: String = null,
+    WindTurbineType3or4Dynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *

@@ -25,19 +25,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class BusNameMarker
 (
-    override val sup: IdentifiedObject,
-    priority: Int,
-    ReportingGroup: String,
-    Terminal: List[String],
-    TopologicalNode: String
+    override val sup: IdentifiedObject = null,
+    priority: Int = 0,
+    ReportingGroup: String = null,
+    Terminal: List[String] = List(),
+    TopologicalNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -128,17 +124,13 @@ extends
  */
 final case class TopologicalIsland
 (
-    override val sup: IdentifiedObject,
-    AngleRefTopologicalNode: String,
-    TopologicalNodes: List[String]
+    override val sup: IdentifiedObject = null,
+    AngleRefTopologicalNode: String = null,
+    TopologicalNodes: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -234,27 +226,23 @@ extends
  */
 final case class TopologicalNode
 (
-    override val sup: IdentifiedObject,
-    pInjection: Double,
-    qInjection: Double,
-    AngleRefTopologicalIsland: String,
-    BaseVoltage: String,
-    BusNameMarker: List[String],
-    ConnectivityNodeContainer: String,
-    ConnectivityNodes: List[String],
-    ReportingGroup: String,
-    SvInjection: List[String],
-    SvVoltage: List[String],
-    Terminal: List[String],
-    TopologicalIsland: String
+    override val sup: IdentifiedObject = null,
+    pInjection: Double = 0.0,
+    qInjection: Double = 0.0,
+    AngleRefTopologicalIsland: String = null,
+    BaseVoltage: String = null,
+    BusNameMarker: List[String] = List(),
+    ConnectivityNodeContainer: String = null,
+    ConnectivityNodes: List[String] = List(),
+    ReportingGroup: String = null,
+    SvInjection: List[String] = List(),
+    SvVoltage: List[String] = List(),
+    Terminal: List[String] = List(),
+    TopologicalIsland: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null, List(), null, List(), null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *

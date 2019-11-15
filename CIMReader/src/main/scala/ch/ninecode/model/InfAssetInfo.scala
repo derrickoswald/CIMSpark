@@ -20,17 +20,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class AssetModelCatalogue
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    AssetModelCatalogueItems: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    AssetModelCatalogueItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -110,20 +106,16 @@ extends
  */
 final case class AssetModelCatalogueItem
 (
-    override val sup: Document,
-    unitCost: Double,
-    AssetModel: String,
-    AssetModelCatalogue: String,
-    ErpPOLineItems: List[String],
-    ErpQuoteLineItems: List[String]
+    override val sup: Document = null,
+    unitCost: Double = 0.0,
+    AssetModel: String = null,
+    AssetModelCatalogue: String = null,
+    ErpPOLineItems: List[String] = List(),
+    ErpQuoteLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -212,16 +204,12 @@ extends
  */
 final case class BreakerInfo
 (
-    override val sup: OldSwitchInfo,
-    phaseTrip: Double
+    override val sup: OldSwitchInfo = null,
+    phaseTrip: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -294,24 +282,20 @@ extends
  */
 final case class CompositeSwitchInfo
 (
-    override val sup: AssetInfo,
-    ganged: Boolean,
-    initOpMode: String,
-    interruptingRating: Double,
-    kind: String,
-    phaseCode: String,
-    phaseCount: Int,
-    ratedVoltage: Double,
-    remote: Boolean,
-    switchStateCount: Int
+    override val sup: AssetInfo = null,
+    ganged: Boolean = false,
+    initOpMode: String = null,
+    interruptingRating: Double = 0.0,
+    kind: String = null,
+    phaseCode: String = null,
+    phaseCount: Int = 0,
+    ratedVoltage: Double = 0.0,
+    remote: Boolean = false,
+    switchStateCount: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, 0.0, null, null, 0, 0.0, false, 0) }
     /**
      * Return the superclass object.
      *
@@ -424,31 +408,27 @@ extends
  */
 final case class CurrentTransformerInfo
 (
-    override val sup: AssetInfo,
-    accuracyClass: String,
-    accuracyLimit: Double,
-    coreCount: Int,
-    ctClass: String,
-    kneePointCurrent: Double,
-    kneePointVoltage: Double,
-    maxRatio: String,
-    nominalRatio: String,
-    primaryFlsRating: Double,
-    primaryRatio: String,
-    ratedCurrent: Double,
-    secondaryFlsRating: Double,
-    secondaryRatio: String,
-    tertiaryFlsRating: Double,
-    tertiaryRatio: String,
-    usage: String
+    override val sup: AssetInfo = null,
+    accuracyClass: String = null,
+    accuracyLimit: Double = 0.0,
+    coreCount: Int = 0,
+    ctClass: String = null,
+    kneePointCurrent: Double = 0.0,
+    kneePointVoltage: Double = 0.0,
+    maxRatio: String = null,
+    nominalRatio: String = null,
+    primaryFlsRating: Double = 0.0,
+    primaryRatio: String = null,
+    ratedCurrent: Double = 0.0,
+    secondaryFlsRating: Double = 0.0,
+    secondaryRatio: String = null,
+    tertiaryFlsRating: Double = 0.0,
+    tertiaryRatio: String = null,
+    usage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0, null, 0.0, 0.0, null, null, 0.0, null, 0.0, 0.0, null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -574,16 +554,12 @@ extends
  */
 final case class FaultIndicatorInfo
 (
-    override val sup: AssetInfo,
-    resetKind: String
+    override val sup: AssetInfo = null,
+    resetKind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -655,22 +631,18 @@ extends
  */
 final case class OldSwitchInfo
 (
-    override val sup: SwitchInfo,
-    dielectricStrength: Double,
-    loadBreak: Boolean,
-    makingCapacity: Double,
-    minimumCurrent: Double,
-    poleCount: Int,
-    remote: Boolean,
-    withstandCurrent: Double
+    override val sup: SwitchInfo = null,
+    dielectricStrength: Double = 0.0,
+    loadBreak: Boolean = false,
+    makingCapacity: Double = 0.0,
+    minimumCurrent: Double = 0.0,
+    poleCount: Int = 0,
+    remote: Boolean = false,
+    withstandCurrent: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, 0.0, 0.0, 0, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -756,19 +728,15 @@ extends
  */
 final case class OldTransformerEndInfo
 (
-    override val sup: TransformerEndInfo,
-    dayOverLoadRating: Double,
-    hourOverLoadRating: Double,
-    solidInsulationWeight: Double,
-    windingInsulationKind: String
+    override val sup: TransformerEndInfo = null,
+    dayOverLoadRating: Double = 0.0,
+    hourOverLoadRating: Double = 0.0,
+    solidInsulationWeight: Double = 0.0,
+    windingInsulationKind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -843,21 +811,17 @@ extends
  */
 final case class OldTransformerTankInfo
 (
-    override val sup: TransformerTankInfo,
-    constructionKind: String,
-    coreCoilsWeight: Double,
-    coreKind: String,
-    function: String,
-    neutralBIL: Double,
-    oilPreservationKind: String
+    override val sup: TransformerTankInfo = null,
+    constructionKind: String = null,
+    coreCoilsWeight: Double = 0.0,
+    coreKind: String = null,
+    function: String = null,
+    neutralBIL: Double = 0.0,
+    oilPreservationKind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -949,22 +913,18 @@ extends
  */
 final case class PotentialTransformerInfo
 (
-    override val sup: AssetInfo,
-    accuracyClass: String,
-    nominalRatio: String,
-    primaryRatio: String,
-    ptClass: String,
-    ratedVoltage: Double,
-    secondaryRatio: String,
-    tertiaryRatio: String
+    override val sup: AssetInfo = null,
+    accuracyClass: String = null,
+    nominalRatio: String = null,
+    primaryRatio: String = null,
+    ptClass: String = null,
+    ratedVoltage: Double = 0.0,
+    secondaryRatio: String = null,
+    tertiaryRatio: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1055,17 +1015,13 @@ extends
  */
 final case class ProtectionEquipmentInfo
 (
-    override val sup: AssetInfo,
-    groundTrip: Double,
-    phaseTrip: Double
+    override val sup: AssetInfo = null,
+    groundTrip: Double = 0.0,
+    phaseTrip: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1138,20 +1094,16 @@ extends
  */
 final case class RecloserInfo
 (
-    override val sup: OldSwitchInfo,
-    groundTripCapable: Boolean,
-    groundTripNormalEnabled: Boolean,
-    groundTripRating: Double,
-    phaseTripRating: Double,
-    recloseLockoutCount: Int
+    override val sup: OldSwitchInfo = null,
+    groundTripCapable: Boolean = false,
+    groundTripNormalEnabled: Boolean = false,
+    groundTripRating: Double = 0.0,
+    phaseTripRating: Double = 0.0,
+    recloseLockoutCount: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, 0.0, 0.0, 0) }
     /**
      * Return the superclass object.
      *
@@ -1243,24 +1195,20 @@ extends
  */
 final case class SurgeArresterInfo
 (
-    override val sup: AssetInfo,
-    continuousOperatingVoltage: Double,
-    isPolymer: Boolean,
-    lightningImpulseDischargeVoltage: Double,
-    lineDischargeClass: Int,
-    nominalDischargeCurrent: Double,
-    pressureReliefClass: Double,
-    ratedVoltage: Double,
-    steepFrontDischargeVoltage: Double,
-    switchingImpulseDischargeVoltage: Double
+    override val sup: AssetInfo = null,
+    continuousOperatingVoltage: Double = 0.0,
+    isPolymer: Boolean = false,
+    lightningImpulseDischargeVoltage: Double = 0.0,
+    lineDischargeClass: Int = 0,
+    nominalDischargeCurrent: Double = 0.0,
+    pressureReliefClass: Double = 0.0,
+    ratedVoltage: Double = 0.0,
+    steepFrontDischargeVoltage: Double = 0.0,
+    switchingImpulseDischargeVoltage: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

@@ -21,18 +21,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class AltGeneratingUnitMeas
 (
-    override val sup: IdentifiedObject,
-    priority: Int,
-    AnalogValue: String,
-    ControlAreaGeneratingUnit: String
+    override val sup: IdentifiedObject = null,
+    priority: Int = 0,
+    AnalogValue: String = null,
+    ControlAreaGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -114,18 +110,14 @@ extends
  */
 final case class AltTieMeas
 (
-    override val sup: IdentifiedObject,
-    priority: Int,
-    AnalogValue: String,
-    TieFlow: String
+    override val sup: IdentifiedObject = null,
+    priority: Int = 0,
+    AnalogValue: String = null,
+    TieFlow: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -212,21 +204,17 @@ extends
  */
 final case class ControlArea
 (
-    override val sup: PowerSystemResource,
-    netInterchange: Double,
-    pTolerance: Double,
-    `type`: String,
-    ControlAreaGeneratingUnit: List[String],
-    EnergyArea: String,
-    TieFlow: List[String]
+    override val sup: PowerSystemResource = null,
+    netInterchange: Double = 0.0,
+    pTolerance: Double = 0.0,
+    `type`: String = null,
+    ControlAreaGeneratingUnit: List[String] = List(),
+    EnergyArea: String = null,
+    TieFlow: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -324,18 +312,14 @@ extends
  */
 final case class ControlAreaGeneratingUnit
 (
-    override val sup: IdentifiedObject,
-    AltGeneratingUnitMeas: List[String],
-    ControlArea: String,
-    GeneratingUnit: String
+    override val sup: IdentifiedObject = null,
+    AltGeneratingUnitMeas: List[String] = List(),
+    ControlArea: String = null,
+    GeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -419,19 +403,15 @@ extends
  */
 final case class TieFlow
 (
-    override val sup: IdentifiedObject,
-    positiveFlowIn: Boolean,
-    AltTieMeas: List[String],
-    ControlArea: String,
-    Terminal: String
+    override val sup: IdentifiedObject = null,
+    positiveFlowIn: Boolean = false,
+    AltTieMeas: List[String] = List(),
+    ControlArea: String = null,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List(), null, null) }
     /**
      * Return the superclass object.
      *

@@ -25,24 +25,20 @@ import ch.ninecode.cim.Relationship
  */
 final case class Delay
 (
-    override val sup: BasicElement,
-    tm: Double,
-    BlockingFunction: String,
-    DCvoltageControl: String,
-    PFmode: String,
-    Pcontrol: String,
-    Qlimiter: String,
-    Qmode: String,
-    Qregulator: String,
-    Umode: String
+    override val sup: BasicElement = null,
+    tm: Double = 0.0,
+    BlockingFunction: String = null,
+    DCvoltageControl: String = null,
+    PFmode: String = null,
+    Pcontrol: String = null,
+    Qlimiter: String = null,
+    Qmode: String = null,
+    Qregulator: String = null,
+    Umode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -147,20 +143,16 @@ extends
  */
 final case class HVDCLookUpTable
 (
-    override val sup: BasicElement,
-    functionKind: String,
-    input: Double,
-    output: Double,
-    sequence: Int,
-    Qregulator: String
+    override val sup: BasicElement = null,
+    functionKind: String = null,
+    input: Double = 0.0,
+    output: Double = 0.0,
+    sequence: Int = 0,
+    Qregulator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0, null) }
     /**
      * Return the superclass object.
      *

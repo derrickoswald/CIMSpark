@@ -21,16 +21,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class ComplianceEvent
 (
-    override val sup: ActivityRecord,
-    deadline: String
+    override val sup: ActivityRecord = null,
+    deadline: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -113,25 +109,21 @@ extends
  */
 final case class CustomerBillingInfo
 (
-    override val sup: Document,
-    billingDate: String,
-    dueDate: String,
-    kind: String,
-    lastPaymentAmt: Double,
-    lastPaymentDate: String,
-    outBalance: Double,
-    pymtPlanAmt: Double,
-    pymtPlanType: String,
-    CustomerAccount: String,
-    ErpInvoiceLineItems: List[String]
+    override val sup: Document = null,
+    billingDate: String = null,
+    dueDate: String = null,
+    kind: String = null,
+    lastPaymentAmt: Double = 0.0,
+    lastPaymentDate: String = null,
+    outBalance: Double = 0.0,
+    pymtPlanAmt: Double = 0.0,
+    pymtPlanType: String = null,
+    CustomerAccount: String = null,
+    ErpInvoiceLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -240,15 +232,11 @@ extends
  */
 final case class ExternalCustomerAgreement
 (
-    override val sup: Agreement
+    override val sup: Agreement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -311,24 +299,20 @@ extends
  */
 final case class PowerQualityPricing
 (
-    override val sup: Document,
-    emergencyHighVoltLimit: Double,
-    emergencyLowVoltLimit: Double,
-    normalHighVoltLimit: Double,
-    normalLowVoltLimit: Double,
-    powerFactorMin: Double,
-    valueUninterruptedServiceEnergy: Double,
-    valueUninterruptedServiceP: Double,
-    voltImbalanceViolCost: Double,
-    voltLimitViolCost: Double
+    override val sup: Document = null,
+    emergencyHighVoltLimit: Double = 0.0,
+    emergencyLowVoltLimit: Double = 0.0,
+    normalHighVoltLimit: Double = 0.0,
+    normalLowVoltLimit: Double = 0.0,
+    powerFactorMin: Double = 0.0,
+    valueUninterruptedServiceEnergy: Double = 0.0,
+    valueUninterruptedServiceP: Double = 0.0,
+    voltImbalanceViolCost: Double = 0.0,
+    voltLimitViolCost: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -434,19 +418,15 @@ extends
  */
 final case class ServiceGuarantee
 (
-    override val sup: Document,
-    applicationPeriod: String,
-    automaticPay: Boolean,
-    payAmount: Double,
-    serviceRequirement: String
+    override val sup: Document = null,
+    applicationPeriod: String = null,
+    automaticPay: Boolean = false,
+    payAmount: Double = 0.0,
+    serviceRequirement: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -529,17 +509,13 @@ extends
  */
 final case class StandardIndustryCode
 (
-    override val sup: Document,
-    code: String,
-    CustomerAgreements: List[String]
+    override val sup: Document = null,
+    code: String = null,
+    CustomerAgreements: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -612,15 +588,11 @@ extends
  */
 final case class SubscribePowerCurve
 (
-    override val sup: Curve
+    override val sup: Curve = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -686,25 +658,21 @@ extends
  */
 final case class WorkBillingInfo
 (
-    override val sup: Document,
-    costEstimate: Double,
-    deposit: Double,
-    discount: Double,
-    dueDateTime: String,
-    issueDateTime: String,
-    receivedDateTime: String,
-    workPrice: Double,
-    CustomerAccount: String,
-    ErpLineItems: List[String],
-    Works: List[String]
+    override val sup: Document = null,
+    costEstimate: Double = 0.0,
+    deposit: Double = 0.0,
+    discount: Double = 0.0,
+    dueDateTime: String = null,
+    issueDateTime: String = null,
+    receivedDateTime: String = null,
+    workPrice: Double = 0.0,
+    CustomerAccount: String = null,
+    ErpLineItems: List[String] = List(),
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, null, null, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *

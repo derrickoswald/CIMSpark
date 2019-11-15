@@ -26,17 +26,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBOM
 (
-    override val sup: ErpDocument,
-    Design: String,
-    ErpBomItemDatas: List[String]
+    override val sup: ErpDocument = null,
+    Design: String = null,
+    ErpBomItemDatas: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -120,16 +116,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBankAccount
 (
-    override val sup: BankAccount,
-    bankABA: String
+    override val sup: BankAccount = null,
+    bankABA: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -202,18 +194,14 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBomItemData
 (
-    override val sup: ErpIdentifiedObject,
-    DesignLocation: String,
-    ErpBOM: String,
-    TypeAsset: String
+    override val sup: ErpIdentifiedObject = null,
+    DesignLocation: String = null,
+    ErpBOM: String = null,
+    TypeAsset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -298,15 +286,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpChartOfAccounts
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -368,16 +352,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpCompetency
 (
-    override val sup: ErpIdentifiedObject,
-    ErpPersons: List[String]
+    override val sup: ErpIdentifiedObject = null,
+    ErpPersons: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -452,15 +432,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpDocument
 (
-    override val sup: Document
+    override val sup: Document = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -519,15 +495,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpEngChangeOrder
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -588,15 +560,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpIdentifiedObject
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -659,17 +627,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInventory
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    Asset: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    Asset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -750,16 +714,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInventoryCount
 (
-    override val sup: ErpIdentifiedObject,
-    status: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -843,26 +803,22 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInvoice
 (
-    override val sup: ErpDocument,
-    amount: Double,
-    billMediaKind: String,
-    dueDate: String,
-    kind: String,
-    mailedDate: String,
-    proForma: Boolean,
-    referenceNumber: String,
-    transactionDateTime: String,
-    transferType: String,
-    CustomerAccount: String,
-    ErpInvoiceLineItems: List[String]
+    override val sup: ErpDocument = null,
+    amount: Double = 0.0,
+    billMediaKind: String = null,
+    dueDate: String = null,
+    kind: String = null,
+    mailedDate: String = null,
+    proForma: Boolean = false,
+    referenceNumber: String = null,
+    transactionDateTime: String = null,
+    transferType: String = null,
+    CustomerAccount: String = null,
+    ErpInvoiceLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -999,36 +955,32 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInvoiceLineItem
 (
-    override val sup: ErpDocument,
-    billPeriod: String,
-    glAccount: String,
-    glDateTime: String,
-    kind: String,
-    lineAmount: Double,
-    lineNumber: String,
-    lineVersion: String,
-    netAmount: Double,
-    previousAmount: Double,
-    ComponentErpInvoiceLineItems: List[String],
-    ContainerErpInvoiceLineItem: String,
-    CustomerBillingInfos: List[String],
-    ErpInvoice: String,
-    ErpJournalEntries: List[String],
-    ErpPayableLineItem: String,
-    ErpPayments: List[String],
-    ErpQuoteLineItem: String,
-    ErpRecDelvLineItem: String,
-    ErpRecLineItem: String,
-    UserAttributes: List[String],
-    WorkBillingInfos: List[String]
+    override val sup: ErpDocument = null,
+    billPeriod: String = null,
+    glAccount: String = null,
+    glDateTime: String = null,
+    kind: String = null,
+    lineAmount: Double = 0.0,
+    lineNumber: String = null,
+    lineVersion: String = null,
+    netAmount: Double = 0.0,
+    previousAmount: Double = 0.0,
+    ComponentErpInvoiceLineItems: List[String] = List(),
+    ContainerErpInvoiceLineItem: String = null,
+    CustomerBillingInfos: List[String] = List(),
+    ErpInvoice: String = null,
+    ErpJournalEntries: List[String] = List(),
+    ErpPayableLineItem: String = null,
+    ErpPayments: List[String] = List(),
+    ErpQuoteLineItem: String = null,
+    ErpRecDelvLineItem: String = null,
+    ErpRecLineItem: String = null,
+    UserAttributes: List[String] = List(),
+    WorkBillingInfos: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, List(), null, List(), null, List(), null, List(), null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1197,18 +1149,14 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpIssueInventory
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    TypeAsset: String,
-    TypeMaterial: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    TypeAsset: String = null,
+    TypeMaterial: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1294,17 +1242,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpItemMaster
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    Asset: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    Asset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1385,16 +1329,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpJournal
 (
-    override val sup: ErpDocument,
-    ErpJournalEntries: List[String]
+    override val sup: ErpDocument = null,
+    ErpJournalEntries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1479,27 +1419,23 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpJournalEntry
 (
-    override val sup: ErpIdentifiedObject,
-    accountID: String,
-    amount: Double,
-    postingDateTime: String,
-    sourceID: String,
-    status: String,
-    transactionDateTime: String,
-    CostTypes: List[String],
-    ErpInvoiceLineItem: String,
-    ErpJournal: String,
-    ErpLedgerEntry: String,
-    ErpPayableLineItems: List[String],
-    ErpRecLineItems: List[String]
+    override val sup: ErpIdentifiedObject = null,
+    accountID: String = null,
+    amount: Double = 0.0,
+    postingDateTime: String = null,
+    sourceID: String = null,
+    status: String = null,
+    transactionDateTime: String = null,
+    CostTypes: List[String] = List(),
+    ErpInvoiceLineItem: String = null,
+    ErpJournal: String = null,
+    ErpLedgerEntry: String = null,
+    ErpPayableLineItems: List[String] = List(),
+    ErpRecLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, null, null, List(), null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1626,18 +1562,14 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedBudLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    ErpLedBudLineItem_attr: String,
-    ErpLedgerBudget: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    ErpLedBudLineItem_attr: String = null,
+    ErpLedgerBudget: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1722,16 +1654,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedger
 (
-    override val sup: ErpDocument,
-    ErpLedgerEntries: List[String]
+    override val sup: ErpDocument = null,
+    ErpLedgerEntries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1807,16 +1735,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedgerBudget
 (
-    override val sup: ErpDocument,
-    ErpLedBudLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpLedBudLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1899,25 +1823,21 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedgerEntry
 (
-    override val sup: ErpIdentifiedObject,
-    accountID: String,
-    accountKind: String,
-    amount: Double,
-    postedDateTime: String,
-    status: String,
-    transactionDateTime: String,
-    ErpJounalEntry: String,
-    ErpLedger: String,
-    ErpLedgerEntry_attr: String,
-    UserAttributes: List[String]
+    override val sup: ErpIdentifiedObject = null,
+    accountID: String = null,
+    accountKind: String = null,
+    amount: Double = 0.0,
+    postedDateTime: String = null,
+    status: String = null,
+    transactionDateTime: String = null,
+    ErpJounalEntry: String = null,
+    ErpLedger: String = null,
+    ErpLedgerEntry_attr: String = null,
+    UserAttributes: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2035,19 +1955,15 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPOLineItem
 (
-    override val sup: ErpDocument,
-    AssetModelCatalogueItem: String,
-    ErpPurchaseOrder: String,
-    ErpRecDelLineItem: String,
-    ErpReqLineItem: String
+    override val sup: ErpDocument = null,
+    AssetModelCatalogueItem: String = null,
+    ErpPurchaseOrder: String = null,
+    ErpRecDelLineItem: String = null,
+    ErpReqLineItem: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2139,17 +2055,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayable
 (
-    override val sup: ErpDocument,
-    ContractorItems: List[String],
-    ErpPayableLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ContractorItems: List[String] = List(),
+    ErpPayableLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2232,20 +2144,16 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayableLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    ErpInvoiceLineItem: String,
-    ErpJournalEntries: List[String],
-    ErpPayable: String,
-    ErpPayments: List[String]
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    ErpInvoiceLineItem: String = null,
+    ErpJournalEntries: List[String] = List(),
+    ErpPayable: String = null,
+    ErpPayments: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2344,19 +2252,15 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayment
 (
-    override val sup: ErpDocument,
-    termsPayment: String,
-    ErpInvoiceLineItems: List[String],
-    ErpPayableLineItems: List[String],
-    ErpRecLineItems: List[String]
+    override val sup: ErpDocument = null,
+    termsPayment: String = null,
+    ErpInvoiceLineItems: List[String] = List(),
+    ErpPayableLineItems: List[String] = List(),
+    ErpRecLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2446,17 +2350,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPersonnel
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    ErpPersons: List[String]
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    ErpPersons: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2540,19 +2440,15 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpProjectAccounting
 (
-    override val sup: ErpDocument,
-    ErpTimeEntries: List[String],
-    Projects: List[String],
-    WorkCostDetails: List[String],
-    Works: List[String]
+    override val sup: ErpDocument = null,
+    ErpTimeEntries: List[String] = List(),
+    Projects: List[String] = List(),
+    WorkCostDetails: List[String] = List(),
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2643,16 +2539,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPurchaseOrder
 (
-    override val sup: ErpDocument,
-    ErpPOLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpPOLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2728,16 +2620,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpQuote
 (
-    override val sup: ErpDocument,
-    ErpQuoteLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpQuoteLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2817,21 +2705,17 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpQuoteLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    AssetModelCatalogueItem: String,
-    Design: String,
-    ErpInvoiceLineItem: String,
-    ErpQuote: String,
-    ErpReqLineItem: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    AssetModelCatalogueItem: String = null,
+    Design: String = null,
+    ErpInvoiceLineItem: String = null,
+    ErpQuote: String = null,
+    ErpReqLineItem: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2935,20 +2819,16 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRecDelvLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    Assets: List[String],
-    ErpInvoiceLineItem: String,
-    ErpPOLineItem: String,
-    ErpReceiveDelivery: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    Assets: List[String] = List(),
+    ErpInvoiceLineItem: String = null,
+    ErpPOLineItem: String = null,
+    ErpReceiveDelivery: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3046,20 +2926,16 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRecLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    ErpInvoiceLineItem: String,
-    ErpJournalEntries: List[String],
-    ErpPayments: List[String],
-    ErpReceivable: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    ErpInvoiceLineItem: String = null,
+    ErpJournalEntries: List[String] = List(),
+    ErpPayments: List[String] = List(),
+    ErpReceivable: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3155,16 +3031,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReceivable
 (
-    override val sup: ErpDocument,
-    ErpRecLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpRecLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3240,16 +3112,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReceiveDelivery
 (
-    override val sup: ErpDocument,
-    ErpRecDelvLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpRecDelvLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3332,25 +3200,21 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReqLineItem
 (
-    override val sup: ErpIdentifiedObject,
-    code: String,
-    cost: Double,
-    deliveryDate: String,
-    quantity: Int,
-    status: String,
-    ErpPOLineItem: String,
-    ErpQuoteLineItem: String,
-    ErpRequisition: String,
-    TypeAsset: String,
-    TypeMaterial: String
+    override val sup: ErpIdentifiedObject = null,
+    code: String = null,
+    cost: Double = 0.0,
+    deliveryDate: String = null,
+    quantity: Int = 0,
+    status: String = null,
+    ErpPOLineItem: String = null,
+    ErpQuoteLineItem: String = null,
+    ErpRequisition: String = null,
+    TypeAsset: String = null,
+    TypeMaterial: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, 0, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3467,16 +3331,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRequisition
 (
-    override val sup: ErpDocument,
-    ErpReqLineItems: List[String]
+    override val sup: ErpDocument = null,
+    ErpReqLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3551,15 +3411,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpSalesOrder
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -3622,17 +3478,13 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpSiteLevelData
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    LandProperty: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    LandProperty: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3712,18 +3564,14 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpTimeEntry
 (
-    override val sup: ErpIdentifiedObject,
-    status: String,
-    ErpProjectAccounting: String,
-    ErpTimeSheet: String
+    override val sup: ErpIdentifiedObject = null,
+    status: String = null,
+    ErpProjectAccounting: String = null,
+    ErpTimeSheet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3808,16 +3656,12 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpTimeSheet
 (
-    override val sup: ErpDocument,
-    ErpTimeEntries: List[String]
+    override val sup: ErpDocument = null,
+    ErpTimeEntries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

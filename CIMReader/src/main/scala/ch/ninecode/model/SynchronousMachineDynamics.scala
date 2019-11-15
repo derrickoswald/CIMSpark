@@ -32,19 +32,15 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineDetailed
 (
-    override val sup: SynchronousMachineDynamics,
-    efdBaseRatio: Double,
-    ifdBaseType: String,
-    saturationFactor120QAxis: Double,
-    saturationFactorQAxis: Double
+    override val sup: SynchronousMachineDynamics = null,
+    efdBaseRatio: Double = 0.0,
+    ifdBaseType: String = null,
+    saturationFactor120QAxis: Double = 0.0,
+    saturationFactorQAxis: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -142,22 +138,18 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineDynamics
 (
-    override val sup: RotatingMachineDynamics,
-    CrossCompoundTurbineGovernorDyanmics: String,
-    CrossCompoundTurbineGovernorDynamics: String,
-    ExcitationSystemDynamics: String,
-    GenICompensationForGenJ: List[String],
-    MechanicalLoadDynamics: String,
-    SynchronousMachine: String,
-    TurbineGovernorDynamics: List[String]
+    override val sup: RotatingMachineDynamics = null,
+    CrossCompoundTurbineGovernorDyanmics: String = null,
+    CrossCompoundTurbineGovernorDynamics: String = null,
+    ExcitationSystemDynamics: String = null,
+    GenICompensationForGenJ: List[String] = List(),
+    MechanicalLoadDynamics: String = null,
+    SynchronousMachine: String = null,
+    TurbineGovernorDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -292,26 +284,22 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineEquivalentCircuit
 (
-    override val sup: SynchronousMachineDetailed,
-    r1d: Double,
-    r1q: Double,
-    r2q: Double,
-    rfd: Double,
-    x1d: Double,
-    x1q: Double,
-    x2q: Double,
-    xad: Double,
-    xaq: Double,
-    xf1d: Double,
-    xfd: Double
+    override val sup: SynchronousMachineDetailed = null,
+    r1d: Double = 0.0,
+    r1q: Double = 0.0,
+    r2q: Double = 0.0,
+    rfd: Double = 0.0,
+    x1d: Double = 0.0,
+    x1q: Double = 0.0,
+    x2q: Double = 0.0,
+    xad: Double = 0.0,
+    xaq: Double = 0.0,
+    xf1d: Double = 0.0,
+    xfd: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -425,15 +413,11 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineSimplified
 (
-    override val sup: SynchronousMachineDynamics
+    override val sup: SynchronousMachineDynamics = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -543,29 +527,25 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineTimeConstantReactance
 (
-    override val sup: SynchronousMachineDetailed,
-    ks: Double,
-    modelType: String,
-    rotorType: String,
-    tc: Double,
-    tpdo: Double,
-    tppdo: Double,
-    tppqo: Double,
-    tpqo: Double,
-    xDirectSubtrans: Double,
-    xDirectSync: Double,
-    xDirectTrans: Double,
-    xQuadSubtrans: Double,
-    xQuadSync: Double,
-    xQuadTrans: Double
+    override val sup: SynchronousMachineDetailed = null,
+    ks: Double = 0.0,
+    modelType: String = null,
+    rotorType: String = null,
+    tc: Double = 0.0,
+    tpdo: Double = 0.0,
+    tppdo: Double = 0.0,
+    tppqo: Double = 0.0,
+    tpqo: Double = 0.0,
+    xDirectSubtrans: Double = 0.0,
+    xDirectSync: Double = 0.0,
+    xDirectTrans: Double = 0.0,
+    xQuadSubtrans: Double = 0.0,
+    xQuadSync: Double = 0.0,
+    xQuadTrans: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

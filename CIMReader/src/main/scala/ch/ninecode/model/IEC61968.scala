@@ -21,17 +21,13 @@ Currently, normative parts of the model support the needs of information exchang
  */
 final case class IEC61968CIMVersion
 (
-    override val sup: BasicElement,
-    date: String,
-    version: String
+    override val sup: BasicElement = null,
+    date: String = null,
+    version: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

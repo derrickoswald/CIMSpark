@@ -26,17 +26,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class AsynchronousMachineUserDefined
 (
-    override val sup: AsynchronousMachineDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: AsynchronousMachineDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -118,17 +114,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class CSCUserDefined
 (
-    override val sup: CSCDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: CSCDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -210,17 +202,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class DiscontinuousExcitationControlUserDefined
 (
-    override val sup: DiscontinuousExcitationControlDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: DiscontinuousExcitationControlDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -302,17 +290,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class ExcitationSystemUserDefined
 (
-    override val sup: ExcitationSystemDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: ExcitationSystemDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -394,17 +378,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class LoadUserDefined
 (
-    override val sup: LoadDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: LoadDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -486,17 +466,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class MechanicalLoadUserDefined
 (
-    override val sup: MechanicalLoadDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: MechanicalLoadDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -578,17 +554,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class OverexcitationLimiterUserDefined
 (
-    override val sup: OverexcitationLimiterDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: OverexcitationLimiterDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -670,17 +642,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PFVArControllerType1UserDefined
 (
-    override val sup: PFVArControllerType1Dynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: PFVArControllerType1Dynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -762,17 +730,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PFVArControllerType2UserDefined
 (
-    override val sup: PFVArControllerType2Dynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: PFVArControllerType2Dynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -854,17 +818,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PowerSystemStabilizerUserDefined
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: PowerSystemStabilizerDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -972,40 +932,36 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class ProprietaryParameterDynamics
 (
-    override val sup: BasicElement,
-    booleanParameterValue: Boolean,
-    floatParameterValue: Double,
-    integerParameterValue: Int,
-    parameterNumber: Int,
-    AsynchronousMachineUserDefined: String,
-    CSCUserDefined: String,
-    DiscontinuousExcitationControlUserDefined: String,
-    ExcitationSystemUserDefined: String,
-    LoadUserDefined: String,
-    MechanicalLoadUserDefined: String,
-    OverexcitationLimiterUserDefined: String,
-    PFVArControllerType1UserDefined: String,
-    PFVArControllerType2UserDefined: String,
-    PowerSystemStabilizerUserDefined: String,
-    SVCUserDefined: String,
-    SynchronousMachineUserDefined: String,
-    TurbineGovernorUserDefined: String,
-    TurbineLoadControllerUserDefined: String,
-    UnderexcitationLimiterUserDefined: String,
-    VSCUserDefined: String,
-    VoltageAdjusterUserDefined: String,
-    VoltageCompensatorUserDefined: String,
-    WindPlantUserDefined: String,
-    WindType1or2UserDefined: String,
-    WindType3or4UserDefined: String
+    override val sup: BasicElement = null,
+    booleanParameterValue: Boolean = false,
+    floatParameterValue: Double = 0.0,
+    integerParameterValue: Int = 0,
+    parameterNumber: Int = 0,
+    AsynchronousMachineUserDefined: String = null,
+    CSCUserDefined: String = null,
+    DiscontinuousExcitationControlUserDefined: String = null,
+    ExcitationSystemUserDefined: String = null,
+    LoadUserDefined: String = null,
+    MechanicalLoadUserDefined: String = null,
+    OverexcitationLimiterUserDefined: String = null,
+    PFVArControllerType1UserDefined: String = null,
+    PFVArControllerType2UserDefined: String = null,
+    PowerSystemStabilizerUserDefined: String = null,
+    SVCUserDefined: String = null,
+    SynchronousMachineUserDefined: String = null,
+    TurbineGovernorUserDefined: String = null,
+    TurbineLoadControllerUserDefined: String = null,
+    UnderexcitationLimiterUserDefined: String = null,
+    VSCUserDefined: String = null,
+    VoltageAdjusterUserDefined: String = null,
+    VoltageCompensatorUserDefined: String = null,
+    WindPlantUserDefined: String = null,
+    WindType1or2UserDefined: String = null,
+    WindType3or4UserDefined: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1199,17 +1155,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class SVCUserDefined
 (
-    override val sup: StaticVarCompensatorDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: StaticVarCompensatorDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1291,17 +1243,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class SynchronousMachineUserDefined
 (
-    override val sup: SynchronousMachineDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: SynchronousMachineDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1383,17 +1331,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class TurbineGovernorUserDefined
 (
-    override val sup: TurbineGovernorDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: TurbineGovernorDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1475,17 +1419,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class TurbineLoadControllerUserDefined
 (
-    override val sup: TurbineLoadControllerDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: TurbineLoadControllerDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1567,17 +1507,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class UnderexcitationLimiterUserDefined
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: UnderexcitationLimiterDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1659,17 +1595,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VSCUserDefined
 (
-    override val sup: VSCDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: VSCDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1751,17 +1683,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VoltageAdjusterUserDefined
 (
-    override val sup: VoltageAdjusterDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: VoltageAdjusterDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1843,17 +1771,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VoltageCompensatorUserDefined
 (
-    override val sup: VoltageCompensatorDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: VoltageCompensatorDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1935,17 +1859,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindPlantUserDefined
 (
-    override val sup: WindPlantDynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: WindPlantDynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -2027,17 +1947,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindType1or2UserDefined
 (
-    override val sup: WindTurbineType1or2Dynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: WindTurbineType1or2Dynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -2119,17 +2035,13 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindType3or4UserDefined
 (
-    override val sup: WindTurbineType3or4Dynamics,
-    proprietary: Boolean,
-    ProprietaryParameterDynamics: List[String]
+    override val sup: WindTurbineType3or4Dynamics = null,
+    proprietary: Boolean = false,
+    ProprietaryParameterDynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *

@@ -21,18 +21,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class TiePoint
 (
-    override val sup: IdentifiedObject,
-    tiePointMWRating: Double,
-    ByMktMeasurement: List[String],
-    ForMktMeasurement: List[String]
+    override val sup: IdentifiedObject = null,
+    tiePointMWRating: Double = 0.0,
+    ByMktMeasurement: List[String] = List(),
+    ForMktMeasurement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *

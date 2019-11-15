@@ -21,18 +21,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class PFVArControllerType1Dynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String,
-    RemoteInputSignal: String,
-    VoltageAdjusterDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null,
+    RemoteInputSignal: String = null,
+    VoltageAdjusterDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -125,23 +121,19 @@ extends
  */
 final case class PFVArType1IEEEPFController
 (
-    override val sup: PFVArControllerType1Dynamics,
-    ovex: Boolean,
-    tpfc: Double,
-    vitmin: Double,
-    vpf: Double,
-    vpfcbw: Double,
-    vpfref: Double,
-    vvtmax: Double,
-    vvtmin: Double
+    override val sup: PFVArControllerType1Dynamics = null,
+    ovex: Boolean = false,
+    tpfc: Double = 0.0,
+    vitmin: Double = 0.0,
+    vpf: Double = 0.0,
+    vpfcbw: Double = 0.0,
+    vpfref: Double = 0.0,
+    vvtmax: Double = 0.0,
+    vvtmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -245,21 +237,17 @@ extends
  */
 final case class PFVArType1IEEEVArController
 (
-    override val sup: PFVArControllerType1Dynamics,
-    tvarc: Double,
-    vvar: Double,
-    vvarcbw: Double,
-    vvarref: Double,
-    vvtmax: Double,
-    vvtmin: Double
+    override val sup: PFVArControllerType1Dynamics = null,
+    tvarc: Double = 0.0,
+    vvar: Double = 0.0,
+    vvarcbw: Double = 0.0,
+    vvarref: Double = 0.0,
+    vvtmax: Double = 0.0,
+    vvtmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

@@ -20,16 +20,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class EquipmentFault
 (
-    override val sup: Fault,
-    Terminal: String
+    override val sup: Fault = null,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -107,23 +103,19 @@ extends
  */
 final case class Fault
 (
-    override val sup: IdentifiedObject,
-    impedance: String,
-    kind: String,
-    occurredDateTime: String,
-    phases: String,
-    FaultCauseTypes: List[String],
-    FaultyEquipment: String,
-    Location: String,
-    Outage: String
+    override val sup: IdentifiedObject = null,
+    impedance: String = null,
+    kind: String = null,
+    occurredDateTime: String = null,
+    phases: String = null,
+    FaultCauseTypes: List[String] = List(),
+    FaultyEquipment: String = null,
+    Location: String = null,
+    Outage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -227,17 +219,13 @@ extends
  */
 final case class FaultCauseType
 (
-    override val sup: IdentifiedObject,
-    ConfigurationEvent: List[String],
-    Faults: List[String]
+    override val sup: IdentifiedObject = null,
+    ConfigurationEvent: List[String] = List(),
+    Faults: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -314,19 +302,15 @@ extends
  */
 final case class FaultImpedance
 (
-    override val sup: BasicElement,
-    rGround: Double,
-    rLineToLine: Double,
-    xGround: Double,
-    xLineToLine: Double
+    override val sup: BasicElement = null,
+    rGround: Double = 0.0,
+    rLineToLine: Double = 0.0,
+    xGround: Double = 0.0,
+    xLineToLine: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -405,17 +389,13 @@ extends
  */
 final case class LineFault
 (
-    override val sup: Fault,
-    lengthFromTerminal1: Double,
-    ACLineSegment: String
+    override val sup: Fault = null,
+    lengthFromTerminal1: Double = 0.0,
+    ACLineSegment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *

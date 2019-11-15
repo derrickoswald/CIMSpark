@@ -26,22 +26,18 @@ import ch.ninecode.cim.Relationship
  */
 final case class Diagram
 (
-    override val sup: IdentifiedObject,
-    orientation: String,
-    x1InitialView: Double,
-    x2InitialView: Double,
-    y1InitialView: Double,
-    y2InitialView: Double,
-    DiagramElements: List[String],
-    DiagramStyle: String
+    override val sup: IdentifiedObject = null,
+    orientation: String = null,
+    x1InitialView: Double = 0.0,
+    x2InitialView: Double = 0.0,
+    y1InitialView: Double = 0.0,
+    y2InitialView: Double = 0.0,
+    DiagramElements: List[String] = List(),
+    DiagramStyle: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -158,25 +154,21 @@ extends
  */
 final case class DiagramObject
 (
-    override val sup: IdentifiedObject,
-    drawingOrder: Int,
-    isPolygon: Boolean,
-    offsetX: Double,
-    offsetY: Double,
-    rotation: Double,
-    Diagram: String,
-    DiagramObjectPoints: List[String],
-    DiagramObjectStyle: String,
-    IdentifiedObject_attr: String,
-    VisibilityLayers: List[String]
+    override val sup: IdentifiedObject = null,
+    drawingOrder: Int = 0,
+    isPolygon: Boolean = false,
+    offsetX: Double = 0.0,
+    offsetY: Double = 0.0,
+    rotation: Double = 0.0,
+    Diagram: String = null,
+    DiagramObjectPoints: List[String] = List(),
+    DiagramObjectStyle: String = null,
+    IdentifiedObject_attr: String = null,
+    VisibilityLayers: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -287,16 +279,12 @@ extends
  */
 final case class DiagramObjectGluePoint
 (
-    override val sup: BasicElement,
-    DiagramObjectPoints: List[String]
+    override val sup: BasicElement = null,
+    DiagramObjectPoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -372,21 +360,17 @@ extends
  */
 final case class DiagramObjectPoint
 (
-    override val sup: BasicElement,
-    sequenceNumber: Int,
-    xPosition: Double,
-    yPosition: Double,
-    zPosition: Double,
-    DiagramObject: String,
-    DiagramObjectGluePoint: String
+    override val sup: BasicElement = null,
+    sequenceNumber: Int = 0,
+    xPosition: Double = 0.0,
+    yPosition: Double = 0.0,
+    zPosition: Double = 0.0,
+    DiagramObject: String = null,
+    DiagramObjectGluePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -479,16 +463,12 @@ extends
  */
 final case class DiagramObjectStyle
 (
-    override val sup: IdentifiedObject,
-    StyledObjects: List[String]
+    override val sup: IdentifiedObject = null,
+    StyledObjects: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -559,16 +539,12 @@ extends
  */
 final case class DiagramStyle
 (
-    override val sup: IdentifiedObject,
-    Diagram: List[String]
+    override val sup: IdentifiedObject = null,
+    Diagram: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -637,16 +613,12 @@ extends
  */
 final case class TextDiagramObject
 (
-    override val sup: DiagramObject,
-    text: String
+    override val sup: DiagramObject = null,
+    text: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -718,17 +690,13 @@ extends
  */
 final case class VisibilityLayer
 (
-    override val sup: IdentifiedObject,
-    drawingOrder: Int,
-    VisibleObjects: List[String]
+    override val sup: IdentifiedObject = null,
+    drawingOrder: Int = 0,
+    VisibleObjects: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, List()) }
     /**
      * Return the superclass object.
      *

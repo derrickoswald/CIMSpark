@@ -14,17 +14,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class ADSInstructionTypeCommitment
 (
-    override val sup: BasicElement,
-    SHUT_DOWN: String,
-    START_UP: String
+    override val sup: BasicElement = null,
+    SHUT_DOWN: String = null,
+    START_UP: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -98,18 +94,14 @@ extends
  */
 final case class ADSInstructionTypeOOS
 (
-    override val sup: BasicElement,
-    FIXED_CONSTRAINT: String,
-    MAX_CONSTRAINT: String,
-    MIN_CONSTRAINT: String
+    override val sup: BasicElement = null,
+    FIXED_CONSTRAINT: String = null,
+    MAX_CONSTRAINT: String = null,
+    MIN_CONSTRAINT: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -185,17 +177,13 @@ extends
  */
 final case class AdderType
 (
-    override val sup: BasicElement,
-    BASELINE: String,
-    NEGOTIATED: String
+    override val sup: BasicElement = null,
+    BASELINE: String = null,
+    NEGOTIATED: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -261,18 +249,14 @@ extends
  */
 final case class AlarmDisplayType
 (
-    override val sup: BasicElement,
-    Appear: String,
-    Disappear: String,
-    Fleeting: String
+    override val sup: BasicElement = null,
+    Appear: String = null,
+    Disappear: String = null,
+    Fleeting: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -342,51 +326,47 @@ extends
  */
 final case class AllocationEnergyTypeCode
 (
-    override val sup: BasicElement,
-    ACNG: String,
-    BS: String,
-    DAPE: String,
-    DASE: String,
-    ESRT: String,
-    ESYS: String,
-    ETC: String,
-    HASE: String,
-    LMPM: String,
-    MINL: String,
-    MLE: String,
-    MSSLFE: String,
-    OE: String,
-    OTHER: String,
-    OVGN: String,
-    PE: String,
-    RCNG: String,
-    RE: String,
-    RED: String,
-    RMRD: String,
-    RMRH: String,
-    RMRR: String,
-    RMRS: String,
-    RMRT: String,
-    RSYS: String,
-    RTSSE: String,
-    SDWN: String,
-    SE: String,
-    SLIC: String,
-    SRE: String,
-    STRT: String,
-    SUMR: String,
-    TCNG: String,
-    TEST: String,
-    TOR: String,
-    VS: String
+    override val sup: BasicElement = null,
+    ACNG: String = null,
+    BS: String = null,
+    DAPE: String = null,
+    DASE: String = null,
+    ESRT: String = null,
+    ESYS: String = null,
+    ETC: String = null,
+    HASE: String = null,
+    LMPM: String = null,
+    MINL: String = null,
+    MLE: String = null,
+    MSSLFE: String = null,
+    OE: String = null,
+    OTHER: String = null,
+    OVGN: String = null,
+    PE: String = null,
+    RCNG: String = null,
+    RE: String = null,
+    RED: String = null,
+    RMRD: String = null,
+    RMRH: String = null,
+    RMRR: String = null,
+    RMRS: String = null,
+    RMRT: String = null,
+    RSYS: String = null,
+    RTSSE: String = null,
+    SDWN: String = null,
+    SE: String = null,
+    SLIC: String = null,
+    SRE: String = null,
+    STRT: String = null,
+    SUMR: String = null,
+    TCNG: String = null,
+    TEST: String = null,
+    TOR: String = null,
+    VS: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -594,19 +574,15 @@ extends
  */
 final case class AncillaryCommodityType
 (
-    override val sup: BasicElement,
-    NONSPIN: String,
-    REGDN: String,
-    REGUP: String,
-    SPIN: String
+    override val sup: BasicElement = null,
+    NONSPIN: String = null,
+    REGDN: String = null,
+    REGUP: String = null,
+    SPIN: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -680,18 +656,14 @@ extends
  */
 final case class BidPriceCapType
 (
-    override val sup: BasicElement,
-    AS: String,
-    ENERGY: String,
-    RUC: String
+    override val sup: BasicElement = null,
+    AS: String = null,
+    ENERGY: String = null,
+    RUC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -761,22 +733,18 @@ extends
  */
 final case class CleanTradeProductType
 (
-    override val sup: BasicElement,
-    APN: String,
-    CPT: String,
-    NRT: String,
-    PHY: String,
-    RDT: String,
-    RUT: String,
-    SRT: String
+    override val sup: BasicElement = null,
+    APN: String = null,
+    CPT: String = null,
+    NRT: String = null,
+    PHY: String = null,
+    RDT: String = null,
+    RUT: String = null,
+    SRT: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -868,17 +836,13 @@ extends
  */
 final case class CurrentStatusSC
 (
-    override val sup: BasicElement,
-    ACTIVE: String,
-    INACTIVE: String
+    override val sup: BasicElement = null,
+    ACTIVE: String = null,
+    INACTIVE: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -944,16 +908,12 @@ extends
  */
 final case class DAMMarketType
 (
-    override val sup: BasicElement,
-    DAM: String
+    override val sup: BasicElement = null,
+    DAM: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1015,21 +975,17 @@ extends
  */
 final case class DispatchAcceptStatus
 (
-    override val sup: BasicElement,
-    ACCEPT: String,
-    CANNOT: String,
-    DECLINE: String,
-    NON_RESPONSE: String,
-    OK: String,
-    PARTIAL: String
+    override val sup: BasicElement = null,
+    ACCEPT: String = null,
+    CANNOT: String = null,
+    DECLINE: String = null,
+    NON_RESPONSE: String = null,
+    OK: String = null,
+    PARTIAL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1111,17 +1067,13 @@ extends
  */
 final case class DispatchTransactionType
 (
-    override val sup: BasicElement,
-    Purchase: String,
-    Sale: String
+    override val sup: BasicElement = null,
+    Purchase: String = null,
+    Sale: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1226,33 +1178,29 @@ extends
  */
 final case class EnergyTypeCode
 (
-    override val sup: BasicElement,
-    DABE: String,
-    DAPE: String,
-    DASE: String,
-    DMLE: String,
-    DSSE: String,
-    EDE: String,
-    HASE: String,
-    MLE: String,
-    MSSLFE: String,
-    OE: String,
-    PE: String,
-    RE: String,
-    RED: String,
-    RMRE: String,
-    RTSSE: String,
-    SE: String,
-    SRE: String,
-    TEE: String
+    override val sup: BasicElement = null,
+    DABE: String = null,
+    DAPE: String = null,
+    DASE: String = null,
+    DMLE: String = null,
+    DSSE: String = null,
+    EDE: String = null,
+    HASE: String = null,
+    MLE: String = null,
+    MSSLFE: String = null,
+    OE: String = null,
+    PE: String = null,
+    RE: String = null,
+    RED: String = null,
+    RMRE: String = null,
+    RTSSE: String = null,
+    SE: String = null,
+    SRE: String = null,
+    TEE: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1382,18 +1330,14 @@ extends
  */
 final case class JobFlagType
 (
-    override val sup: BasicElement,
-    CREATED: String,
-    DELETED: String,
-    MODIFIED: String
+    override val sup: BasicElement = null,
+    CREATED: String = null,
+    DELETED: String = null,
+    MODIFIED: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1463,17 +1407,13 @@ extends
  */
 final case class JobScheduleType
 (
-    override val sup: BasicElement,
-    CRITICAL: String,
-    NONCRITICAL: String
+    override val sup: BasicElement = null,
+    CRITICAL: String = null,
+    NONCRITICAL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1539,18 +1479,14 @@ extends
  */
 final case class JobStartEndType
 (
-    override val sup: BasicElement,
-    END: String,
-    NA: String,
-    START: String
+    override val sup: BasicElement = null,
+    END: String = null,
+    NA: String = null,
+    START: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1620,17 +1556,13 @@ extends
  */
 final case class LFCResourceType
 (
-    override val sup: BasicElement,
-    GEN: String,
-    PUMP: String
+    override val sup: BasicElement = null,
+    GEN: String = null,
+    PUMP: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1696,17 +1628,13 @@ extends
  */
 final case class LoadFollowingCapacityType
 (
-    override val sup: BasicElement,
-    DOWN: String,
-    UP: String
+    override val sup: BasicElement = null,
+    DOWN: String = null,
+    UP: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1780,18 +1708,14 @@ extends
  */
 final case class MQSDELType
 (
-    override val sup: BasicElement,
-    ADD: String,
-    CHG: String,
-    DEL: String
+    override val sup: BasicElement = null,
+    ADD: String = null,
+    CHG: String = null,
+    DEL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1873,20 +1797,16 @@ extends
  */
 final case class MarketProductTypeAsReq
 (
-    override val sup: BasicElement,
-    AS: String,
-    NR: String,
-    RD: String,
-    RU: String,
-    SR: String
+    override val sup: BasicElement = null,
+    AS: String = null,
+    NR: String = null,
+    RD: String = null,
+    RU: String = null,
+    SR: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1964,20 +1884,16 @@ extends
  */
 final case class MarketScheduleServices
 (
-    override val sup: BasicElement,
-    retrieveDefaultBidCurves: String,
-    retrieveMPMResults: String,
-    retrieveMarketAwards: String,
-    retrieveSchedulePrices: String,
-    retrieveStartUpShutDownInstructions: String
+    override val sup: BasicElement = null,
+    retrieveDefaultBidCurves: String = null,
+    retrieveMPMResults: String = null,
+    retrieveMarketAwards: String = null,
+    retrieveSchedulePrices: String = null,
+    retrieveStartUpShutDownInstructions: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2062,20 +1978,16 @@ extends
  */
 final case class MarketStatementDescription
 (
-    override val sup: BasicElement,
-    DAILY_INITIAL_CREDIT: String,
-    DAILY_INITIAL_MARKET: String,
-    DAILY_RECALC_MARKET: String,
-    MONTHLY_INITIAL_MARKET: String,
-    MONTHLY_RECALC_MARKET: String
+    override val sup: BasicElement = null,
+    DAILY_INITIAL_CREDIT: String = null,
+    DAILY_INITIAL_MARKET: String = null,
+    DAILY_RECALC_MARKET: String = null,
+    MONTHLY_INITIAL_MARKET: String = null,
+    MONTHLY_RECALC_MARKET: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2157,17 +2069,13 @@ extends
  */
 final case class MarketStatementDocStatus
 (
-    override val sup: BasicElement,
-    APPROVED: String,
-    CANCELLED: String
+    override val sup: BasicElement = null,
+    APPROVED: String = null,
+    CANCELLED: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2238,18 +2146,14 @@ extends
  */
 final case class MarketStatementDocType
 (
-    override val sup: BasicElement,
-    CREDIT: String,
-    MARKET_INITIAL: String,
-    MARKET_RECALC: String
+    override val sup: BasicElement = null,
+    CREDIT: String = null,
+    MARKET_INITIAL: String = null,
+    MARKET_RECALC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2327,21 +2231,17 @@ extends
  */
 final case class MarketStatementLineItemAliasName
 (
-    override val sup: BasicElement,
-    CHARGE_CODE_INTERVAL_DETAIL: String,
-    CHARGE_CODE_INTERVAL_TOTAL: String,
-    CHARGE_CODE_SUMMARY: String,
-    CHARGE_GROUP: String,
-    PARENT_CHARGE_GROUP: String,
-    TRADE_DATE: String
+    override val sup: BasicElement = null,
+    CHARGE_CODE_INTERVAL_DETAIL: String = null,
+    CHARGE_CODE_INTERVAL_TOTAL: String = null,
+    CHARGE_CODE_SUMMARY: String = null,
+    CHARGE_GROUP: String = null,
+    PARENT_CHARGE_GROUP: String = null,
+    TRADE_DATE: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2457,31 +2357,27 @@ extends
  */
 final case class MeasurementTypeEMS
 (
-    override val sup: BasicElement,
-    ACE: String,
-    GMOL: String,
-    GNOL: String,
-    GO: String,
-    GR: String,
-    GS: String,
-    INADV: String,
-    OARL: String,
-    PF: String,
-    PIAL: String,
-    PIL: String,
-    PIML: String,
-    POAL: String,
-    POL: String,
-    PP: String,
-    SL: String
+    override val sup: BasicElement = null,
+    ACE: String = null,
+    GMOL: String = null,
+    GNOL: String = null,
+    GO: String = null,
+    GR: String = null,
+    GS: String = null,
+    INADV: String = null,
+    OARL: String = null,
+    PF: String = null,
+    PIAL: String = null,
+    PIL: String = null,
+    PIML: String = null,
+    POAL: String = null,
+    POL: String = null,
+    PP: String = null,
+    SL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2603,27 +2499,23 @@ extends
  */
 final case class MktSubClassType
 (
-    override val sup: BasicElement,
-    Branch_Group_Derates: String,
-    Day_Ahead_Final_Market_Info: String,
-    Day_Ahead_Forecast_Information: String,
-    Day_Ahead_Interim_Market_Info: String,
-    Day_Ahead_RMR: String,
-    Forecasted_UDC_Direct_Access_Load: String,
-    Hour_Ahead_Market_Info: String,
-    Hourly_Expost_Market_Info: String,
-    Public_Bid_Data: String,
-    TTC_ATC_Forecast_Information: String,
-    TTC_ATC_Hourly_Forecast: String,
-    Ten_Min_Expost_Market_Info: String
+    override val sup: BasicElement = null,
+    Branch_Group_Derates: String = null,
+    Day_Ahead_Final_Market_Info: String = null,
+    Day_Ahead_Forecast_Information: String = null,
+    Day_Ahead_Interim_Market_Info: String = null,
+    Day_Ahead_RMR: String = null,
+    Forecasted_UDC_Direct_Access_Load: String = null,
+    Hour_Ahead_Market_Info: String = null,
+    Hourly_Expost_Market_Info: String = null,
+    Public_Bid_Data: String = null,
+    TTC_ATC_Forecast_Information: String = null,
+    TTC_ATC_Hourly_Forecast: String = null,
+    Ten_Min_Expost_Market_Info: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2729,16 +2621,12 @@ extends
  */
 final case class OASISBidReportType
 (
-    override val sup: BasicElement,
-    BIDS_PUBLIC: String
+    override val sup: BasicElement = null,
+    BIDS_PUBLIC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2800,121 +2688,117 @@ extends
  */
 final case class OASISDataItems
 (
-    override val sup: BasicElement,
-    AS_CLEAR_ASMP_IFM: String,
-    AS_CLEAR_ASMP_RTM: String,
-    AS_CLEAR_COST_IFM: String,
-    AS_CLEAR_COST_RTM: String,
-    AS_CLEAR_MW_IFM: String,
-    AS_CLEAR_MW_RTM: String,
-    AS_GEN_TOTAL_MW_IFM: String,
-    AS_GEN_TOTAL_MW_RTM: String,
-    AS_IMP_TOTAL_MW_IFM: String,
-    AS_IMP_TOTAL_MW_RTM: String,
-    AS_LOAD_TOTAL_MW_IFM: String,
-    AS_LOAD_TOTAL_MW_RTM: String,
-    AS_REGION_REQ_MAX: String,
-    AS_REGION_REQ_MIN: String,
-    AS_REGION_value: String,
-    AS_SELF_MW_IFM: String,
-    AS_SELF_MW_RTM: String,
-    AS_TOTAL_MW: String,
-    AS_TOTAL_MW_IFM: String,
-    AS_TOTAL_MW_RTM: String,
-    AS_TYPE: String,
-    AS_USER_RATE: String,
-    CA_value: String,
-    CMMT_MINLOAD_MLC: String,
-    CMMT_MINLOAD_MW: String,
-    CMMT_RA_MLC: String,
-    CMMT_RA_MW: String,
-    CMMT_RA_START_COST: String,
-    CMMT_RA_UNITS: String,
-    CMMT_TOTAL_MW: String,
-    CMMT_TOTAL_START_COST: String,
-    CMMT_TOTAL_UNITS: String,
-    CRR_CAT: String,
-    CRR_MARKET_value: String,
-    CRR_MW: String,
-    CRR_NSR: String,
-    CRR_OPTION: String,
-    CRR_OWNER: String,
-    CRR_SEGMENT: String,
-    CRR_TERM: String,
-    CRR_TOU: String,
-    CRR_TYPE: String,
-    ENE_EA_DA: String,
-    ENE_EA_EXCEPT: String,
-    ENE_EA_HASP: String,
-    ENE_EA_MLE: String,
-    ENE_EA_MSSLF: String,
-    ENE_EA_OPTIMAL: String,
-    ENE_EA_RAMP_DEV: String,
-    ENE_EA_RAMP_STD: String,
-    ENE_EA_RESIDUAL: String,
-    ENE_EA_RMR: String,
-    ENE_EA_SELF: String,
-    ENE_EA_SLIC: String,
-    ENE_EXP_CLEAR_HASP: String,
-    ENE_EXP_CLEAR_IFM: String,
-    ENE_EXP_CLEAR_RTM: String,
-    ENE_GEN_CLEAR_HASP: String,
-    ENE_GEN_CLEAR_IFM: String,
-    ENE_GEN_CLEAR_RTM: String,
-    ENE_IMP_CLEAR_HASP: String,
-    ENE_IMP_CLEAR_IFM: String,
-    ENE_IMP_CLEAR_RTM: String,
-    ENE_LOAD_ACTUAL: String,
-    ENE_LOAD_CLEAR_HASP: String,
-    ENE_LOAD_CLEAR_IFM: String,
-    ENE_LOAD_CLEAR_RTM: String,
-    ENE_LOAD_FCST: String,
-    ENE_PEAK_HOUR: String,
-    ENE_PEAK_LOAD: String,
-    FUEL_REGION_value: String,
-    INVT_DATETIME: String,
-    LOAD_ACTUAL: String,
-    LOAD_CLEAR_RTM: String,
-    LOSS_TOTAL_COST_HASP: String,
-    LOSS_TOTAL_COST_RTM: String,
-    LOSS_TOTAL_MW_HASP: String,
-    LOSS_TOTAL_MW_RTM: String,
-    MPM_FLAG: String,
-    OP_RSRV_TOTAL: String,
-    PRC_NG: String,
-    PRC_SHADOW: String,
-    RATING_ATC: String,
-    RMR_DETER_DAM: String,
-    RMR_DETER_HASP: String,
-    RMR_DISPATCH_DAM: String,
-    RMR_DISPATCH_HASP: String,
-    RMR_TOTAL: String,
-    RMR_TOTAL_AVAIL: String,
-    RUC_GEN_CLEAR_RUC: String,
-    RUC_IMP_CLEAR_RUC: String,
-    RUC_LOAD_CLEAR_RUC: String,
-    RUC_ZONE_value: String,
-    TAC_AREA_value: String,
-    TINTRFCE_value: String,
-    TRNS_AS_IMPORT: String,
-    TRNS_ENE_IMPORT: String,
-    TRNS_EQUIP_value: String,
-    TRNS_RATING_CBM: String,
-    TRNS_RATING_DIRECTION: String,
-    TRNS_RATING_OTC: String,
-    TRNS_RATING_OTC_DERATE: String,
-    TRNS_RATING_TTC: String,
-    TRNS_TI_value: String,
-    TRNS_TR_ENTMTS: String,
-    TRNS_TR_USEAGE: String
+    override val sup: BasicElement = null,
+    AS_CLEAR_ASMP_IFM: String = null,
+    AS_CLEAR_ASMP_RTM: String = null,
+    AS_CLEAR_COST_IFM: String = null,
+    AS_CLEAR_COST_RTM: String = null,
+    AS_CLEAR_MW_IFM: String = null,
+    AS_CLEAR_MW_RTM: String = null,
+    AS_GEN_TOTAL_MW_IFM: String = null,
+    AS_GEN_TOTAL_MW_RTM: String = null,
+    AS_IMP_TOTAL_MW_IFM: String = null,
+    AS_IMP_TOTAL_MW_RTM: String = null,
+    AS_LOAD_TOTAL_MW_IFM: String = null,
+    AS_LOAD_TOTAL_MW_RTM: String = null,
+    AS_REGION_REQ_MAX: String = null,
+    AS_REGION_REQ_MIN: String = null,
+    AS_REGION_value: String = null,
+    AS_SELF_MW_IFM: String = null,
+    AS_SELF_MW_RTM: String = null,
+    AS_TOTAL_MW: String = null,
+    AS_TOTAL_MW_IFM: String = null,
+    AS_TOTAL_MW_RTM: String = null,
+    AS_TYPE: String = null,
+    AS_USER_RATE: String = null,
+    CA_value: String = null,
+    CMMT_MINLOAD_MLC: String = null,
+    CMMT_MINLOAD_MW: String = null,
+    CMMT_RA_MLC: String = null,
+    CMMT_RA_MW: String = null,
+    CMMT_RA_START_COST: String = null,
+    CMMT_RA_UNITS: String = null,
+    CMMT_TOTAL_MW: String = null,
+    CMMT_TOTAL_START_COST: String = null,
+    CMMT_TOTAL_UNITS: String = null,
+    CRR_CAT: String = null,
+    CRR_MARKET_value: String = null,
+    CRR_MW: String = null,
+    CRR_NSR: String = null,
+    CRR_OPTION: String = null,
+    CRR_OWNER: String = null,
+    CRR_SEGMENT: String = null,
+    CRR_TERM: String = null,
+    CRR_TOU: String = null,
+    CRR_TYPE: String = null,
+    ENE_EA_DA: String = null,
+    ENE_EA_EXCEPT: String = null,
+    ENE_EA_HASP: String = null,
+    ENE_EA_MLE: String = null,
+    ENE_EA_MSSLF: String = null,
+    ENE_EA_OPTIMAL: String = null,
+    ENE_EA_RAMP_DEV: String = null,
+    ENE_EA_RAMP_STD: String = null,
+    ENE_EA_RESIDUAL: String = null,
+    ENE_EA_RMR: String = null,
+    ENE_EA_SELF: String = null,
+    ENE_EA_SLIC: String = null,
+    ENE_EXP_CLEAR_HASP: String = null,
+    ENE_EXP_CLEAR_IFM: String = null,
+    ENE_EXP_CLEAR_RTM: String = null,
+    ENE_GEN_CLEAR_HASP: String = null,
+    ENE_GEN_CLEAR_IFM: String = null,
+    ENE_GEN_CLEAR_RTM: String = null,
+    ENE_IMP_CLEAR_HASP: String = null,
+    ENE_IMP_CLEAR_IFM: String = null,
+    ENE_IMP_CLEAR_RTM: String = null,
+    ENE_LOAD_ACTUAL: String = null,
+    ENE_LOAD_CLEAR_HASP: String = null,
+    ENE_LOAD_CLEAR_IFM: String = null,
+    ENE_LOAD_CLEAR_RTM: String = null,
+    ENE_LOAD_FCST: String = null,
+    ENE_PEAK_HOUR: String = null,
+    ENE_PEAK_LOAD: String = null,
+    FUEL_REGION_value: String = null,
+    INVT_DATETIME: String = null,
+    LOAD_ACTUAL: String = null,
+    LOAD_CLEAR_RTM: String = null,
+    LOSS_TOTAL_COST_HASP: String = null,
+    LOSS_TOTAL_COST_RTM: String = null,
+    LOSS_TOTAL_MW_HASP: String = null,
+    LOSS_TOTAL_MW_RTM: String = null,
+    MPM_FLAG: String = null,
+    OP_RSRV_TOTAL: String = null,
+    PRC_NG: String = null,
+    PRC_SHADOW: String = null,
+    RATING_ATC: String = null,
+    RMR_DETER_DAM: String = null,
+    RMR_DETER_HASP: String = null,
+    RMR_DISPATCH_DAM: String = null,
+    RMR_DISPATCH_HASP: String = null,
+    RMR_TOTAL: String = null,
+    RMR_TOTAL_AVAIL: String = null,
+    RUC_GEN_CLEAR_RUC: String = null,
+    RUC_IMP_CLEAR_RUC: String = null,
+    RUC_LOAD_CLEAR_RUC: String = null,
+    RUC_ZONE_value: String = null,
+    TAC_AREA_value: String = null,
+    TINTRFCE_value: String = null,
+    TRNS_AS_IMPORT: String = null,
+    TRNS_ENE_IMPORT: String = null,
+    TRNS_EQUIP_value: String = null,
+    TRNS_RATING_CBM: String = null,
+    TRNS_RATING_DIRECTION: String = null,
+    TRNS_RATING_OTC: String = null,
+    TRNS_RATING_OTC_DERATE: String = null,
+    TRNS_RATING_TTC: String = null,
+    TRNS_TI_value: String = null,
+    TRNS_TR_ENTMTS: String = null,
+    TRNS_TR_USEAGE: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3396,26 +3280,22 @@ extends
  */
 final case class OASISErrCode
 (
-    override val sup: BasicElement,
-    _1000: String,
-    _1001: String,
-    _1002: String,
-    _1003: String,
-    _1004: String,
-    _1005: String,
-    _1006: String,
-    _1007: String,
-    _1008: String,
-    _1009: String,
-    _1010: String
+    override val sup: BasicElement = null,
+    _1000: String = null,
+    _1001: String = null,
+    _1002: String = null,
+    _1003: String = null,
+    _1004: String = null,
+    _1005: String = null,
+    _1006: String = null,
+    _1007: String = null,
+    _1008: String = null,
+    _1009: String = null,
+    _1010: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3517,25 +3397,21 @@ extends
  */
 final case class OASISErrDescription
 (
-    override val sup: BasicElement,
-    Data_can_be_requested_for_period_of_31_days_only: String,
-    Exceptions_in_reading_and_writing_of_XML_files: String,
-    Invalid_date_format__please_use_valid_date_format: String,
-    No_data_returned_for_the_specified_selection: String,
-    Out_of_memory_exception: String,
-    Report_name_does_not_exit__please_use_valid_report_name: String,
-    Required_file_does_not_exist: String,
-    System_Error: String,
-    Timed_out_waiting_for_query_response: String,
-    Validation_exception_during_transformation_of_XML: String
+    override val sup: BasicElement = null,
+    Data_can_be_requested_for_period_of_31_days_only: String = null,
+    Exceptions_in_reading_and_writing_of_XML_files: String = null,
+    Invalid_date_format__please_use_valid_date_format: String = null,
+    No_data_returned_for_the_specified_selection: String = null,
+    Out_of_memory_exception: String = null,
+    Report_name_does_not_exit__please_use_valid_report_name: String = null,
+    Required_file_does_not_exist: String = null,
+    System_Error: String = null,
+    Timed_out_waiting_for_query_response: String = null,
+    Validation_exception_during_transformation_of_XML: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3633,17 +3509,13 @@ extends
  */
 final case class OASISIntervalType
 (
-    override val sup: BasicElement,
-    BEGINNING: String,
-    ENDING: String
+    override val sup: BasicElement = null,
+    BEGINNING: String = null,
+    ENDING: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3709,21 +3581,17 @@ extends
  */
 final case class OASISMarketType
 (
-    override val sup: BasicElement,
-    All: String,
-    HASP: String,
-    IFM: String,
-    N_A: String,
-    RTM: String,
-    RUC: String
+    override val sup: BasicElement = null,
+    All: String = null,
+    HASP: String = null,
+    IFM: String = null,
+    N_A: String = null,
+    RTM: String = null,
+    RUC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3805,34 +3673,30 @@ extends
  */
 final case class OASISMasterType
 (
-    override val sup: BasicElement,
-    ATL_APNODE: String,
-    ATL_AS_REGION: String,
-    ATL_AS_REGION_MAP: String,
-    ATL_HUB: String,
-    ATL_LAP: String,
-    ATL_LDF: String,
-    ATL_PNODE: String,
-    ATL_PNODE_MAP: String,
-    ATL_PUB: String,
-    ATL_PUB_SCHED: String,
-    ATL_RESOURCE: String,
-    ATL_RUC_ZONE: String,
-    ATL_RUC_ZONE_MAP: String,
-    ATL_STAT: String,
-    ATL_TAC_AREA: String,
-    ATL_TAC_AREA_MAP: String,
-    ATL_TI: String,
-    ATL_TIEPOINT: String,
-    ATL_XREF: String
+    override val sup: BasicElement = null,
+    ATL_APNODE: String = null,
+    ATL_AS_REGION: String = null,
+    ATL_AS_REGION_MAP: String = null,
+    ATL_HUB: String = null,
+    ATL_LAP: String = null,
+    ATL_LDF: String = null,
+    ATL_PNODE: String = null,
+    ATL_PNODE_MAP: String = null,
+    ATL_PUB: String = null,
+    ATL_PUB_SCHED: String = null,
+    ATL_RESOURCE: String = null,
+    ATL_RUC_ZONE: String = null,
+    ATL_RUC_ZONE_MAP: String = null,
+    ATL_STAT: String = null,
+    ATL_TAC_AREA: String = null,
+    ATL_TAC_AREA_MAP: String = null,
+    ATL_TI: String = null,
+    ATL_TIEPOINT: String = null,
+    ATL_XREF: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3966,24 +3830,20 @@ extends
  */
 final case class OASISMeasType
 (
-    override val sup: BasicElement,
-    percent: String,
-    FACTOR: String,
-    FLAG: String,
-    INTEGER: String,
-    MW: String,
-    MWh: String,
-    US$: String,
-    US$_MW: String,
-    US$_MWh: String
+    override val sup: BasicElement = null,
+    percent: String = null,
+    FACTOR: String = null,
+    FLAG: String = null,
+    INTEGER: String = null,
+    MW: String = null,
+    MWh: String = null,
+    US$: String = null,
+    US$_MW: String = null,
+    US$_MWh: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4077,43 +3937,39 @@ extends
  */
 final case class OASISReportType
 (
-    override val sup: BasicElement,
-    AS_DA_RESULT: String,
-    AS_OP_RSRV: String,
-    AS_REQ: String,
-    AS_RTM_RESULT: String,
-    BIDS_PUBLIC: String,
-    CMMT_RA_MLC: String,
-    CMMT_RMR: String,
-    CRR_CLEARING: String,
-    CRR_INVENTORY: String,
-    ENE_EA: String,
-    ENE_HASP: String,
-    ENE_IFM: String,
-    ENE_MPM: String,
-    ENE_RTM: String,
-    ENE_RUC: String,
-    LOSS_DA_HASP: String,
-    LOSS_RTM: String,
-    PRC_AS: String,
-    PRC_CNSTR: String,
-    PRC_FUEL: String,
-    PRC_HRLY_LMP: String,
-    PRC_INTVL_LMP: String,
-    SLD_FCST: String,
-    SLD_FCST_PEAK: String,
-    SLD_MKTS: String,
-    TRNS_ATC: String,
-    TRNS_OUTAGE: String,
-    TRNS_USAGE: String
+    override val sup: BasicElement = null,
+    AS_DA_RESULT: String = null,
+    AS_OP_RSRV: String = null,
+    AS_REQ: String = null,
+    AS_RTM_RESULT: String = null,
+    BIDS_PUBLIC: String = null,
+    CMMT_RA_MLC: String = null,
+    CMMT_RMR: String = null,
+    CRR_CLEARING: String = null,
+    CRR_INVENTORY: String = null,
+    ENE_EA: String = null,
+    ENE_HASP: String = null,
+    ENE_IFM: String = null,
+    ENE_MPM: String = null,
+    ENE_RTM: String = null,
+    ENE_RUC: String = null,
+    LOSS_DA_HASP: String = null,
+    LOSS_RTM: String = null,
+    PRC_AS: String = null,
+    PRC_CNSTR: String = null,
+    PRC_FUEL: String = null,
+    PRC_HRLY_LMP: String = null,
+    PRC_INTVL_LMP: String = null,
+    SLD_FCST: String = null,
+    SLD_FCST_PEAK: String = null,
+    SLD_MKTS: String = null,
+    TRNS_ATC: String = null,
+    TRNS_OUTAGE: String = null,
+    TRNS_USAGE: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4283,21 +4139,17 @@ extends
  */
 final case class OASISStatusType
 (
-    override val sup: BasicElement,
-    Data_Transfer_Procedure_Initiated: String,
-    Data_Transfer_Succesful: String,
-    Forced_Termination: String,
-    Obsolete: String,
-    Push_Failed: String,
-    Valid: String
+    override val sup: BasicElement = null,
+    Data_Transfer_Procedure_Initiated: String = null,
+    Data_Transfer_Succesful: String = null,
+    Forced_Termination: String = null,
+    Obsolete: String = null,
+    Push_Failed: String = null,
+    Valid: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4385,19 +4237,15 @@ extends
  */
 final case class OrganisationCode
 (
-    override val sup: BasicElement,
-    BILL_TO: String,
-    PAY_TO: String,
-    PROVIDED_BY: String,
-    SOLD_TO: String
+    override val sup: BasicElement = null,
+    BILL_TO: String = null,
+    PAY_TO: String = null,
+    PROVIDED_BY: String = null,
+    SOLD_TO: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4475,17 +4323,13 @@ extends
  */
 final case class OrganisationType
 (
-    override val sup: BasicElement,
-    CUSTOMER: String,
-    RTO: String
+    override val sup: BasicElement = null,
+    CUSTOMER: String = null,
+    RTO: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4559,18 +4403,14 @@ extends
  */
 final case class PriceSetFlag
 (
-    override val sup: BasicElement,
-    N: String,
-    S: String,
-    Y: String
+    override val sup: BasicElement = null,
+    N: String = null,
+    S: String = null,
+    Y: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4646,17 +4486,13 @@ extends
  */
 final case class RequestorRmrTest
 (
-    override val sup: BasicElement,
-    ISO: String,
-    MP: String
+    override val sup: BasicElement = null,
+    ISO: String = null,
+    MP: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4722,19 +4558,15 @@ extends
  */
 final case class ResourceCertificationCategory
 (
-    override val sup: BasicElement,
-    DAM: String,
-    GT: String,
-    RC: String,
-    RTM: String
+    override val sup: BasicElement = null,
+    DAM: String = null,
+    GT: String = null,
+    RC: String = null,
+    RTM: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4808,20 +4640,16 @@ extends
  */
 final case class ResourceCertificationType
 (
-    override val sup: BasicElement,
-    GT: String,
-    IR: String,
-    NR: String,
-    RG: String,
-    SR: String
+    override val sup: BasicElement = null,
+    GT: String = null,
+    IR: String = null,
+    NR: String = null,
+    RG: String = null,
+    SR: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4899,18 +4727,14 @@ extends
  */
 final case class SchedClassType
 (
-    override val sup: BasicElement,
-    F: String,
-    P: String,
-    R: String
+    override val sup: BasicElement = null,
+    F: String = null,
+    P: String = null,
+    R: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4980,17 +4804,13 @@ extends
  */
 final case class SegmentCurveType
 (
-    override val sup: BasicElement,
-    CONSULTATIVE: String,
-    COST: String
+    override val sup: BasicElement = null,
+    CONSULTATIVE: String = null,
+    COST: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5056,26 +4876,22 @@ extends
  */
 final case class SelfSchedTypeCleanBid
 (
-    override val sup: BasicElement,
-    BAS: String,
-    ETC: String,
-    IFM: String,
-    LOF: String,
-    LPT: String,
-    PT: String,
-    RA: String,
-    RMT: String,
-    SP: String,
-    TOR: String,
-    WHL: String
+    override val sup: BasicElement = null,
+    BAS: String = null,
+    ETC: String = null,
+    IFM: String = null,
+    LOF: String = null,
+    LPT: String = null,
+    PT: String = null,
+    RA: String = null,
+    RMT: String = null,
+    SP: String = null,
+    TOR: String = null,
+    WHL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5177,25 +4993,21 @@ extends
  */
 final case class SelfSchedTypeRawBid
 (
-    override val sup: BasicElement,
-    BAS: String,
-    ETC: String,
-    LOF: String,
-    LPT: String,
-    PT: String,
-    RA: String,
-    RMT: String,
-    SP: String,
-    TOR: String,
-    WHL: String
+    override val sup: BasicElement = null,
+    BAS: String = null,
+    ETC: String = null,
+    LOF: String = null,
+    LPT: String = null,
+    PT: String = null,
+    RA: String = null,
+    RMT: String = null,
+    SP: String = null,
+    TOR: String = null,
+    WHL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5321,31 +5133,27 @@ extends
  */
 final case class SelfScheduleType
 (
-    override val sup: BasicElement,
-    BAS: String,
-    ETC: String,
-    IFM: String,
-    LOF: String,
-    ORFC: String,
-    PT: String,
-    PUMP_ETC: String,
-    PUMP_TOR: String,
-    RA: String,
-    RGMR: String,
-    RMR: String,
-    RMT: String,
-    RUC: String,
-    SP: String,
-    TOR: String,
-    WHL: String
+    override val sup: BasicElement = null,
+    BAS: String = null,
+    ETC: String = null,
+    IFM: String = null,
+    LOF: String = null,
+    ORFC: String = null,
+    PT: String = null,
+    PUMP_ETC: String = null,
+    PUMP_TOR: String = null,
+    RA: String = null,
+    RGMR: String = null,
+    RMR: String = null,
+    RMT: String = null,
+    RUC: String = null,
+    SP: String = null,
+    TOR: String = null,
+    WHL: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5470,16 +5278,12 @@ extends
  */
 final case class SelfScheduleTypeMB
 (
-    override val sup: BasicElement,
-    RMR: String
+    override val sup: BasicElement = null,
+    RMR: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -5541,17 +5345,13 @@ extends
  */
 final case class SourceSinkFlag
 (
-    override val sup: BasicElement,
-    CSNK: String,
-    CSRC: String
+    override val sup: BasicElement = null,
+    CSNK: String = null,
+    CSRC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5617,18 +5417,14 @@ extends
  */
 final case class SourceSinkType
 (
-    override val sup: BasicElement,
-    Neither: String,
-    Sink: String,
-    Source: String
+    override val sup: BasicElement = null,
+    Neither: String = null,
+    Sink: String = null,
+    Source: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5698,19 +5494,15 @@ extends
  */
 final case class SpinningEventNameType
 (
-    override val sup: BasicElement,
-    EASTERN: String,
-    PJM: String,
-    RFC_SR: String,
-    SOUTH_S: String
+    override val sup: BasicElement = null,
+    EASTERN: String = null,
+    PJM: String = null,
+    RFC_SR: String = null,
+    SOUTH_S: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5784,18 +5576,14 @@ extends
  */
 final case class SpinningEventType
 (
-    override val sup: BasicElement,
-    AA: String,
-    CA: String,
-    RZ: String
+    override val sup: BasicElement = null,
+    AA: String = null,
+    CA: String = null,
+    RZ: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5865,16 +5653,12 @@ extends
  */
 final case class SystemType
 (
-    override val sup: BasicElement,
-    OASIS: String
+    override val sup: BasicElement = null,
+    OASIS: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -5936,16 +5720,12 @@ extends
  */
 final case class TimeZoneType
 (
-    override val sup: BasicElement,
-    PPT: String
+    override val sup: BasicElement = null,
+    PPT: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -6007,22 +5787,18 @@ extends
  */
 final case class TradeProductType
 (
-    override val sup: BasicElement,
-    APN: String,
-    CAP: String,
-    NRT: String,
-    PHY: String,
-    RDT: String,
-    RUT: String,
-    SRT: String
+    override val sup: BasicElement = null,
+    APN: String = null,
+    CAP: String = null,
+    NRT: String = null,
+    PHY: String = null,
+    RDT: String = null,
+    RUT: String = null,
+    SRT: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -6108,26 +5884,22 @@ extends
  */
 final case class UOMType
 (
-    override val sup: BasicElement,
-    percent: String,
-    $_lb: String,
-    $_mmBTU: String,
-    FACTOR: String,
-    FLAG: String,
-    INTEGER: String,
-    MW: String,
-    MWh: String,
-    US$: String,
-    US$_MW: String,
-    US$_MWh: String
+    override val sup: BasicElement = null,
+    percent: String = null,
+    $_lb: String = null,
+    $_mmBTU: String = null,
+    FACTOR: String = null,
+    FLAG: String = null,
+    INTEGER: String = null,
+    MW: String = null,
+    MWh: String = null,
+    US$: String = null,
+    US$_MW: String = null,
+    US$_MWh: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -6235,17 +6007,13 @@ extends
  */
 final case class UnitTypeEMS
 (
-    override val sup: BasicElement,
-    FLAG: String,
-    MW: String
+    override val sup: BasicElement = null,
+    FLAG: String = null,
+    MW: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -6318,20 +6086,16 @@ extends
  */
 final case class ZoneType
 (
-    override val sup: BasicElement,
-    ASREGION: String,
-    DCA: String,
-    LOADZONE: String,
-    RUCZONE: String,
-    TRADINGHUB: String
+    override val sup: BasicElement = null,
+    ASREGION: String = null,
+    DCA: String = null,
+    LOADZONE: String = null,
+    RUCZONE: String = null,
+    TRADINGHUB: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -6415,17 +6179,13 @@ extends
  */
 final case class runTypeCAISO
 (
-    override val sup: BasicElement,
-    P: String,
-    S: String
+    override val sup: BasicElement = null,
+    P: String = null,
+    S: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

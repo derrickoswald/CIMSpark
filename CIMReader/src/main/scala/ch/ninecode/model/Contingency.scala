@@ -19,17 +19,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class Contingency
 (
-    override val sup: IdentifiedObject,
-    mustStudy: Boolean,
-    ContingencyElement: List[String]
+    override val sup: IdentifiedObject = null,
+    mustStudy: Boolean = false,
+    ContingencyElement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -103,16 +99,12 @@ extends
  */
 final case class ContingencyElement
 (
-    override val sup: IdentifiedObject,
-    Contingency: String
+    override val sup: IdentifiedObject = null,
+    Contingency: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -183,17 +175,13 @@ extends
  */
 final case class ContingencyEquipment
 (
-    override val sup: ContingencyElement,
-    contingentStatus: String,
-    Equipment: String
+    override val sup: ContingencyElement = null,
+    contingentStatus: String = null,
+    Equipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

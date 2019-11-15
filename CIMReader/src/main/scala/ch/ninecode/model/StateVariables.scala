@@ -17,15 +17,11 @@ import ch.ninecode.cim.Relationship
  */
 final case class StateVariable
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -88,19 +84,15 @@ extends
  */
 final case class SvInjection
 (
-    override val sup: StateVariable,
-    pInjection: Double,
-    phase: String,
-    qInjection: Double,
-    TopologicalNode: String
+    override val sup: StateVariable = null,
+    pInjection: Double = 0.0,
+    phase: String = null,
+    qInjection: Double = 0.0,
+    TopologicalNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -190,19 +182,15 @@ extends
  */
 final case class SvPowerFlow
 (
-    override val sup: StateVariable,
-    p: Double,
-    phase: String,
-    q: Double,
-    Terminal: String
+    override val sup: StateVariable = null,
+    p: Double = 0.0,
+    phase: String = null,
+    q: Double = 0.0,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -288,18 +276,14 @@ extends
  */
 final case class SvShuntCompensatorSections
 (
-    override val sup: StateVariable,
-    phase: String,
-    sections: Double,
-    ShuntCompensator: String
+    override val sup: StateVariable = null,
+    phase: String = null,
+    sections: Double = 0.0,
+    ShuntCompensator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -381,18 +365,14 @@ extends
  */
 final case class SvStatus
 (
-    override val sup: StateVariable,
-    inService: Boolean,
-    phase: String,
-    ConductingEquipment: String
+    override val sup: StateVariable = null,
+    inService: Boolean = false,
+    phase: String = null,
+    ConductingEquipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -473,18 +453,14 @@ extends
  */
 final case class SvSwitch
 (
-    override val sup: StateVariable,
-    open: Boolean,
-    phase: String,
-    Switch: String
+    override val sup: StateVariable = null,
+    open: Boolean = false,
+    phase: String = null,
+    Switch: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -564,17 +540,13 @@ extends
  */
 final case class SvTapStep
 (
-    override val sup: StateVariable,
-    position: Double,
-    TapChanger: String
+    override val sup: StateVariable = null,
+    position: Double = 0.0,
+    TapChanger: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -652,19 +624,15 @@ extends
  */
 final case class SvVoltage
 (
-    override val sup: StateVariable,
-    angle: Double,
-    phase: String,
-    v: Double,
-    TopologicalNode: String
+    override val sup: StateVariable = null,
+    angle: Double = 0.0,
+    phase: String = null,
+    v: Double = 0.0,
+    TopologicalNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *

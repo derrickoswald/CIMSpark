@@ -14,17 +14,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class BlockingFunction
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -102,21 +98,17 @@ extends
  */
 final case class DCvoltageControl
 (
-    override val sup: BasicElement,
-    kivdc: Double,
-    kpvdc: Double,
-    vdcmax: Double,
-    vdcmin: Double,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    kivdc: Double = 0.0,
+    kpvdc: Double = 0.0,
+    vdcmax: Double = 0.0,
+    vdcmin: Double = 0.0,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -203,17 +195,13 @@ extends
  */
 final case class PFmode
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -283,17 +271,13 @@ extends
  */
 final case class Pcontrol
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -363,17 +347,13 @@ extends
  */
 final case class Qlimiter
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -443,17 +423,13 @@ extends
  */
 final case class Qmode
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -523,18 +499,14 @@ extends
  */
 final case class Qregulator
 (
-    override val sup: BasicElement,
-    Delay: String,
-    HVDClookUpTable: List[String],
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    HVDClookUpTable: List[String] = List(),
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -610,17 +582,13 @@ extends
  */
 final case class Umode
 (
-    override val sup: BasicElement,
-    Delay: String,
-    VSCtype1: String
+    override val sup: BasicElement = null,
+    Delay: String = null,
+    VSCtype1: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -690,23 +658,19 @@ extends
  */
 final case class VSCtype1
 (
-    override val sup: VSCDynamics,
-    BlockingFunction: String,
-    DCvoltageControl: String,
-    PFmodel: String,
-    Pcontrol: String,
-    Qlimiter: String,
-    Qmode: String,
-    Qregulator: String,
-    Umode: String
+    override val sup: VSCDynamics = null,
+    BlockingFunction: String = null,
+    DCvoltageControl: String = null,
+    PFmodel: String = null,
+    Pcontrol: String = null,
+    Qlimiter: String = null,
+    Qmode: String = null,
+    Qregulator: String = null,
+    Umode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *

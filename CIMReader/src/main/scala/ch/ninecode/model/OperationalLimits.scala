@@ -19,17 +19,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class ActivePowerLimit
 (
-    override val sup: OperationalLimit,
-    normalValue: Double,
-    value: Double
+    override val sup: OperationalLimit = null,
+    normalValue: Double = 0.0,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -100,17 +96,13 @@ extends
  */
 final case class ApparentPowerLimit
 (
-    override val sup: OperationalLimit,
-    normalValue: Double,
-    value: Double
+    override val sup: OperationalLimit = null,
+    normalValue: Double = 0.0,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -189,23 +181,19 @@ extends
  */
 final case class BranchGroup
 (
-    override val sup: IdentifiedObject,
-    maximumActivePower: Double,
-    maximumReactivePower: Double,
-    minimumActivePower: Double,
-    minimumReactivePower: Double,
-    monitorActivePower: Boolean,
-    monitorReactivePower: Boolean,
-    BranchGroupTerminal: List[String],
-    PinBranchGroup: List[String]
+    override val sup: IdentifiedObject = null,
+    maximumActivePower: Double = 0.0,
+    maximumReactivePower: Double = 0.0,
+    minimumActivePower: Double = 0.0,
+    minimumReactivePower: Double = 0.0,
+    monitorActivePower: Boolean = false,
+    monitorReactivePower: Boolean = false,
+    BranchGroupTerminal: List[String] = List(),
+    PinBranchGroup: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -307,18 +295,14 @@ extends
  */
 final case class BranchGroupTerminal
 (
-    override val sup: BasicElement,
-    positiveFlowIn: Boolean,
-    BranchGroup: String,
-    Terminal: String
+    override val sup: BasicElement = null,
+    positiveFlowIn: Boolean = false,
+    BranchGroup: String = null,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -398,17 +382,13 @@ extends
  */
 final case class CurrentLimit
 (
-    override val sup: OperationalLimit,
-    normalValue: Double,
-    value: Double
+    override val sup: OperationalLimit = null,
+    normalValue: Double = 0.0,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -488,19 +468,15 @@ extends
  */
 final case class OperationalLimit
 (
-    override val sup: IdentifiedObject,
-    LimitDependencyModel: List[String],
-    LimitScalingLimit: List[String],
-    OperationalLimitSet: String,
-    OperationalLimitType: String
+    override val sup: IdentifiedObject = null,
+    LimitDependencyModel: List[String] = List(),
+    LimitScalingLimit: List[String] = List(),
+    OperationalLimitSet: String = null,
+    OperationalLimitType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -589,18 +565,14 @@ extends
  */
 final case class OperationalLimitSet
 (
-    override val sup: IdentifiedObject,
-    Equipment: String,
-    OperationalLimitValue: List[String],
-    Terminal: String
+    override val sup: IdentifiedObject = null,
+    Equipment: String = null,
+    OperationalLimitValue: List[String] = List(),
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -685,20 +657,16 @@ extends
  */
 final case class OperationalLimitType
 (
-    override val sup: IdentifiedObject,
-    acceptableDuration: Double,
-    direction: String,
-    OperationalLimit: List[String],
-    SourceOperationalLimitTypeScaling: List[String],
-    TargetOperationalLimitmTypeScaling: String
+    override val sup: IdentifiedObject = null,
+    acceptableDuration: Double = 0.0,
+    direction: String = null,
+    OperationalLimit: List[String] = List(),
+    SourceOperationalLimitTypeScaling: List[String] = List(),
+    TargetOperationalLimitmTypeScaling: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -790,17 +758,13 @@ extends
  */
 final case class VoltageLimit
 (
-    override val sup: OperationalLimit,
-    normalValue: Double,
-    value: Double
+    override val sup: OperationalLimit = null,
+    normalValue: Double = 0.0,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

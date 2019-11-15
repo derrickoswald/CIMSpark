@@ -14,17 +14,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class Circuit
 (
-    override val sup: Line,
-    EndBay: List[String],
-    EndTerminal: List[String]
+    override val sup: Line = null,
+    EndBay: List[String] = List(),
+    EndTerminal: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *

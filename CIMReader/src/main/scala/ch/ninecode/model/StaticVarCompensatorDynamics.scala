@@ -18,16 +18,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class StaticVarCompensatorDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    StaticVarCompensator: String
+    override val sup: DynamicsFunctionBlock = null,
+    StaticVarCompensator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

@@ -19,17 +19,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class PowerSystemStabilizerDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String,
-    RemoteInputSignal: List[String]
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null,
+    RemoteInputSignal: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -135,30 +131,26 @@ extends
  */
 final case class Pss1
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    kf: Double,
-    komega: Double,
-    kpe: Double,
-    ks: Double,
-    pmin: Double,
-    t10: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    t9: Double,
-    tpe: Double,
-    vadat: Boolean,
-    vsmn: Double,
-    vsmx: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    kf: Double = 0.0,
+    komega: Double = 0.0,
+    kpe: Double = 0.0,
+    ks: Double = 0.0,
+    pmin: Double = 0.0,
+    t10: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    t9: Double = 0.0,
+    tpe: Double = 0.0,
+    vadat: Boolean = false,
+    vsmn: Double = 0.0,
+    vsmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -305,37 +297,33 @@ extends
  */
 final case class Pss1A
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    a1: Double,
-    a2: Double,
-    a3: Double,
-    a4: Double,
-    a5: Double,
-    a6: Double,
-    a7: Double,
-    a8: Double,
-    inputSignalType: String,
-    kd: Boolean,
-    ks: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    tdelay: Double,
-    vcl: Double,
-    vcu: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    a1: Double = 0.0,
+    a2: Double = 0.0,
+    a3: Double = 0.0,
+    a4: Double = 0.0,
+    a5: Double = 0.0,
+    a6: Double = 0.0,
+    a7: Double = 0.0,
+    a8: Double = 0.0,
+    inputSignalType: String = null,
+    kd: Boolean = false,
+    ks: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    tdelay: Double = 0.0,
+    vcl: Double = 0.0,
+    vcu: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -545,44 +533,40 @@ extends
  */
 final case class Pss2B
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    a: Double,
-    ks1: Double,
-    ks2: Double,
-    ks3: Double,
-    ks4: Double,
-    m: Int,
-    n: Int,
-    t1: Double,
-    t10: Double,
-    t11: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    t9: Double,
-    ta: Double,
-    tb: Double,
-    tw1: Double,
-    tw2: Double,
-    tw3: Double,
-    tw4: Double,
-    vsi1max: Double,
-    vsi1min: Double,
-    vsi2max: Double,
-    vsi2min: Double,
-    vstmax: Double,
-    vstmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    a: Double = 0.0,
+    ks1: Double = 0.0,
+    ks2: Double = 0.0,
+    ks3: Double = 0.0,
+    ks4: Double = 0.0,
+    m: Int = 0,
+    n: Int = 0,
+    t1: Double = 0.0,
+    t10: Double = 0.0,
+    t11: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    t9: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tw1: Double = 0.0,
+    tw2: Double = 0.0,
+    tw3: Double = 0.0,
+    tw4: Double = 0.0,
+    vsi1max: Double = 0.0,
+    vsi1min: Double = 0.0,
+    vsi2max: Double = 0.0,
+    vsi2min: Double = 0.0,
+    vstmax: Double = 0.0,
+    vstmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -779,33 +763,29 @@ extends
  */
 final case class Pss2ST
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    inputSignal1Type: String,
-    inputSignal2Type: String,
-    k1: Double,
-    k2: Double,
-    lsmax: Double,
-    lsmin: Double,
-    t1: Double,
-    t10: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    t9: Double,
-    vcl: Double,
-    vcu: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    inputSignal1Type: String = null,
+    inputSignal2Type: String = null,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    lsmax: Double = 0.0,
+    lsmin: Double = 0.0,
+    t1: Double = 0.0,
+    t10: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    t9: Double = 0.0,
+    vcl: Double = 0.0,
+    vcu: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -979,32 +959,28 @@ extends
  */
 final case class Pss5
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    ctw2: Boolean,
-    deadband: Double,
-    isfreq: Boolean,
-    kf: Double,
-    kpe: Double,
-    kpss: Double,
-    pmin: Double,
-    tl1: Double,
-    tl2: Double,
-    tl3: Double,
-    tl4: Double,
-    tpe: Double,
-    tw1: Double,
-    tw2: Double,
-    vadat: Boolean,
-    vsmn: Double,
-    vsmx: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    ctw2: Boolean = false,
+    deadband: Double = 0.0,
+    isfreq: Boolean = false,
+    kf: Double = 0.0,
+    kpe: Double = 0.0,
+    kpss: Double = 0.0,
+    pmin: Double = 0.0,
+    tl1: Double = 0.0,
+    tl2: Double = 0.0,
+    tl3: Double = 0.0,
+    tl4: Double = 0.0,
+    tpe: Double = 0.0,
+    tw1: Double = 0.0,
+    tw2: Double = 0.0,
+    vadat: Boolean = false,
+    vsmn: Double = 0.0,
+    vsmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1155,26 +1131,22 @@ extends
  */
 final case class PssELIN2
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    apss: Double,
-    ks1: Double,
-    ks2: Double,
-    ppss: Double,
-    psslim: Double,
-    ts1: Double,
-    ts2: Double,
-    ts3: Double,
-    ts4: Double,
-    ts5: Double,
-    ts6: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    apss: Double = 0.0,
+    ks1: Double = 0.0,
+    ks2: Double = 0.0,
+    ppss: Double = 0.0,
+    psslim: Double = 0.0,
+    ts1: Double = 0.0,
+    ts2: Double = 0.0,
+    ts3: Double = 0.0,
+    ts4: Double = 0.0,
+    ts5: Double = 0.0,
+    ts6: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1306,27 +1278,23 @@ extends
  */
 final case class PssIEEE1A
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    a1: Double,
-    a2: Double,
-    inputSignalType: String,
-    ks: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    a1: Double = 0.0,
+    a2: Double = 0.0,
+    inputSignalType: String = null,
+    ks: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1493,42 +1461,38 @@ extends
  */
 final case class PssIEEE2B
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    inputSignal1Type: String,
-    inputSignal2Type: String,
-    ks1: Double,
-    ks2: Double,
-    ks3: Double,
-    m: Int,
-    n: Int,
-    t1: Double,
-    t10: Double,
-    t11: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    t9: Double,
-    tw1: Double,
-    tw2: Double,
-    tw3: Double,
-    tw4: Double,
-    vsi1max: Double,
-    vsi1min: Double,
-    vsi2max: Double,
-    vsi2min: Double,
-    vstmax: Double,
-    vstmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    inputSignal1Type: String = null,
+    inputSignal2Type: String = null,
+    ks1: Double = 0.0,
+    ks2: Double = 0.0,
+    ks3: Double = 0.0,
+    m: Int = 0,
+    n: Int = 0,
+    t1: Double = 0.0,
+    t10: Double = 0.0,
+    t11: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    t9: Double = 0.0,
+    tw1: Double = 0.0,
+    tw2: Double = 0.0,
+    tw3: Double = 0.0,
+    tw4: Double = 0.0,
+    vsi1max: Double = 0.0,
+    vsi1min: Double = 0.0,
+    vsi2max: Double = 0.0,
+    vsi2min: Double = 0.0,
+    vstmax: Double = 0.0,
+    vstmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1736,32 +1700,28 @@ extends
  */
 final case class PssIEEE3B
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    a1: Double,
-    a2: Double,
-    a3: Double,
-    a4: Double,
-    a5: Double,
-    a6: Double,
-    a7: Double,
-    a8: Double,
-    ks1: Double,
-    ks2: Double,
-    t1: Double,
-    t2: Double,
-    tw1: Double,
-    tw2: Double,
-    tw3: Double,
-    vstmax: Double,
-    vstmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    a1: Double = 0.0,
+    a2: Double = 0.0,
+    a3: Double = 0.0,
+    a4: Double = 0.0,
+    a5: Double = 0.0,
+    a6: Double = 0.0,
+    a7: Double = 0.0,
+    a8: Double = 0.0,
+    ks1: Double = 0.0,
+    ks2: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    tw1: Double = 0.0,
+    tw2: Double = 0.0,
+    tw3: Double = 0.0,
+    vstmax: Double = 0.0,
+    vstmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2022,82 +1982,78 @@ extends
  */
 final case class PssIEEE4B
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    bwh1: Double,
-    bwh2: Double,
-    bwl1: Double,
-    bwl2: Double,
-    kh: Double,
-    kh1: Double,
-    kh11: Double,
-    kh17: Double,
-    kh2: Double,
-    ki: Double,
-    ki1: Double,
-    ki11: Double,
-    ki17: Double,
-    ki2: Double,
-    kl: Double,
-    kl1: Double,
-    kl11: Double,
-    kl17: Double,
-    kl2: Double,
-    omeganh1: Double,
-    omeganh2: Double,
-    omeganl1: Double,
-    omeganl2: Double,
-    th1: Double,
-    th10: Double,
-    th11: Double,
-    th12: Double,
-    th2: Double,
-    th3: Double,
-    th4: Double,
-    th5: Double,
-    th6: Double,
-    th7: Double,
-    th8: Double,
-    th9: Double,
-    ti1: Double,
-    ti10: Double,
-    ti11: Double,
-    ti12: Double,
-    ti2: Double,
-    ti3: Double,
-    ti4: Double,
-    ti5: Double,
-    ti6: Double,
-    ti7: Double,
-    ti8: Double,
-    ti9: Double,
-    tl1: Double,
-    tl10: Double,
-    tl11: Double,
-    tl12: Double,
-    tl2: Double,
-    tl3: Double,
-    tl4: Double,
-    tl5: Double,
-    tl6: Double,
-    tl7: Double,
-    tl8: Double,
-    tl9: Double,
-    vhmax: Double,
-    vhmin: Double,
-    vimax: Double,
-    vimin: Double,
-    vlmax: Double,
-    vlmin: Double,
-    vstmax: Double,
-    vstmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    bwh1: Double = 0.0,
+    bwh2: Double = 0.0,
+    bwl1: Double = 0.0,
+    bwl2: Double = 0.0,
+    kh: Double = 0.0,
+    kh1: Double = 0.0,
+    kh11: Double = 0.0,
+    kh17: Double = 0.0,
+    kh2: Double = 0.0,
+    ki: Double = 0.0,
+    ki1: Double = 0.0,
+    ki11: Double = 0.0,
+    ki17: Double = 0.0,
+    ki2: Double = 0.0,
+    kl: Double = 0.0,
+    kl1: Double = 0.0,
+    kl11: Double = 0.0,
+    kl17: Double = 0.0,
+    kl2: Double = 0.0,
+    omeganh1: Double = 0.0,
+    omeganh2: Double = 0.0,
+    omeganl1: Double = 0.0,
+    omeganl2: Double = 0.0,
+    th1: Double = 0.0,
+    th10: Double = 0.0,
+    th11: Double = 0.0,
+    th12: Double = 0.0,
+    th2: Double = 0.0,
+    th3: Double = 0.0,
+    th4: Double = 0.0,
+    th5: Double = 0.0,
+    th6: Double = 0.0,
+    th7: Double = 0.0,
+    th8: Double = 0.0,
+    th9: Double = 0.0,
+    ti1: Double = 0.0,
+    ti10: Double = 0.0,
+    ti11: Double = 0.0,
+    ti12: Double = 0.0,
+    ti2: Double = 0.0,
+    ti3: Double = 0.0,
+    ti4: Double = 0.0,
+    ti5: Double = 0.0,
+    ti6: Double = 0.0,
+    ti7: Double = 0.0,
+    ti8: Double = 0.0,
+    ti9: Double = 0.0,
+    tl1: Double = 0.0,
+    tl10: Double = 0.0,
+    tl11: Double = 0.0,
+    tl12: Double = 0.0,
+    tl2: Double = 0.0,
+    tl3: Double = 0.0,
+    tl4: Double = 0.0,
+    tl5: Double = 0.0,
+    tl6: Double = 0.0,
+    tl7: Double = 0.0,
+    tl8: Double = 0.0,
+    tl9: Double = 0.0,
+    vhmax: Double = 0.0,
+    vhmin: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vlmax: Double = 0.0,
+    vlmin: Double = 0.0,
+    vstmax: Double = 0.0,
+    vstmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2448,26 +2404,22 @@ extends
  */
 final case class PssPTIST1
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    dtc: Double,
-    dtf: Double,
-    dtp: Double,
-    k: Double,
-    m: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    tf: Double,
-    tp: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    dtc: Double = 0.0,
+    dtf: Double = 0.0,
+    dtp: Double = 0.0,
+    k: Double = 0.0,
+    m: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    tf: Double = 0.0,
+    tp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2621,49 +2573,45 @@ extends
  */
 final case class PssPTIST3
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    a0: Double,
-    a1: Double,
-    a2: Double,
-    a3: Double,
-    a4: Double,
-    a5: Double,
-    al: Double,
-    athres: Double,
-    b0: Double,
-    b1: Double,
-    b2: Double,
-    b3: Double,
-    b4: Double,
-    b5: Double,
-    dl: Double,
-    dtc: Double,
-    dtf: Double,
-    dtp: Double,
-    isw: Boolean,
-    k: Double,
-    lthres: Double,
-    m: Double,
-    nav: Double,
-    ncl: Double,
-    ncr: Double,
-    pmin: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    tf: Double,
-    tp: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    a0: Double = 0.0,
+    a1: Double = 0.0,
+    a2: Double = 0.0,
+    a3: Double = 0.0,
+    a4: Double = 0.0,
+    a5: Double = 0.0,
+    al: Double = 0.0,
+    athres: Double = 0.0,
+    b0: Double = 0.0,
+    b1: Double = 0.0,
+    b2: Double = 0.0,
+    b3: Double = 0.0,
+    b4: Double = 0.0,
+    b5: Double = 0.0,
+    dl: Double = 0.0,
+    dtc: Double = 0.0,
+    dtf: Double = 0.0,
+    dtp: Double = 0.0,
+    isw: Boolean = false,
+    k: Double = 0.0,
+    lthres: Double = 0.0,
+    m: Double = 0.0,
+    nav: Double = 0.0,
+    ncl: Double = 0.0,
+    ncr: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    tf: Double = 0.0,
+    tp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2882,25 +2830,21 @@ extends
  */
 final case class PssRQB
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    kdpm: Double,
-    ki2: Double,
-    ki3: Double,
-    ki4: Double,
-    sibv: Double,
-    t4f: Double,
-    t4m: Double,
-    t4mom: Double,
-    tomd: Double,
-    tomsl: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    kdpm: Double = 0.0,
+    ki2: Double = 0.0,
+    ki3: Double = 0.0,
+    ki4: Double = 0.0,
+    sibv: Double = 0.0,
+    t4f: Double = 0.0,
+    t4m: Double = 0.0,
+    t4mom: Double = 0.0,
+    tomd: Double = 0.0,
+    tomsl: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3023,26 +2967,22 @@ extends
  */
 final case class PssSB4
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    kx: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    td: Double,
-    te: Double,
-    tt: Double,
-    tx1: Double,
-    tx2: Double,
-    vsmax: Double,
-    vsmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    kx: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    td: Double = 0.0,
+    te: Double = 0.0,
+    tt: Double = 0.0,
+    tx1: Double = 0.0,
+    tx2: Double = 0.0,
+    vsmax: Double = 0.0,
+    vsmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3176,28 +3116,24 @@ extends
  */
 final case class PssSH
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    k: Double,
-    k0: Double,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    k4: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    td: Double,
-    vsmax: Double,
-    vsmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    k: Double = 0.0,
+    k0: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    td: Double = 0.0,
+    vsmax: Double = 0.0,
+    vsmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3332,26 +3268,22 @@ extends
  */
 final case class PssSK
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    vsmax: Double,
-    vsmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    vsmax: Double = 0.0,
+    vsmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3475,23 +3407,19 @@ extends
  */
 final case class PssSTAB2A
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    hlim: Double,
-    k2: Double,
-    k3: Double,
-    k4: Double,
-    k5: Double,
-    t2: Double,
-    t3: Double,
-    t5: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    hlim: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    k5: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t5: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3620,33 +3548,29 @@ extends
  */
 final case class PssWECC
 (
-    override val sup: PowerSystemStabilizerDynamics,
-    inputSignal1Type: String,
-    inputSignal2Type: String,
-    k1: Double,
-    k2: Double,
-    t1: Double,
-    t10: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    t9: Double,
-    vcl: Double,
-    vcu: Double,
-    vsmax: Double,
-    vsmin: Double
+    override val sup: PowerSystemStabilizerDynamics = null,
+    inputSignal1Type: String = null,
+    inputSignal2Type: String = null,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    t1: Double = 0.0,
+    t10: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    t9: Double = 0.0,
+    vcl: Double = 0.0,
+    vcu: Double = 0.0,
+    vsmax: Double = 0.0,
+    vsmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

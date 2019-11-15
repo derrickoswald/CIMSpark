@@ -18,15 +18,11 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class EnvironmentalDependentLimit
 (
-    override val sup: LimitDependency
+    override val sup: LimitDependency = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -84,17 +80,13 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class EquipmentLimitSeriesComponent
 (
-    override val sup: IdentifiedObject,
-    Equipment: String,
-    SeriesEquipmentDependentLimit: String
+    override val sup: IdentifiedObject = null,
+    Equipment: String = null,
+    SeriesEquipmentDependentLimit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -172,17 +164,13 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class LimitDependency
 (
-    override val sup: IdentifiedObject,
-    Equipment: String,
-    OperationalLimit: List[String]
+    override val sup: IdentifiedObject = null,
+    Equipment: String = null,
+    OperationalLimit: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -259,17 +247,13 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class LimitScalingLimit
 (
-    override val sup: LimitDependency,
-    limitScalingPercent: Double,
-    SourceOperationalLimit: String
+    override val sup: LimitDependency = null,
+    limitScalingPercent: Double = 0.0,
+    SourceOperationalLimit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -349,18 +333,14 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class OperatonalLimitTypeScaling
 (
-    override val sup: BasicElement,
-    scalingPercent: Double,
-    SourceOperationalLimitType: String,
-    TargetOperationalLimit: String
+    override val sup: BasicElement = null,
+    scalingPercent: Double = 0.0,
+    SourceOperationalLimitType: String = null,
+    TargetOperationalLimit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -437,16 +417,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledActivePowerLimitValue
 (
-    override val sup: ScheduledLimitValue,
-    value: Double
+    override val sup: ScheduledLimitValue = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -513,16 +489,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledApparentPowerLimitValue
 (
-    override val sup: ScheduledLimitValue,
-    value: Double
+    override val sup: ScheduledLimitValue = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -589,16 +561,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledCurrentLimitValue
 (
-    override val sup: ScheduledLimitValue,
-    value: Double
+    override val sup: ScheduledLimitValue = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -662,16 +630,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledLimitDependency
 (
-    override val sup: LimitDependency,
-    ScheduledLimitValues: List[String]
+    override val sup: LimitDependency = null,
+    ScheduledLimitValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -743,17 +707,13 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledLimitValue
 (
-    override val sup: IdentifiedObject,
-    ScheduledLimitDependency: String,
-    Season: String
+    override val sup: IdentifiedObject = null,
+    ScheduledLimitDependency: String = null,
+    Season: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -828,16 +788,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledVoltageLimitValue
 (
-    override val sup: ScheduledLimitValue,
-    value: Double
+    override val sup: ScheduledLimitValue = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -906,16 +862,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class SeriesEquipmentDependentLimit
 (
-    override val sup: LimitDependency,
-    EquipmentLimitSeriesComponent: List[String]
+    override val sup: LimitDependency = null,
+    EquipmentLimitSeriesComponent: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -987,18 +939,14 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperatureDependentLimitPoint
 (
-    override val sup: BasicElement,
-    limitPercent: Double,
-    temperature: Double,
-    TemperatureDependentLimitTable: String
+    override val sup: BasicElement = null,
+    limitPercent: Double = 0.0,
+    temperature: Double = 0.0,
+    TemperatureDependentLimitTable: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1077,16 +1025,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperatureDependentLimitTable
 (
-    override val sup: EnvironmentalDependentLimit,
-    TemperatureLimitTablePoint: List[String]
+    override val sup: EnvironmentalDependentLimit = null,
+    TemperatureLimitTablePoint: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1160,20 +1104,16 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperaturePolynomialLimit
 (
-    override val sup: EnvironmentalDependentLimit,
-    coefficient0: Double,
-    coefficient1: Double,
-    coefficient2: Double,
-    coefficient3: Double,
-    coefficient4: Double
+    override val sup: EnvironmentalDependentLimit = null,
+    coefficient0: Double = 0.0,
+    coefficient1: Double = 0.0,
+    coefficient2: Double = 0.0,
+    coefficient3: Double = 0.0,
+    coefficient4: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1256,16 +1196,12 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class WeatherStation
 (
-    override val sup: PowerSystemResource,
-    Equipment: List[String]
+    override val sup: PowerSystemResource = null,
+    Equipment: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

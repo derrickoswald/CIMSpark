@@ -30,26 +30,22 @@ import ch.ninecode.cim.Relationship
  */
 final case class LandProperty
 (
-    override val sup: IdentifiedObject,
-    demographicKind: String,
-    externalRecordReference: String,
-    kind: String,
-    status: String,
-    AssetContainers: List[String],
-    ErpOrganisationRoles: List[String],
-    ErpPersonRoles: List[String],
-    ErpSiteLevelDatas: List[String],
-    LocationGrants: List[String],
-    Locations: List[String],
-    RightOfWays: List[String]
+    override val sup: IdentifiedObject = null,
+    demographicKind: String = null,
+    externalRecordReference: String = null,
+    kind: String = null,
+    status: String = null,
+    AssetContainers: List[String] = List(),
+    ErpOrganisationRoles: List[String] = List(),
+    ErpPersonRoles: List[String] = List(),
+    ErpSiteLevelDatas: List[String] = List(),
+    LocationGrants: List[String] = List(),
+    Locations: List[String] = List(),
+    RightOfWays: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -169,17 +165,13 @@ extends
  */
 final case class LocationGrant
 (
-    override val sup: Agreement,
-    propertyData: String,
-    LandProperty: String
+    override val sup: Agreement = null,
+    propertyData: String = null,
+    LandProperty: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -254,16 +246,12 @@ extends
  */
 final case class RedLine
 (
-    override val sup: IdentifiedObject,
-    status: String
+    override val sup: IdentifiedObject = null,
+    status: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -332,17 +320,13 @@ extends
  */
 final case class RightOfWay
 (
-    override val sup: Agreement,
-    propertyData: String,
-    LandProperties: List[String]
+    override val sup: Agreement = null,
+    propertyData: String = null,
+    LandProperties: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -418,19 +402,15 @@ extends
  */
 final case class Route
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    `type`: String,
-    Crews: List[String],
-    Locations: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    `type`: String = null,
+    Crews: List[String] = List(),
+    Locations: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -515,16 +495,12 @@ extends
  */
 final case class Zone
 (
-    override val sup: Location,
-    kind: String
+    override val sup: Location = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

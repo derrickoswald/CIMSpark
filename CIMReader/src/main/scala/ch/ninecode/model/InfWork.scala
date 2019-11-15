@@ -34,20 +34,16 @@ The WorkService package defines Appointment class".
  */
 final case class AccessPermit
 (
-    override val sup: WorkDocument,
-    applicationNumber: String,
-    effectiveDate: String,
-    expirationDate: String,
-    payment: Double,
-    permitID: String
+    override val sup: WorkDocument = null,
+    applicationNumber: String = null,
+    effectiveDate: String = null,
+    expirationDate: String = null,
+    payment: Double = 0.0,
+    permitID: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -142,17 +138,13 @@ The WorkService package defines Appointment class".
  */
 final case class Assignment
 (
-    override val sup: WorkDocument,
-    effectivePeriod: String,
-    Crews: List[String]
+    override val sup: WorkDocument = null,
+    effectivePeriod: String = null,
+    Crews: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -238,18 +230,14 @@ The WorkService package defines Appointment class".
  */
 final case class BusinessCase
 (
-    override val sup: WorkDocument,
-    corporateCode: String,
-    Projects: List[String],
-    Works: List[String]
+    override val sup: WorkDocument = null,
+    corporateCode: String = null,
+    Projects: List[String] = List(),
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -339,17 +327,13 @@ The WorkService package defines Appointment class".
  */
 final case class CUAllowableAction
 (
-    override val sup: WorkIdentifiedObject,
-    status: String,
-    CompatibleUnits: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    status: String = null,
+    CompatibleUnits: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -436,19 +420,15 @@ The WorkService package defines Appointment class".
  */
 final case class CUContractorItem
 (
-    override val sup: WorkIdentifiedObject,
-    activityCode: String,
-    bidAmount: Double,
-    status: String,
-    CompatibleUnits: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    activityCode: String = null,
+    bidAmount: Double = 0.0,
+    status: String = null,
+    CompatibleUnits: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -545,20 +525,16 @@ The WorkService package defines Appointment class".
  */
 final case class CUGroup
 (
-    override val sup: WorkIdentifiedObject,
-    status: String,
-    ChildCUGroups: List[String],
-    CompatibleUnits: List[String],
-    DesignLocationCUs: List[String],
-    ParentCUGroups: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    status: String = null,
+    ChildCUGroups: List[String] = List(),
+    CompatibleUnits: List[String] = List(),
+    DesignLocationCUs: List[String] = List(),
+    ParentCUGroups: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -659,18 +635,14 @@ The WorkService package defines Appointment class".
  */
 final case class CULaborCode
 (
-    override val sup: WorkIdentifiedObject,
-    code: String,
-    status: String,
-    CULaborItems: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    code: String = null,
+    status: String = null,
+    CULaborItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -765,22 +737,18 @@ The WorkService package defines Appointment class".
  */
 final case class CULaborItem
 (
-    override val sup: WorkIdentifiedObject,
-    activityCode: String,
-    laborDuration: Double,
-    laborRate: Double,
-    status: String,
-    CULaborCode: String,
-    CompatibleUnits: List[String],
-    QualificationRequirements: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    activityCode: String = null,
+    laborDuration: Double = 0.0,
+    laborRate: Double = 0.0,
+    status: String = null,
+    CULaborCode: String = null,
+    CompatibleUnits: List[String] = List(),
+    QualificationRequirements: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -894,21 +862,17 @@ The WorkService package defines Appointment class".
  */
 final case class CUMaterialItem
 (
-    override val sup: WorkIdentifiedObject,
-    corporateCode: String,
-    quantity: String,
-    status: String,
-    CompatibleUnits: List[String],
-    PropertyUnits: List[String],
-    TypeMaterial: String
+    override val sup: WorkIdentifiedObject = null,
+    corporateCode: String = null,
+    quantity: String = null,
+    status: String = null,
+    CompatibleUnits: List[String] = List(),
+    PropertyUnits: List[String] = List(),
+    TypeMaterial: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1015,20 +979,16 @@ The WorkService package defines Appointment class".
  */
 final case class CUWorkEquipmentItem
 (
-    override val sup: WorkIdentifiedObject,
-    equipCode: String,
-    rate: Double,
-    status: String,
-    CompatibleUnits: List[String],
-    TypeAsset: String
+    override val sup: WorkIdentifiedObject = null,
+    equipCode: String = null,
+    rate: Double = 0.0,
+    status: String = null,
+    CompatibleUnits: List[String] = List(),
+    TypeAsset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1132,22 +1092,18 @@ The WorkService package defines Appointment class".
  */
 final case class Capability
 (
-    override val sup: WorkIdentifiedObject,
-    performanceFactor: String,
-    status: String,
-    `type`: String,
-    validityInterval: String,
-    Crafts: List[String],
-    Crew: String,
-    WorkTasks: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    performanceFactor: String = null,
+    status: String = null,
+    `type`: String = null,
+    validityInterval: String = null,
+    Crafts: List[String] = List(),
+    Crew: String = null,
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1266,28 +1222,24 @@ The WorkService package defines Appointment class".
  */
 final case class CompatibleUnit
 (
-    override val sup: WorkDocument,
-    estCost: Double,
-    quantity: String,
-    CUAllowableAction: String,
-    CUContractorItems: List[String],
-    CUGroup: String,
-    CULaborItems: List[String],
-    CUMaterialItems: List[String],
-    CUWorkEquipmentItems: List[String],
-    CostType: String,
-    DesignLocationCUs: List[String],
-    GenericAssetModel: String,
-    Procedures: List[String],
-    PropertyUnit: String
+    override val sup: WorkDocument = null,
+    estCost: Double = 0.0,
+    quantity: String = null,
+    CUAllowableAction: String = null,
+    CUContractorItems: List[String] = List(),
+    CUGroup: String = null,
+    CULaborItems: List[String] = List(),
+    CUMaterialItems: List[String] = List(),
+    CUWorkEquipmentItems: List[String] = List(),
+    CostType: String = null,
+    DesignLocationCUs: List[String] = List(),
+    GenericAssetModel: String = null,
+    Procedures: List[String] = List(),
+    PropertyUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, List(), null, List(), List(), List(), null, List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1431,21 +1383,17 @@ The WorkService package defines Appointment class".
  */
 final case class ConditionFactor
 (
-    override val sup: WorkIdentifiedObject,
-    cfValue: String,
-    kind: String,
-    status: String,
-    DesignLocationCUs: List[String],
-    DesignLocations: List[String],
-    Designs: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    cfValue: String = null,
+    kind: String = null,
+    status: String = null,
+    DesignLocationCUs: List[String] = List(),
+    DesignLocations: List[String] = List(),
+    Designs: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1554,22 +1502,18 @@ The WorkService package defines Appointment class".
  */
 final case class ContractorItem
 (
-    override val sup: WorkIdentifiedObject,
-    activityCode: String,
-    bidAmount: Double,
-    cost: Double,
-    status: String,
-    ErpPayables: List[String],
-    WorkCostDetail: String,
-    WorkTask: String
+    override val sup: WorkIdentifiedObject = null,
+    activityCode: String = null,
+    bidAmount: Double = 0.0,
+    cost: Double = 0.0,
+    status: String = null,
+    ErpPayables: List[String] = List(),
+    WorkCostDetail: String = null,
+    WorkTask: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -1687,25 +1631,21 @@ The WorkService package defines Appointment class".
  */
 final case class CostType
 (
-    override val sup: WorkIdentifiedObject,
-    amountAssignable: Boolean,
-    code: String,
-    level: String,
-    stage: String,
-    status: String,
-    ChildCostTypes: List[String],
-    CompatibleUnits: List[String],
-    ErpJournalEntries: List[String],
-    ParentCostType: String,
-    WorkCostDetails: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    amountAssignable: Boolean = false,
+    code: String = null,
+    level: String = null,
+    stage: String = null,
+    status: String = null,
+    ChildCostTypes: List[String] = List(),
+    CompatibleUnits: List[String] = List(),
+    ErpJournalEntries: List[String] = List(),
+    ParentCostType: String = null,
+    WorkCostDetails: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, null, null, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1838,26 +1778,22 @@ The WorkService package defines Appointment class".
  */
 final case class Design
 (
-    override val sup: WorkDocument,
-    costEstimate: Double,
-    kind: String,
-    price: Double,
-    ConditionFactors: List[String],
-    DesignLocations: List[String],
-    DesignLocationsCUs: List[String],
-    ErpBOMs: List[String],
-    ErpQuoteLineItem: String,
-    Work: String,
-    WorkCostDetails: List[String],
-    WorkTasks: List[String]
+    override val sup: WorkDocument = null,
+    costEstimate: Double = 0.0,
+    kind: String = null,
+    price: Double = 0.0,
+    ConditionFactors: List[String] = List(),
+    DesignLocations: List[String] = List(),
+    DesignLocationsCUs: List[String] = List(),
+    ErpBOMs: List[String] = List(),
+    ErpQuoteLineItem: String = null,
+    Work: String = null,
+    WorkCostDetails: List[String] = List(),
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, List(), List(), List(), List(), null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1994,23 +1930,19 @@ The WorkService package defines Appointment class".
  */
 final case class DesignLocation
 (
-    override val sup: WorkIdentifiedObject,
-    spanLength: Double,
-    status: String,
-    ConditionFactors: List[String],
-    DesignLocationCUs: List[String],
-    Designs: List[String],
-    ErpBomItemDatas: List[String],
-    MiscCostItems: List[String],
-    WorkLocations: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    spanLength: Double = 0.0,
+    status: String = null,
+    ConditionFactors: List[String] = List(),
+    DesignLocationCUs: List[String] = List(),
+    Designs: List[String] = List(),
+    ErpBomItemDatas: List[String] = List(),
+    MiscCostItems: List[String] = List(),
+    WorkLocations: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2137,28 +2069,24 @@ The WorkService package defines Appointment class".
  */
 final case class DesignLocationCU
 (
-    override val sup: WorkIdentifiedObject,
-    cuAccount: String,
-    cuAction: String,
-    cuQuantity: String,
-    cuUsage: String,
-    removalDate: String,
-    status: String,
-    toBeEnergised: Boolean,
-    CUGroups: List[String],
-    CompatibleUnits: List[String],
-    ConditionFactors: List[String],
-    DesignLocation: String,
-    Designs: List[String],
-    WorkTasks: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    cuAccount: String = null,
+    cuAction: String = null,
+    cuQuantity: String = null,
+    cuUsage: String = null,
+    removalDate: String = null,
+    status: String = null,
+    toBeEnergised: Boolean = false,
+    CUGroups: List[String] = List(),
+    CompatibleUnits: List[String] = List(),
+    ConditionFactors: List[String] = List(),
+    DesignLocation: String = null,
+    Designs: List[String] = List(),
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2301,22 +2229,18 @@ The WorkService package defines Appointment class".
  */
 final case class InfoQuestion
 (
-    override val sup: WorkDocument,
-    answer: String,
-    answerDateTime: String,
-    answerRemark: String,
-    questionCode: String,
-    questionRemark: String,
-    questionText: String,
-    questionType: String
+    override val sup: WorkDocument = null,
+    answer: String = null,
+    answerDateTime: String = null,
+    answerRemark: String = null,
+    questionCode: String = null,
+    questionRemark: String = null,
+    questionText: String = null,
+    questionType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2424,23 +2348,19 @@ The WorkService package defines Appointment class".
  */
 final case class LaborItem
 (
-    override val sup: WorkIdentifiedObject,
-    activityCode: String,
-    cost: Double,
-    laborDuration: Double,
-    laborRate: Double,
-    status: String,
-    ErpPersons: List[String],
-    WorkCostDetail: String,
-    WorkTask: String
+    override val sup: WorkIdentifiedObject = null,
+    activityCode: String = null,
+    cost: Double = 0.0,
+    laborDuration: Double = 0.0,
+    laborRate: Double = 0.0,
+    status: String = null,
+    ErpPersons: List[String] = List(),
+    WorkCostDetail: String = null,
+    WorkTask: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -2561,24 +2481,20 @@ The WorkService package defines Appointment class".
  */
 final case class MiscCostItem
 (
-    override val sup: WorkIdentifiedObject,
-    account: String,
-    costPerUnit: Double,
-    costType: String,
-    externalRefID: String,
-    quantity: String,
-    status: String,
-    DesignLocation: String,
-    WorkCostDetail: String,
-    WorkTask: String
+    override val sup: WorkIdentifiedObject = null,
+    account: String = null,
+    costPerUnit: Double = 0.0,
+    costType: String = null,
+    externalRefID: String = null,
+    quantity: String = null,
+    status: String = null,
+    DesignLocation: String = null,
+    WorkCostDetail: String = null,
+    WorkTask: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2692,16 +2608,12 @@ The WorkService package defines Appointment class".
  */
 final case class NonStandardItem
 (
-    override val sup: WorkDocument,
-    amount: Double
+    override val sup: WorkDocument = null,
+    amount: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2787,26 +2699,22 @@ The WorkService package defines Appointment class".
  */
 final case class OldWorkTask
 (
-    override val sup: WorkTask,
-    Capabilities: List[String],
-    ContractorItems: List[String],
-    Design: String,
-    DesignLocationCUs: List[String],
-    LaborItems: List[String],
-    MiscCostItems: List[String],
-    OverheadCost: String,
-    QualificationRequirements: List[String],
-    Usages: List[String],
-    WorkCostDetails: List[String],
-    WorkFlowStep: String
+    override val sup: WorkTask = null,
+    Capabilities: List[String] = List(),
+    ContractorItems: List[String] = List(),
+    Design: String = null,
+    DesignLocationCUs: List[String] = List(),
+    LaborItems: List[String] = List(),
+    MiscCostItems: List[String] = List(),
+    OverheadCost: String = null,
+    QualificationRequirements: List[String] = List(),
+    Usages: List[String] = List(),
+    WorkCostDetails: List[String] = List(),
+    WorkFlowStep: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), null, List(), List(), List(), null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2939,19 +2847,15 @@ The WorkService package defines Appointment class".
  */
 final case class OneCallRequest
 (
-    override val sup: WorkDocument,
-    explosivesUsed: Boolean,
-    markedIndicator: Boolean,
-    markingInstruction: String,
-    WorkLocations: List[String]
+    override val sup: WorkDocument = null,
+    explosivesUsed: Boolean = false,
+    markedIndicator: Boolean = false,
+    markingInstruction: String = null,
+    WorkLocations: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3047,20 +2951,16 @@ The WorkService package defines Appointment class".
  */
 final case class OverheadCost
 (
-    override val sup: WorkIdentifiedObject,
-    code: String,
-    cost: Double,
-    status: String,
-    WorkCostDetails: List[String],
-    WorkTasks: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    code: String = null,
+    cost: Double = 0.0,
+    status: String = null,
+    WorkCostDetails: List[String] = List(),
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3165,21 +3065,17 @@ The WorkService package defines Appointment class".
  */
 final case class Project
 (
-    override val sup: WorkDocument,
-    budget: Double,
-    BusinessCase: String,
-    ErpProjectAccounting: String,
-    ParentProject: String,
-    SubProjects: List[String],
-    Works: List[String]
+    override val sup: WorkDocument = null,
+    budget: Double = 0.0,
+    BusinessCase: String = null,
+    ErpProjectAccounting: String = null,
+    ParentProject: String = null,
+    SubProjects: List[String] = List(),
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3291,22 +3187,18 @@ The WorkService package defines Appointment class".
  */
 final case class PropertyUnit
 (
-    override val sup: WorkIdentifiedObject,
-    accountingUsage: String,
-    activityCode: String,
-    propertyAccount: String,
-    status: String,
-    CUMaterialItems: List[String],
-    CompatibleUnits: List[String],
-    WorkCostDetails: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    accountingUsage: String = null,
+    activityCode: String = null,
+    propertyAccount: String = null,
+    status: String = null,
+    CUMaterialItems: List[String] = List(),
+    CompatibleUnits: List[String] = List(),
+    WorkCostDetails: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3417,20 +3309,16 @@ The WorkService package defines Appointment class".
  */
 final case class QualificationRequirement
 (
-    override val sup: WorkIdentifiedObject,
-    qualificationID: String,
-    CULaborItems: List[String],
-    Skills: List[String],
-    Specifications: List[String],
-    WorkTasks: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    qualificationID: String = null,
+    CULaborItems: List[String] = List(),
+    Skills: List[String] = List(),
+    Specifications: List[String] = List(),
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3531,16 +3419,12 @@ The WorkService package defines Appointment class".
  */
 final case class Regulation
 (
-    override val sup: WorkDocument,
-    referenceNumber: String
+    override val sup: WorkDocument = null,
+    referenceNumber: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3620,20 +3504,16 @@ The WorkService package defines Appointment class".
  */
 final case class ShiftPattern
 (
-    override val sup: WorkIdentifiedObject,
-    assignmentType: String,
-    cycleCount: Int,
-    status: String,
-    validityInterval: String,
-    Crews: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    assignmentType: String = null,
+    cycleCount: Int = 0,
+    status: String = null,
+    validityInterval: String = null,
+    Crews: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3741,23 +3621,19 @@ The WorkService package defines Appointment class".
  */
 final case class TypeMaterial
 (
-    override val sup: WorkDocument,
-    costType: String,
-    estUnitCost: Double,
-    quantity: String,
-    stockItem: Boolean,
-    CUMaterialItems: List[String],
-    ErpIssueInventories: List[String],
-    ErpReqLineItems: List[String],
-    MaterialItems: List[String]
+    override val sup: WorkDocument = null,
+    costType: String = null,
+    estUnitCost: Double = 0.0,
+    quantity: String = null,
+    stockItem: Boolean = false,
+    CUMaterialItems: List[String] = List(),
+    ErpIssueInventories: List[String] = List(),
+    ErpReqLineItems: List[String] = List(),
+    MaterialItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, false, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3871,17 +3747,13 @@ The WorkService package defines Appointment class".
  */
 final case class Usage
 (
-    override val sup: WorkIdentifiedObject,
-    status: String,
-    WorkTask: String
+    override val sup: WorkIdentifiedObject = null,
+    status: String = null,
+    WorkTask: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3978,29 +3850,25 @@ The WorkService package defines Appointment class".
  */
 final case class WorkCostDetail
 (
-    override val sup: WorkDocument,
-    amount: Double,
-    isDebit: Boolean,
-    transactionDateTime: String,
-    ContractorItems: List[String],
-    CostType: String,
-    Design: String,
-    ErpProjectAccounting: String,
-    LaborItems: List[String],
-    MiscCostItems: List[String],
-    OverheadCost: String,
-    PropertyUnits: List[String],
-    WorkCostSummary: String,
-    WorkTask: String,
-    Works: List[String]
+    override val sup: WorkDocument = null,
+    amount: Double = 0.0,
+    isDebit: Boolean = false,
+    transactionDateTime: String = null,
+    ContractorItems: List[String] = List(),
+    CostType: String = null,
+    Design: String = null,
+    ErpProjectAccounting: String = null,
+    LaborItems: List[String] = List(),
+    MiscCostItems: List[String] = List(),
+    OverheadCost: String = null,
+    PropertyUnits: List[String] = List(),
+    WorkCostSummary: String = null,
+    WorkTask: String = null,
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, null, List(), null, null, null, List(), List(), null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -4145,16 +4013,12 @@ The WorkService package defines Appointment class".
  */
 final case class WorkCostSummary
 (
-    override val sup: WorkDocument,
-    WorkCostDetail: String
+    override val sup: WorkDocument = null,
+    WorkCostDetail: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -4234,15 +4098,11 @@ The WorkService package defines Appointment class".
  */
 final case class WorkDocument
 (
-    override val sup: Document
+    override val sup: Document = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -4310,19 +4170,15 @@ The WorkService package defines Appointment class".
  */
 final case class WorkFlowStep
 (
-    override val sup: WorkIdentifiedObject,
-    sequenceNumber: Int,
-    status: String,
-    Work: String,
-    WorkTasks: List[String]
+    override val sup: WorkIdentifiedObject = null,
+    sequenceNumber: Int = 0,
+    status: String = null,
+    Work: String = null,
+    WorkTasks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -4417,15 +4273,11 @@ The WorkService package defines Appointment class".
  */
 final case class WorkIdentifiedObject
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

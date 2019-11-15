@@ -20,17 +20,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class IEC61970CIMVersion
 (
-    override val sup: BasicElement,
-    date: String,
-    version: String
+    override val sup: BasicElement = null,
+    date: String = null,
+    version: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

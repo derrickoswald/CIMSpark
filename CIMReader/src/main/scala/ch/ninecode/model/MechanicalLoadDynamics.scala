@@ -21,19 +21,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class MechLoad1
 (
-    override val sup: MechanicalLoadDynamics,
-    a: Double,
-    b: Double,
-    d: Double,
-    e: Double
+    override val sup: MechanicalLoadDynamics = null,
+    a: Double = 0.0,
+    b: Double = 0.0,
+    d: Double = 0.0,
+    e: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -114,17 +110,13 @@ extends
  */
 final case class MechanicalLoadDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    AsynchronousMachineDynamics: String,
-    SynchronousMachineDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    AsynchronousMachineDynamics: String = null,
+    SynchronousMachineDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

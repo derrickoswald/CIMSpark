@@ -22,18 +22,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class AccountMovement
 (
-    override val sup: BasicElement,
-    amount: Double,
-    dateTime: String,
-    reason: String
+    override val sup: BasicElement = null,
+    amount: Double = 0.0,
+    dateTime: String = null,
+    reason: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -110,19 +106,15 @@ extends
  */
 final case class AccountingUnit
 (
-    override val sup: BasicElement,
-    energyUnit: Double,
-    monetaryUnit: String,
-    multiplier: String,
-    value: Double
+    override val sup: BasicElement = null,
+    energyUnit: Double = 0.0,
+    monetaryUnit: String = null,
+    multiplier: String = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -209,23 +201,19 @@ extends
  */
 final case class AuxiliaryAccount
 (
-    override val sup: Document,
-    balance: Double,
-    due: String,
-    lastCredit: String,
-    lastDebit: String,
-    principleAmount: Double,
-    AuxiliaryAgreement: String,
-    Charges: List[String],
-    PaymentTransactions: List[String]
+    override val sup: Document = null,
+    balance: Double = 0.0,
+    due: String = null,
+    lastCredit: String = null,
+    lastDebit: String = null,
+    principleAmount: Double = 0.0,
+    AuxiliaryAgreement: String = null,
+    Charges: List[String] = List(),
+    PaymentTransactions: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -347,26 +335,22 @@ extends
  */
 final case class AuxiliaryAgreement
 (
-    override val sup: Agreement,
-    arrearsInterest: Double,
-    auxCycle: String,
-    auxPriorityCode: String,
-    fixedAmount: Double,
-    minAmount: Double,
-    payCycle: String,
-    subType: String,
-    vendPortion: Double,
-    vendPortionArrear: Double,
-    AuxiliaryAccounts: List[String],
-    CustomerAgreement: String
+    override val sup: Agreement = null,
+    arrearsInterest: Double = 0.0,
+    auxCycle: String = null,
+    auxPriorityCode: String = null,
+    fixedAmount: Double = 0.0,
+    minAmount: Double = 0.0,
+    payCycle: String = null,
+    subType: String = null,
+    vendPortion: Double = 0.0,
+    vendPortionArrear: Double = 0.0,
+    AuxiliaryAccounts: List[String] = List(),
+    CustomerAgreement: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, null, null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -482,20 +466,16 @@ extends
  */
 final case class BankAccountDetail
 (
-    override val sup: BasicElement,
-    accountNumber: String,
-    bankName: String,
-    branchCode: String,
-    holderID: String,
-    holderName: String
+    override val sup: BasicElement = null,
+    accountNumber: String = null,
+    bankName: String = null,
+    branchCode: String = null,
+    holderID: String = null,
+    holderName: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -581,20 +561,16 @@ extends
  */
 final case class Card
 (
-    override val sup: BasicElement,
-    accountHolderName: String,
-    cvNumber: String,
-    expiryDate: String,
-    pan: String,
-    Tender: String
+    override val sup: BasicElement = null,
+    accountHolderName: String = null,
+    cvNumber: String = null,
+    expiryDate: String = null,
+    pan: String = null,
+    Tender: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -683,17 +659,13 @@ extends
  */
 final case class Cashier
 (
-    override val sup: IdentifiedObject,
-    electronicAddress: String,
-    CashierShifts: List[String]
+    override val sup: IdentifiedObject = null,
+    electronicAddress: String = null,
+    CashierShifts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -771,20 +743,16 @@ extends
  */
 final case class CashierShift
 (
-    override val sup: Shift,
-    cashFloat: Double,
-    Cashier: String,
-    PointOfSale: String,
-    Receipts: List[String],
-    Transactions: List[String]
+    override val sup: Shift = null,
+    cashFloat: Double = 0.0,
+    Cashier: String = null,
+    PointOfSale: String = null,
+    Receipts: List[String] = List(),
+    Transactions: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -883,23 +851,19 @@ extends
  */
 final case class Charge
 (
-    override val sup: IdentifiedObject,
-    fixedPortion: String,
-    kind: String,
-    variablePortion: Double,
-    AuxiliaryAccounts: List[String],
-    ChildCharges: List[String],
-    ConsumptionTariffIntervals: List[String],
-    ParentCharge: String,
-    TimeTariffIntervals: List[String]
+    override val sup: IdentifiedObject = null,
+    fixedPortion: String = null,
+    kind: String = null,
+    variablePortion: Double = 0.0,
+    AuxiliaryAccounts: List[String] = List(),
+    ChildCharges: List[String] = List(),
+    ConsumptionTariffIntervals: List[String] = List(),
+    ParentCharge: String = null,
+    TimeTariffIntervals: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1008,21 +972,17 @@ extends
  */
 final case class Cheque
 (
-    override val sup: BasicElement,
-    bankAccountDetail: String,
-    chequeNumber: String,
-    date: String,
-    kind: String,
-    micrNumber: String,
-    Tender: String
+    override val sup: BasicElement = null,
+    bankAccountDetail: String = null,
+    chequeNumber: String = null,
+    date: String = null,
+    kind: String = null,
+    micrNumber: String = null,
+    Tender: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1121,21 +1081,17 @@ extends
  */
 final case class ConsumptionTariffInterval
 (
-    override val sup: BasicElement,
-    sequenceNumber: Int,
-    startValue: Double,
-    Charges: List[String],
-    ReadingType: String,
-    TariffProfiles: List[String],
-    TouTariffIntervals: List[String]
+    override val sup: BasicElement = null,
+    sequenceNumber: Int = 0,
+    startValue: Double = 0.0,
+    Charges: List[String] = List(),
+    ReadingType: String = null,
+    TariffProfiles: List[String] = List(),
+    TouTariffIntervals: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1234,20 +1190,16 @@ extends
  */
 final case class Due
 (
-    override val sup: BasicElement,
-    arrears: Double,
-    charges: Double,
-    current: Double,
-    interest: Double,
-    principle: Double
+    override val sup: BasicElement = null,
+    arrears: Double = 0.0,
+    charges: Double = 0.0,
+    current: Double = 0.0,
+    interest: Double = 0.0,
+    principle: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1332,19 +1284,15 @@ extends
  */
 final case class LineDetail
 (
-    override val sup: BasicElement,
-    amount: Double,
-    dateTime: String,
-    note: String,
-    rounding: Double
+    override val sup: BasicElement = null,
+    amount: Double = 0.0,
+    dateTime: String = null,
+    note: String = null,
+    rounding: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1428,20 +1376,16 @@ extends
  */
 final case class MerchantAccount
 (
-    override val sup: Document,
-    currentBalance: Double,
-    provisionalBalance: Double,
-    MerchantAgreement: String,
-    Transactors: List[String],
-    VendorShifts: List[String]
+    override val sup: Document = null,
+    currentBalance: Double = 0.0,
+    provisionalBalance: Double = 0.0,
+    MerchantAgreement: String = null,
+    Transactors: List[String] = List(),
+    VendorShifts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1532,16 +1476,12 @@ extends
  */
 final case class MerchantAgreement
 (
-    override val sup: Agreement,
-    MerchantAccounts: List[String]
+    override val sup: Agreement = null,
+    MerchantAccounts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1611,17 +1551,13 @@ extends
  */
 final case class PointOfSale
 (
-    override val sup: IdentifiedObject,
-    location: String,
-    CashierShifts: List[String]
+    override val sup: IdentifiedObject = null,
+    location: String = null,
+    CashierShifts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1700,21 +1636,17 @@ extends
  */
 final case class Receipt
 (
-    override val sup: IdentifiedObject,
-    isBankable: Boolean,
-    line: String,
-    CashierShift: String,
-    Tenders: List[String],
-    Transactions: List[String],
-    VendorShift: String
+    override val sup: IdentifiedObject = null,
+    isBankable: Boolean = false,
+    line: String = null,
+    CashierShift: String = null,
+    Tenders: List[String] = List(),
+    Transactions: List[String] = List(),
+    VendorShift: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1813,20 +1745,16 @@ extends
  */
 final case class ServiceSupplier
 (
-    override val sup: OrganisationRole,
-    issuerIdentificationNumber: String,
-    kind: String,
-    BankAccounts: List[String],
-    CustomerAgreements: List[String],
-    UsagePoints: List[String]
+    override val sup: OrganisationRole = null,
+    issuerIdentificationNumber: String = null,
+    kind: String = null,
+    BankAccounts: List[String] = List(),
+    CustomerAgreements: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1940,21 +1868,17 @@ extends
  */
 final case class Shift
 (
-    override val sup: IdentifiedObject,
-    activityInterval: String,
-    receiptsGrandTotalBankable: Double,
-    receiptsGrandTotalNonBankable: Double,
-    receiptsGrandTotalRounding: Double,
-    transactionsGrandTotal: Double,
-    transactionsGrandTotalRounding: Double
+    override val sup: IdentifiedObject = null,
+    activityInterval: String = null,
+    receiptsGrandTotalBankable: Double = 0.0,
+    receiptsGrandTotalNonBankable: Double = 0.0,
+    receiptsGrandTotalRounding: Double = 0.0,
+    transactionsGrandTotal: Double = 0.0,
+    transactionsGrandTotalRounding: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2047,19 +1971,15 @@ extends
  */
 final case class TariffProfile
 (
-    override val sup: Document,
-    tariffCycle: String,
-    ConsumptionTariffIntervals: List[String],
-    Tariffs: List[String],
-    TimeTariffIntervals: List[String]
+    override val sup: Document = null,
+    tariffCycle: String = null,
+    ConsumptionTariffIntervals: List[String] = List(),
+    Tariffs: List[String] = List(),
+    TimeTariffIntervals: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2151,21 +2071,17 @@ extends
  */
 final case class Tender
 (
-    override val sup: IdentifiedObject,
-    amount: Double,
-    change: Double,
-    kind: String,
-    Card: String,
-    Cheque: String,
-    Receipt: String
+    override val sup: IdentifiedObject = null,
+    amount: Double = 0.0,
+    change: Double = 0.0,
+    kind: String = null,
+    Card: String = null,
+    Cheque: String = null,
+    Receipt: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2264,20 +2180,16 @@ extends
  */
 final case class TimeTariffInterval
 (
-    override val sup: BasicElement,
-    sequenceNumber: Int,
-    startTime: String,
-    Charges: List[String],
-    ConsumptionTariffIntervals: List[String],
-    TariffProfiles: List[String]
+    override val sup: BasicElement = null,
+    sequenceNumber: Int = 0,
+    startTime: String = null,
+    Charges: List[String] = List(),
+    ConsumptionTariffIntervals: List[String] = List(),
+    TariffProfiles: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2381,31 +2293,27 @@ extends
  */
 final case class Transaction
 (
-    override val sup: IdentifiedObject,
-    diverseReference: String,
-    donorReference: String,
-    kind: String,
-    line: String,
-    receiverReference: String,
-    reversedId: String,
-    serviceUnitsEnergy: Double,
-    serviceUnitsError: Double,
-    AuxiliaryAccount: String,
-    CashierShift: String,
-    CustomerAccount: String,
-    Meter: String,
-    PricingStructure: String,
-    Receipt: String,
-    UserAttributes: List[String],
-    VendorShift: String
+    override val sup: IdentifiedObject = null,
+    diverseReference: String = null,
+    donorReference: String = null,
+    kind: String = null,
+    line: String = null,
+    receiverReference: String = null,
+    reversedId: String = null,
+    serviceUnitsEnergy: Double = 0.0,
+    serviceUnitsError: Double = 0.0,
+    AuxiliaryAccount: String = null,
+    CashierShift: String = null,
+    CustomerAccount: String = null,
+    Meter: String = null,
+    PricingStructure: String = null,
+    Receipt: String = null,
+    UserAttributes: List[String] = List(),
+    VendorShift: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, 0.0, 0.0, null, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2544,16 +2452,12 @@ extends
  */
 final case class Transactor
 (
-    override val sup: IdentifiedObject,
-    MerchantAccounts: List[String]
+    override val sup: IdentifiedObject = null,
+    MerchantAccounts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2624,16 +2528,12 @@ extends
  */
 final case class Vendor
 (
-    override val sup: IdentifiedObject,
-    VendorShifts: List[String]
+    override val sup: IdentifiedObject = null,
+    VendorShifts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2710,21 +2610,17 @@ extends
  */
 final case class VendorShift
 (
-    override val sup: Shift,
-    merchantDebitAmount: Double,
-    posted: Boolean,
-    MerchantAccount: String,
-    Receipts: List[String],
-    Transactions: List[String],
-    Vendor: String
+    override val sup: Shift = null,
+    merchantDebitAmount: Double = 0.0,
+    posted: Boolean = false,
+    MerchantAccount: String = null,
+    Receipts: List[String] = List(),
+    Transactions: List[String] = List(),
+    Vendor: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *

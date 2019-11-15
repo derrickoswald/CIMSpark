@@ -29,19 +29,15 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineDynamics
 (
-    override val sup: RotatingMachineDynamics,
-    AsynchronousMachine: String,
-    MechanicalLoadDynamics: String,
-    TurbineGovernorDynamics: String,
-    WindTurbineType1or2Dynamics: String
+    override val sup: RotatingMachineDynamics = null,
+    AsynchronousMachine: String = null,
+    MechanicalLoadDynamics: String = null,
+    TurbineGovernorDynamics: String = null,
+    WindTurbineType1or2Dynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -144,20 +140,16 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineEquivalentCircuit
 (
-    override val sup: AsynchronousMachineDynamics,
-    rr1: Double,
-    rr2: Double,
-    xlr1: Double,
-    xlr2: Double,
-    xm: Double
+    override val sup: AsynchronousMachineDynamics = null,
+    rr1: Double = 0.0,
+    rr2: Double = 0.0,
+    xlr1: Double = 0.0,
+    xlr2: Double = 0.0,
+    xm: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -268,20 +260,16 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineTimeConstantReactance
 (
-    override val sup: AsynchronousMachineDynamics,
-    tpo: Double,
-    tppo: Double,
-    xp: Double,
-    xpp: Double,
-    xs: Double
+    override val sup: AsynchronousMachineDynamics = null,
+    tpo: Double = 0.0,
+    tppo: Double = 0.0,
+    xp: Double = 0.0,
+    xpp: Double = 0.0,
+    xs: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

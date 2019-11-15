@@ -20,16 +20,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class AvailablityPlan
 (
-    override val sup: IdentifiedObject,
-    validPeriod: String
+    override val sup: IdentifiedObject = null,
+    validPeriod: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -92,15 +88,11 @@ extends
  */
 final case class EquipmentUnavailabilitySchedule
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -152,17 +144,13 @@ extends
  */
 final case class UnavailabilityScheduleDependency
 (
-    override val sup: IdentifiedObject,
-    UnavailabilityScheduleDependsOn: String,
-    UnavailabilityScheduleImpacts: String
+    override val sup: IdentifiedObject = null,
+    UnavailabilityScheduleDependsOn: String = null,
+    UnavailabilityScheduleImpacts: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -238,16 +226,12 @@ extends
  */
 final case class UnavailabilitySwitchAction
 (
-    override val sup: IdentifiedObject,
-    open: Boolean
+    override val sup: IdentifiedObject = null,
+    open: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false) }
     /**
      * Return the superclass object.
      *
@@ -314,17 +298,13 @@ extends
  */
 final case class UnavailablitySchedule
 (
-    override val sup: IdentifiedObject,
-    DependsOn: List[String],
-    Impacts: List[String]
+    override val sup: IdentifiedObject = null,
+    DependsOn: List[String] = List(),
+    Impacts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *

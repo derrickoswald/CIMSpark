@@ -31,24 +31,20 @@ import ch.ninecode.cim.Relationship
  */
 final case class ConnectDisconnectFunction
 (
-    override val sup: EndDeviceFunction,
-    eventCount: Int,
-    isConnected: Boolean,
-    isDelayedDiscon: Boolean,
-    isLocalAutoDisconOp: Boolean,
-    isLocalAutoReconOp: Boolean,
-    isRemoteAutoDisconOp: Boolean,
-    isRemoteAutoReconOp: Boolean,
-    rcdInfo: String,
-    Switches: List[String]
+    override val sup: EndDeviceFunction = null,
+    eventCount: Int = 0,
+    isConnected: Boolean = false,
+    isDelayedDiscon: Boolean = false,
+    isLocalAutoDisconOp: Boolean = false,
+    isLocalAutoReconOp: Boolean = false,
+    isRemoteAutoDisconOp: Boolean = false,
+    isRemoteAutoReconOp: Boolean = false,
+    rcdInfo: String = null,
+    Switches: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, false, false, false, false, false, false, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -163,27 +159,23 @@ extends
  */
 final case class RemoteConnectDisconnectInfo
 (
-    override val sup: BasicElement,
-    armedTimeout: Double,
-    customerVoltageLimit: Double,
-    energyLimit: Double,
-    energyUsageStartDateTime: String,
-    energyUsageWarning: Double,
-    isArmConnect: Boolean,
-    isArmDisconnect: Boolean,
-    isEnergyLimiting: Boolean,
-    needsPowerLimitCheck: Boolean,
-    needsVoltageLimitCheck: Boolean,
-    powerLimit: Double,
-    usePushbutton: Boolean
+    override val sup: BasicElement = null,
+    armedTimeout: Double = 0.0,
+    customerVoltageLimit: Double = 0.0,
+    energyLimit: Double = 0.0,
+    energyUsageStartDateTime: String = null,
+    energyUsageWarning: Double = 0.0,
+    isArmConnect: Boolean = false,
+    isArmDisconnect: Boolean = false,
+    isEnergyLimiting: Boolean = false,
+    needsPowerLimitCheck: Boolean = false,
+    needsVoltageLimitCheck: Boolean = false,
+    powerLimit: Double = 0.0,
+    usePushbutton: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
     /**
      * Return the superclass object.
      *

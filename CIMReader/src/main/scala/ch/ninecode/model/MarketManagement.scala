@@ -21,19 +21,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class AceTariffType
 (
-    override val sup: BasicElement,
-    `type`: String,
-    MarketDocument: List[String],
-    Point: List[String],
-    Unit: List[String]
+    override val sup: BasicElement = null,
+    `type`: String = null,
+    MarketDocument: List[String] = List(),
+    Point: List[String] = List(),
+    Unit: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -121,20 +117,16 @@ extends
  */
 final case class AttributeInstanceComponent
 (
-    override val sup: BasicElement,
-    attribute: String,
-    attributeValue: String,
-    position: Int,
-    MarketDocument: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    attribute: String = null,
+    attributeValue: String = null,
+    position: Int = 0,
+    MarketDocument: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -227,22 +219,18 @@ extends
  */
 final case class Auction
 (
-    override val sup: IdentifiedObject,
-    allocationMode: String,
-    cancelled: String,
-    category: String,
-    paymentTerms: String,
-    rights: String,
-    `type`: String,
-    TimeSeries: List[String]
+    override val sup: IdentifiedObject = null,
+    allocationMode: String = null,
+    cancelled: String = null,
+    category: String = null,
+    paymentTerms: String = null,
+    rights: String = null,
+    `type`: String = null,
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -348,24 +336,20 @@ extends
  */
 final case class BidTimeSeries
 (
-    override val sup: TimeSeries,
-    blockBid: String,
-    direction: String,
-    divisible: String,
-    exclusiveBidsIdentification: String,
-    linkedBidsIdentification: String,
-    minimumActivationQuantity: Double,
-    priority: Int,
-    status: String,
-    stepIncrementQuantity: Double
+    override val sup: TimeSeries = null,
+    blockBid: String = null,
+    direction: String = null,
+    divisible: String = null,
+    exclusiveBidsIdentification: String = null,
+    linkedBidsIdentification: String = null,
+    minimumActivationQuantity: Double = 0.0,
+    priority: Int = 0,
+    status: String = null,
+    stepIncrementQuantity: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, 0.0, 0, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -465,18 +449,14 @@ extends
  */
 final case class ConstraintDuration
 (
-    override val sup: BasicElement,
-    duration: String,
-    `type`: String,
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    duration: String = null,
+    `type`: String = null,
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -557,19 +537,15 @@ extends
  */
 final case class DateAndOrTime
 (
-    override val sup: BasicElement,
-    date: String,
-    time: String,
-    MarketDocument: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    date: String = null,
+    time: String = null,
+    MarketDocument: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -656,20 +632,16 @@ extends
  */
 final case class Domain
 (
-    override val sup: IdentifiedObject,
-    MarketDocument: List[String],
-    Price: List[String],
-    Quantity: List[String],
-    RegisteredResource: List[String],
-    TimeSeries: List[String]
+    override val sup: IdentifiedObject = null,
+    MarketDocument: List[String] = List(),
+    Price: List[String] = List(),
+    Quantity: List[String] = List(),
+    RegisteredResource: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -760,18 +732,14 @@ extends
  */
 final case class FlowDirection
 (
-    override val sup: BasicElement,
-    direction: String,
-    Point: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    direction: String = null,
+    Point: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -849,15 +817,11 @@ extends
  */
 final case class MarketAgreement
 (
-    override val sup: MarketDocument
+    override val sup: MarketDocument = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -922,26 +886,22 @@ extends
  */
 final case class MarketDocument
 (
-    override val sup: Document,
-    AceTariffType: List[String],
-    AttributeInstanceComponent: List[String],
-    DateAndOrTime: List[String],
-    Domain: List[String],
-    MarketDocument_attr: List[String],
-    MarketParticipant: List[String],
-    Period: List[String],
-    Process: List[String],
-    Reason: List[String],
-    SelfMarketDocument: List[String],
-    TimeSeries: List[String]
+    override val sup: Document = null,
+    AceTariffType: List[String] = List(),
+    AttributeInstanceComponent: List[String] = List(),
+    DateAndOrTime: List[String] = List(),
+    Domain: List[String] = List(),
+    MarketDocument_attr: List[String] = List(),
+    MarketParticipant: List[String] = List(),
+    Period: List[String] = List(),
+    Process: List[String] = List(),
+    Reason: List[String] = List(),
+    SelfMarketDocument: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1060,16 +1020,12 @@ extends
  */
 final case class MarketEvaluationPoint
 (
-    override val sup: UsagePoint,
-    TimeSeries: List[String]
+    override val sup: UsagePoint = null,
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1140,18 +1096,14 @@ extends
  */
 final case class MarketObjectStatus
 (
-    override val sup: BasicElement,
-    status: String,
-    RegisteredResource: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    status: String = null,
+    RegisteredResource: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1231,17 +1183,13 @@ extends
  */
 final case class MktPSRType
 (
-    override val sup: PSRType,
-    psrType: String,
-    TimeSeries: List[String]
+    override val sup: PSRType = null,
+    psrType: String = null,
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1320,21 +1268,17 @@ extends
  */
 final case class Period
 (
-    override val sup: BasicElement,
-    resolution: String,
-    timeInterval: String,
-    MarketDocument: List[String],
-    Point: List[String],
-    Reason: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    resolution: String = null,
+    timeInterval: String = null,
+    MarketDocument: List[String] = List(),
+    Point: List[String] = List(),
+    Reason: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1439,26 +1383,22 @@ extends
  */
 final case class Point
 (
-    override val sup: BasicElement,
-    position: Int,
-    quality: String,
-    quantity: Double,
-    secondaryQuantity: Double,
-    AceTariffType: List[String],
-    FlowDirection: List[String],
-    Period: String,
-    Price: List[String],
-    Quantity: List[String],
-    Reason: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    position: Int = 0,
+    quality: String = null,
+    quantity: Double = 0.0,
+    secondaryQuantity: Double = 0.0,
+    AceTariffType: List[String] = List(),
+    FlowDirection: List[String] = List(),
+    Period: String = null,
+    Price: List[String] = List(),
+    Quantity: List[String] = List(),
+    Reason: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, 0.0, 0.0, List(), List(), null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1581,21 +1521,17 @@ extends
  */
 final case class Price
 (
-    override val sup: BasicElement,
-    amount: Double,
-    category: String,
-    direction: String,
-    Domain: List[String],
-    Point: String,
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    amount: Double = 0.0,
+    category: String = null,
+    direction: String = null,
+    Domain: List[String] = List(),
+    Point: String = null,
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1691,18 +1627,14 @@ extends
  */
 final case class Process
 (
-    override val sup: IdentifiedObject,
-    classificationType: String,
-    processType: String,
-    MarketDocument: List[String]
+    override val sup: IdentifiedObject = null,
+    classificationType: String = null,
+    processType: String = null,
+    MarketDocument: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1791,22 +1723,18 @@ extends
  */
 final case class Quantity
 (
-    override val sup: BasicElement,
-    quality: String,
-    quantity: Double,
-    `type`: String,
-    Detail_Quantity: List[String],
-    Domain: List[String],
-    Point: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    quality: String = null,
+    quantity: Double = 0.0,
+    `type`: String = null,
+    Detail_Quantity: List[String] = List(),
+    Domain: List[String] = List(),
+    Point: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1909,22 +1837,18 @@ extends
  */
 final case class Reason
 (
-    override val sup: BasicElement,
-    code: String,
-    text: String,
-    MarketDocument: List[String],
-    Period: List[String],
-    Point: List[String],
-    RegisteredResource: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    code: String = null,
+    text: String = null,
+    MarketDocument: List[String] = List(),
+    Period: List[String] = List(),
+    Point: List[String] = List(),
+    RegisteredResource: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2026,20 +1950,16 @@ extends
  */
 final case class Series
 (
-    override val sup: TimeSeries,
-    lastUpdateDate: String,
-    methodType: String,
-    registrationDate: String,
-    SelfSeries: List[String],
-    Series_attr: List[String]
+    override val sup: TimeSeries = null,
+    lastUpdateDate: String = null,
+    methodType: String = null,
+    registrationDate: String = null,
+    SelfSeries: List[String] = List(),
+    Series_attr: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2150,40 +2070,36 @@ extends
  */
 final case class TimeSeries
 (
-    override val sup: IdentifiedObject,
-    businessType: String,
-    cancelledTS: String,
-    curveType: String,
-    objectAggregation: String,
-    product: String,
-    version: String,
-    AttributeInstanceComponent: List[String],
-    Auction: List[String],
-    ConstraintDuration: List[String],
-    DateAndOrTime: List[String],
-    Domain: List[String],
-    EnvironmentalMonitoringStation: List[String],
-    FlowDirection: List[String],
-    MarketDocument: List[String],
-    MarketEvaluationPoint: List[String],
-    MarketObjectStatus: List[String],
-    MarketParticipant: List[String],
-    MktPSRType: List[String],
-    Period: List[String],
-    Point: List[String],
-    Price: List[String],
-    Quantity: List[String],
-    Reason: List[String],
-    RegisteredResource: List[String],
-    Unit: List[String]
+    override val sup: IdentifiedObject = null,
+    businessType: String = null,
+    cancelledTS: String = null,
+    curveType: String = null,
+    objectAggregation: String = null,
+    product: String = null,
+    version: String = null,
+    AttributeInstanceComponent: List[String] = List(),
+    Auction: List[String] = List(),
+    ConstraintDuration: List[String] = List(),
+    DateAndOrTime: List[String] = List(),
+    Domain: List[String] = List(),
+    EnvironmentalMonitoringStation: List[String] = List(),
+    FlowDirection: List[String] = List(),
+    MarketDocument: List[String] = List(),
+    MarketEvaluationPoint: List[String] = List(),
+    MarketObjectStatus: List[String] = List(),
+    MarketParticipant: List[String] = List(),
+    MktPSRType: List[String] = List(),
+    Period: List[String] = List(),
+    Point: List[String] = List(),
+    Price: List[String] = List(),
+    Quantity: List[String] = List(),
+    Reason: List[String] = List(),
+    RegisteredResource: List[String] = List(),
+    Unit: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2369,18 +2285,14 @@ extends
  */
 final case class Unit_
 (
-    override val sup: BasicElement,
-    name: String,
-    AceTariffType: List[String],
-    TimeSeries: List[String]
+    override val sup: BasicElement = null,
+    name: String = null,
+    AceTariffType: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *

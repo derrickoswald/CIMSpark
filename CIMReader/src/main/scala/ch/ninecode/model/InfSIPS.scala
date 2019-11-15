@@ -27,25 +27,21 @@ import ch.ninecode.cim.Relationship
  */
 final case class Gate
 (
-    override val sup: IdentifiedObject,
-    kind: String,
-    GateInputPin: List[String],
-    PinGate: List[String],
-    ProtectiveActionCom: List[String],
-    ProtectiveActionEnabled: List[String],
-    RemedialActionScheme: List[String],
-    StageTrigger: List[String],
-    StageTriggerArmed: List[String],
-    StageTriggerCom: List[String],
-    TriggerCondition: List[String]
+    override val sup: IdentifiedObject = null,
+    kind: String = null,
+    GateInputPin: List[String] = List(),
+    PinGate: List[String] = List(),
+    ProtectiveActionCom: List[String] = List(),
+    ProtectiveActionEnabled: List[String] = List(),
+    RemedialActionScheme: List[String] = List(),
+    StageTrigger: List[String] = List(),
+    StageTriggerArmed: List[String] = List(),
+    StageTriggerCom: List[String] = List(),
+    TriggerCondition: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -168,22 +164,18 @@ extends
  */
 final case class GateInputPin
 (
-    override val sup: IdentifiedObject,
-    aDLogicKind: String,
-    absoluteValue: Boolean,
-    duration: Double,
-    negate: Boolean,
-    thresholdPercentage: Double,
-    thresholdValue: Double,
-    Gate: String
+    override val sup: IdentifiedObject = null,
+    aDLogicKind: String = null,
+    absoluteValue: Boolean = false,
+    duration: Double = 0.0,
+    negate: Boolean = false,
+    thresholdPercentage: Double = 0.0,
+    thresholdValue: Double = 0.0,
+    Gate: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, 0.0, false, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -279,18 +271,14 @@ extends
  */
 final case class MeasurementCalculator
 (
-    override val sup: IdentifiedObject,
-    kind: String,
-    MeasurementCalculatorInput: List[String],
-    PinMeasurement: List[String]
+    override val sup: IdentifiedObject = null,
+    kind: String = null,
+    MeasurementCalculatorInput: List[String] = List(),
+    PinMeasurement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -375,19 +363,15 @@ extends
  */
 final case class MeasurementCalculatorInput
 (
-    override val sup: IdentifiedObject,
-    absoluteValue: Boolean,
-    order: Int,
-    Measurement: String,
-    MeasurementCalculator: String
+    override val sup: IdentifiedObject = null,
+    absoluteValue: Boolean = false,
+    order: Int = 0,
+    Measurement: String = null,
+    MeasurementCalculator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -471,17 +455,13 @@ extends
  */
 final case class PinBranchGroup
 (
-    override val sup: GateInputPin,
-    kind: String,
-    BranchGroup: String
+    override val sup: GateInputPin = null,
+    kind: String = null,
+    BranchGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -555,17 +535,13 @@ extends
  */
 final case class PinEquipment
 (
-    override val sup: GateInputPin,
-    kind: String,
-    Equipment: String
+    override val sup: GateInputPin = null,
+    kind: String = null,
+    Equipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -638,16 +614,12 @@ extends
  */
 final case class PinGate
 (
-    override val sup: GateInputPin,
-    GateOutput: String
+    override val sup: GateInputPin = null,
+    GateOutput: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -717,17 +689,13 @@ extends
  */
 final case class PinMeasurement
 (
-    override val sup: GateInputPin,
-    Measurement: String,
-    MeasurementCalculator: String
+    override val sup: GateInputPin = null,
+    Measurement: String = null,
+    MeasurementCalculator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -802,17 +770,13 @@ extends
  */
 final case class PinTerminal
 (
-    override val sup: GateInputPin,
-    kind: String,
-    Terminal: String
+    override val sup: GateInputPin = null,
+    kind: String = null,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -891,21 +855,17 @@ extends
  */
 final case class ProtectiveAction
 (
-    override val sup: IdentifiedObject,
-    enabled: Boolean,
-    normalEnabled: Boolean,
-    GateComCondition: String,
-    GateEnabledCondition: String,
-    ProtectionEquipment: String,
-    ProtectiveActionCollection: String
+    override val sup: IdentifiedObject = null,
+    enabled: Boolean = false,
+    normalEnabled: Boolean = false,
+    GateComCondition: String = null,
+    GateEnabledCondition: String = null,
+    ProtectionEquipment: String = null,
+    ProtectiveActionCollection: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1009,23 +969,19 @@ extends
  */
 final case class ProtectiveActionAdjustment
 (
-    override val sup: ProtectiveAction,
-    byPercentage: Double,
-    byValue: Double,
-    kind: String,
-    reduce: Boolean,
-    setValue: Double,
-    ConductingEquipment: String,
-    DCConductingEquipment: String,
-    Measurement: String
+    override val sup: ProtectiveAction = null,
+    byPercentage: Double = 0.0,
+    byValue: Double = 0.0,
+    kind: String = null,
+    reduce: Boolean = false,
+    setValue: Double = 0.0,
+    ConductingEquipment: String = null,
+    DCConductingEquipment: String = null,
+    Measurement: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, false, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1126,17 +1082,13 @@ extends
  */
 final case class ProtectiveActionCollection
 (
-    override val sup: IdentifiedObject,
-    ProtectiveAction: List[String],
-    StageTrigger: List[String]
+    override val sup: IdentifiedObject = null,
+    ProtectiveAction: List[String] = List(),
+    StageTrigger: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1211,17 +1163,13 @@ extends
  */
 final case class ProtectiveActionEquipment
 (
-    override val sup: ProtectiveAction,
-    inService: Boolean,
-    Equipment: String
+    override val sup: ProtectiveAction = null,
+    inService: Boolean = false,
+    Equipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -1298,18 +1246,14 @@ extends
  */
 final case class ProtectiveActionRegulation
 (
-    override val sup: ProtectiveAction,
-    isRegulating: Boolean,
-    targetValue: Double,
-    RegulatingControl: String
+    override val sup: ProtectiveAction = null,
+    isRegulating: Boolean = false,
+    targetValue: Double = 0.0,
+    RegulatingControl: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1393,21 +1337,17 @@ extends
  */
 final case class RemedialActionScheme
 (
-    override val sup: PowerSystemResource,
-    armed: Boolean,
-    kind: String,
-    normalArmed: Boolean,
-    GateArmed: String,
-    Stage: List[String],
-    TriggerCondition: List[String]
+    override val sup: PowerSystemResource = null,
+    armed: Boolean = false,
+    kind: String = null,
+    normalArmed: Boolean = false,
+    GateArmed: String = null,
+    Stage: List[String] = List(),
+    TriggerCondition: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, false, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1503,18 +1443,14 @@ extends
  */
 final case class Stage
 (
-    override val sup: IdentifiedObject,
-    priority: Int,
-    RemedialActionScheme: String,
-    StageTrigger: List[String]
+    override val sup: IdentifiedObject = null,
+    priority: Int = 0,
+    RemedialActionScheme: String = null,
+    StageTrigger: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1603,23 +1539,19 @@ extends
  */
 final case class StageTrigger
 (
-    override val sup: IdentifiedObject,
-    armed: Boolean,
-    normalArmed: Boolean,
-    priority: Int,
-    GateArmed: String,
-    GateComCondition: String,
-    GateTrigger: String,
-    ProtectiveActionCollection: String,
-    Stage: String
+    override val sup: IdentifiedObject = null,
+    armed: Boolean = false,
+    normalArmed: Boolean = false,
+    priority: Int = 0,
+    GateArmed: String = null,
+    GateComCondition: String = null,
+    GateTrigger: String = null,
+    ProtectiveActionCollection: String = null,
+    Stage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, 0, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1722,17 +1654,13 @@ extends
  */
 final case class TriggerCondition
 (
-    override val sup: IdentifiedObject,
-    GateTrigger: String,
-    RemedialActionScheme: String
+    override val sup: IdentifiedObject = null,
+    GateTrigger: String = null,
+    RemedialActionScheme: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

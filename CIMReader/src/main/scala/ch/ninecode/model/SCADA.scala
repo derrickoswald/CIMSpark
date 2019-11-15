@@ -22,17 +22,13 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class CommunicationLink
 (
-    override val sup: PowerSystemResource,
-    BilateralExchangeActor: String,
-    RemoteUnits: List[String]
+    override val sup: PowerSystemResource = null,
+    BilateralExchangeActor: String = null,
+    RemoteUnits: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -111,19 +107,15 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteControl
 (
-    override val sup: RemotePoint,
-    actuatorMaximum: Double,
-    actuatorMinimum: Double,
-    remoteControlled: Boolean,
-    Control: String
+    override val sup: RemotePoint = null,
+    actuatorMaximum: Double = 0.0,
+    actuatorMinimum: Double = 0.0,
+    remoteControlled: Boolean = false,
+    Control: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, null) }
     /**
      * Return the superclass object.
      *
@@ -208,16 +200,12 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemotePoint
 (
-    override val sup: IdentifiedObject,
-    RemoteUnit: String
+    override val sup: IdentifiedObject = null,
+    RemoteUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -291,20 +279,16 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteSource
 (
-    override val sup: RemotePoint,
-    deadband: Double,
-    scanInterval: Double,
-    sensorMaximum: Double,
-    sensorMinimum: Double,
-    MeasurementValue: String
+    override val sup: RemotePoint = null,
+    deadband: Double = 0.0,
+    scanInterval: Double = 0.0,
+    sensorMaximum: Double = 0.0,
+    sensorMinimum: Double = 0.0,
+    MeasurementValue: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -395,18 +379,14 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteUnit
 (
-    override val sup: PowerSystemResource,
-    remoteUnitType: String,
-    CommunicationLinks: List[String],
-    RemotePoints: List[String]
+    override val sup: PowerSystemResource = null,
+    remoteUnitType: String = null,
+    CommunicationLinks: List[String] = List(),
+    RemotePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *

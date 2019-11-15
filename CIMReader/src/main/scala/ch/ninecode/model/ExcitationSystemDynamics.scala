@@ -65,37 +65,33 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC1A
 (
-    override val sup: ExcitationSystemDynamics,
-    hvlvgates: Boolean,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    kf1: Double,
-    kf2: Double,
-    ks: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    hvlvgates: Boolean = false,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    kf1: Double = 0.0,
+    kf2: Double = 0.0,
+    ks: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -306,43 +302,39 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC2A
 (
-    override val sup: ExcitationSystemDynamics,
-    hvgate: Boolean,
-    ka: Double,
-    kb: Double,
-    kb1: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    kh: Double,
-    kl: Double,
-    kl1: Double,
-    ks: Double,
-    lvgate: Boolean,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vfemax: Double,
-    vlr: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    hvgate: Boolean = false,
+    ka: Double = 0.0,
+    kb: Double = 0.0,
+    kb1: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    kh: Double = 0.0,
+    kl: Double = 0.0,
+    kl1: Double = 0.0,
+    ks: Double = 0.0,
+    lvgate: Boolean = false,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vfemax: Double = 0.0,
+    vlr: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -569,41 +561,37 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC3A
 (
-    override val sup: ExcitationSystemDynamics,
-    efdn: Double,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    kf1: Double,
-    kf2: Double,
-    klv: Double,
-    kn: Double,
-    kr: Double,
-    ks: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vemin: Double,
-    vfemax: Double,
-    vlv: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdn: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    kf1: Double = 0.0,
+    kf2: Double = 0.0,
+    klv: Double = 0.0,
+    kn: Double = 0.0,
+    kr: Double = 0.0,
+    ks: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vemin: Double = 0.0,
+    vfemax: Double = 0.0,
+    vlv: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -788,24 +776,20 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC4A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    vimax: Double,
-    vimin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -940,33 +924,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC5A
 (
-    override val sup: ExcitationSystemDynamics,
-    a: Double,
-    efd1: Double,
-    efd2: Double,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    ks: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf1: Double,
-    tf2: Double,
-    tf3: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    a: Double = 0.0,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ks: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    tf3: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1147,38 +1127,34 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC6A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kh: Double,
-    ks: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    th: Double,
-    tj: Double,
-    tk: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vfelim: Double,
-    vhmax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kh: Double = 0.0,
+    ks: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    th: Double = 0.0,
+    tj: Double = 0.0,
+    tk: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vfelim: Double = 0.0,
+    vhmax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1394,42 +1370,38 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC8B
 (
-    override val sup: ExcitationSystemDynamics,
-    inlim: Boolean,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    kdr: Double,
-    ke: Double,
-    kir: Double,
-    kpr: Double,
-    ks: Double,
-    pidlim: Boolean,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tdr: Double,
-    te: Double,
-    telim: Boolean,
-    ve1: Double,
-    ve2: Double,
-    vemin: Double,
-    vfemax: Double,
-    vimax: Double,
-    vimin: Double,
-    vpidmax: Double,
-    vpidmin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    vtmult: Boolean
+    override val sup: ExcitationSystemDynamics = null,
+    inlim: Boolean = false,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    kdr: Double = 0.0,
+    ke: Double = 0.0,
+    kir: Double = 0.0,
+    kpr: Double = 0.0,
+    ks: Double = 0.0,
+    pidlim: Boolean = false,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tdr: Double = 0.0,
+    te: Double = 0.0,
+    telim: Boolean = false,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vemin: Double = 0.0,
+    vfemax: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vpidmax: Double = 0.0,
+    vpidmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    vtmult: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -1636,29 +1608,25 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcANS
 (
-    override val sup: ExcitationSystemDynamics,
-    blint: Int,
-    ifmn: Double,
-    ifmx: Double,
-    k2: Double,
-    k3: Double,
-    kce: Double,
-    krvecc: Int,
-    kvfif: Int,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    tb: Double,
-    vrmn: Double,
-    vrmx: Double
+    override val sup: ExcitationSystemDynamics = null,
+    blint: Int = 0,
+    ifmn: Double = 0.0,
+    ifmx: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    kce: Double = 0.0,
+    krvecc: Int = 0,
+    kvfif: Int = 0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    tb: Double = 0.0,
+    vrmn: Double = 0.0,
+    vrmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1803,27 +1771,23 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR1
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    ka: Double,
-    kf: Double,
-    se1: Double,
-    se2: Double,
-    ta: Double,
-    tb: Double,
-    te: Double,
-    tf: Double,
-    vrmn: Double,
-    vrmx: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    ka: Double = 0.0,
+    kf: Double = 0.0,
+    se1: Double = 0.0,
+    se2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vrmn: Double = 0.0,
+    vrmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1962,28 +1926,24 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR2
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    ka: Double,
-    kf: Double,
-    se1: Double,
-    se2: Double,
-    ta: Double,
-    tb: Double,
-    te: Double,
-    tf1: Double,
-    tf2: Double,
-    vrmn: Double,
-    vrmx: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    ka: Double = 0.0,
+    kf: Double = 0.0,
+    se1: Double = 0.0,
+    se2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    te: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    vrmn: Double = 0.0,
+    vrmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2124,27 +2084,23 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR3
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    ka: Double,
-    se1: Double,
-    se2: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    te: Double,
-    vrmn: Double,
-    vrmx: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    ka: Double = 0.0,
+    se1: Double = 0.0,
+    se2: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    te: Double = 0.0,
+    vrmn: Double = 0.0,
+    vrmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2287,29 +2243,25 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR4
 (
-    override val sup: ExcitationSystemDynamics,
-    imul: Boolean,
-    ka: Double,
-    ke: Double,
-    kif: Double,
-    t1: Double,
-    t1if: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    tif: Double,
-    vfmn: Double,
-    vfmx: Double,
-    vrmn: Double,
-    vrmx: Double
+    override val sup: ExcitationSystemDynamics = null,
+    imul: Boolean = false,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kif: Double = 0.0,
+    t1: Double = 0.0,
+    t1if: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    tif: Double = 0.0,
+    vfmn: Double = 0.0,
+    vfmx: Double = 0.0,
+    vrmn: Double = 0.0,
+    vrmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2433,18 +2385,14 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR5
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    rex: Double,
-    ta: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    rex: Double = 0.0,
+    ta: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2561,36 +2509,32 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR7
 (
-    override val sup: ExcitationSystemDynamics,
-    a1: Double,
-    a2: Double,
-    a3: Double,
-    a4: Double,
-    a5: Double,
-    a6: Double,
-    k1: Double,
-    k3: Double,
-    k5: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    vmax1: Double,
-    vmax3: Double,
-    vmax5: Double,
-    vmin1: Double,
-    vmin3: Double,
-    vmin5: Double
+    override val sup: ExcitationSystemDynamics = null,
+    a1: Double = 0.0,
+    a2: Double = 0.0,
+    a3: Double = 0.0,
+    a4: Double = 0.0,
+    a5: Double = 0.0,
+    a6: Double = 0.0,
+    k1: Double = 0.0,
+    k3: Double = 0.0,
+    k5: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    vmax1: Double = 0.0,
+    vmax3: Double = 0.0,
+    vmax5: Double = 0.0,
+    vmin1: Double = 0.0,
+    vmin3: Double = 0.0,
+    vmin5: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2763,26 +2707,22 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcBBC
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    efdmin: Double,
-    k: Double,
-    `switch`: Boolean,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xe: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    k: Double = 0.0,
+    `switch`: Boolean = false,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xe: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2899,25 +2839,21 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcCZ
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    efdmin: Double,
-    ka: Double,
-    ke: Double,
-    kp: Double,
-    ta: Double,
-    tc: Double,
-    te: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kp: Double = 0.0,
+    ta: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3059,33 +2995,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC1A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    efdmax: Double,
-    efdmin: Double,
-    exclim: Boolean,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    ks: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    exclim: Boolean = false,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ks: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3263,33 +3195,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC2A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    exclim: Boolean,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    ks: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    tf1: Double,
-    vrmax: Double,
-    vrmin: Double,
-    vtlim: Boolean
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    exclim: Boolean = false,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ks: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    tf1: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    vtlim: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -3463,31 +3391,27 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC3A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    efdlim: Boolean,
-    efdmax: Double,
-    efdmin: Double,
-    exclim: Boolean,
-    ke: Double,
-    kr: Double,
-    ks: Double,
-    kv: Double,
-    seefd1: Double,
-    seefd2: Double,
-    te: Double,
-    trh: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    efdlim: Boolean = false,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    exclim: Boolean = false,
+    ke: Double = 0.0,
+    kr: Double = 0.0,
+    ks: Double = 0.0,
+    kv: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    te: Double = 0.0,
+    trh: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3646,29 +3570,25 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC3A1
 (
-    override val sup: ExcitationSystemDynamics,
-    exclim: Boolean,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    ta: Double,
-    te: Double,
-    tf: Double,
-    vb1max: Double,
-    vblim: Boolean,
-    vbmax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    exclim: Boolean = false,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    ta: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vb1max: Double = 0.0,
+    vblim: Boolean = false,
+    vbmax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3819,30 +3739,26 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcELIN1
 (
-    override val sup: ExcitationSystemDynamics,
-    dpnf: Double,
-    efmax: Double,
-    efmin: Double,
-    ks1: Double,
-    ks2: Double,
-    smax: Double,
-    tfi: Double,
-    tnu: Double,
-    ts1: Double,
-    ts2: Double,
-    tsw: Double,
-    vpi: Double,
-    vpnf: Double,
-    vpu: Double,
-    xe: Double
+    override val sup: ExcitationSystemDynamics = null,
+    dpnf: Double = 0.0,
+    efmax: Double = 0.0,
+    efmin: Double = 0.0,
+    ks1: Double = 0.0,
+    ks2: Double = 0.0,
+    smax: Double = 0.0,
+    tfi: Double = 0.0,
+    tnu: Double = 0.0,
+    ts1: Double = 0.0,
+    ts2: Double = 0.0,
+    tsw: Double = 0.0,
+    vpi: Double = 0.0,
+    vpnf: Double = 0.0,
+    vpu: Double = 0.0,
+    xe: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4021,42 +3937,38 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcELIN2
 (
-    override val sup: ExcitationSystemDynamics,
-    efdbas: Double,
-    iefmax: Double,
-    iefmax2: Double,
-    iefmin: Double,
-    k1: Double,
-    k1ec: Double,
-    k2: Double,
-    k3: Double,
-    k4: Double,
-    kd1: Double,
-    ke2: Double,
-    ketb: Double,
-    pid1max: Double,
-    seve1: Double,
-    seve2: Double,
-    tb1: Double,
-    te: Double,
-    te2: Double,
-    ti1: Double,
-    ti3: Double,
-    ti4: Double,
-    tr4: Double,
-    upmax: Double,
-    upmin: Double,
-    ve1: Double,
-    ve2: Double,
-    xp: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdbas: Double = 0.0,
+    iefmax: Double = 0.0,
+    iefmax2: Double = 0.0,
+    iefmin: Double = 0.0,
+    k1: Double = 0.0,
+    k1ec: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    kd1: Double = 0.0,
+    ke2: Double = 0.0,
+    ketb: Double = 0.0,
+    pid1max: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    tb1: Double = 0.0,
+    te: Double = 0.0,
+    te2: Double = 0.0,
+    ti1: Double = 0.0,
+    ti3: Double = 0.0,
+    ti4: Double = 0.0,
+    tr4: Double = 0.0,
+    upmax: Double = 0.0,
+    upmin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    xp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4251,27 +4163,23 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcHU
 (
-    override val sup: ExcitationSystemDynamics,
-    ae: Double,
-    ai: Double,
-    atr: Double,
-    emax: Double,
-    emin: Double,
-    imax: Double,
-    imin: Double,
-    ke: Double,
-    ki: Double,
-    te: Double,
-    ti: Double,
-    tr: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ae: Double = 0.0,
+    ai: Double = 0.0,
+    atr: Double = 0.0,
+    emax: Double = 0.0,
+    emin: Double = 0.0,
+    imax: Double = 0.0,
+    imin: Double = 0.0,
+    ke: Double = 0.0,
+    ki: Double = 0.0,
+    te: Double = 0.0,
+    ti: Double = 0.0,
+    tr: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4421,33 +4329,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC1A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4627,36 +4531,32 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC2A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kb: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    kh: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vfemax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kb: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    kh: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vfemax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4848,36 +4748,32 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC3A
 (
-    override val sup: ExcitationSystemDynamics,
-    efdn: Double,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    kn: Double,
-    kr: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vemin: Double,
-    vfemax: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdn: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    kn: Double = 0.0,
+    kr: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vemin: Double = 0.0,
+    vfemax: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5045,24 +4941,20 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC4A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    vimax: Double,
-    vimin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5192,29 +5084,25 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC5A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    te: Double,
-    tf1: Double,
-    tf2: Double,
-    tf3: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    te: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    tf3: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5380,37 +5268,33 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC6A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kh: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    th: Double,
-    tj: Double,
-    tk: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vfelim: Double,
-    vhmax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kh: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    th: Double = 0.0,
+    tj: Double = 0.0,
+    tk: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vfelim: Double = 0.0,
+    vhmax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5616,41 +5500,37 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC7B
 (
-    override val sup: ExcitationSystemDynamics,
-    kc: Double,
-    kd: Double,
-    kdr: Double,
-    ke: Double,
-    kf1: Double,
-    kf2: Double,
-    kf3: Double,
-    kia: Double,
-    kir: Double,
-    kl: Double,
-    kp: Double,
-    kpa: Double,
-    kpr: Double,
-    seve1: Double,
-    seve2: Double,
-    tdr: Double,
-    te: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    ve1: Double,
-    ve2: Double,
-    vemin: Double,
-    vfemax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    kdr: Double = 0.0,
+    ke: Double = 0.0,
+    kf1: Double = 0.0,
+    kf2: Double = 0.0,
+    kf3: Double = 0.0,
+    kia: Double = 0.0,
+    kir: Double = 0.0,
+    kl: Double = 0.0,
+    kp: Double = 0.0,
+    kpa: Double = 0.0,
+    kpr: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    tdr: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vemin: Double = 0.0,
+    vfemax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5856,33 +5736,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC8B
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    kdr: Double,
-    ke: Double,
-    kir: Double,
-    kpr: Double,
-    seve1: Double,
-    seve2: Double,
-    ta: Double,
-    tdr: Double,
-    te: Double,
-    ve1: Double,
-    ve2: Double,
-    vemin: Double,
-    vfemax: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    kdr: Double = 0.0,
+    ke: Double = 0.0,
+    kir: Double = 0.0,
+    kpr: Double = 0.0,
+    seve1: Double = 0.0,
+    seve2: Double = 0.0,
+    ta: Double = 0.0,
+    tdr: Double = 0.0,
+    te: Double = 0.0,
+    ve1: Double = 0.0,
+    ve2: Double = 0.0,
+    vemin: Double = 0.0,
+    vfemax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6057,31 +5933,27 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC1A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    exclim: Boolean,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    uelin: Boolean,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    exclim: Boolean = false,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: Boolean = false,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6246,31 +6118,27 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC2A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    exclim: Double,
-    ka: Double,
-    ke: Double,
-    kf: Double,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    uelin: Boolean,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    exclim: Double = 0.0,
+    ka: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: Boolean = false,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6425,26 +6293,22 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC3A
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    exclim: Boolean,
-    ke: Double,
-    kv: Double,
-    seefd1: Double,
-    seefd2: Double,
-    te: Double,
-    trh: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    exclim: Boolean = false,
+    ke: Double = 0.0,
+    kv: Double = 0.0,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    te: Double = 0.0,
+    trh: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6596,34 +6460,30 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC4B
 (
-    override val sup: ExcitationSystemDynamics,
-    efd1: Double,
-    efd2: Double,
-    ka: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    oelin: Boolean,
-    seefd1: Double,
-    seefd2: Double,
-    ta: Double,
-    td: Double,
-    te: Double,
-    tf: Double,
-    uelin: Boolean,
-    vemin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    ka: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    oelin: Boolean = false,
+    seefd1: Double = 0.0,
+    seefd2: Double = 0.0,
+    ta: Double = 0.0,
+    td: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: Boolean = false,
+    vemin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6805,34 +6665,30 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST1A
 (
-    override val sup: ExcitationSystemDynamics,
-    ilr: Double,
-    ka: Double,
-    kc: Double,
-    kf: Double,
-    klr: Double,
-    pssin: Boolean,
-    ta: Double,
-    tb: Double,
-    tb1: Double,
-    tc: Double,
-    tc1: Double,
-    tf: Double,
-    uelin: String,
-    vamax: Double,
-    vamin: Double,
-    vimax: Double,
-    vimin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ilr: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kf: Double = 0.0,
+    klr: Double = 0.0,
+    pssin: Boolean = false,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tb1: Double = 0.0,
+    tc: Double = 0.0,
+    tc1: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: String = null,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7003,28 +6859,24 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST2A
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    ka: Double,
-    kc: Double,
-    ke: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    ta: Double,
-    te: Double,
-    tf: Double,
-    uelin: Boolean,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    ta: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: Boolean = false,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7182,35 +7034,31 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST3A
 (
-    override val sup: ExcitationSystemDynamics,
-    ka: Double,
-    kc: Double,
-    kg: Double,
-    ki: Double,
-    km: Double,
-    kp: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    thetap: Double,
-    tm: Double,
-    vbmax: Double,
-    vgmax: Double,
-    vimax: Double,
-    vimin: Double,
-    vmmax: Double,
-    vmmin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xl: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    km: Double = 0.0,
+    kp: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    thetap: Double = 0.0,
+    tm: Double = 0.0,
+    vbmax: Double = 0.0,
+    vgmax: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vmmax: Double = 0.0,
+    vmmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xl: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7388,31 +7236,27 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST4B
 (
-    override val sup: ExcitationSystemDynamics,
-    kc: Double,
-    kg: Double,
-    ki: Double,
-    kim: Double,
-    kir: Double,
-    kp: Double,
-    kpm: Double,
-    kpr: Double,
-    ta: Double,
-    thetap: Double,
-    vbmax: Double,
-    vmmax: Double,
-    vmmin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xl: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    kim: Double = 0.0,
+    kir: Double = 0.0,
+    kp: Double = 0.0,
+    kpm: Double = 0.0,
+    kpr: Double = 0.0,
+    ta: Double = 0.0,
+    thetap: Double = 0.0,
+    vbmax: Double = 0.0,
+    vmmax: Double = 0.0,
+    vmmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xl: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7577,32 +7421,28 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST5B
 (
-    override val sup: ExcitationSystemDynamics,
-    kc: Double,
-    kr: Double,
-    t1: Double,
-    tb1: Double,
-    tb2: Double,
-    tc1: Double,
-    tc2: Double,
-    tob1: Double,
-    tob2: Double,
-    toc1: Double,
-    toc2: Double,
-    tub1: Double,
-    tub2: Double,
-    tuc1: Double,
-    tuc2: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kc: Double = 0.0,
+    kr: Double = 0.0,
+    t1: Double = 0.0,
+    tb1: Double = 0.0,
+    tb2: Double = 0.0,
+    tc1: Double = 0.0,
+    tc2: Double = 0.0,
+    tob1: Double = 0.0,
+    tob2: Double = 0.0,
+    toc1: Double = 0.0,
+    toc2: Double = 0.0,
+    tub1: Double = 0.0,
+    tub2: Double = 0.0,
+    tuc1: Double = 0.0,
+    tuc2: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7764,29 +7604,25 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST6B
 (
-    override val sup: ExcitationSystemDynamics,
-    ilr: Double,
-    kci: Double,
-    kff: Double,
-    kg: Double,
-    kia: Double,
-    klr: Double,
-    km: Double,
-    kpa: Double,
-    oelin: String,
-    tg: Double,
-    vamax: Double,
-    vamin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ilr: Double = 0.0,
+    kci: Double = 0.0,
+    kff: Double = 0.0,
+    kg: Double = 0.0,
+    kia: Double = 0.0,
+    klr: Double = 0.0,
+    km: Double = 0.0,
+    kpa: Double = 0.0,
+    oelin: String = null,
+    tg: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7939,30 +7775,26 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST7B
 (
-    override val sup: ExcitationSystemDynamics,
-    kh: Double,
-    kia: Double,
-    kl: Double,
-    kpa: Double,
-    oelin: String,
-    tb: Double,
-    tc: Double,
-    tf: Double,
-    tg: Double,
-    tia: Double,
-    uelin: String,
-    vmax: Double,
-    vmin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kh: Double = 0.0,
+    kia: Double = 0.0,
+    kl: Double = 0.0,
+    kpa: Double = 0.0,
+    oelin: String = null,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    tf: Double = 0.0,
+    tg: Double = 0.0,
+    tia: Double = 0.0,
+    uelin: String = null,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8110,25 +7942,21 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcNI
 (
-    override val sup: ExcitationSystemDynamics,
-    busFedSelector: Boolean,
-    ka: Double,
-    kf: Double,
-    r: Double,
-    ta: Double,
-    tf1: Double,
-    tf2: Double,
-    tr: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    busFedSelector: Boolean = false,
+    ka: Double = 0.0,
+    kf: Double = 0.0,
+    r: Double = 0.0,
+    ta: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    tr: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8250,34 +8078,30 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcOEX3T
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    ka: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kf: Double,
-    see1: Double,
-    see2: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    te: Double,
-    tf: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    see1: Double = 0.0,
+    see2: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8464,38 +8288,34 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcPIC
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    efdmax: Double,
-    efdmin: Double,
-    ka: Double,
-    kc: Double,
-    ke: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    se1: Double,
-    se2: Double,
-    ta1: Double,
-    ta2: Double,
-    ta3: Double,
-    ta4: Double,
-    te: Double,
-    tf1: Double,
-    tf2: Double,
-    vr1: Double,
-    vr2: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    se1: Double = 0.0,
+    se2: Double = 0.0,
+    ta1: Double = 0.0,
+    ta2: Double = 0.0,
+    ta3: Double = 0.0,
+    ta4: Double = 0.0,
+    te: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    vr1: Double = 0.0,
+    vr2: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8724,51 +8544,47 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcREXS
 (
-    override val sup: ExcitationSystemDynamics,
-    e1: Double,
-    e2: Double,
-    fbf: String,
-    flimf: Double,
-    kc: Double,
-    kd: Double,
-    ke: Double,
-    kefd: Double,
-    kf: Double,
-    kh: Double,
-    kii: Double,
-    kip: Double,
-    ks: Double,
-    kvi: Double,
-    kvp: Double,
-    kvphz: Double,
-    nvphz: Double,
-    se1: Double,
-    se2: Double,
-    ta: Double,
-    tb1: Double,
-    tb2: Double,
-    tc1: Double,
-    tc2: Double,
-    te: Double,
-    tf: Double,
-    tf1: Double,
-    tf2: Double,
-    tp: Double,
-    vcmax: Double,
-    vfmax: Double,
-    vfmin: Double,
-    vimax: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xc: Double
+    override val sup: ExcitationSystemDynamics = null,
+    e1: Double = 0.0,
+    e2: Double = 0.0,
+    fbf: String = null,
+    flimf: Double = 0.0,
+    kc: Double = 0.0,
+    kd: Double = 0.0,
+    ke: Double = 0.0,
+    kefd: Double = 0.0,
+    kf: Double = 0.0,
+    kh: Double = 0.0,
+    kii: Double = 0.0,
+    kip: Double = 0.0,
+    ks: Double = 0.0,
+    kvi: Double = 0.0,
+    kvp: Double = 0.0,
+    kvphz: Double = 0.0,
+    nvphz: Double = 0.0,
+    se1: Double = 0.0,
+    se2: Double = 0.0,
+    ta: Double = 0.0,
+    tb1: Double = 0.0,
+    tb2: Double = 0.0,
+    tc1: Double = 0.0,
+    tc2: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    tp: Double = 0.0,
+    vcmax: Double = 0.0,
+    vfmax: Double = 0.0,
+    vfmin: Double = 0.0,
+    vimax: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xc: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9004,28 +8820,24 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcRQB
 (
-    override val sup: ExcitationSystemDynamics,
-    ki0: Double,
-    ki1: Double,
-    klir: Double,
-    klus: Double,
-    lsat: Double,
-    lus: Double,
-    mesu: Double,
-    t4m: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    ucmax: Double,
-    ucmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ki0: Double = 0.0,
+    ki1: Double = 0.0,
+    klir: Double = 0.0,
+    klus: Double = 0.0,
+    lsat: Double = 0.0,
+    lus: Double = 0.0,
+    mesu: Double = 0.0,
+    t4m: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    ucmax: Double = 0.0,
+    ucmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9157,23 +8969,19 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSCRX
 (
-    override val sup: ExcitationSystemDynamics,
-    cswitch: Boolean,
-    emax: Double,
-    emin: Double,
-    k: Double,
-    rcrfd: Double,
-    tatb: Double,
-    tb: Double,
-    te: Double
+    override val sup: ExcitationSystemDynamics = null,
+    cswitch: Boolean = false,
+    emax: Double = 0.0,
+    emin: Double = 0.0,
+    k: Double = 0.0,
+    rcrfd: Double = 0.0,
+    tatb: Double = 0.0,
+    tb: Double = 0.0,
+    te: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9288,25 +9096,21 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSEXS
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    efdmin: Double,
-    emax: Double,
-    emin: Double,
-    k: Double,
-    kc: Double,
-    tatb: Double,
-    tb: Double,
-    tc: Double,
-    te: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    emax: Double = 0.0,
+    emin: Double = 0.0,
+    k: Double = 0.0,
+    kc: Double = 0.0,
+    tatb: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9475,47 +9279,43 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSK
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    efdmin: Double,
-    emax: Double,
-    emin: Double,
-    k: Double,
-    k1: Double,
-    k2: Double,
-    kc: Double,
-    kce: Double,
-    kd: Double,
-    kgob: Double,
-    kp: Double,
-    kqi: Double,
-    kqob: Double,
-    kqp: Double,
-    nq: Double,
-    qconoff: Boolean,
-    qz: Double,
-    remote: Boolean,
-    sbase: Double,
-    tc: Double,
-    te: Double,
-    ti: Double,
-    tp: Double,
-    tr: Double,
-    uimax: Double,
-    uimin: Double,
-    urmax: Double,
-    urmin: Double,
-    vtmax: Double,
-    vtmin: Double,
-    yp: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    efdmin: Double = 0.0,
+    emax: Double = 0.0,
+    emin: Double = 0.0,
+    k: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    kc: Double = 0.0,
+    kce: Double = 0.0,
+    kd: Double = 0.0,
+    kgob: Double = 0.0,
+    kp: Double = 0.0,
+    kqi: Double = 0.0,
+    kqob: Double = 0.0,
+    kqp: Double = 0.0,
+    nq: Double = 0.0,
+    qconoff: Boolean = false,
+    qz: Double = 0.0,
+    remote: Boolean = false,
+    sbase: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    ti: Double = 0.0,
+    tp: Double = 0.0,
+    tr: Double = 0.0,
+    uimax: Double = 0.0,
+    uimin: Double = 0.0,
+    urmax: Double = 0.0,
+    urmin: Double = 0.0,
+    vtmax: Double = 0.0,
+    vtmin: Double = 0.0,
+    yp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9742,33 +9542,29 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST1A
 (
-    override val sup: ExcitationSystemDynamics,
-    ilr: Double,
-    ka: Double,
-    kc: Double,
-    kf: Double,
-    klr: Double,
-    ta: Double,
-    tb: Double,
-    tb1: Double,
-    tc: Double,
-    tc1: Double,
-    tf: Double,
-    vamax: Double,
-    vamin: Double,
-    vimax: Double,
-    vimin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xe: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ilr: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    kf: Double = 0.0,
+    klr: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tb1: Double = 0.0,
+    tc: Double = 0.0,
+    tc1: Double = 0.0,
+    tf: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xe: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -9935,30 +9731,26 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST2A
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    ka: Double,
-    kc: Double,
-    ke: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    te: Double,
-    tf: Double,
-    uelin: Boolean,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    ka: Double = 0.0,
+    kc: Double = 0.0,
+    ke: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    te: Double = 0.0,
+    tf: Double = 0.0,
+    uelin: Boolean = false,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -10121,35 +9913,31 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST3A
 (
-    override val sup: ExcitationSystemDynamics,
-    efdmax: Double,
-    kc: Double,
-    kg: Double,
-    ki: Double,
-    kj: Double,
-    km: Double,
-    kp: Double,
-    ks: Double,
-    ks1: Double,
-    tb: Double,
-    tc: Double,
-    thetap: Double,
-    tm: Double,
-    vbmax: Double,
-    vgmax: Double,
-    vimax: Double,
-    vimin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xl: Double
+    override val sup: ExcitationSystemDynamics = null,
+    efdmax: Double = 0.0,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    kj: Double = 0.0,
+    km: Double = 0.0,
+    kp: Double = 0.0,
+    ks: Double = 0.0,
+    ks1: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    thetap: Double = 0.0,
+    tm: Double = 0.0,
+    vbmax: Double = 0.0,
+    vgmax: Double = 0.0,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xl: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -10334,34 +10122,30 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST4B
 (
-    override val sup: ExcitationSystemDynamics,
-    kc: Double,
-    kg: Double,
-    ki: Double,
-    kim: Double,
-    kir: Double,
-    kp: Double,
-    kpm: Double,
-    kpr: Double,
-    lvgate: Boolean,
-    ta: Double,
-    thetap: Double,
-    uel: Boolean,
-    vbmax: Double,
-    vgmax: Double,
-    vmmax: Double,
-    vmmin: Double,
-    vrmax: Double,
-    vrmin: Double,
-    xl: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    kim: Double = 0.0,
+    kir: Double = 0.0,
+    kp: Double = 0.0,
+    kpm: Double = 0.0,
+    kpr: Double = 0.0,
+    lvgate: Boolean = false,
+    ta: Double = 0.0,
+    thetap: Double = 0.0,
+    uel: Boolean = false,
+    vbmax: Double = 0.0,
+    vgmax: Double = 0.0,
+    vmmax: Double = 0.0,
+    vmmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xl: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -10552,38 +10336,34 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST6B
 (
-    override val sup: ExcitationSystemDynamics,
-    ilr: Double,
-    k1: Boolean,
-    kcl: Double,
-    kff: Double,
-    kg: Double,
-    kia: Double,
-    klr: Double,
-    km: Double,
-    kpa: Double,
-    kvd: Double,
-    oelin: String,
-    tg: Double,
-    ts: Double,
-    tvd: Double,
-    vamax: Double,
-    vamin: Double,
-    vilim: Boolean,
-    vimax: Double,
-    vimin: Double,
-    vmult: Boolean,
-    vrmax: Double,
-    vrmin: Double,
-    xc: Double
+    override val sup: ExcitationSystemDynamics = null,
+    ilr: Double = 0.0,
+    k1: Boolean = false,
+    kcl: Double = 0.0,
+    kff: Double = 0.0,
+    kg: Double = 0.0,
+    kia: Double = 0.0,
+    klr: Double = 0.0,
+    km: Double = 0.0,
+    kpa: Double = 0.0,
+    kvd: Double = 0.0,
+    oelin: String = null,
+    tg: Double = 0.0,
+    ts: Double = 0.0,
+    tvd: Double = 0.0,
+    vamax: Double = 0.0,
+    vamin: Double = 0.0,
+    vilim: Boolean = false,
+    vimax: Double = 0.0,
+    vimin: Double = 0.0,
+    vmult: Boolean = false,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0,
+    xc: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -10771,31 +10551,27 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST7B
 (
-    override val sup: ExcitationSystemDynamics,
-    kh: Double,
-    kia: Double,
-    kl: Double,
-    kpa: Double,
-    oelin: String,
-    tb: Double,
-    tc: Double,
-    tf: Double,
-    tg: Double,
-    tia: Double,
-    ts: Double,
-    uelin: String,
-    vmax: Double,
-    vmin: Double,
-    vrmax: Double,
-    vrmin: Double
+    override val sup: ExcitationSystemDynamics = null,
+    kh: Double = 0.0,
+    kia: Double = 0.0,
+    kl: Double = 0.0,
+    kpa: Double = 0.0,
+    oelin: String = null,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    tf: Double = 0.0,
+    tg: Double = 0.0,
+    tia: Double = 0.0,
+    ts: Double = 0.0,
+    uelin: String = null,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0,
+    vrmax: Double = 0.0,
+    vrmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -10931,23 +10707,19 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcitationSystemDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    DiscontinuousExcitationControlDynamics: String,
-    OverexcitationLimiterDynamics: String,
-    PFVArControllerType1Dynamics: String,
-    PFVArControllerType2Dynamics: String,
-    PowerSystemStabilizerDynamics: String,
-    SynchronousMachineDynamics: String,
-    UnderexcitationLimiterDynamics: String,
-    VoltageCompensatorDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    DiscontinuousExcitationControlDynamics: String = null,
+    OverexcitationLimiterDynamics: String = null,
+    PFVArControllerType1Dynamics: String = null,
+    PFVArControllerType2Dynamics: String = null,
+    PowerSystemStabilizerDynamics: String = null,
+    SynchronousMachineDynamics: String = null,
+    UnderexcitationLimiterDynamics: String = null,
+    VoltageCompensatorDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *

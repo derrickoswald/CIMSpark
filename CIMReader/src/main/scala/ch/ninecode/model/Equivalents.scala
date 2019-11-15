@@ -61,31 +61,27 @@ import ch.ninecode.cim.Relationship
  */
 final case class EquivalentBranch
 (
-    override val sup: EquivalentEquipment,
-    negativeR12: Double,
-    negativeR21: Double,
-    negativeX12: Double,
-    negativeX21: Double,
-    positiveR12: Double,
-    positiveR21: Double,
-    positiveX12: Double,
-    positiveX21: Double,
-    r: Double,
-    r21: Double,
-    x: Double,
-    x21: Double,
-    zeroR12: Double,
-    zeroR21: Double,
-    zeroX12: Double,
-    zeroX21: Double
+    override val sup: EquivalentEquipment = null,
+    negativeR12: Double = 0.0,
+    negativeR21: Double = 0.0,
+    negativeX12: Double = 0.0,
+    negativeX21: Double = 0.0,
+    positiveR12: Double = 0.0,
+    positiveR21: Double = 0.0,
+    positiveX12: Double = 0.0,
+    positiveX21: Double = 0.0,
+    r: Double = 0.0,
+    r21: Double = 0.0,
+    x: Double = 0.0,
+    x21: Double = 0.0,
+    zeroR12: Double = 0.0,
+    zeroR21: Double = 0.0,
+    zeroX12: Double = 0.0,
+    zeroX21: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -213,16 +209,12 @@ extends
  */
 final case class EquivalentEquipment
 (
-    override val sup: ConductingEquipment,
-    EquivalentNetwork: String
+    override val sup: ConductingEquipment = null,
+    EquivalentNetwork: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -327,31 +319,27 @@ extends
  */
 final case class EquivalentInjection
 (
-    override val sup: EquivalentEquipment,
-    maxP: Double,
-    maxQ: Double,
-    minP: Double,
-    minQ: Double,
-    p: Double,
-    q: Double,
-    r: Double,
-    r0: Double,
-    r2: Double,
-    regulationCapability: Boolean,
-    regulationStatus: Boolean,
-    regulationTarget: Double,
-    x: Double,
-    x0: Double,
-    x2: Double,
-    ReactiveCapabilityCurve: String
+    override val sup: EquivalentEquipment = null,
+    maxP: Double = 0.0,
+    maxQ: Double = 0.0,
+    minP: Double = 0.0,
+    minQ: Double = 0.0,
+    p: Double = 0.0,
+    q: Double = 0.0,
+    r: Double = 0.0,
+    r0: Double = 0.0,
+    r2: Double = 0.0,
+    regulationCapability: Boolean = false,
+    regulationStatus: Boolean = false,
+    regulationTarget: Double = 0.0,
+    x: Double = 0.0,
+    x0: Double = 0.0,
+    x2: Double = 0.0,
+    ReactiveCapabilityCurve: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -483,16 +471,12 @@ extends
  */
 final case class EquivalentNetwork
 (
-    override val sup: ConnectivityNodeContainer,
-    EquivalentEquipments: List[String]
+    override val sup: ConnectivityNodeContainer = null,
+    EquivalentEquipments: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -562,17 +546,13 @@ extends
  */
 final case class EquivalentShunt
 (
-    override val sup: EquivalentEquipment,
-    b: Double,
-    g: Double
+    override val sup: EquivalentEquipment = null,
+    b: Double = 0.0,
+    g: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

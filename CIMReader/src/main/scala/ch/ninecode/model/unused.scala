@@ -17,16 +17,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class ModelFrameType
 (
-    override val sup: IdentifiedObject,
-    ModelFrame: List[String]
+    override val sup: IdentifiedObject = null,
+    ModelFrame: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

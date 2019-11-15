@@ -21,18 +21,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class Accumulator
 (
-    override val sup: Measurement,
-    maxValue: Int,
-    AccumulatorValues: List[String],
-    LimitSets: List[String]
+    override val sup: Measurement = null,
+    maxValue: Int = 0,
+    AccumulatorValues: List[String] = List(),
+    LimitSets: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -113,17 +109,13 @@ extends
  */
 final case class AccumulatorLimit
 (
-    override val sup: Limit,
-    value: Int,
-    LimitSet: String
+    override val sup: Limit = null,
+    value: Int = 0,
+    LimitSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -198,17 +190,13 @@ extends
  */
 final case class AccumulatorLimitSet
 (
-    override val sup: LimitSet,
-    Limits: List[String],
-    Measurements: List[String]
+    override val sup: LimitSet = null,
+    Limits: List[String] = List(),
+    Measurements: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -282,16 +270,12 @@ extends
  */
 final case class AccumulatorReset
 (
-    override val sup: Control,
-    AccumulatorValue: String
+    override val sup: Control = null,
+    AccumulatorValue: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -363,18 +347,14 @@ extends
  */
 final case class AccumulatorValue
 (
-    override val sup: MeasurementValue,
-    value: Int,
-    Accumulator: String,
-    AccumulatorReset: String
+    override val sup: MeasurementValue = null,
+    value: Int = 0,
+    Accumulator: String = null,
+    AccumulatorReset: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -460,21 +440,17 @@ extends
  */
 final case class Analog
 (
-    override val sup: Measurement,
-    maxValue: Double,
-    minValue: Double,
-    normalValue: Double,
-    positiveFlowIn: Boolean,
-    AnalogValues: List[String],
-    LimitSets: List[String]
+    override val sup: Measurement = null,
+    maxValue: Double = 0.0,
+    minValue: Double = 0.0,
+    normalValue: Double = 0.0,
+    positiveFlowIn: Boolean = false,
+    AnalogValues: List[String] = List(),
+    LimitSets: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -569,18 +545,14 @@ extends
  */
 final case class AnalogControl
 (
-    override val sup: Control,
-    maxValue: Double,
-    minValue: Double,
-    AnalogValue: String
+    override val sup: Control = null,
+    maxValue: Double = 0.0,
+    minValue: Double = 0.0,
+    AnalogValue: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -659,17 +631,13 @@ extends
  */
 final case class AnalogLimit
 (
-    override val sup: Limit,
-    value: Double,
-    LimitSet: String
+    override val sup: Limit = null,
+    value: Double = 0.0,
+    LimitSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -744,17 +712,13 @@ extends
  */
 final case class AnalogLimitSet
 (
-    override val sup: LimitSet,
-    Limits: List[String],
-    Measurements: List[String]
+    override val sup: LimitSet = null,
+    Limits: List[String] = List(),
+    Measurements: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -832,20 +796,16 @@ extends
  */
 final case class AnalogValue
 (
-    override val sup: MeasurementValue,
-    value: Double,
-    AltGeneratingUnit: List[String],
-    AltTieMeas: List[String],
-    Analog: String,
-    AnalogControl: String
+    override val sup: MeasurementValue = null,
+    value: Double = 0.0,
+    AltGeneratingUnit: List[String] = List(),
+    AltTieMeas: List[String] = List(),
+    Analog: String = null,
+    AnalogControl: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -938,19 +898,15 @@ extends
  */
 final case class Command
 (
-    override val sup: Control,
-    normalValue: Int,
-    value: Int,
-    DiscreteValue: String,
-    ValueAliasSet: String
+    override val sup: Control = null,
+    normalValue: Int = 0,
+    value: Int = 0,
+    DiscreteValue: String = null,
+    ValueAliasSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1043,23 +999,19 @@ extends
  */
 final case class Control
 (
-    override val sup: IOPoint,
-    controlType: String,
-    operationInProgress: Boolean,
-    timeStamp: String,
-    unitMultiplier: String,
-    unitSymbol: String,
-    ControlAction: String,
-    PowerSystemResource: String,
-    RemoteControl: String
+    override val sup: IOPoint = null,
+    controlType: String = null,
+    operationInProgress: Boolean = false,
+    timeStamp: String = null,
+    unitMultiplier: String = null,
+    unitSymbol: String = null,
+    ControlAction: String = null,
+    PowerSystemResource: String = null,
+    RemoteControl: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1165,20 +1117,16 @@ extends
  */
 final case class Discrete
 (
-    override val sup: Measurement,
-    maxValue: Int,
-    minValue: Int,
-    normalValue: Int,
-    DiscreteValues: List[String],
-    ValueAliasSet: String
+    override val sup: Measurement = null,
+    maxValue: Int = 0,
+    minValue: Int = 0,
+    normalValue: Int = 0,
+    DiscreteValues: List[String] = List(),
+    ValueAliasSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, 0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1268,18 +1216,14 @@ extends
  */
 final case class DiscreteValue
 (
-    override val sup: MeasurementValue,
-    value: Int,
-    Command: String,
-    Discrete: String
+    override val sup: MeasurementValue = null,
+    value: Int = 0,
+    Command: String = null,
+    Discrete: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1361,17 +1305,13 @@ extends
  */
 final case class IOPoint
 (
-    override val sup: IdentifiedObject,
-    BilateralToIOPoint: List[String],
-    IOPointSource: String
+    override val sup: IdentifiedObject = null,
+    BilateralToIOPoint: List[String] = List(),
+    IOPointSource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1448,16 +1388,12 @@ extends
  */
 final case class Limit
 (
-    override val sup: IdentifiedObject,
-    Procedures: List[String]
+    override val sup: IdentifiedObject = null,
+    Procedures: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1528,16 +1464,12 @@ extends
  */
 final case class LimitSet
 (
-    override val sup: IdentifiedObject,
-    isPercentageLimits: Boolean
+    override val sup: IdentifiedObject = null,
+    isPercentageLimits: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false) }
     /**
      * Return the superclass object.
      *
@@ -1628,30 +1560,26 @@ extends
  */
 final case class Measurement
 (
-    override val sup: IdentifiedObject,
-    measurementType: String,
-    phases: String,
-    uncefactUnitCode: String,
-    unitMultiplier: String,
-    unitSymbol: String,
-    Asset: String,
-    CalculationMethodHierarchy: String,
-    Locations: List[String],
-    MeasurementAction: String,
-    MeasurementCalculatorInput: List[String],
-    PinMeasurement: List[String],
-    PowerSystemResource: String,
-    Procedures: List[String],
-    ProtectiveActionAdjustment: List[String],
-    Terminal: String
+    override val sup: IdentifiedObject = null,
+    measurementType: String = null,
+    phases: String = null,
+    uncefactUnitCode: String = null,
+    unitMultiplier: String = null,
+    unitSymbol: String = null,
+    Asset: String = null,
+    CalculationMethodHierarchy: String = null,
+    Locations: List[String] = List(),
+    MeasurementAction: String = null,
+    MeasurementCalculatorInput: List[String] = List(),
+    PinMeasurement: List[String] = List(),
+    PowerSystemResource: String = null,
+    Procedures: List[String] = List(),
+    ProtectiveActionAdjustment: List[String] = List(),
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, List(), null, List(), List(), null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1797,23 +1725,19 @@ extends
  */
 final case class MeasurementValue
 (
-    override val sup: IOPoint,
-    sensorAccuracy: Double,
-    timeStamp: String,
-    CalculationMethodHierarchy: String,
-    ErpPerson: String,
-    MeasurementValueQuality: String,
-    MeasurementValueSource: String,
-    ProcedureDataSet: List[String],
-    RemoteSource: String
+    override val sup: IOPoint = null,
+    sensorAccuracy: Double = 0.0,
+    timeStamp: String = null,
+    CalculationMethodHierarchy: String = null,
+    ErpPerson: String = null,
+    MeasurementValueQuality: String = null,
+    MeasurementValueSource: String = null,
+    ProcedureDataSet: List[String] = List(),
+    RemoteSource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1919,16 +1843,12 @@ extends
  */
 final case class MeasurementValueQuality
 (
-    override val sup: Quality61850,
-    MeasurementValue: String
+    override val sup: Quality61850 = null,
+    MeasurementValue: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1999,16 +1919,12 @@ extends
  */
 final case class MeasurementValueSource
 (
-    override val sup: IdentifiedObject,
-    MeasurementValues: List[String]
+    override val sup: IdentifiedObject = null,
+    MeasurementValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2092,27 +2008,23 @@ extends
  */
 final case class Quality61850
 (
-    override val sup: BasicElement,
-    badReference: Boolean,
-    estimatorReplaced: Boolean,
-    failure: Boolean,
-    oldData: Boolean,
-    operatorBlocked: Boolean,
-    oscillatory: Boolean,
-    outOfRange: Boolean,
-    overFlow: Boolean,
-    source: String,
-    suspect: Boolean,
-    test: Boolean,
-    validity: String
+    override val sup: BasicElement = null,
+    badReference: Boolean = false,
+    estimatorReplaced: Boolean = false,
+    failure: Boolean = false,
+    oldData: Boolean = false,
+    operatorBlocked: Boolean = false,
+    oscillatory: Boolean = false,
+    outOfRange: Boolean = false,
+    overFlow: Boolean = false,
+    source: String = null,
+    suspect: Boolean = false,
+    test: Boolean = false,
+    validity: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, false, false, false, false, false, false, null, false, false, null) }
     /**
      * Return the superclass object.
      *
@@ -2225,16 +2137,12 @@ extends
  */
 final case class RaiseLowerCommand
 (
-    override val sup: AnalogControl,
-    ValueAliasSet: String
+    override val sup: AnalogControl = null,
+    ValueAliasSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2304,17 +2212,13 @@ extends
  */
 final case class SetPoint
 (
-    override val sup: AnalogControl,
-    normalValue: Double,
-    value: Double
+    override val sup: AnalogControl = null,
+    normalValue: Double = 0.0,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2384,16 +2288,12 @@ extends
  */
 final case class StringMeasurement
 (
-    override val sup: Measurement,
-    StringMeasurementValues: List[String]
+    override val sup: Measurement = null,
+    StringMeasurementValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2463,17 +2363,13 @@ extends
  */
 final case class StringMeasurementValue
 (
-    override val sup: MeasurementValue,
-    value: String,
-    StringMeasurement: String
+    override val sup: MeasurementValue = null,
+    value: String = null,
+    StringMeasurement: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2552,19 +2448,15 @@ extends
  */
 final case class ValueAliasSet
 (
-    override val sup: IdentifiedObject,
-    Commands: List[String],
-    Discretes: List[String],
-    RaiseLowerCommands: List[String],
-    Values: List[String]
+    override val sup: IdentifiedObject = null,
+    Commands: List[String] = List(),
+    Discretes: List[String] = List(),
+    RaiseLowerCommands: List[String] = List(),
+    Values: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2649,17 +2541,13 @@ extends
  */
 final case class ValueToAlias
 (
-    override val sup: IdentifiedObject,
-    value: Int,
-    ValueAliasSet: String
+    override val sup: IdentifiedObject = null,
+    value: Int = 0,
+    ValueAliasSet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null) }
     /**
      * Return the superclass object.
      *

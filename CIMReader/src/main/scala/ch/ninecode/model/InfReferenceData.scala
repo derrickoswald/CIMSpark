@@ -20,16 +20,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class LoadReductionTimeCurve
 (
-    override val sup: Curve,
-    loadReductionTimeCurveType: String
+    override val sup: Curve = null,
+    loadReductionTimeCurveType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -112,27 +108,23 @@ extends
  */
 final case class RegisteredControllableLoad
 (
-    override val sup: BasicElement,
-    maxBaseLoad: Double,
-    maxDeploymentTime: Double,
-    maxLoadRedTimesPerDay: Int,
-    maxLoadReduction: Double,
-    maxReductionTime: Double,
-    maxWeeklyDeployment: Int,
-    minLoadReduction: Double,
-    minLoadReductionCost: Double,
-    minLoadReductionInterval: Double,
-    minReductionTime: Double,
-    minTimeBetLoadRed: Double,
-    reqNoticeTime: Double
+    override val sup: BasicElement = null,
+    maxBaseLoad: Double = 0.0,
+    maxDeploymentTime: Double = 0.0,
+    maxLoadRedTimesPerDay: Int = 0,
+    maxLoadReduction: Double = 0.0,
+    maxReductionTime: Double = 0.0,
+    maxWeeklyDeployment: Int = 0,
+    minLoadReduction: Double = 0.0,
+    minLoadReductionCost: Double = 0.0,
+    minLoadReductionInterval: Double = 0.0,
+    minReductionTime: Double = 0.0,
+    minTimeBetLoadRed: Double = 0.0,
+    reqNoticeTime: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

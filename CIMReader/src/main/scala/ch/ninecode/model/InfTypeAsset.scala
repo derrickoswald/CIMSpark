@@ -34,31 +34,27 @@ import ch.ninecode.cim.Relationship
  */
 final case class GeneratorTypeAsset
 (
-    override val sup: CatalogAssetType,
-    maxP: Double,
-    maxQ: Double,
-    minP: Double,
-    minQ: Double,
-    rDirectSubtrans: Double,
-    rDirectSync: Double,
-    rDirectTrans: Double,
-    rQuadSubtrans: Double,
-    rQuadSync: Double,
-    rQuadTrans: Double,
-    xDirectSubtrans: Double,
-    xDirectSync: Double,
-    xDirectTrans: Double,
-    xQuadSubtrans: Double,
-    xQuadSync: Double,
-    xQuadTrans: Double
+    override val sup: CatalogAssetType = null,
+    maxP: Double = 0.0,
+    maxQ: Double = 0.0,
+    minP: Double = 0.0,
+    minQ: Double = 0.0,
+    rDirectSubtrans: Double = 0.0,
+    rDirectSync: Double = 0.0,
+    rDirectTrans: Double = 0.0,
+    rQuadSubtrans: Double = 0.0,
+    rQuadSync: Double = 0.0,
+    rQuadTrans: Double = 0.0,
+    xDirectSubtrans: Double = 0.0,
+    xDirectSync: Double = 0.0,
+    xDirectTrans: Double = 0.0,
+    xQuadSubtrans: Double = 0.0,
+    xQuadSync: Double = 0.0,
+    xQuadTrans: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -186,17 +182,13 @@ extends
  */
 final case class TypeAssetCatalogue
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    TypeAssets: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    TypeAssets: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *

@@ -59,34 +59,30 @@ import ch.ninecode.cim.Relationship
  */
 final case class ACDCConverter
 (
-    override val sup: ConductingEquipment,
-    baseS: Double,
-    idc: Double,
-    idleLoss: Double,
-    maxUdc: Double,
-    minUdc: Double,
-    numberOfValves: Int,
-    p: Double,
-    poleLossP: Double,
-    q: Double,
-    ratedUdc: Double,
-    resistiveLoss: Double,
-    switchingLoss: Double,
-    targetPpcc: Double,
-    targetUdc: Double,
-    uc: Double,
-    udc: Double,
-    valveU0: Double,
-    DCTerminals: List[String],
-    PccTerminal: String
+    override val sup: ConductingEquipment = null,
+    baseS: Double = 0.0,
+    idc: Double = 0.0,
+    idleLoss: Double = 0.0,
+    maxUdc: Double = 0.0,
+    minUdc: Double = 0.0,
+    numberOfValves: Int = 0,
+    p: Double = 0.0,
+    poleLossP: Double = 0.0,
+    q: Double = 0.0,
+    ratedUdc: Double = 0.0,
+    resistiveLoss: Double = 0.0,
+    switchingLoss: Double = 0.0,
+    targetPpcc: Double = 0.0,
+    targetUdc: Double = 0.0,
+    uc: Double = 0.0,
+    udc: Double = 0.0,
+    valveU0: Double = 0.0,
+    DCTerminals: List[String] = List(),
+    PccTerminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -233,17 +229,13 @@ extends
  */
 final case class ACDCConverterDCTerminal
 (
-    override val sup: DCBaseTerminal,
-    polarity: String,
-    DCConductingEquipment: String
+    override val sup: DCBaseTerminal = null,
+    polarity: String = null,
+    DCConductingEquipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -343,30 +335,26 @@ extends
  */
 final case class CsConverter
 (
-    override val sup: ACDCConverter,
-    alpha: Double,
-    gamma: Double,
-    maxAlpha: Double,
-    maxGamma: Double,
-    maxIdc: Double,
-    minAlpha: Double,
-    minGamma: Double,
-    minIdc: Double,
-    operatingMode: String,
-    pPccControl: String,
-    ratedIdc: Double,
-    targetAlpha: Double,
-    targetGamma: Double,
-    targetIdc: Double,
-    CSCDynamics: String
+    override val sup: ACDCConverter = null,
+    alpha: Double = 0.0,
+    gamma: Double = 0.0,
+    maxAlpha: Double = 0.0,
+    maxGamma: Double = 0.0,
+    maxIdc: Double = 0.0,
+    minAlpha: Double = 0.0,
+    minGamma: Double = 0.0,
+    minIdc: Double = 0.0,
+    operatingMode: String = null,
+    pPccControl: String = null,
+    ratedIdc: Double = 0.0,
+    targetAlpha: Double = 0.0,
+    targetGamma: Double = 0.0,
+    targetIdc: Double = 0.0,
+    CSCDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -496,17 +484,13 @@ extends
  */
 final case class DCBaseTerminal
 (
-    override val sup: ACDCTerminal,
-    DCNode: String,
-    DCTopologicalNode: String
+    override val sup: ACDCTerminal = null,
+    DCNode: String = null,
+    DCTopologicalNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -579,15 +563,11 @@ extends
  */
 final case class DCBreaker
 (
-    override val sup: DCSwitch
+    override val sup: DCSwitch = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -641,15 +621,11 @@ extends
  */
 final case class DCBusbar
 (
-    override val sup: DCConductingEquipment
+    override val sup: DCConductingEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -705,15 +681,11 @@ extends
  */
 final case class DCChopper
 (
-    override val sup: DCConductingEquipment
+    override val sup: DCConductingEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -771,18 +743,14 @@ extends
  */
 final case class DCConductingEquipment
 (
-    override val sup: Equipment,
-    ratedUdc: Double,
-    DCTerminals: List[String],
-    ProtectiveActionAdjustment: List[String]
+    override val sup: Equipment = null,
+    ratedUdc: Double = 0.0,
+    DCTerminals: List[String] = List(),
+    ProtectiveActionAdjustment: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -862,17 +830,13 @@ extends
  */
 final case class DCConverterUnit
 (
-    override val sup: DCEquipmentContainer,
-    operationMode: String,
-    Substation: String
+    override val sup: DCEquipmentContainer = null,
+    operationMode: String = null,
+    Substation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -944,15 +908,11 @@ extends
  */
 final case class DCDisconnector
 (
-    override val sup: DCSwitch
+    override val sup: DCSwitch = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1010,17 +970,13 @@ extends
  */
 final case class DCEquipmentContainer
 (
-    override val sup: EquipmentContainer,
-    DCNodes: List[String],
-    DCTopologicalNode: List[String]
+    override val sup: EquipmentContainer = null,
+    DCNodes: List[String] = List(),
+    DCTopologicalNode: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1095,17 +1051,13 @@ extends
  */
 final case class DCGround
 (
-    override val sup: DCConductingEquipment,
-    inductance: Double,
-    r: Double
+    override val sup: DCConductingEquipment = null,
+    inductance: Double = 0.0,
+    r: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1175,16 +1127,12 @@ extends
  */
 final case class DCLine
 (
-    override val sup: DCEquipmentContainer,
-    Region: String
+    override val sup: DCEquipmentContainer = null,
+    Region: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1259,20 +1207,16 @@ extends
  */
 final case class DCLineSegment
 (
-    override val sup: DCConductingEquipment,
-    capacitance: Double,
-    inductance: Double,
-    len: Double,
-    resistance: Double,
-    PerLengthParameter: String
+    override val sup: DCConductingEquipment = null,
+    capacitance: Double = 0.0,
+    inductance: Double = 0.0,
+    len: Double = 0.0,
+    resistance: Double = 0.0,
+    PerLengthParameter: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1361,18 +1305,14 @@ extends
  */
 final case class DCNode
 (
-    override val sup: IdentifiedObject,
-    DCEquipmentContainer: String,
-    DCTerminals: List[String],
-    DCTopologicalNode: String
+    override val sup: IdentifiedObject = null,
+    DCEquipmentContainer: String = null,
+    DCTerminals: List[String] = List(),
+    DCTopologicalNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1455,17 +1395,13 @@ extends
  */
 final case class DCSeriesDevice
 (
-    override val sup: DCConductingEquipment,
-    inductance: Double,
-    resistance: Double
+    override val sup: DCConductingEquipment = null,
+    inductance: Double = 0.0,
+    resistance: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1538,17 +1474,13 @@ extends
  */
 final case class DCShunt
 (
-    override val sup: DCConductingEquipment,
-    capacitance: Double,
-    resistance: Double
+    override val sup: DCConductingEquipment = null,
+    capacitance: Double = 0.0,
+    resistance: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1617,15 +1549,11 @@ extends
  */
 final case class DCSwitch
 (
-    override val sup: DCConductingEquipment
+    override val sup: DCConductingEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1680,16 +1608,12 @@ extends
  */
 final case class DCTerminal
 (
-    override val sup: DCBaseTerminal,
-    DCConductingEquipment: String
+    override val sup: DCBaseTerminal = null,
+    DCConductingEquipment: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1762,16 +1686,12 @@ extends
  */
 final case class DCTopologicalIsland
 (
-    override val sup: IdentifiedObject,
-    DCTopologicalNodes: List[String]
+    override val sup: IdentifiedObject = null,
+    DCTopologicalNodes: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1845,19 +1765,15 @@ extends
  */
 final case class DCTopologicalNode
 (
-    override val sup: IdentifiedObject,
-    DCEquipmentContainer: String,
-    DCNodes: List[String],
-    DCTerminals: List[String],
-    DCTopologicalIsland: String
+    override val sup: IdentifiedObject = null,
+    DCEquipmentContainer: String = null,
+    DCNodes: List[String] = List(),
+    DCTerminals: List[String] = List(),
+    DCTopologicalIsland: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1945,19 +1861,15 @@ extends
  */
 final case class PerLengthDCLineParameter
 (
-    override val sup: PerLengthLineParameter,
-    capacitance: Double,
-    inductance: Double,
-    resistance: Double,
-    DCLineSegments: List[String]
+    override val sup: PerLengthLineParameter = null,
+    capacitance: Double = 0.0,
+    inductance: Double = 0.0,
+    resistance: Double = 0.0,
+    DCLineSegments: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -2039,16 +1951,12 @@ extends
  */
 final case class VsCapabilityCurve
 (
-    override val sup: Curve,
-    VsConverterDCSides: List[String]
+    override val sup: Curve = null,
+    VsConverterDCSides: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2135,28 +2043,24 @@ extends
  */
 final case class VsConverter
 (
-    override val sup: ACDCConverter,
-    delta: Double,
-    droop: Double,
-    droopCompensation: Double,
-    maxModulationIndex: Double,
-    maxValveCurrent: Double,
-    pPccControl: String,
-    qPccControl: String,
-    qShare: Double,
-    targetQpcc: Double,
-    targetUpcc: Double,
-    uv: Double,
-    CapabilityCurve: String,
-    VSCDynamics: String
+    override val sup: ACDCConverter = null,
+    delta: Double = 0.0,
+    droop: Double = 0.0,
+    droopCompensation: Double = 0.0,
+    maxModulationIndex: Double = 0.0,
+    maxValveCurrent: Double = 0.0,
+    pPccControl: String = null,
+    qPccControl: String = null,
+    qShare: Double = 0.0,
+    targetQpcc: Double = 0.0,
+    targetUpcc: Double = 0.0,
+    uv: Double = 0.0,
+    CapabilityCurve: String = null,
+    VSCDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *

@@ -24,17 +24,13 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DateInterval
 (
-    override val sup: BasicElement,
-    end: String,
-    start: String
+    override val sup: BasicElement = null,
+    end: String = null,
+    start: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -112,17 +108,13 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DateTimeInterval
 (
-    override val sup: BasicElement,
-    end: String,
-    start: String
+    override val sup: BasicElement = null,
+    end: String = null,
+    start: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -200,19 +192,15 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DecimalQuantity
 (
-    override val sup: BasicElement,
-    currency: String,
-    multiplier: String,
-    unit: String,
-    value: Double
+    override val sup: BasicElement = null,
+    currency: String = null,
+    multiplier: String = null,
+    unit: String = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -298,18 +286,14 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class FloatQuantity
 (
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: Double
+    override val sup: BasicElement = null,
+    multiplier: String = null,
+    unit: String = null,
+    value: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -391,18 +375,14 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class IntegerQuantity
 (
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: Int
+    override val sup: BasicElement = null,
+    multiplier: String = null,
+    unit: String = null,
+    value: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0) }
     /**
      * Return the superclass object.
      *
@@ -483,17 +463,13 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class MonthDayInterval
 (
-    override val sup: BasicElement,
-    end: String,
-    start: String
+    override val sup: BasicElement = null,
+    end: String = null,
+    start: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -570,18 +546,14 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class StringQuantity
 (
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: String
+    override val sup: BasicElement = null,
+    multiplier: String = null,
+    unit: String = null,
+    value: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -662,17 +634,13 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class TimeInterval
 (
-    override val sup: BasicElement,
-    end: String,
-    start: String
+    override val sup: BasicElement = null,
+    end: String = null,
+    start: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

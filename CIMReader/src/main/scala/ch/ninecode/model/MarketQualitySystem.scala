@@ -23,19 +23,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class AllocationResult
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    AllocationResultValues: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    AllocationResultValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -130,22 +126,18 @@ extends
  */
 final case class AllocationResultValues
 (
-    override val sup: BasicElement,
-    aggregateType: String,
-    allocationMwHour: Double,
-    allocationPrice: Double,
-    energyTypeCode: String,
-    marketServiceType: String,
-    AllocationResult: String,
-    RegisteredResource: String
+    override val sup: BasicElement = null,
+    aggregateType: String = null,
+    allocationMwHour: Double = 0.0,
+    allocationPrice: Double = 0.0,
+    energyTypeCode: String = null,
+    marketServiceType: String = null,
+    AllocationResult: String = null,
+    RegisteredResource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -244,20 +236,16 @@ extends
  */
 final case class AuxiliaryCost
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    marketType: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    AuxillaryValues: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    marketType: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    AuxillaryValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -345,17 +333,13 @@ extends
  */
 final case class AuxiliaryObject
 (
-    override val sup: BasicElement,
-    RegisteredGenerator: String,
-    RegisteredLoad: String
+    override val sup: BasicElement = null,
+    RegisteredGenerator: String = null,
+    RegisteredLoad: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -439,26 +423,22 @@ extends
  */
 final case class AuxiliaryValues
 (
-    override val sup: AuxiliaryObject,
-    availUndispatchedQ: Double,
-    incrementalORAvail: Double,
-    maxExpostCapacity: Double,
-    minExpostCapacity: Double,
-    noLoadCost: Double,
-    noLoadCostEligibilityFlag: String,
-    startUpCost: Double,
-    startUpCostEligibilityFlag: String,
-    AuxillaryCost: String,
-    FiveMinAuxillaryData: String,
-    TenMinAuxillaryData: String
+    override val sup: AuxiliaryObject = null,
+    availUndispatchedQ: Double = 0.0,
+    incrementalORAvail: Double = 0.0,
+    maxExpostCapacity: Double = 0.0,
+    minExpostCapacity: Double = 0.0,
+    noLoadCost: Double = 0.0,
+    noLoadCostEligibilityFlag: String = null,
+    startUpCost: Double = 0.0,
+    startUpCostEligibilityFlag: String = null,
+    AuxillaryCost: String = null,
+    FiveMinAuxillaryData: String = null,
+    TenMinAuxillaryData: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -573,19 +553,15 @@ extends
  */
 final case class ExpectedEnergy
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    ExpectedEnergyValues: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    ExpectedEnergyValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -670,19 +646,15 @@ extends
  */
 final case class ExpectedEnergyValues
 (
-    override val sup: BasicElement,
-    energyTypeCode: String,
-    expectedMwh: Double,
-    ExpectedEnergy: String,
-    RegisteredResource: String
+    override val sup: BasicElement = null,
+    energyTypeCode: String = null,
+    expectedMwh: Double = 0.0,
+    ExpectedEnergy: String = null,
+    RegisteredResource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -768,19 +740,15 @@ extends
  */
 final case class FiveMinAuxiliaryData
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    AuxillaryValues: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    AuxillaryValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -865,19 +833,15 @@ extends
  */
 final case class TenMinAuxiliaryData
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    AuxillaryData: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    AuxillaryData: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -963,20 +927,16 @@ extends
  */
 final case class TradingHubPrice
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    marketType: String,
-    updateTimeStamp: String,
-    updateUser: String,
-    TradingHubValues: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    marketType: String = null,
+    updateTimeStamp: String = null,
+    updateUser: String = null,
+    TradingHubValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1066,18 +1026,14 @@ extends
  */
 final case class TradingHubValues
 (
-    override val sup: BasicElement,
-    price: Double,
-    AggregatedPnode: String,
-    TradingHubPrice: String
+    override val sup: BasicElement = null,
+    price: Double = 0.0,
+    AggregatedPnode: String = null,
+    TradingHubPrice: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *

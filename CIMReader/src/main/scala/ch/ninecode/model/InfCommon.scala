@@ -20,18 +20,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class Bank
 (
-    override val sup: OrganisationRole,
-    bic: String,
-    iban: String,
-    BankAccounts: List[String]
+    override val sup: OrganisationRole = null,
+    bic: String = null,
+    iban: String = null,
+    BankAccounts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -111,18 +107,14 @@ extends
  */
 final case class BankAccount
 (
-    override val sup: Document,
-    accountNumber: String,
-    Bank: String,
-    ServiceSupplier: String
+    override val sup: Document = null,
+    accountNumber: String = null,
+    Bank: String = null,
+    ServiceSupplier: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -202,15 +194,11 @@ extends
  */
 final case class BusinessPlan
 (
-    override val sup: Document
+    override val sup: Document = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -268,17 +256,13 @@ extends
  */
 final case class BusinessRole
 (
-    override val sup: OrganisationRole,
-    status: String,
-    `type`: String
+    override val sup: OrganisationRole = null,
+    status: String = null,
+    `type`: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -355,20 +339,16 @@ extends
  */
 final case class Craft
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    `type`: String,
-    Capabilities: List[String],
-    ErpPersons: List[String],
-    Skills: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    `type`: String = null,
+    Capabilities: List[String] = List(),
+    ErpPersons: List[String] = List(),
+    Skills: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -456,15 +436,11 @@ extends
  */
 final case class DocumentOrganisationRole
 (
-    override val sup: OrganisationRole
+    override val sup: OrganisationRole = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -524,21 +500,17 @@ extends
  */
 final case class OldCrew
 (
-    override val sup: Crew,
-    `type`: String,
-    Assignments: List[String],
-    Capabilities: List[String],
-    Locations: List[String],
-    Route: String,
-    ShiftPatterns: List[String]
+    override val sup: Crew = null,
+    `type`: String = null,
+    Assignments: List[String] = List(),
+    Capabilities: List[String] = List(),
+    Locations: List[String] = List(),
+    Route: String = null,
+    ShiftPatterns: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -645,26 +617,22 @@ extends
  */
 final case class OldPerson
 (
-    override val sup: Person,
-    status: String,
-    `type`: String,
-    Crafts: List[String],
-    CustomerData: String,
-    ErpCompetency: String,
-    ErpPersonnel: String,
-    LaborItems: List[String],
-    LandPropertyRoles: List[String],
-    MeasurementValues: List[String],
-    OrganisationRoles: List[String],
-    Skills: List[String]
+    override val sup: Person = null,
+    status: String = null,
+    `type`: String = null,
+    Crafts: List[String] = List(),
+    CustomerData: String = null,
+    ErpCompetency: String = null,
+    ErpPersonnel: String = null,
+    LaborItems: List[String] = List(),
+    LandPropertyRoles: List[String] = List(),
+    MeasurementValues: List[String] = List(),
+    OrganisationRoles: List[String] = List(),
+    Skills: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), null, null, null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -786,16 +754,12 @@ extends
  */
 final case class OrgOrgRole
 (
-    override val sup: OrganisationRole,
-    clientID: String
+    override val sup: OrganisationRole = null,
+    clientID: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -862,17 +826,13 @@ extends
  */
 final case class PersonOrganisationRole
 (
-    override val sup: OrganisationRole,
-    clientID: String,
-    ErpPerson: String
+    override val sup: OrganisationRole = null,
+    clientID: String = null,
+    ErpPerson: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -949,17 +909,13 @@ extends
  */
 final case class PersonPropertyRole
 (
-    override val sup: Role,
-    LandProperty: String,
-    Person: String
+    override val sup: Role = null,
+    LandProperty: String = null,
+    Person: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1033,16 +989,12 @@ extends
  */
 final case class PropertyOrganisationRole
 (
-    override val sup: OrganisationRole,
-    LandProperty: List[String]
+    override val sup: OrganisationRole = null,
+    LandProperty: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1112,17 +1064,13 @@ extends
  */
 final case class Ratio
 (
-    override val sup: BasicElement,
-    denominator: Double,
-    numerator: Double
+    override val sup: BasicElement = null,
+    denominator: Double = 0.0,
+    numerator: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1193,17 +1141,13 @@ extends
  */
 final case class Role
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    `type`: String
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    `type`: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1279,21 +1223,17 @@ extends
  */
 final case class Skill
 (
-    override val sup: Document,
-    certificationPeriod: String,
-    effectiveDateTime: String,
-    level: String,
-    Crafts: List[String],
-    ErpPerson: String,
-    QualificationRequirements: List[String]
+    override val sup: Document = null,
+    certificationPeriod: String = null,
+    effectiveDateTime: String = null,
+    level: String = null,
+    Crafts: List[String] = List(),
+    ErpPerson: String = null,
+    QualificationRequirements: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *

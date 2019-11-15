@@ -24,23 +24,19 @@ import ch.ninecode.cim.Relationship
  */
 final case class FTR
 (
-    override val sup: Agreement,
-    action: String,
-    baseEnergy: Double,
-    `class`: String,
-    ftrType: String,
-    optimized: String,
-    EnergyPriceCurve: String,
-    Flowgate: String,
-    Pnodes: List[String]
+    override val sup: Agreement = null,
+    action: String = null,
+    baseEnergy: Double = 0.0,
+    `class`: String = null,
+    ftrType: String = null,
+    optimized: String = null,
+    EnergyPriceCurve: String = null,
+    Flowgate: String = null,
+    Pnodes: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -142,18 +138,14 @@ extends
  */
 final case class ViolationLimit
 (
-    override val sup: Limit,
-    enforced: Boolean,
-    Flowgate: String,
-    MktMeasurement: String
+    override val sup: Limit = null,
+    enforced: Boolean = false,
+    Flowgate: String = null,
+    MktMeasurement: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *

@@ -31,21 +31,17 @@ import ch.ninecode.cim.Relationship
  */
 final case class VAdjIEEE
 (
-    override val sup: VoltageAdjusterDynamics,
-    adjslew: Double,
-    taoff: Double,
-    taon: Double,
-    vadjf: Double,
-    vadjmax: Double,
-    vadjmin: Double
+    override val sup: VoltageAdjusterDynamics = null,
+    adjslew: Double = 0.0,
+    taoff: Double = 0.0,
+    taon: Double = 0.0,
+    vadjf: Double = 0.0,
+    vadjmax: Double = 0.0,
+    vadjmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -132,16 +128,12 @@ extends
  */
 final case class VoltageAdjusterDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    PFVArControllerType1Dynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    PFVArControllerType1Dynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

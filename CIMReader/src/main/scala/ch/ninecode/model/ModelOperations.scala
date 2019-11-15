@@ -19,17 +19,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class DatasetArg
 (
-    override val sup: ModelOperationArg,
-    Dataset: String,
-    OperationDatasetArgDescription: String
+    override val sup: ModelOperationArg = null,
+    Dataset: String = null,
+    OperationDatasetArgDescription: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -99,16 +95,12 @@ extends
  */
 final case class DatasetArgDescription
 (
-    override val sup: ModelOperationArgDescription,
-    OperationDatasetArg: List[String]
+    override val sup: ModelOperationArgDescription = null,
+    OperationDatasetArg: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -177,17 +169,13 @@ extends
  */
 final case class IncrementalDatasetArg
 (
-    override val sup: ModelOperationArg,
-    IncrementalDataset: String,
-    IncrementalDatasetArgDescription: String
+    override val sup: ModelOperationArg = null,
+    IncrementalDataset: String = null,
+    IncrementalDatasetArgDescription: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -257,16 +245,12 @@ extends
  */
 final case class IncrementalDatasetArgDescription
 (
-    override val sup: ModelOperationArgDescription,
-    IncrementalDatasetArg: List[String]
+    override val sup: ModelOperationArgDescription = null,
+    IncrementalDatasetArg: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -338,19 +322,15 @@ extends
  */
 final case class ModelOperation
 (
-    override val sup: IdentifiedObject,
-    sequenceNumber: Int,
-    ModelOperationArg: List[String],
-    ModelOperationDescription: String,
-    OperationSequence: String
+    override val sup: IdentifiedObject = null,
+    sequenceNumber: Int = 0,
+    ModelOperationArg: List[String] = List(),
+    ModelOperationDescription: String = null,
+    OperationSequence: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -438,17 +418,13 @@ extends
  */
 final case class ModelOperationArg
 (
-    override val sup: IdentifiedObject,
-    sequenceNumber: Int,
-    ModelOperation: String
+    override val sup: IdentifiedObject = null,
+    sequenceNumber: Int = 0,
+    ModelOperation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -526,18 +502,14 @@ extends
  */
 final case class ModelOperationArgDescription
 (
-    override val sup: IdentifiedObject,
-    multiplicityMaximum: Int,
-    multiplicityMinimum: Int,
-    ModelOperationDefinition: String
+    override val sup: IdentifiedObject = null,
+    multiplicityMaximum: Int = 0,
+    multiplicityMinimum: Int = 0,
+    ModelOperationDefinition: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -617,17 +589,13 @@ extends
  */
 final case class ModelOperationDescription
 (
-    override val sup: IdentifiedObject,
-    ModelOperation: List[String],
-    OperationDatasetArgDescription: List[String]
+    override val sup: IdentifiedObject = null,
+    ModelOperation: List[String] = List(),
+    OperationDatasetArgDescription: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -702,16 +670,12 @@ extends
  */
 final case class ModelOperationSequence
 (
-    override val sup: IdentifiedObject,
-    ModelOperation: List[String]
+    override val sup: IdentifiedObject = null,
+    ModelOperation: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

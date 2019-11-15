@@ -21,17 +21,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class ASRequirements
 (
-    override val sup: BasicElement,
-    intervalStartTime: String,
-    ReserveDemandCurve: List[String]
+    override val sup: BasicElement = null,
+    intervalStartTime: String = null,
+    ReserveDemandCurve: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -105,16 +101,12 @@ extends
  */
 final case class AnalogMeasurementValueQuality
 (
-    override val sup: MeasurementValueQuality,
-    scadaQualityCode: String
+    override val sup: MeasurementValueQuality = null,
+    scadaQualityCode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -182,18 +174,14 @@ extends
  */
 final case class AreaLoadCurve
 (
-    override val sup: RegularIntervalSchedule,
-    forecastType: String,
-    AggregateNode: String,
-    TACArea: String
+    override val sup: RegularIntervalSchedule = null,
+    forecastType: String = null,
+    AggregateNode: String = null,
+    TACArea: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -273,16 +261,12 @@ extends
  */
 final case class BaseCaseConstraintLimit
 (
-    override val sup: Curve,
-    SecurityConstraintSum: String
+    override val sup: Curve = null,
+    SecurityConstraintSum: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -364,27 +348,23 @@ extends
  */
 final case class BranchEndFlow
 (
-    override val sup: BasicElement,
-    loadDumpRating: Double,
-    longTermRating: Double,
-    mVARFlow: Double,
-    mwFlow: Double,
-    normalRating: Double,
-    shortTermRating: Double,
-    MktACLineSegmentEndAFlow: List[String],
-    MktACLineSegmentEndBFlow: List[String],
-    MktPowerTransformerEndAFlow: List[String],
-    MktPowerTransformerEndBFlow: List[String],
-    MktSeriesCompensatorEndBFlow: List[String],
-    MktSeriresCompensatorEndAFlow: List[String]
+    override val sup: BasicElement = null,
+    loadDumpRating: Double = 0.0,
+    longTermRating: Double = 0.0,
+    mVARFlow: Double = 0.0,
+    mwFlow: Double = 0.0,
+    normalRating: Double = 0.0,
+    shortTermRating: Double = 0.0,
+    MktACLineSegmentEndAFlow: List[String] = List(),
+    MktACLineSegmentEndBFlow: List[String] = List(),
+    MktPowerTransformerEndAFlow: List[String] = List(),
+    MktPowerTransformerEndBFlow: List[String] = List(),
+    MktSeriesCompensatorEndBFlow: List[String] = List(),
+    MktSeriresCompensatorEndAFlow: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -505,18 +485,14 @@ extends
  */
 final case class ConstraintTerm
 (
-    override val sup: IdentifiedObject,
-    factor: String,
-    function: String,
-    SecurityConstraintSum: String
+    override val sup: IdentifiedObject = null,
+    factor: String = null,
+    function: String = null,
+    SecurityConstraintSum: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -598,18 +574,14 @@ extends
  */
 final case class ContingencyConstraintLimit
 (
-    override val sup: Curve,
-    MWLimitSchedules: String,
-    MktContingency: String,
-    SecurityConstraintSum: String
+    override val sup: Curve = null,
+    MWLimitSchedules: String = null,
+    MktContingency: String = null,
+    SecurityConstraintSum: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -692,18 +664,14 @@ extends
  */
 final case class ControlAreaSolutionData
 (
-    override val sup: BasicElement,
-    solvedInterchange: Double,
-    solvedLosses: Double,
-    MktControlArea: String
+    override val sup: BasicElement = null,
+    solvedInterchange: Double = 0.0,
+    solvedLosses: Double = 0.0,
+    MktControlArea: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -801,20 +769,16 @@ extends
  */
 final case class DefaultBid
 (
-    override val sup: Bid,
-    bidType: String,
-    minLoadCost: Double,
-    peakFlag: String,
-    DefaultBidCurve: String,
-    RegisteredResource: String
+    override val sup: Bid = null,
+    bidType: String = null,
+    minLoadCost: Double = 0.0,
+    peakFlag: String = null,
+    DefaultBidCurve: String = null,
+    RegisteredResource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -903,18 +867,14 @@ extends
  */
 final case class DefaultBidCurve
 (
-    override val sup: Curve,
-    curveType: String,
-    debAdderFlag: String,
-    DefaultBid: String
+    override val sup: Curve = null,
+    curveType: String = null,
+    debAdderFlag: String = null,
+    DefaultBid: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -992,16 +952,12 @@ extends
  */
 final case class DefaultBidCurveData
 (
-    override val sup: CurveData,
-    bidSegmentCalcType: String
+    override val sup: CurveData = null,
+    bidSegmentCalcType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1069,16 +1025,12 @@ extends
  */
 final case class DefaultConstraintLimit
 (
-    override val sup: Curve,
-    SecurityConstraintSum: String
+    override val sup: Curve = null,
+    SecurityConstraintSum: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1150,17 +1102,13 @@ extends
  */
 final case class DiscreteMeasurementValueQuality
 (
-    override val sup: MeasurementValueQuality,
-    manualReplaceIndicator: Boolean,
-    removeFromOperationIndicator: Boolean
+    override val sup: MeasurementValueQuality = null,
+    manualReplaceIndicator: Boolean = false,
+    removeFromOperationIndicator: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false) }
     /**
      * Return the superclass object.
      *
@@ -1237,21 +1185,17 @@ extends
  */
 final case class DistributionFactorSet
 (
-    override val sup: BasicElement,
-    intervalEndTime: String,
-    intervalStartTime: String,
-    marketType: String,
-    GenDistributionFactor: List[String],
-    LoadDistributionFactor: List[String],
-    SysLoadDistribuFactor: List[String]
+    override val sup: BasicElement = null,
+    intervalEndTime: String = null,
+    intervalStartTime: String = null,
+    marketType: String = null,
+    GenDistributionFactor: List[String] = List(),
+    LoadDistributionFactor: List[String] = List(),
+    SysLoadDistribuFactor: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1350,20 +1294,16 @@ extends
  */
 final case class EnergyPriceIndex
 (
-    override val sup: IdentifiedObject,
-    energyPriceIndex: Double,
-    energyPriceIndexType: String,
-    lastModified: String,
-    validPeriod: String,
-    RegisteredGenerator: String
+    override val sup: IdentifiedObject = null,
+    energyPriceIndex: Double = 0.0,
+    energyPriceIndexType: String = null,
+    lastModified: String = null,
+    validPeriod: String = null,
+    RegisteredGenerator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1450,17 +1390,13 @@ extends
  */
 final case class EnergyProfile
 (
-    override val sup: Profile,
-    EnergyTransaction: String,
-    TransactionBid: String
+    override val sup: Profile = null,
+    EnergyTransaction: String = null,
+    TransactionBid: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1553,33 +1489,29 @@ extends
  */
 final case class EnergyTransaction
 (
-    override val sup: Document,
-    capacityBacked: Boolean,
-    congestChargeMax: Double,
-    deliveryPointP: Double,
-    energyMin: Double,
-    firmInterchangeFlag: Boolean,
-    payCongestion: Boolean,
-    reason: String,
-    receiptPointP: Double,
-    state: String,
-    CurtailmentProfiles: List[String],
-    EnergyPriceCurves: List[String],
-    EnergyProduct: String,
-    EnergyProfiles: List[String],
-    Export_SubControlArea: String,
-    Import_SubControlArea: String,
-    LossProfiles: List[String],
-    TieLines: List[String],
-    TransmissionReservation: String
+    override val sup: Document = null,
+    capacityBacked: Boolean = false,
+    congestChargeMax: Double = 0.0,
+    deliveryPointP: Double = 0.0,
+    energyMin: Double = 0.0,
+    firmInterchangeFlag: Boolean = false,
+    payCongestion: Boolean = false,
+    reason: String = null,
+    receiptPointP: Double = 0.0,
+    state: String = null,
+    CurtailmentProfiles: List[String] = List(),
+    EnergyPriceCurves: List[String] = List(),
+    EnergyProduct: String = null,
+    EnergyProfiles: List[String] = List(),
+    Export_SubControlArea: String = null,
+    Import_SubControlArea: String = null,
+    LossProfiles: List[String] = List(),
+    TieLines: List[String] = List(),
+    TransmissionReservation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, false, false, null, 0.0, null, List(), List(), null, List(), null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1731,19 +1663,15 @@ extends
  */
 final case class GenDistributionFactor
 (
-    override val sup: BasicElement,
-    factor: Double,
-    AggregatedPnode: String,
-    DistributionFactorSet: List[String],
-    IndividualPnode: String
+    override val sup: BasicElement = null,
+    factor: Double = 0.0,
+    AggregatedPnode: String = null,
+    DistributionFactorSet: List[String] = List(),
+    IndividualPnode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1838,23 +1766,19 @@ extends
  */
 final case class GeneratingUnitDynamicValues
 (
-    override val sup: BasicElement,
-    lossFactor: Double,
-    mVAR: Double,
-    maximumMW: Double,
-    minimumMW: Double,
-    mw: Double,
-    sensitivity: Double,
-    Flowgate: String,
-    MktGeneratingUnit: String
+    override val sup: BasicElement = null,
+    lossFactor: Double = 0.0,
+    mVAR: Double = 0.0,
+    maximumMW: Double = 0.0,
+    minimumMW: Double = 0.0,
+    mw: Double = 0.0,
+    sensitivity: Double = 0.0,
+    Flowgate: String = null,
+    MktGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1962,21 +1886,17 @@ extends
  */
 final case class GenericConstraints
 (
-    override val sup: IdentifiedObject,
-    intervalEndTime: String,
-    intervalStartTime: String,
-    maxLimit: Double,
-    minLimit: Double,
-    Flowgate: List[String],
-    TransmissionCapacity: List[String]
+    override val sup: IdentifiedObject = null,
+    intervalEndTime: String = null,
+    intervalStartTime: String = null,
+    maxLimit: Double = 0.0,
+    minLimit: Double = 0.0,
+    Flowgate: List[String] = List(),
+    TransmissionCapacity: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2069,18 +1989,14 @@ extends
  */
 final case class InterchangeETCData
 (
-    override val sup: BasicElement,
-    contractNumber: String,
-    usageMW: Double,
-    InterchangeSchedule: String
+    override val sup: BasicElement = null,
+    contractNumber: String = null,
+    usageMW: Double = 0.0,
+    InterchangeSchedule: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2169,27 +2085,23 @@ extends
  */
 final case class InterchangeSchedule
 (
-    override val sup: Curve,
-    checkOutType: String,
-    directionType: String,
-    energyType: String,
-    intervalLength: Int,
-    marketType: String,
-    operatingDate: String,
-    outOfMarketType: Boolean,
-    scheduleType: String,
-    wcrID: String,
-    InterTie: String,
-    InterchangeETCData: List[String],
-    RegisteredInterTie: String
+    override val sup: Curve = null,
+    checkOutType: String = null,
+    directionType: String = null,
+    energyType: String = null,
+    intervalLength: Int = 0,
+    marketType: String = null,
+    operatingDate: String = null,
+    outOfMarketType: Boolean = false,
+    scheduleType: String = null,
+    wcrID: String = null,
+    InterTie: String = null,
+    InterchangeETCData: List[String] = List(),
+    RegisteredInterTie: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0, null, null, false, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2307,17 +2219,13 @@ extends
  */
 final case class IntermittentResourceEligibility
 (
-    override val sup: MarketFactors,
-    eligibilityStatus: String,
-    RegisteredResource: String
+    override val sup: MarketFactors = null,
+    eligibilityStatus: String = null,
+    RegisteredResource: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2403,20 +2311,16 @@ extends
  */
 final case class LoadDistributionFactor
 (
-    override val sup: BasicElement,
-    pDistFactor: Double,
-    qDistFactor: Double,
-    AggregatedPnode: String,
-    DistributionFactorSet: List[String],
-    IndividualPnode: String
+    override val sup: BasicElement = null,
+    pDistFactor: Double = 0.0,
+    qDistFactor: Double = 0.0,
+    AggregatedPnode: String = null,
+    DistributionFactorSet: List[String] = List(),
+    IndividualPnode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2507,17 +2411,13 @@ extends
  */
 final case class LossSensitivity
 (
-    override val sup: MarketFactors,
-    lossFactor: Double,
-    MktConnectivityNode: String
+    override val sup: MarketFactors = null,
+    lossFactor: Double = 0.0,
+    MktConnectivityNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2591,16 +2491,12 @@ extends
  */
 final case class MWLimitSchedule
 (
-    override val sup: BasicElement,
-    SecurityConstraintLimit: String
+    override val sup: BasicElement = null,
+    SecurityConstraintLimit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2670,17 +2566,13 @@ extends
  */
 final case class MktACLineSegment
 (
-    override val sup: ACLineSegment,
-    EndAFlow: String,
-    EndBFlow: String
+    override val sup: ACLineSegment = null,
+    EndAFlow: String = null,
+    EndBFlow: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2762,17 +2654,13 @@ extends
  */
 final case class MktAnalogLimit
 (
-    override val sup: AnalogLimit,
-    exceededLimit: Boolean,
-    limitType: String
+    override val sup: AnalogLimit = null,
+    exceededLimit: Boolean = false,
+    limitType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -2843,16 +2731,12 @@ extends
  */
 final case class MktAnalogLimitSet
 (
-    override val sup: AnalogLimitSet,
-    ratingSet: Int
+    override val sup: AnalogLimitSet = null,
+    ratingSet: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0) }
     /**
      * Return the superclass object.
      *
@@ -2918,16 +2802,12 @@ extends
  */
 final case class MktControlArea
 (
-    override val sup: ControlArea,
-    ControlAreaSolutionData: List[String]
+    override val sup: ControlArea = null,
+    ControlAreaSolutionData: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2997,17 +2877,13 @@ extends
  */
 final case class MktSeriesCompensator
 (
-    override val sup: SeriesCompensator,
-    EndAFlow: String,
-    EndBFlow: String
+    override val sup: SeriesCompensator = null,
+    EndAFlow: String = null,
+    EndBFlow: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3081,16 +2957,12 @@ extends
  */
 final case class MktShuntCompensator
 (
-    override val sup: ShuntCompensator,
-    ShuntCompensatorDynamicData: List[String]
+    override val sup: ShuntCompensator = null,
+    ShuntCompensatorDynamicData: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3159,16 +3031,12 @@ extends
  */
 final case class MktSwitch
 (
-    override val sup: Switch,
-    SwitchStatus: List[String]
+    override val sup: Switch = null,
+    SwitchStatus: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3237,16 +3105,12 @@ extends
  */
 final case class MktTapChanger
 (
-    override val sup: TapChanger,
-    TapChangerDynamicData: List[String]
+    override val sup: TapChanger = null,
+    TapChangerDynamicData: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3317,16 +3181,12 @@ extends
  */
 final case class NodeConstraintTerm
 (
-    override val sup: ConstraintTerm,
-    MktConnectivityNode: String
+    override val sup: ConstraintTerm = null,
+    MktConnectivityNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3395,16 +3255,12 @@ extends
  */
 final case class Profile
 (
-    override val sup: IdentifiedObject,
-    ProfileDatas: List[String]
+    override val sup: IdentifiedObject = null,
+    ProfileDatas: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3480,23 +3336,19 @@ extends
  */
 final case class ProfileData
 (
-    override val sup: BasicElement,
-    bidPrice: Double,
-    capacityLevel: Double,
-    energyLevel: Double,
-    minimumLevel: Double,
-    sequenceNumber: Int,
-    startDateTime: String,
-    stopDateTime: String,
-    Profile: List[String]
+    override val sup: BasicElement = null,
+    bidPrice: Double = 0.0,
+    capacityLevel: Double = 0.0,
+    energyLevel: Double = 0.0,
+    minimumLevel: Double = 0.0,
+    sequenceNumber: Int = 0,
+    startDateTime: String = null,
+    stopDateTime: String = null,
+    Profile: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3600,19 +3452,15 @@ extends
  */
 final case class ReserveDemandCurve
 (
-    override val sup: Curve,
-    reqMaxMW: Double,
-    reserveRequirementType: String,
-    ASRequirements: String,
-    MarketRegion: String
+    override val sup: Curve = null,
+    reqMaxMW: Double = 0.0,
+    reserveRequirementType: String = null,
+    ASRequirements: String = null,
+    MarketRegion: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3695,16 +3543,12 @@ extends
  */
 final case class SCADAInformation
 (
-    override val sup: BasicElement,
-    timeStamp: String
+    override val sup: BasicElement = null,
+    timeStamp: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3786,20 +3630,16 @@ extends
  */
 final case class SecurityConstraintSum
 (
-    override val sup: MarketFactors,
-    BaseCaseConstraintLimit: String,
-    ConstraintTerms: List[String],
-    ContingencyConstraintLimits: List[String],
-    DefaultConstraintLimit: String,
-    RTO: String
+    override val sup: MarketFactors = null,
+    BaseCaseConstraintLimit: String = null,
+    ConstraintTerms: List[String] = List(),
+    ContingencyConstraintLimits: List[String] = List(),
+    DefaultConstraintLimit: String = null,
+    RTO: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -3894,21 +3734,17 @@ extends
  */
 final case class SecurityConstraints
 (
-    override val sup: IdentifiedObject,
-    actualMW: Double,
-    maxMW: Double,
-    minMW: Double,
-    Flowgate: String,
-    GeneratingBid: String,
-    RTO: String
+    override val sup: IdentifiedObject = null,
+    actualMW: Double = 0.0,
+    maxMW: Double = 0.0,
+    minMW: Double = 0.0,
+    Flowgate: String = null,
+    GeneratingBid: String = null,
+    RTO: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4005,19 +3841,15 @@ extends
  */
 final case class ServicePoint
 (
-    override val sup: IdentifiedObject,
-    PODTransmissionPath: List[String],
-    PORTransmissionPath: List[String],
-    SinkReservation: List[String],
-    SourceReservation: List[String]
+    override val sup: IdentifiedObject = null,
+    PODTransmissionPath: List[String] = List(),
+    PORTransmissionPath: List[String] = List(),
+    SinkReservation: List[String] = List(),
+    SourceReservation: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -4108,21 +3940,17 @@ extends
  */
 final case class ShuntCompensatorDynamicData
 (
-    override val sup: BasicElement,
-    connectionStatus: Int,
-    desiredVoltage: Double,
-    mVARInjection: Double,
-    stepPosition: Int,
-    voltageRegulationStatus: Boolean,
-    MktShuntCompensator: String
+    override val sup: BasicElement = null,
+    connectionStatus: Int = 0,
+    desiredVoltage: Double = 0.0,
+    mVARInjection: Double = 0.0,
+    stepPosition: Int = 0,
+    voltageRegulationStatus: Boolean = false,
+    MktShuntCompensator: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, 0.0, 0, false, null) }
     /**
      * Return the superclass object.
      *
@@ -4213,17 +4041,13 @@ extends
  */
 final case class SwitchStatus
 (
-    override val sup: BasicElement,
-    switchStatus: String,
-    MktSwitch: String
+    override val sup: BasicElement = null,
+    switchStatus: String = null,
+    MktSwitch: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4301,19 +4125,15 @@ extends
  */
 final case class SysLoadDistributionFactor
 (
-    override val sup: BasicElement,
-    factor: Double,
-    DistributionFactorSet: List[String],
-    HostControlArea: String,
-    MktConnectivityNode: String
+    override val sup: BasicElement = null,
+    factor: Double = 0.0,
+    DistributionFactorSet: List[String] = List(),
+    HostControlArea: String = null,
+    MktConnectivityNode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -4404,18 +4224,14 @@ extends
  */
 final case class TREntitlement
 (
-    override val sup: BasicElement,
-    entitlement: Double,
-    startOperatingDate: String,
-    TransmissionContractRight: String
+    override val sup: BasicElement = null,
+    entitlement: Double = 0.0,
+    startOperatingDate: String = null,
+    TransmissionContractRight: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4505,24 +4321,20 @@ extends
  */
 final case class TapChangerDynamicData
 (
-    override val sup: BasicElement,
-    angleRegulationStatus: Boolean,
-    desiredMW: Double,
-    desiredVoltage: Double,
-    maximumAngle: Double,
-    minimumAngle: Double,
-    solvedAngle: Double,
-    tapPosition: Double,
-    voltageRegulationStatus: Boolean,
-    MktTapChanger: String
+    override val sup: BasicElement = null,
+    angleRegulationStatus: Boolean = false,
+    desiredMW: Double = 0.0,
+    desiredVoltage: Double = 0.0,
+    maximumAngle: Double = 0.0,
+    minimumAngle: Double = 0.0,
+    solvedAngle: Double = 0.0,
+    tapPosition: Double = 0.0,
+    voltageRegulationStatus: Boolean = false,
+    MktTapChanger: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, null) }
     /**
      * Return the superclass object.
      *
@@ -4624,16 +4436,12 @@ extends
  */
 final case class TerminalConstraintTerm
 (
-    override val sup: ConstraintTerm,
-    MktTerminal: String
+    override val sup: ConstraintTerm = null,
+    MktTerminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -4703,17 +4511,13 @@ extends
  */
 final case class TransferInterface
 (
-    override val sup: IdentifiedObject,
-    HostControlArea: String,
-    TransferInterfaceSolution: String
+    override val sup: IdentifiedObject = null,
+    HostControlArea: String = null,
+    TransferInterfaceSolution: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4794,21 +4598,17 @@ extends
  */
 final case class TransferInterfaceSolution
 (
-    override val sup: BasicElement,
-    interfaceMargin: Double,
-    postTransferMW: Double,
-    transferLimit: Double,
-    MktContingencyB: String,
-    TransferInterface: String,
-    _MktContingencyA: String
+    override val sup: BasicElement = null,
+    interfaceMargin: Double = 0.0,
+    postTransferMW: Double = 0.0,
+    transferLimit: Double = 0.0,
+    MktContingencyB: String = null,
+    TransferInterface: String = null,
+    _MktContingencyA: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4911,25 +4711,21 @@ extends
  */
 final case class TransmissionCapacity
 (
-    override val sup: BasicElement,
-    capacityBenefitMargin: Double,
-    operationalTransmissionCapacity: Double,
-    startOperatingDate: String,
-    totalTransmissionCapacity: Double,
-    Flowgate: String,
-    GenericConstraints: String,
-    OTC15min_emergency: Double,
-    OTCemergency: Double,
-    POD: String,
-    POR: String
+    override val sup: BasicElement = null,
+    capacityBenefitMargin: Double = 0.0,
+    operationalTransmissionCapacity: Double = 0.0,
+    startOperatingDate: String = null,
+    totalTransmissionCapacity: Double = 0.0,
+    Flowgate: String = null,
+    GenericConstraints: String = null,
+    OTC15min_emergency: Double = 0.0,
+    OTCemergency: Double = 0.0,
+    POD: String = null,
+    POR: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, null, null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5043,21 +4839,17 @@ extends
  */
 final case class TransmissionInterfaceRightEntitlement
 (
-    override val sup: BasicElement,
-    entitlement: Double,
-    startOperatingDate: String,
-    ContractRight: String,
-    Flowgate: String,
-    POD: String,
-    POR: String
+    override val sup: BasicElement = null,
+    entitlement: Double = 0.0,
+    startOperatingDate: String = null,
+    ContractRight: String = null,
+    Flowgate: String = null,
+    POD: String = null,
+    POR: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5157,23 +4949,19 @@ extends
  */
 final case class TransmissionPath
 (
-    override val sup: IdentifiedObject,
-    availTransferCapability: Double,
-    parallelPathFlag: Boolean,
-    totalTransferCapability: Double,
-    DeliveryPoint: String,
-    For: String,
-    LocatedOn: List[String],
-    PointOfReceipt: String,
-    TransmissionReservation: List[String]
+    override val sup: IdentifiedObject = null,
+    availTransferCapability: Double = 0.0,
+    parallelPathFlag: Boolean = false,
+    totalTransferCapability: Double = 0.0,
+    DeliveryPoint: String = null,
+    For: String = null,
+    LocatedOn: List[String] = List(),
+    PointOfReceipt: String = null,
+    TransmissionReservation: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, 0.0, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -5280,20 +5068,16 @@ extends
  */
 final case class TransmissionReservation
 (
-    override val sup: BasicElement,
-    EnergyTransaction: String,
-    Sink: String,
-    Source: String,
-    TransactionBid: String,
-    TransmissionPath: String
+    override val sup: BasicElement = null,
+    EnergyTransaction: String = null,
+    Sink: String = null,
+    Source: String = null,
+    TransactionBid: String = null,
+    TransmissionPath: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -5395,25 +5179,21 @@ extends
  */
 final case class UnitInitialConditions
 (
-    override val sup: IdentifiedObject,
-    cumEnergy: Double,
-    cumStatusChanges: Int,
-    numberOfStartups: Int,
-    onlineStatus: Boolean,
-    resourceMW: Double,
-    resourceStatus: Int,
-    statusDate: String,
-    timeInStatus: Double,
-    timeInterval: String,
-    GeneratingUnit: String
+    override val sup: IdentifiedObject = null,
+    cumEnergy: Double = 0.0,
+    cumStatusChanges: Int = 0,
+    numberOfStartups: Int = 0,
+    onlineStatus: Boolean = false,
+    resourceMW: Double = 0.0,
+    resourceStatus: Int = 0,
+    statusDate: String = null,
+    timeInStatus: Double = 0.0,
+    timeInterval: String = null,
+    GeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0, 0, false, 0.0, 0, null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *

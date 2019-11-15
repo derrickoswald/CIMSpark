@@ -20,18 +20,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class CRROrgRole
 (
-    override val sup: OrganisationRole,
-    kind: String,
-    status: String,
-    CongestionRevenueRight: String
+    override val sup: OrganisationRole = null,
+    kind: String = null,
+    status: String = null,
+    CongestionRevenueRight: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -117,23 +113,19 @@ extends
  */
 final case class CRRSegment
 (
-    override val sup: IdentifiedObject,
-    amount: Double,
-    clearingPrice: Double,
-    endDateTime: String,
-    quantity: Double,
-    startDateTime: String,
-    CongestionRevenueRight: String,
-    Sink: List[String],
-    Source: List[String]
+    override val sup: IdentifiedObject = null,
+    amount: Double = 0.0,
+    clearingPrice: Double = 0.0,
+    endDateTime: String = null,
+    quantity: Double = 0.0,
+    startDateTime: String = null,
+    CongestionRevenueRight: String = null,
+    Sink: List[String] = List(),
+    Source: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -248,24 +240,20 @@ extends
  */
 final case class CongestionRevenueRight
 (
-    override val sup: Document,
-    cRRcategory: String,
-    cRRtype: String,
-    hedgeType: String,
-    timeOfUse: String,
-    tradeSliceID: String,
-    CRRMarket: String,
-    CRROrgRole: List[String],
-    CRRSegment: List[String],
-    Flowgate: String
+    override val sup: Document = null,
+    cRRcategory: String = null,
+    cRRtype: String = null,
+    hedgeType: String = null,
+    timeOfUse: String = null,
+    tradeSliceID: String = null,
+    CRRMarket: String = null,
+    CRROrgRole: List[String] = List(),
+    CRRSegment: List[String] = List(),
+    Flowgate: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *

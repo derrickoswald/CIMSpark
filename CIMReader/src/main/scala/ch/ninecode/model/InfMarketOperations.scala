@@ -32,23 +32,19 @@ import ch.ninecode.cim.Relationship
  */
 final case class BilateralTransaction
 (
-    override val sup: BasicElement,
-    curtailTimeMax: Int,
-    curtailTimeMin: Int,
-    marketType: String,
-    purchaseTimeMax: Int,
-    purchaseTimeMin: Int,
-    scope: String,
-    totalTranChargeMax: Double,
-    transactionType: String
+    override val sup: BasicElement = null,
+    curtailTimeMax: Int = 0,
+    curtailTimeMin: Int = 0,
+    marketType: String = null,
+    purchaseTimeMax: Int = 0,
+    purchaseTimeMin: Int = 0,
+    scope: String = null,
+    totalTranChargeMax: Double = 0.0,
+    transactionType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, null, 0, 0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -142,16 +138,12 @@ extends
  */
 final case class Participation
 (
-    override val sup: IdentifiedObject,
-    factor: Double
+    override val sup: IdentifiedObject = null,
+    factor: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -231,29 +223,25 @@ extends
  */
 final case class ResourceCertification2
 (
-    override val sup: BasicElement,
-    certifiedDAM: String,
-    certifiedNonspinDAM: String,
-    certifiedNonspinDAMMw: Double,
-    certifiedNonspinRTM: String,
-    certifiedNonspinRTMMw: Double,
-    certifiedPIRP: String,
-    certifiedRTM: String,
-    certifiedRUC: String,
-    certifiedRegulation: String,
-    certifiedRegulationMw: Double,
-    certifiedReplaceAS: String,
-    certifiedSpin: String,
-    certifiedSpinMw: Double,
-    RegisteredResource: List[String]
+    override val sup: BasicElement = null,
+    certifiedDAM: String = null,
+    certifiedNonspinDAM: String = null,
+    certifiedNonspinDAMMw: Double = 0.0,
+    certifiedNonspinRTM: String = null,
+    certifiedNonspinRTMMw: Double = 0.0,
+    certifiedPIRP: String = null,
+    certifiedRTM: String = null,
+    certifiedRUC: String = null,
+    certifiedRegulation: String = null,
+    certifiedRegulationMw: Double = 0.0,
+    certifiedReplaceAS: String = null,
+    certifiedSpin: String = null,
+    certifiedSpinMw: Double = 0.0,
+    RegisteredResource: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0, List()) }
     /**
      * Return the superclass object.
      *

@@ -38,17 +38,13 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class AssetPropertyCurve
 (
-    override val sup: Curve,
-    Assets: List[String],
-    Specification: String
+    override val sup: Curve = null,
+    Assets: List[String] = List(),
+    Specification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -145,19 +141,15 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class BushingInsulationPF
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    testKind: String,
-    Bushing: String,
-    TransformerObservation: String
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    testKind: String = null,
+    Bushing: String = null,
+    TransformerObservation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -262,19 +254,15 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class CoolingPowerRating
 (
-    override val sup: IdentifiedObject,
-    coolingKind: String,
-    powerRating: Double,
-    stage: Int,
-    Reconditionings: List[String]
+    override val sup: IdentifiedObject = null,
+    coolingKind: String = null,
+    powerRating: Double = 0.0,
+    stage: Int = 0,
+    Reconditionings: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0, List()) }
     /**
      * Return the superclass object.
      *
@@ -382,21 +370,17 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class DimensionsInfo
 (
-    override val sup: IdentifiedObject,
-    orientation: String,
-    sizeDepth: Double,
-    sizeDiameter: Double,
-    sizeLength: Double,
-    sizeWidth: Double,
-    Specifications: List[String]
+    override val sup: IdentifiedObject = null,
+    orientation: String = null,
+    sizeDepth: Double = 0.0,
+    sizeDiameter: Double = 0.0,
+    sizeLength: Double = 0.0,
+    sizeWidth: Double = 0.0,
+    Specifications: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -516,27 +500,23 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Pole
 (
-    override val sup: Structure,
-    baseKind: String,
-    breastBlock: Boolean,
-    classification: String,
-    construction: String,
-    diameter: Double,
-    jpaReference: String,
-    len: Double,
-    preservativeKind: String,
-    speciesType: String,
-    treatedDateTime: String,
-    treatmentKind: String,
-    Streetlights: List[String]
+    override val sup: Structure = null,
+    baseKind: String = null,
+    breastBlock: Boolean = false,
+    classification: String = null,
+    construction: String = null,
+    diameter: Double = 0.0,
+    jpaReference: String = null,
+    len: Double = 0.0,
+    preservativeKind: String = null,
+    speciesType: String = null,
+    treatedDateTime: String = null,
+    treatmentKind: String = null,
+    Streetlights: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -671,19 +651,15 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Reconditioning
 (
-    override val sup: IdentifiedObject,
-    dateTime: String,
-    Asset: String,
-    PowerRatings: List[String],
-    TransformerObservations: List[String]
+    override val sup: IdentifiedObject = null,
+    dateTime: String = null,
+    Asset: String = null,
+    PowerRatings: List[String] = List(),
+    TransformerObservations: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -788,19 +764,15 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class ReliabilityInfo
 (
-    override val sup: IdentifiedObject,
-    mTTR: Double,
-    momFailureRate: Double,
-    Assets: List[String],
-    Specification: String
+    override val sup: IdentifiedObject = null,
+    mTTR: Double = 0.0,
+    momFailureRate: Double = 0.0,
+    Assets: List[String] = List(),
+    Specification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -911,22 +883,18 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Specification
 (
-    override val sup: Document,
-    AssetProperites: List[String],
-    AssetPropertyCurves: List[String],
-    DimensionsInfos: List[String],
-    Mediums: List[String],
-    QualificationRequirements: List[String],
-    Ratings: List[String],
-    ReliabilityInfos: List[String]
+    override val sup: Document = null,
+    AssetProperites: List[String] = List(),
+    AssetPropertyCurves: List[String] = List(),
+    DimensionsInfos: List[String] = List(),
+    Mediums: List[String] = List(),
+    QualificationRequirements: List[String] = List(),
+    Ratings: List[String] = List(),
+    ReliabilityInfos: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1045,16 +1013,12 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Tower
 (
-    override val sup: Structure,
-    constructionKind: String
+    override val sup: Structure = null,
+    constructionKind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1160,34 +1124,30 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class TransformerObservation
 (
-    override val sup: IdentifiedObject,
-    bushingTemp: Double,
-    dga: String,
-    freqResp: String,
-    furfuralDP: String,
-    hotSpotTemp: Double,
-    oilColor: String,
-    oilDielectricStrength: Double,
-    oilIFT: String,
-    oilLevel: String,
-    oilNeutralizationNumber: String,
-    pumpVibration: String,
-    status: String,
-    topOilTemp: Double,
-    waterContent: String,
-    BushingInsultationPFs: List[String],
-    ProcedureDataSets: List[String],
-    Reconditioning: String,
-    Transformer: String,
-    WindingInsulationPFs: List[String]
+    override val sup: IdentifiedObject = null,
+    bushingTemp: Double = 0.0,
+    dga: String = null,
+    freqResp: String = null,
+    furfuralDP: String = null,
+    hotSpotTemp: Double = 0.0,
+    oilColor: String = null,
+    oilDielectricStrength: Double = 0.0,
+    oilIFT: String = null,
+    oilLevel: String = null,
+    oilNeutralizationNumber: String = null,
+    pumpVibration: String = null,
+    status: String = null,
+    topOilTemp: Double = 0.0,
+    waterContent: String = null,
+    BushingInsultationPFs: List[String] = List(),
+    ProcedureDataSets: List[String] = List(),
+    Reconditioning: String = null,
+    Transformer: String = null,
+    WindingInsulationPFs: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, List(), List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1354,19 +1314,15 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class UndergroundStructure
 (
-    override val sup: Structure,
-    hasVentilation: Boolean,
-    kind: String,
-    material: String,
-    sealingWarrantyExpiresDate: String
+    override val sup: Structure = null,
+    hasVentilation: Boolean = false,
+    kind: String = null,
+    material: String = null,
+    sealingWarrantyExpiresDate: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1469,22 +1425,18 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class WindingInsulation
 (
-    override val sup: IdentifiedObject,
-    insulationPFStatus: String,
-    insulationResistance: String,
-    leakageReactance: Double,
-    status: String,
-    FromWinding: String,
-    ToWinding: String,
-    TransformerObservation: String
+    override val sup: IdentifiedObject = null,
+    insulationPFStatus: String = null,
+    insulationResistance: String = null,
+    leakageReactance: Double = 0.0,
+    status: String = null,
+    FromWinding: String = null,
+    ToWinding: String = null,
+    TransformerObservation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *

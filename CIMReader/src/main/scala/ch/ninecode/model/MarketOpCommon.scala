@@ -31,26 +31,22 @@ import ch.ninecode.cim.Relationship
  */
 final case class MarketInvoice
 (
-    override val sup: BasicElement,
-    amount: Double,
-    billMediaKind: String,
-    dueDate: String,
-    kind: String,
-    mailedDate: String,
-    proForma: Boolean,
-    referenceNumber: String,
-    transactionDateTime: String,
-    transferType: String,
-    MajorChargeGroup: List[String],
-    MarketInvoiceLineItems: List[String]
+    override val sup: BasicElement = null,
+    amount: Double = 0.0,
+    billMediaKind: String = null,
+    dueDate: String = null,
+    kind: String = null,
+    mailedDate: String = null,
+    proForma: Boolean = false,
+    referenceNumber: String = null,
+    transactionDateTime: String = null,
+    transferType: String = null,
+    MajorChargeGroup: List[String] = List(),
+    MarketInvoiceLineItems: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -174,28 +170,24 @@ extends
  */
 final case class MarketInvoiceLineItem
 (
-    override val sup: BasicElement,
-    billPeriod: String,
-    glAccount: String,
-    glDateTime: String,
-    kind: String,
-    lineAmount: Double,
-    lineNumber: String,
-    lineVersion: String,
-    netAmount: Double,
-    previousAmount: Double,
-    ComponentMarketInvoiceLineItems: List[String],
-    ContainerMarketInvoiceLineItem: String,
-    MarketInvoice: String,
-    Settlement: List[String]
+    override val sup: BasicElement = null,
+    billPeriod: String = null,
+    glAccount: String = null,
+    glDateTime: String = null,
+    kind: String = null,
+    lineAmount: Double = 0.0,
+    lineNumber: String = null,
+    lineVersion: String = null,
+    netAmount: Double = 0.0,
+    previousAmount: Double = 0.0,
+    ComponentMarketInvoiceLineItems: List[String] = List(),
+    ContainerMarketInvoiceLineItem: String = null,
+    MarketInvoice: String = null,
+    Settlement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -319,16 +311,12 @@ extends
  */
 final case class MarketLedger
 (
-    override val sup: BasicElement,
-    MarketLedgerEntries: List[String]
+    override val sup: BasicElement = null,
+    MarketLedgerEntries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -404,23 +392,19 @@ extends
  */
 final case class MarketLedgerEntry
 (
-    override val sup: BasicElement,
-    accountID: String,
-    accountKind: String,
-    amount: Double,
-    postedDateTime: String,
-    status: String,
-    transactionDateTime: String,
-    MarketLedger: String,
-    Settlement: List[String]
+    override val sup: BasicElement = null,
+    accountID: String = null,
+    accountKind: String = null,
+    amount: Double = 0.0,
+    postedDateTime: String = null,
+    status: String = null,
+    transactionDateTime: String = null,
+    MarketLedger: String = null,
+    Settlement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -520,16 +504,12 @@ extends
  */
 final case class MktActivityRecord
 (
-    override val sup: ActivityRecord,
-    MarketFactors: List[String]
+    override val sup: ActivityRecord = null,
+    MarketFactors: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -604,22 +584,18 @@ extends
  */
 final case class MktConnectivityNode
 (
-    override val sup: ConnectivityNode,
-    CnodeDistributionFactor: List[String],
-    IndividualPnode: String,
-    LossPenaltyFactor: List[String],
-    NodeConstraintTerm: List[String],
-    RTO: String,
-    RegisteredResource: List[String],
-    SysLoadDistribuFactor: String
+    override val sup: ConnectivityNode = null,
+    CnodeDistributionFactor: List[String] = List(),
+    IndividualPnode: String = null,
+    LossPenaltyFactor: List[String] = List(),
+    NodeConstraintTerm: List[String] = List(),
+    RTO: String = null,
+    RegisteredResource: List[String] = List(),
+    SysLoadDistribuFactor: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null, List(), List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -720,17 +696,13 @@ extends
  */
 final case class MktLine
 (
-    override val sup: Line,
-    Flowgate: List[String],
-    TransmissionRightOfWay: String
+    override val sup: Line = null,
+    Flowgate: List[String] = List(),
+    TransmissionRightOfWay: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -809,20 +781,16 @@ extends
  */
 final case class MktMeasurement
 (
-    override val sup: Measurement,
-    ByTiePoint: String,
-    DynamicSchedule: List[String],
-    ForTiePoint: String,
-    Pnode: String,
-    ViolationLimit: List[String]
+    override val sup: Measurement = null,
+    ByTiePoint: String = null,
+    DynamicSchedule: List[String] = List(),
+    ForTiePoint: String = null,
+    Pnode: String = null,
+    ViolationLimit: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -914,18 +882,14 @@ extends
  */
 final case class MktPowerTransformer
 (
-    override val sup: PowerTransformer,
-    EndAFlow: String,
-    EndBFlow: String,
-    Flowgate: List[String]
+    override val sup: PowerTransformer = null,
+    EndAFlow: String = null,
+    EndBFlow: String = null,
+    Flowgate: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1006,17 +970,13 @@ extends
  */
 final case class MktTerminal
 (
-    override val sup: Terminal,
-    Flowgate: String,
-    TerminalConstraintTerm: List[String]
+    override val sup: Terminal = null,
+    Flowgate: String = null,
+    TerminalConstraintTerm: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1096,21 +1056,17 @@ extends
  */
 final case class MktUserAttribute
 (
-    override val sup: UserAttribute,
-    AttributeProperty: List[String],
-    BillDeterminant: List[String],
-    ChargeGroup: List[String],
-    ChargeType: List[String],
-    MarketStatementLineItem: List[String],
-    PassThroughBill: List[String]
+    override val sup: UserAttribute = null,
+    AttributeProperty: List[String] = List(),
+    BillDeterminant: List[String] = List(),
+    ChargeGroup: List[String] = List(),
+    ChargeType: List[String] = List(),
+    MarketStatementLineItem: List[String] = List(),
+    PassThroughBill: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *

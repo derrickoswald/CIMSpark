@@ -20,18 +20,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class AirCompressor
 (
-    override val sup: PowerSystemResource,
-    airCompressorRating: Double,
-    CAESPlant: String,
-    CombustionTurbine: String
+    override val sup: PowerSystemResource = null,
+    airCompressorRating: Double = 0.0,
+    CAESPlant: String = null,
+    CombustionTurbine: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -112,18 +108,14 @@ extends
  */
 final case class BatteryUnit
 (
-    override val sup: PowerElectronicsUnit,
-    batteryState: String,
-    ratedE: Double,
-    storedE: Double
+    override val sup: PowerElectronicsUnit = null,
+    batteryState: String = null,
+    ratedE: Double = 0.0,
+    storedE: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -201,19 +193,15 @@ extends
  */
 final case class CAESPlant
 (
-    override val sup: PowerSystemResource,
-    energyStorageCapacity: Double,
-    ratedCapacityP: Double,
-    AirCompressor: String,
-    ThermalGeneratingUnit: String
+    override val sup: PowerSystemResource = null,
+    energyStorageCapacity: Double = 0.0,
+    ratedCapacityP: Double = 0.0,
+    AirCompressor: String = null,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -304,22 +292,18 @@ extends
  */
 final case class CogenerationPlant
 (
-    override val sup: PowerSystemResource,
-    cogenHPSendoutRating: Double,
-    cogenHPSteamRating: Double,
-    cogenLPSendoutRating: Double,
-    cogenLPSteamRating: Double,
-    ratedP: Double,
-    SteamSendoutSchedule: String,
-    ThermalGeneratingUnits: List[String]
+    override val sup: PowerSystemResource = null,
+    cogenHPSendoutRating: Double = 0.0,
+    cogenHPSteamRating: Double = 0.0,
+    cogenLPSendoutRating: Double = 0.0,
+    cogenLPSteamRating: Double = 0.0,
+    ratedP: Double = 0.0,
+    SteamSendoutSchedule: String = null,
+    ThermalGeneratingUnits: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -416,17 +400,13 @@ extends
  */
 final case class CombinedCyclePlant
 (
-    override val sup: PowerSystemResource,
-    combCyclePlantRating: Double,
-    ThermalGeneratingUnits: List[String]
+    override val sup: PowerSystemResource = null,
+    combCyclePlantRating: Double = 0.0,
+    ThermalGeneratingUnits: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -505,18 +485,14 @@ extends
  */
 final case class EmissionAccount
 (
-    override val sup: Curve,
-    emissionType: String,
-    emissionValueSource: String,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    emissionType: String = null,
+    emissionValueSource: String = null,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -599,19 +575,15 @@ extends
  */
 final case class EmissionCurve
 (
-    override val sup: Curve,
-    emissionContent: Double,
-    emissionType: String,
-    isNetGrossP: Boolean,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    emissionContent: Double = 0.0,
+    emissionType: String = null,
+    isNetGrossP: Boolean = false,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -708,27 +680,23 @@ extends
  */
 final case class FossilFuel
 (
-    override val sup: IdentifiedObject,
-    fossilFuelType: String,
-    fuelCost: Double,
-    fuelDispatchCost: Double,
-    fuelEffFactor: Double,
-    fuelHandlingCost: Double,
-    fuelHeatContent: Double,
-    fuelMixture: Double,
-    fuelSulfur: Double,
-    highBreakpointP: Double,
-    lowBreakpointP: Double,
-    FuelAllocationSchedules: List[String],
-    ThermalGeneratingUnit: String
+    override val sup: IdentifiedObject = null,
+    fossilFuelType: String = null,
+    fuelCost: Double = 0.0,
+    fuelDispatchCost: Double = 0.0,
+    fuelEffFactor: Double = 0.0,
+    fuelHandlingCost: Double = 0.0,
+    fuelHeatContent: Double = 0.0,
+    fuelMixture: Double = 0.0,
+    fuelSulfur: Double = 0.0,
+    highBreakpointP: Double = 0.0,
+    lowBreakpointP: Double = 0.0,
+    FuelAllocationSchedules: List[String] = List(),
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -850,22 +818,18 @@ extends
  */
 final case class FuelAllocationSchedule
 (
-    override val sup: Curve,
-    fuelAllocationEndDate: String,
-    fuelAllocationStartDate: String,
-    fuelType: String,
-    maxFuelAllocation: Double,
-    minFuelAllocation: Double,
-    FossilFuel: String,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    fuelAllocationEndDate: String = null,
+    fuelAllocationStartDate: String = null,
+    fuelType: String = null,
+    maxFuelAllocation: Double = 0.0,
+    minFuelAllocation: Double = 0.0,
+    FossilFuel: String = null,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -963,17 +927,13 @@ extends
  */
 final case class GenUnitOpCostCurve
 (
-    override val sup: Curve,
-    isNetGrossP: Boolean,
-    GeneratingUnit: String
+    override val sup: Curve = null,
+    isNetGrossP: Boolean = false,
+    GeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -1049,16 +1009,12 @@ extends
  */
 final case class GenUnitOpSchedule
 (
-    override val sup: RegularIntervalSchedule,
-    GeneratingUnit: String
+    override val sup: RegularIntervalSchedule = null,
+    GeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1179,57 +1135,53 @@ extends
  */
 final case class GeneratingUnit
 (
-    override val sup: Equipment,
-    allocSpinResP: Double,
-    autoCntrlMarginP: Double,
-    baseP: Double,
-    controlDeadband: Double,
-    controlPulseHigh: Double,
-    controlPulseLow: Double,
-    controlResponseRate: Double,
-    efficiency: Double,
-    genControlMode: String,
-    genControlSource: String,
-    governorMPL: Double,
-    governorSCD: Double,
-    highControlLimit: Double,
-    initialP: Double,
-    longPF: Double,
-    lowControlLimit: Double,
-    lowerRampRate: Double,
-    maxEconomicP: Double,
-    maxOperatingP: Double,
-    maximumAllowableSpinningReserve: Double,
-    minEconomicP: Double,
-    minOperatingP: Double,
-    minimumOffTime: Double,
-    modelDetail: Int,
-    nominalP: Double,
-    normalPF: Double,
-    penaltyFactor: Double,
-    raiseRampRate: Double,
-    ratedGrossMaxP: Double,
-    ratedGrossMinP: Double,
-    ratedNetMaxP: Double,
-    shortPF: Double,
-    startupCost: Double,
-    startupTime: Double,
-    tieLinePF: Double,
-    totalEfficiency: Double,
-    variableCost: Double,
-    ControlAreaGeneratingUnit: List[String],
-    GenUnitOpCostCurves: List[String],
-    GenUnitOpSchedule: String,
-    GrossToNetActivePowerCurves: List[String],
-    RotatingMachine: List[String]
+    override val sup: Equipment = null,
+    allocSpinResP: Double = 0.0,
+    autoCntrlMarginP: Double = 0.0,
+    baseP: Double = 0.0,
+    controlDeadband: Double = 0.0,
+    controlPulseHigh: Double = 0.0,
+    controlPulseLow: Double = 0.0,
+    controlResponseRate: Double = 0.0,
+    efficiency: Double = 0.0,
+    genControlMode: String = null,
+    genControlSource: String = null,
+    governorMPL: Double = 0.0,
+    governorSCD: Double = 0.0,
+    highControlLimit: Double = 0.0,
+    initialP: Double = 0.0,
+    longPF: Double = 0.0,
+    lowControlLimit: Double = 0.0,
+    lowerRampRate: Double = 0.0,
+    maxEconomicP: Double = 0.0,
+    maxOperatingP: Double = 0.0,
+    maximumAllowableSpinningReserve: Double = 0.0,
+    minEconomicP: Double = 0.0,
+    minOperatingP: Double = 0.0,
+    minimumOffTime: Double = 0.0,
+    modelDetail: Int = 0,
+    nominalP: Double = 0.0,
+    normalPF: Double = 0.0,
+    penaltyFactor: Double = 0.0,
+    raiseRampRate: Double = 0.0,
+    ratedGrossMaxP: Double = 0.0,
+    ratedGrossMinP: Double = 0.0,
+    ratedNetMaxP: Double = 0.0,
+    shortPF: Double = 0.0,
+    startupCost: Double = 0.0,
+    startupTime: Double = 0.0,
+    tieLinePF: Double = 0.0,
+    totalEfficiency: Double = 0.0,
+    variableCost: Double = 0.0,
+    ControlAreaGeneratingUnit: List[String] = List(),
+    GenUnitOpCostCurves: List[String] = List(),
+    GenUnitOpSchedule: String = null,
+    GrossToNetActivePowerCurves: List[String] = List(),
+    RotatingMachine: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1470,16 +1422,12 @@ extends
  */
 final case class GrossToNetActivePowerCurve
 (
-    override val sup: Curve,
-    GeneratingUnit: String
+    override val sup: Curve = null,
+    GeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1555,21 +1503,17 @@ extends
  */
 final case class HeatInputCurve
 (
-    override val sup: Curve,
-    auxPowerMult: Double,
-    auxPowerOffset: Double,
-    heatInputEff: Double,
-    heatInputOffset: Double,
-    isNetGrossP: Boolean,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    auxPowerMult: Double = 0.0,
+    auxPowerOffset: Double = 0.0,
+    heatInputEff: Double = 0.0,
+    heatInputOffset: Double = 0.0,
+    isNetGrossP: Boolean = false,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, null) }
     /**
      * Return the superclass object.
      *
@@ -1662,17 +1606,13 @@ extends
  */
 final case class HeatRateCurve
 (
-    override val sup: Curve,
-    isNetGrossP: Boolean,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    isNetGrossP: Boolean = false,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -1750,16 +1690,12 @@ extends
  */
 final case class HydroGeneratingEfficiencyCurve
 (
-    override val sup: Curve,
-    HydroGeneratingUnit: String
+    override val sup: Curve = null,
+    HydroGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1835,23 +1771,19 @@ extends
  */
 final case class HydroGeneratingUnit
 (
-    override val sup: GeneratingUnit,
-    dropHeight: Double,
-    energyConversionCapability: String,
-    hydroUnitWaterCost: Double,
-    turbineType: String,
-    HydroGeneratingEfficiencyCurves: List[String],
-    HydroPowerPlant: String,
-    PenstockLossCurve: String,
-    TailbayLossCurve: List[String]
+    override val sup: GeneratingUnit = null,
+    dropHeight: Double = 0.0,
+    energyConversionCapability: String = null,
+    hydroUnitWaterCost: Double = 0.0,
+    turbineType: String = null,
+    HydroGeneratingEfficiencyCurves: List[String] = List(),
+    HydroPowerPlant: String = null,
+    PenstockLossCurve: String = null,
+    TailbayLossCurve: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1967,28 +1899,24 @@ extends
  */
 final case class HydroPowerPlant
 (
-    override val sup: PowerSystemResource,
-    dischargeTravelDelay: Double,
-    genRatedP: Double,
-    hydroPlantStorageType: String,
-    penstockType: String,
-    plantDischargeCapacity: Double,
-    plantRatedHead: Double,
-    pumpRatedP: Double,
-    surgeTankCode: String,
-    surgeTankCrestLevel: Double,
-    GenSourcePumpDischargeReservoir: String,
-    HydroGeneratingUnits: List[String],
-    HydroPumps: List[String],
-    Reservoir: String
+    override val sup: PowerSystemResource = null,
+    dischargeTravelDelay: Double = 0.0,
+    genRatedP: Double = 0.0,
+    hydroPlantStorageType: String = null,
+    penstockType: String = null,
+    plantDischargeCapacity: Double = 0.0,
+    plantRatedHead: Double = 0.0,
+    pumpRatedP: Double = 0.0,
+    surgeTankCode: String = null,
+    surgeTankCrestLevel: Double = 0.0,
+    GenSourcePumpDischargeReservoir: String = null,
+    HydroGeneratingUnits: List[String] = List(),
+    HydroPumps: List[String] = List(),
+    Reservoir: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, 0.0, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2117,22 +2045,18 @@ extends
  */
 final case class HydroPump
 (
-    override val sup: Equipment,
-    pumpDischAtMaxHead: Double,
-    pumpDischAtMinHead: Double,
-    pumpPowerAtMaxHead: Double,
-    pumpPowerAtMinHead: Double,
-    HydroPowerPlant: String,
-    HydroPumpOpSchedule: String,
-    RotatingMachine: String
+    override val sup: Equipment = null,
+    pumpDischAtMaxHead: Double = 0.0,
+    pumpDischAtMinHead: Double = 0.0,
+    pumpPowerAtMaxHead: Double = 0.0,
+    pumpPowerAtMinHead: Double = 0.0,
+    HydroPowerPlant: String = null,
+    HydroPumpOpSchedule: String = null,
+    RotatingMachine: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2230,16 +2154,12 @@ extends
  */
 final case class HydroPumpOpSchedule
 (
-    override val sup: RegularIntervalSchedule,
-    HydroPump: String
+    override val sup: RegularIntervalSchedule = null,
+    HydroPump: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2311,17 +2231,13 @@ extends
  */
 final case class IncrementalHeatRateCurve
 (
-    override val sup: Curve,
-    isNetGrossP: Boolean,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    isNetGrossP: Boolean = false,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -2397,16 +2313,12 @@ extends
  */
 final case class InflowForecast
 (
-    override val sup: RegularIntervalSchedule,
-    Reservoir: String
+    override val sup: RegularIntervalSchedule = null,
+    Reservoir: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2477,16 +2389,12 @@ extends
  */
 final case class LevelVsVolumeCurve
 (
-    override val sup: Curve,
-    Reservoir: String
+    override val sup: Curve = null,
+    Reservoir: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2554,15 +2462,11 @@ extends
  */
 final case class NuclearGeneratingUnit
 (
-    override val sup: GeneratingUnit
+    override val sup: GeneratingUnit = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2619,16 +2523,12 @@ extends
  */
 final case class PenstockLossCurve
 (
-    override val sup: Curve,
-    HydroGeneratingUnit: String
+    override val sup: Curve = null,
+    HydroGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2696,15 +2596,11 @@ extends
  */
 final case class PhotoVoltaicUnit
 (
-    override val sup: PowerElectronicsUnit
+    override val sup: PowerElectronicsUnit = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2763,18 +2659,14 @@ extends
  */
 final case class PowerElectronicsUnit
 (
-    override val sup: Equipment,
-    maxP: Double,
-    minP: Double,
-    PowerElectronicsConnection: String
+    override val sup: Equipment = null,
+    maxP: Double = 0.0,
+    minP: Double = 0.0,
+    PowerElectronicsConnection: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2851,15 +2743,11 @@ extends
  */
 final case class PowerElectronicsWindUnit
 (
-    override val sup: PowerElectronicsUnit
+    override val sup: PowerElectronicsUnit = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2934,33 +2822,29 @@ extends
  */
 final case class Reservoir
 (
-    override val sup: PowerSystemResource,
-    activeStorageCapacity: Double,
-    energyStorageRating: Double,
-    fullSupplyLevel: Double,
-    grossCapacity: Double,
-    normalMinOperateLevel: Double,
-    riverOutletWorks: String,
-    spillTravelDelay: Double,
-    spillWayGateType: String,
-    spillwayCapacity: Double,
-    spillwayCrestLength: Double,
-    spillwayCrestLevel: Double,
-    HydroPowerPlants: List[String],
-    InflowForecasts: List[String],
-    LevelVsVolumeCurves: List[String],
-    SpillsFromReservoir: String,
-    SpillsIntoReservoirs: List[String],
-    TargetLevelSchedule: String,
-    UpstreamFromHydroPowerPlants: List[String]
+    override val sup: PowerSystemResource = null,
+    activeStorageCapacity: Double = 0.0,
+    energyStorageRating: Double = 0.0,
+    fullSupplyLevel: Double = 0.0,
+    grossCapacity: Double = 0.0,
+    normalMinOperateLevel: Double = 0.0,
+    riverOutletWorks: String = null,
+    spillTravelDelay: Double = 0.0,
+    spillWayGateType: String = null,
+    spillwayCapacity: Double = 0.0,
+    spillwayCrestLength: Double = 0.0,
+    spillwayCrestLevel: Double = 0.0,
+    HydroPowerPlants: List[String] = List(),
+    InflowForecasts: List[String] = List(),
+    LevelVsVolumeCurves: List[String] = List(),
+    SpillsFromReservoir: String = null,
+    SpillsIntoReservoirs: List[String] = List(),
+    TargetLevelSchedule: String = null,
+    UpstreamFromHydroPowerPlants: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, List(), List(), List(), null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3107,18 +2991,14 @@ extends
  */
 final case class ShutdownCurve
 (
-    override val sup: Curve,
-    shutdownCost: Double,
-    shutdownDate: String,
-    ThermalGeneratingUnit: String
+    override val sup: Curve = null,
+    shutdownCost: Double = 0.0,
+    shutdownDate: String = null,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3197,15 +3077,11 @@ extends
  */
 final case class SolarGeneratingUnit
 (
-    override val sup: GeneratingUnit
+    override val sup: GeneratingUnit = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -3261,17 +3137,13 @@ extends
  */
 final case class StartIgnFuelCurve
 (
-    override val sup: Curve,
-    ignitionFuelType: String,
-    StartupModel: String
+    override val sup: Curve = null,
+    ignitionFuelType: String = null,
+    StartupModel: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3345,17 +3217,13 @@ extends
  */
 final case class StartMainFuelCurve
 (
-    override val sup: Curve,
-    mainFuelType: String,
-    StartupModel: String
+    override val sup: Curve = null,
+    mainFuelType: String = null,
+    StartupModel: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3429,17 +3297,13 @@ extends
  */
 final case class StartRampCurve
 (
-    override val sup: Curve,
-    hotStandbyRamp: Double,
-    StartupModel: String
+    override val sup: Curve = null,
+    hotStandbyRamp: Double = 0.0,
+    StartupModel: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -3528,29 +3392,25 @@ extends
  */
 final case class StartupModel
 (
-    override val sup: IdentifiedObject,
-    fixedMaintCost: Double,
-    hotStandbyHeat: Double,
-    incrementalMaintCost: Double,
-    minimumDownTime: Double,
-    minimumRunTime: Double,
-    riskFactorCost: Double,
-    startupCost: Double,
-    startupDate: String,
-    startupPriority: Int,
-    stbyAuxP: Double,
-    StartIgnFuelCurve: String,
-    StartMainFuelCurve: String,
-    StartRampCurve: String,
-    ThermalGeneratingUnit: String
+    override val sup: IdentifiedObject = null,
+    fixedMaintCost: Double = 0.0,
+    hotStandbyHeat: Double = 0.0,
+    incrementalMaintCost: Double = 0.0,
+    minimumDownTime: Double = 0.0,
+    minimumRunTime: Double = 0.0,
+    riskFactorCost: Double = 0.0,
+    startupCost: Double = 0.0,
+    startupDate: String = null,
+    startupPriority: Int = 0,
+    stbyAuxP: Double = 0.0,
+    StartIgnFuelCurve: String = null,
+    StartMainFuelCurve: String = null,
+    StartRampCurve: String = null,
+    ThermalGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3675,16 +3535,12 @@ extends
  */
 final case class SteamSendoutSchedule
 (
-    override val sup: RegularIntervalSchedule,
-    CogenerationPlant: String
+    override val sup: RegularIntervalSchedule = null,
+    CogenerationPlant: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3755,16 +3611,12 @@ extends
  */
 final case class TailbayLossCurve
 (
-    override val sup: Curve,
-    HydroGeneratingUnit: String
+    override val sup: Curve = null,
+    HydroGeneratingUnit: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3837,18 +3689,14 @@ extends
  */
 final case class TargetLevelSchedule
 (
-    override val sup: Curve,
-    highLevelLimit: Double,
-    lowLevelLimit: Double,
-    Reservoir: String
+    override val sup: Curve = null,
+    highLevelLimit: Double = 0.0,
+    lowLevelLimit: Double = 0.0,
+    Reservoir: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -3938,28 +3786,24 @@ extends
  */
 final case class ThermalGeneratingUnit
 (
-    override val sup: GeneratingUnit,
-    oMCost: Double,
-    CAESPlant: String,
-    CogenerationPlant: String,
-    CombinedCyclePlant: String,
-    EmissionCurves: List[String],
-    EmmissionAccounts: List[String],
-    FossilFuels: List[String],
-    FuelAllocationSchedules: List[String],
-    HeatInputCurve: String,
-    HeatRateCurve: String,
-    IncrementalHeatRateCurve: String,
-    ShutdownCurve: String,
-    StartupModel: String
+    override val sup: GeneratingUnit = null,
+    oMCost: Double = 0.0,
+    CAESPlant: String = null,
+    CogenerationPlant: String = null,
+    CombinedCyclePlant: String = null,
+    EmissionCurves: List[String] = List(),
+    EmmissionAccounts: List[String] = List(),
+    FossilFuels: List[String] = List(),
+    FuelAllocationSchedules: List[String] = List(),
+    HeatInputCurve: String = null,
+    HeatRateCurve: String = null,
+    IncrementalHeatRateCurve: String = null,
+    ShutdownCurve: String = null,
+    StartupModel: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, null, List(), List(), List(), List(), null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4091,16 +3935,12 @@ extends
  */
 final case class WindGeneratingUnit
 (
-    override val sup: GeneratingUnit,
-    windGenUnitType: String
+    override val sup: GeneratingUnit = null,
+    windGenUnitType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

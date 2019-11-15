@@ -49,27 +49,23 @@ import ch.ninecode.cim.Relationship
  */
 final case class TurbLCFB1
 (
-    override val sup: TurbineLoadControllerDynamics,
-    db: Double,
-    emax: Double,
-    fb: Double,
-    fbf: Boolean,
-    irmax: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    pbf: Boolean,
-    pmwset: Double,
-    speedReferenceGovernor: Boolean,
-    tpelec: Double
+    override val sup: TurbineLoadControllerDynamics = null,
+    db: Double = 0.0,
+    emax: Double = 0.0,
+    fb: Double = 0.0,
+    fbf: Boolean = false,
+    irmax: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    pbf: Boolean = false,
+    pmwset: Double = 0.0,
+    speedReferenceGovernor: Boolean = false,
+    tpelec: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -179,16 +175,12 @@ extends
  */
 final case class TurbineLoadControllerDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    TurbineGovernorDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    TurbineGovernorDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

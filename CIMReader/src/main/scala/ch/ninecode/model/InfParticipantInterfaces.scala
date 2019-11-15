@@ -21,16 +21,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class WheelingReferenceSchedule
 (
-    override val sup: BidHourlySchedule,
-    value: String
+    override val sup: BidHourlySchedule = null,
+    value: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

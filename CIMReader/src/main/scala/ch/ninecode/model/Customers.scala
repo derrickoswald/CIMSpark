@@ -22,20 +22,16 @@ import ch.ninecode.cim.Relationship
  */
 final case class AccountNotification
 (
-    override val sup: BasicElement,
-    customerNotificationType: String,
-    methodType: String,
-    note: String,
-    time: String,
-    CustomerAccount: String
+    override val sup: BasicElement = null,
+    customerNotificationType: String = null,
+    methodType: String = null,
+    note: String = null,
+    time: String = null,
+    CustomerAccount: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -137,31 +133,27 @@ extends
  */
 final case class Customer
 (
-    override val sup: OrganisationRole,
-    kind: String,
-    locale: String,
-    priority: String,
-    pucNumber: String,
-    specialNeed: String,
-    status: String,
-    vip: Boolean,
-    CustomerAccounts: List[String],
-    CustomerAgreements: List[String],
-    CustomerNotifications: List[String],
-    Customer_attr: List[String],
-    EndDevices: List[String],
-    ErpPersons: List[String],
-    OutagePlan: String,
-    TroubleTickets: List[String],
-    Works: List[String]
+    override val sup: OrganisationRole = null,
+    kind: String = null,
+    locale: String = null,
+    priority: String = null,
+    pucNumber: String = null,
+    specialNeed: String = null,
+    status: String = null,
+    vip: Boolean = false,
+    CustomerAccounts: List[String] = List(),
+    CustomerAgreements: List[String] = List(),
+    CustomerNotifications: List[String] = List(),
+    Customer_attr: List[String] = List(),
+    EndDevices: List[String] = List(),
+    ErpPersons: List[String] = List(),
+    OutagePlan: String = null,
+    TroubleTickets: List[String] = List(),
+    Works: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), List(), List(), List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -311,25 +303,21 @@ extends
  */
 final case class CustomerAccount
 (
-    override val sup: Document,
-    billingCycle: String,
-    budgetBill: String,
-    lastBillAmount: Double,
-    AccountNotification: List[String],
-    Customer: String,
-    CustomerAgreements: List[String],
-    CustomerBillingInfos: List[String],
-    ErpInvoicees: List[String],
-    PaymentTransactions: List[String],
-    WorkBillingInfos: List[String]
+    override val sup: Document = null,
+    billingCycle: String = null,
+    budgetBill: String = null,
+    lastBillAmount: Double = 0.0,
+    AccountNotification: List[String] = List(),
+    Customer: String = null,
+    CustomerAgreements: List[String] = List(),
+    CustomerBillingInfos: List[String] = List(),
+    ErpInvoicees: List[String] = List(),
+    PaymentTransactions: List[String] = List(),
+    WorkBillingInfos: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, List(), null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -457,29 +445,25 @@ extends
  */
 final case class CustomerAgreement
 (
-    override val sup: Agreement,
-    isPrePay: Boolean,
-    loadMgmt: String,
-    shutOffDateTime: String,
-    AuxiliaryAgreements: List[String],
-    Customer: String,
-    CustomerAccount: String,
-    DemandResponsePrograms: List[String],
-    MeterReadings: List[String],
-    PricingStructures: List[String],
-    ServiceCategory: String,
-    ServiceLocations: List[String],
-    ServiceSupplier: String,
-    StandardIndustryCode: String,
-    UsagePoints: List[String]
+    override val sup: Agreement = null,
+    isPrePay: Boolean = false,
+    loadMgmt: String = null,
+    shutOffDateTime: String = null,
+    AuxiliaryAgreements: List[String] = List(),
+    Customer: String = null,
+    CustomerAccount: String = null,
+    DemandResponsePrograms: List[String] = List(),
+    MeterReadings: List[String] = List(),
+    PricingStructures: List[String] = List(),
+    ServiceCategory: String = null,
+    ServiceLocations: List[String] = List(),
+    ServiceSupplier: String = null,
+    StandardIndustryCode: String = null,
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, List(), null, null, List(), List(), List(), null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -619,23 +603,19 @@ extends
  */
 final case class CustomerNotification
 (
-    override val sup: BasicElement,
-    contactType: String,
-    contactValue: String,
-    earliestDateTimeToCall: String,
-    latestDateTimeToCall: String,
-    trigger: String,
-    Customer: String,
-    Incident: String,
-    TroubleTickets: List[String]
+    override val sup: BasicElement = null,
+    contactType: String = null,
+    contactValue: String = null,
+    earliestDateTimeToCall: String = null,
+    latestDateTimeToCall: String = null,
+    trigger: String = null,
+    Customer: String = null,
+    Incident: String = null,
+    TroubleTickets: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -739,17 +719,13 @@ extends
  */
 final case class IncidentHazard
 (
-    override val sup: Hazard,
-    Incident: String,
-    TroubleTicket: String
+    override val sup: Hazard = null,
+    Incident: String = null,
+    TroubleTicket: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -836,26 +812,22 @@ extends
  */
 final case class PricingStructure
 (
-    override val sup: Document,
-    code: String,
-    dailyCeilingUsage: Int,
-    dailyEstimatedUsage: Int,
-    dailyFloorUsage: Int,
-    revenueKind: String,
-    taxExemption: Boolean,
-    CustomerAgreements: List[String],
-    ServiceCategory: String,
-    Tariffs: List[String],
-    Transactions: List[String],
-    UsagePoints: List[String]
+    override val sup: Document = null,
+    code: String = null,
+    dailyCeilingUsage: Int = 0,
+    dailyEstimatedUsage: Int = 0,
+    dailyFloorUsage: Int = 0,
+    revenueKind: String = null,
+    taxExemption: Boolean = false,
+    CustomerAgreements: List[String] = List(),
+    ServiceCategory: String = null,
+    Tariffs: List[String] = List(),
+    Transactions: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0, 0, 0, null, false, List(), null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -974,20 +946,16 @@ extends
  */
 final case class ServiceCategory
 (
-    override val sup: IdentifiedObject,
-    kind: String,
-    ConfigurationEvents: List[String],
-    CustomerAgreements: List[String],
-    PricingStructures: List[String],
-    UsagePoints: List[String]
+    override val sup: IdentifiedObject = null,
+    kind: String = null,
+    ConfigurationEvents: List[String] = List(),
+    CustomerAgreements: List[String] = List(),
+    PricingStructures: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1085,22 +1053,18 @@ extends
  */
 final case class ServiceLocation
 (
-    override val sup: WorkLocation,
-    accessMethod: String,
-    needsInspection: Boolean,
-    siteAccessProblem: String,
-    CustomerAgreements: List[String],
-    EndDevices: List[String],
-    TroubleTicket: List[String],
-    UsagePoints: List[String]
+    override val sup: WorkLocation = null,
+    accessMethod: String = null,
+    needsInspection: Boolean = false,
+    siteAccessProblem: String = null,
+    CustomerAgreements: List[String] = List(),
+    EndDevices: List[String] = List(),
+    TroubleTicket: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1202,19 +1166,15 @@ extends
  */
 final case class Tariff
 (
-    override val sup: Document,
-    endDate: String,
-    startDate: String,
-    PricingStructures: List[String],
-    TariffProfiles: List[String]
+    override val sup: Document = null,
+    endDate: String = null,
+    startDate: String = null,
+    PricingStructures: List[String] = List(),
+    TariffProfiles: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1294,28 +1254,24 @@ extends
  */
 final case class TroubleTicket
 (
-    override val sup: Document,
-    comment: String,
-    dateTimeOfReport: String,
-    firstResponderStatus: String,
-    multiplePremises: Boolean,
-    reportingKind: String,
-    resolvedDateTime: String,
-    troubleCode: String,
-    Customer: String,
-    Incident: String,
-    IncidentHazard: List[String],
-    Notification: String,
-    ServiceLocation: String,
-    UnplannedOutage: String
+    override val sup: Document = null,
+    comment: String = null,
+    dateTimeOfReport: String = null,
+    firstResponderStatus: String = null,
+    multiplePremises: Boolean = false,
+    reportingKind: String = null,
+    resolvedDateTime: String = null,
+    troubleCode: String = null,
+    Customer: String = null,
+    Incident: String = null,
+    IncidentHazard: List[String] = List(),
+    Notification: String = null,
+    ServiceLocation: String = null,
+    UnplannedOutage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, false, null, null, null, null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *

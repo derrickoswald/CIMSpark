@@ -20,16 +20,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class ConformLoad
 (
-    override val sup: EnergyConsumer,
-    LoadGroup: String
+    override val sup: EnergyConsumer = null,
+    LoadGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -101,17 +97,13 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class ConformLoadGroup
 (
-    override val sup: LoadGroup,
-    ConformLoadSchedules: List[String],
-    EnergyConsumers: List[String]
+    override val sup: LoadGroup = null,
+    ConformLoadSchedules: List[String] = List(),
+    EnergyConsumers: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -189,16 +181,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class ConformLoadSchedule
 (
-    override val sup: SeasonDayTypeSchedule,
-    ConformLoadGroup: String
+    override val sup: SeasonDayTypeSchedule = null,
+    ConformLoadGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -271,16 +259,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class DayType
 (
-    override val sup: IdentifiedObject,
-    SeasonDayTypeSchedules: List[String]
+    override val sup: IdentifiedObject = null,
+    SeasonDayTypeSchedules: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -353,16 +337,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class EnergyArea
 (
-    override val sup: IdentifiedObject,
-    ControlArea: String
+    override val sup: IdentifiedObject = null,
+    ControlArea: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -433,16 +413,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class LoadArea
 (
-    override val sup: EnergyArea,
-    SubLoadAreas: List[String]
+    override val sup: EnergyArea = null,
+    SubLoadAreas: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -513,16 +489,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class LoadGroup
 (
-    override val sup: IdentifiedObject,
-    SubLoadArea: String
+    override val sup: IdentifiedObject = null,
+    SubLoadArea: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -627,27 +599,23 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class LoadResponseCharacteristic
 (
-    override val sup: IdentifiedObject,
-    exponentModel: Boolean,
-    pConstantCurrent: Double,
-    pConstantImpedance: Double,
-    pConstantPower: Double,
-    pFrequencyExponent: Double,
-    pVoltageExponent: Double,
-    qConstantCurrent: Double,
-    qConstantImpedance: Double,
-    qConstantPower: Double,
-    qFrequencyExponent: Double,
-    qVoltageExponent: Double,
-    EnergyConsumer: List[String]
+    override val sup: IdentifiedObject = null,
+    exponentModel: Boolean = false,
+    pConstantCurrent: Double = 0.0,
+    pConstantImpedance: Double = 0.0,
+    pConstantPower: Double = 0.0,
+    pFrequencyExponent: Double = 0.0,
+    pVoltageExponent: Double = 0.0,
+    qConstantCurrent: Double = 0.0,
+    qConstantImpedance: Double = 0.0,
+    qConstantPower: Double = 0.0,
+    qFrequencyExponent: Double = 0.0,
+    qVoltageExponent: Double = 0.0,
+    EnergyConsumer: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -763,16 +731,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class NonConformLoad
 (
-    override val sup: EnergyConsumer,
-    LoadGroup: String
+    override val sup: EnergyConsumer = null,
+    LoadGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -844,17 +808,13 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class NonConformLoadGroup
 (
-    override val sup: LoadGroup,
-    EnergyConsumers: List[String],
-    NonConformLoadSchedules: List[String]
+    override val sup: LoadGroup = null,
+    EnergyConsumers: List[String] = List(),
+    NonConformLoadSchedules: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -930,16 +890,12 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class NonConformLoadSchedule
 (
-    override val sup: SeasonDayTypeSchedule,
-    NonConformLoadGroup: String
+    override val sup: SeasonDayTypeSchedule = null,
+    NonConformLoadGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1012,18 +968,14 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class PowerCutZone
 (
-    override val sup: PowerSystemResource,
-    cutLevel1: Double,
-    cutLevel2: Double,
-    EnergyConsumers: List[String]
+    override val sup: PowerSystemResource = null,
+    cutLevel1: Double = 0.0,
+    cutLevel2: Double = 0.0,
+    EnergyConsumers: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1106,19 +1058,15 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class Season
 (
-    override val sup: IdentifiedObject,
-    endDate: String,
-    startDate: String,
-    ScheduledLimits: List[String],
-    SeasonDayTypeSchedules: List[String]
+    override val sup: IdentifiedObject = null,
+    endDate: String = null,
+    startDate: String = null,
+    ScheduledLimits: List[String] = List(),
+    SeasonDayTypeSchedules: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1204,17 +1152,13 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class SeasonDayTypeSchedule
 (
-    override val sup: RegularIntervalSchedule,
-    DayType: String,
-    Season: String
+    override val sup: RegularIntervalSchedule = null,
+    DayType: String = null,
+    Season: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1289,15 +1233,11 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class StationSupply
 (
-    override val sup: EnergyConsumer
+    override val sup: EnergyConsumer = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1355,17 +1295,13 @@ This information is used by Load Forecasting and Load Management.
  */
 final case class SubLoadArea
 (
-    override val sup: EnergyArea,
-    LoadArea: String,
-    LoadGroups: List[String]
+    override val sup: EnergyArea = null,
+    LoadArea: String = null,
+    LoadGroups: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *

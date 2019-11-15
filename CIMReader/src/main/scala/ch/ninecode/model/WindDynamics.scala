@@ -25,16 +25,12 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroConstIEC
 (
-    override val sup: IdentifiedObject,
-    WindGenTurbineType1aIEC: String
+    override val sup: IdentifiedObject = null,
+    WindGenTurbineType1aIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -114,18 +110,14 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroOneDimIEC
 (
-    override val sup: IdentifiedObject,
-    ka: Double,
-    thetaomega: Double,
-    WindTurbineType3IEC: String
+    override val sup: IdentifiedObject = null,
+    ka: Double = 0.0,
+    thetaomega: Double = 0.0,
+    WindTurbineType3IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -224,23 +216,19 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroTwoDimIEC
 (
-    override val sup: IdentifiedObject,
-    dpomega: Double,
-    dptheta: Double,
-    dpv1: Double,
-    omegazero: Double,
-    pavail: Double,
-    thetav2: Double,
-    thetazero: Double,
-    WindTurbineType3IEC: String
+    override val sup: IdentifiedObject = null,
+    dpomega: Double = 0.0,
+    dptheta: Double = 0.0,
+    dpv1: Double = 0.0,
+    omegazero: Double = 0.0,
+    pavail: Double = 0.0,
+    thetav2: Double = 0.0,
+    thetazero: Double = 0.0,
+    WindTurbineType3IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -365,24 +353,20 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContCurrLimIEC
 (
-    override val sup: IdentifiedObject,
-    imax: Double,
-    imaxdip: Double,
-    kpqu: Double,
-    mdfslim: Boolean,
-    mqpri: Boolean,
-    tufiltcl: Double,
-    upqumax: Double,
-    WindDynamicsLookupTable: List[String],
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    imax: Double = 0.0,
+    imaxdip: Double = 0.0,
+    kpqu: Double = 0.0,
+    mdfslim: Boolean = false,
+    mqpri: Boolean = false,
+    tufiltcl: Double = 0.0,
+    upqumax: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -542,40 +526,36 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType3IEC
 (
-    override val sup: IdentifiedObject,
-    dpmax: Double,
-    dprefmax: Double,
-    dprefmin: Double,
-    dthetamax: Double,
-    dthetamaxuvrt: Double,
-    kdtd: Double,
-    kip: Double,
-    kpp: Double,
-    mpuvrt: Boolean,
-    omegadtd: Double,
-    omegaoffset: Double,
-    pdtdmax: Double,
-    tdvs: Double,
-    thetaemin: Double,
-    thetauscale: Double,
-    tomegafiltp3: Double,
-    tomegaref: Double,
-    tpfiltp3: Double,
-    tpord: Double,
-    tufiltp3: Double,
-    udvs: Double,
-    updip: Double,
-    zeta: Double,
-    WindDynamicsLookupTable: List[String],
-    WindTurbineType3IEC: String
+    override val sup: IdentifiedObject = null,
+    dpmax: Double = 0.0,
+    dprefmax: Double = 0.0,
+    dprefmin: Double = 0.0,
+    dthetamax: Double = 0.0,
+    dthetamaxuvrt: Double = 0.0,
+    kdtd: Double = 0.0,
+    kip: Double = 0.0,
+    kpp: Double = 0.0,
+    mpuvrt: Boolean = false,
+    omegadtd: Double = 0.0,
+    omegaoffset: Double = 0.0,
+    pdtdmax: Double = 0.0,
+    tdvs: Double = 0.0,
+    thetaemin: Double = 0.0,
+    thetauscale: Double = 0.0,
+    tomegafiltp3: Double = 0.0,
+    tomegaref: Double = 0.0,
+    tpfiltp3: Double = 0.0,
+    tpord: Double = 0.0,
+    tufiltp3: Double = 0.0,
+    udvs: Double = 0.0,
+    updip: Double = 0.0,
+    zeta: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindTurbineType3IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -756,19 +736,15 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4aIEC
 (
-    override val sup: IdentifiedObject,
-    dpmaxp4a: Double,
-    tpordp4a: Double,
-    tufiltp4a: Double,
-    WindTurbineType4aIEC: String
+    override val sup: IdentifiedObject = null,
+    dpmaxp4a: Double = 0.0,
+    tpordp4a: Double = 0.0,
+    tufiltp4a: Double = 0.0,
+    WindTurbineType4aIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -865,20 +841,16 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4bIEC
 (
-    override val sup: IdentifiedObject,
-    dpmaxp4b: Double,
-    tpaero: Double,
-    tpordp4b: Double,
-    tufiltp4b: Double,
-    WindTurbineType4bIEC: String
+    override val sup: IdentifiedObject = null,
+    dpmaxp4b: Double = 0.0,
+    tpaero: Double = 0.0,
+    tpordp4b: Double = 0.0,
+    tufiltp4b: Double = 0.0,
+    WindTurbineType4bIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -991,26 +963,22 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPitchAngleIEC
 (
-    override val sup: IdentifiedObject,
-    dthetamax: Double,
-    dthetamin: Double,
-    kic: Double,
-    kiomega: Double,
-    kpc: Double,
-    kpomega: Double,
-    kpx: Double,
-    thetamax: Double,
-    thetamin: Double,
-    ttheta: Double,
-    WindTurbineType3IEC: String
+    override val sup: IdentifiedObject = null,
+    dthetamax: Double = 0.0,
+    dthetamin: Double = 0.0,
+    kic: Double = 0.0,
+    kiomega: Double = 0.0,
+    kpc: Double = 0.0,
+    kpomega: Double = 0.0,
+    kpx: Double = 0.0,
+    thetamax: Double = 0.0,
+    thetamin: Double = 0.0,
+    ttheta: Double = 0.0,
+    WindTurbineType3IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1173,39 +1141,35 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQIEC
 (
-    override val sup: IdentifiedObject,
-    iqh1: Double,
-    iqmax: Double,
-    iqmin: Double,
-    iqpost: Double,
-    kiq: Double,
-    kiu: Double,
-    kpq: Double,
-    kpu: Double,
-    kqv: Double,
-    rdroop: Double,
-    tpfiltq: Double,
-    tpost: Double,
-    tqord: Double,
-    tufiltq: Double,
-    udb1: Double,
-    udb2: Double,
-    umax: Double,
-    umin: Double,
-    uqdip: Double,
-    uref0: Double,
-    windQcontrolModesType: String,
-    windUVRTQcontrolModesType: String,
-    xdroop: Double,
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    iqh1: Double = 0.0,
+    iqmax: Double = 0.0,
+    iqmin: Double = 0.0,
+    iqpost: Double = 0.0,
+    kiq: Double = 0.0,
+    kiu: Double = 0.0,
+    kpq: Double = 0.0,
+    kpu: Double = 0.0,
+    kqv: Double = 0.0,
+    rdroop: Double = 0.0,
+    tpfiltq: Double = 0.0,
+    tpost: Double = 0.0,
+    tqord: Double = 0.0,
+    tufiltq: Double = 0.0,
+    udb1: Double = 0.0,
+    udb2: Double = 0.0,
+    umax: Double = 0.0,
+    umin: Double = 0.0,
+    uqdip: Double = 0.0,
+    uref0: Double = 0.0,
+    windQcontrolModesType: String = null,
+    windUVRTQcontrolModesType: String = null,
+    xdroop: Double = 0.0,
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1378,18 +1342,14 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQLimIEC
 (
-    override val sup: IdentifiedObject,
-    qmax: Double,
-    qmin: Double,
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    qmax: Double = 0.0,
+    qmin: Double = 0.0,
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1479,19 +1439,15 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQPQULimIEC
 (
-    override val sup: IdentifiedObject,
-    tpfiltql: Double,
-    tufiltql: Double,
-    WindDynamicsLookupTable: List[String],
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    tpfiltql: Double = 0.0,
+    tufiltql: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1599,25 +1555,21 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContRotorRIEC
 (
-    override val sup: IdentifiedObject,
-    kirr: Double,
-    komegafilt: Double,
-    kpfilt: Double,
-    kprr: Double,
-    rmax: Double,
-    rmin: Double,
-    tomegafiltrr: Double,
-    tpfiltrr: Double,
-    WindDynamicsLookupTable: List[String],
-    WindGenTurbineType2IEC: String
+    override val sup: IdentifiedObject = null,
+    kirr: Double = 0.0,
+    komegafilt: Double = 0.0,
+    kpfilt: Double = 0.0,
+    kprr: Double = 0.0,
+    rmax: Double = 0.0,
+    rmin: Double = 0.0,
+    tomegafiltrr: Double = 0.0,
+    tpfiltrr: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindGenTurbineType2IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1742,28 +1694,24 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindDynamicsLookupTable
 (
-    override val sup: IdentifiedObject,
-    input: Double,
-    lookupTableFunctionType: String,
-    output: Double,
-    sequence: Int,
-    WindContCurrLimIEC: String,
-    WindContPType3IEC: String,
-    WindContQPQULimIEC: String,
-    WindContRotorRIEC: String,
-    WindGenType3bIEC: String,
-    WindPitchContPowerIEC: String,
-    WindPlantFreqPcontrolIEC: String,
-    WindPlantReactiveControlIEC: String,
-    WindProtectionIEC: String
+    override val sup: IdentifiedObject = null,
+    input: Double = 0.0,
+    lookupTableFunctionType: String = null,
+    output: Double = 0.0,
+    sequence: Int = 0,
+    WindContCurrLimIEC: String = null,
+    WindContPType3IEC: String = null,
+    WindContQPQULimIEC: String = null,
+    WindContRotorRIEC: String = null,
+    WindGenType3bIEC: String = null,
+    WindPitchContPowerIEC: String = null,
+    WindPlantFreqPcontrolIEC: String = null,
+    WindPlantReactiveControlIEC: String = null,
+    WindProtectionIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0.0, 0, null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1896,16 +1844,12 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1aIEC
 (
-    override val sup: WindTurbineType1or2IEC,
-    WindAeroConstIEC: String
+    override val sup: WindTurbineType1or2IEC = null,
+    WindAeroConstIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1981,16 +1925,12 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1bIEC
 (
-    override val sup: WindTurbineType1or2IEC,
-    WindPitchContPowerIEC: String
+    override val sup: WindTurbineType1or2IEC = null,
+    WindPitchContPowerIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2067,17 +2007,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType2IEC
 (
-    override val sup: WindTurbineType1or2IEC,
-    WindContRotorRIEC: String,
-    WindPitchContPowerIEC: String
+    override val sup: WindTurbineType1or2IEC = null,
+    WindContRotorRIEC: String = null,
+    WindPitchContPowerIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2162,19 +2098,15 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3IEC
 (
-    override val sup: IdentifiedObject,
-    dipmax: Double,
-    diqmax: Double,
-    xs: Double,
-    WindTurbineType3IEC: String
+    override val sup: IdentifiedObject = null,
+    dipmax: Double = 0.0,
+    diqmax: Double = 0.0,
+    xs: Double = 0.0,
+    WindTurbineType3IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2267,18 +2199,14 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3aIEC
 (
-    override val sup: WindGenType3IEC,
-    kpc: Double,
-    tic: Double,
-    WindTurbineType4IEC: String
+    override val sup: WindGenType3IEC = null,
+    kpc: Double = 0.0,
+    tic: Double = 0.0,
+    WindTurbineType4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2371,19 +2299,15 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3bIEC
 (
-    override val sup: WindGenType3IEC,
-    mwtcwp: Boolean,
-    tg: Double,
-    two: Double,
-    WindDynamicsLookupTable: List[String]
+    override val sup: WindGenType3IEC = null,
+    mwtcwp: Boolean = false,
+    tg: Double = 0.0,
+    two: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -2481,21 +2405,17 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType4IEC
 (
-    override val sup: IdentifiedObject,
-    dipmax: Double,
-    diqmax: Double,
-    diqmin: Double,
-    tg: Double,
-    WindTurbineType4aIEC: String,
-    WindTurbineType4bIEC: String
+    override val sup: IdentifiedObject = null,
+    dipmax: Double = 0.0,
+    diqmax: Double = 0.0,
+    diqmin: Double = 0.0,
+    tg: Double = 0.0,
+    WindTurbineType4aIEC: String = null,
+    WindTurbineType4bIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2603,22 +2523,18 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindMechIEC
 (
-    override val sup: IdentifiedObject,
-    cdrt: Double,
-    hgen: Double,
-    hwtr: Double,
-    kdrt: Double,
-    WindTurbineType1or2IEC: String,
-    WindTurbineType3IEC: String,
-    WindTurbineType4bIEC: String
+    override val sup: IdentifiedObject = null,
+    cdrt: Double = 0.0,
+    hgen: Double = 0.0,
+    hwtr: Double = 0.0,
+    kdrt: Double = 0.0,
+    WindTurbineType1or2IEC: String = null,
+    WindTurbineType3IEC: String = null,
+    WindTurbineType4bIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2737,25 +2653,21 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPitchContPowerIEC
 (
-    override val sup: IdentifiedObject,
-    dpmax: Double,
-    dpmin: Double,
-    pmin: Double,
-    pset: Double,
-    t1: Double,
-    tr: Double,
-    uuvrt: Double,
-    WindDynamicsLookupTable: List[String],
-    WindGenTurbineType1bIEC: String,
-    WindGenTurbineType2IEC: String
+    override val sup: IdentifiedObject = null,
+    dpmax: Double = 0.0,
+    dpmin: Double = 0.0,
+    pmin: Double = 0.0,
+    pset: Double = 0.0,
+    t1: Double = 0.0,
+    tr: Double = 0.0,
+    uuvrt: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindGenTurbineType1bIEC: String = null,
+    WindGenTurbineType2IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -2870,17 +2782,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    RemoteInputSignal: String,
-    WindTurbineType3or4Dynamics: List[String]
+    override val sup: DynamicsFunctionBlock = null,
+    RemoteInputSignal: String = null,
+    WindTurbineType3or4Dynamics: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2993,32 +2901,28 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantFreqPcontrolIEC
 (
-    override val sup: IdentifiedObject,
-    dprefmax: Double,
-    dprefmin: Double,
-    dpwprefmax: Double,
-    dpwprefmin: Double,
-    kiwpp: Double,
-    kiwppmax: Double,
-    kiwppmin: Double,
-    kpwpp: Double,
-    kwppref: Double,
-    prefmax: Double,
-    prefmin: Double,
-    tpft: Double,
-    tpfv: Double,
-    twpffiltp: Double,
-    twppfiltp: Double,
-    WindDynamicsLookupTable: List[String],
-    WindPlantIEC: String
+    override val sup: IdentifiedObject = null,
+    dprefmax: Double = 0.0,
+    dprefmin: Double = 0.0,
+    dpwprefmax: Double = 0.0,
+    dpwprefmin: Double = 0.0,
+    kiwpp: Double = 0.0,
+    kiwppmax: Double = 0.0,
+    kiwppmin: Double = 0.0,
+    kpwpp: Double = 0.0,
+    kwppref: Double = 0.0,
+    prefmax: Double = 0.0,
+    prefmin: Double = 0.0,
+    tpft: Double = 0.0,
+    tpfv: Double = 0.0,
+    twpffiltp: Double = 0.0,
+    twppfiltp: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindPlantIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3162,17 +3066,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantIEC
 (
-    override val sup: WindPlantDynamics,
-    WindPlantFreqPcontrolIEC: String,
-    WindPlantReactiveControlIEC: String
+    override val sup: WindPlantDynamics = null,
+    WindPlantFreqPcontrolIEC: String = null,
+    WindPlantReactiveControlIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3290,35 +3190,31 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantReactiveControlIEC
 (
-    override val sup: IdentifiedObject,
-    dxrefmax: Double,
-    dxrefmin: Double,
-    kiwpx: Double,
-    kiwpxmax: Double,
-    kiwpxmin: Double,
-    kpwpx: Double,
-    kwpqref: Double,
-    kwpqu: Double,
-    tuqfilt: Double,
-    twppfiltq: Double,
-    twpqfiltq: Double,
-    twpufiltq: Double,
-    txft: Double,
-    txfv: Double,
-    uwpqdip: Double,
-    windPlantQcontrolModesType: String,
-    xrefmax: Double,
-    xrefmin: Double,
-    WindDynamicsLookupTable: List[String],
-    WindPlantIEC: String
+    override val sup: IdentifiedObject = null,
+    dxrefmax: Double = 0.0,
+    dxrefmin: Double = 0.0,
+    kiwpx: Double = 0.0,
+    kiwpxmax: Double = 0.0,
+    kiwpxmin: Double = 0.0,
+    kpwpx: Double = 0.0,
+    kwpqref: Double = 0.0,
+    kwpqu: Double = 0.0,
+    tuqfilt: Double = 0.0,
+    twppfiltq: Double = 0.0,
+    twpqfiltq: Double = 0.0,
+    twpufiltq: Double = 0.0,
+    txft: Double = 0.0,
+    txfv: Double = 0.0,
+    uwpqdip: Double = 0.0,
+    windPlantQcontrolModesType: String = null,
+    xrefmax: Double = 0.0,
+    xrefmin: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindPlantIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3491,25 +3387,21 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindProtectionIEC
 (
-    override val sup: IdentifiedObject,
-    dfimax: Double,
-    fover: Double,
-    funder: Double,
-    mzc: Boolean,
-    tfma: Double,
-    uover: Double,
-    uunder: Double,
-    WindDynamicsLookupTable: List[String],
-    WindTurbineType1or2IEC: String,
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    dfimax: Double = 0.0,
+    fover: Double = 0.0,
+    funder: Double = 0.0,
+    mzc: Boolean = false,
+    tfma: Double = 0.0,
+    uover: Double = 0.0,
+    uunder: Double = 0.0,
+    WindDynamicsLookupTable: List[String] = List(),
+    WindTurbineType1or2IEC: String = null,
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -3631,19 +3523,15 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindRefFrameRotIEC
 (
-    override val sup: IdentifiedObject,
-    tpll: Double,
-    upll1: Double,
-    upll2: Double,
-    WindTurbineType3or4IEC: String
+    override val sup: IdentifiedObject = null,
+    tpll: Double = 0.0,
+    upll1: Double = 0.0,
+    upll2: Double = 0.0,
+    WindTurbineType3or4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -3733,17 +3621,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2Dynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    AsynchronousMachineDynamics: String,
-    RemoteInputSignal: String
+    override val sup: DynamicsFunctionBlock = null,
+    AsynchronousMachineDynamics: String = null,
+    RemoteInputSignal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3826,17 +3710,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2IEC
 (
-    override val sup: WindTurbineType1or2Dynamics,
-    WindMechIEC: String,
-    WindProtectionIEC: String
+    override val sup: WindTurbineType1or2Dynamics = null,
+    WindMechIEC: String = null,
+    WindProtectionIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3920,21 +3800,17 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3IEC
 (
-    override val sup: WindTurbineType3or4IEC,
-    WindAeroOneDimIEC: String,
-    WindAeroTwoDimIEC: String,
-    WindContPType3IEC: String,
-    WindContPitchAngleIEC: String,
-    WindGenType3IEC: String,
-    WindMechIEC: String
+    override val sup: WindTurbineType3or4IEC = null,
+    WindAeroOneDimIEC: String = null,
+    WindAeroTwoDimIEC: String = null,
+    WindContPType3IEC: String = null,
+    WindContPitchAngleIEC: String = null,
+    WindGenType3IEC: String = null,
+    WindMechIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4035,18 +3911,14 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4Dynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    PowerElectronicsConnection: String,
-    RemoteInputSignal: String,
-    WindPlantDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    PowerElectronicsConnection: String = null,
+    RemoteInputSignal: String = null,
+    WindPlantDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4135,21 +4007,17 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4IEC
 (
-    override val sup: WindTurbineType3or4Dynamics,
-    WIndContQIEC: String,
-    WindContCurrLimIEC: String,
-    WindContQLimIEC: String,
-    WindContQPQULimIEC: String,
-    WindProtectionIEC: String,
-    WindRefFrameRotIEC: String
+    override val sup: WindTurbineType3or4Dynamics = null,
+    WIndContQIEC: String = null,
+    WindContCurrLimIEC: String = null,
+    WindContQLimIEC: String = null,
+    WindContQPQULimIEC: String = null,
+    WindProtectionIEC: String = null,
+    WindRefFrameRotIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4248,16 +4116,12 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4IEC
 (
-    override val sup: WindTurbineType3or4IEC,
-    WindGenType3aIEC: String
+    override val sup: WindTurbineType3or4IEC = null,
+    WindGenType3aIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -4334,17 +4198,13 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4aIEC
 (
-    override val sup: WindTurbineType4IEC,
-    WindContPType4aIEC: String,
-    WindGenType4IEC: String
+    override val sup: WindTurbineType4IEC = null,
+    WindContPType4aIEC: String = null,
+    WindGenType4IEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -4427,18 +4287,14 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4bIEC
 (
-    override val sup: WindTurbineType4IEC,
-    WindContPType4bIEC: String,
-    WindGenType4IEC: String,
-    WindMechIEC: String
+    override val sup: WindTurbineType4IEC = null,
+    WindContPType4bIEC: String = null,
+    WindGenType4IEC: String = null,
+    WindMechIEC: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *

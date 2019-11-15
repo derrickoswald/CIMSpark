@@ -19,16 +19,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class InterTieClearing
 (
-    override val sup: MarketFactors,
-    InterTieResults: List[String]
+    override val sup: MarketFactors = null,
+    InterTieResults: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -101,19 +97,15 @@ extends
  */
 final case class InterTieResults
 (
-    override val sup: BasicElement,
-    baseMW: Double,
-    clearedValue: Double,
-    Flowgate: String,
-    InterTieClearing: String
+    override val sup: BasicElement = null,
+    baseMW: Double = 0.0,
+    clearedValue: Double = 0.0,
+    Flowgate: String = null,
+    InterTieClearing: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -206,19 +198,15 @@ extends
  */
 final case class MarketCaseClearing
 (
-    override val sup: MarketFactors,
-    caseType: String,
-    modifiedDate: String,
-    postedDate: String,
-    MarketProductClearing: List[String]
+    override val sup: MarketFactors = null,
+    caseType: String = null,
+    modifiedDate: String = null,
+    postedDate: String = null,
+    MarketProductClearing: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -301,18 +289,14 @@ extends
  */
 final case class SecurityConstraintsClearing
 (
-    override val sup: MarketFactors,
-    mwFlow: Double,
-    mwLimit: Double,
-    shadowPrice: Double
+    override val sup: MarketFactors = null,
+    mwFlow: Double = 0.0,
+    mwLimit: Double = 0.0,
+    shadowPrice: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

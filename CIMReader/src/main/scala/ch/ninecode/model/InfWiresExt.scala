@@ -18,17 +18,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class SVC
 (
-    override val sup: ShuntCompensator,
-    capacitiveRating: Double,
-    inductiveRating: Double
+    override val sup: ShuntCompensator = null,
+    capacitiveRating: Double = 0.0,
+    inductiveRating: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -117,33 +113,29 @@ extends
  */
 final case class ShuntCompensatorControl
 (
-    override val sup: RegulatingControl,
-    branchDirect: Int,
-    cellSize: Double,
-    controlKind: String,
-    highVoltageOverride: Double,
-    localControlKind: String,
-    localOffLevel: String,
-    localOnLevel: String,
-    localOverride: Boolean,
-    lowVoltageOverride: Double,
-    maxSwitchOperationCount: Int,
-    normalOpen: Boolean,
-    regBranch: String,
-    regBranchEnd: Int,
-    regBranchKind: String,
-    sensingPhaseCode: String,
-    switchOperationCycle: Double,
-    vRegLineLine: Boolean,
-    ShuntCompensatorInfo: String
+    override val sup: RegulatingControl = null,
+    branchDirect: Int = 0,
+    cellSize: Double = 0.0,
+    controlKind: String = null,
+    highVoltageOverride: Double = 0.0,
+    localControlKind: String = null,
+    localOffLevel: String = null,
+    localOnLevel: String = null,
+    localOverride: Boolean = false,
+    lowVoltageOverride: Double = 0.0,
+    maxSwitchOperationCount: Int = 0,
+    normalOpen: Boolean = false,
+    regBranch: String = null,
+    regBranchEnd: Int = 0,
+    regBranchKind: String = null,
+    sensingPhaseCode: String = null,
+    switchOperationCycle: Double = 0.0,
+    vRegLineLine: Boolean = false,
+    ShuntCompensatorInfo: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, null, 0.0, null, null, null, false, 0.0, 0, false, null, 0, null, null, 0.0, false, null) }
     /**
      * Return the superclass object.
      *

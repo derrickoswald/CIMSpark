@@ -19,18 +19,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class ReserveReq
 (
-    override val sup: ResourceGroupReq,
-    MarketProduct: String,
-    ReserveReqCurve: String,
-    SensitivityPriceCurve: String
+    override val sup: ResourceGroupReq = null,
+    MarketProduct: String = null,
+    ReserveReqCurve: String = null,
+    SensitivityPriceCurve: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -112,16 +108,12 @@ extends
  */
 final case class ReserveReqCurve
 (
-    override val sup: Curve,
-    ReserveReq: String
+    override val sup: Curve = null,
+    ReserveReq: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -192,19 +184,15 @@ extends
  */
 final case class ResourceGroup
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    `type`: String,
-    RegisteredResources: List[String],
-    ResourceGroupReqs: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    `type`: String = null,
+    RegisteredResources: List[String] = List(),
+    ResourceGroupReqs: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -288,17 +276,13 @@ extends
  */
 final case class ResourceGroupReq
 (
-    override val sup: IdentifiedObject,
-    RTOs: List[String],
-    ResourceGroup: String
+    override val sup: IdentifiedObject = null,
+    RTOs: List[String] = List(),
+    ResourceGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -376,16 +360,12 @@ extends
  */
 final case class SensitivityPriceCurve
 (
-    override val sup: Curve,
-    ReserveReq: String
+    override val sup: Curve = null,
+    ReserveReq: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

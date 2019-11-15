@@ -24,20 +24,16 @@ import ch.ninecode.cim.Relationship
  */
 final case class BaseReading
 (
-    override val sup: MeasurementValue,
-    reportedDateTime: String,
-    source: String,
-    timePeriod: String,
-    value: String,
-    ReadingQualities: List[String]
+    override val sup: MeasurementValue = null,
+    reportedDateTime: String = null,
+    source: String = null,
+    timePeriod: String = null,
+    value: String = null,
+    ReadingQualities: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -128,18 +124,14 @@ extends
  */
 final case class Channel
 (
-    override val sup: IdentifiedObject,
-    isVirtual: Boolean,
-    ReadingType: String,
-    Register: String
+    override val sup: IdentifiedObject = null,
+    isVirtual: Boolean = false,
+    ReadingType: String = null,
+    Register: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -222,20 +214,16 @@ extends
  */
 final case class ComFunction
 (
-    override val sup: EndDeviceFunction,
-    amrAddress: String,
-    amrRouter: String,
-    direction: String,
-    technology: String,
-    ComModule: String
+    override val sup: EndDeviceFunction = null,
+    amrAddress: String = null,
+    amrRouter: String = null,
+    direction: String = null,
+    technology: String = null,
+    ComModule: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -326,19 +314,15 @@ extends
  */
 final case class ComModule
 (
-    override val sup: Asset,
-    amrSystem: String,
-    supportsAutonomousDst: Boolean,
-    timeZoneOffset: Double,
-    ComFunctions: List[String]
+    override val sup: Asset = null,
+    amrSystem: String = null,
+    supportsAutonomousDst: Boolean = false,
+    timeZoneOffset: Double = 0.0,
+    ComFunctions: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -431,27 +415,23 @@ extends
  */
 final case class ControlledAppliance
 (
-    override val sup: BasicElement,
-    isElectricVehicle: Boolean,
-    isExteriorLighting: Boolean,
-    isGenerationSystem: Boolean,
-    isHvacCompressorOrFurnace: Boolean,
-    isInteriorLighting: Boolean,
-    isIrrigationPump: Boolean,
-    isManagedCommercialIndustrialLoad: Boolean,
-    isPoolPumpSpaJacuzzi: Boolean,
-    isSimpleMiscLoad: Boolean,
-    isSmartAppliance: Boolean,
-    isStripAndBaseboardHeater: Boolean,
-    isWaterHeater: Boolean
+    override val sup: BasicElement = null,
+    isElectricVehicle: Boolean = false,
+    isExteriorLighting: Boolean = false,
+    isGenerationSystem: Boolean = false,
+    isHvacCompressorOrFurnace: Boolean = false,
+    isInteriorLighting: Boolean = false,
+    isIrrigationPump: Boolean = false,
+    isManagedCommercialIndustrialLoad: Boolean = false,
+    isPoolPumpSpaJacuzzi: Boolean = false,
+    isSimpleMiscLoad: Boolean = false,
+    isSmartAppliance: Boolean = false,
+    isStripAndBaseboardHeater: Boolean = false,
+    isWaterHeater: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false) }
     /**
      * Return the superclass object.
      *
@@ -566,20 +546,16 @@ extends
  */
 final case class DemandResponseProgram
 (
-    override val sup: IdentifiedObject,
-    `type`: String,
-    validityInterval: String,
-    CustomerAgreements: List[String],
-    EndDeviceGroups: List[String],
-    UsagePointGroups: List[String]
+    override val sup: IdentifiedObject = null,
+    `type`: String = null,
+    validityInterval: String = null,
+    CustomerAgreements: List[String] = List(),
+    EndDeviceGroups: List[String] = List(),
+    UsagePointGroups: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -687,30 +663,26 @@ extends
  */
 final case class EndDevice
 (
-    override val sup: AssetContainer,
-    amrSystem: String,
-    installCode: String,
-    isPan: Boolean,
-    isSmartInverter: Boolean,
-    isVirtual: Boolean,
-    timeZoneOffset: Double,
-    Customer: String,
-    DispatchablePowerCapability: List[String],
-    EndDeviceControls: List[String],
-    EndDeviceEvents: List[String],
-    EndDeviceFunctions: List[String],
-    EndDeviceGroups: List[String],
-    EndDeviceInfo: String,
-    ServiceLocation: String,
-    UsagePoint: String
+    override val sup: AssetContainer = null,
+    amrSystem: String = null,
+    installCode: String = null,
+    isPan: Boolean = false,
+    isSmartInverter: Boolean = false,
+    isVirtual: Boolean = false,
+    timeZoneOffset: Double = 0.0,
+    Customer: String = null,
+    DispatchablePowerCapability: List[String] = List(),
+    EndDeviceControls: List[String] = List(),
+    EndDeviceEvents: List[String] = List(),
+    EndDeviceFunctions: List[String] = List(),
+    EndDeviceGroups: List[String] = List(),
+    EndDeviceInfo: String = null,
+    ServiceLocation: String = null,
+    UsagePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, false, false, false, 0.0, null, List(), List(), List(), List(), List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -849,20 +821,16 @@ extends
  */
 final case class EndDeviceAction
 (
-    override val sup: BasicElement,
-    command: String,
-    duration: Double,
-    durationIndefinite: Boolean,
-    startDateTime: String,
-    EndDeviceControl: String
+    override val sup: BasicElement = null,
+    command: String = null,
+    duration: Double = 0.0,
+    durationIndefinite: Boolean = false,
+    startDateTime: String = null,
+    EndDeviceControl: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -965,33 +933,29 @@ extends
  */
 final case class EndDeviceCapability
 (
-    override val sup: BasicElement,
-    autonomousDst: Boolean,
-    communication: Boolean,
-    connectDisconnect: Boolean,
-    demandResponse: Boolean,
-    electricMetering: Boolean,
-    gasMetering: Boolean,
-    metrology: Boolean,
-    onRequestRead: Boolean,
-    outageHistory: Boolean,
-    pressureCompensation: Boolean,
-    pricingInfo: Boolean,
-    pulseOutput: Boolean,
-    relaysProgramming: Boolean,
-    reverseFlow: Boolean,
-    superCompressibilityCompensation: Boolean,
-    temperatureCompensation: Boolean,
-    textMessage: Boolean,
-    waterMetering: Boolean
+    override val sup: BasicElement = null,
+    autonomousDst: Boolean = false,
+    communication: Boolean = false,
+    connectDisconnect: Boolean = false,
+    demandResponse: Boolean = false,
+    electricMetering: Boolean = false,
+    gasMetering: Boolean = false,
+    metrology: Boolean = false,
+    onRequestRead: Boolean = false,
+    outageHistory: Boolean = false,
+    pressureCompensation: Boolean = false,
+    pricingInfo: Boolean = false,
+    pulseOutput: Boolean = false,
+    relaysProgramming: Boolean = false,
+    reverseFlow: Boolean = false,
+    superCompressibilityCompensation: Boolean = false,
+    temperatureCompensation: Boolean = false,
+    textMessage: Boolean = false,
+    waterMetering: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false) }
     /**
      * Return the superclass object.
      *
@@ -1144,30 +1108,26 @@ extends
  */
 final case class EndDeviceControl
 (
-    override val sup: IdentifiedObject,
-    drProgramLevel: Int,
-    drProgramMandatory: Boolean,
-    issuerID: String,
-    issuerTrackingID: String,
-    priceSignal: String,
-    primaryDeviceTiming: String,
-    reason: String,
-    scheduledInterval: String,
-    secondaryDeviceTiming: String,
-    EndDeviceAction: String,
-    EndDeviceControlType: String,
-    EndDeviceGroups: List[String],
-    EndDevices: List[String],
-    UsagePointGroups: List[String],
-    UsagePoints: List[String]
+    override val sup: IdentifiedObject = null,
+    drProgramLevel: Int = 0,
+    drProgramMandatory: Boolean = false,
+    issuerID: String = null,
+    issuerTrackingID: String = null,
+    priceSignal: String = null,
+    primaryDeviceTiming: String = null,
+    reason: String = null,
+    scheduledInterval: String = null,
+    secondaryDeviceTiming: String = null,
+    EndDeviceAction: String = null,
+    EndDeviceControlType: String = null,
+    EndDeviceGroups: List[String] = List(),
+    EndDevices: List[String] = List(),
+    UsagePointGroups: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, false, null, null, null, null, null, null, null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1309,20 +1269,16 @@ extends
  */
 final case class EndDeviceControlType
 (
-    override val sup: IdentifiedObject,
-    domain: String,
-    eventOrAction: String,
-    subDomain: String,
-    `type`: String,
-    EndDeviceControls: List[String]
+    override val sup: IdentifiedObject = null,
+    domain: String = null,
+    eventOrAction: String = null,
+    subDomain: String = null,
+    `type`: String = null,
+    EndDeviceControls: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1416,23 +1372,19 @@ extends
  */
 final case class EndDeviceEvent
 (
-    override val sup: ActivityRecord,
-    issuerID: String,
-    issuerTrackingID: String,
-    userID: String,
-    EndDevice: String,
-    EndDeviceEventDetails: List[String],
-    EndDeviceEventType: String,
-    MeterReading: String,
-    UsagePoint: String
+    override val sup: ActivityRecord = null,
+    issuerID: String = null,
+    issuerTrackingID: String = null,
+    userID: String = null,
+    EndDevice: String = null,
+    EndDeviceEventDetails: List[String] = List(),
+    EndDeviceEventType: String = null,
+    MeterReading: String = null,
+    UsagePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1537,18 +1489,14 @@ extends
  */
 final case class EndDeviceEventDetail
 (
-    override val sup: BasicElement,
-    name: String,
-    value: String,
-    EndDeviceEvent: String
+    override val sup: BasicElement = null,
+    name: String = null,
+    value: String = null,
+    EndDeviceEvent: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1635,20 +1583,16 @@ extends
  */
 final case class EndDeviceEventType
 (
-    override val sup: IdentifiedObject,
-    domain: String,
-    eventOrAction: String,
-    subDomain: String,
-    `type`: String,
-    EndDeviceEvents: List[String]
+    override val sup: IdentifiedObject = null,
+    domain: String = null,
+    eventOrAction: String = null,
+    subDomain: String = null,
+    `type`: String = null,
+    EndDeviceEvents: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1736,18 +1680,14 @@ extends
  */
 final case class EndDeviceFunction
 (
-    override val sup: AssetFunction,
-    enabled: Boolean,
-    EndDevice: String,
-    Registers: List[String]
+    override val sup: AssetFunction = null,
+    enabled: Boolean = false,
+    EndDevice: String = null,
+    Registers: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1839,26 +1779,22 @@ extends
  */
 final case class EndDeviceGroup
 (
-    override val sup: IdentifiedObject,
-    status: String,
-    `type`: String,
-    version: String,
-    DERFunction: String,
-    DERGroupDispatch: List[String],
-    DERGroupForecast: List[String],
-    DERMonitorableParameter: List[String],
-    DemandResponsePrograms: List[String],
-    DispatchablePowerCapability: String,
-    EndDeviceControls: List[String],
-    EndDevices: List[String]
+    override val sup: IdentifiedObject = null,
+    status: String = null,
+    `type`: String = null,
+    version: String = null,
+    DERFunction: String = null,
+    DERGroupDispatch: List[String] = List(),
+    DERGroupForecast: List[String] = List(),
+    DERMonitorableParameter: List[String] = List(),
+    DemandResponsePrograms: List[String] = List(),
+    DispatchablePowerCapability: String = null,
+    EndDeviceControls: List[String] = List(),
+    EndDevices: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List(), List(), List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1981,21 +1917,17 @@ extends
  */
 final case class EndDeviceInfo
 (
-    override val sup: AssetInfo,
-    capability: String,
-    isSolidState: Boolean,
-    phaseCount: Int,
-    ratedCurrent: Double,
-    ratedVoltage: Double,
-    EndDevices: List[String]
+    override val sup: AssetInfo = null,
+    capability: String = null,
+    isSolidState: Boolean = false,
+    phaseCount: Int = 0,
+    ratedCurrent: Double = 0.0,
+    ratedVoltage: Double = 0.0,
+    EndDevices: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, 0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -2090,19 +2022,15 @@ extends
  */
 final case class EndDeviceTiming
 (
-    override val sup: BasicElement,
-    duration: Double,
-    durationIndefinite: Boolean,
-    interval: String,
-    randomisation: String
+    override val sup: BasicElement = null,
+    duration: Double = 0.0,
+    durationIndefinite: Boolean = false,
+    interval: String = null,
+    randomisation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2222,19 +2150,15 @@ extends
  */
 final case class IntervalBlock
 (
-    override val sup: BasicElement,
-    IntervalReadings: List[String],
-    MeterReading: String,
-    PendingCalculation: String,
-    ReadingType: String
+    override val sup: BasicElement = null,
+    IntervalReadings: List[String] = List(),
+    MeterReading: String = null,
+    PendingCalculation: String = null,
+    ReadingType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2322,16 +2246,12 @@ extends
  */
 final case class IntervalReading
 (
-    override val sup: BaseReading,
-    IntervalBlocks: List[String]
+    override val sup: BaseReading = null,
+    IntervalBlocks: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2409,22 +2329,18 @@ extends
  */
 final case class Meter
 (
-    override val sup: EndDevice,
-    connectionCategory: String,
-    formNumber: String,
-    MeterMultipliers: List[String],
-    MeterReadings: List[String],
-    MeterReplacementWorkTasks: List[String],
-    MeterServiceWorkTask: List[String],
-    VendingTransactions: List[String]
+    override val sup: EndDevice = null,
+    connectionCategory: String = null,
+    formNumber: String = null,
+    MeterMultipliers: List[String] = List(),
+    MeterReadings: List[String] = List(),
+    MeterReplacementWorkTasks: List[String] = List(),
+    MeterServiceWorkTask: List[String] = List(),
+    VendingTransactions: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2524,18 +2440,14 @@ extends
  */
 final case class MeterMultiplier
 (
-    override val sup: IdentifiedObject,
-    kind: String,
-    value: Double,
-    Meter: String
+    override val sup: IdentifiedObject = null,
+    kind: String = null,
+    value: Double = 0.0,
+    Meter: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -2620,23 +2532,19 @@ extends
  */
 final case class MeterReading
 (
-    override val sup: IdentifiedObject,
-    isCoincidentTrigger: Boolean,
-    valuesInterval: String,
-    CustomerAgreement: String,
-    EndDeviceEvents: List[String],
-    IntervalBlocks: List[String],
-    Meter: String,
-    Readings: List[String],
-    UsagePoint: String
+    override val sup: IdentifiedObject = null,
+    isCoincidentTrigger: Boolean = false,
+    valuesInterval: String = null,
+    CustomerAgreement: String = null,
+    EndDeviceEvents: List[String] = List(),
+    IntervalBlocks: List[String] = List(),
+    Meter: String = null,
+    Readings: List[String] = List(),
+    UsagePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, List(), List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2742,18 +2650,14 @@ extends
  */
 final case class MeterWorkTask
 (
-    override val sup: WorkTask,
-    Meter: String,
-    OldMeter: String,
-    UsagePoint: String
+    override val sup: WorkTask = null,
+    Meter: String = null,
+    OldMeter: String = null,
+    UsagePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2834,18 +2738,14 @@ extends
  */
 final case class MetrologyRequirement
 (
-    override val sup: IdentifiedObject,
-    reason: String,
-    ReadingTypes: List[String],
-    UsagePoints: List[String]
+    override val sup: IdentifiedObject = null,
+    reason: String = null,
+    ReadingTypes: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2944,27 +2844,23 @@ extends
  */
 final case class PanDemandResponse
 (
-    override val sup: EndDeviceAction,
-    appliance: String,
-    avgLoadAdjustment: Double,
-    cancelControlMode: String,
-    cancelDateTime: String,
-    cancelNow: Boolean,
-    coolingOffset: Double,
-    coolingSetpoint: Double,
-    criticalityLevel: String,
-    dutyCycle: Double,
-    enrollmentGroup: String,
-    heatingOffset: Double,
-    heatingSetpoint: Double
+    override val sup: EndDeviceAction = null,
+    appliance: String = null,
+    avgLoadAdjustment: Double = 0.0,
+    cancelControlMode: String = null,
+    cancelDateTime: String = null,
+    cancelNow: Boolean = false,
+    coolingOffset: Double = 0.0,
+    coolingSetpoint: Double = 0.0,
+    criticalityLevel: String = null,
+    dutyCycle: Double = 0.0,
+    enrollmentGroup: String = null,
+    heatingOffset: Double = 0.0,
+    heatingSetpoint: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null, false, 0.0, 0.0, null, 0.0, null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3081,19 +2977,15 @@ extends
  */
 final case class PanDisplay
 (
-    override val sup: EndDeviceAction,
-    confirmationRequired: Boolean,
-    priority: String,
-    textMessage: String,
-    transmissionMode: String
+    override val sup: EndDeviceAction = null,
+    confirmationRequired: Boolean = false,
+    priority: String = null,
+    textMessage: String = null,
+    transmissionMode: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3173,17 +3065,13 @@ extends
  */
 final case class PanPricing
 (
-    override val sup: EndDeviceAction,
-    providerID: Int,
-    PanPricingDetails: List[String]
+    override val sup: EndDeviceAction = null,
+    providerID: Int = 0,
+    PanPricingDetails: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, List()) }
     /**
      * Return the superclass object.
      *
@@ -3272,29 +3160,25 @@ extends
  */
 final case class PanPricingDetail
 (
-    override val sup: BasicElement,
-    alternateCostDelivered: Double,
-    alternateCostUnit: String,
-    currentTimeDate: String,
-    generationPrice: Double,
-    generationPriceRatio: Double,
-    price: Double,
-    priceRatio: Double,
-    priceTier: Int,
-    priceTierCount: Int,
-    priceTierLabel: String,
-    rateLabel: String,
-    registerTier: String,
-    unitOfMeasure: String,
-    PanPricing: String
+    override val sup: BasicElement = null,
+    alternateCostDelivered: Double = 0.0,
+    alternateCostUnit: String = null,
+    currentTimeDate: String = null,
+    generationPrice: Double = 0.0,
+    generationPriceRatio: Double = 0.0,
+    price: Double = 0.0,
+    priceRatio: Double = 0.0,
+    priceTier: Int = 0,
+    priceTierCount: Int = 0,
+    priceTierLabel: String = null,
+    rateLabel: String = null,
+    registerTier: String = null,
+    unitOfMeasure: String = null,
+    PanPricing: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0, 0, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3425,22 +3309,18 @@ extends
  */
 final case class PendingCalculation
 (
-    override val sup: BasicElement,
-    multiplyBeforeAdd: Boolean,
-    offset: Int,
-    scalarDenominator: Int,
-    scalarFloat: Double,
-    scalarNumerator: Int,
-    IntervalBlocks: List[String],
-    ReadingType: String
+    override val sup: BasicElement = null,
+    multiplyBeforeAdd: Boolean = false,
+    offset: Int = 0,
+    scalarDenominator: Int = 0,
+    scalarFloat: Double = 0.0,
+    scalarNumerator: Int = 0,
+    IntervalBlocks: List[String] = List(),
+    ReadingType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0, 0, 0.0, 0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3538,17 +3418,13 @@ extends
  */
 final case class RationalNumber
 (
-    override val sup: BasicElement,
-    denominator: Int,
-    numerator: Int
+    override val sup: BasicElement = null,
+    denominator: Int = 0,
+    numerator: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0) }
     /**
      * Return the superclass object.
      *
@@ -3624,20 +3500,16 @@ extends
  */
 final case class Reading
 (
-    override val sup: BaseReading,
-    position: Int,
-    reason: String,
-    valueMissing: Boolean,
-    MeterReadings: List[String],
-    ReadingType: String
+    override val sup: BaseReading = null,
+    position: Int = 0,
+    reason: String = null,
+    valueMissing: Boolean = false,
+    MeterReadings: List[String] = List(),
+    ReadingType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, false, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3728,17 +3600,13 @@ extends
  */
 final case class ReadingInterharmonic
 (
-    override val sup: BasicElement,
-    denominator: Int,
-    numerator: Int
+    override val sup: BasicElement = null,
+    denominator: Int = 0,
+    numerator: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0) }
     /**
      * Return the superclass object.
      *
@@ -3814,20 +3682,16 @@ extends
  */
 final case class ReadingQuality
 (
-    override val sup: BasicElement,
-    comment: String,
-    source: String,
-    timeStamp: String,
-    Reading: String,
-    ReadingQualityType: String
+    override val sup: BasicElement = null,
+    comment: String = null,
+    source: String = null,
+    timeStamp: String = null,
+    Reading: String = null,
+    ReadingQualityType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3919,19 +3783,15 @@ extends
  */
 final case class ReadingQualityType
 (
-    override val sup: IdentifiedObject,
-    category: String,
-    subCategory: String,
-    systemId: String,
-    ReadingQualities: List[String]
+    override val sup: IdentifiedObject = null,
+    category: String = null,
+    subCategory: String = null,
+    systemId: String = null,
+    ReadingQualities: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -4047,37 +3907,33 @@ extends
  */
 final case class ReadingType
 (
-    override val sup: IdentifiedObject,
-    accumulation: String,
-    aggregate: String,
-    argument: String,
-    commodity: String,
-    consumptionTier: Int,
-    cpp: Int,
-    currency: String,
-    flowDirection: String,
-    interharmonic: String,
-    macroPeriod: String,
-    measurementKind: String,
-    measuringPeriod: String,
-    multiplier: String,
-    phases: String,
-    tou: Int,
-    unit: String,
-    Channel: String,
-    ConsumptionTariffIntervals: List[String],
-    IntervalBlocks: List[String],
-    MetrologyRequirements: List[String],
-    PendingCalculation: String,
-    Readings: List[String]
+    override val sup: IdentifiedObject = null,
+    accumulation: String = null,
+    aggregate: String = null,
+    argument: String = null,
+    commodity: String = null,
+    consumptionTier: Int = 0,
+    cpp: Int = 0,
+    currency: String = null,
+    flowDirection: String = null,
+    interharmonic: String = null,
+    macroPeriod: String = null,
+    measurementKind: String = null,
+    measuringPeriod: String = null,
+    multiplier: String = null,
+    phases: String = null,
+    tou: Int = 0,
+    unit: String = null,
+    Channel: String = null,
+    ConsumptionTariffIntervals: List[String] = List(),
+    IntervalBlocks: List[String] = List(),
+    MetrologyRequirements: List[String] = List(),
+    PendingCalculation: String = null,
+    Readings: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 0, null, null, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -4248,23 +4104,19 @@ extends
  */
 final case class Register
 (
-    override val sup: IdentifiedObject,
-    isVirtual: Boolean,
-    leftDigitCount: Int,
-    rightDigitCount: Int,
-    touTier: String,
-    touTierName: String,
-    Channels: List[String],
-    EndDeviceFunction: String,
-    Usage_Point: String
+    override val sup: IdentifiedObject = null,
+    isVirtual: Boolean = false,
+    leftDigitCount: Int = 0,
+    rightDigitCount: Int = 0,
+    touTier: String = null,
+    touTierName: String = null,
+    Channels: List[String] = List(),
+    EndDeviceFunction: String = null,
+    Usage_Point: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0, 0, null, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -4367,18 +4219,14 @@ extends
  */
 final case class ServiceMultiplier
 (
-    override val sup: IdentifiedObject,
-    kind: String,
-    value: Double,
-    UsagePoint: String
+    override val sup: IdentifiedObject = null,
+    kind: String = null,
+    value: Double = 0.0,
+    UsagePoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -4458,16 +4306,12 @@ extends
  */
 final case class SimpleEndDeviceFunction
 (
-    override val sup: EndDeviceFunction,
-    kind: String
+    override val sup: EndDeviceFunction = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -4580,54 +4424,50 @@ extends
  */
 final case class UsagePoint
 (
-    override val sup: IdentifiedObject,
-    amiBillingReady: String,
-    checkBilling: Boolean,
-    connectionCategory: String,
-    connectionState: String,
-    disconnectionMethod: String,
-    estimatedLoad: Double,
-    grounded: Boolean,
-    isSdp: Boolean,
-    isVirtual: Boolean,
-    minimalUsageExpected: Boolean,
-    nominalServiceVoltage: Double,
-    outageRegion: String,
-    phaseCode: String,
-    physicalConnectionCapacity: Double,
-    ratedCurrent: Double,
-    ratedPower: Double,
-    readCycle: String,
-    readRoute: String,
-    serviceDeliveryRemark: String,
-    servicePriority: String,
-    ConfigurationEvents: List[String],
-    CustomerAgreement: String,
-    EndDeviceControls: List[String],
-    EndDeviceEvents: List[String],
-    EndDevices: List[String],
-    EnvironmentalMonitoringStation: String,
-    Equipments: List[String],
-    MeterReadings: List[String],
-    MeterServiceWorkTasks: List[String],
-    MetrologyRequirements: List[String],
-    Outage: List[String],
-    PricingStructures: List[String],
-    Register: List[String],
-    ServiceCategory: String,
-    ServiceLocation: String,
-    ServiceMultipliers: List[String],
-    ServiceSupplier: String,
-    UsagePointGroups: List[String],
-    UsagePointLocation: String
+    override val sup: IdentifiedObject = null,
+    amiBillingReady: String = null,
+    checkBilling: Boolean = false,
+    connectionCategory: String = null,
+    connectionState: String = null,
+    disconnectionMethod: String = null,
+    estimatedLoad: Double = 0.0,
+    grounded: Boolean = false,
+    isSdp: Boolean = false,
+    isVirtual: Boolean = false,
+    minimalUsageExpected: Boolean = false,
+    nominalServiceVoltage: Double = 0.0,
+    outageRegion: String = null,
+    phaseCode: String = null,
+    physicalConnectionCapacity: Double = 0.0,
+    ratedCurrent: Double = 0.0,
+    ratedPower: Double = 0.0,
+    readCycle: String = null,
+    readRoute: String = null,
+    serviceDeliveryRemark: String = null,
+    servicePriority: String = null,
+    ConfigurationEvents: List[String] = List(),
+    CustomerAgreement: String = null,
+    EndDeviceControls: List[String] = List(),
+    EndDeviceEvents: List[String] = List(),
+    EndDevices: List[String] = List(),
+    EnvironmentalMonitoringStation: String = null,
+    Equipments: List[String] = List(),
+    MeterReadings: List[String] = List(),
+    MeterServiceWorkTasks: List[String] = List(),
+    MetrologyRequirements: List[String] = List(),
+    Outage: List[String] = List(),
+    PricingStructures: List[String] = List(),
+    Register: List[String] = List(),
+    ServiceCategory: String = null,
+    ServiceLocation: String = null,
+    ServiceMultipliers: List[String] = List(),
+    ServiceSupplier: String = null,
+    UsagePointGroups: List[String] = List(),
+    UsagePointLocation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, null, null, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, 0.0, null, null, null, null, List(), null, List(), List(), List(), null, List(), List(), List(), List(), List(), List(), List(), null, null, List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -4873,19 +4713,15 @@ extends
  */
 final case class UsagePointGroup
 (
-    override val sup: IdentifiedObject,
-    `type`: String,
-    DemandResponsePrograms: List[String],
-    EndDeviceControls: List[String],
-    UsagePoints: List[String]
+    override val sup: IdentifiedObject = null,
+    `type`: String = null,
+    DemandResponsePrograms: List[String] = List(),
+    EndDeviceControls: List[String] = List(),
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -4974,19 +4810,15 @@ extends
  */
 final case class UsagePointLocation
 (
-    override val sup: Location,
-    accessMethod: String,
-    remark: String,
-    siteAccessProblem: String,
-    UsagePoints: List[String]
+    override val sup: Location = null,
+    accessMethod: String = null,
+    remark: String = null,
+    siteAccessProblem: String = null,
+    UsagePoints: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *

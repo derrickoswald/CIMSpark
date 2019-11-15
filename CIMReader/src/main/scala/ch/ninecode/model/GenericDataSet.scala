@@ -23,19 +23,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class ChangeSet
 (
-    override val sup: DataSet,
-    ChangeSetMember: List[String],
-    IncrementalDatasetArg: List[String],
-    NMProjectStage: String,
-    NetworkModelProjectChangeVersion: List[String]
+    override val sup: DataSet = null,
+    ChangeSetMember: List[String] = List(),
+    IncrementalDatasetArg: List[String] = List(),
+    NMProjectStage: String = null,
+    NetworkModelProjectChangeVersion: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -123,18 +119,14 @@ extends
  */
 final case class ChangeSetMember
 (
-    override val sup: BasicElement,
-    Changeset: String,
-    PropertiesObject: String,
-    TargetObject: String
+    override val sup: BasicElement = null,
+    Changeset: String = null,
+    PropertiesObject: String = null,
+    TargetObject: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -223,20 +215,16 @@ extends
  */
 final case class DataSet
 (
-    override val sup: BasicElement,
-    description: String,
-    mRID: String,
-    name: String,
-    AlternateModel: String,
-    Profile: List[String]
+    override val sup: BasicElement = null,
+    description: String = null,
+    mRID: String = null,
+    name: String = null,
+    AlternateModel: String = null,
+    Profile: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -321,18 +309,14 @@ extends
  */
 final case class GenericDataSetVersion
 (
-    override val sup: BasicElement,
-    majorVersion: String,
-    minorVersion: String,
-    published: String
+    override val sup: BasicElement = null,
+    majorVersion: String = null,
+    minorVersion: String = null,
+    published: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -409,17 +393,13 @@ extends
  */
 final case class InstanceSet
 (
-    override val sup: DataSet,
-    DatasetArg: List[String],
-    InstanceSetMember: List[String]
+    override val sup: DataSet = null,
+    DatasetArg: List[String] = List(),
+    InstanceSetMember: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -492,15 +472,11 @@ extends
  */
 final case class ObjectCreation
 (
-    override val sup: ChangeSetMember
+    override val sup: ChangeSetMember = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -554,15 +530,11 @@ extends
  */
 final case class ObjectDeletion
 (
-    override val sup: ChangeSetMember
+    override val sup: ChangeSetMember = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -617,16 +589,12 @@ extends
  */
 final case class ObjectModification
 (
-    override val sup: ChangeSetMember,
-    ObjectReverseModification: String
+    override val sup: ChangeSetMember = null,
+    ObjectReverseModification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -696,16 +664,12 @@ extends
  */
 final case class ObjectReverseModification
 (
-    override val sup: ChangeSetMember,
-    ObjectModification: String
+    override val sup: ChangeSetMember = null,
+    ObjectModification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -776,16 +740,12 @@ extends
  */
 final case class Profile2
 (
-    override val sup: IdentifiedObject,
-    DataSet: List[String]
+    override val sup: IdentifiedObject = null,
+    DataSet: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *

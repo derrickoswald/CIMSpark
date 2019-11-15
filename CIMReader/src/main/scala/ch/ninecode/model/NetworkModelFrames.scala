@@ -17,16 +17,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class AssemblyDescription
 (
-    override val sup: IdentifiedObject,
-    ModelSpecification: List[String]
+    override val sup: IdentifiedObject = null,
+    ModelSpecification: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -93,15 +89,11 @@ extends
  */
 final case class AssemblyManifest
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -154,15 +146,11 @@ extends
  */
 final case class CompleteModelToBeDeleted
 (
-    override val sup: ModelToBeDeleted
+    override val sup: ModelToBeDeleted = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -219,17 +207,13 @@ extends
  */
 final case class FrameworkPart
 (
-    override val sup: ModelAuthoritySet,
-    Frame: String,
-    ModelFrameType: String
+    override val sup: ModelAuthoritySet = null,
+    Frame: String = null,
+    ModelFrameType: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -301,15 +285,11 @@ extends
  */
 final case class LoadModelPartVersion
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -363,16 +343,12 @@ extends
  */
 final case class ModelAuthority
 (
-    override val sup: IdentifiedObject,
-    ModelingAuthoritySets: List[String]
+    override val sup: IdentifiedObject = null,
+    ModelingAuthoritySets: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -443,17 +419,13 @@ extends
  */
 final case class ModelAuthoritySet
 (
-    override val sup: IdentifiedObject,
-    ModelSpecification: List[String],
-    ModelingAuthority: String
+    override val sup: IdentifiedObject = null,
+    ModelSpecification: List[String] = List(),
+    ModelingAuthority: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -531,18 +503,14 @@ extends
  */
 final case class ModelPartSpecification
 (
-    override val sup: IdentifiedObject,
-    AssemblyDescription: List[String],
-    FrameworkPart: String,
-    Model: List[String]
+    override val sup: IdentifiedObject = null,
+    AssemblyDescription: List[String] = List(),
+    FrameworkPart: String = null,
+    Model: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -623,16 +591,12 @@ extends
  */
 final case class ModelPartVersion
 (
-    override val sup: ModelToBeDeleted,
-    ModelSpecification: String
+    override val sup: ModelToBeDeleted = null,
+    ModelSpecification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -699,15 +663,11 @@ extends
  */
 final case class ModelToBeDeleted
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -760,15 +720,11 @@ extends
  */
 final case class NetworkBoundary
 (
-    override val sup: FrameworkPart
+    override val sup: FrameworkPart = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -822,16 +778,12 @@ extends
  */
 final case class NetworkFrame
 (
-    override val sup: FrameworkPart,
-    FrameworkPart_attr: List[String]
+    override val sup: FrameworkPart = null,
+    FrameworkPart_attr: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -898,15 +850,11 @@ extends
  */
 final case class NetworkModelCaseDefinition
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -957,15 +905,11 @@ extends
  */
 final case class Operation
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

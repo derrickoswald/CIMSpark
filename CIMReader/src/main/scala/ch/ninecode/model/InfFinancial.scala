@@ -21,17 +21,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class ControlAreaOperator
 (
-    override val sup: Organisation,
-    CAChildOf: List[String],
-    ControlledBy: String
+    override val sup: Organisation = null,
+    CAChildOf: List[String] = List(),
+    ControlledBy: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -106,16 +102,12 @@ extends
  */
 final case class CustomerConsumer
 (
-    override val sup: Organisation,
-    CustChildOf: List[String]
+    override val sup: Organisation = null,
+    CustChildOf: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -184,16 +176,12 @@ extends
  */
 final case class GenerationProvider
 (
-    override val sup: Organisation,
-    ProvidedBy: List[String]
+    override val sup: Organisation = null,
+    ProvidedBy: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -263,16 +251,12 @@ extends
  */
 final case class IntSchedAgreement
 (
-    override val sup: Agreement,
-    defaultIntegrationMethod: String
+    override val sup: Agreement = null,
+    defaultIntegrationMethod: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -339,17 +323,13 @@ extends
  */
 final case class Marketer
 (
-    override val sup: Organisation,
-    HoldsTitleTo_EnergyProducts: List[String],
-    Resells_EnergyProduct: List[String]
+    override val sup: Organisation = null,
+    HoldsTitleTo_EnergyProducts: List[String] = List(),
+    Resells_EnergyProduct: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -422,15 +402,11 @@ extends
  */
 final case class OpenAccessProduct
 (
-    override val sup: Agreement
+    override val sup: Agreement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -482,18 +458,14 @@ extends
  */
 final case class TransmissionProduct
 (
-    override val sup: IdentifiedObject,
-    transmissionProductType: String,
-    LocationFor: List[String],
-    TransmissionProvider: String
+    override val sup: IdentifiedObject = null,
+    transmissionProductType: String = null,
+    LocationFor: List[String] = List(),
+    TransmissionProvider: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -577,17 +549,13 @@ extends
  */
 final case class TransmissionProvider
 (
-    override val sup: Organisation,
-    For: List[String],
-    TransmissionProducts: List[String]
+    override val sup: Organisation = null,
+    For: List[String] = List(),
+    TransmissionProducts: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *

@@ -24,22 +24,18 @@ import ch.ninecode.cim.Relationship
  */
 final case class CurrentRelay
 (
-    override val sup: ProtectionEquipment,
-    currentLimit1: Double,
-    currentLimit2: Double,
-    currentLimit3: Double,
-    inverseTimeFlag: Boolean,
-    timeDelay1: Double,
-    timeDelay2: Double,
-    timeDelay3: Double
+    override val sup: ProtectionEquipment = null,
+    currentLimit1: Double = 0.0,
+    currentLimit2: Double = 0.0,
+    currentLimit3: Double = 0.0,
+    inverseTimeFlag: Boolean = false,
+    timeDelay1: Double = 0.0,
+    timeDelay2: Double = 0.0,
+    timeDelay3: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -140,24 +136,20 @@ extends
  */
 final case class ProtectionEquipment
 (
-    override val sup: Equipment,
-    highLimit: Double,
-    lowLimit: Double,
-    powerDirectionFlag: Boolean,
-    relayDelayTime: Double,
-    unitMultiplier: String,
-    unitSymbol: String,
-    ConductingEquipments: List[String],
-    ProtectedSwitches: List[String],
-    ProtectiveAction: List[String]
+    override val sup: Equipment = null,
+    highLimit: Double = 0.0,
+    lowLimit: Double = 0.0,
+    powerDirectionFlag: Boolean = false,
+    relayDelayTime: Double = 0.0,
+    unitMultiplier: String = null,
+    unitSymbol: String = null,
+    ConductingEquipments: List[String] = List(),
+    ProtectedSwitches: List[String] = List(),
+    ProtectiveAction: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -264,18 +256,14 @@ extends
  */
 final case class RecloseSequence
 (
-    override val sup: IdentifiedObject,
-    recloseDelay: Double,
-    recloseStep: Int,
-    ProtectedSwitch: String
+    override val sup: IdentifiedObject = null,
+    recloseDelay: Double = 0.0,
+    recloseStep: Int = 0,
+    ProtectedSwitch: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -357,18 +345,14 @@ extends
  */
 final case class SynchrocheckRelay
 (
-    override val sup: ProtectionEquipment,
-    maxAngleDiff: Double,
-    maxFreqDiff: Double,
-    maxVoltDiff: Double
+    override val sup: ProtectionEquipment = null,
+    maxAngleDiff: Double = 0.0,
+    maxFreqDiff: Double = 0.0,
+    maxVoltDiff: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

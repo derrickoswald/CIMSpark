@@ -27,19 +27,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class OverexcLim2
 (
-    override val sup: OverexcitationLimiterDynamics,
-    ifdlim: Double,
-    koi: Double,
-    voimax: Double,
-    voimin: Double
+    override val sup: OverexcitationLimiterDynamics = null,
+    ifdlim: Double = 0.0,
+    koi: Double = 0.0,
+    voimax: Double = 0.0,
+    voimin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -131,21 +127,17 @@ extends
  */
 final case class OverexcLimIEEE
 (
-    override val sup: OverexcitationLimiterDynamics,
-    hyst: Double,
-    ifdlim: Double,
-    ifdmax: Double,
-    itfpu: Double,
-    kcd: Double,
-    kramp: Double
+    override val sup: OverexcitationLimiterDynamics = null,
+    hyst: Double = 0.0,
+    ifdlim: Double = 0.0,
+    ifdmax: Double = 0.0,
+    itfpu: Double = 0.0,
+    kcd: Double = 0.0,
+    kramp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -249,25 +241,21 @@ extends
  */
 final case class OverexcLimX1
 (
-    override val sup: OverexcitationLimiterDynamics,
-    efd1: Double,
-    efd2: Double,
-    efd3: Double,
-    efddes: Double,
-    efdrated: Double,
-    kmx: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    vlow: Double
+    override val sup: OverexcitationLimiterDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    efd3: Double = 0.0,
+    efddes: Double = 0.0,
+    efdrated: Double = 0.0,
+    kmx: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    vlow: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -390,26 +378,22 @@ extends
  */
 final case class OverexcLimX2
 (
-    override val sup: OverexcitationLimiterDynamics,
-    efd1: Double,
-    efd2: Double,
-    efd3: Double,
-    efddes: Double,
-    efdrated: Double,
-    kmx: Double,
-    m: Boolean,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    vlow: Double
+    override val sup: OverexcitationLimiterDynamics = null,
+    efd1: Double = 0.0,
+    efd2: Double = 0.0,
+    efd3: Double = 0.0,
+    efddes: Double = 0.0,
+    efdrated: Double = 0.0,
+    kmx: Double = 0.0,
+    m: Boolean = false,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    vlow: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -515,16 +499,12 @@ extends
  */
 final case class OverexcitationLimiterDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

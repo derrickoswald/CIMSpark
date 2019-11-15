@@ -14,22 +14,18 @@ import ch.ninecode.cim.Relationship
  */
 final case class DERCurveData
 (
-    override val sup: BasicElement,
-    intervalNumber: Int,
-    maxYValue: Double,
-    minYValue: Double,
-    nominalYValue: Double,
-    timeStamp: String,
-    DERMonitorableParameter: String,
-    DispatchSchedule: String
+    override val sup: BasicElement = null,
+    intervalNumber: Int = 0,
+    maxYValue: Double = 0.0,
+    minYValue: Double = 0.0,
+    nominalYValue: Double = 0.0,
+    timeStamp: String = null,
+    DERMonitorableParameter: String = null,
+    DispatchSchedule: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -120,25 +116,21 @@ extends
  */
 final case class DERFunction
 (
-    override val sup: BasicElement,
-    connectDisconnect: Boolean,
-    frequencyWattCurveFunction: Boolean,
-    maxRealPowerLimiting: Boolean,
-    rampRateControl: Boolean,
-    reactivePowerDispatch: Boolean,
-    realPowerDispatch: Boolean,
-    voltVarCurveFunction: Boolean,
-    voltWattCurveFunction: Boolean,
-    voltageRegulation: Boolean,
-    EndDeviceGroup: List[String]
+    override val sup: BasicElement = null,
+    connectDisconnect: Boolean = false,
+    frequencyWattCurveFunction: Boolean = false,
+    maxRealPowerLimiting: Boolean = false,
+    rampRateControl: Boolean = false,
+    reactivePowerDispatch: Boolean = false,
+    realPowerDispatch: Boolean = false,
+    voltVarCurveFunction: Boolean = false,
+    voltWattCurveFunction: Boolean = false,
+    voltageRegulation: Boolean = false,
+    EndDeviceGroup: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, false, false, false, false, false, false, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -240,16 +232,12 @@ extends
  */
 final case class DERGroupDispatch
 (
-    override val sup: IdentifiedObject,
-    EndDeviceGroup: List[String]
+    override val sup: IdentifiedObject = null,
+    EndDeviceGroup: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -314,17 +302,13 @@ extends
  */
 final case class DERGroupForecast
 (
-    override val sup: IdentifiedObject,
-    predictionCreationDate: String,
-    EndDeviceGroup: List[String]
+    override val sup: IdentifiedObject = null,
+    predictionCreationDate: String = null,
+    EndDeviceGroup: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -394,24 +378,20 @@ extends
  */
 final case class DERMonitorableParameter
 (
-    override val sup: BasicElement,
-    flowDirection: String,
-    yMultiplier: String,
-    yUnit: String,
-    yUnitInstalledMax: Double,
-    yUnitInstalledMin: Double,
-    DERCurveData: String,
-    DERParameter: String,
-    DispatchSchedule: List[String],
-    EndDeviceGroup: List[String]
+    override val sup: BasicElement = null,
+    flowDirection: String = null,
+    yMultiplier: String = null,
+    yUnit: String = null,
+    yUnitInstalledMax: Double = 0.0,
+    yUnitInstalledMin: Double = 0.0,
+    DERCurveData: String = null,
+    DERParameter: String = null,
+    DispatchSchedule: List[String] = List(),
+    EndDeviceGroup: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0.0, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -512,23 +492,19 @@ extends
  */
 final case class DispatchSchedule
 (
-    override val sup: BasicElement,
-    confidence: Double,
-    curveStyleKind: String,
-    numberOfIntervals: Int,
-    startTime: String,
-    timeIntervalDuration: Int,
-    timeIntervalUnit: String,
-    DERCurveData: List[String],
-    DERMonitorableParameter: String
+    override val sup: BasicElement = null,
+    confidence: Double = 0.0,
+    curveStyleKind: String = null,
+    numberOfIntervals: Int = 0,
+    startTime: String = null,
+    timeIntervalDuration: Int = 0,
+    timeIntervalUnit: String = null,
+    DERCurveData: List[String] = List(),
+    DERMonitorableParameter: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, 0, null, 0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -624,26 +600,22 @@ extends
  */
 final case class DispatchablePowerCapability
 (
-    override val sup: BasicElement,
-    currentActivePower: Double,
-    currentApparentPower: Double,
-    currentReactivePower: Double,
-    maxActivePower: Double,
-    maxApparentPower: Double,
-    maxReactivePower: Double,
-    minActivePower: Double,
-    minApparentPower: Double,
-    minReactivePower: Double,
-    EndDevice: String,
-    EndDeviceGroup: String
+    override val sup: BasicElement = null,
+    currentActivePower: Double = 0.0,
+    currentApparentPower: Double = 0.0,
+    currentReactivePower: Double = 0.0,
+    maxActivePower: Double = 0.0,
+    maxApparentPower: Double = 0.0,
+    maxReactivePower: Double = 0.0,
+    minActivePower: Double = 0.0,
+    minApparentPower: Double = 0.0,
+    minReactivePower: Double = 0.0,
+    EndDevice: String = null,
+    EndDeviceGroup: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *

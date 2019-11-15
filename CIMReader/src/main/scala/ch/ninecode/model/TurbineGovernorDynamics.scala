@@ -21,17 +21,13 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class CrossCompoundTurbineGovernorDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    HighPressureSynchronousMachineDynamics: String,
-    LowPressureSynchronousMachineDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    HighPressureSynchronousMachineDynamics: String = null,
+    LowPressureSynchronousMachineDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -191,50 +187,46 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovCT1
 (
-    override val sup: TurbineGovernorDynamics,
-    aset: Double,
-    db: Double,
-    dm: Double,
-    ka: Double,
-    kdgov: Double,
-    kigov: Double,
-    kiload: Double,
-    kimw: Double,
-    kpgov: Double,
-    kpload: Double,
-    kturb: Double,
-    ldref: Double,
-    maxerr: Double,
-    minerr: Double,
-    mwbase: Double,
-    r: Double,
-    rclose: Double,
-    rdown: Double,
-    ropen: Double,
-    rselect: String,
-    rup: Double,
-    ta: Double,
-    tact: Double,
-    tb: Double,
-    tc: Double,
-    tdgov: Double,
-    teng: Double,
-    tfload: Double,
-    tpelec: Double,
-    tsa: Double,
-    tsb: Double,
-    vmax: Double,
-    vmin: Double,
-    wfnl: Double,
-    wfspd: Boolean
+    override val sup: TurbineGovernorDynamics = null,
+    aset: Double = 0.0,
+    db: Double = 0.0,
+    dm: Double = 0.0,
+    ka: Double = 0.0,
+    kdgov: Double = 0.0,
+    kigov: Double = 0.0,
+    kiload: Double = 0.0,
+    kimw: Double = 0.0,
+    kpgov: Double = 0.0,
+    kpload: Double = 0.0,
+    kturb: Double = 0.0,
+    ldref: Double = 0.0,
+    maxerr: Double = 0.0,
+    minerr: Double = 0.0,
+    mwbase: Double = 0.0,
+    r: Double = 0.0,
+    rclose: Double = 0.0,
+    rdown: Double = 0.0,
+    ropen: Double = 0.0,
+    rselect: String = null,
+    rup: Double = 0.0,
+    ta: Double = 0.0,
+    tact: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    tdgov: Double = 0.0,
+    teng: Double = 0.0,
+    tfload: Double = 0.0,
+    tpelec: Double = 0.0,
+    tsa: Double = 0.0,
+    tsb: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0,
+    wfnl: Double = 0.0,
+    wfspd: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -554,71 +546,67 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovCT2
 (
-    override val sup: TurbineGovernorDynamics,
-    aset: Double,
-    db: Double,
-    dm: Double,
-    flim1: Double,
-    flim10: Double,
-    flim2: Double,
-    flim3: Double,
-    flim4: Double,
-    flim5: Double,
-    flim6: Double,
-    flim7: Double,
-    flim8: Double,
-    flim9: Double,
-    ka: Double,
-    kdgov: Double,
-    kigov: Double,
-    kiload: Double,
-    kimw: Double,
-    kpgov: Double,
-    kpload: Double,
-    kturb: Double,
-    ldref: Double,
-    maxerr: Double,
-    minerr: Double,
-    mwbase: Double,
-    plim1: Double,
-    plim10: Double,
-    plim2: Double,
-    plim3: Double,
-    plim4: Double,
-    plim5: Double,
-    plim6: Double,
-    plim7: Double,
-    plim8: Double,
-    plim9: Double,
-    prate: Double,
-    r: Double,
-    rclose: Double,
-    rdown: Double,
-    ropen: Double,
-    rselect: String,
-    rup: Double,
-    ta: Double,
-    tact: Double,
-    tb: Double,
-    tc: Double,
-    tdgov: Double,
-    teng: Double,
-    tfload: Double,
-    tpelec: Double,
-    tsa: Double,
-    tsb: Double,
-    vmax: Double,
-    vmin: Double,
-    wfnl: Double,
-    wfspd: Boolean
+    override val sup: TurbineGovernorDynamics = null,
+    aset: Double = 0.0,
+    db: Double = 0.0,
+    dm: Double = 0.0,
+    flim1: Double = 0.0,
+    flim10: Double = 0.0,
+    flim2: Double = 0.0,
+    flim3: Double = 0.0,
+    flim4: Double = 0.0,
+    flim5: Double = 0.0,
+    flim6: Double = 0.0,
+    flim7: Double = 0.0,
+    flim8: Double = 0.0,
+    flim9: Double = 0.0,
+    ka: Double = 0.0,
+    kdgov: Double = 0.0,
+    kigov: Double = 0.0,
+    kiload: Double = 0.0,
+    kimw: Double = 0.0,
+    kpgov: Double = 0.0,
+    kpload: Double = 0.0,
+    kturb: Double = 0.0,
+    ldref: Double = 0.0,
+    maxerr: Double = 0.0,
+    minerr: Double = 0.0,
+    mwbase: Double = 0.0,
+    plim1: Double = 0.0,
+    plim10: Double = 0.0,
+    plim2: Double = 0.0,
+    plim3: Double = 0.0,
+    plim4: Double = 0.0,
+    plim5: Double = 0.0,
+    plim6: Double = 0.0,
+    plim7: Double = 0.0,
+    plim8: Double = 0.0,
+    plim9: Double = 0.0,
+    prate: Double = 0.0,
+    r: Double = 0.0,
+    rclose: Double = 0.0,
+    rdown: Double = 0.0,
+    ropen: Double = 0.0,
+    rselect: String = null,
+    rup: Double = 0.0,
+    ta: Double = 0.0,
+    tact: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    tdgov: Double = 0.0,
+    teng: Double = 0.0,
+    tfload: Double = 0.0,
+    tpelec: Double = 0.0,
+    tsa: Double = 0.0,
+    tsb: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0,
+    wfnl: Double = 0.0,
+    wfspd: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -926,25 +914,21 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST
 (
-    override val sup: TurbineGovernorDynamics,
-    at: Double,
-    dturb: Double,
-    kt: Double,
-    mwbase: Double,
-    r: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    vmax: Double,
-    vmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    at: Double = 0.0,
+    dturb: Double = 0.0,
+    kt: Double = 0.0,
+    mwbase: Double = 0.0,
+    r: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1115,49 +1099,45 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST1
 (
-    override val sup: TurbineGovernorDynamics,
-    a: Double,
-    b: Double,
-    db1: Double,
-    db2: Double,
-    eps: Double,
-    fidle: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    ka: Double,
-    kt: Double,
-    lmax: Double,
-    loadinc: Double,
-    ltrate: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    r: Double,
-    rmax: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    tltr: Double,
-    vmax: Double,
-    vmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    a: Double = 0.0,
+    b: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    eps: Double = 0.0,
+    fidle: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    ka: Double = 0.0,
+    kt: Double = 0.0,
+    lmax: Double = 0.0,
+    loadinc: Double = 0.0,
+    ltrate: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    r: Double = 0.0,
+    rmax: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    tltr: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1397,47 +1377,43 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST2
 (
-    override val sup: TurbineGovernorDynamics,
-    a: Double,
-    af1: Double,
-    af2: Double,
-    b: Double,
-    bf1: Double,
-    bf2: Double,
-    c: Double,
-    cf2: Double,
-    ecr: Double,
-    etd: Double,
-    k3: Double,
-    k4: Double,
-    k5: Double,
-    k6: Double,
-    kf: Double,
-    mwbase: Double,
-    t: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    tc: Double,
-    tcd: Double,
-    tf: Double,
-    tmax: Double,
-    tmin: Double,
-    tr: Double,
-    trate: Double,
-    tt: Double,
-    w: Double,
-    x: Double,
-    y: Double,
-    z: Int
+    override val sup: TurbineGovernorDynamics = null,
+    a: Double = 0.0,
+    af1: Double = 0.0,
+    af2: Double = 0.0,
+    b: Double = 0.0,
+    bf1: Double = 0.0,
+    bf2: Double = 0.0,
+    c: Double = 0.0,
+    cf2: Double = 0.0,
+    ecr: Double = 0.0,
+    etd: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    k5: Double = 0.0,
+    k6: Double = 0.0,
+    kf: Double = 0.0,
+    mwbase: Double = 0.0,
+    t: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    tc: Double = 0.0,
+    tcd: Double = 0.0,
+    tf: Double = 0.0,
+    tmax: Double = 0.0,
+    tmin: Double = 0.0,
+    tr: Double = 0.0,
+    trate: Double = 0.0,
+    tt: Double = 0.0,
+    w: Double = 0.0,
+    x: Double = 0.0,
+    y: Double = 0.0,
+    z: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0) }
     /**
      * Return the superclass object.
      *
@@ -1670,36 +1646,32 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST3
 (
-    override val sup: TurbineGovernorDynamics,
-    bca: Double,
-    bp: Double,
-    dtc: Double,
-    ka: Double,
-    kac: Double,
-    kca: Double,
-    ksi: Double,
-    ky: Double,
-    mnef: Double,
-    mxef: Double,
-    rcmn: Double,
-    rcmx: Double,
-    tac: Double,
-    tc: Double,
-    td: Double,
-    tfen: Double,
-    tg: Double,
-    tsi: Double,
-    tt: Double,
-    ttc: Double,
-    ty: Double
+    override val sup: TurbineGovernorDynamics = null,
+    bca: Double = 0.0,
+    bp: Double = 0.0,
+    dtc: Double = 0.0,
+    ka: Double = 0.0,
+    kac: Double = 0.0,
+    kca: Double = 0.0,
+    ksi: Double = 0.0,
+    ky: Double = 0.0,
+    mnef: Double = 0.0,
+    mxef: Double = 0.0,
+    rcmn: Double = 0.0,
+    rcmx: Double = 0.0,
+    tac: Double = 0.0,
+    tc: Double = 0.0,
+    td: Double = 0.0,
+    tfen: Double = 0.0,
+    tg: Double = 0.0,
+    tsi: Double = 0.0,
+    tt: Double = 0.0,
+    ttc: Double = 0.0,
+    ty: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1868,26 +1840,22 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST4
 (
-    override val sup: TurbineGovernorDynamics,
-    bp: Double,
-    ktm: Double,
-    mnef: Double,
-    mxef: Double,
-    rymn: Double,
-    rymx: Double,
-    ta: Double,
-    tc: Double,
-    tcm: Double,
-    tm: Double,
-    ty: Double
+    override val sup: TurbineGovernorDynamics = null,
+    bp: Double = 0.0,
+    ktm: Double = 0.0,
+    mnef: Double = 0.0,
+    mxef: Double = 0.0,
+    rymn: Double = 0.0,
+    rymx: Double = 0.0,
+    ta: Double = 0.0,
+    tc: Double = 0.0,
+    tcm: Double = 0.0,
+    tm: Double = 0.0,
+    ty: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2033,48 +2001,44 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGASTWD
 (
-    override val sup: TurbineGovernorDynamics,
-    a: Double,
-    af1: Double,
-    af2: Double,
-    b: Double,
-    bf1: Double,
-    bf2: Double,
-    c: Double,
-    cf2: Double,
-    ecr: Double,
-    etd: Double,
-    k3: Double,
-    k4: Double,
-    k5: Double,
-    k6: Double,
-    kd: Double,
-    kdroop: Double,
-    kf: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    t: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    tc: Double,
-    tcd: Double,
-    td: Double,
-    tf: Double,
-    tmax: Double,
-    tmin: Double,
-    tr: Double,
-    trate: Double,
-    tt: Double
+    override val sup: TurbineGovernorDynamics = null,
+    a: Double = 0.0,
+    af1: Double = 0.0,
+    af2: Double = 0.0,
+    b: Double = 0.0,
+    bf1: Double = 0.0,
+    bf2: Double = 0.0,
+    c: Double = 0.0,
+    cf2: Double = 0.0,
+    ecr: Double = 0.0,
+    etd: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    k5: Double = 0.0,
+    k6: Double = 0.0,
+    kd: Double = 0.0,
+    kdroop: Double = 0.0,
+    kf: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    t: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    tc: Double = 0.0,
+    tcd: Double = 0.0,
+    td: Double = 0.0,
+    tf: Double = 0.0,
+    tmax: Double = 0.0,
+    tmin: Double = 0.0,
+    tr: Double = 0.0,
+    trate: Double = 0.0,
+    tt: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2297,29 +2261,25 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro1
 (
-    override val sup: TurbineGovernorDynamics,
-    at: Double,
-    dturb: Double,
-    gmax: Double,
-    gmin: Double,
-    hdam: Double,
-    mwbase: Double,
-    qnl: Double,
-    rperm: Double,
-    rtemp: Double,
-    tf: Double,
-    tg: Double,
-    tr: Double,
-    tw: Double,
-    velm: Double
+    override val sup: TurbineGovernorDynamics = null,
+    at: Double = 0.0,
+    dturb: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    hdam: Double = 0.0,
+    mwbase: Double = 0.0,
+    qnl: Double = 0.0,
+    rperm: Double = 0.0,
+    rtemp: Double = 0.0,
+    tf: Double = 0.0,
+    tg: Double = 0.0,
+    tr: Double = 0.0,
+    tw: Double = 0.0,
+    velm: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2496,44 +2456,40 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro2
 (
-    override val sup: TurbineGovernorDynamics,
-    aturb: Double,
-    bturb: Double,
-    db1: Double,
-    db2: Double,
-    eps: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    kturb: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    rperm: Double,
-    rtemp: Double,
-    tg: Double,
-    tp: Double,
-    tr: Double,
-    tw: Double,
-    uc: Double,
-    uo: Double
+    override val sup: TurbineGovernorDynamics = null,
+    aturb: Double = 0.0,
+    bturb: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    eps: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    kturb: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    rperm: Double = 0.0,
+    rtemp: Double = 0.0,
+    tg: Double = 0.0,
+    tp: Double = 0.0,
+    tr: Double = 0.0,
+    tw: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2788,51 +2744,47 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro3
 (
-    override val sup: TurbineGovernorDynamics,
-    at: Double,
-    db1: Double,
-    db2: Double,
-    dturb: Double,
-    eps: Double,
-    governorControl: Boolean,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    h0: Double,
-    k1: Double,
-    k2: Double,
-    kg: Double,
-    ki: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    qnl: Double,
-    relec: Double,
-    rgate: Double,
-    td: Double,
-    tf: Double,
-    tp: Double,
-    tt: Double,
-    tw: Double,
-    velcl: Double,
-    velop: Double
+    override val sup: TurbineGovernorDynamics = null,
+    at: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    dturb: Double = 0.0,
+    eps: Double = 0.0,
+    governorControl: Boolean = false,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    h0: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    qnl: Double = 0.0,
+    relec: Double = 0.0,
+    rgate: Double = 0.0,
+    td: Double = 0.0,
+    tf: Double = 0.0,
+    tp: Double = 0.0,
+    tt: Double = 0.0,
+    tw: Double = 0.0,
+    velcl: Double = 0.0,
+    velop: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3118,54 +3070,50 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro4
 (
-    override val sup: TurbineGovernorDynamics,
-    at: Double,
-    bgv0: Double,
-    bgv1: Double,
-    bgv2: Double,
-    bgv3: Double,
-    bgv4: Double,
-    bgv5: Double,
-    bmax: Double,
-    db1: Double,
-    db2: Double,
-    dturb: Double,
-    eps: Double,
-    gmax: Double,
-    gmin: Double,
-    gv0: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    hdam: Double,
-    model: String,
-    mwbase: Double,
-    pgv0: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    qnl: Double,
-    rperm: Double,
-    rtemp: Double,
-    tblade: Double,
-    tg: Double,
-    tp: Double,
-    tr: Double,
-    tw: Double,
-    uc: Double,
-    uo: Double
+    override val sup: TurbineGovernorDynamics = null,
+    at: Double = 0.0,
+    bgv0: Double = 0.0,
+    bgv1: Double = 0.0,
+    bgv2: Double = 0.0,
+    bgv3: Double = 0.0,
+    bgv4: Double = 0.0,
+    bgv5: Double = 0.0,
+    bmax: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    dturb: Double = 0.0,
+    eps: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    gv0: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    hdam: Double = 0.0,
+    model: String = null,
+    mwbase: Double = 0.0,
+    pgv0: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    qnl: Double = 0.0,
+    rperm: Double = 0.0,
+    rtemp: Double = 0.0,
+    tblade: Double = 0.0,
+    tg: Double = 0.0,
+    tp: Double = 0.0,
+    tr: Double = 0.0,
+    tw: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3459,50 +3407,46 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroDD
 (
-    override val sup: TurbineGovernorDynamics,
-    aturb: Double,
-    bturb: Double,
-    db1: Double,
-    db2: Double,
-    eps: Double,
-    gmax: Double,
-    gmin: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    inputSignal: Boolean,
-    k1: Double,
-    k2: Double,
-    kg: Double,
-    ki: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    r: Double,
-    td: Double,
-    tf: Double,
-    tp: Double,
-    tt: Double,
-    tturb: Double,
-    velcl: Double,
-    velop: Double
+    override val sup: TurbineGovernorDynamics = null,
+    aturb: Double = 0.0,
+    bturb: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    eps: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    inputSignal: Boolean = false,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    r: Double = 0.0,
+    td: Double = 0.0,
+    tf: Double = 0.0,
+    tp: Double = 0.0,
+    tt: Double = 0.0,
+    tturb: Double = 0.0,
+    velcl: Double = 0.0,
+    velop: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3764,42 +3708,38 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroFrancis
 (
-    override val sup: TurbineGovernorDynamics,
-    am: Double,
-    av0: Double,
-    av1: Double,
-    bp: Double,
-    db1: Double,
-    etamax: Double,
-    governorControl: String,
-    h1: Double,
-    h2: Double,
-    hn: Double,
-    kc: Double,
-    kg: Double,
-    kt: Double,
-    qc0: Double,
-    qn: Double,
-    ta: Double,
-    td: Double,
-    ts: Double,
-    twnc: Double,
-    twng: Double,
-    tx: Double,
-    va: Double,
-    valvmax: Double,
-    valvmin: Double,
-    vc: Double,
-    waterTunnelSurgeChamberSimulation: Boolean,
-    zsfc: Double
+    override val sup: TurbineGovernorDynamics = null,
+    am: Double = 0.0,
+    av0: Double = 0.0,
+    av1: Double = 0.0,
+    bp: Double = 0.0,
+    db1: Double = 0.0,
+    etamax: Double = 0.0,
+    governorControl: String = null,
+    h1: Double = 0.0,
+    h2: Double = 0.0,
+    hn: Double = 0.0,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    kt: Double = 0.0,
+    qc0: Double = 0.0,
+    qn: Double = 0.0,
+    ta: Double = 0.0,
+    td: Double = 0.0,
+    ts: Double = 0.0,
+    twnc: Double = 0.0,
+    twng: Double = 0.0,
+    tx: Double = 0.0,
+    va: Double = 0.0,
+    valvmax: Double = 0.0,
+    valvmin: Double = 0.0,
+    vc: Double = 0.0,
+    waterTunnelSurgeChamberSimulation: Boolean = false,
+    zsfc: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3986,23 +3926,19 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroIEEE0
 (
-    override val sup: TurbineGovernorDynamics,
-    k: Double,
-    mwbase: Double,
-    pmax: Double,
-    pmin: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double
+    override val sup: TurbineGovernorDynamics = null,
+    k: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4151,41 +4087,37 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroIEEE2
 (
-    override val sup: TurbineGovernorDynamics,
-    aturb: Double,
-    bturb: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    kturb: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    rperm: Double,
-    rtemp: Double,
-    tg: Double,
-    tp: Double,
-    tr: Double,
-    tw: Double,
-    uc: Double,
-    uo: Double
+    override val sup: TurbineGovernorDynamics = null,
+    aturb: Double = 0.0,
+    bturb: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    kturb: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    rperm: Double = 0.0,
+    rtemp: Double = 0.0,
+    tg: Double = 0.0,
+    tp: Double = 0.0,
+    tr: Double = 0.0,
+    tw: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4422,48 +4354,44 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPID
 (
-    override val sup: TurbineGovernorDynamics,
-    aturb: Double,
-    bturb: Double,
-    db1: Double,
-    db2: Double,
-    eps: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    inputSignal: Boolean,
-    kd: Double,
-    kg: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    r: Double,
-    td: Double,
-    tf: Double,
-    tp: Double,
-    tt: Double,
-    tturb: Double,
-    velcl: Double,
-    velop: Double
+    override val sup: TurbineGovernorDynamics = null,
+    aturb: Double = 0.0,
+    bturb: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    eps: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    inputSignal: Boolean = false,
+    kd: Double = 0.0,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    r: Double = 0.0,
+    td: Double = 0.0,
+    tf: Double = 0.0,
+    tp: Double = 0.0,
+    tt: Double = 0.0,
+    tturb: Double = 0.0,
+    velcl: Double = 0.0,
+    velop: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4705,37 +4633,33 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPID2
 (
-    override val sup: TurbineGovernorDynamics,
-    atw: Double,
-    d: Double,
-    feedbackSignal: Boolean,
-    g0: Double,
-    g1: Double,
-    g2: Double,
-    gmax: Double,
-    gmin: Double,
-    kd: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    p1: Double,
-    p2: Double,
-    p3: Double,
-    rperm: Double,
-    ta: Double,
-    tb: Double,
-    treg: Double,
-    tw: Double,
-    velmax: Double,
-    velmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    atw: Double = 0.0,
+    d: Double = 0.0,
+    feedbackSignal: Boolean = false,
+    g0: Double = 0.0,
+    g1: Double = 0.0,
+    g2: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    kd: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    p1: Double = 0.0,
+    p2: Double = 0.0,
+    p3: Double = 0.0,
+    rperm: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    treg: Double = 0.0,
+    tw: Double = 0.0,
+    velmax: Double = 0.0,
+    velmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -4952,43 +4876,39 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPelton
 (
-    override val sup: TurbineGovernorDynamics,
-    av0: Double,
-    av1: Double,
-    bp: Double,
-    db1: Double,
-    db2: Double,
-    h1: Double,
-    h2: Double,
-    hn: Double,
-    kc: Double,
-    kg: Double,
-    qc0: Double,
-    qn: Double,
-    simplifiedPelton: Boolean,
-    staticCompensating: Boolean,
-    ta: Double,
-    ts: Double,
-    tv: Double,
-    twnc: Double,
-    twng: Double,
-    tx: Double,
-    va: Double,
-    valvmax: Double,
-    valvmin: Double,
-    vav: Double,
-    vc: Double,
-    vcv: Double,
-    waterTunnelSurgeChamberSimulation: Boolean,
-    zsfc: Double
+    override val sup: TurbineGovernorDynamics = null,
+    av0: Double = 0.0,
+    av1: Double = 0.0,
+    bp: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    h1: Double = 0.0,
+    h2: Double = 0.0,
+    hn: Double = 0.0,
+    kc: Double = 0.0,
+    kg: Double = 0.0,
+    qc0: Double = 0.0,
+    qn: Double = 0.0,
+    simplifiedPelton: Boolean = false,
+    staticCompensating: Boolean = false,
+    ta: Double = 0.0,
+    ts: Double = 0.0,
+    tv: Double = 0.0,
+    twnc: Double = 0.0,
+    twng: Double = 0.0,
+    tx: Double = 0.0,
+    va: Double = 0.0,
+    valvmax: Double = 0.0,
+    valvmin: Double = 0.0,
+    vav: Double = 0.0,
+    vc: Double = 0.0,
+    vcv: Double = 0.0,
+    waterTunnelSurgeChamberSimulation: Boolean = false,
+    zsfc: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5251,57 +5171,53 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroR
 (
-    override val sup: TurbineGovernorDynamics,
-    at: Double,
-    db1: Double,
-    db2: Double,
-    dturb: Double,
-    eps: Double,
-    gmax: Double,
-    gmin: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    h0: Double,
-    inputSignal: Boolean,
-    kg: Double,
-    ki: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    qnl: Double,
-    r: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    t8: Double,
-    td: Double,
-    tp: Double,
-    tt: Double,
-    tw: Double,
-    velcl: Double,
-    velop: Double
+    override val sup: TurbineGovernorDynamics = null,
+    at: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    dturb: Double = 0.0,
+    eps: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    h0: Double = 0.0,
+    inputSignal: Boolean = false,
+    kg: Double = 0.0,
+    ki: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    qnl: Double = 0.0,
+    r: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    t8: Double = 0.0,
+    td: Double = 0.0,
+    tp: Double = 0.0,
+    tt: Double = 0.0,
+    tw: Double = 0.0,
+    velcl: Double = 0.0,
+    velop: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5623,66 +5539,62 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroWEH
 (
-    override val sup: TurbineGovernorDynamics,
-    db: Double,
-    dicn: Double,
-    dpv: Double,
-    dturb: Double,
-    feedbackSignal: Boolean,
-    fl1: Double,
-    fl2: Double,
-    fl3: Double,
-    fl4: Double,
-    fl5: Double,
-    fp1: Double,
-    fp10: Double,
-    fp2: Double,
-    fp3: Double,
-    fp4: Double,
-    fp5: Double,
-    fp6: Double,
-    fp7: Double,
-    fp8: Double,
-    fp9: Double,
-    gmax: Double,
-    gmin: Double,
-    gtmxcl: Double,
-    gtmxop: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    kd: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    pmss1: Double,
-    pmss10: Double,
-    pmss2: Double,
-    pmss3: Double,
-    pmss4: Double,
-    pmss5: Double,
-    pmss6: Double,
-    pmss7: Double,
-    pmss8: Double,
-    pmss9: Double,
-    rpg: Double,
-    rpp: Double,
-    td: Double,
-    tdv: Double,
-    tg: Double,
-    tp: Double,
-    tpe: Double,
-    tw: Double
+    override val sup: TurbineGovernorDynamics = null,
+    db: Double = 0.0,
+    dicn: Double = 0.0,
+    dpv: Double = 0.0,
+    dturb: Double = 0.0,
+    feedbackSignal: Boolean = false,
+    fl1: Double = 0.0,
+    fl2: Double = 0.0,
+    fl3: Double = 0.0,
+    fl4: Double = 0.0,
+    fl5: Double = 0.0,
+    fp1: Double = 0.0,
+    fp10: Double = 0.0,
+    fp2: Double = 0.0,
+    fp3: Double = 0.0,
+    fp4: Double = 0.0,
+    fp5: Double = 0.0,
+    fp6: Double = 0.0,
+    fp7: Double = 0.0,
+    fp8: Double = 0.0,
+    fp9: Double = 0.0,
+    gmax: Double = 0.0,
+    gmin: Double = 0.0,
+    gtmxcl: Double = 0.0,
+    gtmxop: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    kd: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmss1: Double = 0.0,
+    pmss10: Double = 0.0,
+    pmss2: Double = 0.0,
+    pmss3: Double = 0.0,
+    pmss4: Double = 0.0,
+    pmss5: Double = 0.0,
+    pmss6: Double = 0.0,
+    pmss7: Double = 0.0,
+    pmss8: Double = 0.0,
+    pmss9: Double = 0.0,
+    rpg: Double = 0.0,
+    rpp: Double = 0.0,
+    td: Double = 0.0,
+    tdv: Double = 0.0,
+    tg: Double = 0.0,
+    tp: Double = 0.0,
+    tpe: Double = 0.0,
+    tw: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -5984,37 +5896,33 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroWPID
 (
-    override val sup: TurbineGovernorDynamics,
-    d: Double,
-    gatmax: Double,
-    gatmin: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    kd: Double,
-    ki: Double,
-    kp: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pmax: Double,
-    pmin: Double,
-    reg: Double,
-    ta: Double,
-    tb: Double,
-    treg: Double,
-    tw: Double,
-    velmax: Double,
-    velmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    d: Double = 0.0,
+    gatmax: Double = 0.0,
+    gatmin: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    kd: Double = 0.0,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    reg: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    treg: Double = 0.0,
+    tw: Double = 0.0,
+    velmax: Double = 0.0,
+    velmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6181,23 +6089,19 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam0
 (
-    override val sup: TurbineGovernorDynamics,
-    dt: Double,
-    mwbase: Double,
-    r: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    vmax: Double,
-    vmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    dt: Double = 0.0,
+    mwbase: Double = 0.0,
+    r: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6376,54 +6280,50 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam1
 (
-    override val sup: TurbineGovernorDynamics,
-    db1: Double,
-    db2: Double,
-    eps: Double,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    k: Double,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    k4: Double,
-    k5: Double,
-    k6: Double,
-    k7: Double,
-    k8: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    sdb1: Boolean,
-    sdb2: Boolean,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    uc: Double,
-    uo: Double,
-    valve: Boolean
+    override val sup: TurbineGovernorDynamics = null,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    eps: Double = 0.0,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    k: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    k5: Double = 0.0,
+    k6: Double = 0.0,
+    k7: Double = 0.0,
+    k8: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    sdb1: Boolean = false,
+    sdb2: Boolean = false,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0,
+    valve: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -6658,23 +6558,19 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam2
 (
-    override val sup: TurbineGovernorDynamics,
-    dbf: Double,
-    k: Double,
-    mnef: Double,
-    mxef: Double,
-    pmax: Double,
-    pmin: Double,
-    t1: Double,
-    t2: Double
+    override val sup: TurbineGovernorDynamics = null,
+    dbf: Double = 0.0,
+    k: Double = 0.0,
+    mnef: Double = 0.0,
+    mxef: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6805,32 +6701,28 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamBB
 (
-    override val sup: TurbineGovernorDynamics,
-    fcut: Double,
-    k2: Double,
-    k3: Double,
-    kd: Double,
-    kg: Double,
-    kls: Double,
-    kp: Double,
-    ks: Double,
-    peflag: Boolean,
-    pmax: Double,
-    pmin: Double,
-    t1: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    td: Double,
-    tn: Double
+    override val sup: TurbineGovernorDynamics = null,
+    fcut: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    kd: Double = 0.0,
+    kg: Double = 0.0,
+    kls: Double = 0.0,
+    kp: Double = 0.0,
+    ks: Double = 0.0,
+    peflag: Boolean = false,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    td: Double = 0.0,
+    tn: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -6997,32 +6889,28 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamCC
 (
-    override val sup: CrossCompoundTurbineGovernorDynamics,
-    dhp: Double,
-    dlp: Double,
-    fhp: Double,
-    flp: Double,
-    mwbase: Double,
-    pmaxhp: Double,
-    pmaxlp: Double,
-    rhp: Double,
-    rlp: Double,
-    t1hp: Double,
-    t1lp: Double,
-    t3hp: Double,
-    t3lp: Double,
-    t4hp: Double,
-    t4lp: Double,
-    t5hp: Double,
-    t5lp: Double
+    override val sup: CrossCompoundTurbineGovernorDynamics = null,
+    dhp: Double = 0.0,
+    dlp: Double = 0.0,
+    fhp: Double = 0.0,
+    flp: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmaxhp: Double = 0.0,
+    pmaxlp: Double = 0.0,
+    rhp: Double = 0.0,
+    rlp: Double = 0.0,
+    t1hp: Double = 0.0,
+    t1lp: Double = 0.0,
+    t3hp: Double = 0.0,
+    t3lp: Double = 0.0,
+    t4hp: Double = 0.0,
+    t4lp: Double = 0.0,
+    t5hp: Double = 0.0,
+    t5lp: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7223,50 +7111,46 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamEU
 (
-    override val sup: TurbineGovernorDynamics,
-    chc: Double,
-    cho: Double,
-    cic: Double,
-    cio: Double,
-    db1: Double,
-    db2: Double,
-    hhpmax: Double,
-    ke: Double,
-    kfcor: Double,
-    khp: Double,
-    klp: Double,
-    komegacor: Double,
-    mwbase: Double,
-    pmax: Double,
-    prhmax: Double,
-    simx: Double,
-    tb: Double,
-    tdp: Double,
-    ten: Double,
-    tf: Double,
-    tfp: Double,
-    thp: Double,
-    tip: Double,
-    tlp: Double,
-    tp: Double,
-    trh: Double,
-    tvhp: Double,
-    tvip: Double,
-    tw: Double,
-    wfmax: Double,
-    wfmin: Double,
-    wmax1: Double,
-    wmax2: Double,
-    wwmax: Double,
-    wwmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    chc: Double = 0.0,
+    cho: Double = 0.0,
+    cic: Double = 0.0,
+    cio: Double = 0.0,
+    db1: Double = 0.0,
+    db2: Double = 0.0,
+    hhpmax: Double = 0.0,
+    ke: Double = 0.0,
+    kfcor: Double = 0.0,
+    khp: Double = 0.0,
+    klp: Double = 0.0,
+    komegacor: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmax: Double = 0.0,
+    prhmax: Double = 0.0,
+    simx: Double = 0.0,
+    tb: Double = 0.0,
+    tdp: Double = 0.0,
+    ten: Double = 0.0,
+    tf: Double = 0.0,
+    tfp: Double = 0.0,
+    thp: Double = 0.0,
+    tip: Double = 0.0,
+    tlp: Double = 0.0,
+    tp: Double = 0.0,
+    trh: Double = 0.0,
+    tvhp: Double = 0.0,
+    tvip: Double = 0.0,
+    tw: Double = 0.0,
+    wfmax: Double = 0.0,
+    wfmin: Double = 0.0,
+    wmax1: Double = 0.0,
+    wmax2: Double = 0.0,
+    wwmax: Double = 0.0,
+    wwmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7482,27 +7366,23 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV2
 (
-    override val sup: TurbineGovernorDynamics,
-    dt: Double,
-    k: Double,
-    mwbase: Double,
-    r: Double,
-    t1: Double,
-    t3: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    tt: Double,
-    vmax: Double,
-    vmin: Double
+    override val sup: TurbineGovernorDynamics = null,
+    dt: Double = 0.0,
+    k: Double = 0.0,
+    mwbase: Double = 0.0,
+    r: Double = 0.0,
+    t1: Double = 0.0,
+    t3: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    tt: Double = 0.0,
+    vmax: Double = 0.0,
+    vmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7675,46 +7555,42 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV3
 (
-    override val sup: TurbineGovernorDynamics,
-    gv1: Double,
-    gv2: Double,
-    gv3: Double,
-    gv4: Double,
-    gv5: Double,
-    gv6: Double,
-    k: Double,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    mwbase: Double,
-    pgv1: Double,
-    pgv2: Double,
-    pgv3: Double,
-    pgv4: Double,
-    pgv5: Double,
-    pgv6: Double,
-    pmax: Double,
-    pmin: Double,
-    prmax: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    ta: Double,
-    tb: Double,
-    tc: Double,
-    uc: Double,
-    uo: Double
+    override val sup: TurbineGovernorDynamics = null,
+    gv1: Double = 0.0,
+    gv2: Double = 0.0,
+    gv3: Double = 0.0,
+    gv4: Double = 0.0,
+    gv5: Double = 0.0,
+    gv6: Double = 0.0,
+    k: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    mwbase: Double = 0.0,
+    pgv1: Double = 0.0,
+    pgv2: Double = 0.0,
+    pgv3: Double = 0.0,
+    pgv4: Double = 0.0,
+    pgv5: Double = 0.0,
+    pgv6: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    prmax: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    ta: Double = 0.0,
+    tb: Double = 0.0,
+    tc: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8003,66 +7879,62 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV4
 (
-    override val sup: TurbineGovernorDynamics,
-    cpsmn: Double,
-    cpsmx: Double,
-    crmn: Double,
-    crmx: Double,
-    kdc: Double,
-    kf1: Double,
-    kf3: Double,
-    khp: Double,
-    kic: Double,
-    kip: Double,
-    kit: Double,
-    kmp1: Double,
-    kmp2: Double,
-    kpc: Double,
-    kpp: Double,
-    kpt: Double,
-    krc: Double,
-    ksh: Double,
-    lpi: Double,
-    lps: Double,
-    mnef: Double,
-    mxef: Double,
-    pr1: Double,
-    pr2: Double,
-    psmn: Double,
-    rsmimn: Double,
-    rsmimx: Double,
-    rvgmn: Double,
-    rvgmx: Double,
-    srmn: Double,
-    srmx: Double,
-    srsmp: Double,
-    svmn: Double,
-    svmx: Double,
-    ta: Double,
-    tam: Double,
-    tc: Double,
-    tcm: Double,
-    tdc: Double,
-    tf1: Double,
-    tf2: Double,
-    thp: Double,
-    tmp: Double,
-    trh: Double,
-    tv: Double,
-    ty: Double,
-    y: Double,
-    yhpmn: Double,
-    yhpmx: Double,
-    ympmn: Double,
-    ympmx: Double
+    override val sup: TurbineGovernorDynamics = null,
+    cpsmn: Double = 0.0,
+    cpsmx: Double = 0.0,
+    crmn: Double = 0.0,
+    crmx: Double = 0.0,
+    kdc: Double = 0.0,
+    kf1: Double = 0.0,
+    kf3: Double = 0.0,
+    khp: Double = 0.0,
+    kic: Double = 0.0,
+    kip: Double = 0.0,
+    kit: Double = 0.0,
+    kmp1: Double = 0.0,
+    kmp2: Double = 0.0,
+    kpc: Double = 0.0,
+    kpp: Double = 0.0,
+    kpt: Double = 0.0,
+    krc: Double = 0.0,
+    ksh: Double = 0.0,
+    lpi: Double = 0.0,
+    lps: Double = 0.0,
+    mnef: Double = 0.0,
+    mxef: Double = 0.0,
+    pr1: Double = 0.0,
+    pr2: Double = 0.0,
+    psmn: Double = 0.0,
+    rsmimn: Double = 0.0,
+    rsmimx: Double = 0.0,
+    rvgmn: Double = 0.0,
+    rvgmx: Double = 0.0,
+    srmn: Double = 0.0,
+    srmx: Double = 0.0,
+    srsmp: Double = 0.0,
+    svmn: Double = 0.0,
+    svmx: Double = 0.0,
+    ta: Double = 0.0,
+    tam: Double = 0.0,
+    tc: Double = 0.0,
+    tcm: Double = 0.0,
+    tdc: Double = 0.0,
+    tf1: Double = 0.0,
+    tf2: Double = 0.0,
+    thp: Double = 0.0,
+    tmp: Double = 0.0,
+    trh: Double = 0.0,
+    tv: Double = 0.0,
+    ty: Double = 0.0,
+    y: Double = 0.0,
+    yhpmn: Double = 0.0,
+    yhpmx: Double = 0.0,
+    ympmn: Double = 0.0,
+    ympmx: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8372,36 +8244,32 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamIEEE1
 (
-    override val sup: TurbineGovernorDynamics,
-    k: Double,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    k4: Double,
-    k5: Double,
-    k6: Double,
-    k7: Double,
-    k8: Double,
-    mwbase: Double,
-    pmax: Double,
-    pmin: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double,
-    t7: Double,
-    uc: Double,
-    uo: Double
+    override val sup: TurbineGovernorDynamics = null,
+    k: Double = 0.0,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    k4: Double = 0.0,
+    k5: Double = 0.0,
+    k6: Double = 0.0,
+    k7: Double = 0.0,
+    k8: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0,
+    t7: Double = 0.0,
+    uc: Double = 0.0,
+    uo: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8561,27 +8429,23 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamSGO
 (
-    override val sup: TurbineGovernorDynamics,
-    k1: Double,
-    k2: Double,
-    k3: Double,
-    mwbase: Double,
-    pmax: Double,
-    pmin: Double,
-    t1: Double,
-    t2: Double,
-    t3: Double,
-    t4: Double,
-    t5: Double,
-    t6: Double
+    override val sup: TurbineGovernorDynamics = null,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    k3: Double = 0.0,
+    mwbase: Double = 0.0,
+    pmax: Double = 0.0,
+    pmin: Double = 0.0,
+    t1: Double = 0.0,
+    t2: Double = 0.0,
+    t3: Double = 0.0,
+    t4: Double = 0.0,
+    t5: Double = 0.0,
+    t6: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -8697,18 +8561,14 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class TurbineGovernorDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    AsynchronousMachineDynamics: String,
-    SynchronousMachineDynamics: String,
-    TurbineLoadControllerDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    AsynchronousMachineDynamics: String = null,
+    SynchronousMachineDynamics: String = null,
+    TurbineLoadControllerDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *

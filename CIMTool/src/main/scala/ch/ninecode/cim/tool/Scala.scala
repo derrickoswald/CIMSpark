@@ -250,6 +250,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 s.append (product.variable)
                 s.append (""": """)
                 s.append (product.datatype)
+                s.append (""" = """)
+                s.append (product.initializer)
             }
 
             s.append ("""
@@ -257,12 +259,6 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |extends
             |    Element
             |{
-            |    /**
-            |     * Zero args constructor.
-            |     */
-            |    def this () = { this (""".stripMargin)
-            s.append (initializers.toString)
-            s.append (""") }
             |    /**
             |     * Return the superclass object.
             |     *

@@ -15,18 +15,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class AnnotatedProjectDependency
 (
-    override val sup: IdentifiedObject,
-    dependencyType: String,
-    DependentOnStage: String,
-    DependingStage: String
+    override val sup: IdentifiedObject = null,
+    dependencyType: String = null,
+    DependentOnStage: String = null,
+    DependingStage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -101,15 +97,11 @@ extends
  */
 final case class CurrentState
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -165,15 +157,11 @@ extends
  */
 final case class DifferentialModel
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -230,16 +218,12 @@ extends
  */
 final case class NetworkModelProject
 (
-    override val sup: NetworkModelProjectComponent,
-    ContainedProject: List[String]
+    override val sup: NetworkModelProjectComponent = null,
+    ContainedProject: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -305,16 +289,12 @@ extends
  */
 final case class NetworkModelProject2
 (
-    override val sup: NetworkModelProjectComponent2,
-    Child: List[String]
+    override val sup: NetworkModelProjectComponent2 = null,
+    Child: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -385,16 +365,12 @@ extends
  */
 final case class NetworkModelProjectChange
 (
-    override val sup: NetworkModelProjectComponent,
-    NetworkModelProjectChangeVersion: List[String]
+    override val sup: NetworkModelProjectComponent = null,
+    NetworkModelProjectChangeVersion: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -473,23 +449,19 @@ extends
  */
 final case class NetworkModelProjectChangeVersion
 (
-    override val sup: IdentifiedObject,
-    comment: String,
-    effectiveDateTime: String,
-    timeStamp: String,
-    ChangeSet: String,
-    NetworkModelProjectChange: String,
-    NetworkModelProjectState: String,
-    SupercededBy: String,
-    Supercedes: String
+    override val sup: IdentifiedObject = null,
+    comment: String = null,
+    effectiveDateTime: String = null,
+    timeStamp: String = null,
+    ChangeSet: String = null,
+    NetworkModelProjectChange: String = null,
+    NetworkModelProjectState: String = null,
+    SupercededBy: String = null,
+    Supercedes: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -588,15 +560,11 @@ extends
  */
 final case class NetworkModelProjectCollection
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -653,18 +621,14 @@ extends
  */
 final case class NetworkModelProjectComponent
 (
-    override val sup: IdentifiedObject,
-    ContainingProject: String,
-    ProjectARelationships: List[String],
-    ProjectBRelationships: List[String]
+    override val sup: IdentifiedObject = null,
+    ContainingProject: String = null,
+    ProjectARelationships: List[String] = List(),
+    ProjectBRelationships: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -741,20 +705,16 @@ extends
  */
 final case class NetworkModelProjectComponent2
 (
-    override val sup: IdentifiedObject,
-    closed: String,
-    created: String,
-    updated: String,
-    version: Int,
-    Parent: String
+    override val sup: IdentifiedObject = null,
+    closed: String = null,
+    created: String = null,
+    updated: String = null,
+    version: Int = 0,
+    Parent: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -837,15 +797,11 @@ extends
  */
 final case class NetworkModelProjectDocument
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -903,17 +859,13 @@ extends
  */
 final case class NetworkModelProjectRelationship
 (
-    override val sup: IdentifiedObject,
-    ProjectA: String,
-    ProjectB: String
+    override val sup: IdentifiedObject = null,
+    ProjectA: String = null,
+    ProjectB: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -984,21 +936,17 @@ extends
  */
 final case class NetworkModelProjectStage
 (
-    override val sup: NetworkModelProjectComponent2,
-    changesetVersion: Int,
-    commissionedDate: String,
-    plannedCommissionedDate: String,
-    ChangeSets: List[String],
-    DenpendecyDependingStage: List[String],
-    DependencyDependentOnStage: String
+    override val sup: NetworkModelProjectComponent2 = null,
+    changesetVersion: Int = 0,
+    commissionedDate: String = null,
+    plannedCommissionedDate: String = null,
+    ChangeSets: List[String] = List(),
+    DenpendecyDependingStage: List[String] = List(),
+    DependencyDependentOnStage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1093,16 +1041,12 @@ extends
  */
 final case class NetworkModelProjectState
 (
-    override val sup: IdentifiedObject,
-    NetworkModelProjectChangeVersion: List[String]
+    override val sup: IdentifiedObject = null,
+    NetworkModelProjectChangeVersion: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1174,19 +1118,15 @@ extends
  */
 final case class PowerSystemProjectLifecycleToBeDeleted
 (
-    override val sup: BasicElement,
-    cancelled: String,
-    committed: String,
-    inBuild: String,
-    inPlan: String
+    override val sup: BasicElement = null,
+    cancelled: String = null,
+    committed: String = null,
+    inBuild: String = null,
+    inPlan: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1266,15 +1206,11 @@ extends
  */
 final case class ProjectAlternative
 (
-    override val sup: NetworkModelProjectRelationship
+    override val sup: NetworkModelProjectRelationship = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1328,15 +1264,11 @@ extends
  */
 final case class ProjectDependency
 (
-    override val sup: NetworkModelProjectRelationship
+    override val sup: NetworkModelProjectRelationship = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

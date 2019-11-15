@@ -33,22 +33,18 @@ import ch.ninecode.cim.Relationship
  */
 final case class UnderexcLim2Simplified
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    kui: Double,
-    p0: Double,
-    p1: Double,
-    q0: Double,
-    q1: Double,
-    vuimax: Double,
-    vuimin: Double
+    override val sup: UnderexcitationLimiterDynamics = null,
+    kui: Double = 0.0,
+    p0: Double = 0.0,
+    p1: Double = 0.0,
+    q0: Double = 0.0,
+    q1: Double = 0.0,
+    vuimax: Double = 0.0,
+    vuimin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -167,30 +163,26 @@ extends
  */
 final case class UnderexcLimIEEE1
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    kuc: Double,
-    kuf: Double,
-    kui: Double,
-    kul: Double,
-    kur: Double,
-    tu1: Double,
-    tu2: Double,
-    tu3: Double,
-    tu4: Double,
-    vucmax: Double,
-    vuimax: Double,
-    vuimin: Double,
-    vulmax: Double,
-    vulmin: Double,
-    vurmax: Double
+    override val sup: UnderexcitationLimiterDynamics = null,
+    kuc: Double = 0.0,
+    kuf: Double = 0.0,
+    kui: Double = 0.0,
+    kul: Double = 0.0,
+    kur: Double = 0.0,
+    tu1: Double = 0.0,
+    tu2: Double = 0.0,
+    tu3: Double = 0.0,
+    tu4: Double = 0.0,
+    vucmax: Double = 0.0,
+    vuimax: Double = 0.0,
+    vuimin: Double = 0.0,
+    vulmax: Double = 0.0,
+    vulmin: Double = 0.0,
+    vurmax: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -381,55 +373,51 @@ extends
  */
 final case class UnderexcLimIEEE2
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    k1: Double,
-    k2: Double,
-    kfb: Double,
-    kuf: Double,
-    kui: Double,
-    kul: Double,
-    p0: Double,
-    p1: Double,
-    p10: Double,
-    p2: Double,
-    p3: Double,
-    p4: Double,
-    p5: Double,
-    p6: Double,
-    p7: Double,
-    p8: Double,
-    p9: Double,
-    q0: Double,
-    q1: Double,
-    q10: Double,
-    q2: Double,
-    q3: Double,
-    q4: Double,
-    q5: Double,
-    q6: Double,
-    q7: Double,
-    q8: Double,
-    q9: Double,
-    tu1: Double,
-    tu2: Double,
-    tu3: Double,
-    tu4: Double,
-    tul: Double,
-    tup: Double,
-    tuq: Double,
-    tuv: Double,
-    vuimax: Double,
-    vuimin: Double,
-    vulmax: Double,
-    vulmin: Double
+    override val sup: UnderexcitationLimiterDynamics = null,
+    k1: Double = 0.0,
+    k2: Double = 0.0,
+    kfb: Double = 0.0,
+    kuf: Double = 0.0,
+    kui: Double = 0.0,
+    kul: Double = 0.0,
+    p0: Double = 0.0,
+    p1: Double = 0.0,
+    p10: Double = 0.0,
+    p2: Double = 0.0,
+    p3: Double = 0.0,
+    p4: Double = 0.0,
+    p5: Double = 0.0,
+    p6: Double = 0.0,
+    p7: Double = 0.0,
+    p8: Double = 0.0,
+    p9: Double = 0.0,
+    q0: Double = 0.0,
+    q1: Double = 0.0,
+    q10: Double = 0.0,
+    q2: Double = 0.0,
+    q3: Double = 0.0,
+    q4: Double = 0.0,
+    q5: Double = 0.0,
+    q6: Double = 0.0,
+    q7: Double = 0.0,
+    q8: Double = 0.0,
+    q9: Double = 0.0,
+    tu1: Double = 0.0,
+    tu2: Double = 0.0,
+    tu3: Double = 0.0,
+    tu4: Double = 0.0,
+    tul: Double = 0.0,
+    tup: Double = 0.0,
+    tuq: Double = 0.0,
+    tuv: Double = 0.0,
+    vuimax: Double = 0.0,
+    vuimin: Double = 0.0,
+    vulmax: Double = 0.0,
+    vulmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -656,21 +644,17 @@ extends
  */
 final case class UnderexcLimX1
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    k: Double,
-    kf2: Double,
-    km: Double,
-    melmax: Double,
-    tf2: Double,
-    tm: Double
+    override val sup: UnderexcitationLimiterDynamics = null,
+    k: Double = 0.0,
+    kf2: Double = 0.0,
+    km: Double = 0.0,
+    melmax: Double = 0.0,
+    tf2: Double = 0.0,
+    tm: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -762,22 +746,18 @@ extends
  */
 final case class UnderexcLimX2
 (
-    override val sup: UnderexcitationLimiterDynamics,
-    kf2: Double,
-    km: Double,
-    melmax: Double,
-    qo: Double,
-    r: Double,
-    tf2: Double,
-    tm: Double
+    override val sup: UnderexcitationLimiterDynamics = null,
+    kf2: Double = 0.0,
+    km: Double = 0.0,
+    melmax: Double = 0.0,
+    qo: Double = 0.0,
+    r: Double = 0.0,
+    tf2: Double = 0.0,
+    tm: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -868,17 +848,13 @@ extends
  */
 final case class UnderexcitationLimiterDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String,
-    RemoteInputSignal: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null,
+    RemoteInputSignal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

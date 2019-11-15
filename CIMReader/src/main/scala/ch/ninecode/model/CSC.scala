@@ -14,15 +14,11 @@ import ch.ninecode.cim.Relationship
  */
 final case class CCAinverter
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -73,15 +69,11 @@ extends
  */
 final case class CCArectifierControl
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -132,15 +124,11 @@ extends
  */
 final case class CSCtype1
 (
-    override val sup: CSCDynamics
+    override val sup: CSCDynamics = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -191,15 +179,11 @@ extends
  */
 final case class IdcInverterControl
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -250,15 +234,11 @@ extends
  */
 final case class IgnAngleContInverter
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -309,15 +289,11 @@ extends
  */
 final case class VDCOL
 (
-    override val sup: BasicElement
+    override val sup: BasicElement = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

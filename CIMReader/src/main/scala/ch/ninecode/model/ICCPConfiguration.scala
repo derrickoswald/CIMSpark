@@ -23,19 +23,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class BilateralExchangeActor
 (
-    override val sup: IdentifiedObject,
-    CommunicationLink: List[String],
-    ConsumerBilateralExchange: List[String],
-    ProvidedBilateralIOPoint: List[String],
-    ProviderBilateralExchange: List[String]
+    override val sup: IdentifiedObject = null,
+    CommunicationLink: List[String] = List(),
+    ConsumerBilateralExchange: List[String] = List(),
+    ProvidedBilateralIOPoint: List[String] = List(),
+    ProviderBilateralExchange: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -120,17 +116,13 @@ extends
  */
 final case class BilateralExchangeAgreement
 (
-    override val sup: IdentifiedObject,
-    Consumer: String,
-    Provider: String
+    override val sup: IdentifiedObject = null,
+    Consumer: String = null,
+    Provider: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -210,18 +202,14 @@ extends
  */
 final case class ICCPInformationMessage
 (
-    override val sup: IdentifiedObject,
-    localReference: String,
-    scope: String,
-    TASE2BilateralTable: List[String]
+    override val sup: IdentifiedObject = null,
+    localReference: String = null,
+    scope: String = null,
+    TASE2BilateralTable: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -310,19 +298,15 @@ extends
  */
 final case class ICCPProvidedPoint
 (
-    override val sup: ProvidedBilateralPoint,
-    accessPriviledge: String,
-    pointQuality: String,
-    pointType: String,
-    scope: String
+    override val sup: ProvidedBilateralPoint = null,
+    accessPriviledge: String = null,
+    pointQuality: String = null,
+    pointType: String = null,
+    scope: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -399,15 +383,11 @@ extends
  */
 final case class ICCPVCC
 (
-    override val sup: BilateralExchangeActor
+    override val sup: BilateralExchangeActor = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -479,27 +459,23 @@ extends
  */
 final case class ICCPVirtualControlCentre
 (
-    override val sup: BilateralExchangeActor,
-    applicationSecurityRequirement: String,
-    calling: Boolean,
-    clientAndServer: Boolean,
-    minimumUpdateInterval: Int,
-    nameOfLocalICC: String,
-    supportForBlock1: Boolean,
-    supportForBlock2: Boolean,
-    supportForBlock3: Boolean,
-    supportForBlock4: Boolean,
-    supportForBlock5: Boolean,
-    supportForDepriciatedBlock8: Boolean,
-    transportSecurityRequirement: Boolean
+    override val sup: BilateralExchangeActor = null,
+    applicationSecurityRequirement: String = null,
+    calling: Boolean = false,
+    clientAndServer: Boolean = false,
+    minimumUpdateInterval: Int = 0,
+    nameOfLocalICC: String = null,
+    supportForBlock1: Boolean = false,
+    supportForBlock2: Boolean = false,
+    supportForBlock3: Boolean = false,
+    supportForBlock4: Boolean = false,
+    supportForBlock5: Boolean = false,
+    supportForDepriciatedBlock8: Boolean = false,
+    transportSecurityRequirement: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, false, false, 0, null, false, false, false, false, false, false, false) }
     /**
      * Return the superclass object.
      *
@@ -610,16 +586,12 @@ extends
  */
 final case class IOPointSource
 (
-    override val sup: MeasurementValueSource,
-    IOPoint: List[String]
+    override val sup: MeasurementValueSource = null,
+    IOPoint: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -693,19 +665,15 @@ extends
  */
 final case class IPAccessPoint
 (
-    override val sup: CommunicationLink,
-    address: String,
-    addressType: String,
-    gateway: String,
-    subnet: String
+    override val sup: CommunicationLink = null,
+    address: String = null,
+    addressType: String = null,
+    gateway: String = null,
+    subnet: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -792,23 +760,19 @@ extends
  */
 final case class ISOUpperLayer
 (
-    override val sup: TCPAccessPoint,
-    aeInvoke: Int,
-    aeQual: Int,
-    apInvoke: Int,
-    apTitle: String,
-    osiPsel: String,
-    osiSsel: String,
-    osiTsel: String,
-    UpperLayerPublicX509Certificate: List[String]
+    override val sup: TCPAccessPoint = null,
+    aeInvoke: Int = 0,
+    aeQual: Int = 0,
+    apInvoke: Int = 0,
+    apTitle: String = null,
+    osiPsel: String = null,
+    osiSsel: String = null,
+    osiTsel: String = null,
+    UpperLayerPublicX509Certificate: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, 0, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -907,17 +871,13 @@ extends
  */
 final case class ProvidedBilateralPoint
 (
-    override val sup: IdentifiedObject,
-    BilateralExchangeActor: String,
-    IOPoint: String
+    override val sup: IdentifiedObject = null,
+    BilateralExchangeActor: String = null,
+    IOPoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -997,19 +957,15 @@ extends
  */
 final case class PublicX509Certificate
 (
-    override val sup: BasicElement,
-    issuerName: String,
-    serialNumber: String,
-    ISOUpperLayer: String,
-    TCPAccessPoint: String
+    override val sup: BasicElement = null,
+    issuerName: String = null,
+    serialNumber: String = null,
+    ISOUpperLayer: String = null,
+    TCPAccessPoint: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1099,19 +1055,15 @@ extends
  */
 final case class TASE2BilateralTable
 (
-    override val sup: BilateralExchangeAgreement,
-    bilateralTableID: String,
-    bilateralTableVersion: String,
-    tase2version: String,
-    ICCPInformationMessage: List[String]
+    override val sup: BilateralExchangeAgreement = null,
+    bilateralTableID: String = null,
+    bilateralTableVersion: String = null,
+    tase2version: String = null,
+    ICCPInformationMessage: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1201,18 +1153,14 @@ extends
  */
 final case class TCPAccessPoint
 (
-    override val sup: IPAccessPoint,
-    keepAliveTime: Int,
-    port: Int,
-    PublicX509Certificate: List[String]
+    override val sup: IPAccessPoint = null,
+    keepAliveTime: Int = 0,
+    port: Int = 0,
+    PublicX509Certificate: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0, List()) }
     /**
      * Return the superclass object.
      *

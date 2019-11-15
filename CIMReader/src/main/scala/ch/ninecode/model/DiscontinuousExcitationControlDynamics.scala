@@ -55,33 +55,29 @@ import ch.ninecode.cim.Relationship
  */
 final case class DiscExcContIEEEDEC1A
 (
-    override val sup: DiscontinuousExcitationControlDynamics,
-    esc: Double,
-    kan: Double,
-    ketl: Double,
-    tan: Double,
-    td: Double,
-    tl1: Double,
-    tl2: Double,
-    tw5: Double,
-    `val`: Double,
-    vanmax: Double,
-    vomax: Double,
-    vomin: Double,
-    vsmax: Double,
-    vsmin: Double,
-    vtc: Double,
-    vtlmt: Double,
-    vtm: Double,
-    vtn: Double
+    override val sup: DiscontinuousExcitationControlDynamics = null,
+    esc: Double = 0.0,
+    kan: Double = 0.0,
+    ketl: Double = 0.0,
+    tan: Double = 0.0,
+    td: Double = 0.0,
+    tl1: Double = 0.0,
+    tl2: Double = 0.0,
+    tw5: Double = 0.0,
+    `val`: Double = 0.0,
+    vanmax: Double = 0.0,
+    vomax: Double = 0.0,
+    vomin: Double = 0.0,
+    vsmax: Double = 0.0,
+    vsmin: Double = 0.0,
+    vtc: Double = 0.0,
+    vtlmt: Double = 0.0,
+    vtm: Double = 0.0,
+    vtn: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -223,20 +219,16 @@ extends
  */
 final case class DiscExcContIEEEDEC2A
 (
-    override val sup: DiscontinuousExcitationControlDynamics,
-    td1: Double,
-    td2: Double,
-    vdmax: Double,
-    vdmin: Double,
-    vk: Double
+    override val sup: DiscontinuousExcitationControlDynamics = null,
+    td1: Double = 0.0,
+    td2: Double = 0.0,
+    vdmax: Double = 0.0,
+    vdmin: Double = 0.0,
+    vk: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -323,17 +315,13 @@ extends
  */
 final case class DiscExcContIEEEDEC3A
 (
-    override val sup: DiscontinuousExcitationControlDynamics,
-    tdr: Double,
-    vtmin: Double
+    override val sup: DiscontinuousExcitationControlDynamics = null,
+    tdr: Double = 0.0,
+    vtmin: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -405,17 +393,13 @@ extends
  */
 final case class DiscontinuousExcitationControlDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String,
-    RemoteInputSignal: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null,
+    RemoteInputSignal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

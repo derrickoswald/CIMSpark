@@ -21,16 +21,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class PFVArControllerType2Dynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -112,20 +108,16 @@ extends
  */
 final case class PFVArType2Common1
 (
-    override val sup: PFVArControllerType2Dynamics,
-    j: Boolean,
-    ki: Double,
-    kp: Double,
-    max: Double,
-    ref: Double
+    override val sup: PFVArControllerType2Dynamics = null,
+    j: Boolean = false,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    max: Double = 0.0,
+    ref: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -224,22 +216,18 @@ extends
  */
 final case class PFVArType2IEEEPFController
 (
-    override val sup: PFVArControllerType2Dynamics,
-    exlon: Boolean,
-    ki: Double,
-    kp: Double,
-    pfref: Double,
-    vclmt: Double,
-    vref: Double,
-    vs: Double
+    override val sup: PFVArControllerType2Dynamics = null,
+    exlon: Boolean = false,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    pfref: Double = 0.0,
+    vclmt: Double = 0.0,
+    vref: Double = 0.0,
+    vs: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -343,22 +331,18 @@ extends
  */
 final case class PFVArType2IEEEVArController
 (
-    override val sup: PFVArControllerType2Dynamics,
-    exlon: Boolean,
-    ki: Double,
-    kp: Double,
-    qref: Double,
-    vclmt: Double,
-    vref: Double,
-    vs: Double
+    override val sup: PFVArControllerType2Dynamics = null,
+    exlon: Boolean = false,
+    ki: Double = 0.0,
+    kp: Double = 0.0,
+    qref: Double = 0.0,
+    vclmt: Double = 0.0,
+    vref: Double = 0.0,
+    vs: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

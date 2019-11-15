@@ -28,23 +28,19 @@ import ch.ninecode.cim.Relationship
  */
 final case class EnvironmentalMonitoringStation
 (
-    override val sup: IdentifiedObject,
-    dstObserved: Boolean,
-    isNetworked: Boolean,
-    timeZoneOffset: Double,
-    EnvironmentalAnalog: List[String],
-    Location: String,
-    ReportingCapability: List[String],
-    TimeSeries: List[String],
-    UsagePoint: List[String]
+    override val sup: IdentifiedObject = null,
+    dstObserved: Boolean = false,
+    isNetworked: Boolean = false,
+    timeZoneOffset: Double = 0.0,
+    EnvironmentalAnalog: List[String] = List(),
+    Location: String = null,
+    ReportingCapability: List[String] = List(),
+    TimeSeries: List[String] = List(),
+    UsagePoint: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, false, 0.0, List(), null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -155,22 +151,18 @@ extends
  */
 final case class MarketParticipant
 (
-    override val sup: Organisation,
-    Bid: List[String],
-    MarketDocument: List[String],
-    MarketPerson: List[String],
-    MarketRole: List[String],
-    RegisteredResource: List[String],
-    SchedulingCoordinator: List[String],
-    TimeSeries: List[String]
+    override val sup: Organisation = null,
+    Bid: List[String] = List(),
+    MarketDocument: List[String] = List(),
+    MarketPerson: List[String] = List(),
+    MarketRole: List[String] = List(),
+    RegisteredResource: List[String] = List(),
+    SchedulingCoordinator: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -271,17 +263,13 @@ extends
  */
 final case class MarketRole
 (
-    override val sup: OrganisationRole,
-    `type`: String,
-    MarketParticipant: List[String]
+    override val sup: OrganisationRole = null,
+    `type`: String = null,
+    MarketParticipant: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -355,16 +343,12 @@ extends
  */
 final case class MktGeneratingUnit
 (
-    override val sup: GeneratingUnit,
-    GeneratingUnitDynamicValues: List[String]
+    override val sup: GeneratingUnit = null,
+    GeneratingUnitDynamicValues: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -508,84 +492,80 @@ extends
  */
 final case class RegisteredResource
 (
-    override val sup: PowerSystemResource,
-    commercialOpDate: String,
-    contingencyAvailFlag: String,
-    dispatchable: Boolean,
-    flexibleOfferFlag: String,
-    hourlyPredispatch: String,
-    isAggregatedRes: String,
-    lastModified: String,
-    marketParticipationFlag: String,
-    maxBaseSelfSchedQty_1: Double,
-    maxOnTime: Double,
-    minDispatchTime: Double,
-    minOffTime: Double,
-    minOnTime: Double,
-    mustOfferFlag: String,
-    nonMarket: String,
-    pointOfDeliveryFlag: String,
-    priceSetFlagDA: String,
-    priceSetFlagRT: String,
-    registrationStatus: String,
-    resourceAdequacyFlag: String,
-    ACAFlag: String,
-    ASSPOptimizationFlag: String,
-    AdjacentCASet: String,
-    AggregateNode: String,
-    AllocationResultValues: List[String],
-    Commitments: List[String],
-    ContractDistributionFactor: List[String],
-    ControlAreaDesignation: List[String],
-    DefaultBid: String,
-    DispatchInstReply: List[String],
-    Domain: List[String],
-    DopInstruction: List[String],
-    DotInstruction: List[String],
-    ECAFlag: String,
-    EnergyMarkets: List[String],
-    ExPostResourceResults: List[String],
-    ExpectedEnergyValues: List[String],
-    ForbiddenRegion: List[String],
-    FormerReference: List[String],
-    HostControlArea: String,
-    Instructions: List[String],
-    InterTie: List[String],
-    IntermittentResourceEligibility: List[String],
-    LMPMFlag: String,
-    LoadFollowingInst: List[String],
-    LoadFollowingOperatorInput: List[String],
-    MPMResourceStatus: List[String],
-    MPMTestThreshold: List[String],
-    MarketObjectStatus: List[String],
-    MarketParticipant: String,
-    MktConnectivityNode: String,
-    OrgResOwnership: List[String],
-    Pnode: String,
-    RMROperatorInput: List[String],
-    RUCAwardInstruction: List[String],
-    RampRateCurve: List[String],
-    Reason: List[String],
-    ResourceAncillaryServiceQualification: List[String],
-    ResourceAwardInstruction: List[String],
-    ResourceCapacity: List[String],
-    ResourceCertification: List[String],
-    ResourceDispatchResults: List[String],
-    ResourceGroups: List[String],
-    ResourceLoadFollowingInst: List[String],
-    ResourceVerifiableCosts: String,
-    SMPMFlag: String,
-    SubControlArea: List[String],
-    SubstitutionResourceList: List[String],
-    TimeSeries: List[String]
+    override val sup: PowerSystemResource = null,
+    commercialOpDate: String = null,
+    contingencyAvailFlag: String = null,
+    dispatchable: Boolean = false,
+    flexibleOfferFlag: String = null,
+    hourlyPredispatch: String = null,
+    isAggregatedRes: String = null,
+    lastModified: String = null,
+    marketParticipationFlag: String = null,
+    maxBaseSelfSchedQty_1: Double = 0.0,
+    maxOnTime: Double = 0.0,
+    minDispatchTime: Double = 0.0,
+    minOffTime: Double = 0.0,
+    minOnTime: Double = 0.0,
+    mustOfferFlag: String = null,
+    nonMarket: String = null,
+    pointOfDeliveryFlag: String = null,
+    priceSetFlagDA: String = null,
+    priceSetFlagRT: String = null,
+    registrationStatus: String = null,
+    resourceAdequacyFlag: String = null,
+    ACAFlag: String = null,
+    ASSPOptimizationFlag: String = null,
+    AdjacentCASet: String = null,
+    AggregateNode: String = null,
+    AllocationResultValues: List[String] = List(),
+    Commitments: List[String] = List(),
+    ContractDistributionFactor: List[String] = List(),
+    ControlAreaDesignation: List[String] = List(),
+    DefaultBid: String = null,
+    DispatchInstReply: List[String] = List(),
+    Domain: List[String] = List(),
+    DopInstruction: List[String] = List(),
+    DotInstruction: List[String] = List(),
+    ECAFlag: String = null,
+    EnergyMarkets: List[String] = List(),
+    ExPostResourceResults: List[String] = List(),
+    ExpectedEnergyValues: List[String] = List(),
+    ForbiddenRegion: List[String] = List(),
+    FormerReference: List[String] = List(),
+    HostControlArea: String = null,
+    Instructions: List[String] = List(),
+    InterTie: List[String] = List(),
+    IntermittentResourceEligibility: List[String] = List(),
+    LMPMFlag: String = null,
+    LoadFollowingInst: List[String] = List(),
+    LoadFollowingOperatorInput: List[String] = List(),
+    MPMResourceStatus: List[String] = List(),
+    MPMTestThreshold: List[String] = List(),
+    MarketObjectStatus: List[String] = List(),
+    MarketParticipant: String = null,
+    MktConnectivityNode: String = null,
+    OrgResOwnership: List[String] = List(),
+    Pnode: String = null,
+    RMROperatorInput: List[String] = List(),
+    RUCAwardInstruction: List[String] = List(),
+    RampRateCurve: List[String] = List(),
+    Reason: List[String] = List(),
+    ResourceAncillaryServiceQualification: List[String] = List(),
+    ResourceAwardInstruction: List[String] = List(),
+    ResourceCapacity: List[String] = List(),
+    ResourceCertification: List[String] = List(),
+    ResourceDispatchResults: List[String] = List(),
+    ResourceGroups: List[String] = List(),
+    ResourceLoadFollowingInst: List[String] = List(),
+    ResourceVerifiableCosts: String = null,
+    SMPMFlag: String = null,
+    SubControlArea: List[String] = List(),
+    SubstitutionResourceList: List[String] = List(),
+    TimeSeries: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, false, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, List(), List(), List(), List(), null, List(), List(), List(), List(), null, List(), List(), List(), List(), List(), null, List(), List(), List(), null, List(), List(), List(), List(), List(), null, null, List(), null, List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -987,21 +967,17 @@ extends
  */
 final case class ResourceCapacity
 (
-    override val sup: BasicElement,
-    capacityType: String,
-    defaultCapacity: Double,
-    maximumCapacity: Double,
-    minimumCapacity: Double,
-    unitSymbol: String,
-    RegisteredResource: List[String]
+    override val sup: BasicElement = null,
+    capacityType: String = null,
+    defaultCapacity: Double = 0.0,
+    maximumCapacity: Double = 0.0,
+    minimumCapacity: Double = 0.0,
+    unitSymbol: String = null,
+    RegisteredResource: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *

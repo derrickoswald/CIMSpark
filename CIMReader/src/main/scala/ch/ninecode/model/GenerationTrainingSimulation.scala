@@ -38,36 +38,32 @@ import ch.ninecode.cim.Relationship
  */
 final case class BWRSteamSupply
 (
-    override val sup: SteamSupply,
-    highPowerLimit: Double,
-    inCoreThermalTC: Double,
-    integralGain: Double,
-    lowPowerLimit: Double,
-    lowerLimit: Double,
-    pressureLimit: Double,
-    pressureSetpointGA: Double,
-    pressureSetpointTC1: Double,
-    pressureSetpointTC2: Double,
-    proportionalGain: Double,
-    rfAux1: Double,
-    rfAux2: Double,
-    rfAux3: Double,
-    rfAux4: Double,
-    rfAux5: Double,
-    rfAux6: Double,
-    rfAux7: Double,
-    rfAux8: Double,
-    rodPattern: Double,
-    rodPatternConstant: Double,
-    upperLimit: Double
+    override val sup: SteamSupply = null,
+    highPowerLimit: Double = 0.0,
+    inCoreThermalTC: Double = 0.0,
+    integralGain: Double = 0.0,
+    lowPowerLimit: Double = 0.0,
+    lowerLimit: Double = 0.0,
+    pressureLimit: Double = 0.0,
+    pressureSetpointGA: Double = 0.0,
+    pressureSetpointTC1: Double = 0.0,
+    pressureSetpointTC2: Double = 0.0,
+    proportionalGain: Double = 0.0,
+    rfAux1: Double = 0.0,
+    rfAux2: Double = 0.0,
+    rfAux3: Double = 0.0,
+    rfAux4: Double = 0.0,
+    rfAux5: Double = 0.0,
+    rfAux6: Double = 0.0,
+    rfAux7: Double = 0.0,
+    rfAux8: Double = 0.0,
+    rodPattern: Double = 0.0,
+    rodPatternConstant: Double = 0.0,
+    upperLimit: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -213,16 +209,12 @@ extends
  */
 final case class CTTempActivePowerCurve
 (
-    override val sup: Curve,
-    CombustionTurbine: String
+    override val sup: Curve = null,
+    CombustionTurbine: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -304,26 +296,22 @@ extends
  */
 final case class CombustionTurbine
 (
-    override val sup: PrimeMover,
-    ambientTemp: Double,
-    auxPowerVersusFrequency: Double,
-    auxPowerVersusVoltage: Double,
-    capabilityVersusFrequency: Double,
-    heatRecoveryFlag: Boolean,
-    powerVariationByTemp: Double,
-    referenceTemp: Double,
-    timeConstant: Double,
-    AirCompressor: String,
-    CTTempActivePowerCurve: String,
-    HeatRecoveryBoiler: String
+    override val sup: PrimeMover = null,
+    ambientTemp: Double = 0.0,
+    auxPowerVersusFrequency: Double = 0.0,
+    auxPowerVersusVoltage: Double = 0.0,
+    capabilityVersusFrequency: Double = 0.0,
+    heatRecoveryFlag: Boolean = false,
+    powerVariationByTemp: Double = 0.0,
+    referenceTemp: Double = 0.0,
+    timeConstant: Double = 0.0,
+    AirCompressor: String = null,
+    CTTempActivePowerCurve: String = null,
+    HeatRecoveryBoiler: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -435,16 +423,12 @@ extends
  */
 final case class DrumBoiler
 (
-    override val sup: FossilSteamSupply,
-    drumBoilerRating: Double
+    override val sup: FossilSteamSupply = null,
+    drumBoilerRating: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -537,41 +521,37 @@ extends
  */
 final case class FossilSteamSupply
 (
-    override val sup: SteamSupply,
-    auxPowerVersusFrequency: Double,
-    auxPowerVersusVoltage: Double,
-    boilerControlMode: String,
-    controlErrorBiasP: Double,
-    controlIC: Double,
-    controlPC: Double,
-    controlPEB: Double,
-    controlPED: Double,
-    controlTC: Double,
-    feedWaterIG: Double,
-    feedWaterPG: Double,
-    feedWaterTC: Double,
-    fuelDemandLimit: Double,
-    fuelSupplyDelay: Double,
-    fuelSupplyTC: Double,
-    maxErrorRateP: Double,
-    mechPowerSensorLag: Double,
-    minErrorRateP: Double,
-    pressureCtrlDG: Double,
-    pressureCtrlIG: Double,
-    pressureCtrlPG: Double,
-    pressureFeedback: Int,
-    superHeater1Capacity: Double,
-    superHeater2Capacity: Double,
-    superHeaterPipePD: Double,
-    throttlePressureSP: Double
+    override val sup: SteamSupply = null,
+    auxPowerVersusFrequency: Double = 0.0,
+    auxPowerVersusVoltage: Double = 0.0,
+    boilerControlMode: String = null,
+    controlErrorBiasP: Double = 0.0,
+    controlIC: Double = 0.0,
+    controlPC: Double = 0.0,
+    controlPEB: Double = 0.0,
+    controlPED: Double = 0.0,
+    controlTC: Double = 0.0,
+    feedWaterIG: Double = 0.0,
+    feedWaterPG: Double = 0.0,
+    feedWaterTC: Double = 0.0,
+    fuelDemandLimit: Double = 0.0,
+    fuelSupplyDelay: Double = 0.0,
+    fuelSupplyTC: Double = 0.0,
+    maxErrorRateP: Double = 0.0,
+    mechPowerSensorLag: Double = 0.0,
+    minErrorRateP: Double = 0.0,
+    pressureCtrlDG: Double = 0.0,
+    pressureCtrlIG: Double = 0.0,
+    pressureCtrlPG: Double = 0.0,
+    pressureFeedback: Int = 0,
+    superHeater1Capacity: Double = 0.0,
+    superHeater2Capacity: Double = 0.0,
+    superHeaterPipePD: Double = 0.0,
+    throttlePressureSP: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -739,17 +719,13 @@ extends
  */
 final case class HeatRecoveryBoiler
 (
-    override val sup: FossilSteamSupply,
-    steamSupplyRating2: Double,
-    CombustionTurbines: List[String]
+    override val sup: FossilSteamSupply = null,
+    steamSupplyRating2: Double = 0.0,
+    CombustionTurbines: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -835,26 +811,22 @@ extends
  */
 final case class HydroTurbine
 (
-    override val sup: PrimeMover,
-    gateRateLimit: Double,
-    gateUpperLimit: Double,
-    maxHeadMaxP: Double,
-    minHeadMaxP: Double,
-    speedRating: Double,
-    speedRegulation: Double,
-    transientDroopTime: Double,
-    transientRegulation: Double,
-    turbineRating: Double,
-    turbineType: String,
-    waterStartingTime: Double
+    override val sup: PrimeMover = null,
+    gateRateLimit: Double = 0.0,
+    gateUpperLimit: Double = 0.0,
+    maxHeadMaxP: Double = 0.0,
+    minHeadMaxP: Double = 0.0,
+    speedRating: Double = 0.0,
+    speedRegulation: Double = 0.0,
+    transientDroopTime: Double = 0.0,
+    transientRegulation: Double = 0.0,
+    turbineRating: Double = 0.0,
+    turbineType: String = null,
+    waterStartingTime: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -980,35 +952,31 @@ extends
  */
 final case class PWRSteamSupply
 (
-    override val sup: SteamSupply,
-    coldLegFBLagTC: Double,
-    coldLegFBLeadTC1: Double,
-    coldLegFBLeadTC2: Double,
-    coldLegFG1: Double,
-    coldLegFG2: Double,
-    coldLegLagTC: Double,
-    coreHTLagTC1: Double,
-    coreHTLagTC2: Double,
-    coreNeutronicsEffTC: Double,
-    coreNeutronicsHT: Double,
-    feedbackFactor: Double,
-    hotLegLagTC: Double,
-    hotLegSteamGain: Double,
-    hotLegToColdLegGain: Double,
-    pressureCG: Double,
-    steamFlowFG: Double,
-    steamPressureDropLagTC: Double,
-    steamPressureFG: Double,
-    throttlePressureFactor: Double,
-    throttlePressureSP: Double
+    override val sup: SteamSupply = null,
+    coldLegFBLagTC: Double = 0.0,
+    coldLegFBLeadTC1: Double = 0.0,
+    coldLegFBLeadTC2: Double = 0.0,
+    coldLegFG1: Double = 0.0,
+    coldLegFG2: Double = 0.0,
+    coldLegLagTC: Double = 0.0,
+    coreHTLagTC1: Double = 0.0,
+    coreHTLagTC2: Double = 0.0,
+    coreNeutronicsEffTC: Double = 0.0,
+    coreNeutronicsHT: Double = 0.0,
+    feedbackFactor: Double = 0.0,
+    hotLegLagTC: Double = 0.0,
+    hotLegSteamGain: Double = 0.0,
+    hotLegToColdLegGain: Double = 0.0,
+    pressureCG: Double = 0.0,
+    steamFlowFG: Double = 0.0,
+    steamPressureDropLagTC: Double = 0.0,
+    steamPressureFG: Double = 0.0,
+    throttlePressureFactor: Double = 0.0,
+    throttlePressureSP: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1151,17 +1119,13 @@ extends
  */
 final case class PrimeMover
 (
-    override val sup: PowerSystemResource,
-    primeMoverRating: Double,
-    SynchronousMachines: List[String]
+    override val sup: PowerSystemResource = null,
+    primeMoverRating: Double = 0.0,
+    SynchronousMachines: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1236,17 +1200,13 @@ extends
  */
 final case class SteamSupply
 (
-    override val sup: PowerSystemResource,
-    steamSupplyRating: Double,
-    SteamTurbines: List[String]
+    override val sup: PowerSystemResource = null,
+    steamSupplyRating: Double = 0.0,
+    SteamTurbines: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1332,28 +1292,24 @@ extends
  */
 final case class SteamTurbine
 (
-    override val sup: PrimeMover,
-    crossoverTC: Double,
-    reheater1TC: Double,
-    reheater2TC: Double,
-    shaft1PowerHP: Double,
-    shaft1PowerIP: Double,
-    shaft1PowerLP1: Double,
-    shaft1PowerLP2: Double,
-    shaft2PowerHP: Double,
-    shaft2PowerIP: Double,
-    shaft2PowerLP1: Double,
-    shaft2PowerLP2: Double,
-    steamChestTC: Double,
-    SteamSupplys: List[String]
+    override val sup: PrimeMover = null,
+    crossoverTC: Double = 0.0,
+    reheater1TC: Double = 0.0,
+    reheater2TC: Double = 0.0,
+    shaft1PowerHP: Double = 0.0,
+    shaft1PowerIP: Double = 0.0,
+    shaft1PowerLP1: Double = 0.0,
+    shaft1PowerLP2: Double = 0.0,
+    shaft2PowerHP: Double = 0.0,
+    shaft2PowerIP: Double = 0.0,
+    shaft2PowerLP1: Double = 0.0,
+    shaft2PowerLP2: Double = 0.0,
+    steamChestTC: Double = 0.0,
+    SteamSupplys: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1470,15 +1426,11 @@ extends
  */
 final case class Subcritical
 (
-    override val sup: FossilSteamSupply
+    override val sup: FossilSteamSupply = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1532,15 +1484,11 @@ extends
  */
 final case class Supercritical
 (
-    override val sup: FossilSteamSupply
+    override val sup: FossilSteamSupply = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

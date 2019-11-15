@@ -20,16 +20,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class AuxiliaryEquipment
 (
-    override val sup: Equipment,
-    Terminal: String
+    override val sup: Equipment = null,
+    Terminal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -104,20 +100,16 @@ extends
  */
 final case class CurrentTransformer
 (
-    override val sup: Sensor,
-    accuracyClass: String,
-    accuracyLimit: Double,
-    coreBurden: Double,
-    ctClass: String,
-    usage: String
+    override val sup: Sensor = null,
+    accuracyClass: String = null,
+    accuracyLimit: Double = 0.0,
+    coreBurden: Double = 0.0,
+    ctClass: String = null,
+    usage: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -200,15 +192,11 @@ extends
  */
 final case class FaultIndicator
 (
-    override val sup: AuxiliaryEquipment
+    override val sup: AuxiliaryEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -262,15 +250,11 @@ extends
  */
 final case class FlowSensor
 (
-    override val sup: ConductingEquipment
+    override val sup: ConductingEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -324,15 +308,11 @@ extends
  */
 final case class PostLineSensor
 (
-    override val sup: Sensor
+    override val sup: Sensor = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -392,19 +372,15 @@ extends
  */
 final case class PotentialTransformer
 (
-    override val sup: Sensor,
-    accuracyClass: String,
-    nominalRatio: Double,
-    ptClass: String,
-    `type`: String
+    override val sup: Sensor = null,
+    accuracyClass: String = null,
+    nominalRatio: Double = 0.0,
+    ptClass: String = null,
+    `type`: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -482,15 +458,11 @@ extends
  */
 final case class Sensor
 (
-    override val sup: AuxiliaryEquipment
+    override val sup: AuxiliaryEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -544,15 +516,11 @@ extends
  */
 final case class SurgeArrester
 (
-    override val sup: AuxiliaryEquipment
+    override val sup: AuxiliaryEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -606,15 +574,11 @@ extends
  */
 final case class WaveTrap
 (
-    override val sup: AuxiliaryEquipment
+    override val sup: AuxiliaryEquipment = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

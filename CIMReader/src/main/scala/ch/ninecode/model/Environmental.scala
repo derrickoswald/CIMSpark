@@ -21,18 +21,14 @@ import ch.ninecode.cim.Relationship
  */
 final case class AlertTypeList
 (
-    override val sup: IdentifiedObject,
-    version: String,
-    EnvironmentalAlert: List[String],
-    EnvironmentalDataAuthority: String
+    override val sup: IdentifiedObject = null,
+    version: String = null,
+    EnvironmentalAlert: List[String] = List(),
+    EnvironmentalDataAuthority: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -111,16 +107,12 @@ extends
  */
 final case class AtmosphericAnalog
 (
-    override val sup: EnvironmentalAnalog,
-    kind: String
+    override val sup: EnvironmentalAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -190,21 +182,17 @@ extends
  */
 final case class AtmosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon,
-    altitude: String,
-    base: String,
-    direction: Double,
-    maxCoverage: Double,
-    minCoverage: Double,
-    speed: Double
+    override val sup: EnvironmentalPhenomenon = null,
+    altitude: String = null,
+    base: String = null,
+    direction: Double = 0.0,
+    maxCoverage: Double = 0.0,
+    minCoverage: Double = 0.0,
+    speed: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -294,20 +282,16 @@ extends
  */
 final case class ClassificationCondition
 (
-    override val sup: IdentifiedObject,
-    duration: Double,
-    test: String,
-    EnvironmentalAnalog: List[String],
-    EnvironmentalStringMeasurement: List[String],
-    PhenomenonClassification: String
+    override val sup: IdentifiedObject = null,
+    duration: Double = 0.0,
+    test: String = null,
+    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalStringMeasurement: List[String] = List(),
+    PhenomenonClassification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -395,16 +379,12 @@ extends
  */
 final case class CloudCondition
 (
-    override val sup: AtmosphericPhenomenon,
-    kind: String
+    override val sup: AtmosphericPhenomenon = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -471,18 +451,14 @@ extends
  */
 final case class Cyclone
 (
-    override val sup: AtmosphericPhenomenon,
-    centralPressure: Double,
-    maxSurfaceWindSpeed: Double,
-    windForce: Int
+    override val sup: AtmosphericPhenomenon = null,
+    centralPressure: Double = 0.0,
+    maxSurfaceWindSpeed: Double = 0.0,
+    windForce: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0) }
     /**
      * Return the superclass object.
      *
@@ -559,18 +535,14 @@ extends
  */
 final case class Earthquake
 (
-    override val sup: GeosphericPhenomenon,
-    focalDepth: String,
-    intensity: Int,
-    magnitude: Double
+    override val sup: GeosphericPhenomenon = null,
+    focalDepth: String = null,
+    intensity: Int = 0,
+    magnitude: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -652,22 +624,18 @@ extends
  */
 final case class EnvironmentalAlert
 (
-    override val sup: ActivityRecord,
-    alertType: String,
-    cancelledDateTime: String,
-    headline: String,
-    inEffect: String,
-    AlertTypeList: String,
-    EnvironmentalDataProvider: String,
-    EnvironmentalLocationKind: List[String]
+    override val sup: ActivityRecord = null,
+    alertType: String = null,
+    cancelledDateTime: String = null,
+    headline: String = null,
+    inEffect: String = null,
+    AlertTypeList: String = null,
+    EnvironmentalDataProvider: String = null,
+    EnvironmentalLocationKind: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -766,19 +734,15 @@ extends
  */
 final case class EnvironmentalAnalog
 (
-    override val sup: Analog,
-    ClassificationCondition: String,
-    EnvironmentalInformation: String,
-    EnvironmentalMonitoringStation: String,
-    ReportingCapability: String
+    override val sup: Analog = null,
+    ClassificationCondition: String = null,
+    EnvironmentalInformation: String = null,
+    EnvironmentalMonitoringStation: String = null,
+    ReportingCapability: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -867,19 +831,15 @@ extends
  */
 final case class EnvironmentalCodedValue
 (
-    override val sup: StringMeasurementValue,
-    coverageKind: String,
-    intensityKind: String,
-    probabilityPercent: Double,
-    weatherKind: String
+    override val sup: StringMeasurementValue = null,
+    coverageKind: String = null,
+    intensityKind: String = null,
+    probabilityPercent: Double = 0.0,
+    weatherKind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -958,17 +918,13 @@ extends
  */
 final case class EnvironmentalDataAuthority
 (
-    override val sup: OrganisationRole,
-    AlertTypeList: List[String],
-    PhenomenonClassification: List[String]
+    override val sup: OrganisationRole = null,
+    AlertTypeList: List[String] = List(),
+    PhenomenonClassification: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1044,17 +1000,13 @@ extends
  */
 final case class EnvironmentalDataProvider
 (
-    override val sup: OrganisationRole,
-    EnvironmentalAlert: List[String],
-    EnvironmentalInformation: List[String]
+    override val sup: OrganisationRole = null,
+    EnvironmentalAlert: List[String] = List(),
+    EnvironmentalInformation: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1128,17 +1080,13 @@ extends
  */
 final case class EnvironmentalDiscrete
 (
-    override val sup: Discrete,
-    kind: String,
-    EnvironmentalInformation: String
+    override val sup: Discrete = null,
+    kind: String = null,
+    EnvironmentalInformation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1216,16 +1164,12 @@ extends
  */
 final case class EnvironmentalEvent
 (
-    override val sup: ActivityRecord,
-    EnvironmentalInformation: List[String]
+    override val sup: ActivityRecord = null,
+    EnvironmentalInformation: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1299,22 +1243,18 @@ extends
  */
 final case class EnvironmentalInformation
 (
-    override val sup: IdentifiedObject,
-    created: String,
-    EnvironmentalAnalog: List[String],
-    EnvironmentalDataProvider: String,
-    EnvironmentalDiscrete: List[String],
-    EnvironmentalEvent: List[String],
-    EnvironmentalPhenomenon: List[String],
-    EnvironmentalStringMeasurement: List[String]
+    override val sup: IdentifiedObject = null,
+    created: String = null,
+    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalDataProvider: String = null,
+    EnvironmentalDiscrete: List[String] = List(),
+    EnvironmentalEvent: List[String] = List(),
+    EnvironmentalPhenomenon: List[String] = List(),
+    EnvironmentalStringMeasurement: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1419,19 +1359,15 @@ extends
  */
 final case class EnvironmentalLocationType
 (
-    override val sup: BasicElement,
-    kind: String,
-    EnvironmentalAlert: List[String],
-    EnvironmentalPhenomenon: List[String],
-    Location: String
+    override val sup: BasicElement = null,
+    kind: String = null,
+    EnvironmentalAlert: List[String] = List(),
+    EnvironmentalPhenomenon: List[String] = List(),
+    Location: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1517,19 +1453,15 @@ extends
  */
 final case class EnvironmentalPhenomenon
 (
-    override val sup: BasicElement,
-    timeInterval: String,
-    EnvironmentalInformation: String,
-    EnvironmentalLocationKind: List[String],
-    PhenomenonClassification: String
+    override val sup: BasicElement = null,
+    timeInterval: String = null,
+    EnvironmentalInformation: String = null,
+    EnvironmentalLocationKind: List[String] = List(),
+    PhenomenonClassification: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1613,17 +1545,13 @@ extends
  */
 final case class EnvironmentalStringMeasurement
 (
-    override val sup: StringMeasurement,
-    ClassificationCondition: String,
-    EnvironmentalInformation: String
+    override val sup: StringMeasurement = null,
+    ClassificationCondition: String = null,
+    EnvironmentalInformation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1697,15 +1625,11 @@ extends
  */
 final case class Fire
 (
-    override val sup: GeosphericPhenomenon
+    override val sup: GeosphericPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1758,15 +1682,11 @@ extends
  */
 final case class Flood
 (
-    override val sup: HydrosphericPhenomenon
+    override val sup: HydrosphericPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -1821,16 +1741,12 @@ extends
  */
 final case class Forecast
 (
-    override val sup: EnvironmentalInformation,
-    validFor: String
+    override val sup: EnvironmentalInformation = null,
+    validFor: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1895,16 +1811,12 @@ extends
  */
 final case class GeosphericAnalog
 (
-    override val sup: EnvironmentalAnalog,
-    kind: String
+    override val sup: EnvironmentalAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -1968,15 +1880,11 @@ extends
  */
 final case class GeosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon
+    override val sup: EnvironmentalPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2030,16 +1938,12 @@ extends
  */
 final case class Hurricane
 (
-    override val sup: Cyclone,
-    category: Int
+    override val sup: Cyclone = null,
+    category: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0) }
     /**
      * Return the superclass object.
      *
@@ -2104,16 +2008,12 @@ extends
  */
 final case class HydrosphericAnalog
 (
-    override val sup: EnvironmentalAnalog,
-    kind: String
+    override val sup: EnvironmentalAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2177,15 +2077,11 @@ extends
  */
 final case class HydrosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon
+    override val sup: EnvironmentalPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2238,15 +2134,11 @@ extends
  */
 final case class Landslide
 (
-    override val sup: GeosphericPhenomenon
+    override val sup: GeosphericPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2306,21 +2198,17 @@ extends
  */
 final case class LightningStrike
 (
-    override val sup: GeosphericPhenomenon,
-    errorEllipseConfidence: Double,
-    errorEllipseMajorSemiAxis: Double,
-    errorEllipseMinorSemiAxis: Double,
-    errorEllipseOrientation: Double,
-    negativePolarity: Boolean,
-    peakAmplitude: Double
+    override val sup: GeosphericPhenomenon = null,
+    errorEllipseConfidence: Double = 0.0,
+    errorEllipseMajorSemiAxis: Double = 0.0,
+    errorEllipseMinorSemiAxis: Double = 0.0,
+    errorEllipseOrientation: Double = 0.0,
+    negativePolarity: Boolean = false,
+    peakAmplitude: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2409,16 +2297,12 @@ extends
  */
 final case class MagneticStorm
 (
-    override val sup: SpacePhenomenon,
-    changeDst: Double
+    override val sup: SpacePhenomenon = null,
+    changeDst: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2482,15 +2366,11 @@ extends
  */
 final case class Observation
 (
-    override val sup: EnvironmentalInformation
+    override val sup: EnvironmentalInformation = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2546,18 +2426,14 @@ extends
  */
 final case class PhenomenonClassification
 (
-    override val sup: IdentifiedObject,
-    ClassificationCondition: List[String],
-    EnvironmentalDataAuthority: String,
-    EnvironmentalPhenomenon: List[String]
+    override val sup: IdentifiedObject = null,
+    ClassificationCondition: List[String] = List(),
+    EnvironmentalDataAuthority: String = null,
+    EnvironmentalPhenomenon: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2642,20 +2518,16 @@ extends
  */
 final case class ReportingCapability
 (
-    override val sup: BasicElement,
-    reportingIntervalPeriod: Int,
-    reportingIntervalType: String,
-    reportingMethod: String,
-    EnvironmentalAnalog: List[String],
-    EnvironmentalMonitoringStation: String
+    override val sup: BasicElement = null,
+    reportingIntervalPeriod: Int = 0,
+    reportingIntervalType: String = null,
+    reportingMethod: String = null,
+    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalMonitoringStation: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2742,16 +2614,12 @@ extends
  */
 final case class SpaceAnalog
 (
-    override val sup: EnvironmentalAnalog,
-    kind: String
+    override val sup: EnvironmentalAnalog = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2815,15 +2683,11 @@ extends
  */
 final case class SpacePhenomenon
 (
-    override val sup: EnvironmentalPhenomenon
+    override val sup: EnvironmentalPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -2878,17 +2742,13 @@ extends
  */
 final case class Tornado
 (
-    override val sup: AtmosphericPhenomenon,
-    fScale: String,
-    width: Double
+    override val sup: AtmosphericPhenomenon = null,
+    fScale: String = null,
+    width: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2963,16 +2823,12 @@ extends
  */
 final case class TropicalCycloneAustralia
 (
-    override val sup: Cyclone,
-    category: Int
+    override val sup: Cyclone = null,
+    category: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0) }
     /**
      * Return the superclass object.
      *
@@ -3040,17 +2896,13 @@ extends
  */
 final case class Tsunami
 (
-    override val sup: HydrosphericPhenomenon,
-    intensity: Int,
-    magnitude: Double
+    override val sup: HydrosphericPhenomenon = null,
+    intensity: Int = 0,
+    magnitude: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3120,17 +2972,13 @@ extends
  */
 final case class VolcanicAshCloud
 (
-    override val sup: AtmosphericPhenomenon,
-    density: Double,
-    particleSize: Double
+    override val sup: AtmosphericPhenomenon = null,
+    density: Double = 0.0,
+    particleSize: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3198,15 +3046,11 @@ extends
  */
 final case class Whirlpool
 (
-    override val sup: HydrosphericPhenomenon
+    override val sup: HydrosphericPhenomenon = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *

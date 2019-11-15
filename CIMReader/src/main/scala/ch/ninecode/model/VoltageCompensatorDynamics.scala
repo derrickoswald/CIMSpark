@@ -28,19 +28,15 @@ import ch.ninecode.cim.Relationship
  */
 final case class GenICompensationForGenJ
 (
-    override val sup: IdentifiedObject,
-    rcij: Double,
-    xcij: Double,
-    SynchronousMachineDynamics: String,
-    VcompIEEEType2: String
+    override val sup: IdentifiedObject = null,
+    rcij: Double = 0.0,
+    xcij: Double = 0.0,
+    SynchronousMachineDynamics: String = null,
+    VcompIEEEType2: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -142,18 +138,14 @@ extends
  */
 final case class VCompIEEEType1
 (
-    override val sup: VoltageCompensatorDynamics,
-    rc: Double,
-    tr: Double,
-    xc: Double
+    override val sup: VoltageCompensatorDynamics = null,
+    rc: Double = 0.0,
+    tr: Double = 0.0,
+    xc: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -243,17 +235,13 @@ extends
  */
 final case class VCompIEEEType2
 (
-    override val sup: VoltageCompensatorDynamics,
-    tr: Double,
-    GenICompensationForGenJ: List[String]
+    override val sup: VoltageCompensatorDynamics = null,
+    tr: Double = 0.0,
+    GenICompensationForGenJ: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -335,17 +323,13 @@ extends
  */
 final case class VoltageCompensatorDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String,
-    RemoteInputSignal: String
+    override val sup: DynamicsFunctionBlock = null,
+    ExcitationSystemDynamics: String = null,
+    RemoteInputSignal: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *

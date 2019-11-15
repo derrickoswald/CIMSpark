@@ -24,17 +24,13 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadAggregate
 (
-    override val sup: LoadDynamics,
-    LoadMotor: String,
-    LoadStatic: String
+    override val sup: LoadDynamics = null,
+    LoadMotor: String = null,
+    LoadStatic: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -133,26 +129,22 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadComposite
 (
-    override val sup: LoadDynamics,
-    epfd: Double,
-    epfs: Double,
-    epvd: Double,
-    epvs: Double,
-    eqfd: Double,
-    eqfs: Double,
-    eqvd: Double,
-    eqvs: Double,
-    h: Double,
-    lfac: Double,
-    pfrac: Double
+    override val sup: LoadDynamics = null,
+    epfd: Double = 0.0,
+    epfs: Double = 0.0,
+    epvd: Double = 0.0,
+    epvs: Double = 0.0,
+    eqfd: Double = 0.0,
+    eqfs: Double = 0.0,
+    eqvd: Double = 0.0,
+    eqvs: Double = 0.0,
+    h: Double = 0.0,
+    lfac: Double = 0.0,
+    pfrac: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -263,16 +255,12 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadDynamics
 (
-    override val sup: IdentifiedObject,
-    EnergyConsumer: List[String]
+    override val sup: IdentifiedObject = null,
+    EnergyConsumer: List[String] = List()
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -351,22 +339,18 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadGenericNonLinear
 (
-    override val sup: LoadDynamics,
-    bs: Double,
-    bt: Double,
-    genericNonLinearLoadModelType: String,
-    ls: Double,
-    lt: Double,
-    tp: Double,
-    tq: Double
+    override val sup: LoadDynamics = null,
+    bs: Double = 0.0,
+    bt: Double = 0.0,
+    genericNonLinearLoadModelType: String = null,
+    ls: Double = 0.0,
+    lt: Double = 0.0,
+    tp: Double = 0.0,
+    tq: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -491,29 +475,25 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadMotor
 (
-    override val sup: IdentifiedObject,
-    d: Double,
-    h: Double,
-    lfac: Double,
-    lp: Double,
-    lpp: Double,
-    ls: Double,
-    pfrac: Double,
-    ra: Double,
-    tbkr: Double,
-    tpo: Double,
-    tppo: Double,
-    tv: Double,
-    vt: Double,
-    LoadAggregate: String
+    override val sup: IdentifiedObject = null,
+    d: Double = 0.0,
+    h: Double = 0.0,
+    lfac: Double = 0.0,
+    lp: Double = 0.0,
+    lpp: Double = 0.0,
+    ls: Double = 0.0,
+    pfrac: Double = 0.0,
+    ra: Double = 0.0,
+    tbkr: Double = 0.0,
+    tpo: Double = 0.0,
+    tppo: Double = 0.0,
+    tv: Double = 0.0,
+    vt: Double = 0.0,
+    LoadAggregate: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -673,33 +653,29 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadStatic
 (
-    override val sup: IdentifiedObject,
-    ep1: Double,
-    ep2: Double,
-    ep3: Double,
-    eq1: Double,
-    eq2: Double,
-    eq3: Double,
-    kp1: Double,
-    kp2: Double,
-    kp3: Double,
-    kp4: Double,
-    kpf: Double,
-    kq1: Double,
-    kq2: Double,
-    kq3: Double,
-    kq4: Double,
-    kqf: Double,
-    staticLoadModelType: String,
-    LoadAggregate: String
+    override val sup: IdentifiedObject = null,
+    ep1: Double = 0.0,
+    ep2: Double = 0.0,
+    ep3: Double = 0.0,
+    eq1: Double = 0.0,
+    eq2: Double = 0.0,
+    eq3: Double = 0.0,
+    kp1: Double = 0.0,
+    kp2: Double = 0.0,
+    kp3: Double = 0.0,
+    kp4: Double = 0.0,
+    kpf: Double = 0.0,
+    kq1: Double = 0.0,
+    kq2: Double = 0.0,
+    kq3: Double = 0.0,
+    kq4: Double = 0.0,
+    kqf: Double = 0.0,
+    staticLoadModelType: String = null,
+    LoadAggregate: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *

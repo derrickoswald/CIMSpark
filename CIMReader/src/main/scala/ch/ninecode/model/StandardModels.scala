@@ -21,16 +21,12 @@ In the CIM, standard dynamic models are expressed by means of a class named with
  */
 final case class DynamicsFunctionBlock
 (
-    override val sup: IdentifiedObject,
-    enabled: Boolean
+    override val sup: IdentifiedObject = null,
+    enabled: Boolean = false
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false) }
     /**
      * Return the superclass object.
      *
@@ -108,21 +104,17 @@ In the CIM, standard dynamic models are expressed by means of a class named with
  */
 final case class RotatingMachineDynamics
 (
-    override val sup: DynamicsFunctionBlock,
-    damping: Double,
-    inertia: Double,
-    saturationFactor: Double,
-    saturationFactor120: Double,
-    statorLeakageReactance: Double,
-    statorResistance: Double
+    override val sup: DynamicsFunctionBlock = null,
+    damping: Double = 0.0,
+    inertia: Double = 0.0,
+    saturationFactor: Double = 0.0,
+    saturationFactor120: Double = 0.0,
+    statorLeakageReactance: Double = 0.0,
+    statorResistance: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *

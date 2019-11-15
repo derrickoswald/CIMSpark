@@ -18,16 +18,12 @@ import ch.ninecode.cim.Relationship
  */
 final case class CSCDynamics
 (
-    override val sup: HVDCDynamics,
-    CSConverter: String
+    override val sup: HVDCDynamics = null,
+    CSConverter: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -95,15 +91,11 @@ extends
  */
 final case class HVDCDynamics
 (
-    override val sup: DynamicsFunctionBlock
+    override val sup: DynamicsFunctionBlock = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -158,16 +150,12 @@ extends
  */
 final case class VSCDynamics
 (
-    override val sup: HVDCDynamics,
-    VsConverter: String
+    override val sup: HVDCDynamics = null,
+    VsConverter: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *

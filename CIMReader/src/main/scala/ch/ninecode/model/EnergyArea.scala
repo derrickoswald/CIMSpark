@@ -14,15 +14,11 @@ import ch.ninecode.cim.Relationship
  */
 final case class BlockDispatchComponent
 (
-    override val sup: EnergyComponent
+    override val sup: EnergyComponent = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -73,15 +69,11 @@ extends
  */
 final case class BlockDispatchInstruction
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -132,17 +124,13 @@ extends
  */
 final case class BlockDispatchOrder
 (
-    override val sup: IdentifiedObject,
-    p: Double,
-    sequence: Int
+    override val sup: IdentifiedObject = null,
+    p: Double = 0.0,
+    sequence: Int = 0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0) }
     /**
      * Return the superclass object.
      *
@@ -208,15 +196,11 @@ extends
  */
 final case class EnergyComponent
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -267,17 +251,13 @@ extends
  */
 final case class EnergyGroup
 (
-    override val sup: PowerSystemResource,
-    isSlack: Boolean,
-    p: Double
+    override val sup: PowerSystemResource = null,
+    isSlack: Boolean = false,
+    p: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, false, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -343,16 +323,12 @@ extends
  */
 final case class EnergyTypeReference
 (
-    override val sup: IdentifiedObject,
-    kind: String
+    override val sup: IdentifiedObject = null,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -414,16 +390,12 @@ extends
  */
 final case class ProportionalDistributionComponent
 (
-    override val sup: EnergyComponent,
-    distributionFactor: Double
+    override val sup: EnergyComponent = null,
+    distributionFactor: Double = 0.0
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
     /**
      * Return the superclass object.
      *

@@ -18,17 +18,13 @@ import ch.ninecode.cim.Relationship
  */
 final case class RelativeDisplacement
 (
-    override val sup: BasicElement,
-    displacement: Double,
-    kind: String
+    override val sup: BasicElement = null,
+    displacement: Double = 0.0,
+    kind: String = null
 )
 extends
     Element
 {
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, null) }
     /**
      * Return the superclass object.
      *
