@@ -1,10 +1,10 @@
 package ch.ninecode.cim.tool
 
 import java.io.File
+import java.nio.charset.Charset
 
 import scala.collection.JavaConversions._
 import scala.collection.SortedSet
-
 import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.DatabaseBuilder
 import com.healthmarketscience.jackcess.Table
@@ -13,7 +13,8 @@ case class ModelParser (model: File)
 {
     type ID = Int
 
-    val db: Database = DatabaseBuilder.open (model)
+    // override the normal UTF8 encoding for Windows-1252
+    val db: Database = new DatabaseBuilder (model).setCharset (Charset.forName ("Windows-1252")).open ()
 
     lazy val getPackageTable: Table =   db.getTable ("t_package")
     lazy val getObjectTable: Table =    db.getTable ("t_object")

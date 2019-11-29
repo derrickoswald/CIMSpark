@@ -3758,12 +3758,12 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param b Susceptance matrix element value, per length of unit.
- * @param column The matrix element�s column number, in the range row to PerLengthPhaseImpedance.conductorCount.
+ * @param column The matrix element’s column number, in the range row to PerLengthPhaseImpedance.conductorCount.
  *        Only the lower triangle needs to be stored. This column number matches ACLineSegmentPhase.sequenceNumber.
  * @param fromPhase Refer to the class description.
  * @param g Conductance matrix element value, per length of unit.
  * @param r Resistance matrix element value, per length of unit.
- * @param row The matrix element�s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount.
+ * @param row The matrix element’s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount.
  *        Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber.
  * @param toPhase Refer to the class description.
  * @param x Reactance matrix element value, per length of unit.
@@ -6766,9 +6766,9 @@ extends
  * @param normalOpen Used in cases when no Measurement for the status value is present.
  *        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
  * @param phaseSide1 Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
- *        Should be a phase contained in that terminal�s phases attribute.
+ *        Should be a phase contained in that terminal’s phases attribute.
  * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
- *        Should be a phase contained in that terminal�s Terminal.phases attribute.
+ *        Should be a phase contained in that terminal’s Terminal.phases attribute.
  * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
  * @param Switch [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
  * @group Wires

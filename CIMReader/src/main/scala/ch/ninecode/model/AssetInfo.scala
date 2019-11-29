@@ -339,7 +339,7 @@ extends
  * @param diameterOverNeutral Diameter over the concentric neutral strands.
  * @param neutralStrandCount Number of concentric neutral strands.
  * @param neutralStrandGmr Geometric mean radius of the neutral strand.
- * @param neutralStrandRDC20 DC resistance per unit length of the neutral strand at 20 �C.
+ * @param neutralStrandRDC20 DC resistance per unit length of the neutral strand at 20 °C.
  * @param neutralStrandRadius Outside radius of the neutral strand.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -2024,10 +2024,10 @@ extends
  * @param insulationMaterial (if insulated conductor) Material used for insulation.
  * @param insulationThickness (if insulated conductor) Thickness of the insulation.
  * @param material Conductor material.
- * @param rAC25 AC resistance per unit length of the conductor at 25 �C.
- * @param rAC50 AC resistance per unit length of the conductor at 50 �C.
- * @param rAC75 AC resistance per unit length of the conductor at 75 �C.
- * @param rDC20 DC resistance per unit length of the conductor at 20 �C.
+ * @param rAC25 AC resistance per unit length of the conductor at 25 °C.
+ * @param rAC50 AC resistance per unit length of the conductor at 50 °C.
+ * @param rAC75 AC resistance per unit length of the conductor at 75 °C.
+ * @param rDC20 DC resistance per unit length of the conductor at 20 °C.
  * @param radius Outside radius of the wire.
  * @param ratedCurrent Current carrying capacity of the wire under stated thermal conditions.
  * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).

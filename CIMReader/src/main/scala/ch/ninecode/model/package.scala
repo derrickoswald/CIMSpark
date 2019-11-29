@@ -48,7 +48,7 @@ package ch.ninecode
  * ===AsynchronousMachineDynamics===
  * An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine.
  *
- * The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+ * The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
  * The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  *
  *
@@ -400,12 +400,12 @@ package ch.ninecode
  * ===PFVArControllerType1Dynamics===
  * <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value.
  *
- * This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+ * This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as “a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.” </font>
  * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  *
  *
  * ===PFVArControllerType2Dynamics===
- * <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
  * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  * <font color="#0f0f0f">
  *
@@ -481,7 +481,7 @@ package ch.ninecode
  * For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.
  *
  * Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.
- * The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+ * The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
  *
  *
  * ===Topology===

@@ -1359,7 +1359,7 @@ extends
  * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
  *        Typical value = 0.
  * @param vtmult Multiply by generator's terminal voltage indicator.
- *        true =the limits <i>Vrmax</i> and <i>Vrmin</i> are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
+ *        true =the limits <i>Vrmax</i> and <i>Vrmin</i> are multiplied by the generator’s terminal voltage to represent a thyristor power stage fed from the generator terminals
  *        false = limits are not multiplied by generator's terminal voltage.
  *        Typical value = false.
  * @group ExcitationSystemDynamics
@@ -6613,7 +6613,7 @@ extends
 /**
  * IEEE 421.5-2005 type ST1A model.
  *
- * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
+ * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit’s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
  * Reference: IEEE 421.5-2005, 7.1.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.

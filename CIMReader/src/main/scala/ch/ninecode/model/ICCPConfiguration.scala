@@ -650,7 +650,7 @@ extends
 }
 
 /**
- * Internet Protocol Access Point � used to represent an addressing structure is based upon an Internet Protocol (IP) address.
+ * Internet Protocol Access Point – used to represent an addressing structure is based upon an Internet Protocol (IP) address.
  *
  * @param sup [[ch.ninecode.model.CommunicationLink CommunicationLink]] Reference to the superclass object.
  * @param address Is the dotted decimal IP Address resolve the IP address.

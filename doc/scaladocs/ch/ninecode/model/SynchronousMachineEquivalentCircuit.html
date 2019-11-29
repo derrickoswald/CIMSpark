@@ -53,15 +53,15 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct- and quadrature- axes.</p><p>Equations for conversion between equivalent circuit and time constant reactance forms:
 <i>Xd</i> = <i>Xad </i>+<i> Xl</i>
-<i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> / (<i>Xad</i> + <i>Xfd</i>)
-<i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> x <i>X1d</i> / (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>)
+<i>X’d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> / (<i>Xad</i> + <i>Xfd</i>)
+<i>X”d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> x <i>X1d</i> / (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>)
 <i>Xq</i> = <i>Xaq</i> + <i>Xl</i>
-<i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> / (<i>Xaq</i> + <i>X1q</i>)
-<i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> x <i>X2q</i> / (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>)
-<i>T�do</i> = (<i>Xad</i> + <i>Xfd</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rfd</i>)
-<i>T�do</i> = (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1d</i> x (<i>Xad</i> + <i>Xfd</i>)
-<i>T�qo</i> = (<i>Xaq</i> + <i>X1q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1q</i>)
-<i>T�qo</i> = (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R2q</i> x (<i>Xaq</i> + <i>X1q</i>)
+<i>X’q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> / (<i>Xaq</i> + <i>X1q</i>)
+<i>X”q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> x <i>X2q</i> / (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>)
+<i>T’do</i> = (<i>Xad</i> + <i>Xfd</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rfd</i>)
+<i>T”do</i> = (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1d</i> x (<i>Xad</i> + <i>Xfd</i>)
+<i>T’qo</i> = (<i>Xaq</i> + <i>X1q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1q</i>)
+<i>T”qo</i> = (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R2q</i> x (<i>Xaq</i> + <i>X1q</i>)
 Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of &quot;=&quot; and SynchronousMachineEquivalentCircuit class on right (except as noted):
 xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
 xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad x xfd / (xad + xfd)
@@ -74,7 +74,7 @@ tppdo = (xad x xfd + xad x x1d + xfd x x1d) / (2 x pi x nominal frequency x r1d 
 tpqo = (xaq + x1q) / (2 x pi x nominal frequency x r1q)
 tppqo = (xaq x x1q + xaq x x2q + x1q x x2q) / (2 x pi x nominal frequency x r2q x (xaq + x1q)
 These are only valid for a simplified model where &quot;Canay&quot; reactance is zero.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">r1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding resistance.</p></dd><dt class="param">r1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding resistance.</p></dd><dt class="param">r2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding resistance.</p></dd><dt class="param">rfd</dt><dd class="cmt"><p>Field winding resistance.</p></dd><dt class="param">x1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding leakage reactance.</p></dd><dt class="param">xad</dt><dd class="cmt"><p>Direct-axis mutual reactance.</p></dd><dt class="param">xaq</dt><dd class="cmt"><p>Quadrature-axis mutual reactance.</p></dd><dt class="param">xf1d</dt><dd class="cmt"><p>Differential mutual (�Canay�) reactance.</p></dd><dt class="param">xfd</dt><dd class="cmt"><p>Field winding leakage reactance.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">r1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding resistance.</p></dd><dt class="param">r1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding resistance.</p></dd><dt class="param">r2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding resistance.</p></dd><dt class="param">rfd</dt><dd class="cmt"><p>Field winding resistance.</p></dd><dt class="param">x1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding leakage reactance.</p></dd><dt class="param">xad</dt><dd class="cmt"><p>Direct-axis mutual reactance.</p></dd><dt class="param">xaq</dt><dd class="cmt"><p>Quadrature-axis mutual reactance.</p></dd><dt class="param">xf1d</dt><dd class="cmt"><p>Differential mutual (“Canay”) reactance.</p></dd><dt class="param">xfd</dt><dd class="cmt"><p>Field winding leakage reactance.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -129,7 +129,7 @@ These are only valid for a simplified model where &quot;Canay&quot; reactance is
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">r1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding resistance.</p></dd><dt class="param">r1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding resistance.</p></dd><dt class="param">r2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding resistance.</p></dd><dt class="param">rfd</dt><dd class="cmt"><p>Field winding resistance.</p></dd><dt class="param">x1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding leakage reactance.</p></dd><dt class="param">xad</dt><dd class="cmt"><p>Direct-axis mutual reactance.</p></dd><dt class="param">xaq</dt><dd class="cmt"><p>Quadrature-axis mutual reactance.</p></dd><dt class="param">xf1d</dt><dd class="cmt"><p>Differential mutual (�Canay�) reactance.</p></dd><dt class="param">xfd</dt><dd class="cmt"><p>Field winding leakage reactance.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SynchronousMachineDetailed.html" class="extype" name="ch.ninecode.model.SynchronousMachineDetailed">SynchronousMachineDetailed</a> Reference to the superclass object.</p></dd><dt class="param">r1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding resistance.</p></dd><dt class="param">r1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding resistance.</p></dd><dt class="param">r2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding resistance.</p></dd><dt class="param">rfd</dt><dd class="cmt"><p>Field winding resistance.</p></dd><dt class="param">x1d</dt><dd class="cmt"><p>Direct-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x1q</dt><dd class="cmt"><p>Quadrature-axis damper 1 winding leakage reactance.</p></dd><dt class="param">x2q</dt><dd class="cmt"><p>Quadrature-axis damper 2 winding leakage reactance.</p></dd><dt class="param">xad</dt><dd class="cmt"><p>Direct-axis mutual reactance.</p></dd><dt class="param">xaq</dt><dd class="cmt"><p>Quadrature-axis mutual reactance.</p></dd><dt class="param">xf1d</dt><dd class="cmt"><p>Differential mutual (“Canay”) reactance.</p></dd><dt class="param">xfd</dt><dd class="cmt"><p>Field winding leakage reactance.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1393,7 +1393,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Differential mutual (�Canay�) reactance.</p>
+      <p class="shortcomment cmt">Differential mutual (“Canay”) reactance.</p>
     </li><li name="ch.ninecode.model.SynchronousMachineEquivalentCircuit#xfd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="xfd:Double"></a>
       <a id="xfd:Double"></a>

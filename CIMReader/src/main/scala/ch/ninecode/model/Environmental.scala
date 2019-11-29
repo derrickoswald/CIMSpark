@@ -2809,7 +2809,7 @@ extends
 }
 
 /**
- * A tropical cyclone, a subtype of cyclone that forms to the east of 90�E in the Southern Hemisphere whose intensity is measured by the Australian tropical cyclone intensity scale.
+ * A tropical cyclone, a subtype of cyclone that forms to the east of 90°E in the Southern Hemisphere whose intensity is measured by the Australian tropical cyclone intensity scale.
  *
  * @param sup [[ch.ninecode.model.Cyclone Cyclone]] Reference to the superclass object.
  * @param category Strength of tropical cyclone during the time interval, based on Australian Bureau of Meteorology Category System where:

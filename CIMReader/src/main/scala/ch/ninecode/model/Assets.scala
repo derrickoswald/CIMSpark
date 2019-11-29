@@ -5325,7 +5325,7 @@ extends
  * Sample or specimen of a material (fluid or solid).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ambientTemperatureAtSampling Operating ambient temperature (in �C).
+ * @param ambientTemperatureAtSampling Operating ambient temperature (in °C).
  * @param humidityAtSampling Operating ambient humidity (in percent).
  * @param specimenID Identifier of specimen used in inspection or test.
  * @param specimenSampleDateTime Date and time sample specimen taken.

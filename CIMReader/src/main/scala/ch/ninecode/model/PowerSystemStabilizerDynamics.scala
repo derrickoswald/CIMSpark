@@ -1844,7 +1844,7 @@ extends
  * IEEE 421.5-2005 type PSS4B power system stabilizer.
  *
  * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta omega (speed input) PSS.
- * There is an error in the in IEEE 421.5-2005 PSS4B model: the <i>Pe</i> input should read �<i>Pe</i>. This implies that the input <i>Pe</i> needs to be multiplied by -1.
+ * There is an error in the in IEEE 421.5-2005 PSS4B model: the <i>Pe</i> input should read –<i>Pe</i>. This implies that the input <i>Pe</i> needs to be multiplied by -1.
  * Reference: IEEE 4B 421.5-2005, 8.4.
  * Parameter details:
  * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
@@ -3078,7 +3078,7 @@ extends
 }
 
 /**
- * Siemens<sup>TM</sup> �H infinity� power system stabilizer with generator electrical power input.
+ * Siemens<sup>TM</sup> “H infinity” power system stabilizer with generator electrical power input.
  * [Footnote: Siemens "H infinity" power system stabilizers are an example of suitable products available commercially.
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]

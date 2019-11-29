@@ -2103,7 +2103,7 @@ extends
  *
  * Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
  * Table 548 shows all association ends of IntervalBlock with other classes.
- * Table 548 � Association ends of Metering::IntervalBlock with other classes
+ * Table 548 – Association ends of Metering::IntervalBlock with other classes
  * Associations
  * name
  * mult to

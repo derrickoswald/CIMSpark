@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineDynamics
@@ -135,7 +135,7 @@ extends
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineEquivalentCircuit
@@ -224,7 +224,7 @@ extends
  * Parameter details:
  * <ol>
  * <li>If <i>X'' </i>=<i> X'</i>, a single cage (one equivalent rotor winding per axis) is modelled.</li>
- * <li>The �<i>p</i>� in the attribute names is a substitution for a �prime� in the usual parameter notation, e.g. <i>tpo</i> refers to <i>T'o</i>.</li>
+ * <li>The “<i>p</i>” in the attribute names is a substitution for a “prime” in the usual parameter notation, e.g. <i>tpo</i> refers to <i>T'o</i>.</li>
  * </ol>
  * The parameters used for models expressed in time constant reactance form include:
  * - RotatingMachine.ratedS (<i>MVAbase</i>);
@@ -255,7 +255,7 @@ extends
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
 The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineTimeConstantReactance

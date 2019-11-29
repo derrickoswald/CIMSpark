@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param precision Precision of related analog value if different from precision of test standard or if there is no test standard.
  *        Precision is a measure of how closely individual measurements agree with one another. Expressed as 'plus or minus' the value of this attribute.
  * @param reportingTemperature Reporting temperature of related analog value if different from reporting temperature of test standard or if there is no test standard.
- *        Reporting temperature is what gas volumes are normalized to. Different reporting temperatures are used by different sources. For example, ASTM specifies 0�C, whereas IEC specifies 20�C. Online monitors often have their own unique reporting temperatures.
+ *        Reporting temperature is what gas volumes are normalized to. Different reporting temperatures are used by different sources. For example, ASTM specifies 0°C, whereas IEC specifies 20°C. Online monitors often have their own unique reporting temperatures.
  * @param TestStandard [[ch.ninecode.model.TestStandard TestStandard]] The lab test standard to which this asset health analog is related.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
@@ -1344,7 +1344,7 @@ extends
  *
  * Conditions:
  * F:
- * {Not sure where these came from� delete from UML?}
+ * {Not sure where these came from… delete from UML?}
  *
  * @param sup [[ch.ninecode.model.StatisticalCalculation StatisticalCalculation]] Reference to the superclass object.
  * @param calculationIntervalMagnitude Number of units (of calculationIntervalUnit) in the calculation interval.

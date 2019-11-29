@@ -14,7 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power factor or VAr controller type 2 is associated.
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
- * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
 <font color="#0f0f0f">
 </font>
@@ -101,7 +101,7 @@ extends
  *        The reference value is initialised by this model. This initialisation can override the value exchanged by this attribute to represent a plant operator's change of the reference setting.
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
- * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
 <font color="#0f0f0f">
 </font>
@@ -209,7 +209,7 @@ extends
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
- * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
 <font color="#0f0f0f">
 </font>
@@ -324,7 +324,7 @@ extends
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
- * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
 <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
 <font color="#0f0f0f">
 </font>

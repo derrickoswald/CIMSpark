@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Simplified type UEL2 underexcitation limiter.
  *
- * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
+ * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look –up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kui Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).

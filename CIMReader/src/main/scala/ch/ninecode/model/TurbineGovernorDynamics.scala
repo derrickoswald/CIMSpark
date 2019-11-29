@@ -1353,13 +1353,13 @@ extends
  * @param t4 Thermocouple time constant (<i>T4</i>) (&gt;= 0).
  * @param t5 Temperature control time constant (<i>T5</i>) (&gt;= 0).
  * @param tc Temperature control (<i>Tc</i>).
- *        Unit = �F or �C depending on parameters <i>Af1</i> and <i>Bf1</i>.
+ *        Unit = °F or °C depending on parameters <i>Af1</i> and <i>Bf1</i>.
  * @param tcd Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
  * @param tf Fuel system time constant (<i>Tf</i>) (&gt;= 0).
  * @param tmax Maximum turbine limit (<i>Tmax</i>) (&gt; GovGAST2.tmin).
  * @param tmin Minimum turbine limit (<i>Tmin</i>) (&lt; GovGAST2.tmax).
  * @param tr Rated temperature (<i>Tr</i>).
- *        Unit = �C depending on parameters<i> Af1 </i>and <i>Bf1</i>.
+ *        Unit = °C depending on parameters<i> Af1 </i>and <i>Bf1</i>.
  * @param trate Turbine rating (<i>Trate</i>).
  *        Unit = MW.
  * @param tt Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
@@ -1951,7 +1951,7 @@ extends
 }
 
 /**
- * Woodward� gas turbine governor.
+ * Woodward™ gas turbine governor.
  * [Footnote: Woodward gas turbines are an example of suitable products available commercially.
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]

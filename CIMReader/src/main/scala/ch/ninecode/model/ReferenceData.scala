@@ -3633,7 +3633,7 @@ extends
  *        The specific organization can no longer access the application as of the terminate date
  * @param qualificationID Qualification identifier.
  * @param status The status of the privilege.
- *        Shows the status of the user�s qualification.
+ *        Shows the status of the user´s qualification.
  *        The current statuses are: 1=New, 2=Active, 3=Refused, 4=Terminated, 5=Withdrawn
  *        and it is subject to update.
  * @param statusType This is the name of the status of the qualification and is used to display the status of the user's or organization's status.
