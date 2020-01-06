@@ -5,14 +5,13 @@ import java.util.regex.Pattern
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 
-// NOTE: ElementUDT is actually in this artifact 
-import org.apache.spark.sql.types.ElementUDT
-
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Parser
 import ch.ninecode.cim.Parser.namespace
 import ch.ninecode.cim.Relationship
+// NOTE: ElementUDT is actually in this artifact
+import org.apache.spark.sql.types.ElementUDT
 
 /**
  * Lowest level class in the CIM hierarchy.
@@ -38,6 +37,8 @@ with
     Serializable
 with
     Cloneable
+with
+    Product
 {
     /**
      * Get the superclass object.
