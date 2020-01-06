@@ -2,18 +2,16 @@ package ch.ninecode.model
 
 import java.util.regex.Pattern
 
-import ch.ninecode.cim.Parser.namespace
-import ch.ninecode.cim.Relationship
-import ch.ninecode.model
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
-
-// NOTE: ElementUDT is actually in this artifact 
-import org.apache.spark.sql.types.ElementUDT
 
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Parser
+import ch.ninecode.cim.Parser.namespace
+import ch.ninecode.cim.Relationship
+// NOTE: ElementUDT is actually in this artifact
+import org.apache.spark.sql.types.ElementUDT
 
 /**
  * Lowest level class in the CIM hierarchy.
@@ -39,6 +37,8 @@ with
     Serializable
 with
     Cloneable
+with
+    Product
 {
     /**
      * Get the superclass object.
@@ -190,7 +190,7 @@ with
     /**
      * Return a string containing the fields of this object suitable for inclusion in an XML object.
      *
-     * @return A string with the fileds coded in XML
+     * @return A string with the fields coded in XML
      * @group Serialization
      * @groupname Serialization Export Implementation
      * @groupdesc Serialization Members related to export of CIM classes
@@ -323,7 +323,7 @@ extends
     /**
      * Zero arg constructor.
      */
-    def this() = { this (null, null, 0, 0l, 0l) }
+    def this() = { this (null, null, 0, 0L, 0L) }
     def Element: Element = sup
     override def copy (): Row = { clone ().asInstanceOf[Unknown] }
     override def get (i: Int): Object =

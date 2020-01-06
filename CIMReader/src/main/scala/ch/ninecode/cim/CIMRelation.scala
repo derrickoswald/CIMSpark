@@ -25,9 +25,8 @@ class CIMRelation (
     partitionSchema: StructType,
     dataSchema: StructType,
     fileFormat: FileFormat,
-    parameters: Map[String, String]) (spark: SparkSession) extends BaseRelation with TableScan
+    parameters: Map[String, String]) (spark: SparkSession) extends BaseRelation with TableScan with CIMRDD
 {
-
     // We use BaseRelation because if it inherits from HadoopFSRelation,
     // DataSource uses the CIMFileFormat which doesn't allow subsetting, etc. :
     //extends
@@ -39,6 +38,7 @@ class CIMRelation (
     //        fileFormat,
     //        parameters) (spark)
 
+    implicit val session: SparkSession = spark
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     def parseState (text: String): State =
@@ -84,7 +84,7 @@ class CIMRelation (
     // check for cache option
     val _Cache: String = parameters.getOrElse ("ch.ninecode.cim.cache", "")
 
-    val _TopologyOptions = CIMTopologyOptions (
+    val _TopologyOptions: CIMTopologyOptions = CIMTopologyOptions (
         identify_islands = _Islands,
         force_retain_switches = _Force_Retain_Switches,
         force_retain_fuses = _Force_Retain_Fuses,
@@ -195,11 +195,9 @@ class CIMRelation (
             if (fs.exists (path))
             {
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
-                ret = rdd.asInstanceOf[RDD[Row]]
-                ret.setName ("Elements")
-                ret.persist (_StorageLevel)
-                if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
+                put (rdd, "Elements")
                 make_tables (rdd)
+                ret = rdd.asInstanceOf[RDD[Row]]
             }
         }
 
@@ -222,9 +220,7 @@ class CIMRelation (
                 classOf[Element]).values
 
             ret = rdd.asInstanceOf[RDD[Row]]
-            ret.setName ("Elements")
-            ret.persist (_StorageLevel)
-            if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
+            put (rdd, "Elements")
 
             // about processing if requested
             if (_About)

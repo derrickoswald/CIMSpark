@@ -2,7 +2,6 @@ package ch.ninecode.cim
 
 import scala.reflect._
 import scala.reflect.runtime.universe._
-import scala.util.Random
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
@@ -13,7 +12,7 @@ import org.slf4j.Logger
   * Access globally named and cached RDD of CIM classes.
   *
   * This uses the list of persistent RDDs maintained by Spark
-  * to retrieve pre-existing RDD of CIM classes pesisted by the
+  * to retrieve pre-existing RDD of CIM classes persisted by the
   * CIMReader.
   *
   * These RDD are strongly typed, and are named according to the
@@ -22,7 +21,8 @@ import org.slf4j.Logger
   * <code>spark.sparkContext.getPersistentRDDs: collection.Map[Int, RDD[_] ]</code>
   * by the CIMReader.
   *
-  * Implicit parameters for the Spark context and error logger are required.
+  * Implicit parameters for the SparkSession and error Logger are required.
+  * Implicit parameter StorageLevel is required to put().
   *
   * @example Declare a class that extends CIMRDD to be able to access the <code>get()</code> methods:
   * {{{
@@ -61,7 +61,7 @@ trait CIMRDD
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
-            case Some ((_: Int, rdd: RDD[_])) =>
+            case Some ((_: Int, _: RDD[_])) =>
                 true
             case Some (_) | None =>
                 false
@@ -116,6 +116,44 @@ trait CIMRDD
     }
 
     /**
+     * Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.
+     *
+     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
+     *
+     * @param rdd The RDD to persist
+     * @param name The name under which to persist it.
+     * @param spark The Spark session.
+     * @param storage The storage level for persistence.
+     * @return The named, viewed and possibly checkpointed original RDD.
+     * @tparam T The type of RDD.
+     */
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): RDD[T] =
+    {
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+        {
+            case Some ((_: Int, old: RDD[_])) =>
+                old.setName (null).unpersist (true)
+            case Some (_) | None =>
+        }
+        rdd.setName (name).persist (storage)
+        if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
+        spark.createDataFrame (rdd).createOrReplaceTempView (name)
+        rdd
+    }
+
+    /**
+     * Get the base name of the CIM class.
+     *
+     * @tparam T The type of the class.
+     * @return The base name of the class.
+     */
+    def nameOf[T : ClassTag]: String =
+    {
+        val classname = classTag[T].runtimeClass.getName
+        classname.substring (classname.lastIndexOf (".") + 1)
+    }
+
+    /**
      * Check for the typed RDD.
      *
      * Convenience method where the name of the RDD is the same as the contained
@@ -126,12 +164,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T : ClassTag](implicit spark: SparkSession, log: Logger): Boolean =
-    {
-        val classname = classTag[T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        test[T] (name)
-    }
+    def test[T : ClassTag](implicit spark: SparkSession, log: Logger): Boolean = test[T] (nameOf[T])
 
     /**
      * Get the typed RDD.
@@ -144,12 +177,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
      */
-    def get[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] =
-    {
-        val classname = classTag[T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        get[T] (name)
-    }
+    def get[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] = get[T] (nameOf[T])
 
     /**
      * Get the typed RDD or an empty RDD if none was registered.
@@ -162,42 +190,10 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.
      */
-    def getOrElse[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] =
-    {
-        val classname = classTag[T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        getOrElse (name)
-    }
+    def getOrElse[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] = getOrElse (nameOf[T])
 
     /**
-     * Persist the typed RDD using the given name and create the SQL view for it.
-     *
-     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
-     *
-     * @param rdd The RDD to persist
-     * @param name The name under which to persist it.
-     * @param spark The Spark session.
-     * @param storage The storage level for persistence.
-     * @tparam T The type of RDD.
-     */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): Unit =
-    {
-        val rdds: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
-        rdds.find (_._2.name == name) match
-        {
-            case Some ((_: Int, old: RDD[_])) =>
-                old.name = name + "_old" + Random.nextInt (99999999)
-            case Some (_) =>
-            case None =>
-        }
-        rdd.name = name
-        rdd.persist (storage)
-        if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
-        spark.createDataFrame (rdd).createOrReplaceTempView (name)
-    }
-
-    /**
-     * Persist the typed RDD using the class name and create the SQL view for it.
+     * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
      *
      * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
      *
@@ -206,10 +202,5 @@ trait CIMRDD
      * @param storage The storage level for persistence.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product: ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): Unit =
-    {
-        val classname = classTag[T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        put (rdd, name)
-    }
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): RDD[T] = put (rdd, nameOf[T])
 }
