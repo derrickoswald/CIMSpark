@@ -22,6 +22,7 @@ import org.apache.spark.sql.types.ElementUDT
  *
  - access the typed superclass for each object (implemented as <code>null</code> in this trait)
  - access the unique ID for each object
+ - access the class name and hierarchy class list
  - act as a Row object for use in SQL DataFrames ([[length]], [[get]] and [[copy]])
  - export the object as XML (implemented as <code>""</code> in this trait)
  *
@@ -87,6 +88,36 @@ with
      * @return <code>true</code> if this is an rdf:about element, <code>false</code> otherwise.
      */
     def about: Boolean = if (null == sup) false else sup.about
+
+    /**
+     * This class name.
+     *
+     * @return the class name without the package prefixes
+     */
+    def baseclass: String =
+    {
+        if (null == sup)
+            "Element"
+        else
+        {
+            val s = getClass.getName
+            s.substring (s.lastIndexOf (".") + 1)
+        }
+    }
+
+    /**
+     * This class and the hierarchical list of classes this class derives from.
+     *
+     * @return the list of classes without the package prefixes.
+     */
+    def classes: Seq[String] =
+    {
+        Seq (baseclass) ++ (if (null == sup) Seq () else sup.classes)
+    }
+
+    //
+    // Row overrides
+    //
 
     /**
      * The number of fields in the object definition.
