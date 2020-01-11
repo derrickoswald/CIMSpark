@@ -124,38 +124,12 @@ class CIMRelation (
 
     def make_tables (rdd: RDD[Element]): Unit =
     {
-        // ToDo: See if this is faster
-//        // aggregate the set of class names
-//        val names = rdd.aggregate (Set[String]()) (
-//            (set: Set[String], x: Element) =>
-//            {
-//                var ret = List[String]()
-//                var clz = x
-//
-//                while (null != clz)
-//                {
-//                    ret = ret :+ clz.getClass.getName
-//                    clz = clz.sup
-//                }
-//                ret.map (x => x.substring (x.lastIndexOf (".") + 1)).toSet.union (set)
-//            },
-//            (set1: Set[String], set2: Set[String]) => set1.union (set2)
-//        )
-        val names = rdd.flatMap (
-            (x: Element) => // hierarchy: List[String]
-            {
-                var ret = List[String]()
-                var clz = x
-
-                while (null != clz)
-                {
-                    ret = ret :+ clz.getClass.getName
-                    clz = clz.sup
-                }
-
-                ret.map (x => x.substring (x.lastIndexOf (".") + 1))
-            }
-        ).map (s => (s, s)).reduceByKey ((x, _) => x).map (_._1).collect
+        // aggregate the set of class names
+        val names = rdd
+            .aggregate (Set[String]()) (
+                (set, element) => element.classes.toSet.union (set),
+                (set1, set2) => set1.union (set2)
+            )
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {
@@ -219,8 +193,30 @@ class CIMRelation (
                 classOf[String],
                 classOf[Element]).values
 
-            ret = rdd.asInstanceOf[RDD[Row]]
+            spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements") match
+            {
+                case Some ((_: Int, old: RDD[_])) =>
+                    // aggregate the set of subclass names
+                    val names = old.asInstanceOf[RDD[Element]]
+                        .aggregate (Set[String]()) (
+                            (set, element) => element.classes.toSet.union (set),
+                            (set1, set2) => set1.union (set2)
+                        )
+                    // remove subclass RDD if they exist (they should)
+                    for (name <- names)
+                        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+                        {
+                            case Some ((_: Int, existing: RDD[_])) =>
+                                existing.setName (null).unpersist (true)
+                            case Some (_) | None =>
+                        }
+                    // remove the Element rdd
+                    old.setName (null).unpersist (true)
+                case Some (_) | None =>
+            }
             put (rdd, "Elements")
+
+            ret = rdd.asInstanceOf[RDD[Row]]
 
             // about processing if requested
             if (_About)
