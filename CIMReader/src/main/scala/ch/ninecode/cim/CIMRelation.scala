@@ -16,10 +16,25 @@ import org.apache.spark.sql.sources.TableScan
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.types.ElementRegistration
 import org.apache.spark.storage.StorageLevel
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import ch.ninecode.model.Element
 
+/**
+ * A Relation for CIM RDF files that can produce all of its tuples as an RDD of Row objects.
+ *
+ * As a side effect, this relation also creates RDD and local temporary views corresponding
+ * to the subclasses of each element, and saves each RDD in the persistent RDD list
+ * using the CIM class name.
+ *
+ * @param location object containing the file(s) to read
+ * @param partitionSchema <em>not used</em>
+ * @param dataSchema <em>not used</em>
+ * @param fileFormat <em>not used</em>
+ * @param parameters specific settings for reading the file(s)
+ * @param spark the Spark session object
+ */
 class CIMRelation (
     location: FileIndex,
     partitionSchema: StructType,
@@ -95,8 +110,8 @@ class CIMRelation (
         storage = _StorageLevel
     )
 
-    log.info ("parameters: " + parameters.toString)
-    log.info ("storage: " + _StorageLevel.description)
+    log.info (s"parameters: ${parameters.toString}")
+    log.info (s"storage: ${_StorageLevel.description}")
 
     def sqlContext: SQLContext = spark.sqlContext
 
@@ -133,18 +148,9 @@ class CIMRelation (
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {
-                // in earlier Scala versions this loop doesn't work well
-                // the symptoms are:
-                //     scala.reflect.runtime.ReflectError: value ch is not a package
-                // or
-                //     java.lang.RuntimeException: error reading Scala signature of ch.ninecode.model.BusBarSectionInfo: value model is not a package
-                // due to https://issues.apache.org/jira/browse/SPARK-2178
-                // which is due to https://issues.scala-lang.org/browse/SI-6240
-                // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
-                // p.s. Scala's type system is a shit show of kludgy code
                 if (names.contains (subsetter.cls))
                 {
-                    log.debug ("building " + subsetter.cls)
+                    log.debug (s"building ${subsetter.cls}")
                     subsetter.make (spark.sqlContext, rdd, _StorageLevel)
                 }
             }
@@ -160,6 +166,29 @@ class CIMRelation (
         ElementRegistration.register ()
 
         var ret: RDD[Row] = null
+
+        // remove any existing RDD created by this relation
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements") match
+        {
+            case Some ((_: Int, old: RDD[_])) =>
+                // aggregate the set of subclass names
+                val names = old.asInstanceOf[RDD[Element]]
+                    .aggregate (Set[String]()) (
+                        (set, element) => element.classes.toSet.union (set),
+                        (set1, set2) => set1.union (set2)
+                    )
+                // remove subclass RDD if they exist (they should)
+                for (name <- names)
+                    spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+                    {
+                        case Some ((_: Int, existing: RDD[_])) =>
+                            existing.setName (null).unpersist (true)
+                        case Some (_) | None =>
+                    }
+                // remove the Element rdd
+                old.setName (null).unpersist (true)
+            case Some (_) | None =>
+        }
 
         if (_Cache != "")
         {
@@ -177,10 +206,7 @@ class CIMRelation (
 
         if (null == ret)
         {
-            val path = if (parameters.contains ("path"))
-                parameters("path")
-            else
-                paths.mkString (",")
+            val path = parameters.getOrElse ("path", paths.mkString (","))
 
             // make a config
             val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
@@ -193,29 +219,7 @@ class CIMRelation (
                 classOf[String],
                 classOf[Element]).values
 
-            spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements") match
-            {
-                case Some ((_: Int, old: RDD[_])) =>
-                    // aggregate the set of subclass names
-                    val names = old.asInstanceOf[RDD[Element]]
-                        .aggregate (Set[String]()) (
-                            (set, element) => element.classes.toSet.union (set),
-                            (set1, set2) => set1.union (set2)
-                        )
-                    // remove subclass RDD if they exist (they should)
-                    for (name <- names)
-                        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
-                        {
-                            case Some ((_: Int, existing: RDD[_])) =>
-                                existing.setName (null).unpersist (true)
-                            case Some (_) | None =>
-                        }
-                    // remove the Element rdd
-                    old.setName (null).unpersist (true)
-                case Some (_) | None =>
-            }
             put (rdd, "Elements")
-
             ret = rdd.asInstanceOf[RDD[Row]]
 
             // about processing if requested
