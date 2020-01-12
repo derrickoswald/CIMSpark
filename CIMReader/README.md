@@ -245,6 +245,12 @@ val edges = sc.getPersistentRDDs.filter(_._2.name == "Edges").head._2.asInstance
 edges.first
 ```
 
+The `ch.ninecode.cim.cache option` should only be used if you will be reusing the same file and options multiple times.
+For example, a moderately large file (522711666 bytes) takes ~337 seconds to read in, but caching adds ~90 seconds
+to create the object file (RDD.saveAsObjectFile).
+Subsequent reads take ~74 seconds, so it only makes sense to cache the file if you will use it more than once.
+You are responsible for erasing the cache when reading different files or using different topology options.
+
 All RDD are also exposed as temporary tables, so one can use SQL syntax to construct specific queries, such as this one that queries details from all switches and performs a join to location coordinates:
 
     scala> val switches = spark.sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 1")

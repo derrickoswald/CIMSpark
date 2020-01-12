@@ -1,0 +1,232 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Modifications to get Zeppelin to use a \"remote\" Spark and Cassandra instance\n- mostly true: https://zeppelin.apache.org/docs/latest/interpreter/spark.html: needed to add to the Spark interpreter page\n    - master: \tspark://sandbox:7077\n    - spark.cassandra.connection.host: \tbeach \n    - SPARK_HOME (in the form for arbitrary stuff at the bottom):   /home/derrick/spark/spark-2.4.4-bin-hadoop2.7\n\n- conf/zeppelin-env.sh:\n    - export ZEPPELIN_PORT\u003d8980\n    - export ZEPPELIN_INTERPRETER_LOCALREPO\u003d/home/derrick/.m2/repository/   (so I don\u0027t have to publish to Maven Central to get the current version)\n    - export SPARK_HOME\u003d/home/derrick/spark/spark-2.4.3-bin-hadoop2.7/    (where Spark is installed)\n    - export SPARK_SUBMIT_OPTIONS\u003d\" \\-\\-packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1,ch.ninecode.cim:CIMReader:2.11-2.4.4-4.1.2\"    (will depend on the versions you use)\n    - export HADOOP_HOME\u003d/home/derrick/spark/hadoop-2.7.6   (where Hadoop is installed)\n    - export HADOOP_CONF_DIR\u003d$HADOOP_HOME/etc/hadoop    (contains the configuration for the \"remote\" HDFS, see below)\n\n```\ncore-site.xml:\n\u003cconfiguration\u003e\n  \u003cproperty\u003e\n    \u003cname\u003efs.defaultFS\u003c/name\u003e\n    \u003cvalue\u003ehdfs://sandbox:8020\u003c/value\u003e\n  \u003c/property\u003e\n\u003c/configuration\u003e\n\n```\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-12 16:38:54.151",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eModifications to get Zeppelin to use a \u0026ldquo;remote\u0026rdquo; Spark and Cassandra instance\u003c/h1\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003emostly true: \u003ca href\u003d\"https://zeppelin.apache.org/docs/latest/interpreter/spark.html\"\u003ehttps://zeppelin.apache.org/docs/latest/interpreter/spark.html\u003c/a\u003e: needed to add to the Spark interpreter page\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003emaster: \u003ca href\u003d\"spark://sandbox:7077\"\u003espark://sandbox:7077\u003c/a\u003e\u003c/li\u003e\n      \u003cli\u003espark.cassandra.connection.host: beach\u003c/li\u003e\n      \u003cli\u003eSPARK_HOME (in the form for arbitrary stuff at the bottom): /home/derrick/spark/spark-2.4.4-bin-hadoop2.7\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003econf/zeppelin-env.sh:\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eexport ZEPPELIN_PORT\u003d8980\u003c/li\u003e\n      \u003cli\u003eexport ZEPPELIN_INTERPRETER_LOCALREPO\u003d/home/derrick/.m2/repository/ (so I don\u0026rsquo;t have to publish to Maven Central to get the current version)\u003c/li\u003e\n      \u003cli\u003eexport SPARK_HOME\u003d/home/derrick/spark/spark-2.4.3-bin-hadoop2.7/ (where Spark is installed)\u003c/li\u003e\n      \u003cli\u003eexport SPARK_SUBMIT_OPTIONS\u003d\u0026ldquo; --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1,ch.ninecode.cim:CIMReader:2.11-2.4.4-4.1.2\u0026rdquo; (will depend on the versions you use)\u003c/li\u003e\n      \u003cli\u003eexport HADOOP_HOME\u003d/home/derrick/spark/hadoop-2.7.6 (where Hadoop is installed)\u003c/li\u003e\n      \u003cli\u003eexport HADOOP_CONF_DIR\u003d$HADOOP_HOME/etc/hadoop (contains the configuration for the \u0026ldquo;remote\u0026rdquo; HDFS, see below)\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003ecore-site.xml:\n\u0026lt;configuration\u0026gt;\n  \u0026lt;property\u0026gt;\n    \u0026lt;name\u0026gt;fs.defaultFS\u0026lt;/name\u0026gt;\n    \u0026lt;value\u0026gt;hdfs://sandbox:8020\u0026lt;/value\u0026gt;\n  \u0026lt;/property\u0026gt;\n\u0026lt;/configuration\u0026gt;\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1578841278074_-1354705449",
+      "id": "20200112-160118_662991474",
+      "dateCreated": "2020-01-12 16:01:18.074",
+      "dateStarted": "2020-01-12 16:38:23.919",
+      "dateFinished": "2020-01-12 16:38:23.976",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.rdd.RDD\nimport ch.ninecode.cim._\nimport ch.ninecode.model._",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-12 16:38:24.016",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.rdd.RDD\nimport ch.ninecode.cim._\nimport ch.ninecode.model._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1578843465590_-1529907717",
+      "id": "20200112-163745_1327009261",
+      "dateCreated": "2020-01-12 16:37:45.591",
+      "dateStarted": "2020-01-12 16:38:24.026",
+      "dateFinished": "2020-01-12 16:38:25.076",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\nprintln (s\"Spark version; ${spark.version}\")\n\n{\n    println (s\"reading DemoData.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/DemoData.rdf\")\n    println (s\"read in ${element.count} elements\")\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-12 16:38:25.127",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Spark version; 2.4.4\nreading DemoData.rdf\nread in 1806 elements\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1578839446777_-1302816096",
+      "id": "20200112-153046_539176530",
+      "dateCreated": "2020-01-12 15:30:46.777",
+      "dateStarted": "2020-01-12 16:38:25.137",
+      "dateFinished": "2020-01-12 16:38:37.551",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Test caching of a \"large\" file",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-12 16:45:42.092",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eTest caching of a \u0026ldquo;large\u0026rdquo; file\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1578840099351_-476902151",
+      "id": "20200112-154139_149722930",
+      "dateCreated": "2020-01-12 15:41:39.352",
+      "dateStarted": "2020-01-12 16:45:42.101",
+      "dateFinished": "2020-01-12 16:45:42.155",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def time[R](template: String)(block: \u003d\u003e R): R \u003d\n{\n    val t0 \u003d System.nanoTime ()\n    val ret \u003d block\n    val t1 \u003d System.nanoTime ()\n    println (template.format ((t1 - t0) / 1e9))\n    ret\n}\n\ntime (\"large file uncached and unsaved %s seconds\")\n{\n    println (s\"reading cim_export_CKW_Stripe_5.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/cim_export_CKW_Stripe_5.rdf\")\n    println (s\"read in ${element.count} elements\")\n    val switches \u003d spark.sql (\"select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d p.Location and p.sequenceNumber \u003d 0\")\n    switches.show (5)\n}\n\ntime (\"intermediate file uncached %s seconds\")\n{\n    println (s\"reading DemoData.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/DemoData.rdf\")\n    println (s\"read in ${element.count} elements\")\n}\n\ntime (\"large file uncached and saved %s seconds\")\n{\n    println (s\"reading cim_export_CKW_Stripe_5.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\", \"ch.ninecode.cim.cache\" -\u003e \"hdfs://sandbox:8020/mycache\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/cim_export_CKW_Stripe_5.rdf\")\n    println (s\"read in ${element.count} elements\")\n    val switches \u003d spark.sql (\"select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d p.Location and p.sequenceNumber \u003d 0\")\n    switches.show (5)\n}\n\ntime (\"intermediate file uncached %s seconds\")\n{\n    println (s\"reading DemoData.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/DemoData.rdf\")\n    println (s\"read in ${element.count} elements\")\n}\n\ntime (\"large file cached %s seconds\")\n{\n    println (s\"reading cim_export_CKW_Stripe_5.rdf\")\n    val opts \u003d Map[String,String](\"ch.ninecode.cim.do_topo_islands\" -\u003e \"true\", \"ch.ninecode.cim.cache\" -\u003e \"hdfs://sandbox:8020/mycache\")\n    val element \u003d spark.read.format (\"ch.ninecode.cim\").options (opts).load (\"hdfs://sandbox:8020/cim_export_CKW_Stripe_5.rdf\")\n    println (s\"read in ${element.count} elements\")\n    val switches \u003d spark.sql (\"select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location \u003d p.Location and p.sequenceNumber \u003d 0\")\n    switches.show (5)\n}\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-12 17:59:23.206",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "reading cim_export_CKW_Stripe_5.rdf\nread in 1332285 elements\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|    mRID|           aliasName|                name|  description| open|normalOpen|CoordinateSystem|    xPosition|    yPosition|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|SIG28784|39394992:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28784|false|      true|    pseudo_wgs84|7.96571572237|47.2287052655|\n|SIG28790|39395195:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28790|false|     false|    pseudo_wgs84|7.96597980794|47.2287040575|\n|SIG55694|50183481:nis_el_i...|VER2-C-E/SR (NS-S...|Fuse SIG55694|false|     false|    pseudo_wgs84|7.90101290712|47.2297623702|\n|SIG32203|39511226:nis_el_i...|VER3-V-E/V (NS-Sc...|Fuse SIG32203|false|     false|    pseudo_wgs84|8.15810077060|47.2208235162|\n| SIG1280|38461592:nis_el_i...|         1x25A (OeB)| Fuse SIG1280|false|     false|    pseudo_wgs84|7.97942715845|47.2183133926|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\nonly showing top 5 rows\n\nlarge file uncached and unsaved 336.721236115 seconds\nreading DemoData.rdf\nread in 1806 elements\nintermediate file uncached 24.072563749 seconds\nreading cim_export_CKW_Stripe_5.rdf\nread in 1332285 elements\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|    mRID|           aliasName|                name|  description| open|normalOpen|CoordinateSystem|    xPosition|    yPosition|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|SIG28784|39394992:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28784|false|      true|    pseudo_wgs84|7.96571572237|47.2287052655|\n|SIG28790|39395195:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28790|false|     false|    pseudo_wgs84|7.96597980794|47.2287040575|\n|SIG55694|50183481:nis_el_i...|VER2-C-E/SR (NS-S...|Fuse SIG55694|false|     false|    pseudo_wgs84|7.90101290712|47.2297623702|\n|SIG32203|39511226:nis_el_i...|VER3-V-E/V (NS-Sc...|Fuse SIG32203|false|     false|    pseudo_wgs84|8.15810077060|47.2208235162|\n| SIG1280|38461592:nis_el_i...|         1x25A (OeB)| Fuse SIG1280|false|     false|    pseudo_wgs84|7.97942715845|47.2183133926|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\nonly showing top 5 rows\n\nlarge file uncached and saved 427.196166323 seconds\nreading DemoData.rdf\nread in 1806 elements\nintermediate file uncached 28.035630789 seconds\nreading cim_export_CKW_Stripe_5.rdf\nread in 1332285 elements\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|    mRID|           aliasName|                name|  description| open|normalOpen|CoordinateSystem|    xPosition|    yPosition|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\n|SIG28784|39394992:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28784|false|      true|    pseudo_wgs84|7.96571572237|47.2287052655|\n|SIG28790|39395195:nis_el_i...|VER2-V-E/V (NS-Sc...|Fuse SIG28790|false|     false|    pseudo_wgs84|7.96597980794|47.2287040575|\n|SIG55694|50183481:nis_el_i...|VER2-C-E/SR (NS-S...|Fuse SIG55694|false|     false|    pseudo_wgs84|7.90101290712|47.2297623702|\n|SIG32203|39511226:nis_el_i...|VER3-V-E/V (NS-Sc...|Fuse SIG32203|false|     false|    pseudo_wgs84|8.15810077060|47.2208235162|\n| SIG1280|38461592:nis_el_i...|         1x25A (OeB)| Fuse SIG1280|false|     false|    pseudo_wgs84|7.97942715845|47.2183133926|\n+--------+--------------------+--------------------+-------------+-----+----------+----------------+-------------+-------------+\nonly showing top 5 rows\n\nlarge file cached 74.003389359 seconds\ntime: [R](template: String)(block: \u003d\u003e R)R\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1578843579416_1213953410",
+      "id": "20200112-163939_1048910371",
+      "dateCreated": "2020-01-12 16:39:39.416",
+      "dateStarted": "2020-01-12 17:59:23.306",
+      "dateFinished": "2020-01-12 18:14:14.408",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1578845837316_1039051903",
+      "id": "20200112-171717_239898996",
+      "dateCreated": "2020-01-12 17:17:17.316",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "CIMReader",
+  "id": "2EWKER9SA",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": [],
+    "cassandra:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
