@@ -432,7 +432,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             packages.add ((sc.register (pkg._2), pkg._1))
         }
         val register = new StringBuilder ()
-        register.append ("""    def classes: List[ClassInfo] =
+        register.append ("""    lazy val classes: List[ClassInfo] =
                            |        List (
                            |""".stripMargin)
         var registers: List[String] = List[String]()
