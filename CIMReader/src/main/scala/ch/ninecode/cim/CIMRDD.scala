@@ -1,10 +1,14 @@
 package ch.ninecode.cim
 
 import scala.reflect._
+import scala.reflect.runtime.universe
 import scala.reflect.runtime.universe._
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types.StructField
+import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger
 
@@ -116,6 +120,28 @@ trait CIMRDD
     }
 
     /**
+     * Alter the schema so sup has the correct superclass name.
+     *
+     * @param rtc The runtime class for Typeclass A.
+     * @param schema The SQL schema for Typeclass A, e.g.
+     *   org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...
+     */
+    def modify_schema (rtc: Class[_], schema: StructType): StructType =
+    {
+        val sup = schema.fields (0)
+        val supcls = rtc.getMethod ("sup").getReturnType
+        val clsname = supcls.getName.substring (supcls.getName.lastIndexOf (".") + 1)
+        val suptyp = sup.dataType
+        val dataType = if (suptyp.typeName == "struct")
+            modify_schema (supcls, suptyp.asInstanceOf[StructType])
+        else
+            suptyp
+        val supersup = StructField (clsname, dataType, sup.nullable, sup.metadata)
+        schema.fields.update (0, supersup)
+        StructType (schema.fields)
+    }
+
+    /**
      * Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.
      *
      * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
@@ -137,7 +163,16 @@ trait CIMRDD
         }
         rdd.setName (name).persist (storage)
         if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
-        spark.createDataFrame (rdd).createOrReplaceTempView (name)
+        val tag: universe.TypeTag[T] = typeTag[T]
+        val runtime_class: Class[_] = classTag[T].runtimeClass
+        val df = spark.createDataFrame (rdd)(tag)
+        if (df.schema.fields (0).name == "sup")
+        {
+            val altered_schema = modify_schema (runtime_class, df.schema)
+            spark.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema).createOrReplaceTempView (name)
+        }
+        else
+            spark.createDataFrame (rdd).createOrReplaceTempView (name)
         rdd
     }
 
@@ -194,8 +229,6 @@ trait CIMRDD
 
     /**
      * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
-     *
-     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
      *
      * @param rdd The RDD to persist
      * @param spark The Spark session.
