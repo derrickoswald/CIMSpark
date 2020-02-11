@@ -96,6 +96,7 @@
         <!-- test versions -->
         <version.dependency.junit>4.12</version.dependency.junit>
         <version.dependency.scalatest>3.0.8</version.dependency.scalatest>
+        <version.dependency.scalatest-maven-plugin>2.0.0</version.dependency.scalatest-maven-plugin>
 
     </properties>
 
