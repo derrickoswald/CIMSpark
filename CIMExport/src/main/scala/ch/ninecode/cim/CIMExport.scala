@@ -471,7 +471,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             type KeyValue = (Key, Value)
             type KeyValueList = Iterable[KeyValue]
 
-            val schema = Schema (session, keyspace, true)
+            val schema = Schema (session, keyspace, verbose = true)
             if (schema.make)
             {
                 val id = java.util.UUID.randomUUID.toString

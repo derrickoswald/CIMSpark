@@ -82,7 +82,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
             else if (item > offset)
                 max = index - 1
             else
-                return (index + 1)
+                return index + 1
         }
 
         if (newlines(index) <= offset)

@@ -45,7 +45,7 @@ case class Schema (session: SparkSession, keyspace: String, verbose: Boolean)
             log.info ("""ensuring Cassandra keyspace %s exists""".format (keyspace))
 
             // separate at blank lines and change keyspace
-            var sqls = Source.fromInputStream (schema, "UTF-8").getLines.mkString ("\n").split ("\n\n").map (toKeySpace)
+            val sqls = Source.fromInputStream (schema, "UTF-8").getLines.mkString ("\n").split ("\n\n").map (toKeySpace)
 
             // need to apply each DDL separately
             sqls.forall (

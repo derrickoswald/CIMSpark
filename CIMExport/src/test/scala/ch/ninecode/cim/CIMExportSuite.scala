@@ -1,21 +1,18 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util.HashMap
-import java.util.Map
+import java.util
 
+import ch.ninecode.SparkSuite
+import ch.ninecode.model._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-import ch.ninecode.model._
-
-class CIMExportSuite
-    extends
-        ch.ninecode.SparkSuite
+class CIMExportSuite extends SparkSuite
 {
     val FILE_DEPOT = "data/"
 
-    val filenames_micro = Array (
+    val filenames_micro: Array[String] = Array (
         FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
         FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
         FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
@@ -32,14 +29,14 @@ class CIMExportSuite
         FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_Assembled_SV_V2.xml"
     )
 
-    val filenames_real = Array (
+    val filenames_real: Array[String] = Array (
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml",
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SSH_v2.xml",
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SV_v2.xml",
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    val DEMO_DATA = FILE_DEPOT + "DemoData.rdf"
+    val DEMO_DATA: String = FILE_DEPOT + "DemoData.rdf"
 
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
@@ -163,14 +160,14 @@ class CIMExportSuite
             val facility = result._1 ("STA196_asset").asInstanceOf [Facility]
             val asset = facility.AssetContainer.Asset
             assert (2 == asset.PowerSystemResources.length)
-            assert (cleanString(facility.export) == cleanString(xml))
+            assert (cleanString (facility.export) == cleanString (xml))
     }
 
     test ("Export")
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             val elements = readFile (filenames_micro.mkString (","), options)
             println (elements.count + " elements")
@@ -183,7 +180,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             options.put ("ch.ninecode.cim.do_normalize", "true")
             val elements = readFile (filenames_real.mkString (","), options)
@@ -197,7 +194,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
@@ -212,7 +209,11 @@ class CIMExportSuite
                 island ⇒
                 {
                     // remove all RDD to start from scratch
-                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    {
+                        x._2.unpersist (true);
+                        x._2.name = null
+                    })
                     val file = "target/%s.rdf".format (island)
                     assert (new File (file).exists, "island %s".format (island))
 
@@ -230,7 +231,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
@@ -245,7 +246,11 @@ class CIMExportSuite
                 transformer ⇒
                 {
                     // remove all RDD to start from scratch
-                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    {
+                        x._2.unpersist (true)
+                        x._2.name = null
+                    })
                     val file = "target/%s.rdf".format (transformer)
                     assert (new File (file).exists, "transformer %s".format (transformer))
 
@@ -263,7 +268,7 @@ class CIMExportSuite
     {
         implicit spark: SparkSession ⇒
 
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")

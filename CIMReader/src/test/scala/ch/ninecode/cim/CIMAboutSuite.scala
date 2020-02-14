@@ -1,12 +1,10 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util.HashMap
-import java.util.Map
-
-import org.apache.spark.sql.SparkSession
+import java.util
 
 import ch.ninecode.model._
+import org.apache.spark.sql.SparkSession
 
 class CIMAboutSuite
 extends
@@ -34,7 +32,7 @@ extends
 
     // values from MicroGrid/Documentation/CGMES_v2.4.15_MicroGridTestConfiguration_v2.docx
 
-    val BelgiumElementCount = Array (
+    val BelgiumElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 7),
         ("BaseVoltage", 7),
         ("BusbarSection", 9),
@@ -84,7 +82,7 @@ extends
         ("VoltageLevel", 6)
     )
 
-    val NetherlandsElementCount = Array (
+    val NetherlandsElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 5),
         ("BaseVoltage", 5),
         ("Breaker", 1),
@@ -134,7 +132,7 @@ extends
         ("VoltageLevel", 4)
     )
 
-    val BaseCaseElementCount = Array (
+    val BaseCaseElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 12),
         ("BaseVoltage", 8),
         ("Breaker", 1),
@@ -205,7 +203,7 @@ extends
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 
@@ -261,7 +259,7 @@ extends
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 
@@ -324,7 +322,7 @@ extends
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 

@@ -1,12 +1,10 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util.HashMap
-import java.util.Map
-
-import org.apache.spark.sql.SparkSession
+import java.util
 
 import ch.ninecode.model._
+import org.apache.spark.sql.SparkSession
 
 class CIMNormalizeSuite
 extends
@@ -48,7 +46,7 @@ extends
                 FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
                 FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
             )
-            val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             options.put ("ch.ninecode.cim.do_normalize", "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)
@@ -94,7 +92,7 @@ extends
                 FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SV_v2.xml",
                 FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
             )
-            val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
             options.put ("ch.ninecode.cim.do_about", "true")
             options.put ("ch.ninecode.cim.do_normalize", "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)

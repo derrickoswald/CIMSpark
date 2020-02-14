@@ -349,7 +349,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             if (any)
             {
                 val initializer = (for (i ← 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
-                s.append ("        implicit var bitfields: Array[Int] = Array(%s)\n".format (initializer))
+                s.append ("        implicit val bitfields: Array[Int] = Array(%s)\n".format (initializer))
             }
             if (identified_object)
                 s.append ("        val base = BasicElement.parse (context)\n")

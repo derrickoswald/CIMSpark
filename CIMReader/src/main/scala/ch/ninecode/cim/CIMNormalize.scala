@@ -138,7 +138,7 @@ with
         val element = arg._2._1
         val relations = arg._2._2
 
-        val new_element = relations.foldLeft (element) ((element, relation) ⇒ set (element, relation.parent_class, relation.relationship.field, null, false))
+        val new_element = relations.foldLeft (element) ((element, relation) ⇒ set (element, relation.parent_class, relation.relationship.field, null, setbit = false))
         (id, new_element)
     }
 

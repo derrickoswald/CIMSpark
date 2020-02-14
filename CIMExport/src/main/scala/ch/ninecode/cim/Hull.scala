@@ -37,7 +37,7 @@ object Hull extends Serializable
     {
         point :: hull.foldRight (List.empty [Point])
         {
-            case (p1, rest@(p0 :: _)) =>
+            case (p1, rest@p0 :: _) =>
                 if (ccw (p0, p1, point))
                     p1 :: rest
                 else

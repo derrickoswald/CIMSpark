@@ -239,7 +239,7 @@ import scala.collection.mutable.HashMap
 import org.apache.spark.rdd.RDD
 import ch.ninecode.cim._
 import ch.ninecode.model._
-val opts = new HashMap[String,String]()
+val opts = new mutable.HashMap[String,String]()
 opts.put("ch.ninecode.cim.make_edges", "true")
 opts.put("ch.ninecode.cim.do_topo_islands", "true")
 val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
