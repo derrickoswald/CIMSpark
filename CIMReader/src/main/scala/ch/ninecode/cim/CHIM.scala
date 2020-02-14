@@ -592,7 +592,7 @@ object CHIM
         (result, parser.context.errors)
     }
 
-    def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit): Unit =
+    def apply_to_all_classes (fn: CIMSubsetter[_] => Unit): Unit =
     {
         val chim = new CHIM ("") // ensure registration has occurred
         for (i <- chim.classes)

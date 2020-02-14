@@ -5,8 +5,8 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
-
 import ch.ninecode.model._
+import org.slf4j.Logger
 
 /**
  * Join CIM files from NIS Strom and SAP ISU.
@@ -18,9 +18,9 @@ import ch.ninecode.model._
  */
 class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    implicit val session = spark
+    implicit val session: SparkSession = spark
     implicit val level: StorageLevel = storage
-    implicit val log = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     def unbundle (a: ((Name,ServiceLocation), (Name,ServiceLocation))): (String, (ServiceLocation, ServiceLocation)) =
     {
@@ -31,7 +31,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
     {
         a._2 match
         {
-            case (Some (x)) =>
+            case Some (x) =>
                 // for ISU ServiceLocation with a matching NIS ServiceLocation, make a merged one
                 val isu = x._2._1
                 val nis = x._2._2
@@ -97,7 +97,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     TroubleTicket = isu.TroubleTicket,
                     UsagePoints = isu.UsagePoints
                 )
-            case (None) =>
+            case None =>
                 // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
                 a._1
         }
@@ -119,7 +119,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // for PositionPoint with a NIS ServiceLocation, make a new one with the ISU ServiceLocation
-            case (Some (x)) =>
+            case Some (x) =>
                 PositionPoint (
                     BasicElement (null, a._1.id),
                     a._1.groupNumber,
@@ -129,7 +129,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     a._1.zPosition,
                     x._1.id)
             // default is to keep the original PositionPoint where there isn't a match
-            case (None) => a._1
+            case None => a._1
         }
     }
 
@@ -138,7 +138,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
-            case (Some (x)) =>
+            case Some (x) =>
                 UserAttribute (
                     sup = BasicElement (null, a._1.id),
                     name = x._1.id,
@@ -153,7 +153,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     )
 
             // default is to keep the original UserAttribute where there isn't a match
-            case (None) => a._1
+            case None => a._1
         }
     }
 
@@ -162,9 +162,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // delete Name that matches (it was used to perform the join already)
-            case (Some (_)) => false
+            case Some (_) => false
             // keep Name without a match
-            case (None) => true
+            case None => true
         }
     }
 

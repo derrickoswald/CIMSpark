@@ -3,9 +3,8 @@ package ch.ninecode.cim
 import java.io.File
 import java.util
 
-import org.apache.spark.sql.SparkSession
-
 import ch.ninecode.model._
+import org.apache.spark.sql.SparkSession
 
 class CIMAboutSuite extends ch.ninecode.SparkSuite
 {
@@ -31,7 +30,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
 
     // values from MicroGrid/Documentation/CGMES_v2.4.15_MicroGridTestConfiguration_v2.docx
 
-    val BelgiumElementCount = Array (
+    val BelgiumElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 7),
         ("BaseVoltage", 7),
         ("BusbarSection", 9),
@@ -81,7 +80,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
         ("VoltageLevel", 6)
     )
 
-    val NetherlandsElementCount = Array (
+    val NetherlandsElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 5),
         ("BaseVoltage", 5),
         ("Breaker", 1),
@@ -131,7 +130,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
         ("VoltageLevel", 4)
     )
 
-    val BaseCaseElementCount = Array (
+    val BaseCaseElementCount: Array[(String, Int)] = Array (
         ("ACLineSegment", 12),
         ("BaseVoltage", 8),
         ("Breaker", 1),
