@@ -5,6 +5,7 @@ import scala.reflect.runtime.universe
 import scala.reflect.runtime.universe._
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.StructField
@@ -236,4 +237,19 @@ trait CIMRDD
      * @tparam T The type of RDD.
      */
     def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): RDD[T] = put (rdd, nameOf[T])
+
+    /**
+     * Get a typed DataSet for the given class.
+     *
+     * @param spark The Spark session.
+     * @param log A logger for error messages.
+     * @tparam T The type of RDD.
+     * @return A typed dataset of the RDD.
+     */
+    def asDataSet[T <: Product : ClassTag : TypeTag](implicit spark: SparkSession, log: Logger): Dataset[T] =
+    {
+        import spark.sqlContext.implicits._
+        val rdd = getOrElse[T]
+        spark.createDataset (rdd)
+    }
 }
