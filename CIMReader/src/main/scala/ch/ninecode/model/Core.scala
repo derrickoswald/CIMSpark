@@ -1668,7 +1668,7 @@ extends
             base,
             mask (aliasName (), 0),
             mask (description (), 1),
-            base.id,
+            {mask (mRID (), 2); base.id},
             mask (name (), 3),
             masks (DiagramObjects (), 4),
             mask (InstanceSet (), 5),

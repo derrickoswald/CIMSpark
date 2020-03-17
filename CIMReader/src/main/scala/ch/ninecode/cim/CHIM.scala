@@ -13,7 +13,7 @@ import scala.language.existentials
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 import scala.reflect.runtime.universe.TypeTag
-import org.apache.spark.sql.Row
+
 import ch.ninecode.model._
 
 /**
@@ -27,14 +27,14 @@ trait Parser
 
     type Expression = (Pattern, Int)
 
-    type Field = (String, Boolean)
+    type Field = Option[String]
     trait FielderFunction
     {
         def apply ()(implicit context:Context): Field
     }
     type Fielder = FielderFunction
 
-    type Fields = (List[String], Boolean)
+    type Fields = Option[List[String]]
     trait FielderFunctionMultiple
     {
         def apply ()(implicit context:Context): Fields
@@ -117,11 +117,11 @@ trait Parser
                 {
                     val string = matcher.group (pattern._2)
                     if (Context.DEBUG)
-                        context.coverage += Tuple2 (matcher.start, matcher.end)
-                    (string, true)
+                        context.coverage.append ((matcher.start, matcher.end))
+                    Some (string)
                 }
                 else
-                    (null, false)
+                    None
             }
         }
     }
@@ -141,19 +141,20 @@ trait Parser
         {
             def apply () (implicit context: Context): Fields =
             {
-                var ret: List[String] = null
-
                 val matcher = pattern._1.matcher (context.subxml)
-                while (matcher.find ())
-                {
-                    val string = matcher.group (pattern._2)
-                    if (Context.DEBUG)
-                        context.coverage += Tuple2 (matcher.start, matcher.end)
-                    if (null != string)
-                        ret = if (null == ret) List (string) else ret :+ string
-                }
-
-                (ret, null != ret)
+                val enumerator = new Iterator[String]()
+                    {
+                        def hasNext: Boolean = matcher.find ()
+                        def next (): String =
+                        {
+                            if (Context.DEBUG)
+                                context.coverage.append ((matcher.start, matcher.end))
+                            matcher.group (pattern._2)
+                        }
+                    }
+                val iterator = for (string <- enumerator)
+                    yield string
+                if (iterator.isEmpty) None else Some (iterator.toList)
             }
         }
     }
@@ -183,14 +184,14 @@ trait Parser
                         val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
                         val string = context.subxml.subSequence (begin, end).toString
                         if (Context.DEBUG)
-                            context.coverage += Tuple2 (matcher.start, matcher.end)
-                        (string, true)
+                            context.coverage.append ((matcher.start, matcher.end))
+                        Option (string)
                     }
                     else
-                        (null, false)
+                        None
                 }
                 else
-                    (null, false)
+                    None
             }
         }
     }
@@ -210,24 +211,30 @@ trait Parser
         {
             def apply () (implicit context: Context): Fields =
             {
-                var ret: List[String] = null
-
                 val matcher = pattern._1.matcher (context.subxml)
-                while (matcher.find ())
+                val enumerator = new Iterator[Option[String]]()
                 {
-                    val start = matcher.start (pattern._2)
-                    val end = matcher.end (pattern._2)
-                    if ((-1 != start) && (-1 != end))
+                    def hasNext: Boolean = matcher.find ()
+                    def next (): Option[String] =
                     {
-                        val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                        val string = context.subxml.subSequence (begin, end).toString
-                        if (Context.DEBUG)
-                            context.coverage += Tuple2 (matcher.start, matcher.end)
-                        ret = if (null == ret) List (string) else ret :+ string
+                        val start = matcher.start (pattern._2)
+                        val end = matcher.end (pattern._2)
+                        if ((-1 != start) && (-1 != end))
+                        {
+                            val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                            val string = context.subxml.subSequence (begin, end).toString
+                            if (Context.DEBUG)
+                                context.coverage.append ((matcher.start, matcher.end))
+                            Some (string)
+                        }
+                        else
+                            None
                     }
                 }
-
-                (ret, null != ret)
+                val iterator = for (string <- enumerator)
+                    yield string
+                val l = iterator.flatten
+                if (l.isEmpty) None else Some (l.toList)
             }
         }
     }
@@ -302,7 +309,6 @@ trait Parser
  * This parser companion object is only needed because Scala doesn't have a static declaration,
  * and instead invents a "companion object" to hold the trait or class
  * members that should be accessible without an instantiated object.
- * 
  */
 object Parser
 {
@@ -345,7 +351,7 @@ case class ClassInfo (
  *     def parse (context: Context): Terminal = ???
  * }
  * }}}
- * 
+ *
  * @tparam A The CIM class type.
  */
 abstract class Parseable[+A <: Product : ClassTag : TypeTag] extends Parser
@@ -355,18 +361,28 @@ abstract class Parseable[+A <: Product : ClassTag : TypeTag] extends Parser
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
     val subsetter: CIMSubsetter[_ <: Product] = new CIMSubsetter[A]()
     def register: ClassInfo =
-        ClassInfo (cls, this.asInstanceOf[Parseable[Product]], subsetter, relations)
+        ClassInfo (cls, this, subsetter, relations)
     def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
     {
-        if (field._2)
-            bitfields(position / 32) |= (1 << (position % 32))
-        field._1
+        field match
+        {
+            case Some (string) =>
+                bitfields(position / 32) |= (1 << (position % 32))
+                string
+            case None =>
+                null
+        }
     }
-    def masks (field: Fields, position: Int) (implicit bitfields: Array[Int]): List[String] =
+    def masks (fields: Fields, position: Int) (implicit bitfields: Array[Int]): List[String] =
     {
-        if (field._2)
-            bitfields(position / 32) |= (1 << (position % 32))
-        field._1
+        fields match
+        {
+            case Some (list) =>
+                bitfields(position / 32) |= (1 << (position % 32))
+                list
+            case None =>
+                null
+        }
     }
 }
 
@@ -512,7 +528,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     def byte_count (xml: String, begin: Int, end: Int): Int =
     {
         val cb = CharBuffer.wrap (xml, begin, end)
-        bytes.position (0)
+        val _ = bytes.rewind
         val cr = encoder.encode (cb, bytes, true)
         if (!cr.isUnderflow)
             cr.throwException ()
@@ -553,7 +569,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                         else
                         {
                             val snippet = if (unknown.length > 50) s"${unknown.substring (0, 50)}..." else unknown
-                            context.errors += s"""Unknown content "$snippet" at line ${context.line_number ()}"""
+                            context.errors.append (s"""Unknown content "$snippet" at line ${context.line_number ()}""")
                             ret = false
                         }
                     }
@@ -582,13 +598,14 @@ object CHIM
 {
     val CHUNK: Int = 1024*1024*64
     val OVERREAD: Int = 1024*256 // should be large enough that no RDF element is bigger than this
-    val row: Row = null
 
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
     {
         val result = new scala.collection.mutable.HashMap[String, Element]
         while (parser.parse_one ())
-            result.put (parser.value.id, parser.value)
+        {
+            val _ = result.put (parser.value.id, parser.value)
+        }
         (result, parser.context.errors)
     }
 
@@ -614,7 +631,7 @@ object CHIM
                 // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
                 val size = (end - start + extra).toInt
                 val buffer = new Array[Byte] (size)
-                in.read (buffer)
+                val _ = in.read (buffer)
 
                 val low =
                     if (0 == start)
@@ -661,7 +678,7 @@ object CHIM
             if (args.length > 1)
             {
                 println ("Press [Return] to continue...")
-                System.console().readLine()
+                val _ = System.console().readLine()
             }
 
             val filename = args (0)
@@ -684,7 +701,7 @@ object CHIM
                 offset += CHUNK
                 xml = null
                 val map = CHIM.parse (parser)
-                result ++= map._1
+                val _ = result ++= map._1
 
                 val after = System.nanoTime
                 parsing += (after - before) / 1000

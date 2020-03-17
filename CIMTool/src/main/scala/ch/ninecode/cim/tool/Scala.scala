@@ -372,7 +372,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             }
             s.append (
                 if (identified_object)
-                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else masker (x) )))
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") s"{${masker (x)}; base.id}" else masker (x) )))
                 else
                     wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else masker (x))))
             )

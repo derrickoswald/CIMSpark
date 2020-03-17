@@ -316,14 +316,17 @@ object BasicElement
     override def parse (context: Context): BasicElement =
     {
         implicit val ctx: Context = context
-        val (id, _) = ID.apply ()
-        val (ab, isab) = about.apply ()
-        val mRID = if (isab)
-            if ('#' == ab.charAt (0)) ab.substring (1) else ab // remove '#'
-        else // if (!isid) then id is null anyway
-            id
+        val id = ID.apply ().orNull
+        val ab = about.apply ()
+        val mRID = ab match
+        {
+            case Some (mrid) =>
+                if ('#' == mrid.charAt (0)) mrid.substring (1) else mrid // remove '#'
+            case None =>
+                id // id may be null anyway
+        }
         val basic = BasicElement (null, mRID)
-        basic._about = isab
+        basic._about = ab.isDefined
         basic
     }
 }
