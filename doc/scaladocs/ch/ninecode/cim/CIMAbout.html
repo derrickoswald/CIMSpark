@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMAbout - CIMReader 2.11-2.4.4-4.1.1 API - ch.ninecode.cim.CIMAbout</title>
-          <meta name="description" content="CIMAbout - CIMReader 2.11 - 2.4.4 - 4.1.1 API - ch.ninecode.cim.CIMAbout" />
-          <meta name="keywords" content="CIMAbout CIMReader 2.11 2.4.4 4.1.1 API ch.ninecode.cim.CIMAbout" />
+          <title>CIMAbout - CIMReader 2.11-2.4.5-4.1.3 API - ch.ninecode.cim.CIMAbout</title>
+          <meta name="description" content="CIMAbout - CIMReader 2.11 - 2.4.5 - 4.1.3 API - ch.ninecode.cim.CIMAbout" />
+          <meta name="keywords" content="CIMAbout CIMReader 2.11 2.4.5 4.1.3 API ch.ninecode.cim.CIMAbout" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -167,6 +167,24 @@ this class merges the about elements into the &quot;primary&quot; element(s).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#asDataSet" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asDataSet[T&lt;:Product](implicitevidence$12:scala.reflect.ClassTag[T],implicitevidence$13:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.sql.Dataset[T]"></a>
+      <a id="asDataSet[T&lt;:Product](ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,Logger):Dataset[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asDataSet</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.asDataSet.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.asDataSet.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Dataset">Dataset</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.asDataSet.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@asDataSet[T&lt;:Product](implicitevidence$12:scala.reflect.ClassTag[T],implicitevidence$13:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.sql.Dataset[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get a typed DataSet for the given class.</p><div class="fullcomment"><div class="comment cmt"><p>Get a typed DataSet for the given class.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">log</dt><dd class="cmt"><p>A logger for error messages.</p></dd><dt>returns</dt><dd class="cmt"><p>A typed dataset of the RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -288,7 +306,7 @@ merged into them (no de-duplication).</p><p>The new RDD is cached and checkpoint
               
         </dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="get[T](implicitevidence$5:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="get[T](implicitevidence$8:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="get[T](ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -299,7 +317,7 @@ merged into them (no de-duplication).</p><p>The new RDD is cached and checkpoint
         <span class="name">get</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@get[T](implicitevidence$5:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@get[T](implicitevidence$8:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -345,7 +363,7 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#getOrElse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getOrElse[T](implicitevidence$6:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="getOrElse[T](implicitevidence$9:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="getOrElse[T](ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -356,7 +374,7 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
         <span class="name">getOrElse</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@getOrElse[T](implicitevidence$6:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@getOrElse[T](implicitevidence$9:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -451,6 +469,43 @@ class type (the usual case).
       <p class="shortcomment cmt">Apply rdf:about elements to the primary element.</p><div class="fullcomment"><div class="comment cmt"><p>Apply rdf:about elements to the primary element.
 </p></div><dl class="paramcmts block"><dt class="param">arg</dt><dd class="cmt"><p>The primary element and any rdf:about elements.</p></dd><dt>returns</dt><dd class="cmt"><p>The new element if there were rdf:about elements to merge,
 or the original element if there were none.</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#modify_schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType"></a>
+      <a id="modify_schema(Class[_],StructType):StructType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">modify_schema</span><span class="params">(<span name="rtc">rtc: <span class="extype" name="scala.Predef.Class">Class</span>[_]</span>, <span name="schema">schema: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Alter the schema so sup has the correct superclass name.</p><div class="fullcomment"><div class="comment cmt"><p>Alter the schema so sup has the correct superclass name.
+</p></div><dl class="paramcmts block"><dt class="param">rtc</dt><dd class="cmt"><p>The runtime class for Typeclass A.</p></dd><dt class="param">schema</dt><dd class="cmt"><p>The SQL schema for Typeclass A, e.g.
+  org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#nameOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nameOf[T](implicitevidence$6:scala.reflect.ClassTag[T]):String"></a>
+      <a id="nameOf[T](ClassTag[T]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nameOf</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.nameOf.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@nameOf[T](implicitevidence$6:scala.reflect.ClassTag[T]):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get the base name of the CIM class.</p><div class="fullcomment"><div class="comment cmt"><p>Get the base name of the CIM class.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of the class.</p></dd><dt>returns</dt><dd class="cmt"><p>The base name of the class.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -503,41 +558,41 @@ or the original element if there were none.</p></dd></dl></div>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$9:scala.reflect.ClassTag[T],implicitevidence$10:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T])(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="put[T&lt;:Product](RDD[T])(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$9:scala.reflect.ClassTag[T],implicitevidence$10:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Persist the typed RDD using the class name and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the class name and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
+      <p class="shortcomment cmt">Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T],String)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="put[T&lt;:Product](RDD[T],String)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Persist the typed RDD using the given name and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+      <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMAbout#session" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="session:org.apache.spark.sql.SparkSession"></a>
       <a id="session:SparkSession"></a>
@@ -573,7 +628,7 @@ or the original element if there were none.</p></dd></dl></div>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#test" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="test[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean"></a>
+      <a id="test[T](implicitevidence$7:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean"></a>
       <a id="test[T](ClassTag[T],SparkSession,Logger):Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -584,7 +639,7 @@ or the original element if there were none.</p></dd></dl></div>
         <span class="name">test</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.test.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@test[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMAbout@test[T](implicitevidence$7:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>

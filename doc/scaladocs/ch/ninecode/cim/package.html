@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>cim - CIMReader 2.11-2.4.4-4.1.1 API - ch.ninecode.cim</title>
-          <meta name="description" content="cim - CIMReader 2.11 - 2.4.4 - 4.1.1 API - ch.ninecode.cim" />
-          <meta name="keywords" content="cim CIMReader 2.11 2.4.4 4.1.1 API ch.ninecode.cim" />
+          <title>cim - CIMReader 2.11-2.4.5-4.1.3 API - ch.ninecode.cim</title>
+          <meta name="description" content="cim - CIMReader 2.11 - 2.4.5 - 4.1.3 API - ch.ninecode.cim" />
+          <meta name="keywords" content="cim CIMReader 2.11 2.4.5 4.1.3 API ch.ninecode.cim" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -378,12 +378,13 @@ connections between electrical elements.</p><p>Based on ConnectivityNode element
       </a>
     </span>
       <p class="shortcomment cmt">Access globally named and cached RDD of CIM classes.</p><div class="fullcomment"><div class="comment cmt"><p>Access globally named and cached RDD of CIM classes.</p><p>This uses the list of persistent RDDs maintained by Spark
-to retrieve pre-existing RDD of CIM classes pesisted by the
+to retrieve pre-existing RDD of CIM classes persisted by the
 CIMReader.</p><p>These RDD are strongly typed, and are named according to the
 corresponding CIM class. For example, there is an <code>RDD[ACLineSegment]</code>
 with the name <code>"ACLineSegment"</code> persisted and remembered in the
 <code>spark.sparkContext.getPersistentRDDs: collection.Map[Int, RDD[_] ]</code>
-by the CIMReader.</p><p>Implicit parameters for the Spark context and error logger are required.
+by the CIMReader.</p><p>Implicit parameters for the SparkSession and error Logger are required.
+Implicit parameter StorageLevel is required to put().
 </p></div><dl class="attributes block"> <div class="block">Example:
                <ol><li class="cmt"><p>Declare a class that extends CIMRDD to be able to access the <code>get()</code> methods:</p><pre><span class="kw">import</span> org.apache.spark.rdd.RDD
 <span class="kw">import</span> org.apache.spark.sql.SparkSession
@@ -418,8 +419,8 @@ by the CIMReader.</p><p>Implicit parameters for the Spark context and error logg
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMRelation" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="CIMRelationextendsBaseRelationwithTableScan"></a>
+    </li><li name="ch.ninecode.cim.CIMRelation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CIMRelationextendsBaseRelationwithTableScanwithCIMRDD"></a>
       <a id="CIMRelation:CIMRelation"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -427,14 +428,17 @@ by the CIMReader.</p><p>Implicit parameters for the Spark context and error logg
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="CIMRelation.html"><span class="name">CIMRelation</span></a><span class="result"> extends <span class="extype" name="org.apache.spark.sql.sources.BaseRelation">BaseRelation</span> with <span class="extype" name="org.apache.spark.sql.sources.TableScan">TableScan</span></span>
+        <a href="CIMRelation.html"><span class="name">CIMRelation</span></a><span class="result"> extends <span class="extype" name="org.apache.spark.sql.sources.BaseRelation">BaseRelation</span> with <span class="extype" name="org.apache.spark.sql.sources.TableScan">TableScan</span> with <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@CIMRelationextendsBaseRelationwithTableScan" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMRelationextendsBaseRelationwithTableScanwithCIMRDD" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">A Relation for CIM RDF files that can produce all of its tuples as an RDD of Row objects.</p><div class="fullcomment"><div class="comment cmt"><p>A Relation for CIM RDF files that can produce all of its tuples as an RDD of Row objects.</p><p>As a side effect, this relation also creates RDD and local temporary views corresponding
+to the subclasses of each element, and saves each RDD in the persistent RDD list
+using the CIM class name.
+</p></div></div>
     </li><li name="ch.ninecode.cim.CIMSubsetter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMSubsetter[A&lt;:Product]extendsSerializable"></a>
       <a id="CIMSubsetter[A&lt;:Product]:CIMSubsetter[A]"></a>
@@ -887,7 +891,8 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
 Includes constants for use by subclasses and the parser.
 This parser companion object is only needed because Scala doesn't have a static declaration,
 and instead invents a &quot;companion object&quot; to hold the trait or class
-members that should be accessible without an instantiated object.</p></div></div>
+members that should be accessible without an instantiated object.
+</p></div></div>
     </li><li name="ch.ninecode.cim.Unforced" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Unforced"></a>
       <a id="Unforced:Unforced"></a>
