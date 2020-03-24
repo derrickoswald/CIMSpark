@@ -154,6 +154,9 @@
                     <args>
                         <arg>-deprecation</arg>
                         <arg>-feature</arg>
+                        <arg>-unchecked</arg>
+                        <arg>-Xlint:_</arg>
+                        <arg>-target:jvm-1.8</arg>
                     </args>
                     <jvmArgs>
                         <jvmArg>-Xss4m</jvmArg>

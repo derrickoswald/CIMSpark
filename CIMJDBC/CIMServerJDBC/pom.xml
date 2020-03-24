@@ -81,6 +81,13 @@
                 <configuration>
                     <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
                     <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                    <args>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                        <arg>-unchecked</arg>
+                        <arg>-Xlint:_</arg>
+                        <arg>-target:jvm-1.8</arg>
+                    </args>
                 </configuration>
                 <executions>
                     <execution>
@@ -88,13 +95,6 @@
                             <goal>compile</goal>
                             <goal>testCompile</goal>
                         </goals>
-                        <configuration>
-                            <args>
-                                <arg>-deprecation</arg>
-                                <arg>-dependencyfile</arg>
-                                <arg>${project.build.directory}/.scala_dependencies</arg>
-                            </args>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -764,7 +764,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             // map each graph vertex to the terminals
             val vertices = getOrElse[ConnectivityNode].map (x => (vertex_id (x.id), x))
             val td_plus = graph.vertices.join (vertices).values.filter (_._1.island != 0L).keyBy (_._2.id).leftOuterJoin (terms.keyBy (_._1.ConnectivityNode)).values
-            val islands = td_plus.groupBy (_._1._1.island).values.map (to_islands)
+            val islands = td_plus.groupBy (_._1._1.island).values.filter (_.exists (_._2.isDefined)).map (to_islands)
 
             // create a new TopologicalIsland RDD
             val new_ti = islands.values
