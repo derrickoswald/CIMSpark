@@ -97,6 +97,167 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     /**
+     * Index of open field in Switch bitmask.
+     */
+    val openMask: Int = Switch.fields.indexOf ("open")
+
+    /**
+     * Index of normalOpen field in Switch bitmask.
+     */
+    val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
+
+    /*
+     * Method to determine if a switch is closed (both terminals are the same topological node).
+     *
+     * If the switch has the <code>open</code> attribute set, use that.
+     * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
+     * Otherwise assume it is the default state set by
+     * CIMTopologyOptions.default_switch_open_state which means not closed unless explicitly set.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
+     */
+    def switchClosed (switch: Switch): Boolean =
+    {
+        if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
+            !switch.open // open valid
+        else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
+            !switch.normalOpen
+        else
+            true
+    }
+
+    /**
+     * Get the list of open switches straddling island boundaries.
+     *
+     * Provides a list of normally open switches that join two transformer service areas.
+     */
+    def switchp (item: (Island, Element)): Option[(mRID, Island)] =
+    {
+        val (island, element) = item
+        val switch: Option[Switch] = element match
+        {
+            case s: Switch => Some (s)
+            case s: Cut => Some (s.Switch)
+            case s: Disconnector => Some (s.Switch)
+            case s: Fuse => Some (s.Switch)
+            case s: GroundDisconnector => Some (s.Switch)
+            case s: Jumper => Some (s.Switch)
+            case s: MktSwitch => Some (s.Switch)
+            case s: ProtectedSwitch => Some (s.Switch)
+            case s: Breaker => Some (s.ProtectedSwitch.Switch)
+            case s: LoadBreakSwitch => Some (s.ProtectedSwitch.Switch)
+            case s: Recloser => Some (s.ProtectedSwitch.Switch)
+            case s: Sectionaliser => Some (s.Switch)
+            case _ => None
+        }
+        switch.filter (!switchClosed (_)).map (switch => (switch.id, island))
+    }
+
+    def class_name (e: Element): String =
+    {
+        val classname = e.getClass.getName
+        classname.substring (classname.lastIndexOf (".") + 1)
+    }
+
+    def toJSON (id: String) (group: (String, Iterable[Element])): (String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)]) =
+    {
+        type Key = String
+        type Value = String
+        type KeyValue = (Key, Value)
+        type KeyValueList = Iterable[KeyValue]
+
+        val (transformer, elements) = group
+        val points = elements.flatMap ({ case point: PositionPoint => Some (point) case _ => None })
+        val list = points.map (p => (p.xPosition.toDouble, p.yPosition.toDouble)).toList
+        val coordinates = List (Hull.scan (list).map (p => List (p._1, p._2)))
+        val geometry = ("Polygon", coordinates)
+        val properties: KeyValueList = List (("name", transformer))
+        (id, transformer, "Feature", geometry, properties)
+    }
+
+    def doctor_stop_nodes (elements: Iterable[Element], stopNodes: Set[Item]): Iterable[Element] =
+    {
+        // null out the stop node island reference
+        elements.map
+        {
+            case node: TopologicalNode =>
+                if (stopNodes.exists (_._1 == node.id))
+                    TopologicalNode (
+                        node.IdentifiedObject,
+                        node.pInjection,
+                        node.qInjection,
+                        node.AngleRefTopologicalIsland,
+                        node.BaseVoltage,
+                        node.BusNameMarker,
+                        node.ConnectivityNodeContainer,
+                        node.ConnectivityNodes,
+                        node.ReportingGroup,
+                        node.SvInjection,
+                        node.SvVoltage,
+                        node.Terminal,
+                        null // TopologicalIsland
+                    )
+                else
+                    node
+            case element => element
+        }
+    }
+
+    def saveToCassandra (
+        options: ExportOptions,
+        trafokreise: RDD[(Island, Iterable[Element])],
+        labeled: RDD[(Island, Element)],
+        stopNodes: Set[Item]): Int =
+    {
+        val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
+        if (schema.make)
+        {
+            val id = java.util.UUID.randomUUID.toString
+            val time = new Date ().getTime
+            val fs = FileSystem.get (spark.sparkContext.hadoopConfiguration)
+            var filesize = 0L
+            var filetime = 0L
+            for (file <- options.files)
+            {
+                val path = new Path (file)
+                val status = fs.getFileStatus (path)
+                filetime = status.getModificationTime
+                filesize = filesize + status.getLen
+            }
+            val source = options.files.mkString (",")
+            val export = spark.sparkContext.parallelize (Seq ((id, time, source, filetime, filesize)))
+            export.saveToCassandra (options.keyspace, "export", SomeColumns ("id", "runtime", "filename", "filetime", "filesize"))
+
+            val trafos = trafokreise.map (
+                group =>
+                {
+                    val (transformer, elements) = group
+                    val fixed_elements = doctor_stop_nodes (elements, stopNodes)
+                    log.info (s"exporting $transformer")
+                    val (filesize, zipdata) = export_iterable_blob (fixed_elements, transformer)
+                    (id, transformer, fixed_elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
+                }
+            )
+            trafos.saveToCassandra (options.keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
+            val total = trafos.count.toInt
+            log.info (s"exported $total transformer${if (total == 1) "" else "s"}")
+
+            // create a convex hull for each transformer service area
+            val json = trafokreise.map (toJSON (id))
+            json.saveToCassandra (options.keyspace, "transformer_service_area", SomeColumns ("id", "name", "type", "geometry", "properties"))
+
+            val switches = labeled.flatMap (switchp).groupByKey.filter (_._2.size > 1)
+                .map (x => (id, x._1, x._2.head, x._2.tail.head))
+            switches.saveToCassandra (options.keyspace, "boundary_switches", SomeColumns ("id", "mrid", "island1", "island2"))
+
+            total
+        }
+        else
+            0
+    }
+
+    /**
      * Merge source into destination and clean up source.
      *
      * @param source existing directory to be copied from
@@ -156,7 +317,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     {
         val header =
 """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+"""
         val tailer =
             """
 </rdf:RDF>"""
@@ -169,7 +331,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // write the file
         val out = hdfs.create (file, true)
         out.write (header.getBytes (StandardCharsets.UTF_8))
-        elements.map (_.export).foreach ((s: String) ⇒ { out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n') })
+        elements.map (_.export).foreach ((s: String) => { out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n') })
         out.write (tailer.getBytes (StandardCharsets.UTF_8))
         out.close ()
 
@@ -196,7 +358,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
         // create the text
         val sb = new scala.collection.mutable.StringBuilder (32768, header)
-        elements.map (_.export).foreach ((s: String) ⇒ { sb.append (s); sb.append ('\n') })
+        elements.map (_.export).foreach ((s: String) => { sb.append (s); sb.append ('\n') })
         sb.append (tailer)
         val data = sb.toString.getBytes (StandardCharsets.UTF_8)
 
@@ -219,13 +381,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def pair (s: String): (String, String) = (s, s)
 
-    def keyed[T <: Element] (key: T ⇒ String = (x: T) ⇒ x.id) (implicit kt: ClassTag[T]): RDD[(String, T)] = getOrElse[T].keyBy (key)
+    def keyed[T <: Element] (key: T => String = (x: T) => x.id) (implicit kt: ClassTag[T]): RDD[(String, T)] = getOrElse[T].keyBy (key)
 
-    def foreign[T] (fn: T ⇒ String) (x: T): (String, String) = pair (fn (x))
+    def foreign[T] (fn: T => String) (x: T): (String, String) = pair (fn (x))
 
-    def narrow[T] (rdd: RDD[(String, (T, String))]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.map (x ⇒ (x._1, x._2._1))
+    def narrow[T] (rdd: RDD[(String, (T, String))]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.map (x => (x._1, x._2._1))
 
-    def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x ⇒ (x._1, x._2._1))
+    def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x => (x._1, x._2._1))
 
     def distinct[T] (rdd: RDD[(String, T)]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, _) => x)
 
@@ -253,7 +415,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Find the list of dependents that should be included for the given element.
      * @param relations the list of relation descriptions
-     * @param stop a set of Terminal mRID that will limit the dependency check
+     * @param stop a set of ConnectivityNode and TopologicalNode mRID that will limit the dependency check
      * @param element the element to check
      * @return the dependents as pairs of mRID ("if you include me, include him")
      */
@@ -268,7 +430,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             val clazz = raw.substring (raw.lastIndexOf (".") + 1)
             val related = relations (clazz)
             val l = related.flatMap (
-                relation ⇒
+                relation =>
                 {
                     val method = cls.getDeclaredMethod (relation.field)
                     method.setAccessible (true)
@@ -280,12 +442,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                             if (relation.field == "TopologicalIsland")
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "TopologicalNode")
-                                if (stop.contains (e.id))
+                                if (stop.contains (mrid))
                                     None
                                 else
                                     List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "ConnectivityNode")
-                                if (stop.contains (e.id))
+                                if (stop.contains (mrid))
                                     None
                                 else
                                     List ((e.id, mrid), (mrid, e.id))
@@ -322,21 +484,21 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * Export related.
      *
      * @param what a PairRDD, the keys are mrid to check, and the values are the name we will save to
-     * @param stop a set of Terminal mRID that will limit the dependency check
+     * @param stop a set of ConnectivityNode and Topological mRID that will limit the dependency check
      * @return the number of related groups processed
      */
-    def labelRelated (what: RDD[Item], stop: Set[String] = Set ()): RDD[(Island, Element)] =
+    def labelRelated (what: RDD[Item], stop: Set[Item] = Set ()): RDD[(Island, Element)] =
     {
         // the to do list is a PairRDD, the keys are mrid to check,
         // and the values are the name to label the related items
-        var todo = what.keyBy (x ⇒ s"${x._1}${x._2}")
+        var todo = what.keyBy (x => s"${x._1}${x._2}")
 
         val classes = new CHIM ("").classes
 
         // make a mapping of mRID to mRID
         // "if you include me, you have to include him" and vice-versa for some relations
-        val relationships = classes.map (x ⇒ (x.name, x.relations)).toMap
-        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships, stop)).persist (storage)
+        val relationships = classes.map (x => (x.name, x.relations)).toMap
+        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships, stop.map (_._1))).persist (storage)
 
         // done is a list of keyed PairRDD, the keys are mRID_Island and each pair is an mRID and the Island it belongs to
         var done: List[RDD[KeyedItem]] = List ()
@@ -345,22 +507,26 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         {
             val next: RDD[(mRID, (Island, mRID))] = todo.values.join (ying_yang).persist (storage)
             done = done ++ Seq (todo)
-            var new_todo: RDD[KeyedItem] = next.values.map (_.swap).keyBy (x ⇒ s"${x._1}${x._2}")
-            done.foreach (d ⇒ new_todo = new_todo.subtractByKey (d))
+            var new_todo: RDD[KeyedItem] = next.values.map (_.swap).keyBy (x => s"${x._1}${x._2}")
+            done.foreach (d => new_todo = new_todo.subtractByKey (d))
             new_todo.persist (storage)
             next.unpersist (false)
             todo = new_todo
         }
         while (!todo.isEmpty)
+
+        // add stopping nodes
+        done = done :+ session.sparkContext.parallelize (stop.toSeq).keyBy (x => s"${x._1}${x._2}")
+
         // reduce to n executors
         val n = session.sparkContext.getExecutorMemoryStatus.size
-        val done_minimized = done.map (_.values.map (x ⇒ (x._1, Set[Island](x._2)))
+        val done_minimized = done.map (_.values.map (x => (x._1, Set[Island](x._2)))
             .reduceByKey (
-                (x, y) ⇒ x.union (y), n))
+                (x, y) => x.union (y), n))
         val all_done: RDD[Item] = session.sparkContext.union (done_minimized)
             .reduceByKey (
-                (x, y) ⇒ x.union (y), n)
-            .flatMap (p ⇒ p._2.map (q ⇒ (p._1, q)))
+                (x, y) => x.union (y), n)
+            .flatMap (p => p._2.map (q => (p._1, q)))
             .persist (storage)
 
         val ret = getOrElse[Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
@@ -380,7 +546,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     {
         val dir = if (directory.endsWith ("/")) directory else s"$directory/"
         // start with the island
-        val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x ⇒ (x.id, filename)).persist (storage)
+        val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x => (x.id, filename)).persist (storage)
         val labeled = labelRelated (todo)
         val file = s"$dir$filename"
         export (labeled.map (_._2), file)
@@ -403,7 +569,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val todo = islands.map (pair).persist (storage)
         val labeled = labelRelated (todo)
         val total = labeled.groupByKey.map (
-            group ⇒
+            group =>
             {
                 val island = group._1
                 val elements = group._2
@@ -417,51 +583,6 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         total
     }
 
-    def class_name (e: Element): String =
-    {
-        val classname = e.getClass.getName
-        classname.substring (classname.lastIndexOf (".") + 1)
-    }
-
-    def doctor_stop_terminals (elements: Iterable[Element], stopTerminals: Set[String]): Iterable[Element] =
-    {
-        // null out the stop terminal node references
-        elements.map (
-            element =>
-            {
-                if (!stopTerminals.contains (element.id))
-                    element
-                else
-                {
-                    val t = element.asInstanceOf[Terminal]
-                    val terminal = Terminal (
-                        t.ACDCTerminal,
-                        t.phases,
-                        t.AuxiliaryEquipment,
-                        t.BranchGroupTerminal,
-                        t.Bushing,
-                        t.Circuit,
-                        t.ConductingEquipment,
-                        null, // ConnectivityNode
-                        t.ConverterDCSides,
-                        t.EquipmentFaults,
-                        t.HasFirstMutualCoupling,
-                        t.HasSecondMutualCoupling,
-                        t.NormalHeadFeeder,
-                        t.PinTerminal,
-                        t.RegulatingControl,
-                        t.RemoteInputSignal,
-                        t.SvPowerFlow,
-                        t.TieFlow,
-                        null, // TopologicalNode
-                        t.TransformerEnd
-                    )
-                    terminal.asInstanceOf[Element]
-                }
-            }
-        )
-    }
-
     /**
      * Export every transformer service area.
      *
@@ -470,14 +591,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def exportAllTransformers (options: ExportOptions): Int =
     {
-        val source = options.files.mkString (",")
         // get transformer low voltage pins
-        val term_by_node = getOrElse [Terminal].map (y ⇒ (y.id, y.TopologicalNode))
-        val node_by_island = getOrElse [TopologicalNode].map (z ⇒ (z.id, z.TopologicalIsland))
-        val ends = getOrElse [PowerTransformerEnd]
+        val term_by_node = getOrElse[Terminal].map (y => (y.id, y.TopologicalNode))
+        val node_by_island = getOrElse[TopologicalNode].map (z => (z.id, z.TopologicalIsland))
+        val ends = getOrElse[PowerTransformerEnd]
         val transformers: RDD[Item] = ends
             .filter (_.TransformerEnd.endNumber != 1)
-            .map (x ⇒ (x.TransformerEnd.Terminal, x.PowerTransformer))
+            .map (x => (x.TransformerEnd.Terminal, x.PowerTransformer))
             .join (term_by_node).values
             .map (_.swap)
             .join (node_by_island).values
@@ -488,152 +608,37 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val count = transformers.count
         log.info (s"exporting $count transformer${if (count == 1) "" else "s"}")
 
-        // only traverse from Terminal to a node if it's not a stop terminal
-        val stopTerminals = ends.flatMap (end => if (end.TransformerEnd.endNumber == 1) List (end.TransformerEnd.Terminal) else List ()).collect.toSet
-        val labeled = labelRelated (transformers, stopTerminals)
+        // only traverse from Terminal to a node if it's not a stop node
+        val stopTerminals: Set[Item] = ends
+            .flatMap (end => if (end.TransformerEnd.endNumber == 1) List ((end.TransformerEnd.Terminal, end.PowerTransformer)) else List ())
+            .collect
+            .toSet
+        val stopNodes: Set[Item] = getOrElse[Terminal]
+            .flatMap (
+                terminal =>
+                {
+                    stopTerminals.find (_._1 == terminal.id) match
+                    {
+                        case Some (item) => List ((terminal.ConnectivityNode, item._2), (terminal.TopologicalNode, item._2))
+                        case _ => List ()
+                    }
+                }
+            )
+            .collect
+            .toSet
+        val labeled = labelRelated (transformers, stopNodes)
         val trafokreise = labeled.groupByKey
-        var total = 0
 
-        if (options.cassandra)
-        {
-            type Key = String
-            type Value = String
-            type KeyValue = (Key, Value)
-            type KeyValueList = Iterable[KeyValue]
-
-            val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
-            if (schema.make)
-            {
-                val id = java.util.UUID.randomUUID.toString
-                val time = new Date ().getTime
-                val fs = FileSystem.get (spark.sparkContext.hadoopConfiguration)
-                var filesize = 0L
-                var filetime = 0L
-                for (file <- options.files)
-                {
-                    val path = new Path (file)
-                    val status = fs.getFileStatus (path)
-                    filetime = status.getModificationTime
-                    filesize = filesize + status.getLen
-                }
-                val export = spark.sparkContext.parallelize (Seq ((id, time, source, filetime, filesize)))
-                export.saveToCassandra (options.keyspace, "export", SomeColumns ("id", "runtime", "filename", "filetime", "filesize"))
-
-                val trafos = trafokreise.map (
-                    group ⇒
-                    {
-                        val transformer = group._1
-                        val elements = group._2
-                        val fixed_elements = doctor_stop_terminals (elements, stopTerminals)
-                        log.info (s"exporting $transformer")
-                        val (filesize, zipdata) = export_iterable_blob (fixed_elements, transformer)
-                        (id, transformer, fixed_elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
-                    }
-                )
-                trafos.saveToCassandra (options.keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
-                total = trafos.count.toInt
-                log.info (s"exported $total transformer${if (total == 1) "" else "s"}")
-
-                // create a convex hull for each transformer service area
-                val json: RDD[(String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)])] = trafokreise.map (
-                    group ⇒
-                    {
-                        val transformer = group._1
-                        val elements = group._2
-                        val points = for
-                            {
-                                e <- elements
-                                cls = e.getClass
-                                raw = cls.getName
-                                clazz = raw.substring (raw.lastIndexOf (".") + 1)
-                                if clazz == "PositionPoint"
-                            }
-                            yield e.asInstanceOf[PositionPoint]
-                        val list = points.map (p ⇒ (p.xPosition.toDouble, p.yPosition.toDouble)).toList
-                        val hull = Hull.scan (list).map (p ⇒ List (p._1, p._2))
-                        val coordinates: List[List[List[Double]]] = List (hull)
-                        val geometry = ("Polygon", coordinates)
-                        val properties: KeyValueList = List (("name", transformer))
-                        (id, transformer, "Feature", geometry, properties)
-                    }
-                )
-                json.saveToCassandra (options.keyspace, "transformer_service_area", SomeColumns ("id", "name", "type", "geometry", "properties"))
-
-                /**
-                 * Index of normalOpen field in Switch bitmask.
-                 */
-                val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
-
-                /**
-                 * Index of open field in Switch bitmask.
-                 */
-                val openMask: Int = Switch.fields.indexOf ("open")
-
-                /*
-                 * Method to determine if a switch is closed (both terminals are the same topological node).
-                 *
-                 * If the switch has the <code>open</code> attribute set, use that.
-                 * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
-                 * Otherwise assume it is the default state set by
-                 * CIMTopologyOptions.default_switch_open_state which means not closed unless explicitly set.
-                 *
-                 * @param switch The switch object to test.
-                 * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
-                 */
-                def switchClosed (switch: Switch): Boolean =
-                {
-                    if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
-                        !switch.open // open valid
-                    else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
-                        !switch.normalOpen
-                    else
-                        true
-                }
-
-                /**
-                 * Get the list of open switches straddling island boundaries.
-                 *
-                 * Provides a list of normally open switches that join two transformer service areas.
-                 */
-                def switchp (item: (Island, Element)): Option[(mRID, Island)] =
-                {
-                    val island = item._1
-                    val e = item._2
-                    val switch = e match
-                    {
-                        case s: Switch ⇒ s.asInstanceOf [Switch]
-                        case c: Cut ⇒ c.asInstanceOf [Cut].Switch
-                        case d: Disconnector ⇒ d.asInstanceOf [Disconnector].Switch
-                        case f: Fuse ⇒ f.asInstanceOf [Fuse].Switch
-                        case g: GroundDisconnector ⇒ g.asInstanceOf [GroundDisconnector].Switch
-                        case j: Jumper ⇒ j.asInstanceOf [Jumper].Switch
-                        case m: MktSwitch ⇒ m.asInstanceOf [MktSwitch].Switch
-                        case p: ProtectedSwitch ⇒ p.asInstanceOf [ProtectedSwitch].Switch
-                        case b: Breaker ⇒ b.asInstanceOf [Breaker].ProtectedSwitch.Switch
-                        case l: LoadBreakSwitch ⇒ l.asInstanceOf [LoadBreakSwitch].ProtectedSwitch.Switch
-                        case r: Recloser ⇒ r.asInstanceOf [Recloser].ProtectedSwitch.Switch
-                        case s: Sectionaliser ⇒ s.asInstanceOf [Sectionaliser].Switch
-                        case _ ⇒ null
-                    }
-                    if (null != switch && !switchClosed (switch))
-                        Some ((switch.id, island))
-                    else
-                        None
-                }
-                val switches = labeled.flatMap (switchp).groupByKey.filter (_._2.size > 1)
-                        .map (x ⇒ (id, x._1, x._2.head, x._2.tail.head))
-                switches.saveToCassandra (options.keyspace, "boundary_switches", SomeColumns ("id", "mrid", "island1", "island2"))
-            }
-        }
+        val total = if (options.cassandra)
+            saveToCassandra (options, trafokreise, labeled, stopNodes)
         else
         {
             val dir = if (options.outputdir.endsWith ("/")) options.outputdir else s"${options.outputdir}/"
-            total = trafokreise.map (
-                group ⇒
+            val total = trafokreise.map (
+                group =>
                 {
-                    val transformer = group._1
-                    val elements = group._2
-                    val fixed_elements = doctor_stop_terminals (elements, stopTerminals)
+                    val (transformer, elements) = group
+                    val fixed_elements = doctor_stop_nodes (elements, stopNodes)
                     val filename = s"$dir$transformer.rdf"
                     log.info (s"exporting $filename")
                     export_iterable_file (fixed_elements, filename)
@@ -641,6 +646,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 }
             ).sum.toInt
             log.info (s"exported $total transformer${if (total == 1) "" else "s"}")
+            total
         }
 
         total
