@@ -36,7 +36,8 @@ class CIMExportSuite extends SparkSuite
         s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    val DEMO_DATA: String = s"${FILE_DEPOT}DemoData_with_medium_voltage.rdf"
+    val DEMO_DATA1: String = s"${FILE_DEPOT}DemoData_with_medium_voltage.rdf"
+    val DEMO_DATA2: String = s"${FILE_DEPOT}DemoData_with_medium_voltage_and_ganged_transformers.rdf"
 
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
@@ -46,6 +47,7 @@ class CIMExportSuite extends SparkSuite
         new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
         new Unzip ().unzip (s"${FILE_DEPOT}DemoData_with_medium_voltage.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData_with_medium_voltage_and_ganged_transformers.zip", FILE_DEPOT)
         // run the tests
         val ret = super.run (testName, args)
         // erase the unpacked files
@@ -54,7 +56,8 @@ class CIMExportSuite extends SparkSuite
         deleteRecursive (new File (s"${FILE_DEPOT}MiniGrid/"))
         deleteRecursive (new File (s"${FILE_DEPOT}SmallGrid/"))
         deleteRecursive (new File (s"${FILE_DEPOT}RealGrid/"))
-        new File (DEMO_DATA).delete
+        new File (DEMO_DATA1).delete
+        new File (DEMO_DATA2).delete
         ret
     }
 
@@ -195,7 +198,7 @@ $voltage
     {
         implicit spark: SparkSession ⇒
 
-            val elements = readFile (DEMO_DATA, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
+            val elements = readFile (DEMO_DATA1, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
             println (s"${elements.count} elements")
             val islands = spark.sparkContext.getPersistentRDDs.find (_._2.name == "TopologicalIsland").get._2.asInstanceOf[RDD[TopologicalIsland]].map (_.id).collect
 
@@ -230,13 +233,48 @@ $voltage
     {
         implicit spark: SparkSession ⇒
 
-            val elements = readFile (DEMO_DATA, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
+            val elements = readFile (DEMO_DATA1, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
             println (s"${elements.count} elements")
             val transformers = spark.sparkContext.getPersistentRDDs.find (_._2.name == "PowerTransformer").get._2.asInstanceOf[RDD[PowerTransformer]].map (_.id).collect
 
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (ExportOptions (files = Seq (DEMO_DATA), outputdir = "target/"))
+            export.exportAllTransformers (ExportOptions (files = Seq (DEMO_DATA1), outputdir = "target/"))
+            println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
+
+            transformers.foreach (
+                transformer ⇒
+                {
+                    // remove all RDD to start from scratch
+                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    {
+                        x._2.unpersist (true)
+                        x._2.name = null
+                    })
+                    val file = s"target/$transformer.rdf"
+                    assert (new File (file).exists, s"transformer $transformer")
+
+                    val elements2 = readFile (file)
+                    println (s"transformer $transformer has ${elements2.count} elements")
+                    val checker = new CIMIntegrityChecker (spark)
+                    val errors = checker.checkAll
+                    println (if (errors.isDefined) errors.get else "no errors")
+                    assert (errors.isEmpty, "reference errors")
+                }
+            )
+    }
+
+    test ("ExportAllTransformersFileGanged")
+    {
+        implicit spark: SparkSession ⇒
+
+            val elements = readFile (DEMO_DATA2, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
+            println (s"${elements.count} elements")
+            val transformers = Array ("TX0001", "TX0002_TX0003") // call me lazy
+
+            val start = System.nanoTime
+            val export = new CIMExport (spark)
+            export.exportAllTransformers (ExportOptions (files = Seq (DEMO_DATA2), outputdir = "target/"))
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             transformers.foreach (

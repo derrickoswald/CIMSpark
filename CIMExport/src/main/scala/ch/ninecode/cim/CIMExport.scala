@@ -320,8 +320,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 """
         val tailer =
-            """
-</rdf:RDF>"""
+            """</rdf:RDF>"""
 
         // setup
         val configuration: Configuration = new Configuration ()
@@ -353,8 +352,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val header =
 """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
-        val tailer =
-            """</rdf:RDF>"""
+        val tailer = """</rdf:RDF>"""
 
         // create the text
         val sb = new scala.collection.mutable.StringBuilder (32768, header)
@@ -595,7 +593,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val term_by_node = getOrElse[Terminal].map (y => (y.id, y.TopologicalNode))
         val node_by_island = getOrElse[TopologicalNode].map (z => (z.id, z.TopologicalIsland))
         val ends = getOrElse[PowerTransformerEnd]
-        val transformers: RDD[Item] = ends
+        val transformers = ends
             .filter (_.TransformerEnd.endNumber != 1)
             .map (x => (x.TransformerEnd.Terminal, x.PowerTransformer))
             .join (term_by_node).values
@@ -603,14 +601,19 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             .join (node_by_island).values
             .map (_.swap)
             .groupByKey
-            .mapValues (_.toArray.sortWith (_ < _).mkString ("_"))
+            .map (trafo => (trafo._1, trafo._2.toArray.sortWith (_ < _).mkString ("_"), trafo._2))
             .persist (storage)
         val count = transformers.count
         log.info (s"exporting $count transformer${if (count == 1) "" else "s"}")
 
+        val start: RDD[Item] = transformers.map (trafo => (trafo._1, trafo._2))
+        val trafo_island: RDD[Item] = transformers.flatMap (trafo => trafo._3.map (t => (t, trafo._2)))
+
         // only traverse from Terminal to a node if it's not a stop node
         val stopTerminals: Set[Item] = ends
-            .flatMap (end => if (end.TransformerEnd.endNumber == 1) List ((end.TransformerEnd.Terminal, end.PowerTransformer)) else List ())
+            .flatMap (end => if (end.TransformerEnd.endNumber == 1) Some ((end.PowerTransformer, end.TransformerEnd.Terminal)) else None)
+            .join (trafo_island)
+            .values
             .collect
             .toSet
         val stopNodes: Set[Item] = getOrElse[Terminal]
@@ -626,7 +629,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             )
             .collect
             .toSet
-        val labeled = labelRelated (transformers, stopNodes)
+        val labeled = labelRelated (start, stopNodes)
         val trafokreise = labeled.groupByKey
 
         val total = if (options.cassandra)
