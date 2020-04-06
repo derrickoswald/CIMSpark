@@ -22,7 +22,7 @@ final case class AssetModelCatalogue
 (
     override val sup: IdentifiedObject = null,
     status: String = null,
-    AssetModelCatalogueItems: List[String] = List()
+    AssetModelCatalogueItems: List[String] = null
 )
 extends
     Element
@@ -110,8 +110,8 @@ final case class AssetModelCatalogueItem
     unitCost: Double = 0.0,
     AssetModel: String = null,
     AssetModelCatalogue: String = null,
-    ErpPOLineItems: List[String] = List(),
-    ErpQuoteLineItems: List[String] = List()
+    ErpPOLineItems: List[String] = null,
+    ErpQuoteLineItems: List[String] = null
 )
 extends
     Element

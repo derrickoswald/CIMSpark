@@ -23,7 +23,7 @@ final case class ASRequirements
 (
     override val sup: BasicElement = null,
     intervalStartTime: String = null,
-    ReserveDemandCurve: List[String] = List()
+    ReserveDemandCurve: List[String] = null
 )
 extends
     Element
@@ -355,12 +355,12 @@ final case class BranchEndFlow
     mwFlow: Double = 0.0,
     normalRating: Double = 0.0,
     shortTermRating: Double = 0.0,
-    MktACLineSegmentEndAFlow: List[String] = List(),
-    MktACLineSegmentEndBFlow: List[String] = List(),
-    MktPowerTransformerEndAFlow: List[String] = List(),
-    MktPowerTransformerEndBFlow: List[String] = List(),
-    MktSeriesCompensatorEndBFlow: List[String] = List(),
-    MktSeriresCompensatorEndAFlow: List[String] = List()
+    MktACLineSegmentEndAFlow: List[String] = null,
+    MktACLineSegmentEndBFlow: List[String] = null,
+    MktPowerTransformerEndAFlow: List[String] = null,
+    MktPowerTransformerEndBFlow: List[String] = null,
+    MktSeriesCompensatorEndBFlow: List[String] = null,
+    MktSeriresCompensatorEndAFlow: List[String] = null
 )
 extends
     Element
@@ -1189,9 +1189,9 @@ final case class DistributionFactorSet
     intervalEndTime: String = null,
     intervalStartTime: String = null,
     marketType: String = null,
-    GenDistributionFactor: List[String] = List(),
-    LoadDistributionFactor: List[String] = List(),
-    SysLoadDistribuFactor: List[String] = List()
+    GenDistributionFactor: List[String] = null,
+    LoadDistributionFactor: List[String] = null,
+    SysLoadDistribuFactor: List[String] = null
 )
 extends
     Element
@@ -1499,14 +1499,14 @@ final case class EnergyTransaction
     reason: String = null,
     receiptPointP: Double = 0.0,
     state: String = null,
-    CurtailmentProfiles: List[String] = List(),
-    EnergyPriceCurves: List[String] = List(),
+    CurtailmentProfiles: List[String] = null,
+    EnergyPriceCurves: List[String] = null,
     EnergyProduct: String = null,
-    EnergyProfiles: List[String] = List(),
+    EnergyProfiles: List[String] = null,
     Export_SubControlArea: String = null,
     Import_SubControlArea: String = null,
-    LossProfiles: List[String] = List(),
-    TieLines: List[String] = List(),
+    LossProfiles: List[String] = null,
+    TieLines: List[String] = null,
     TransmissionReservation: String = null
 )
 extends
@@ -1666,7 +1666,7 @@ final case class GenDistributionFactor
     override val sup: BasicElement = null,
     factor: Double = 0.0,
     AggregatedPnode: String = null,
-    DistributionFactorSet: List[String] = List(),
+    DistributionFactorSet: List[String] = null,
     IndividualPnode: String = null
 )
 extends
@@ -1891,8 +1891,8 @@ final case class GenericConstraints
     intervalStartTime: String = null,
     maxLimit: Double = 0.0,
     minLimit: Double = 0.0,
-    Flowgate: List[String] = List(),
-    TransmissionCapacity: List[String] = List()
+    Flowgate: List[String] = null,
+    TransmissionCapacity: List[String] = null
 )
 extends
     Element
@@ -2096,7 +2096,7 @@ final case class InterchangeSchedule
     scheduleType: String = null,
     wcrID: String = null,
     InterTie: String = null,
-    InterchangeETCData: List[String] = List(),
+    InterchangeETCData: List[String] = null,
     RegisteredInterTie: String = null
 )
 extends
@@ -2315,7 +2315,7 @@ final case class LoadDistributionFactor
     pDistFactor: Double = 0.0,
     qDistFactor: Double = 0.0,
     AggregatedPnode: String = null,
-    DistributionFactorSet: List[String] = List(),
+    DistributionFactorSet: List[String] = null,
     IndividualPnode: String = null
 )
 extends
@@ -2803,7 +2803,7 @@ extends
 final case class MktControlArea
 (
     override val sup: ControlArea = null,
-    ControlAreaSolutionData: List[String] = List()
+    ControlAreaSolutionData: List[String] = null
 )
 extends
     Element
@@ -2958,7 +2958,7 @@ extends
 final case class MktShuntCompensator
 (
     override val sup: ShuntCompensator = null,
-    ShuntCompensatorDynamicData: List[String] = List()
+    ShuntCompensatorDynamicData: List[String] = null
 )
 extends
     Element
@@ -3032,7 +3032,7 @@ extends
 final case class MktSwitch
 (
     override val sup: Switch = null,
-    SwitchStatus: List[String] = List()
+    SwitchStatus: List[String] = null
 )
 extends
     Element
@@ -3106,7 +3106,7 @@ extends
 final case class MktTapChanger
 (
     override val sup: TapChanger = null,
-    TapChangerDynamicData: List[String] = List()
+    TapChangerDynamicData: List[String] = null
 )
 extends
     Element
@@ -3256,7 +3256,7 @@ extends
 final case class Profile
 (
     override val sup: IdentifiedObject = null,
-    ProfileDatas: List[String] = List()
+    ProfileDatas: List[String] = null
 )
 extends
     Element
@@ -3344,7 +3344,7 @@ final case class ProfileData
     sequenceNumber: Int = 0,
     startDateTime: String = null,
     stopDateTime: String = null,
-    Profile: List[String] = List()
+    Profile: List[String] = null
 )
 extends
     Element
@@ -3632,8 +3632,8 @@ final case class SecurityConstraintSum
 (
     override val sup: MarketFactors = null,
     BaseCaseConstraintLimit: String = null,
-    ConstraintTerms: List[String] = List(),
-    ContingencyConstraintLimits: List[String] = List(),
+    ConstraintTerms: List[String] = null,
+    ContingencyConstraintLimits: List[String] = null,
     DefaultConstraintLimit: String = null,
     RTO: String = null
 )
@@ -3842,10 +3842,10 @@ extends
 final case class ServicePoint
 (
     override val sup: IdentifiedObject = null,
-    PODTransmissionPath: List[String] = List(),
-    PORTransmissionPath: List[String] = List(),
-    SinkReservation: List[String] = List(),
-    SourceReservation: List[String] = List()
+    PODTransmissionPath: List[String] = null,
+    PORTransmissionPath: List[String] = null,
+    SinkReservation: List[String] = null,
+    SourceReservation: List[String] = null
 )
 extends
     Element
@@ -4127,7 +4127,7 @@ final case class SysLoadDistributionFactor
 (
     override val sup: BasicElement = null,
     factor: Double = 0.0,
-    DistributionFactorSet: List[String] = List(),
+    DistributionFactorSet: List[String] = null,
     HostControlArea: String = null,
     MktConnectivityNode: String = null
 )
@@ -4955,9 +4955,9 @@ final case class TransmissionPath
     totalTransferCapability: Double = 0.0,
     DeliveryPoint: String = null,
     For: String = null,
-    LocatedOn: List[String] = List(),
+    LocatedOn: List[String] = null,
     PointOfReceipt: String = null,
-    TransmissionReservation: List[String] = List()
+    TransmissionReservation: List[String] = null
 )
 extends
     Element

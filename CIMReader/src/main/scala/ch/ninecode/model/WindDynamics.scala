@@ -361,7 +361,7 @@ final case class WindContCurrLimIEC
     mqpri: Boolean = false,
     tufiltcl: Double = 0.0,
     upqumax: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3or4IEC: String = null
 )
 extends
@@ -550,7 +550,7 @@ final case class WindContPType3IEC
     udvs: Double = 0.0,
     updip: Double = 0.0,
     zeta: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3IEC: String = null
 )
 extends
@@ -1442,7 +1442,7 @@ final case class WindContQPQULimIEC
     override val sup: IdentifiedObject = null,
     tpfiltql: Double = 0.0,
     tufiltql: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3or4IEC: String = null
 )
 extends
@@ -1564,7 +1564,7 @@ final case class WindContRotorRIEC
     rmin: Double = 0.0,
     tomegafiltrr: Double = 0.0,
     tpfiltrr: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindGenTurbineType2IEC: String = null
 )
 extends
@@ -2303,7 +2303,7 @@ final case class WindGenType3bIEC
     mwtcwp: Boolean = false,
     tg: Double = 0.0,
     two: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List()
+    WindDynamicsLookupTable: List[String] = null
 )
 extends
     Element
@@ -2661,7 +2661,7 @@ final case class WindPitchContPowerIEC
     t1: Double = 0.0,
     tr: Double = 0.0,
     uuvrt: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindGenTurbineType1bIEC: String = null,
     WindGenTurbineType2IEC: String = null
 )
@@ -2784,7 +2784,7 @@ final case class WindPlantDynamics
 (
     override val sup: DynamicsFunctionBlock = null,
     RemoteInputSignal: String = null,
-    WindTurbineType3or4Dynamics: List[String] = List()
+    WindTurbineType3or4Dynamics: List[String] = null
 )
 extends
     Element
@@ -2917,7 +2917,7 @@ final case class WindPlantFreqPcontrolIEC
     tpfv: Double = 0.0,
     twpffiltp: Double = 0.0,
     twppfiltp: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindPlantIEC: String = null
 )
 extends
@@ -3209,7 +3209,7 @@ final case class WindPlantReactiveControlIEC
     windPlantQcontrolModesType: String = null,
     xrefmax: Double = 0.0,
     xrefmin: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindPlantIEC: String = null
 )
 extends
@@ -3395,7 +3395,7 @@ final case class WindProtectionIEC
     tfma: Double = 0.0,
     uover: Double = 0.0,
     uunder: Double = 0.0,
-    WindDynamicsLookupTable: List[String] = List(),
+    WindDynamicsLookupTable: List[String] = null,
     WindTurbineType1or2IEC: String = null,
     WindTurbineType3or4IEC: String = null
 )

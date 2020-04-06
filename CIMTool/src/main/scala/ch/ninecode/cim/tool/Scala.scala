@@ -187,7 +187,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         if (role.upper == 1)
             Member (name, variable, false, comment, true, role.card, role.mate.card, "String", "null", "", referenced_class)
         else
-            Member (name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "List()", "", referenced_class)
+            Member (name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "null", "", referenced_class)
     }
 
     def asText (pkg: Package): String =

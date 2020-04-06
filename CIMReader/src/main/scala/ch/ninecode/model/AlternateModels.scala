@@ -91,7 +91,7 @@ extends
 final case class AlternateModelGroup
 (
     override val sup: IdentifiedObject = null,
-    AlternateModel: List[String] = List()
+    AlternateModel: List[String] = null
 )
 extends
     Element

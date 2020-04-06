@@ -140,7 +140,7 @@ final case class Assignment
 (
     override val sup: WorkDocument = null,
     effectivePeriod: String = null,
-    Crews: List[String] = List()
+    Crews: List[String] = null
 )
 extends
     Element
@@ -232,8 +232,8 @@ final case class BusinessCase
 (
     override val sup: WorkDocument = null,
     corporateCode: String = null,
-    Projects: List[String] = List(),
-    Works: List[String] = List()
+    Projects: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -329,7 +329,7 @@ final case class CUAllowableAction
 (
     override val sup: WorkIdentifiedObject = null,
     status: String = null,
-    CompatibleUnits: List[String] = List()
+    CompatibleUnits: List[String] = null
 )
 extends
     Element
@@ -424,7 +424,7 @@ final case class CUContractorItem
     activityCode: String = null,
     bidAmount: Double = 0.0,
     status: String = null,
-    CompatibleUnits: List[String] = List()
+    CompatibleUnits: List[String] = null
 )
 extends
     Element
@@ -527,10 +527,10 @@ final case class CUGroup
 (
     override val sup: WorkIdentifiedObject = null,
     status: String = null,
-    ChildCUGroups: List[String] = List(),
-    CompatibleUnits: List[String] = List(),
-    DesignLocationCUs: List[String] = List(),
-    ParentCUGroups: List[String] = List()
+    ChildCUGroups: List[String] = null,
+    CompatibleUnits: List[String] = null,
+    DesignLocationCUs: List[String] = null,
+    ParentCUGroups: List[String] = null
 )
 extends
     Element
@@ -638,7 +638,7 @@ final case class CULaborCode
     override val sup: WorkIdentifiedObject = null,
     code: String = null,
     status: String = null,
-    CULaborItems: List[String] = List()
+    CULaborItems: List[String] = null
 )
 extends
     Element
@@ -743,8 +743,8 @@ final case class CULaborItem
     laborRate: Double = 0.0,
     status: String = null,
     CULaborCode: String = null,
-    CompatibleUnits: List[String] = List(),
-    QualificationRequirements: List[String] = List()
+    CompatibleUnits: List[String] = null,
+    QualificationRequirements: List[String] = null
 )
 extends
     Element
@@ -866,8 +866,8 @@ final case class CUMaterialItem
     corporateCode: String = null,
     quantity: String = null,
     status: String = null,
-    CompatibleUnits: List[String] = List(),
-    PropertyUnits: List[String] = List(),
+    CompatibleUnits: List[String] = null,
+    PropertyUnits: List[String] = null,
     TypeMaterial: String = null
 )
 extends
@@ -983,7 +983,7 @@ final case class CUWorkEquipmentItem
     equipCode: String = null,
     rate: Double = 0.0,
     status: String = null,
-    CompatibleUnits: List[String] = List(),
+    CompatibleUnits: List[String] = null,
     TypeAsset: String = null
 )
 extends
@@ -1097,9 +1097,9 @@ final case class Capability
     status: String = null,
     `type`: String = null,
     validityInterval: String = null,
-    Crafts: List[String] = List(),
+    Crafts: List[String] = null,
     Crew: String = null,
-    WorkTasks: List[String] = List()
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -1226,15 +1226,15 @@ final case class CompatibleUnit
     estCost: Double = 0.0,
     quantity: String = null,
     CUAllowableAction: String = null,
-    CUContractorItems: List[String] = List(),
+    CUContractorItems: List[String] = null,
     CUGroup: String = null,
-    CULaborItems: List[String] = List(),
-    CUMaterialItems: List[String] = List(),
-    CUWorkEquipmentItems: List[String] = List(),
+    CULaborItems: List[String] = null,
+    CUMaterialItems: List[String] = null,
+    CUWorkEquipmentItems: List[String] = null,
     CostType: String = null,
-    DesignLocationCUs: List[String] = List(),
+    DesignLocationCUs: List[String] = null,
     GenericAssetModel: String = null,
-    Procedures: List[String] = List(),
+    Procedures: List[String] = null,
     PropertyUnit: String = null
 )
 extends
@@ -1387,9 +1387,9 @@ final case class ConditionFactor
     cfValue: String = null,
     kind: String = null,
     status: String = null,
-    DesignLocationCUs: List[String] = List(),
-    DesignLocations: List[String] = List(),
-    Designs: List[String] = List()
+    DesignLocationCUs: List[String] = null,
+    DesignLocations: List[String] = null,
+    Designs: List[String] = null
 )
 extends
     Element
@@ -1507,7 +1507,7 @@ final case class ContractorItem
     bidAmount: Double = 0.0,
     cost: Double = 0.0,
     status: String = null,
-    ErpPayables: List[String] = List(),
+    ErpPayables: List[String] = null,
     WorkCostDetail: String = null,
     WorkTask: String = null
 )
@@ -1637,11 +1637,11 @@ final case class CostType
     level: String = null,
     stage: String = null,
     status: String = null,
-    ChildCostTypes: List[String] = List(),
-    CompatibleUnits: List[String] = List(),
-    ErpJournalEntries: List[String] = List(),
+    ChildCostTypes: List[String] = null,
+    CompatibleUnits: List[String] = null,
+    ErpJournalEntries: List[String] = null,
     ParentCostType: String = null,
-    WorkCostDetails: List[String] = List()
+    WorkCostDetails: List[String] = null
 )
 extends
     Element
@@ -1782,14 +1782,14 @@ final case class Design
     costEstimate: Double = 0.0,
     kind: String = null,
     price: Double = 0.0,
-    ConditionFactors: List[String] = List(),
-    DesignLocations: List[String] = List(),
-    DesignLocationsCUs: List[String] = List(),
-    ErpBOMs: List[String] = List(),
+    ConditionFactors: List[String] = null,
+    DesignLocations: List[String] = null,
+    DesignLocationsCUs: List[String] = null,
+    ErpBOMs: List[String] = null,
     ErpQuoteLineItem: String = null,
     Work: String = null,
-    WorkCostDetails: List[String] = List(),
-    WorkTasks: List[String] = List()
+    WorkCostDetails: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -1933,12 +1933,12 @@ final case class DesignLocation
     override val sup: WorkIdentifiedObject = null,
     spanLength: Double = 0.0,
     status: String = null,
-    ConditionFactors: List[String] = List(),
-    DesignLocationCUs: List[String] = List(),
-    Designs: List[String] = List(),
-    ErpBomItemDatas: List[String] = List(),
-    MiscCostItems: List[String] = List(),
-    WorkLocations: List[String] = List()
+    ConditionFactors: List[String] = null,
+    DesignLocationCUs: List[String] = null,
+    Designs: List[String] = null,
+    ErpBomItemDatas: List[String] = null,
+    MiscCostItems: List[String] = null,
+    WorkLocations: List[String] = null
 )
 extends
     Element
@@ -2077,12 +2077,12 @@ final case class DesignLocationCU
     removalDate: String = null,
     status: String = null,
     toBeEnergised: Boolean = false,
-    CUGroups: List[String] = List(),
-    CompatibleUnits: List[String] = List(),
-    ConditionFactors: List[String] = List(),
+    CUGroups: List[String] = null,
+    CompatibleUnits: List[String] = null,
+    ConditionFactors: List[String] = null,
     DesignLocation: String = null,
-    Designs: List[String] = List(),
-    WorkTasks: List[String] = List()
+    Designs: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -2354,7 +2354,7 @@ final case class LaborItem
     laborDuration: Double = 0.0,
     laborRate: Double = 0.0,
     status: String = null,
-    ErpPersons: List[String] = List(),
+    ErpPersons: List[String] = null,
     WorkCostDetail: String = null,
     WorkTask: String = null
 )
@@ -2700,16 +2700,16 @@ The WorkService package defines Appointment class".
 final case class OldWorkTask
 (
     override val sup: WorkTask = null,
-    Capabilities: List[String] = List(),
-    ContractorItems: List[String] = List(),
+    Capabilities: List[String] = null,
+    ContractorItems: List[String] = null,
     Design: String = null,
-    DesignLocationCUs: List[String] = List(),
-    LaborItems: List[String] = List(),
-    MiscCostItems: List[String] = List(),
+    DesignLocationCUs: List[String] = null,
+    LaborItems: List[String] = null,
+    MiscCostItems: List[String] = null,
     OverheadCost: String = null,
-    QualificationRequirements: List[String] = List(),
-    Usages: List[String] = List(),
-    WorkCostDetails: List[String] = List(),
+    QualificationRequirements: List[String] = null,
+    Usages: List[String] = null,
+    WorkCostDetails: List[String] = null,
     WorkFlowStep: String = null
 )
 extends
@@ -2851,7 +2851,7 @@ final case class OneCallRequest
     explosivesUsed: Boolean = false,
     markedIndicator: Boolean = false,
     markingInstruction: String = null,
-    WorkLocations: List[String] = List()
+    WorkLocations: List[String] = null
 )
 extends
     Element
@@ -2955,8 +2955,8 @@ final case class OverheadCost
     code: String = null,
     cost: Double = 0.0,
     status: String = null,
-    WorkCostDetails: List[String] = List(),
-    WorkTasks: List[String] = List()
+    WorkCostDetails: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -3070,8 +3070,8 @@ final case class Project
     BusinessCase: String = null,
     ErpProjectAccounting: String = null,
     ParentProject: String = null,
-    SubProjects: List[String] = List(),
-    Works: List[String] = List()
+    SubProjects: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -3192,9 +3192,9 @@ final case class PropertyUnit
     activityCode: String = null,
     propertyAccount: String = null,
     status: String = null,
-    CUMaterialItems: List[String] = List(),
-    CompatibleUnits: List[String] = List(),
-    WorkCostDetails: List[String] = List()
+    CUMaterialItems: List[String] = null,
+    CompatibleUnits: List[String] = null,
+    WorkCostDetails: List[String] = null
 )
 extends
     Element
@@ -3311,10 +3311,10 @@ final case class QualificationRequirement
 (
     override val sup: WorkIdentifiedObject = null,
     qualificationID: String = null,
-    CULaborItems: List[String] = List(),
-    Skills: List[String] = List(),
-    Specifications: List[String] = List(),
-    WorkTasks: List[String] = List()
+    CULaborItems: List[String] = null,
+    Skills: List[String] = null,
+    Specifications: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -3509,7 +3509,7 @@ final case class ShiftPattern
     cycleCount: Int = 0,
     status: String = null,
     validityInterval: String = null,
-    Crews: List[String] = List()
+    Crews: List[String] = null
 )
 extends
     Element
@@ -3626,10 +3626,10 @@ final case class TypeMaterial
     estUnitCost: Double = 0.0,
     quantity: String = null,
     stockItem: Boolean = false,
-    CUMaterialItems: List[String] = List(),
-    ErpIssueInventories: List[String] = List(),
-    ErpReqLineItems: List[String] = List(),
-    MaterialItems: List[String] = List()
+    CUMaterialItems: List[String] = null,
+    ErpIssueInventories: List[String] = null,
+    ErpReqLineItems: List[String] = null,
+    MaterialItems: List[String] = null
 )
 extends
     Element
@@ -3854,17 +3854,17 @@ final case class WorkCostDetail
     amount: Double = 0.0,
     isDebit: Boolean = false,
     transactionDateTime: String = null,
-    ContractorItems: List[String] = List(),
+    ContractorItems: List[String] = null,
     CostType: String = null,
     Design: String = null,
     ErpProjectAccounting: String = null,
-    LaborItems: List[String] = List(),
-    MiscCostItems: List[String] = List(),
+    LaborItems: List[String] = null,
+    MiscCostItems: List[String] = null,
     OverheadCost: String = null,
-    PropertyUnits: List[String] = List(),
+    PropertyUnits: List[String] = null,
     WorkCostSummary: String = null,
     WorkTask: String = null,
-    Works: List[String] = List()
+    Works: List[String] = null
 )
 extends
     Element
@@ -4174,7 +4174,7 @@ final case class WorkFlowStep
     sequenceNumber: Int = 0,
     status: String = null,
     Work: String = null,
-    WorkTasks: List[String] = List()
+    WorkTasks: List[String] = null
 )
 extends
     Element

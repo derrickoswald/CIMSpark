@@ -120,8 +120,8 @@ final case class CRRSegment
     quantity: Double = 0.0,
     startDateTime: String = null,
     CongestionRevenueRight: String = null,
-    Sink: List[String] = List(),
-    Source: List[String] = List()
+    Sink: List[String] = null,
+    Source: List[String] = null
 )
 extends
     Element
@@ -247,8 +247,8 @@ final case class CongestionRevenueRight
     timeOfUse: String = null,
     tradeSliceID: String = null,
     CRRMarket: String = null,
-    CRROrgRole: List[String] = List(),
-    CRRSegment: List[String] = List(),
+    CRROrgRole: List[String] = null,
+    CRRSegment: List[String] = null,
     Flowgate: String = null
 )
 extends

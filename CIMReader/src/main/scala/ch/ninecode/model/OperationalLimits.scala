@@ -188,8 +188,8 @@ final case class BranchGroup
     minimumReactivePower: Double = 0.0,
     monitorActivePower: Boolean = false,
     monitorReactivePower: Boolean = false,
-    BranchGroupTerminal: List[String] = List(),
-    PinBranchGroup: List[String] = List()
+    BranchGroupTerminal: List[String] = null,
+    PinBranchGroup: List[String] = null
 )
 extends
     Element
@@ -469,8 +469,8 @@ extends
 final case class OperationalLimit
 (
     override val sup: IdentifiedObject = null,
-    LimitDependencyModel: List[String] = List(),
-    LimitScalingLimit: List[String] = List(),
+    LimitDependencyModel: List[String] = null,
+    LimitScalingLimit: List[String] = null,
     OperationalLimitSet: String = null,
     OperationalLimitType: String = null
 )
@@ -567,7 +567,7 @@ final case class OperationalLimitSet
 (
     override val sup: IdentifiedObject = null,
     Equipment: String = null,
-    OperationalLimitValue: List[String] = List(),
+    OperationalLimitValue: List[String] = null,
     Terminal: String = null
 )
 extends
@@ -660,8 +660,8 @@ final case class OperationalLimitType
     override val sup: IdentifiedObject = null,
     acceptableDuration: Double = 0.0,
     direction: String = null,
-    OperationalLimit: List[String] = List(),
-    SourceOperationalLimitTypeScaling: List[String] = List(),
+    OperationalLimit: List[String] = null,
+    SourceOperationalLimitTypeScaling: List[String] = null,
     TargetOperationalLimitmTypeScaling: String = null
 )
 extends

@@ -23,7 +23,7 @@ final case class Bank
     override val sup: OrganisationRole = null,
     bic: String = null,
     iban: String = null,
-    BankAccounts: List[String] = List()
+    BankAccounts: List[String] = null
 )
 extends
     Element
@@ -342,9 +342,9 @@ final case class Craft
     override val sup: IdentifiedObject = null,
     status: String = null,
     `type`: String = null,
-    Capabilities: List[String] = List(),
-    ErpPersons: List[String] = List(),
-    Skills: List[String] = List()
+    Capabilities: List[String] = null,
+    ErpPersons: List[String] = null,
+    Skills: List[String] = null
 )
 extends
     Element
@@ -502,11 +502,11 @@ final case class OldCrew
 (
     override val sup: Crew = null,
     `type`: String = null,
-    Assignments: List[String] = List(),
-    Capabilities: List[String] = List(),
-    Locations: List[String] = List(),
+    Assignments: List[String] = null,
+    Capabilities: List[String] = null,
+    Locations: List[String] = null,
     Route: String = null,
-    ShiftPatterns: List[String] = List()
+    ShiftPatterns: List[String] = null
 )
 extends
     Element
@@ -620,15 +620,15 @@ final case class OldPerson
     override val sup: Person = null,
     status: String = null,
     `type`: String = null,
-    Crafts: List[String] = List(),
+    Crafts: List[String] = null,
     CustomerData: String = null,
     ErpCompetency: String = null,
     ErpPersonnel: String = null,
-    LaborItems: List[String] = List(),
-    LandPropertyRoles: List[String] = List(),
-    MeasurementValues: List[String] = List(),
-    OrganisationRoles: List[String] = List(),
-    Skills: List[String] = List()
+    LaborItems: List[String] = null,
+    LandPropertyRoles: List[String] = null,
+    MeasurementValues: List[String] = null,
+    OrganisationRoles: List[String] = null,
+    Skills: List[String] = null
 )
 extends
     Element
@@ -990,7 +990,7 @@ extends
 final case class PropertyOrganisationRole
 (
     override val sup: OrganisationRole = null,
-    LandProperty: List[String] = List()
+    LandProperty: List[String] = null
 )
 extends
     Element
@@ -1227,9 +1227,9 @@ final case class Skill
     certificationPeriod: String = null,
     effectiveDateTime: String = null,
     level: String = null,
-    Crafts: List[String] = List(),
+    Crafts: List[String] = null,
     ErpPerson: String = null,
-    QualificationRequirements: List[String] = List()
+    QualificationRequirements: List[String] = null
 )
 extends
     Element

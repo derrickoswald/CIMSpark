@@ -32,8 +32,8 @@ final case class ACDCTerminal
     connected: Boolean = false,
     sequenceNumber: Int = 0,
     BusNameMarker: String = null,
-    Measurements: List[String] = List(),
-    OperationalLimitSet: List[String] = List()
+    Measurements: List[String] = null,
+    OperationalLimitSet: List[String] = null
 )
 extends
     Element
@@ -280,11 +280,11 @@ final case class BaseVoltage
 (
     override val sup: IdentifiedObject = null,
     nominalVoltage: Double = 0.0,
-    ConductingEquipment: List[String] = List(),
-    NetworkAssetDeployment: List[String] = List(),
-    TopologicalNode: List[String] = List(),
-    TransformerEnds: List[String] = List(),
-    VoltageLevel: List[String] = List()
+    ConductingEquipment: List[String] = null,
+    NetworkAssetDeployment: List[String] = null,
+    TopologicalNode: List[String] = null,
+    TransformerEnds: List[String] = null,
+    VoltageLevel: List[String] = null
 )
 extends
     Element
@@ -606,10 +606,10 @@ final case class ConductingEquipment
     BaseVoltage: String = null,
     GroundingAction: String = null,
     JumpingAction: String = null,
-    ProtectionEquipments: List[String] = List(),
-    ProtectiveActionAdjustment: List[String] = List(),
-    SvStatus: List[String] = List(),
-    Terminals: List[String] = List()
+    ProtectionEquipments: List[String] = null,
+    ProtectiveActionAdjustment: List[String] = null,
+    SvStatus: List[String] = null,
+    Terminals: List[String] = null
 )
 extends
     Element
@@ -718,7 +718,7 @@ final case class ConnectivityNode
 (
     override val sup: IdentifiedObject = null,
     ConnectivityNodeContainer: String = null,
-    Terminals: List[String] = List(),
+    Terminals: List[String] = null,
     TopologicalNode: String = null
 )
 extends
@@ -805,8 +805,8 @@ extends
 final case class ConnectivityNodeContainer
 (
     override val sup: PowerSystemResource = null,
-    ConnectivityNodes: List[String] = List(),
-    TopologicalNode: List[String] = List()
+    ConnectivityNodes: List[String] = null,
+    TopologicalNode: List[String] = null
 )
 extends
     Element
@@ -903,7 +903,7 @@ final case class Curve
     y2Unit: String = null,
     y3Multiplier: String = null,
     y3Unit: String = null,
-    CurveDatas: List[String] = List()
+    CurveDatas: List[String] = null
 )
 extends
     Element
@@ -1139,19 +1139,19 @@ final case class Equipment
     inService: Boolean = false,
     networkAnalysisEnabled: Boolean = false,
     normallyInService: Boolean = false,
-    AdditionalEquipmentContainer: List[String] = List(),
-    ContingencyEquipment: List[String] = List(),
-    EqiupmentLimitSeriesComponent: List[String] = List(),
+    AdditionalEquipmentContainer: List[String] = null,
+    ContingencyEquipment: List[String] = null,
+    EqiupmentLimitSeriesComponent: List[String] = null,
     EquipmentContainer: String = null,
-    Faults: List[String] = List(),
-    LimitDependencyModel: List[String] = List(),
-    OperationalLimitSet: List[String] = List(),
-    OperationalRestrictions: List[String] = List(),
-    Outages: List[String] = List(),
-    PinEquipment: List[String] = List(),
-    ProtectiveActionEquipment: List[String] = List(),
-    UsagePoints: List[String] = List(),
-    WeatherStation: List[String] = List()
+    Faults: List[String] = null,
+    LimitDependencyModel: List[String] = null,
+    OperationalLimitSet: List[String] = null,
+    OperationalRestrictions: List[String] = null,
+    Outages: List[String] = null,
+    PinEquipment: List[String] = null,
+    ProtectiveActionEquipment: List[String] = null,
+    UsagePoints: List[String] = null,
+    WeatherStation: List[String] = null
 )
 extends
     Element
@@ -1305,8 +1305,8 @@ extends
 final case class EquipmentContainer
 (
     override val sup: ConnectivityNodeContainer = null,
-    AdditionalGroupedEquipment: List[String] = List(),
-    Equipments: List[String] = List()
+    AdditionalGroupedEquipment: List[String] = null,
+    Equipments: List[String] = null
 )
 extends
     Element
@@ -1392,10 +1392,10 @@ extends
 final case class Feeder
 (
     override val sup: EquipmentContainer = null,
-    NamingSecondarySubstation: List[String] = List(),
-    NormalEnergizedSubstation: List[String] = List(),
+    NamingSecondarySubstation: List[String] = null,
+    NormalEnergizedSubstation: List[String] = null,
     NormalEnergizingSubstation: String = null,
-    NormalHeadTerminal: List[String] = List()
+    NormalHeadTerminal: List[String] = null
 )
 extends
     Element
@@ -1485,7 +1485,7 @@ extends
 final case class GeographicalRegion
 (
     override val sup: IdentifiedObject = null,
-    Regions: List[String] = List()
+    Regions: List[String] = null
 )
 extends
     Element
@@ -1576,11 +1576,11 @@ final case class IdentifiedObject
     description: String = null,
     mRID: String = null,
     name: String = null,
-    DiagramObjects: List[String] = List(),
+    DiagramObjects: List[String] = null,
     InstanceSet: String = null,
-    Names: List[String] = List(),
+    Names: List[String] = null,
     PropertiesCIMDataObject: String = null,
-    TargetingCIMDataObject: List[String] = List()
+    TargetingCIMDataObject: List[String] = null
 )
 extends
     Element
@@ -1693,7 +1693,7 @@ extends
 final case class IrregularIntervalSchedule
 (
     override val sup: BasicIntervalSchedule = null,
-    TimePoints: List[String] = List()
+    TimePoints: List[String] = null
 )
 extends
     Element
@@ -1961,7 +1961,7 @@ final case class NameType
     description: String = null,
     name: String = null,
     NameTypeAuthority: String = null,
-    Names: List[String] = List()
+    Names: List[String] = null
 )
 extends
     Element
@@ -2054,7 +2054,7 @@ final case class NameTypeAuthority
     override val sup: BasicElement = null,
     description: String = null,
     name: String = null,
-    NameTypes: List[String] = List()
+    NameTypes: List[String] = null
 )
 extends
     Element
@@ -2140,7 +2140,7 @@ extends
 final case class OperatingParticipant
 (
     override val sup: IdentifiedObject = null,
-    OperatingShare: List[String] = List()
+    OperatingShare: List[String] = null
 )
 extends
     Element
@@ -2305,7 +2305,7 @@ extends
 final case class PSRType
 (
     override val sup: IdentifiedObject = null,
-    PowerSystemResources: List[String] = List()
+    PowerSystemResources: List[String] = null
 )
 extends
     Element
@@ -2396,19 +2396,19 @@ final case class PowerSystemResource
 (
     override val sup: IdentifiedObject = null,
     AssetDatasheet: String = null,
-    Assets: List[String] = List(),
-    Clearances: List[String] = List(),
-    ConfigurationEvent: List[String] = List(),
-    Controls: List[String] = List(),
-    GenericAction: List[String] = List(),
+    Assets: List[String] = null,
+    Clearances: List[String] = null,
+    ConfigurationEvent: List[String] = null,
+    Controls: List[String] = null,
+    GenericAction: List[String] = null,
     Location: String = null,
-    Measurements: List[String] = List(),
-    OperatingShare: List[String] = List(),
-    OperationalTags: List[String] = List(),
-    PSREvents: List[String] = List(),
+    Measurements: List[String] = null,
+    OperatingShare: List[String] = null,
+    OperationalTags: List[String] = null,
+    PSREvents: List[String] = null,
     PSRType: String = null,
-    ReportingGroup: List[String] = List(),
-    VerificationAction: List[String] = List()
+    ReportingGroup: List[String] = null,
+    VerificationAction: List[String] = null
 )
 extends
     Element
@@ -2553,7 +2553,7 @@ final case class RegularIntervalSchedule
     override val sup: BasicIntervalSchedule = null,
     endTime: String = null,
     timeStep: Double = 0.0,
-    TimePoints: List[String] = List()
+    TimePoints: List[String] = null
 )
 extends
     Element
@@ -2735,10 +2735,10 @@ extends
 final case class ReportingGroup
 (
     override val sup: IdentifiedObject = null,
-    BusNameMarker: List[String] = List(),
-    PowerSystemResource: List[String] = List(),
+    BusNameMarker: List[String] = null,
+    PowerSystemResource: List[String] = null,
     ReportingSuperGroup: String = null,
-    TopologicalNode: List[String] = List()
+    TopologicalNode: List[String] = null
 )
 extends
     Element
@@ -2828,7 +2828,7 @@ extends
 final case class ReportingSuperGroup
 (
     override val sup: IdentifiedObject = null,
-    ReportingGroup: List[String] = List()
+    ReportingGroup: List[String] = null
 )
 extends
     Element
@@ -2905,10 +2905,10 @@ extends
 final case class SubGeographicalRegion
 (
     override val sup: IdentifiedObject = null,
-    DCLines: List[String] = List(),
-    Lines: List[String] = List(),
+    DCLines: List[String] = null,
+    Lines: List[String] = null,
     Region: String = null,
-    Substations: List[String] = List()
+    Substations: List[String] = null
 )
 extends
     Element
@@ -3007,13 +3007,13 @@ extends
 final case class Substation
 (
     override val sup: EquipmentContainer = null,
-    Bays: List[String] = List(),
-    DCConverterUnit: List[String] = List(),
+    Bays: List[String] = null,
+    DCConverterUnit: List[String] = null,
     NamingFeeder: String = null,
-    NormalEnergizedFeeder: List[String] = List(),
-    NormalEnergizingFeeder: List[String] = List(),
+    NormalEnergizedFeeder: List[String] = null,
+    NormalEnergizingFeeder: List[String] = null,
     Region: String = null,
-    VoltageLevels: List[String] = List()
+    VoltageLevels: List[String] = null
 )
 extends
     Element
@@ -3143,24 +3143,24 @@ final case class Terminal
 (
     override val sup: ACDCTerminal = null,
     phases: String = null,
-    AuxiliaryEquipment: List[String] = List(),
-    BranchGroupTerminal: List[String] = List(),
+    AuxiliaryEquipment: List[String] = null,
+    BranchGroupTerminal: List[String] = null,
     Bushing: String = null,
     Circuit: String = null,
     ConductingEquipment: String = null,
     ConnectivityNode: String = null,
-    ConverterDCSides: List[String] = List(),
-    EquipmentFaults: List[String] = List(),
-    HasFirstMutualCoupling: List[String] = List(),
-    HasSecondMutualCoupling: List[String] = List(),
+    ConverterDCSides: List[String] = null,
+    EquipmentFaults: List[String] = null,
+    HasFirstMutualCoupling: List[String] = null,
+    HasSecondMutualCoupling: List[String] = null,
     NormalHeadFeeder: String = null,
-    PinTerminal: List[String] = List(),
-    RegulatingControl: List[String] = List(),
-    RemoteInputSignal: List[String] = List(),
-    SvPowerFlow: List[String] = List(),
-    TieFlow: List[String] = List(),
+    PinTerminal: List[String] = null,
+    RegulatingControl: List[String] = null,
+    RemoteInputSignal: List[String] = null,
+    SvPowerFlow: List[String] = null,
+    TieFlow: List[String] = null,
     TopologicalNode: String = null,
-    TransformerEnd: List[String] = List()
+    TransformerEnd: List[String] = null
 )
 extends
     Element
@@ -3333,7 +3333,7 @@ final case class VoltageLevel
     highVoltageLimit: Double = 0.0,
     lowVoltageLimit: Double = 0.0,
     BaseVoltage: String = null,
-    Bays: List[String] = List(),
+    Bays: List[String] = null,
     Substation: String = null
 )
 extends

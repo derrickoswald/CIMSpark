@@ -472,7 +472,7 @@ extends
 final case class EquivalentNetwork
 (
     override val sup: ConnectivityNodeContainer = null,
-    EquivalentEquipments: List[String] = List()
+    EquivalentEquipments: List[String] = null
 )
 extends
     Element

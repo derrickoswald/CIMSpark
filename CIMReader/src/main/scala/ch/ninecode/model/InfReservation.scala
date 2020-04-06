@@ -23,8 +23,8 @@ final case class TiePoint
 (
     override val sup: IdentifiedObject = null,
     tiePointMWRating: Double = 0.0,
-    ByMktMeasurement: List[String] = List(),
-    ForMktMeasurement: List[String] = List()
+    ByMktMeasurement: List[String] = null,
+    ForMktMeasurement: List[String] = null
 )
 extends
     Element

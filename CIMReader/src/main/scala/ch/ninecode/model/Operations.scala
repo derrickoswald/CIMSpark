@@ -107,7 +107,7 @@ final case class ClearanceDocument
     mustBeDeenergised: Boolean = false,
     mustBeGrounded: Boolean = false,
     ClearanceAction: String = null,
-    TaggedPSRs: List[String] = List()
+    TaggedPSRs: List[String] = null
 )
 extends
     Element
@@ -450,7 +450,7 @@ final case class EstimatedRestorationTime
     confidenceKind: String = null,
     ert: String = null,
     ertSource: String = null,
-    Outage: List[String] = List()
+    Outage: List[String] = null
 )
 extends
     Element
@@ -539,8 +539,8 @@ extends
 final case class FieldSafetySupervisor
 (
     override val sup: CrewMember = null,
-    IssuedSafetyDocuments: List[String] = List(),
-    ReleasedSafetyDocuments: List[String] = List()
+    IssuedSafetyDocuments: List[String] = null,
+    ReleasedSafetyDocuments: List[String] = null
 )
 extends
     Element
@@ -800,14 +800,14 @@ final case class Incident
 (
     override val sup: Document = null,
     cause: String = null,
-    CustomerNotifications: List[String] = List(),
-    IncidentHazard: List[String] = List(),
+    CustomerNotifications: List[String] = null,
+    IncidentHazard: List[String] = null,
     Location: String = null,
     Outage: String = null,
     Owner: String = null,
     TroubleOrder: String = null,
-    TroubleTickets: List[String] = List(),
-    Works: List[String] = List()
+    TroubleTickets: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -928,8 +928,8 @@ final case class JumperAction
 (
     override val sup: SwitchingAction = null,
     kind: String = null,
-    AlongACLineSegments: List[String] = List(),
-    JumpedEquipments: List[String] = List(),
+    AlongACLineSegments: List[String] = null,
+    JumpedEquipments: List[String] = null,
     Jumper: String = null
 )
 extends
@@ -1100,7 +1100,7 @@ final case class OperationalRestriction
     override val sup: Document = null,
     activePeriod: String = null,
     restrictedValue: String = null,
-    Equipments: List[String] = List(),
+    Equipments: List[String] = null,
     ProductAssetModel: String = null
 )
 extends
@@ -1359,8 +1359,8 @@ extends
 final case class OperationsSafetySupervisor
 (
     override val sup: Operator = null,
-    IssuedSafetyDocuments: List[String] = List(),
-    ReleasedSafetyDocuments: List[String] = List()
+    IssuedSafetyDocuments: List[String] = null,
+    ReleasedSafetyDocuments: List[String] = null
 )
 extends
     Element
@@ -1489,17 +1489,17 @@ final case class Outage
     statusKind: String = null,
     summary: String = null,
     utilityDisclaimer: String = null,
-    Crew: List[String] = List(),
-    DeEnergizedUsagePoint: List[String] = List(),
-    EnergizedUsagePoint: List[String] = List(),
-    Equipments: List[String] = List(),
+    Crew: List[String] = null,
+    DeEnergizedUsagePoint: List[String] = null,
+    EnergizedUsagePoint: List[String] = null,
+    Equipments: List[String] = null,
     EstimatedRestorationTime: String = null,
-    Faults: List[String] = List(),
-    Incident: List[String] = List(),
-    OpenedSwitches: List[String] = List(),
-    OutageArea: List[String] = List(),
-    PlannedSwitchActions: List[String] = List(),
-    SwitchingPlans: List[String] = List()
+    Faults: List[String] = null,
+    Incident: List[String] = null,
+    OpenedSwitches: List[String] = null,
+    OutageArea: List[String] = null,
+    PlannedSwitchActions: List[String] = null,
+    SwitchingPlans: List[String] = null
 )
 extends
     Element
@@ -1676,7 +1676,7 @@ final case class OutageArea
     earliestReportedTime: String = null,
     metersServed: Int = 0,
     outageAreaKind: String = null,
-    Outage: List[String] = List()
+    Outage: List[String] = null
 )
 extends
     Element
@@ -1767,7 +1767,7 @@ final case class OutageOrder
 (
     override val sup: Document = null,
     comment: String = null,
-    Location: List[String] = List(),
+    Location: List[String] = null,
     OutagePlan: String = null
 )
 extends
@@ -1866,7 +1866,7 @@ final case class OutagePlan
     cancelledDateTime: String = null,
     plannedPeriod: String = null,
     purpose: String = null,
-    Customer: List[String] = List(),
+    Customer: List[String] = null,
     OutageOrder: String = null,
     PlannedOutage: String = null,
     SwitchingPlan: String = null
@@ -2056,7 +2056,7 @@ final case class PlannedOutage
     reason: String = null,
     FieldDispatchHistory: String = null,
     OutagePlan: String = null,
-    UpdatedRatings: List[String] = List()
+    UpdatedRatings: List[String] = null
 )
 extends
     Element
@@ -2440,7 +2440,7 @@ final case class SwitchingAction
     isFreeSequence: Boolean = false,
     issuedDateTime: String = null,
     plannedDateTime: String = null,
-    Crew: List[String] = List(),
+    Crew: List[String] = null,
     Operator: String = null,
     SwitchingEvent: String = null,
     SwitchingStep: String = null
@@ -2635,7 +2635,7 @@ final case class SwitchingOrder
     override val sup: Document = null,
     comment: String = null,
     plannedExecutionInterval: String = null,
-    Location: List[String] = List(),
+    Location: List[String] = null,
     SwitchingPlan: String = null
 )
 extends
@@ -2746,11 +2746,11 @@ final case class SwitchingPlan
     rank: Int = 0,
     Outage: String = null,
     OutagePlan: String = null,
-    SafetyDocuments: List[String] = List(),
+    SafetyDocuments: List[String] = null,
     SwitchingOrder: String = null,
     SwitchingPlanRequest: String = null,
-    SwitchingStepGroups: List[String] = List(),
-    WorkTasks: List[String] = List()
+    SwitchingStepGroups: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -2898,7 +2898,7 @@ final case class SwitchingPlanRequest
     reverseSwitchingDateTimeInterval: String = null,
     switchingRequestDetails: String = null,
     RequestingOrganization: String = null,
-    SwitchingPlan: List[String] = List()
+    SwitchingPlan: List[String] = null
 )
 extends
     Element
@@ -3117,7 +3117,7 @@ final case class SwitchingStepGroup
     purpose: String = null,
     sequenceNumber: Int = 0,
     SwitchingPlan: String = null,
-    SwitchingStep: List[String] = List()
+    SwitchingStep: List[String] = null
 )
 extends
     Element
@@ -3409,7 +3409,7 @@ final case class UnplannedOutage
     causeKind: String = null,
     reportedStartTime: String = null,
     FieldDispatchHistory: String = null,
-    TroubleTicket: List[String] = List()
+    TroubleTicket: List[String] = null
 )
 extends
     Element

@@ -187,8 +187,8 @@ final case class ResourceGroup
     override val sup: IdentifiedObject = null,
     status: String = null,
     `type`: String = null,
-    RegisteredResources: List[String] = List(),
-    ResourceGroupReqs: List[String] = List()
+    RegisteredResources: List[String] = null,
+    ResourceGroupReqs: List[String] = null
 )
 extends
     Element
@@ -277,7 +277,7 @@ extends
 final case class ResourceGroupReq
 (
     override val sup: IdentifiedObject = null,
-    RTOs: List[String] = List(),
+    RTOs: List[String] = null,
     ResourceGroup: String = null
 )
 extends

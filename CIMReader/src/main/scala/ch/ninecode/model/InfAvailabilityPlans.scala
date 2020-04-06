@@ -299,8 +299,8 @@ extends
 final case class UnavailablitySchedule
 (
     override val sup: IdentifiedObject = null,
-    DependsOn: List[String] = List(),
-    Impacts: List[String] = List()
+    DependsOn: List[String] = null,
+    Impacts: List[String] = null
 )
 extends
     Element

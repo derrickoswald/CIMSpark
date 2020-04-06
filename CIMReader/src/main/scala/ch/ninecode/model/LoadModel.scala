@@ -98,8 +98,8 @@ This information is used by Load Forecasting and Load Management.
 final case class ConformLoadGroup
 (
     override val sup: LoadGroup = null,
-    ConformLoadSchedules: List[String] = List(),
-    EnergyConsumers: List[String] = List()
+    ConformLoadSchedules: List[String] = null,
+    EnergyConsumers: List[String] = null
 )
 extends
     Element
@@ -260,7 +260,7 @@ This information is used by Load Forecasting and Load Management.
 final case class DayType
 (
     override val sup: IdentifiedObject = null,
-    SeasonDayTypeSchedules: List[String] = List()
+    SeasonDayTypeSchedules: List[String] = null
 )
 extends
     Element
@@ -414,7 +414,7 @@ This information is used by Load Forecasting and Load Management.
 final case class LoadArea
 (
     override val sup: EnergyArea = null,
-    SubLoadAreas: List[String] = List()
+    SubLoadAreas: List[String] = null
 )
 extends
     Element
@@ -611,7 +611,7 @@ final case class LoadResponseCharacteristic
     qConstantPower: Double = 0.0,
     qFrequencyExponent: Double = 0.0,
     qVoltageExponent: Double = 0.0,
-    EnergyConsumer: List[String] = List()
+    EnergyConsumer: List[String] = null
 )
 extends
     Element
@@ -809,8 +809,8 @@ This information is used by Load Forecasting and Load Management.
 final case class NonConformLoadGroup
 (
     override val sup: LoadGroup = null,
-    EnergyConsumers: List[String] = List(),
-    NonConformLoadSchedules: List[String] = List()
+    EnergyConsumers: List[String] = null,
+    NonConformLoadSchedules: List[String] = null
 )
 extends
     Element
@@ -971,7 +971,7 @@ final case class PowerCutZone
     override val sup: PowerSystemResource = null,
     cutLevel1: Double = 0.0,
     cutLevel2: Double = 0.0,
-    EnergyConsumers: List[String] = List()
+    EnergyConsumers: List[String] = null
 )
 extends
     Element
@@ -1061,8 +1061,8 @@ final case class Season
     override val sup: IdentifiedObject = null,
     endDate: String = null,
     startDate: String = null,
-    ScheduledLimits: List[String] = List(),
-    SeasonDayTypeSchedules: List[String] = List()
+    ScheduledLimits: List[String] = null,
+    SeasonDayTypeSchedules: List[String] = null
 )
 extends
     Element
@@ -1297,7 +1297,7 @@ final case class SubLoadArea
 (
     override val sup: EnergyArea = null,
     LoadArea: String = null,
-    LoadGroups: List[String] = List()
+    LoadGroups: List[String] = null
 )
 extends
     Element

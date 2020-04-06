@@ -48,10 +48,10 @@ final case class ACLineSegment
     shortCircuitEndTemperature: Double = 0.0,
     x: Double = 0.0,
     x0: Double = 0.0,
-    ACLineSegmentPhases: List[String] = List(),
-    Clamp: List[String] = List(),
-    Cut: List[String] = List(),
-    LineFaults: List[String] = List(),
+    ACLineSegmentPhases: List[String] = null,
+    Clamp: List[String] = null,
+    Cut: List[String] = null,
+    LineFaults: List[String] = null,
     LineGroundingAction: String = null,
     LineJumpingAction: String = null,
     PerLengthImpedance: String = null
@@ -733,7 +733,7 @@ final case class CompositeSwitch
 (
     override val sup: Equipment = null,
     compositeSwitchType: String = null,
-    Switches: List[String] = List()
+    Switches: List[String] = null
 )
 extends
     Element
@@ -1257,7 +1257,7 @@ final case class EnergyConsumer
     q: Double = 0.0,
     qfixed: Double = 0.0,
     qfixedPct: Double = 0.0,
-    EnergyConsumerPhase: List[String] = List(),
+    EnergyConsumerPhase: List[String] = null,
     LoadDynamics: String = null,
     LoadResponse: String = null,
     PowerCutZone: String = null
@@ -1515,7 +1515,7 @@ extends
 final case class EnergySchedulingType
 (
     override val sup: IdentifiedObject = null,
-    EnergySource: List[String] = List()
+    EnergySource: List[String] = null
 )
 extends
     Element
@@ -1625,7 +1625,7 @@ final case class EnergySource
     xn: Double = 0.0,
     EnergySchedulingType: String = null,
     EnergySourceAction: String = null,
-    EnergySourcePhase: List[String] = List()
+    EnergySourcePhase: List[String] = null
 )
 extends
     Element
@@ -2961,7 +2961,7 @@ extends
 final case class NonlinearShuntCompensator
 (
     override val sup: ShuntCompensator = null,
-    NonlinearShuntCompensatorPoints: List[String] = List()
+    NonlinearShuntCompensatorPoints: List[String] = null
 )
 extends
     Element
@@ -3035,7 +3035,7 @@ extends
 final case class NonlinearShuntCompensatorPhase
 (
     override val sup: ShuntCompensatorPhase = null,
-    NonlinearShuntCompensatorPhasePoints: List[String] = List()
+    NonlinearShuntCompensatorPhasePoints: List[String] = null
 )
 extends
     Element
@@ -3307,7 +3307,7 @@ extends
 final case class PerLengthImpedance
 (
     override val sup: PerLengthLineParameter = null,
-    ACLineSegments: List[String] = List()
+    ACLineSegments: List[String] = null
 )
 extends
     Element
@@ -3458,7 +3458,7 @@ final case class PerLengthPhaseImpedance
 (
     override val sup: PerLengthImpedance = null,
     conductorCount: Int = 0,
-    PhaseImpedanceData: List[String] = List()
+    PhaseImpedanceData: List[String] = null
 )
 extends
     Element
@@ -4280,8 +4280,8 @@ extends
 final case class PhaseTapChangerTable
 (
     override val sup: IdentifiedObject = null,
-    PhaseTapChangerTablePoint: List[String] = List(),
-    PhaseTapChangerTabular: List[String] = List()
+    PhaseTapChangerTablePoint: List[String] = null,
+    PhaseTapChangerTabular: List[String] = null
 )
 extends
     Element
@@ -4611,8 +4611,8 @@ final case class PowerElectronicsConnection
     x: Double = 0.0,
     x0: Double = 0.0,
     xn: Double = 0.0,
-    PowerElectronicsConnectionPhase: List[String] = List(),
-    PowerElectronicsUnit: List[String] = List(),
+    PowerElectronicsConnectionPhase: List[String] = null,
+    PowerElectronicsUnit: List[String] = null,
     WindTurbineType3or4Dynamics: String = null
 )
 extends
@@ -4879,8 +4879,8 @@ final case class PowerTransformer
     isPartOfGeneratorUnit: Boolean = false,
     operationalValuesConsidered: Boolean = false,
     vectorGroup: String = null,
-    PowerTransformerEnd: List[String] = List(),
-    TransformerTanks: List[String] = List()
+    PowerTransformerEnd: List[String] = null,
+    TransformerTanks: List[String] = null
 )
 extends
     Element
@@ -5150,8 +5150,8 @@ final case class ProtectedSwitch
 (
     override val sup: Switch = null,
     breakingCapacity: Double = 0.0,
-    OperatedByProtectionEquipment: List[String] = List(),
-    RecloseSequences: List[String] = List()
+    OperatedByProtectionEquipment: List[String] = null,
+    RecloseSequences: List[String] = null
 )
 extends
     Element
@@ -5333,8 +5333,8 @@ extends
 final case class RatioTapChangerTable
 (
     override val sup: IdentifiedObject = null,
-    RatioTapChanger: List[String] = List(),
-    RatioTapChangerTablePoint: List[String] = List()
+    RatioTapChanger: List[String] = null,
+    RatioTapChangerTablePoint: List[String] = null
 )
 extends
     Element
@@ -5495,9 +5495,9 @@ final case class ReactiveCapabilityCurve
     override val sup: Curve = null,
     coolantTemperature: Double = 0.0,
     hydrogenPressure: Double = 0.0,
-    EquivalentInjection: List[String] = List(),
-    InitiallyUsedBySynchronousMachines: List[String] = List(),
-    SynchronousMachines: List[String] = List()
+    EquivalentInjection: List[String] = null,
+    InitiallyUsedBySynchronousMachines: List[String] = null,
+    SynchronousMachines: List[String] = null
 )
 extends
     Element
@@ -5757,9 +5757,9 @@ final case class RegulatingControl
     targetDeadband: Double = 0.0,
     targetValue: Double = 0.0,
     targetValueUnitMultiplier: String = null,
-    ProtectiveActionRegulation: List[String] = List(),
-    RegulatingCondEq: List[String] = List(),
-    RegulationSchedule: List[String] = List(),
+    ProtectiveActionRegulation: List[String] = null,
+    RegulatingCondEq: List[String] = null,
+    RegulationSchedule: List[String] = null,
     Terminal: String = null
 )
 extends
@@ -5881,7 +5881,7 @@ final case class RegulationSchedule
 (
     override val sup: SeasonDayTypeSchedule = null,
     RegulatingControl: String = null,
-    VoltageControlZones: List[String] = List()
+    VoltageControlZones: List[String] = null
 )
 extends
     Element
@@ -6276,8 +6276,8 @@ final case class ShuntCompensator
     switchOnCount: Int = 0,
     switchOnDate: String = null,
     voltageSensitivity: Double = 0.0,
-    ShuntCompensatorPhase: List[String] = List(),
-    SvShuntCompensatorSections: List[String] = List()
+    ShuntCompensatorPhase: List[String] = null,
+    SvShuntCompensatorSections: List[String] = null
 )
 extends
     Element
@@ -6635,12 +6635,12 @@ final case class Switch
     switchOnCount: Int = 0,
     switchOnDate: String = null,
     CompositeSwitch: String = null,
-    ConnectDisconnectFunctions: List[String] = List(),
+    ConnectDisconnectFunctions: List[String] = null,
     Outage: String = null,
-    SvSwitch: List[String] = List(),
+    SvSwitch: List[String] = null,
     SwitchAction: String = null,
-    SwitchPhase: List[String] = List(),
-    SwitchSchedules: List[String] = List()
+    SwitchPhase: List[String] = null,
+    SwitchSchedules: List[String] = null
 )
 extends
     Element
@@ -7037,8 +7037,8 @@ final case class SynchronousMachine
     x0: Double = 0.0,
     x2: Double = 0.0,
     InitialReactiveCapabilityCurve: String = null,
-    PrimeMovers: List[String] = List(),
-    ReactiveCapabilityCurves: List[String] = List(),
+    PrimeMovers: List[String] = null,
+    ReactiveCapabilityCurves: List[String] = null,
     SynchronousMachineDynamics: String = null
 )
 extends
@@ -7284,7 +7284,7 @@ final case class TapChanger
     subsequentDelay: Double = 0.0,
     SvTapStep: String = null,
     TapChangerControl: String = null,
-    TapSchedules: List[String] = List()
+    TapSchedules: List[String] = null
 )
 extends
     Element
@@ -7423,7 +7423,7 @@ final case class TapChangerControl
     lineDropX: Double = 0.0,
     reverseLineDropR: Double = 0.0,
     reverseLineDropX: Double = 0.0,
-    TapChanger: List[String] = List()
+    TapChanger: List[String] = null
 )
 extends
     Element
@@ -7719,7 +7719,7 @@ final case class TransformerCoreAdmittance
     b0: Double = 0.0,
     g: Double = 0.0,
     g0: Double = 0.0,
-    TransformerEnd: List[String] = List(),
+    TransformerEnd: List[String] = null,
     TransformerEndInfo: String = null
 )
 extends
@@ -7848,14 +7848,14 @@ final case class TransformerEnd
     xground: Double = 0.0,
     BaseVoltage: String = null,
     CoreAdmittance: String = null,
-    FromMeshImpedance: List[String] = List(),
-    FromWindingInsulations: List[String] = List(),
+    FromMeshImpedance: List[String] = null,
+    FromWindingInsulations: List[String] = null,
     PhaseTapChanger: String = null,
     RatioTapChanger: String = null,
     StarImpedance: String = null,
     Terminal: String = null,
-    ToMeshImpedance: List[String] = List(),
-    ToWindingInsulations: List[String] = List()
+    ToMeshImpedance: List[String] = null,
+    ToWindingInsulations: List[String] = null
 )
 extends
     Element
@@ -8021,8 +8021,8 @@ final case class TransformerMeshImpedance
     x0: Double = 0.0,
     FromTransformerEnd: String = null,
     FromTransformerEndInfo: String = null,
-    ToTransformerEnd: List[String] = List(),
-    ToTransformerEndInfos: List[String] = List()
+    ToTransformerEnd: List[String] = null,
+    ToTransformerEndInfos: List[String] = null
 )
 extends
     Element
@@ -8141,7 +8141,7 @@ final case class TransformerStarImpedance
     r0: Double = 0.0,
     x: Double = 0.0,
     x0: Double = 0.0,
-    TransformerEnd: List[String] = List(),
+    TransformerEnd: List[String] = null,
     TransformerEndInfo: String = null
 )
 extends
@@ -8244,8 +8244,8 @@ final case class TransformerTank
 (
     override val sup: Equipment = null,
     PowerTransformer: String = null,
-    TransformerObservations: List[String] = List(),
-    TransformerTankEnds: List[String] = List()
+    TransformerObservations: List[String] = null,
+    TransformerTankEnds: List[String] = null
 )
 extends
     Element

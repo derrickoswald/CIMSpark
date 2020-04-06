@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
 final case class ControlAreaOperator
 (
     override val sup: Organisation = null,
-    CAChildOf: List[String] = List(),
+    CAChildOf: List[String] = null,
     ControlledBy: String = null
 )
 extends
@@ -103,7 +103,7 @@ extends
 final case class CustomerConsumer
 (
     override val sup: Organisation = null,
-    CustChildOf: List[String] = List()
+    CustChildOf: List[String] = null
 )
 extends
     Element
@@ -177,7 +177,7 @@ extends
 final case class GenerationProvider
 (
     override val sup: Organisation = null,
-    ProvidedBy: List[String] = List()
+    ProvidedBy: List[String] = null
 )
 extends
     Element
@@ -324,8 +324,8 @@ extends
 final case class Marketer
 (
     override val sup: Organisation = null,
-    HoldsTitleTo_EnergyProducts: List[String] = List(),
-    Resells_EnergyProduct: List[String] = List()
+    HoldsTitleTo_EnergyProducts: List[String] = null,
+    Resells_EnergyProduct: List[String] = null
 )
 extends
     Element
@@ -460,7 +460,7 @@ final case class TransmissionProduct
 (
     override val sup: IdentifiedObject = null,
     transmissionProductType: String = null,
-    LocationFor: List[String] = List(),
+    LocationFor: List[String] = null,
     TransmissionProvider: String = null
 )
 extends
@@ -550,8 +550,8 @@ extends
 final case class TransmissionProvider
 (
     override val sup: Organisation = null,
-    For: List[String] = List(),
-    TransmissionProducts: List[String] = List()
+    For: List[String] = null,
+    TransmissionProducts: List[String] = null
 )
 extends
     Element

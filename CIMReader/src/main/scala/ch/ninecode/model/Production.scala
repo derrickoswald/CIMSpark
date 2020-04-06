@@ -299,7 +299,7 @@ final case class CogenerationPlant
     cogenLPSteamRating: Double = 0.0,
     ratedP: Double = 0.0,
     SteamSendoutSchedule: String = null,
-    ThermalGeneratingUnits: List[String] = List()
+    ThermalGeneratingUnits: List[String] = null
 )
 extends
     Element
@@ -402,7 +402,7 @@ final case class CombinedCyclePlant
 (
     override val sup: PowerSystemResource = null,
     combCyclePlantRating: Double = 0.0,
-    ThermalGeneratingUnits: List[String] = List()
+    ThermalGeneratingUnits: List[String] = null
 )
 extends
     Element
@@ -691,7 +691,7 @@ final case class FossilFuel
     fuelSulfur: Double = 0.0,
     highBreakpointP: Double = 0.0,
     lowBreakpointP: Double = 0.0,
-    FuelAllocationSchedules: List[String] = List(),
+    FuelAllocationSchedules: List[String] = null,
     ThermalGeneratingUnit: String = null
 )
 extends
@@ -1173,11 +1173,11 @@ final case class GeneratingUnit
     tieLinePF: Double = 0.0,
     totalEfficiency: Double = 0.0,
     variableCost: Double = 0.0,
-    ControlAreaGeneratingUnit: List[String] = List(),
-    GenUnitOpCostCurves: List[String] = List(),
+    ControlAreaGeneratingUnit: List[String] = null,
+    GenUnitOpCostCurves: List[String] = null,
     GenUnitOpSchedule: String = null,
-    GrossToNetActivePowerCurves: List[String] = List(),
-    RotatingMachine: List[String] = List()
+    GrossToNetActivePowerCurves: List[String] = null,
+    RotatingMachine: List[String] = null
 )
 extends
     Element
@@ -1776,10 +1776,10 @@ final case class HydroGeneratingUnit
     energyConversionCapability: String = null,
     hydroUnitWaterCost: Double = 0.0,
     turbineType: String = null,
-    HydroGeneratingEfficiencyCurves: List[String] = List(),
+    HydroGeneratingEfficiencyCurves: List[String] = null,
     HydroPowerPlant: String = null,
     PenstockLossCurve: String = null,
-    TailbayLossCurve: List[String] = List()
+    TailbayLossCurve: List[String] = null
 )
 extends
     Element
@@ -1910,8 +1910,8 @@ final case class HydroPowerPlant
     surgeTankCode: String = null,
     surgeTankCrestLevel: Double = 0.0,
     GenSourcePumpDischargeReservoir: String = null,
-    HydroGeneratingUnits: List[String] = List(),
-    HydroPumps: List[String] = List(),
+    HydroGeneratingUnits: List[String] = null,
+    HydroPumps: List[String] = null,
     Reservoir: String = null
 )
 extends
@@ -2834,13 +2834,13 @@ final case class Reservoir
     spillwayCapacity: Double = 0.0,
     spillwayCrestLength: Double = 0.0,
     spillwayCrestLevel: Double = 0.0,
-    HydroPowerPlants: List[String] = List(),
-    InflowForecasts: List[String] = List(),
-    LevelVsVolumeCurves: List[String] = List(),
+    HydroPowerPlants: List[String] = null,
+    InflowForecasts: List[String] = null,
+    LevelVsVolumeCurves: List[String] = null,
     SpillsFromReservoir: String = null,
-    SpillsIntoReservoirs: List[String] = List(),
+    SpillsIntoReservoirs: List[String] = null,
     TargetLevelSchedule: String = null,
-    UpstreamFromHydroPowerPlants: List[String] = List()
+    UpstreamFromHydroPowerPlants: List[String] = null
 )
 extends
     Element
@@ -3791,10 +3791,10 @@ final case class ThermalGeneratingUnit
     CAESPlant: String = null,
     CogenerationPlant: String = null,
     CombinedCyclePlant: String = null,
-    EmissionCurves: List[String] = List(),
-    EmmissionAccounts: List[String] = List(),
-    FossilFuels: List[String] = List(),
-    FuelAllocationSchedules: List[String] = List(),
+    EmissionCurves: List[String] = null,
+    EmmissionAccounts: List[String] = null,
+    FossilFuels: List[String] = null,
+    FuelAllocationSchedules: List[String] = null,
     HeatInputCurve: String = null,
     HeatRateCurve: String = null,
     IncrementalHeatRateCurve: String = null,

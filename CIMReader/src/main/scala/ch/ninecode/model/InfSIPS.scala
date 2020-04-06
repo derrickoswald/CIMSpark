@@ -29,15 +29,15 @@ final case class Gate
 (
     override val sup: IdentifiedObject = null,
     kind: String = null,
-    GateInputPin: List[String] = List(),
-    PinGate: List[String] = List(),
-    ProtectiveActionCom: List[String] = List(),
-    ProtectiveActionEnabled: List[String] = List(),
-    RemedialActionScheme: List[String] = List(),
-    StageTrigger: List[String] = List(),
-    StageTriggerArmed: List[String] = List(),
-    StageTriggerCom: List[String] = List(),
-    TriggerCondition: List[String] = List()
+    GateInputPin: List[String] = null,
+    PinGate: List[String] = null,
+    ProtectiveActionCom: List[String] = null,
+    ProtectiveActionEnabled: List[String] = null,
+    RemedialActionScheme: List[String] = null,
+    StageTrigger: List[String] = null,
+    StageTriggerArmed: List[String] = null,
+    StageTriggerCom: List[String] = null,
+    TriggerCondition: List[String] = null
 )
 extends
     Element
@@ -273,8 +273,8 @@ final case class MeasurementCalculator
 (
     override val sup: IdentifiedObject = null,
     kind: String = null,
-    MeasurementCalculatorInput: List[String] = List(),
-    PinMeasurement: List[String] = List()
+    MeasurementCalculatorInput: List[String] = null,
+    PinMeasurement: List[String] = null
 )
 extends
     Element
@@ -1083,8 +1083,8 @@ extends
 final case class ProtectiveActionCollection
 (
     override val sup: IdentifiedObject = null,
-    ProtectiveAction: List[String] = List(),
-    StageTrigger: List[String] = List()
+    ProtectiveAction: List[String] = null,
+    StageTrigger: List[String] = null
 )
 extends
     Element
@@ -1342,8 +1342,8 @@ final case class RemedialActionScheme
     kind: String = null,
     normalArmed: Boolean = false,
     GateArmed: String = null,
-    Stage: List[String] = List(),
-    TriggerCondition: List[String] = List()
+    Stage: List[String] = null,
+    TriggerCondition: List[String] = null
 )
 extends
     Element
@@ -1446,7 +1446,7 @@ final case class Stage
     override val sup: IdentifiedObject = null,
     priority: Int = 0,
     RemedialActionScheme: String = null,
-    StageTrigger: List[String] = List()
+    StageTrigger: List[String] = null
 )
 extends
     Element

@@ -15,8 +15,8 @@ import ch.ninecode.cim.Relationship
 final case class Circuit
 (
     override val sup: Line = null,
-    EndBay: List[String] = List(),
-    EndTerminal: List[String] = List()
+    EndBay: List[String] = null,
+    EndTerminal: List[String] = null
 )
 extends
     Element

@@ -237,7 +237,7 @@ final case class VCompIEEEType2
 (
     override val sup: VoltageCompensatorDynamics = null,
     tr: Double = 0.0,
-    GenICompensationForGenJ: List[String] = List()
+    GenICompensationForGenJ: List[String] = null
 )
 extends
     Element

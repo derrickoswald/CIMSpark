@@ -337,8 +337,8 @@ extends
 final case class CalculationMethodHierarchy
 (
     override val sup: IdentifiedObject = null,
-    CalculationMethodOrder: List[String] = List(),
-    Measurement: List[String] = List(),
+    CalculationMethodOrder: List[String] = null,
+    Measurement: List[String] = null,
     MeasurementValue: String = null
 )
 extends
@@ -1435,7 +1435,7 @@ final case class StatisticalCalculation
     override val sup: IdentifiedObject = null,
     calculationMode: String = null,
     calculationTechnique: String = null,
-    CalculationMethodOrder: List[String] = List()
+    CalculationMethodOrder: List[String] = null
 )
 extends
     Element

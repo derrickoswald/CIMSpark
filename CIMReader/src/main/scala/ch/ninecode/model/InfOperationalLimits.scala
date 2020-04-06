@@ -166,7 +166,7 @@ final case class LimitDependency
 (
     override val sup: IdentifiedObject = null,
     Equipment: String = null,
-    OperationalLimit: List[String] = List()
+    OperationalLimit: List[String] = null
 )
 extends
     Element
@@ -631,7 +631,7 @@ These classes would likely go into the OperationalLimits package.
 final case class ScheduledLimitDependency
 (
     override val sup: LimitDependency = null,
-    ScheduledLimitValues: List[String] = List()
+    ScheduledLimitValues: List[String] = null
 )
 extends
     Element
@@ -863,7 +863,7 @@ These classes would likely go into the OperationalLimits package.
 final case class SeriesEquipmentDependentLimit
 (
     override val sup: LimitDependency = null,
-    EquipmentLimitSeriesComponent: List[String] = List()
+    EquipmentLimitSeriesComponent: List[String] = null
 )
 extends
     Element
@@ -1026,7 +1026,7 @@ These classes would likely go into the OperationalLimits package.
 final case class TemperatureDependentLimitTable
 (
     override val sup: EnvironmentalDependentLimit = null,
-    TemperatureLimitTablePoint: List[String] = List()
+    TemperatureLimitTablePoint: List[String] = null
 )
 extends
     Element
@@ -1197,7 +1197,7 @@ These classes would likely go into the OperationalLimits package.
 final case class WeatherStation
 (
     override val sup: PowerSystemResource = null,
-    Equipment: List[String] = List()
+    Equipment: List[String] = null
 )
 extends
     Element

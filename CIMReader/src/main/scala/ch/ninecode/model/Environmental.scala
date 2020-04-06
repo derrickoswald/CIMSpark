@@ -23,7 +23,7 @@ final case class AlertTypeList
 (
     override val sup: IdentifiedObject = null,
     version: String = null,
-    EnvironmentalAlert: List[String] = List(),
+    EnvironmentalAlert: List[String] = null,
     EnvironmentalDataAuthority: String = null
 )
 extends
@@ -285,8 +285,8 @@ final case class ClassificationCondition
     override val sup: IdentifiedObject = null,
     duration: Double = 0.0,
     test: String = null,
-    EnvironmentalAnalog: List[String] = List(),
-    EnvironmentalStringMeasurement: List[String] = List(),
+    EnvironmentalAnalog: List[String] = null,
+    EnvironmentalStringMeasurement: List[String] = null,
     PhenomenonClassification: String = null
 )
 extends
@@ -631,7 +631,7 @@ final case class EnvironmentalAlert
     inEffect: String = null,
     AlertTypeList: String = null,
     EnvironmentalDataProvider: String = null,
-    EnvironmentalLocationKind: List[String] = List()
+    EnvironmentalLocationKind: List[String] = null
 )
 extends
     Element
@@ -919,8 +919,8 @@ extends
 final case class EnvironmentalDataAuthority
 (
     override val sup: OrganisationRole = null,
-    AlertTypeList: List[String] = List(),
-    PhenomenonClassification: List[String] = List()
+    AlertTypeList: List[String] = null,
+    PhenomenonClassification: List[String] = null
 )
 extends
     Element
@@ -1001,8 +1001,8 @@ extends
 final case class EnvironmentalDataProvider
 (
     override val sup: OrganisationRole = null,
-    EnvironmentalAlert: List[String] = List(),
-    EnvironmentalInformation: List[String] = List()
+    EnvironmentalAlert: List[String] = null,
+    EnvironmentalInformation: List[String] = null
 )
 extends
     Element
@@ -1165,7 +1165,7 @@ extends
 final case class EnvironmentalEvent
 (
     override val sup: ActivityRecord = null,
-    EnvironmentalInformation: List[String] = List()
+    EnvironmentalInformation: List[String] = null
 )
 extends
     Element
@@ -1245,12 +1245,12 @@ final case class EnvironmentalInformation
 (
     override val sup: IdentifiedObject = null,
     created: String = null,
-    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalAnalog: List[String] = null,
     EnvironmentalDataProvider: String = null,
-    EnvironmentalDiscrete: List[String] = List(),
-    EnvironmentalEvent: List[String] = List(),
-    EnvironmentalPhenomenon: List[String] = List(),
-    EnvironmentalStringMeasurement: List[String] = List()
+    EnvironmentalDiscrete: List[String] = null,
+    EnvironmentalEvent: List[String] = null,
+    EnvironmentalPhenomenon: List[String] = null,
+    EnvironmentalStringMeasurement: List[String] = null
 )
 extends
     Element
@@ -1361,8 +1361,8 @@ final case class EnvironmentalLocationType
 (
     override val sup: BasicElement = null,
     kind: String = null,
-    EnvironmentalAlert: List[String] = List(),
-    EnvironmentalPhenomenon: List[String] = List(),
+    EnvironmentalAlert: List[String] = null,
+    EnvironmentalPhenomenon: List[String] = null,
     Location: String = null
 )
 extends
@@ -1456,7 +1456,7 @@ final case class EnvironmentalPhenomenon
     override val sup: BasicElement = null,
     timeInterval: String = null,
     EnvironmentalInformation: String = null,
-    EnvironmentalLocationKind: List[String] = List(),
+    EnvironmentalLocationKind: List[String] = null,
     PhenomenonClassification: String = null
 )
 extends
@@ -2427,9 +2427,9 @@ extends
 final case class PhenomenonClassification
 (
     override val sup: IdentifiedObject = null,
-    ClassificationCondition: List[String] = List(),
+    ClassificationCondition: List[String] = null,
     EnvironmentalDataAuthority: String = null,
-    EnvironmentalPhenomenon: List[String] = List()
+    EnvironmentalPhenomenon: List[String] = null
 )
 extends
     Element
@@ -2522,7 +2522,7 @@ final case class ReportingCapability
     reportingIntervalPeriod: Int = 0,
     reportingIntervalType: String = null,
     reportingMethod: String = null,
-    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalAnalog: List[String] = null,
     EnvironmentalMonitoringStation: String = null
 )
 extends

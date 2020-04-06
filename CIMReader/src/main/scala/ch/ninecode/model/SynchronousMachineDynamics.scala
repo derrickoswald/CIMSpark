@@ -142,10 +142,10 @@ final case class SynchronousMachineDynamics
     CrossCompoundTurbineGovernorDyanmics: String = null,
     CrossCompoundTurbineGovernorDynamics: String = null,
     ExcitationSystemDynamics: String = null,
-    GenICompensationForGenJ: List[String] = List(),
+    GenICompensationForGenJ: List[String] = null,
     MechanicalLoadDynamics: String = null,
     SynchronousMachine: String = null,
-    TurbineGovernorDynamics: List[String] = List()
+    TurbineGovernorDynamics: List[String] = null
 )
 extends
     Element

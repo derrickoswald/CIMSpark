@@ -27,8 +27,8 @@ final case class BaseWork
     kind: String = null,
     priority: String = null,
     statusKind: String = null,
-    TimeSchedules: List[String] = List(),
-    WorkActivityRecords: List[String] = List(),
+    TimeSchedules: List[String] = null,
+    WorkActivityRecords: List[String] = null,
     WorkLocation: String = null
 )
 extends
@@ -476,7 +476,7 @@ final case class RepairItem
     override val sup: BasicElement = null,
     breakerRepairItem: String = null,
     transformerRepairItem: String = null,
-    RepairWorkTask: List[String] = List()
+    RepairWorkTask: List[String] = null
 )
 extends
     Element
@@ -563,7 +563,7 @@ final case class RepairWorkTask
 (
     override val sup: WorkTask = null,
     emergency: Boolean = false,
-    BreakerRepairItem: List[String] = List()
+    BreakerRepairItem: List[String] = null
 )
 extends
     Element
@@ -812,17 +812,17 @@ final case class Work
     override val sup: BaseWork = null,
     requestDateTime: String = null,
     workOrderNumber: String = null,
-    Appointments: List[String] = List(),
+    Appointments: List[String] = null,
     BusinessCase: String = null,
-    Customers: List[String] = List(),
-    Designs: List[String] = List(),
+    Customers: List[String] = null,
+    Designs: List[String] = null,
     ErpProjectAccounting: String = null,
-    Incidents: List[String] = List(),
+    Incidents: List[String] = null,
     Project: String = null,
     WorkBillingInfo: String = null,
-    WorkCostDetails: List[String] = List(),
-    WorkFlowSteps: List[String] = List(),
-    WorkTasks: List[String] = List()
+    WorkCostDetails: List[String] = null,
+    WorkFlowSteps: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -1120,8 +1120,8 @@ extends
 final case class WorkLocation
 (
     override val sup: Location = null,
-    BaseWorks: List[String] = List(),
-    DesignLocations: List[String] = List(),
+    BaseWorks: List[String] = null,
+    DesignLocations: List[String] = null,
     OneCallRequest: String = null
 )
 extends
@@ -1235,11 +1235,11 @@ final case class WorkTask
     startedDateTime: String = null,
     taskKind: String = null,
     toolCost: Double = 0.0,
-    Assets: List[String] = List(),
-    Crews: List[String] = List(),
-    MaterialItems: List[String] = List(),
+    Assets: List[String] = null,
+    Crews: List[String] = null,
+    MaterialItems: List[String] = null,
     OldAsset: String = null,
-    ProcedureDataSet: List[String] = List(),
+    ProcedureDataSet: List[String] = null,
     SwitchingPlan: String = null,
     Work: String = null
 )

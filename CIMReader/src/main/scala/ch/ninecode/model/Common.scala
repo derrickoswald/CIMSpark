@@ -30,7 +30,7 @@ final case class ActivityRecord
     severity: String = null,
     status: String = null,
     `type`: String = null,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     Author: String = null
 )
 extends
@@ -218,8 +218,8 @@ final case class Appointment
     override val sup: IdentifiedObject = null,
     callAhead: Boolean = false,
     meetingInterval: String = null,
-    Persons: List[String] = List(),
-    Works: List[String] = List()
+    Persons: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -308,7 +308,7 @@ extends
 final case class Approver
 (
     override val sup: DocumentPersonRole = null,
-    Documents: List[String] = List()
+    Documents: List[String] = null
 )
 extends
     Element
@@ -383,8 +383,8 @@ extends
 final case class Author
 (
     override val sup: DocumentPersonRole = null,
-    ActivityRecords: List[String] = List(),
-    Documents: List[String] = List()
+    ActivityRecords: List[String] = null,
+    Documents: List[String] = null
 )
 extends
     Element
@@ -617,7 +617,7 @@ final case class CoordinateSystem
 (
     override val sup: IdentifiedObject = null,
     crsUrn: String = null,
-    Locations: List[String] = List()
+    Locations: List[String] = null
 )
 extends
     Element
@@ -705,14 +705,14 @@ final case class Crew
 (
     override val sup: IdentifiedObject = null,
     status: String = null,
-    CrewMembers: List[String] = List(),
+    CrewMembers: List[String] = null,
     CrewType: String = null,
-    FieldDispatchHistory: List[String] = List(),
+    FieldDispatchHistory: List[String] = null,
     Location: String = null,
-    Outage: List[String] = List(),
+    Outage: List[String] = null,
     SwitchingAction: String = null,
-    WorkAssets: List[String] = List(),
-    WorkTasks: List[String] = List()
+    WorkAssets: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -903,7 +903,7 @@ extends
 final case class CrewType
 (
     override val sup: IdentifiedObject = null,
-    Crews: List[String] = List()
+    Crews: List[String] = null
 )
 extends
     Element
@@ -1011,7 +1011,7 @@ final case class Document
     `type`: String = null,
     Approver: String = null,
     Author: String = null,
-    ConfigurationEvents: List[String] = List(),
+    ConfigurationEvents: List[String] = null,
     Editor: String = null,
     Issuer: String = null
 )
@@ -1214,7 +1214,7 @@ extends
 final case class Editor
 (
     override val sup: DocumentPersonRole = null,
-    Documents: List[String] = List()
+    Documents: List[String] = null
 )
 extends
     Element
@@ -1554,7 +1554,7 @@ final case class FieldDispatchHistory
 (
     override val sup: IdentifiedObject = null,
     Crew: String = null,
-    FieldDispatchStep: List[String] = List(),
+    FieldDispatchStep: List[String] = null,
     PlannedOutage: String = null,
     UnplannedOutage: String = null
 )
@@ -1827,7 +1827,7 @@ extends
 final case class Issuer
 (
     override val sup: DocumentPersonRole = null,
-    Documents: List[String] = List()
+    Documents: List[String] = null
 )
 extends
     Element
@@ -1941,22 +1941,22 @@ final case class Location
     secondaryAddress: String = null,
     status: String = null,
     `type`: String = null,
-    Assets: List[String] = List(),
-    ConfigurationEvents: List[String] = List(),
+    Assets: List[String] = null,
+    ConfigurationEvents: List[String] = null,
     CoordinateSystem: String = null,
-    Crew: List[String] = List(),
-    Crews: List[String] = List(),
-    EnvironmentalLocationKind: List[String] = List(),
-    EnvironmentalMonitoringStation: List[String] = List(),
-    Fault: List[String] = List(),
-    Hazards: List[String] = List(),
+    Crew: List[String] = null,
+    Crews: List[String] = null,
+    EnvironmentalLocationKind: List[String] = null,
+    EnvironmentalMonitoringStation: List[String] = null,
+    Fault: List[String] = null,
+    Hazards: List[String] = null,
     Incident: String = null,
-    LandProperties: List[String] = List(),
-    Measurements: List[String] = List(),
+    LandProperties: List[String] = null,
+    Measurements: List[String] = null,
     OutageOrder: String = null,
-    PositionPoints: List[String] = List(),
-    PowerSystemResources: List[String] = List(),
-    Routes: List[String] = List(),
+    PositionPoints: List[String] = null,
+    PowerSystemResources: List[String] = null,
+    Routes: List[String] = null,
     SwitchingOrder: String = null,
     TroubleOrder: String = null
 )
@@ -2220,8 +2220,8 @@ extends
 final case class Operator
 (
     override val sup: OperationPersonRole = null,
-    Incidents: List[String] = List(),
-    SwitchingSteps: List[String] = List()
+    Incidents: List[String] = null,
+    SwitchingSteps: List[String] = null
 )
 extends
     Element
@@ -2313,8 +2313,8 @@ final case class Organisation
     postalAddress: String = null,
     streetAddress: String = null,
     ParentOrganisation: String = null,
-    Roles: List[String] = List(),
-    SwitchingPlanRequest: List[String] = List()
+    Roles: List[String] = null,
+    SwitchingPlanRequest: List[String] = null
 )
 extends
     Element
@@ -2425,7 +2425,7 @@ extends
 final case class OrganisationRole
 (
     override val sup: IdentifiedObject = null,
-    ConfigurationEvents: List[String] = List(),
+    ConfigurationEvents: List[String] = null,
     Organisation: String = null
 )
 extends
@@ -2591,7 +2591,7 @@ extends
 final case class ParentOrganization
 (
     override val sup: Organisation = null,
-    Organisation_attr: List[String] = List()
+    Organisation_attr: List[String] = null
 )
 extends
     Element
@@ -2683,7 +2683,7 @@ final case class Person
     prefix: String = null,
     specialNeed: String = null,
     suffix: String = null,
-    Roles: List[String] = List()
+    Roles: List[String] = null
 )
 extends
     Element
@@ -2795,8 +2795,8 @@ extends
 final case class PersonRole
 (
     override val sup: IdentifiedObject = null,
-    Appointments: List[String] = List(),
-    ConfigurationEvents: List[String] = List(),
+    Appointments: List[String] = null,
+    ConfigurationEvents: List[String] = null,
     Person: String = null
 )
 extends
@@ -3079,7 +3079,7 @@ final case class ScheduledEvent
     duration: Double = 0.0,
     status: String = null,
     `type`: String = null,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     ScheduledEventData: String = null
 )
 extends
@@ -3182,7 +3182,7 @@ final case class ScheduledEventData
     requestedWindow: String = null,
     status: String = null,
     InspectionDataSet: String = null,
-    ScheduledEvents: List[String] = List()
+    ScheduledEvents: List[String] = null
 )
 extends
     Element
@@ -3851,7 +3851,7 @@ final case class TimeSchedule
     recurrencePattern: String = null,
     recurrencePeriod: Double = 0.0,
     scheduleInterval: String = null,
-    TimePoints: List[String] = List()
+    TimePoints: List[String] = null
 )
 extends
     Element
@@ -4054,9 +4054,9 @@ final case class UserAttribute
     name: String = null,
     sequenceNumber: Int = 0,
     value: String = null,
-    ErpInvoiceLineItems: List[String] = List(),
-    ErpLedgerEntries: List[String] = List(),
-    ProcedureDataSets: List[String] = List(),
+    ErpInvoiceLineItems: List[String] = null,
+    ErpLedgerEntries: List[String] = null,
+    ProcedureDataSets: List[String] = null,
     PropertySpecification: String = null,
     RatingSpecification: String = null,
     Transaction: String = null

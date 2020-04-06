@@ -39,7 +39,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
 final case class AssetPropertyCurve
 (
     override val sup: Curve = null,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     Specification: String = null
 )
 extends
@@ -258,7 +258,7 @@ final case class CoolingPowerRating
     coolingKind: String = null,
     powerRating: Double = 0.0,
     stage: Int = 0,
-    Reconditionings: List[String] = List()
+    Reconditionings: List[String] = null
 )
 extends
     Element
@@ -376,7 +376,7 @@ final case class DimensionsInfo
     sizeDiameter: Double = 0.0,
     sizeLength: Double = 0.0,
     sizeWidth: Double = 0.0,
-    Specifications: List[String] = List()
+    Specifications: List[String] = null
 )
 extends
     Element
@@ -512,7 +512,7 @@ final case class Pole
     speciesType: String = null,
     treatedDateTime: String = null,
     treatmentKind: String = null,
-    Streetlights: List[String] = List()
+    Streetlights: List[String] = null
 )
 extends
     Element
@@ -654,8 +654,8 @@ final case class Reconditioning
     override val sup: IdentifiedObject = null,
     dateTime: String = null,
     Asset: String = null,
-    PowerRatings: List[String] = List(),
-    TransformerObservations: List[String] = List()
+    PowerRatings: List[String] = null,
+    TransformerObservations: List[String] = null
 )
 extends
     Element
@@ -767,7 +767,7 @@ final case class ReliabilityInfo
     override val sup: IdentifiedObject = null,
     mTTR: Double = 0.0,
     momFailureRate: Double = 0.0,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     Specification: String = null
 )
 extends
@@ -884,13 +884,13 @@ Asset work triggers are used to determine when inspection and/or maintenance are
 final case class Specification
 (
     override val sup: Document = null,
-    AssetProperites: List[String] = List(),
-    AssetPropertyCurves: List[String] = List(),
-    DimensionsInfos: List[String] = List(),
-    Mediums: List[String] = List(),
-    QualificationRequirements: List[String] = List(),
-    Ratings: List[String] = List(),
-    ReliabilityInfos: List[String] = List()
+    AssetProperites: List[String] = null,
+    AssetPropertyCurves: List[String] = null,
+    DimensionsInfos: List[String] = null,
+    Mediums: List[String] = null,
+    QualificationRequirements: List[String] = null,
+    Ratings: List[String] = null,
+    ReliabilityInfos: List[String] = null
 )
 extends
     Element
@@ -1139,11 +1139,11 @@ final case class TransformerObservation
     status: String = null,
     topOilTemp: Double = 0.0,
     waterContent: String = null,
-    BushingInsultationPFs: List[String] = List(),
-    ProcedureDataSets: List[String] = List(),
+    BushingInsultationPFs: List[String] = null,
+    ProcedureDataSets: List[String] = null,
     Reconditioning: String = null,
     Transformer: String = null,
-    WindingInsulationPFs: List[String] = List()
+    WindingInsulationPFs: List[String] = null
 )
 extends
     Element

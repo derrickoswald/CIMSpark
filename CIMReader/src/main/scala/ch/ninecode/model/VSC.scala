@@ -501,7 +501,7 @@ final case class Qregulator
 (
     override val sup: BasicElement = null,
     Delay: String = null,
-    HVDClookUpTable: List[String] = List(),
+    HVDClookUpTable: List[String] = null,
     VSCtype1: String = null
 )
 extends

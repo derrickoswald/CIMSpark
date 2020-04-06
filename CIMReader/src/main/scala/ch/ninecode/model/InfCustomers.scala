@@ -119,7 +119,7 @@ final case class CustomerBillingInfo
     pymtPlanAmt: Double = 0.0,
     pymtPlanType: String = null,
     CustomerAccount: String = null,
-    ErpInvoiceLineItems: List[String] = List()
+    ErpInvoiceLineItems: List[String] = null
 )
 extends
     Element
@@ -511,7 +511,7 @@ final case class StandardIndustryCode
 (
     override val sup: Document = null,
     code: String = null,
-    CustomerAgreements: List[String] = List()
+    CustomerAgreements: List[String] = null
 )
 extends
     Element
@@ -667,8 +667,8 @@ final case class WorkBillingInfo
     receivedDateTime: String = null,
     workPrice: Double = 0.0,
     CustomerAccount: String = null,
-    ErpLineItems: List[String] = List(),
-    Works: List[String] = List()
+    ErpLineItems: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element

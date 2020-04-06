@@ -184,7 +184,7 @@ final case class TypeAssetCatalogue
 (
     override val sup: IdentifiedObject = null,
     status: String = null,
-    TypeAssets: List[String] = List()
+    TypeAssets: List[String] = null
 )
 extends
     Element

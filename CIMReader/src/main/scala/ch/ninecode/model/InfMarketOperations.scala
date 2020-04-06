@@ -237,7 +237,7 @@ final case class ResourceCertification2
     certifiedReplaceAS: String = null,
     certifiedSpin: String = null,
     certifiedSpinMw: Double = 0.0,
-    RegisteredResource: List[String] = List()
+    RegisteredResource: List[String] = null
 )
 extends
     Element

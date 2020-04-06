@@ -21,7 +21,7 @@ final case class AncillaryServiceClearing
 (
     override val sup: MarketFactors = null,
     MarketCaseClearing: String = null,
-    MarketRegionResults: List[String] = List()
+    MarketRegionResults: List[String] = null
 )
 extends
     Element
@@ -138,10 +138,10 @@ final case class BillDeterminant
     source: String = null,
     terminationDate: String = null,
     unitOfMeasure: String = null,
-    ChargeComponents: List[String] = List(),
+    ChargeComponents: List[String] = null,
     ChargeProfile: String = null,
-    ChargeProfileData: List[String] = List(),
-    MktUserAttribute: List[String] = List()
+    ChargeProfileData: List[String] = null,
+    MktUserAttribute: List[String] = null
 )
 extends
     Element
@@ -314,7 +314,7 @@ final case class ChargeProfile
     unitOfMeasure: String = null,
     Bid: String = null,
     BillDeterminant: String = null,
-    ChargeProfileData: List[String] = List(),
+    ChargeProfileData: List[String] = null,
     PassTroughBill: String = null
 )
 extends
@@ -522,7 +522,7 @@ extends
 final case class CommitmentClearing
 (
     override val sup: MarketFactors = null,
-    Commitments: List[String] = List()
+    Commitments: List[String] = null
 )
 extends
     Element
@@ -626,7 +626,7 @@ final case class Commitments
     updateTimeStamp: String = null,
     updateType: String = null,
     updateUser: String = null,
-    CommitmentClearing: List[String] = List(),
+    CommitmentClearing: List[String] = null,
     RegisteredResource: String = null
 )
 extends
@@ -851,7 +851,7 @@ extends
 final case class ConstraintClearing
 (
     override val sup: MarketFactors = null,
-    ConstraintResults: List[String] = List()
+    ConstraintResults: List[String] = null
 )
 extends
     Element
@@ -1130,7 +1130,7 @@ final case class DopInstruction
     updateTimeStamp: String = null,
     updateType: String = null,
     updateUser: String = null,
-    InstructionClearingDOP: List[String] = List(),
+    InstructionClearingDOP: List[String] = null,
     RegisteredResouce: String = null
 )
 extends
@@ -1289,7 +1289,7 @@ final case class DotInstruction
     supplementalEnergy: Double = 0.0,
     unitStatus: Int = 0,
     DOT: Double = 0.0,
-    InstructionClearingDOT: List[String] = List(),
+    InstructionClearingDOT: List[String] = null,
     RegisteredResource: String = null
 )
 extends
@@ -1451,7 +1451,7 @@ extends
 final case class ExPostLoss
 (
     override val sup: MarketFactors = null,
-    ExPostLossResults: List[String] = List()
+    ExPostLossResults: List[String] = null
 )
 extends
     Element
@@ -1789,7 +1789,7 @@ final case class ExPostPricing
 (
     override val sup: MarketFactors = null,
     energyPrice: Double = 0.0,
-    ExPostResults: List[String] = List()
+    ExPostResults: List[String] = null
 )
 extends
     Element
@@ -1973,7 +1973,7 @@ extends
 final case class ExPostResource
 (
     override val sup: MarketFactors = null,
-    ExPostResourceResults: List[String] = List()
+    ExPostResourceResults: List[String] = null
 )
 extends
     Element
@@ -2188,7 +2188,7 @@ extends
 final case class GeneralClearing
 (
     override val sup: MarketFactors = null,
-    GeneralClearingResults: List[String] = List()
+    GeneralClearingResults: List[String] = null
 )
 extends
     Element
@@ -2370,8 +2370,8 @@ final case class InstructionClearing
 (
     override val sup: MarketFactors = null,
     ActualDemandResponseEvent: String = null,
-    Instructions: List[String] = List(),
-    ResourceDeploymentStatus: List[String] = List()
+    Instructions: List[String] = null,
+    ResourceDeploymentStatus: List[String] = null
 )
 extends
     Element
@@ -2458,7 +2458,7 @@ extends
 final case class InstructionClearingDOP
 (
     override val sup: MarketFactors = null,
-    DopInstruction: List[String] = List()
+    DopInstruction: List[String] = null
 )
 extends
     Element
@@ -2540,7 +2540,7 @@ final case class InstructionClearingDOT
     contingencyActive: String = null,
     dispatchMode: String = null,
     DemandResponseActualEvent: String = null,
-    DotInstruction: List[String] = List()
+    DotInstruction: List[String] = null
 )
 extends
     Element
@@ -2665,7 +2665,7 @@ final case class Instructions
     updateType: String = null,
     updateUser: String = null,
     AggregateNode: String = null,
-    InstructionClearing: List[String] = List(),
+    InstructionClearing: List[String] = null,
     RegisteredResource: String = null
 )
 extends
@@ -2913,7 +2913,7 @@ extends
 final case class LossClearing
 (
     override val sup: MarketFactors = null,
-    LossClearingResults: List[String] = List()
+    LossClearingResults: List[String] = null
 )
 extends
     Element
@@ -3096,7 +3096,7 @@ final case class MPMClearing
     override val sup: MarketFactors = null,
     mitigationOccuredFlag: String = null,
     LMPMFinalFlag: String = null,
-    MPMTestResults: List[String] = List(),
+    MPMTestResults: List[String] = null,
     SMPMFinalFlag: String = null
 )
 extends
@@ -3190,7 +3190,7 @@ final case class MPMResourceStatus
     override val sup: BasicElement = null,
     resourceStatus: String = null,
     MPMTestCategory: String = null,
-    MitigatedBidClearing: List[String] = List(),
+    MitigatedBidClearing: List[String] = null,
     RegisteredResource: String = null
 )
 extends
@@ -3693,7 +3693,7 @@ final case class MarketStatement
     start: String = null,
     tradeDate: String = null,
     transactionDate: String = null,
-    MarketStatementLineItem: List[String] = List()
+    MarketStatementLineItem: List[String] = null
 )
 extends
     Element
@@ -3828,10 +3828,10 @@ final case class MarketStatementLineItem
     previousPrice: Double = 0.0,
     previousQuantity: Double = 0.0,
     quantityUOM: String = null,
-    ComponentMarketStatementLineItem: List[String] = List(),
+    ComponentMarketStatementLineItem: List[String] = null,
     ContainerMarketStatementLineItem: String = null,
     MarketStatement: String = null,
-    MktUserAttribute: List[String] = List(),
+    MktUserAttribute: List[String] = null,
     PassThroughBill: String = null
 )
 extends
@@ -4002,7 +4002,7 @@ final case class MitigatedBid
 (
     override val sup: IdentifiedObject = null,
     Bid: String = null,
-    MitigatedBidClearing: List[String] = List()
+    MitigatedBidClearing: List[String] = null
 )
 extends
     Element
@@ -4086,9 +4086,9 @@ extends
 final case class MitigatedBidClearing
 (
     override val sup: MarketFactors = null,
-    MPMResourceStatus: List[String] = List(),
-    MitigatedBid: List[String] = List(),
-    RMRDetermination: List[String] = List()
+    MPMResourceStatus: List[String] = null,
+    MitigatedBid: List[String] = null,
+    RMRDetermination: List[String] = null
 )
 extends
     Element
@@ -4328,9 +4328,9 @@ final case class PassThroughBill
     tradeDate: String = null,
     transactionDate: String = null,
     transactionType: String = null,
-    ChargeProfiles: List[String] = List(),
+    ChargeProfiles: List[String] = null,
     MarketStatementLineItem: String = null,
-    MktUserAttribute: List[String] = List()
+    MktUserAttribute: List[String] = null
 )
 extends
     Element
@@ -4513,8 +4513,8 @@ extends
 final case class PnodeClearing
 (
     override val sup: MarketFactors = null,
-    CommodityPrice: List[String] = List(),
-    PnodeResults: List[String] = List()
+    CommodityPrice: List[String] = null,
+    PnodeResults: List[String] = null
 )
 extends
     Element
@@ -4732,7 +4732,7 @@ final case class PriceDescriptor
     override val sup: BasicElement = null,
     marketType: String = null,
     priceType: String = null,
-    CommodityPrice: List[String] = List()
+    CommodityPrice: List[String] = null
 )
 extends
     Element
@@ -4817,7 +4817,7 @@ final case class RMRDetermination
 (
     override val sup: BasicElement = null,
     Bid: String = null,
-    MitigatedBidClearing: List[String] = List()
+    MitigatedBidClearing: List[String] = null
 )
 extends
     Element
@@ -5019,7 +5019,7 @@ final case class RUCAwardInstruction
     updateTimeStamp: String = null,
     updateType: String = null,
     updateUser: String = null,
-    ClearingResourceAward: List[String] = List(),
+    ClearingResourceAward: List[String] = null,
     RUCAward: Double = 0.0,
     RUCCapacity: Double = 0.0,
     RUCSchedule: Double = 0.0,
@@ -5143,8 +5143,8 @@ final case class ResourceAwardClearing
     override val sup: MarketFactors = null,
     contingencyActive: String = null,
     dispatchMode: String = null,
-    RUCAwardInstruction: List[String] = List(),
-    ResourceAwardInstruction: List[String] = List()
+    RUCAwardInstruction: List[String] = null,
+    ResourceAwardInstruction: List[String] = null
 )
 extends
     Element
@@ -5309,10 +5309,10 @@ final case class ResourceAwardInstruction
     updateTimeStamp: String = null,
     updateType: String = null,
     updateUser: String = null,
-    ClearingResourceAward: List[String] = List(),
+    ClearingResourceAward: List[String] = null,
     MarketProduct: String = null,
     RegisteredResource: String = null,
-    SelfScheduleBreakdown: List[String] = List()
+    SelfScheduleBreakdown: List[String] = null
 )
 extends
     Element
@@ -5518,8 +5518,8 @@ extends
 final case class ResourceClearing
 (
     override val sup: MarketFactors = null,
-    ResourceDispatchResults: List[String] = List(),
-    ResourceLoadFollowingInst: List[String] = List()
+    ResourceDispatchResults: List[String] = null,
+    ResourceLoadFollowingInst: List[String] = null
 )
 extends
     Element
@@ -5999,8 +5999,8 @@ final case class ResourcePerformanceEvaluation
     evaluationDescription: String = null,
     evaluationValue: String = null,
     DemandResponseActualEvent: String = null,
-    ResorcePerformanceGlobalFactor: List[String] = List(),
-    ResourcePerformanceTimeSeriesFactors: List[String] = List()
+    ResorcePerformanceGlobalFactor: List[String] = null,
+    ResourcePerformanceTimeSeriesFactors: List[String] = null
 )
 extends
     Element
@@ -6108,7 +6108,7 @@ final case class ResourcePerformanceGlobalFactor
     override val sup: IdentifiedObject = null,
     factorDescription: String = null,
     factorValue: String = null,
-    ResourcePerformanceEvaluation: List[String] = List()
+    ResourcePerformanceEvaluation: List[String] = null
 )
 extends
     Element
@@ -6490,9 +6490,9 @@ final case class Settlement
     override val sup: Document = null,
     tradeDate: String = null,
     EnergyMarket: String = null,
-    MajorChargeGroup: List[String] = List(),
-    MarketInvoiceLineItem: List[String] = List(),
-    MarketLedgerEntry: List[String] = List()
+    MajorChargeGroup: List[String] = null,
+    MarketInvoiceLineItem: List[String] = null,
+    MarketLedgerEntry: List[String] = null
 )
 extends
     Element
@@ -6589,7 +6589,7 @@ extends
 final case class TransactionBidClearing
 (
     override val sup: MarketFactors = null,
-    TransactionBidResults: List[String] = List()
+    TransactionBidResults: List[String] = null
 )
 extends
     Element

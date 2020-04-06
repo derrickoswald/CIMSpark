@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
 final case class AssemblyDescription
 (
     override val sup: IdentifiedObject = null,
-    ModelSpecification: List[String] = List()
+    ModelSpecification: List[String] = null
 )
 extends
     Element
@@ -344,7 +344,7 @@ extends
 final case class ModelAuthority
 (
     override val sup: IdentifiedObject = null,
-    ModelingAuthoritySets: List[String] = List()
+    ModelingAuthoritySets: List[String] = null
 )
 extends
     Element
@@ -420,7 +420,7 @@ extends
 final case class ModelAuthoritySet
 (
     override val sup: IdentifiedObject = null,
-    ModelSpecification: List[String] = List(),
+    ModelSpecification: List[String] = null,
     ModelingAuthority: String = null
 )
 extends
@@ -504,9 +504,9 @@ extends
 final case class ModelPartSpecification
 (
     override val sup: IdentifiedObject = null,
-    AssemblyDescription: List[String] = List(),
+    AssemblyDescription: List[String] = null,
     FrameworkPart: String = null,
-    Model: List[String] = List()
+    Model: List[String] = null
 )
 extends
     Element
@@ -779,7 +779,7 @@ extends
 final case class NetworkFrame
 (
     override val sup: FrameworkPart = null,
-    FrameworkPart_attr: List[String] = List()
+    FrameworkPart_attr: List[String] = null
 )
 extends
     Element

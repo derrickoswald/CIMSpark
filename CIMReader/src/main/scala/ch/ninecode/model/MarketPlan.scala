@@ -21,7 +21,7 @@ final case class CRRMarket
 (
     override val sup: Market = null,
     labelID: String = null,
-    CongestionRevenueRight: List[String] = List()
+    CongestionRevenueRight: List[String] = null
 )
 extends
     Element
@@ -111,7 +111,7 @@ final case class CommodityDefinition
     commodityCurrency: String = null,
     commodityUnit: String = null,
     commodityUnitMultiplier: String = null,
-    CommodityPrice: List[String] = List(),
+    CommodityPrice: List[String] = null,
     MarketProduct: String = null,
     Pnode: String = null,
     RTO: String = null
@@ -223,9 +223,9 @@ final case class DistributedResourceActualEvent
 (
     override val sup: MarketActualEvent = null,
     totalPowerAdjustment: Double = 0.0,
-    InstructionClearing: List[String] = List(),
-    InstructionClearingDOT: List[String] = List(),
-    ResourcePerformanceEvaluations: List[String] = List()
+    InstructionClearing: List[String] = null,
+    InstructionClearingDOT: List[String] = null,
+    ResourcePerformanceEvaluations: List[String] = null
 )
 extends
     Element
@@ -320,11 +320,11 @@ extends
 final case class EnergyMarket
 (
     override val sup: Market = null,
-    Bids: List[String] = List(),
+    Bids: List[String] = null,
     MarketResults: String = null,
     RTO: String = null,
-    RegisteredResources: List[String] = List(),
-    Settlements: List[String] = List()
+    RegisteredResources: List[String] = null,
+    Settlements: List[String] = null
 )
 extends
     Element
@@ -451,9 +451,9 @@ final case class Market
     timeIntervalLength: Double = 0.0,
     tradingDay: String = null,
     tradingPeriod: String = null,
-    MarketFactors: List[String] = List(),
-    MarketProducts: List[String] = List(),
-    MarketRun: List[String] = List()
+    MarketFactors: List[String] = null,
+    MarketProducts: List[String] = null,
+    MarketRun: List[String] = null
 )
 extends
     Element
@@ -697,7 +697,7 @@ final case class MarketFactors
     intervalEndTime: String = null,
     intervalStartTime: String = null,
     Market: String = null,
-    MktActivityRecord: List[String] = List()
+    MktActivityRecord: List[String] = null
 )
 extends
     Element
@@ -788,7 +788,7 @@ final case class MarketPlan
 (
     override val sup: IdentifiedObject = null,
     tradingDay: String = null,
-    PlannedMarket: List[String] = List()
+    PlannedMarket: List[String] = null
 )
 extends
     Element
@@ -888,14 +888,14 @@ final case class MarketProduct
     override val sup: IdentifiedObject = null,
     marketProductType: String = null,
     rampInterval: Double = 0.0,
-    BidError: List[String] = List(),
-    BidPriceCap: List[String] = List(),
-    CommodityDefinition: List[String] = List(),
+    BidError: List[String] = null,
+    BidPriceCap: List[String] = null,
+    CommodityDefinition: List[String] = null,
     Market: String = null,
     MarketRegionResults: String = null,
-    ProductBids: List[String] = List(),
-    ReserveReqs: List[String] = List(),
-    ResourceAwardInstruction: List[String] = List()
+    ProductBids: List[String] = null,
+    ReserveReqs: List[String] = null,
+    ResourceAwardInstruction: List[String] = null
 )
 extends
     Element
@@ -1038,7 +1038,7 @@ final case class MarketRun
     reportedState: String = null,
     runState: String = null,
     Market: String = null,
-    MarketActualEvent: List[String] = List(),
+    MarketActualEvent: List[String] = null,
     PlannedMarket: String = null
 )
 extends
@@ -1168,8 +1168,8 @@ final case class PlannedMarket
     marketStartTime: String = null,
     marketType: String = null,
     MarketPlan: String = null,
-    MarketRun: List[String] = List(),
-    PlannedMarketEvent: List[String] = List()
+    MarketRun: List[String] = null,
+    PlannedMarketEvent: List[String] = null
 )
 extends
     Element
@@ -1275,8 +1275,8 @@ final case class PlannedMarketEvent
     override val sup: IdentifiedObject = null,
     eventType: String = null,
     plannedTime: Int = 0,
-    MarketActualEvent: List[String] = List(),
-    PlannedMarket: List[String] = List()
+    MarketActualEvent: List[String] = null,
+    PlannedMarket: List[String] = null
 )
 extends
     Element

@@ -22,8 +22,8 @@ final case class ActionRequest
 (
     override val sup: BasicElement = null,
     actionName: String = null,
-    Bid: List[String] = List(),
-    Trade: List[String] = List()
+    Bid: List[String] = null,
+    Trade: List[String] = null
 )
 extends
     Element
@@ -112,7 +112,7 @@ final case class AreaLoadBid
 (
     override val sup: Bid = null,
     demandBidMW: Double = 0.0,
-    LoadBid: List[String] = List()
+    LoadBid: List[String] = null
 )
 extends
     Element
@@ -299,14 +299,14 @@ final case class Bid
     startTime: String = null,
     stopTime: String = null,
     ActionRequest: String = null,
-    BidHourlySchedule: List[String] = List(),
-    ChargeProfiles: List[String] = List(),
+    BidHourlySchedule: List[String] = null,
+    ChargeProfiles: List[String] = null,
     EnergyMarket: String = null,
     MarketParticipant: String = null,
-    MitigatedBid: List[String] = List(),
-    MitigatedBidSegment: List[String] = List(),
-    ProductBids: List[String] = List(),
-    RMRDetermination: List[String] = List()
+    MitigatedBid: List[String] = null,
+    MitigatedBidSegment: List[String] = null,
+    ProductBids: List[String] = null,
+    RMRDetermination: List[String] = null
 )
 extends
     Element
@@ -439,7 +439,7 @@ final case class BidDistributionFactor
     override val sup: BasicElement = null,
     timeIntervalEnd: String = null,
     timeIntervalStart: String = null,
-    PnodeDistributionFactor: List[String] = List(),
+    PnodeDistributionFactor: List[String] = null,
     ProductBid: String = null
 )
 extends
@@ -547,7 +547,7 @@ final case class BidError
     ruleID: Int = 0,
     startTime: String = null,
     MarketProduct: String = null,
-    ResourceBid: List[String] = List()
+    ResourceBid: List[String] = null
 )
 extends
     Element
@@ -808,7 +808,7 @@ extends
 final case class BidPriceCurve
 (
     override val sup: Curve = null,
-    BidSchedule: List[String] = List()
+    BidSchedule: List[String] = null
 )
 extends
     Element
@@ -1167,7 +1167,7 @@ extends
 final case class BidSet
 (
     override val sup: IdentifiedObject = null,
-    GeneratingBids: List[String] = List()
+    GeneratingBids: List[String] = null
 )
 extends
     Element
@@ -1258,8 +1258,8 @@ final case class ChargeComponent
     sum: String = null,
     terminationDate: String = null,
     `type`: String = null,
-    BillDeterminants: List[String] = List(),
-    ChargeTypes: List[String] = List()
+    BillDeterminants: List[String] = null,
+    ChargeTypes: List[String] = null
 )
 extends
     Element
@@ -1383,10 +1383,10 @@ final case class ChargeGroup
     effectiveDate: String = null,
     marketCode: String = null,
     terminationDate: String = null,
-    ChargeGroupChild: List[String] = List(),
+    ChargeGroupChild: List[String] = null,
     ChargeGroupParent: String = null,
-    ChargeType: List[String] = List(),
-    MktUserAttribute: List[String] = List()
+    ChargeType: List[String] = null,
+    MktUserAttribute: List[String] = null
 )
 extends
     Element
@@ -1510,10 +1510,10 @@ final case class ChargeType
     frequencyType: String = null,
     terminationDate: String = null,
     totalInterval: String = null,
-    ChargeComponents: List[String] = List(),
-    ChargeGroup: List[String] = List(),
-    MajorChargeGroup: List[String] = List(),
-    MktUserAttribute: List[String] = List()
+    ChargeComponents: List[String] = null,
+    ChargeGroup: List[String] = null,
+    MajorChargeGroup: List[String] = null,
+    MktUserAttribute: List[String] = null
 )
 extends
     Element
@@ -1769,8 +1769,8 @@ extends
 final case class EnergyPriceCurve
 (
     override val sup: BasicElement = null,
-    EnergyTransactions: List[String] = List(),
-    FTRs: List[String] = List()
+    EnergyTransactions: List[String] = null,
+    FTRs: List[String] = null
 )
 extends
     Element
@@ -1897,9 +1897,9 @@ final case class GeneratingBid
     upTimeMax: Double = 0.0,
     BidSet: String = null,
     NotificationTimeCurve: String = null,
-    RampRateCurve: List[String] = List(),
+    RampRateCurve: List[String] = null,
     RegisteredGenerator: String = null,
-    SecurityConstraints: List[String] = List(),
+    SecurityConstraints: List[String] = null,
     StartUpCostCurve: String = null,
     StartUpTimeCurve: String = null
 )
@@ -2153,7 +2153,7 @@ final case class InterTieBid
 (
     override val sup: ResourceBid = null,
     minHourlyBlock_1: Int = 0,
-    RampRateCurve: List[String] = List(),
+    RampRateCurve: List[String] = null,
     RegisteredInterTie: String = null
 )
 extends
@@ -2381,8 +2381,8 @@ final case class LoadBid
     reqNoticeTime: Double = 0.0,
     shutdownCost: Double = 0.0,
     AreaLoadBid: String = null,
-    LoadReductionPriceCurve: List[String] = List(),
-    RampRateCurve: List[String] = List(),
+    LoadReductionPriceCurve: List[String] = null,
+    RampRateCurve: List[String] = null,
     RegisteredLoad: String = null
 )
 extends
@@ -2728,10 +2728,10 @@ final case class MajorChargeGroup
     runType: String = null,
     runVersion: String = null,
     terminationDate: String = null,
-    ChargeType: List[String] = List(),
-    MarketInvoice: List[String] = List(),
-    MktScheduledEvent: List[String] = List(),
-    Settlement: List[String] = List()
+    ChargeType: List[String] = null,
+    MarketInvoice: List[String] = null,
+    MktScheduledEvent: List[String] = null,
+    Settlement: List[String] = null
 )
 extends
     Element
@@ -2948,7 +2948,7 @@ extends
 final case class NotificationTimeCurve
 (
     override val sup: Curve = null,
-    GeneratingBids: List[String] = List()
+    GeneratingBids: List[String] = null
 )
 extends
     Element
@@ -3101,10 +3101,10 @@ final case class ProductBid
 (
     override val sup: IdentifiedObject = null,
     Bid: String = null,
-    BidDistributionFactor: List[String] = List(),
-    BidHourlyProductSchedule: List[String] = List(),
-    BidSchedule: List[String] = List(),
-    BidSelfSched: List[String] = List(),
+    BidDistributionFactor: List[String] = null,
+    BidHourlyProductSchedule: List[String] = null,
+    BidSchedule: List[String] = null,
+    BidSelfSched: List[String] = null,
     MarketProduct: String = null
 )
 extends
@@ -3439,7 +3439,7 @@ final case class RampRateCurve
     GeneratingBid: String = null,
     InterTieBid: String = null,
     LoadBid: String = null,
-    RegisteredResource: List[String] = List()
+    RegisteredResource: List[String] = null
 )
 extends
     Element
@@ -3588,7 +3588,7 @@ final case class ResourceBid
     startUpsMaxDay: Int = 0,
     startUpsMaxWeek: Int = 0,
     virtual: Boolean = false,
-    BidError: List[String] = List()
+    BidError: List[String] = null
 )
 extends
     Element
@@ -3727,8 +3727,8 @@ extends
 final case class StartUpCostCurve
 (
     override val sup: Curve = null,
-    GeneratingBid: List[String] = List(),
-    RegisteredGenerators: List[String] = List()
+    GeneratingBid: List[String] = null,
+    RegisteredGenerators: List[String] = null
 )
 extends
     Element
@@ -3810,7 +3810,7 @@ extends
 final case class StartUpTimeCurve
 (
     override val sup: Curve = null,
-    GeneratingBid: List[String] = List(),
+    GeneratingBid: List[String] = null,
     RegisteredGenerator: String = null
 )
 extends
@@ -3939,7 +3939,7 @@ final case class Trade
     Pnode: String = null,
     RegisteredGenerator: String = null,
     To_SC: String = null,
-    TradeError: List[String] = List(),
+    TradeError: List[String] = null,
     TradeProduct: String = null
 )
 extends
@@ -4248,7 +4248,7 @@ final case class TradeProduct
     override val sup: BasicElement = null,
     tradeProductType: String = null,
     tradeType: String = null,
-    Trade: List[String] = List()
+    Trade: List[String] = null
 )
 extends
     Element
@@ -4344,9 +4344,9 @@ final case class TransactionBid
     dispatchable: Boolean = false,
     payCongestion: Boolean = false,
     Delivery_Pnode: String = null,
-    EnergyProfiles: List[String] = List(),
+    EnergyProfiles: List[String] = null,
     Receipt_Pnode: String = null,
-    TransactionBidResults: List[String] = List(),
+    TransactionBidResults: List[String] = null,
     TransmissionReservation: String = null
 )
 extends

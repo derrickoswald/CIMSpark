@@ -180,7 +180,7 @@ extends
 final case class AggregateScore
 (
     override val sup: AnalyticScore = null,
-    AnalyticScore_attr: List[String] = List()
+    AnalyticScore_attr: List[String] = null
 )
 extends
     Element
@@ -265,10 +265,10 @@ final case class Analytic
     kind: String = null,
     scaleKind: String = null,
     worstValue: Double = 0.0,
-    AnalyticScore: List[String] = List(),
-    Asset: List[String] = List(),
-    AssetGroup: List[String] = List(),
-    AssetHealthEvent: List[String] = List()
+    AnalyticScore: List[String] = null,
+    Asset: List[String] = null,
+    AssetGroup: List[String] = null,
+    AssetHealthEvent: List[String] = null
 )
 extends
     Element
@@ -566,36 +566,36 @@ final case class Asset
     status: String = null,
     `type`: String = null,
     utcNumber: String = null,
-    ActivityRecords: List[String] = List(),
-    Analytic: List[String] = List(),
-    AnalyticScore: List[String] = List(),
+    ActivityRecords: List[String] = null,
+    Analytic: List[String] = null,
+    AnalyticScore: List[String] = null,
     AssetContainer: String = null,
     AssetDeployment: String = null,
-    AssetFunction: List[String] = List(),
-    AssetGroup: List[String] = List(),
+    AssetFunction: List[String] = null,
+    AssetGroup: List[String] = null,
     AssetInfo: String = null,
-    AssetPropertyCurves: List[String] = List(),
+    AssetPropertyCurves: List[String] = null,
     BreakerOperation: String = null,
-    ConfigurationEvents: List[String] = List(),
+    ConfigurationEvents: List[String] = null,
     ErpInventory: String = null,
     ErpItemMaster: String = null,
-    ErpRecDeliveryItems: List[String] = List(),
+    ErpRecDeliveryItems: List[String] = null,
     FinancialInfo: String = null,
     Location: String = null,
-    Measurements: List[String] = List(),
-    Medium: List[String] = List(),
-    OperationalTags: List[String] = List(),
-    OrganisationRoles: List[String] = List(),
-    Ownerships: List[String] = List(),
-    PowerSystemResources: List[String] = List(),
-    ProcedureDataSet: List[String] = List(),
-    Procedures: List[String] = List(),
+    Measurements: List[String] = null,
+    Medium: List[String] = null,
+    OperationalTags: List[String] = null,
+    OrganisationRoles: List[String] = null,
+    Ownerships: List[String] = null,
+    PowerSystemResources: List[String] = null,
+    ProcedureDataSet: List[String] = null,
+    Procedures: List[String] = null,
     ProductAssetModel: String = null,
-    Reconditionings: List[String] = List(),
-    ReliabilityInfos: List[String] = List(),
-    ReplacementWorkTasks: List[String] = List(),
-    ScheduledEvents: List[String] = List(),
-    WorkTasks: List[String] = List()
+    Reconditionings: List[String] = null,
+    ReliabilityInfos: List[String] = null,
+    ReplacementWorkTasks: List[String] = null,
+    ScheduledEvents: List[String] = null,
+    WorkTasks: List[String] = null
 )
 extends
     Element
@@ -893,9 +893,9 @@ extends
 final case class AssetContainer
 (
     override val sup: Asset = null,
-    Assets: List[String] = List(),
-    LandProperties: List[String] = List(),
-    Seals: List[String] = List()
+    Assets: List[String] = null,
+    LandProperties: List[String] = null,
+    Seals: List[String] = null
 )
 extends
     Element
@@ -1207,9 +1207,9 @@ final case class AssetGroup
 (
     override val sup: Document = null,
     kind: String = null,
-    Analytic: List[String] = List(),
-    AnalyticScore: List[String] = List(),
-    Asset: List[String] = List()
+    Analytic: List[String] = null,
+    AnalyticScore: List[String] = null,
+    Asset: List[String] = null
 )
 extends
     Element
@@ -1400,9 +1400,9 @@ extends
 final case class AssetInfo
 (
     override val sup: IdentifiedObject = null,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     CatalogAssetType: String = null,
-    PowerSystemResources: List[String] = List(),
+    PowerSystemResources: List[String] = null,
     ProductAssetModel: String = null
 )
 extends
@@ -1497,7 +1497,7 @@ final case class AssetLocationHazard
 (
     override val sup: Hazard = null,
     kind: String = null,
-    Locations: List[String] = List()
+    Locations: List[String] = null
 )
 extends
     Element
@@ -1576,7 +1576,7 @@ extends
 final case class AssetOrganisationRole
 (
     override val sup: OrganisationRole = null,
-    Assets: List[String] = List()
+    Assets: List[String] = null
 )
 extends
     Element
@@ -1650,7 +1650,7 @@ extends
 final case class AssetOwner
 (
     override val sup: AssetOrganisationRole = null,
-    Ownerships: List[String] = List()
+    Ownerships: List[String] = null
 )
 extends
     Element
@@ -1724,7 +1724,7 @@ extends
 final case class AssetTestLab
 (
     override val sup: AssetOrganisationRole = null,
-    LabTestDataSet: List[String] = List()
+    LabTestDataSet: List[String] = null
 )
 extends
     Element
@@ -1798,7 +1798,7 @@ extends
 final case class AssetTestSampleTaker
 (
     override val sup: AssetOrganisationRole = null,
-    Specimen: List[String] = List()
+    Specimen: List[String] = null
 )
 extends
     Element
@@ -1933,7 +1933,7 @@ extends
 final case class Bushing
 (
     override val sup: Asset = null,
-    BushingInsulationPFs: List[String] = List(),
+    BushingInsulationPFs: List[String] = null,
     FixedContact: String = null,
     MovingContact: String = null,
     Terminal: String = null
@@ -2179,11 +2179,11 @@ final case class CatalogAssetType
     stockItem: Boolean = false,
     `type`: String = null,
     AssetInfo: String = null,
-    CompatibleUnits: List[String] = List(),
-    ErpBomItemDatas: List[String] = List(),
-    ErpInventoryIssues: List[String] = List(),
-    ErpReqLineItems: List[String] = List(),
-    ProductAssetModel: List[String] = List(),
+    CompatibleUnits: List[String] = null,
+    ErpBomItemDatas: List[String] = null,
+    ErpInventoryIssues: List[String] = null,
+    ErpReqLineItems: List[String] = null,
+    ProductAssetModel: List[String] = null,
     TypeAssetCatalogue: String = null
 )
 extends
@@ -2768,7 +2768,7 @@ final case class DuctBank
 (
     override val sup: AssetContainer = null,
     circuitCount: Int = 0,
-    WireSpacingInfos: List[String] = List()
+    WireSpacingInfos: List[String] = null
 )
 extends
     Element
@@ -3731,7 +3731,7 @@ final case class InspectionDataSet
 (
     override val sup: ProcedureDataSet = null,
     locationCondition: String = null,
-    AccordingToSchedules: List[String] = List()
+    AccordingToSchedules: List[String] = null
 )
 extends
     Element
@@ -3814,7 +3814,7 @@ extends
 final case class InterrupterUnit
 (
     override val sup: Asset = null,
-    Bushing: List[String] = List(),
+    Bushing: List[String] = null,
     OperatingMechanism: String = null
 )
 extends
@@ -4412,7 +4412,7 @@ extends
 final case class Manufacturer
 (
     override val sup: OrganisationRole = null,
-    ProductAssetModels: List[String] = List()
+    ProductAssetModels: List[String] = null
 )
 extends
     Element
@@ -4492,7 +4492,7 @@ final case class Medium
     override val sup: IdentifiedObject = null,
     kind: String = null,
     volumeSpec: Double = 0.0,
-    Asset: List[String] = List(),
+    Asset: List[String] = null,
     Specification: String = null
 )
 extends
@@ -4666,7 +4666,7 @@ extends
 final case class OperatingMechanism
 (
     override val sup: Asset = null,
-    InterrupterUnit: List[String] = List()
+    InterrupterUnit: List[String] = null
 )
 extends
     Element
@@ -4750,11 +4750,11 @@ final case class Procedure
     instruction: String = null,
     kind: String = null,
     sequenceNumber: String = null,
-    Assets: List[String] = List(),
-    CompatibleUnits: List[String] = List(),
-    Limits: List[String] = List(),
-    Measurements: List[String] = List(),
-    ProcedureDataSets: List[String] = List()
+    Assets: List[String] = null,
+    CompatibleUnits: List[String] = null,
+    Limits: List[String] = null,
+    Measurements: List[String] = null,
+    ProcedureDataSets: List[String] = null
 )
 extends
     Element
@@ -4873,10 +4873,10 @@ final case class ProcedureDataSet
     override val sup: Document = null,
     completedDateTime: String = null,
     Asset: String = null,
-    MeasurementValue: List[String] = List(),
+    MeasurementValue: List[String] = null,
     Procedure: String = null,
-    Properties: List[String] = List(),
-    TransformerObservations: List[String] = List(),
+    Properties: List[String] = null,
+    TransformerObservations: List[String] = null,
     WorkTask: String = null
 )
 extends
@@ -5007,12 +5007,12 @@ final case class ProductAssetModel
     styleNumber: String = null,
     usageKind: String = null,
     weightTotal: Double = 0.0,
-    Asset: List[String] = List(),
+    Asset: List[String] = null,
     AssetInfo: String = null,
-    AssetModelCatalogueItems: List[String] = List(),
+    AssetModelCatalogueItems: List[String] = null,
     CatalogAssetType: String = null,
     Manufacturer: String = null,
-    OperationalRestrictions: List[String] = List()
+    OperationalRestrictions: List[String] = null
 )
 extends
     Element
@@ -5155,7 +5155,7 @@ final case class RiskScore
 (
     override val sup: AggregateScore = null,
     kind: String = null,
-    AssetHealthScore: List[String] = List()
+    AssetHealthScore: List[String] = null
 )
 extends
     Element
@@ -5345,7 +5345,7 @@ final case class Specimen
     specimenSampleDateTime: String = null,
     specimenToLabDateTime: String = null,
     AssetTestSampleTaker: String = null,
-    LabTestDataSet: List[String] = List()
+    LabTestDataSet: List[String] = null
 )
 extends
     Element
@@ -5558,8 +5558,8 @@ final case class Structure
     ratedVoltage: Double = 0.0,
     removeWeed: Boolean = false,
     weedRemovedDate: String = null,
-    StructureSupports: List[String] = List(),
-    WireSpacingInfos: List[String] = List()
+    StructureSupports: List[String] = null,
+    WireSpacingInfos: List[String] = null
 )
 extends
     Element
@@ -6098,9 +6098,9 @@ final case class TestStandard
     testStandardUKMinistryOfDefence: String = null,
     testStandardWEP: String = null,
     testVariant: String = null,
-    AssetAnalog: List[String] = List(),
-    AssetDiscrete: List[String] = List(),
-    AssetString: List[String] = List()
+    AssetAnalog: List[String] = null,
+    AssetDiscrete: List[String] = null,
+    AssetString: List[String] = null
 )
 extends
     Element

@@ -23,9 +23,9 @@ final case class AceTariffType
 (
     override val sup: BasicElement = null,
     `type`: String = null,
-    MarketDocument: List[String] = List(),
-    Point: List[String] = List(),
-    Unit: List[String] = List()
+    MarketDocument: List[String] = null,
+    Point: List[String] = null,
+    Unit: List[String] = null
 )
 extends
     Element
@@ -121,8 +121,8 @@ final case class AttributeInstanceComponent
     attribute: String = null,
     attributeValue: String = null,
     position: Int = 0,
-    MarketDocument: List[String] = List(),
-    TimeSeries: List[String] = List()
+    MarketDocument: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -226,7 +226,7 @@ final case class Auction
     paymentTerms: String = null,
     rights: String = null,
     `type`: String = null,
-    TimeSeries: List[String] = List()
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -452,7 +452,7 @@ final case class ConstraintDuration
     override val sup: BasicElement = null,
     duration: String = null,
     `type`: String = null,
-    TimeSeries: List[String] = List()
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -540,8 +540,8 @@ final case class DateAndOrTime
     override val sup: BasicElement = null,
     date: String = null,
     time: String = null,
-    MarketDocument: List[String] = List(),
-    TimeSeries: List[String] = List()
+    MarketDocument: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -633,11 +633,11 @@ extends
 final case class Domain
 (
     override val sup: IdentifiedObject = null,
-    MarketDocument: List[String] = List(),
-    Price: List[String] = List(),
-    Quantity: List[String] = List(),
-    RegisteredResource: List[String] = List(),
-    TimeSeries: List[String] = List()
+    MarketDocument: List[String] = null,
+    Price: List[String] = null,
+    Quantity: List[String] = null,
+    RegisteredResource: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -734,8 +734,8 @@ final case class FlowDirection
 (
     override val sup: BasicElement = null,
     direction: String = null,
-    Point: List[String] = List(),
-    TimeSeries: List[String] = List()
+    Point: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -887,17 +887,17 @@ extends
 final case class MarketDocument
 (
     override val sup: Document = null,
-    AceTariffType: List[String] = List(),
-    AttributeInstanceComponent: List[String] = List(),
-    DateAndOrTime: List[String] = List(),
-    Domain: List[String] = List(),
-    MarketDocument_attr: List[String] = List(),
-    MarketParticipant: List[String] = List(),
-    Period: List[String] = List(),
-    Process: List[String] = List(),
-    Reason: List[String] = List(),
-    SelfMarketDocument: List[String] = List(),
-    TimeSeries: List[String] = List()
+    AceTariffType: List[String] = null,
+    AttributeInstanceComponent: List[String] = null,
+    DateAndOrTime: List[String] = null,
+    Domain: List[String] = null,
+    MarketDocument_attr: List[String] = null,
+    MarketParticipant: List[String] = null,
+    Period: List[String] = null,
+    Process: List[String] = null,
+    Reason: List[String] = null,
+    SelfMarketDocument: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1021,7 +1021,7 @@ extends
 final case class MarketEvaluationPoint
 (
     override val sup: UsagePoint = null,
-    TimeSeries: List[String] = List()
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1098,8 +1098,8 @@ final case class MarketObjectStatus
 (
     override val sup: BasicElement = null,
     status: String = null,
-    RegisteredResource: List[String] = List(),
-    TimeSeries: List[String] = List()
+    RegisteredResource: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1185,7 +1185,7 @@ final case class MktPSRType
 (
     override val sup: PSRType = null,
     psrType: String = null,
-    TimeSeries: List[String] = List()
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1271,10 +1271,10 @@ final case class Period
     override val sup: BasicElement = null,
     resolution: String = null,
     timeInterval: String = null,
-    MarketDocument: List[String] = List(),
-    Point: List[String] = List(),
-    Reason: List[String] = List(),
-    TimeSeries: List[String] = List()
+    MarketDocument: List[String] = null,
+    Point: List[String] = null,
+    Reason: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1388,13 +1388,13 @@ final case class Point
     quality: String = null,
     quantity: Double = 0.0,
     secondaryQuantity: Double = 0.0,
-    AceTariffType: List[String] = List(),
-    FlowDirection: List[String] = List(),
+    AceTariffType: List[String] = null,
+    FlowDirection: List[String] = null,
     Period: String = null,
-    Price: List[String] = List(),
-    Quantity: List[String] = List(),
-    Reason: List[String] = List(),
-    TimeSeries: List[String] = List()
+    Price: List[String] = null,
+    Quantity: List[String] = null,
+    Reason: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1525,9 +1525,9 @@ final case class Price
     amount: Double = 0.0,
     category: String = null,
     direction: String = null,
-    Domain: List[String] = List(),
+    Domain: List[String] = null,
     Point: String = null,
-    TimeSeries: List[String] = List()
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1630,7 +1630,7 @@ final case class Process
     override val sup: IdentifiedObject = null,
     classificationType: String = null,
     processType: String = null,
-    MarketDocument: List[String] = List()
+    MarketDocument: List[String] = null
 )
 extends
     Element
@@ -1727,10 +1727,10 @@ final case class Quantity
     quality: String = null,
     quantity: Double = 0.0,
     `type`: String = null,
-    Detail_Quantity: List[String] = List(),
-    Domain: List[String] = List(),
-    Point: List[String] = List(),
-    TimeSeries: List[String] = List()
+    Detail_Quantity: List[String] = null,
+    Domain: List[String] = null,
+    Point: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1840,11 +1840,11 @@ final case class Reason
     override val sup: BasicElement = null,
     code: String = null,
     text: String = null,
-    MarketDocument: List[String] = List(),
-    Period: List[String] = List(),
-    Point: List[String] = List(),
-    RegisteredResource: List[String] = List(),
-    TimeSeries: List[String] = List()
+    MarketDocument: List[String] = null,
+    Period: List[String] = null,
+    Point: List[String] = null,
+    RegisteredResource: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -1954,8 +1954,8 @@ final case class Series
     lastUpdateDate: String = null,
     methodType: String = null,
     registrationDate: String = null,
-    SelfSeries: List[String] = List(),
-    Series_attr: List[String] = List()
+    SelfSeries: List[String] = null,
+    Series_attr: List[String] = null
 )
 extends
     Element
@@ -2077,25 +2077,25 @@ final case class TimeSeries
     objectAggregation: String = null,
     product: String = null,
     version: String = null,
-    AttributeInstanceComponent: List[String] = List(),
-    Auction: List[String] = List(),
-    ConstraintDuration: List[String] = List(),
-    DateAndOrTime: List[String] = List(),
-    Domain: List[String] = List(),
-    EnvironmentalMonitoringStation: List[String] = List(),
-    FlowDirection: List[String] = List(),
-    MarketDocument: List[String] = List(),
-    MarketEvaluationPoint: List[String] = List(),
-    MarketObjectStatus: List[String] = List(),
-    MarketParticipant: List[String] = List(),
-    MktPSRType: List[String] = List(),
-    Period: List[String] = List(),
-    Point: List[String] = List(),
-    Price: List[String] = List(),
-    Quantity: List[String] = List(),
-    Reason: List[String] = List(),
-    RegisteredResource: List[String] = List(),
-    Unit: List[String] = List()
+    AttributeInstanceComponent: List[String] = null,
+    Auction: List[String] = null,
+    ConstraintDuration: List[String] = null,
+    DateAndOrTime: List[String] = null,
+    Domain: List[String] = null,
+    EnvironmentalMonitoringStation: List[String] = null,
+    FlowDirection: List[String] = null,
+    MarketDocument: List[String] = null,
+    MarketEvaluationPoint: List[String] = null,
+    MarketObjectStatus: List[String] = null,
+    MarketParticipant: List[String] = null,
+    MktPSRType: List[String] = null,
+    Period: List[String] = null,
+    Point: List[String] = null,
+    Price: List[String] = null,
+    Quantity: List[String] = null,
+    Reason: List[String] = null,
+    RegisteredResource: List[String] = null,
+    Unit: List[String] = null
 )
 extends
     Element
@@ -2287,8 +2287,8 @@ final case class Unit_
 (
     override val sup: BasicElement = null,
     name: String = null,
-    AceTariffType: List[String] = List(),
-    TimeSeries: List[String] = List()
+    AceTariffType: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element

@@ -24,10 +24,10 @@ import ch.ninecode.cim.Relationship
 final case class BilateralExchangeActor
 (
     override val sup: IdentifiedObject = null,
-    CommunicationLink: List[String] = List(),
-    ConsumerBilateralExchange: List[String] = List(),
-    ProvidedBilateralIOPoint: List[String] = List(),
-    ProviderBilateralExchange: List[String] = List()
+    CommunicationLink: List[String] = null,
+    ConsumerBilateralExchange: List[String] = null,
+    ProvidedBilateralIOPoint: List[String] = null,
+    ProviderBilateralExchange: List[String] = null
 )
 extends
     Element
@@ -205,7 +205,7 @@ final case class ICCPInformationMessage
     override val sup: IdentifiedObject = null,
     localReference: String = null,
     scope: String = null,
-    TASE2BilateralTable: List[String] = List()
+    TASE2BilateralTable: List[String] = null
 )
 extends
     Element
@@ -587,7 +587,7 @@ extends
 final case class IOPointSource
 (
     override val sup: MeasurementValueSource = null,
-    IOPoint: List[String] = List()
+    IOPoint: List[String] = null
 )
 extends
     Element
@@ -768,7 +768,7 @@ final case class ISOUpperLayer
     osiPsel: String = null,
     osiSsel: String = null,
     osiTsel: String = null,
-    UpperLayerPublicX509Certificate: List[String] = List()
+    UpperLayerPublicX509Certificate: List[String] = null
 )
 extends
     Element
@@ -1059,7 +1059,7 @@ final case class TASE2BilateralTable
     bilateralTableID: String = null,
     bilateralTableVersion: String = null,
     tase2version: String = null,
-    ICCPInformationMessage: List[String] = List()
+    ICCPInformationMessage: List[String] = null
 )
 extends
     Element
@@ -1156,7 +1156,7 @@ final case class TCPAccessPoint
     override val sup: IPAccessPoint = null,
     keepAliveTime: Int = 0,
     port: Int = 0,
-    PublicX509Certificate: List[String] = List()
+    PublicX509Certificate: List[String] = null
 )
 extends
     Element

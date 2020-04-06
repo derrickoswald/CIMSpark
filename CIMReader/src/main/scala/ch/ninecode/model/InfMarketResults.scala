@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
 final case class InterTieClearing
 (
     override val sup: MarketFactors = null,
-    InterTieResults: List[String] = List()
+    InterTieResults: List[String] = null
 )
 extends
     Element
@@ -202,7 +202,7 @@ final case class MarketCaseClearing
     caseType: String = null,
     modifiedDate: String = null,
     postedDate: String = null,
-    MarketProductClearing: List[String] = List()
+    MarketProductClearing: List[String] = null
 )
 extends
     Element

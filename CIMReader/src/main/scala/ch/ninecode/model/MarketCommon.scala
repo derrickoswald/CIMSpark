@@ -32,11 +32,11 @@ final case class EnvironmentalMonitoringStation
     dstObserved: Boolean = false,
     isNetworked: Boolean = false,
     timeZoneOffset: Double = 0.0,
-    EnvironmentalAnalog: List[String] = List(),
+    EnvironmentalAnalog: List[String] = null,
     Location: String = null,
-    ReportingCapability: List[String] = List(),
-    TimeSeries: List[String] = List(),
-    UsagePoint: List[String] = List()
+    ReportingCapability: List[String] = null,
+    TimeSeries: List[String] = null,
+    UsagePoint: List[String] = null
 )
 extends
     Element
@@ -152,13 +152,13 @@ extends
 final case class MarketParticipant
 (
     override val sup: Organisation = null,
-    Bid: List[String] = List(),
-    MarketDocument: List[String] = List(),
-    MarketPerson: List[String] = List(),
-    MarketRole: List[String] = List(),
-    RegisteredResource: List[String] = List(),
-    SchedulingCoordinator: List[String] = List(),
-    TimeSeries: List[String] = List()
+    Bid: List[String] = null,
+    MarketDocument: List[String] = null,
+    MarketPerson: List[String] = null,
+    MarketRole: List[String] = null,
+    RegisteredResource: List[String] = null,
+    SchedulingCoordinator: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -265,7 +265,7 @@ final case class MarketRole
 (
     override val sup: OrganisationRole = null,
     `type`: String = null,
-    MarketParticipant: List[String] = List()
+    MarketParticipant: List[String] = null
 )
 extends
     Element
@@ -344,7 +344,7 @@ extends
 final case class MktGeneratingUnit
 (
     override val sup: GeneratingUnit = null,
-    GeneratingUnitDynamicValues: List[String] = List()
+    GeneratingUnitDynamicValues: List[String] = null
 )
 extends
     Element
@@ -517,51 +517,51 @@ final case class RegisteredResource
     ASSPOptimizationFlag: String = null,
     AdjacentCASet: String = null,
     AggregateNode: String = null,
-    AllocationResultValues: List[String] = List(),
-    Commitments: List[String] = List(),
-    ContractDistributionFactor: List[String] = List(),
-    ControlAreaDesignation: List[String] = List(),
+    AllocationResultValues: List[String] = null,
+    Commitments: List[String] = null,
+    ContractDistributionFactor: List[String] = null,
+    ControlAreaDesignation: List[String] = null,
     DefaultBid: String = null,
-    DispatchInstReply: List[String] = List(),
-    Domain: List[String] = List(),
-    DopInstruction: List[String] = List(),
-    DotInstruction: List[String] = List(),
+    DispatchInstReply: List[String] = null,
+    Domain: List[String] = null,
+    DopInstruction: List[String] = null,
+    DotInstruction: List[String] = null,
     ECAFlag: String = null,
-    EnergyMarkets: List[String] = List(),
-    ExPostResourceResults: List[String] = List(),
-    ExpectedEnergyValues: List[String] = List(),
-    ForbiddenRegion: List[String] = List(),
-    FormerReference: List[String] = List(),
+    EnergyMarkets: List[String] = null,
+    ExPostResourceResults: List[String] = null,
+    ExpectedEnergyValues: List[String] = null,
+    ForbiddenRegion: List[String] = null,
+    FormerReference: List[String] = null,
     HostControlArea: String = null,
-    Instructions: List[String] = List(),
-    InterTie: List[String] = List(),
-    IntermittentResourceEligibility: List[String] = List(),
+    Instructions: List[String] = null,
+    InterTie: List[String] = null,
+    IntermittentResourceEligibility: List[String] = null,
     LMPMFlag: String = null,
-    LoadFollowingInst: List[String] = List(),
-    LoadFollowingOperatorInput: List[String] = List(),
-    MPMResourceStatus: List[String] = List(),
-    MPMTestThreshold: List[String] = List(),
-    MarketObjectStatus: List[String] = List(),
+    LoadFollowingInst: List[String] = null,
+    LoadFollowingOperatorInput: List[String] = null,
+    MPMResourceStatus: List[String] = null,
+    MPMTestThreshold: List[String] = null,
+    MarketObjectStatus: List[String] = null,
     MarketParticipant: String = null,
     MktConnectivityNode: String = null,
-    OrgResOwnership: List[String] = List(),
+    OrgResOwnership: List[String] = null,
     Pnode: String = null,
-    RMROperatorInput: List[String] = List(),
-    RUCAwardInstruction: List[String] = List(),
-    RampRateCurve: List[String] = List(),
-    Reason: List[String] = List(),
-    ResourceAncillaryServiceQualification: List[String] = List(),
-    ResourceAwardInstruction: List[String] = List(),
-    ResourceCapacity: List[String] = List(),
-    ResourceCertification: List[String] = List(),
-    ResourceDispatchResults: List[String] = List(),
-    ResourceGroups: List[String] = List(),
-    ResourceLoadFollowingInst: List[String] = List(),
+    RMROperatorInput: List[String] = null,
+    RUCAwardInstruction: List[String] = null,
+    RampRateCurve: List[String] = null,
+    Reason: List[String] = null,
+    ResourceAncillaryServiceQualification: List[String] = null,
+    ResourceAwardInstruction: List[String] = null,
+    ResourceCapacity: List[String] = null,
+    ResourceCertification: List[String] = null,
+    ResourceDispatchResults: List[String] = null,
+    ResourceGroups: List[String] = null,
+    ResourceLoadFollowingInst: List[String] = null,
     ResourceVerifiableCosts: String = null,
     SMPMFlag: String = null,
-    SubControlArea: List[String] = List(),
-    SubstitutionResourceList: List[String] = List(),
-    TimeSeries: List[String] = List()
+    SubControlArea: List[String] = null,
+    SubstitutionResourceList: List[String] = null,
+    TimeSeries: List[String] = null
 )
 extends
     Element
@@ -973,7 +973,7 @@ final case class ResourceCapacity
     maximumCapacity: Double = 0.0,
     minimumCapacity: Double = 0.0,
     unitSymbol: String = null,
-    RegisteredResource: List[String] = List()
+    RegisteredResource: List[String] = null
 )
 extends
     Element

@@ -27,7 +27,7 @@ final case class AllocationResult
     intervalStartTime: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    AllocationResultValues: List[String] = List()
+    AllocationResultValues: List[String] = null
 )
 extends
     Element
@@ -241,7 +241,7 @@ final case class AuxiliaryCost
     marketType: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    AuxillaryValues: List[String] = List()
+    AuxillaryValues: List[String] = null
 )
 extends
     Element
@@ -557,7 +557,7 @@ final case class ExpectedEnergy
     intervalStartTime: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    ExpectedEnergyValues: List[String] = List()
+    ExpectedEnergyValues: List[String] = null
 )
 extends
     Element
@@ -744,7 +744,7 @@ final case class FiveMinAuxiliaryData
     intervalStartTime: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    AuxillaryValues: List[String] = List()
+    AuxillaryValues: List[String] = null
 )
 extends
     Element
@@ -837,7 +837,7 @@ final case class TenMinAuxiliaryData
     intervalStartTime: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    AuxillaryData: List[String] = List()
+    AuxillaryData: List[String] = null
 )
 extends
     Element
@@ -932,7 +932,7 @@ final case class TradingHubPrice
     marketType: String = null,
     updateTimeStamp: String = null,
     updateUser: String = null,
-    TradingHubValues: List[String] = List()
+    TradingHubValues: List[String] = null
 )
 extends
     Element

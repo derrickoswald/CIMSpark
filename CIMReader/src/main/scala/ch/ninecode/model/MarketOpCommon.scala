@@ -41,8 +41,8 @@ final case class MarketInvoice
     referenceNumber: String = null,
     transactionDateTime: String = null,
     transferType: String = null,
-    MajorChargeGroup: List[String] = List(),
-    MarketInvoiceLineItems: List[String] = List()
+    MajorChargeGroup: List[String] = null,
+    MarketInvoiceLineItems: List[String] = null
 )
 extends
     Element
@@ -180,10 +180,10 @@ final case class MarketInvoiceLineItem
     lineVersion: String = null,
     netAmount: Double = 0.0,
     previousAmount: Double = 0.0,
-    ComponentMarketInvoiceLineItems: List[String] = List(),
+    ComponentMarketInvoiceLineItems: List[String] = null,
     ContainerMarketInvoiceLineItem: String = null,
     MarketInvoice: String = null,
-    Settlement: List[String] = List()
+    Settlement: List[String] = null
 )
 extends
     Element
@@ -312,7 +312,7 @@ extends
 final case class MarketLedger
 (
     override val sup: BasicElement = null,
-    MarketLedgerEntries: List[String] = List()
+    MarketLedgerEntries: List[String] = null
 )
 extends
     Element
@@ -400,7 +400,7 @@ final case class MarketLedgerEntry
     status: String = null,
     transactionDateTime: String = null,
     MarketLedger: String = null,
-    Settlement: List[String] = List()
+    Settlement: List[String] = null
 )
 extends
     Element
@@ -505,7 +505,7 @@ extends
 final case class MktActivityRecord
 (
     override val sup: ActivityRecord = null,
-    MarketFactors: List[String] = List()
+    MarketFactors: List[String] = null
 )
 extends
     Element
@@ -585,12 +585,12 @@ extends
 final case class MktConnectivityNode
 (
     override val sup: ConnectivityNode = null,
-    CnodeDistributionFactor: List[String] = List(),
+    CnodeDistributionFactor: List[String] = null,
     IndividualPnode: String = null,
-    LossPenaltyFactor: List[String] = List(),
-    NodeConstraintTerm: List[String] = List(),
+    LossPenaltyFactor: List[String] = null,
+    NodeConstraintTerm: List[String] = null,
     RTO: String = null,
-    RegisteredResource: List[String] = List(),
+    RegisteredResource: List[String] = null,
     SysLoadDistribuFactor: String = null
 )
 extends
@@ -697,7 +697,7 @@ extends
 final case class MktLine
 (
     override val sup: Line = null,
-    Flowgate: List[String] = List(),
+    Flowgate: List[String] = null,
     TransmissionRightOfWay: String = null
 )
 extends
@@ -783,10 +783,10 @@ final case class MktMeasurement
 (
     override val sup: Measurement = null,
     ByTiePoint: String = null,
-    DynamicSchedule: List[String] = List(),
+    DynamicSchedule: List[String] = null,
     ForTiePoint: String = null,
     Pnode: String = null,
-    ViolationLimit: List[String] = List()
+    ViolationLimit: List[String] = null
 )
 extends
     Element
@@ -885,7 +885,7 @@ final case class MktPowerTransformer
     override val sup: PowerTransformer = null,
     EndAFlow: String = null,
     EndBFlow: String = null,
-    Flowgate: List[String] = List()
+    Flowgate: List[String] = null
 )
 extends
     Element
@@ -972,7 +972,7 @@ final case class MktTerminal
 (
     override val sup: Terminal = null,
     Flowgate: String = null,
-    TerminalConstraintTerm: List[String] = List()
+    TerminalConstraintTerm: List[String] = null
 )
 extends
     Element
@@ -1057,12 +1057,12 @@ extends
 final case class MktUserAttribute
 (
     override val sup: UserAttribute = null,
-    AttributeProperty: List[String] = List(),
-    BillDeterminant: List[String] = List(),
-    ChargeGroup: List[String] = List(),
-    ChargeType: List[String] = List(),
-    MarketStatementLineItem: List[String] = List(),
-    PassThroughBill: List[String] = List()
+    AttributeProperty: List[String] = null,
+    BillDeterminant: List[String] = null,
+    ChargeGroup: List[String] = null,
+    ChargeType: List[String] = null,
+    MarketStatementLineItem: List[String] = null,
+    PassThroughBill: List[String] = null
 )
 extends
     Element

@@ -33,7 +33,7 @@ final case class AreaReserveSpec
     raiseRegMarginReqt: Double = 0.0,
     spinningReserveReqt: Double = 0.0,
     Description: String = null,
-    SubControlArea: List[String] = List()
+    SubControlArea: List[String] = null
 )
 extends
     Element
@@ -499,9 +499,9 @@ extends
 final case class EnergyProduct
 (
     override val sup: Agreement = null,
-    EnergyTransactions: List[String] = List(),
+    EnergyTransactions: List[String] = null,
     GenerationProvider: String = null,
-    ResoldBy_Marketer: List[String] = List(),
+    ResoldBy_Marketer: List[String] = null,
     TitleHeldBy_Marketer: String = null
 )
 extends
@@ -671,7 +671,7 @@ extends
 final case class InternalControlArea
 (
     override val sup: IdentifiedObject = null,
-    CurrentEmergencySI: List[String] = List(),
+    CurrentEmergencySI: List[String] = null,
     CurrentScheduledInterchange: String = null
 )
 extends
@@ -832,7 +832,7 @@ final case class TieLine
 (
     override val sup: IdentifiedObject = null,
     EnergyTransaction: String = null,
-    ParentOfA: List[String] = List(),
+    ParentOfA: List[String] = null,
     ParentOfB: String = null,
     SideA_SubControlArea: String = null,
     SideB_SubControlArea: String = null
@@ -931,8 +931,8 @@ extends
 final case class TransmissionCorridor
 (
     override val sup: PowerSystemResource = null,
-    ContainedIn: List[String] = List(),
-    TransmissionRightOfWays: List[String] = List()
+    ContainedIn: List[String] = null,
+    TransmissionRightOfWays: List[String] = null
 )
 extends
     Element
@@ -1012,7 +1012,7 @@ extends
 final case class TransmissionRightOfWay
 (
     override val sup: PowerSystemResource = null,
-    MktLine: List[String] = List(),
+    MktLine: List[String] = null,
     TransmissionCorridor: String = null
 )
 extends

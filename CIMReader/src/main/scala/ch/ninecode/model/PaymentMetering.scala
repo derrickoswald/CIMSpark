@@ -208,8 +208,8 @@ final case class AuxiliaryAccount
     lastDebit: String = null,
     principleAmount: Double = 0.0,
     AuxiliaryAgreement: String = null,
-    Charges: List[String] = List(),
-    PaymentTransactions: List[String] = List()
+    Charges: List[String] = null,
+    PaymentTransactions: List[String] = null
 )
 extends
     Element
@@ -345,7 +345,7 @@ final case class AuxiliaryAgreement
     subType: String = null,
     vendPortion: Double = 0.0,
     vendPortionArrear: Double = 0.0,
-    AuxiliaryAccounts: List[String] = List(),
+    AuxiliaryAccounts: List[String] = null,
     CustomerAgreement: String = null
 )
 extends
@@ -661,7 +661,7 @@ final case class Cashier
 (
     override val sup: IdentifiedObject = null,
     electronicAddress: String = null,
-    CashierShifts: List[String] = List()
+    CashierShifts: List[String] = null
 )
 extends
     Element
@@ -747,8 +747,8 @@ final case class CashierShift
     cashFloat: Double = 0.0,
     Cashier: String = null,
     PointOfSale: String = null,
-    Receipts: List[String] = List(),
-    Transactions: List[String] = List()
+    Receipts: List[String] = null,
+    Transactions: List[String] = null
 )
 extends
     Element
@@ -855,11 +855,11 @@ final case class Charge
     fixedPortion: String = null,
     kind: String = null,
     variablePortion: Double = 0.0,
-    AuxiliaryAccounts: List[String] = List(),
-    ChildCharges: List[String] = List(),
-    ConsumptionTariffIntervals: List[String] = List(),
+    AuxiliaryAccounts: List[String] = null,
+    ChildCharges: List[String] = null,
+    ConsumptionTariffIntervals: List[String] = null,
     ParentCharge: String = null,
-    TimeTariffIntervals: List[String] = List()
+    TimeTariffIntervals: List[String] = null
 )
 extends
     Element
@@ -1084,10 +1084,10 @@ final case class ConsumptionTariffInterval
     override val sup: BasicElement = null,
     sequenceNumber: Int = 0,
     startValue: Double = 0.0,
-    Charges: List[String] = List(),
+    Charges: List[String] = null,
     ReadingType: String = null,
-    TariffProfiles: List[String] = List(),
-    TouTariffIntervals: List[String] = List()
+    TariffProfiles: List[String] = null,
+    TouTariffIntervals: List[String] = null
 )
 extends
     Element
@@ -1380,8 +1380,8 @@ final case class MerchantAccount
     currentBalance: Double = 0.0,
     provisionalBalance: Double = 0.0,
     MerchantAgreement: String = null,
-    Transactors: List[String] = List(),
-    VendorShifts: List[String] = List()
+    Transactors: List[String] = null,
+    VendorShifts: List[String] = null
 )
 extends
     Element
@@ -1477,7 +1477,7 @@ extends
 final case class MerchantAgreement
 (
     override val sup: Agreement = null,
-    MerchantAccounts: List[String] = List()
+    MerchantAccounts: List[String] = null
 )
 extends
     Element
@@ -1553,7 +1553,7 @@ final case class PointOfSale
 (
     override val sup: IdentifiedObject = null,
     location: String = null,
-    CashierShifts: List[String] = List()
+    CashierShifts: List[String] = null
 )
 extends
     Element
@@ -1640,8 +1640,8 @@ final case class Receipt
     isBankable: Boolean = false,
     line: String = null,
     CashierShift: String = null,
-    Tenders: List[String] = List(),
-    Transactions: List[String] = List(),
+    Tenders: List[String] = null,
+    Transactions: List[String] = null,
     VendorShift: String = null
 )
 extends
@@ -1748,9 +1748,9 @@ final case class ServiceSupplier
     override val sup: OrganisationRole = null,
     issuerIdentificationNumber: String = null,
     kind: String = null,
-    BankAccounts: List[String] = List(),
-    CustomerAgreements: List[String] = List(),
-    UsagePoints: List[String] = List()
+    BankAccounts: List[String] = null,
+    CustomerAgreements: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -1973,9 +1973,9 @@ final case class TariffProfile
 (
     override val sup: Document = null,
     tariffCycle: String = null,
-    ConsumptionTariffIntervals: List[String] = List(),
-    Tariffs: List[String] = List(),
-    TimeTariffIntervals: List[String] = List()
+    ConsumptionTariffIntervals: List[String] = null,
+    Tariffs: List[String] = null,
+    TimeTariffIntervals: List[String] = null
 )
 extends
     Element
@@ -2183,9 +2183,9 @@ final case class TimeTariffInterval
     override val sup: BasicElement = null,
     sequenceNumber: Int = 0,
     startTime: String = null,
-    Charges: List[String] = List(),
-    ConsumptionTariffIntervals: List[String] = List(),
-    TariffProfiles: List[String] = List()
+    Charges: List[String] = null,
+    ConsumptionTariffIntervals: List[String] = null,
+    TariffProfiles: List[String] = null
 )
 extends
     Element
@@ -2308,7 +2308,7 @@ final case class Transaction
     Meter: String = null,
     PricingStructure: String = null,
     Receipt: String = null,
-    UserAttributes: List[String] = List(),
+    UserAttributes: List[String] = null,
     VendorShift: String = null
 )
 extends
@@ -2453,7 +2453,7 @@ extends
 final case class Transactor
 (
     override val sup: IdentifiedObject = null,
-    MerchantAccounts: List[String] = List()
+    MerchantAccounts: List[String] = null
 )
 extends
     Element
@@ -2529,7 +2529,7 @@ extends
 final case class Vendor
 (
     override val sup: IdentifiedObject = null,
-    VendorShifts: List[String] = List()
+    VendorShifts: List[String] = null
 )
 extends
     Element
@@ -2614,8 +2614,8 @@ final case class VendorShift
     merchantDebitAmount: Double = 0.0,
     posted: Boolean = false,
     MerchantAccount: String = null,
-    Receipts: List[String] = List(),
-    Transactions: List[String] = List(),
+    Receipts: List[String] = null,
+    Transactions: List[String] = null,
     Vendor: String = null
 )
 extends

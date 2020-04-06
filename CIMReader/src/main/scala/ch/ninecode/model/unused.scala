@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
 final case class ModelFrameType
 (
     override val sup: IdentifiedObject = null,
-    ModelFrame: List[String] = List()
+    ModelFrame: List[String] = null
 )
 extends
     Element

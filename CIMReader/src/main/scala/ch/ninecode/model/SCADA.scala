@@ -24,7 +24,7 @@ final case class CommunicationLink
 (
     override val sup: PowerSystemResource = null,
     BilateralExchangeActor: String = null,
-    RemoteUnits: List[String] = List()
+    RemoteUnits: List[String] = null
 )
 extends
     Element
@@ -381,8 +381,8 @@ final case class RemoteUnit
 (
     override val sup: PowerSystemResource = null,
     remoteUnitType: String = null,
-    CommunicationLinks: List[String] = List(),
-    RemotePoints: List[String] = List()
+    CommunicationLinks: List[String] = null,
+    RemotePoints: List[String] = null
 )
 extends
     Element

@@ -143,9 +143,9 @@ final case class ProtectionEquipment
     relayDelayTime: Double = 0.0,
     unitMultiplier: String = null,
     unitSymbol: String = null,
-    ConductingEquipments: List[String] = List(),
-    ProtectedSwitches: List[String] = List(),
-    ProtectiveAction: List[String] = List()
+    ConductingEquipments: List[String] = null,
+    ProtectedSwitches: List[String] = null,
+    ProtectiveAction: List[String] = null
 )
 extends
     Element

@@ -108,7 +108,7 @@ final case class Fault
     kind: String = null,
     occurredDateTime: String = null,
     phases: String = null,
-    FaultCauseTypes: List[String] = List(),
+    FaultCauseTypes: List[String] = null,
     FaultyEquipment: String = null,
     Location: String = null,
     Outage: String = null
@@ -220,8 +220,8 @@ extends
 final case class FaultCauseType
 (
     override val sup: IdentifiedObject = null,
-    ConfigurationEvent: List[String] = List(),
-    Faults: List[String] = List()
+    ConfigurationEvent: List[String] = null,
+    Faults: List[String] = null
 )
 extends
     Element

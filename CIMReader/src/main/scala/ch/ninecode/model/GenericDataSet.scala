@@ -24,10 +24,10 @@ import ch.ninecode.cim.Relationship
 final case class ChangeSet
 (
     override val sup: DataSet = null,
-    ChangeSetMember: List[String] = List(),
-    IncrementalDatasetArg: List[String] = List(),
+    ChangeSetMember: List[String] = null,
+    IncrementalDatasetArg: List[String] = null,
     NMProjectStage: String = null,
-    NetworkModelProjectChangeVersion: List[String] = List()
+    NetworkModelProjectChangeVersion: List[String] = null
 )
 extends
     Element
@@ -220,7 +220,7 @@ final case class DataSet
     mRID: String = null,
     name: String = null,
     AlternateModel: String = null,
-    Profile: List[String] = List()
+    Profile: List[String] = null
 )
 extends
     Element
@@ -394,8 +394,8 @@ extends
 final case class InstanceSet
 (
     override val sup: DataSet = null,
-    DatasetArg: List[String] = List(),
-    InstanceSetMember: List[String] = List()
+    DatasetArg: List[String] = null,
+    InstanceSetMember: List[String] = null
 )
 extends
     Element
@@ -741,7 +741,7 @@ extends
 final case class Profile2
 (
     override val sup: IdentifiedObject = null,
-    DataSet: List[String] = List()
+    DataSet: List[String] = null
 )
 extends
     Element

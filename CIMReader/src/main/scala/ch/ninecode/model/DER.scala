@@ -126,7 +126,7 @@ final case class DERFunction
     voltVarCurveFunction: Boolean = false,
     voltWattCurveFunction: Boolean = false,
     voltageRegulation: Boolean = false,
-    EndDeviceGroup: List[String] = List()
+    EndDeviceGroup: List[String] = null
 )
 extends
     Element
@@ -233,7 +233,7 @@ extends
 final case class DERGroupDispatch
 (
     override val sup: IdentifiedObject = null,
-    EndDeviceGroup: List[String] = List()
+    EndDeviceGroup: List[String] = null
 )
 extends
     Element
@@ -304,7 +304,7 @@ final case class DERGroupForecast
 (
     override val sup: IdentifiedObject = null,
     predictionCreationDate: String = null,
-    EndDeviceGroup: List[String] = List()
+    EndDeviceGroup: List[String] = null
 )
 extends
     Element
@@ -386,8 +386,8 @@ final case class DERMonitorableParameter
     yUnitInstalledMin: Double = 0.0,
     DERCurveData: String = null,
     DERParameter: String = null,
-    DispatchSchedule: List[String] = List(),
-    EndDeviceGroup: List[String] = List()
+    DispatchSchedule: List[String] = null,
+    EndDeviceGroup: List[String] = null
 )
 extends
     Element
@@ -499,7 +499,7 @@ final case class DispatchSchedule
     startTime: String = null,
     timeIntervalDuration: Int = 0,
     timeIntervalUnit: String = null,
-    DERCurveData: List[String] = List(),
+    DERCurveData: List[String] = null,
     DERMonitorableParameter: String = null
 )
 extends

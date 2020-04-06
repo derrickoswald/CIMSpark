@@ -256,7 +256,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
 final case class LoadDynamics
 (
     override val sup: IdentifiedObject = null,
-    EnergyConsumer: List[String] = List()
+    EnergyConsumer: List[String] = null
 )
 extends
     Element

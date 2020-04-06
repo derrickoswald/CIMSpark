@@ -32,7 +32,7 @@ final case class FTR
     optimized: String = null,
     EnergyPriceCurve: String = null,
     Flowgate: String = null,
-    Pnodes: List[String] = List()
+    Pnodes: List[String] = null
 )
 extends
     Element

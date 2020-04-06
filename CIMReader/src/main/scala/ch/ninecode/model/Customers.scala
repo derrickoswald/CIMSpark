@@ -141,15 +141,15 @@ final case class Customer
     specialNeed: String = null,
     status: String = null,
     vip: Boolean = false,
-    CustomerAccounts: List[String] = List(),
-    CustomerAgreements: List[String] = List(),
-    CustomerNotifications: List[String] = List(),
-    Customer_attr: List[String] = List(),
-    EndDevices: List[String] = List(),
-    ErpPersons: List[String] = List(),
+    CustomerAccounts: List[String] = null,
+    CustomerAgreements: List[String] = null,
+    CustomerNotifications: List[String] = null,
+    Customer_attr: List[String] = null,
+    EndDevices: List[String] = null,
+    ErpPersons: List[String] = null,
     OutagePlan: String = null,
-    TroubleTickets: List[String] = List(),
-    Works: List[String] = List()
+    TroubleTickets: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -307,13 +307,13 @@ final case class CustomerAccount
     billingCycle: String = null,
     budgetBill: String = null,
     lastBillAmount: Double = 0.0,
-    AccountNotification: List[String] = List(),
+    AccountNotification: List[String] = null,
     Customer: String = null,
-    CustomerAgreements: List[String] = List(),
-    CustomerBillingInfos: List[String] = List(),
-    ErpInvoicees: List[String] = List(),
-    PaymentTransactions: List[String] = List(),
-    WorkBillingInfos: List[String] = List()
+    CustomerAgreements: List[String] = null,
+    CustomerBillingInfos: List[String] = null,
+    ErpInvoicees: List[String] = null,
+    PaymentTransactions: List[String] = null,
+    WorkBillingInfos: List[String] = null
 )
 extends
     Element
@@ -449,17 +449,17 @@ final case class CustomerAgreement
     isPrePay: Boolean = false,
     loadMgmt: String = null,
     shutOffDateTime: String = null,
-    AuxiliaryAgreements: List[String] = List(),
+    AuxiliaryAgreements: List[String] = null,
     Customer: String = null,
     CustomerAccount: String = null,
-    DemandResponsePrograms: List[String] = List(),
-    MeterReadings: List[String] = List(),
-    PricingStructures: List[String] = List(),
+    DemandResponsePrograms: List[String] = null,
+    MeterReadings: List[String] = null,
+    PricingStructures: List[String] = null,
     ServiceCategory: String = null,
-    ServiceLocations: List[String] = List(),
+    ServiceLocations: List[String] = null,
     ServiceSupplier: String = null,
     StandardIndustryCode: String = null,
-    UsagePoints: List[String] = List()
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -611,7 +611,7 @@ final case class CustomerNotification
     trigger: String = null,
     Customer: String = null,
     Incident: String = null,
-    TroubleTickets: List[String] = List()
+    TroubleTickets: List[String] = null
 )
 extends
     Element
@@ -819,11 +819,11 @@ final case class PricingStructure
     dailyFloorUsage: Int = 0,
     revenueKind: String = null,
     taxExemption: Boolean = false,
-    CustomerAgreements: List[String] = List(),
+    CustomerAgreements: List[String] = null,
     ServiceCategory: String = null,
-    Tariffs: List[String] = List(),
-    Transactions: List[String] = List(),
-    UsagePoints: List[String] = List()
+    Tariffs: List[String] = null,
+    Transactions: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -948,10 +948,10 @@ final case class ServiceCategory
 (
     override val sup: IdentifiedObject = null,
     kind: String = null,
-    ConfigurationEvents: List[String] = List(),
-    CustomerAgreements: List[String] = List(),
-    PricingStructures: List[String] = List(),
-    UsagePoints: List[String] = List()
+    ConfigurationEvents: List[String] = null,
+    CustomerAgreements: List[String] = null,
+    PricingStructures: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -1057,10 +1057,10 @@ final case class ServiceLocation
     accessMethod: String = null,
     needsInspection: Boolean = false,
     siteAccessProblem: String = null,
-    CustomerAgreements: List[String] = List(),
-    EndDevices: List[String] = List(),
-    TroubleTicket: List[String] = List(),
-    UsagePoints: List[String] = List()
+    CustomerAgreements: List[String] = null,
+    EndDevices: List[String] = null,
+    TroubleTicket: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -1169,8 +1169,8 @@ final case class Tariff
     override val sup: Document = null,
     endDate: String = null,
     startDate: String = null,
-    PricingStructures: List[String] = List(),
-    TariffProfiles: List[String] = List()
+    PricingStructures: List[String] = null,
+    TariffProfiles: List[String] = null
 )
 extends
     Element
@@ -1264,7 +1264,7 @@ final case class TroubleTicket
     troubleCode: String = null,
     Customer: String = null,
     Incident: String = null,
-    IncidentHazard: List[String] = List(),
+    IncidentHazard: List[String] = null,
     Notification: String = null,
     ServiceLocation: String = null,
     UnplannedOutage: String = null

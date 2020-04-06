@@ -35,13 +35,13 @@ final case class LandProperty
     externalRecordReference: String = null,
     kind: String = null,
     status: String = null,
-    AssetContainers: List[String] = List(),
-    ErpOrganisationRoles: List[String] = List(),
-    ErpPersonRoles: List[String] = List(),
-    ErpSiteLevelDatas: List[String] = List(),
-    LocationGrants: List[String] = List(),
-    Locations: List[String] = List(),
-    RightOfWays: List[String] = List()
+    AssetContainers: List[String] = null,
+    ErpOrganisationRoles: List[String] = null,
+    ErpPersonRoles: List[String] = null,
+    ErpSiteLevelDatas: List[String] = null,
+    LocationGrants: List[String] = null,
+    Locations: List[String] = null,
+    RightOfWays: List[String] = null
 )
 extends
     Element
@@ -322,7 +322,7 @@ final case class RightOfWay
 (
     override val sup: Agreement = null,
     propertyData: String = null,
-    LandProperties: List[String] = List()
+    LandProperties: List[String] = null
 )
 extends
     Element
@@ -405,8 +405,8 @@ final case class Route
     override val sup: IdentifiedObject = null,
     status: String = null,
     `type`: String = null,
-    Crews: List[String] = List(),
-    Locations: List[String] = List()
+    Crews: List[String] = null,
+    Locations: List[String] = null
 )
 extends
     Element

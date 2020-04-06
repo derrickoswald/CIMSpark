@@ -96,7 +96,7 @@ extends
 final case class DatasetArgDescription
 (
     override val sup: ModelOperationArgDescription = null,
-    OperationDatasetArg: List[String] = List()
+    OperationDatasetArg: List[String] = null
 )
 extends
     Element
@@ -246,7 +246,7 @@ extends
 final case class IncrementalDatasetArgDescription
 (
     override val sup: ModelOperationArgDescription = null,
-    IncrementalDatasetArg: List[String] = List()
+    IncrementalDatasetArg: List[String] = null
 )
 extends
     Element
@@ -324,7 +324,7 @@ final case class ModelOperation
 (
     override val sup: IdentifiedObject = null,
     sequenceNumber: Int = 0,
-    ModelOperationArg: List[String] = List(),
+    ModelOperationArg: List[String] = null,
     ModelOperationDescription: String = null,
     OperationSequence: String = null
 )
@@ -590,8 +590,8 @@ extends
 final case class ModelOperationDescription
 (
     override val sup: IdentifiedObject = null,
-    ModelOperation: List[String] = List(),
-    OperationDatasetArgDescription: List[String] = List()
+    ModelOperation: List[String] = null,
+    OperationDatasetArgDescription: List[String] = null
 )
 extends
     Element
@@ -671,7 +671,7 @@ extends
 final case class ModelOperationSequence
 (
     override val sup: IdentifiedObject = null,
-    ModelOperation: List[String] = List()
+    ModelOperation: List[String] = null
 )
 extends
     Element

@@ -29,7 +29,7 @@ final case class BaseReading
     source: String = null,
     timePeriod: String = null,
     value: String = null,
-    ReadingQualities: List[String] = List()
+    ReadingQualities: List[String] = null
 )
 extends
     Element
@@ -318,7 +318,7 @@ final case class ComModule
     amrSystem: String = null,
     supportsAutonomousDst: Boolean = false,
     timeZoneOffset: Double = 0.0,
-    ComFunctions: List[String] = List()
+    ComFunctions: List[String] = null
 )
 extends
     Element
@@ -549,9 +549,9 @@ final case class DemandResponseProgram
     override val sup: IdentifiedObject = null,
     `type`: String = null,
     validityInterval: String = null,
-    CustomerAgreements: List[String] = List(),
-    EndDeviceGroups: List[String] = List(),
-    UsagePointGroups: List[String] = List()
+    CustomerAgreements: List[String] = null,
+    EndDeviceGroups: List[String] = null,
+    UsagePointGroups: List[String] = null
 )
 extends
     Element
@@ -671,11 +671,11 @@ final case class EndDevice
     isVirtual: Boolean = false,
     timeZoneOffset: Double = 0.0,
     Customer: String = null,
-    DispatchablePowerCapability: List[String] = List(),
-    EndDeviceControls: List[String] = List(),
-    EndDeviceEvents: List[String] = List(),
-    EndDeviceFunctions: List[String] = List(),
-    EndDeviceGroups: List[String] = List(),
+    DispatchablePowerCapability: List[String] = null,
+    EndDeviceControls: List[String] = null,
+    EndDeviceEvents: List[String] = null,
+    EndDeviceFunctions: List[String] = null,
+    EndDeviceGroups: List[String] = null,
     EndDeviceInfo: String = null,
     ServiceLocation: String = null,
     UsagePoint: String = null
@@ -1120,10 +1120,10 @@ final case class EndDeviceControl
     secondaryDeviceTiming: String = null,
     EndDeviceAction: String = null,
     EndDeviceControlType: String = null,
-    EndDeviceGroups: List[String] = List(),
-    EndDevices: List[String] = List(),
-    UsagePointGroups: List[String] = List(),
-    UsagePoints: List[String] = List()
+    EndDeviceGroups: List[String] = null,
+    EndDevices: List[String] = null,
+    UsagePointGroups: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -1274,7 +1274,7 @@ final case class EndDeviceControlType
     eventOrAction: String = null,
     subDomain: String = null,
     `type`: String = null,
-    EndDeviceControls: List[String] = List()
+    EndDeviceControls: List[String] = null
 )
 extends
     Element
@@ -1377,7 +1377,7 @@ final case class EndDeviceEvent
     issuerTrackingID: String = null,
     userID: String = null,
     EndDevice: String = null,
-    EndDeviceEventDetails: List[String] = List(),
+    EndDeviceEventDetails: List[String] = null,
     EndDeviceEventType: String = null,
     MeterReading: String = null,
     UsagePoint: String = null
@@ -1588,7 +1588,7 @@ final case class EndDeviceEventType
     eventOrAction: String = null,
     subDomain: String = null,
     `type`: String = null,
-    EndDeviceEvents: List[String] = List()
+    EndDeviceEvents: List[String] = null
 )
 extends
     Element
@@ -1683,7 +1683,7 @@ final case class EndDeviceFunction
     override val sup: AssetFunction = null,
     enabled: Boolean = false,
     EndDevice: String = null,
-    Registers: List[String] = List()
+    Registers: List[String] = null
 )
 extends
     Element
@@ -1784,13 +1784,13 @@ final case class EndDeviceGroup
     `type`: String = null,
     version: String = null,
     DERFunction: String = null,
-    DERGroupDispatch: List[String] = List(),
-    DERGroupForecast: List[String] = List(),
-    DERMonitorableParameter: List[String] = List(),
-    DemandResponsePrograms: List[String] = List(),
+    DERGroupDispatch: List[String] = null,
+    DERGroupForecast: List[String] = null,
+    DERMonitorableParameter: List[String] = null,
+    DemandResponsePrograms: List[String] = null,
     DispatchablePowerCapability: String = null,
-    EndDeviceControls: List[String] = List(),
-    EndDevices: List[String] = List()
+    EndDeviceControls: List[String] = null,
+    EndDevices: List[String] = null
 )
 extends
     Element
@@ -1923,7 +1923,7 @@ final case class EndDeviceInfo
     phaseCount: Int = 0,
     ratedCurrent: Double = 0.0,
     ratedVoltage: Double = 0.0,
-    EndDevices: List[String] = List()
+    EndDevices: List[String] = null
 )
 extends
     Element
@@ -2151,7 +2151,7 @@ extends
 final case class IntervalBlock
 (
     override val sup: BasicElement = null,
-    IntervalReadings: List[String] = List(),
+    IntervalReadings: List[String] = null,
     MeterReading: String = null,
     PendingCalculation: String = null,
     ReadingType: String = null
@@ -2247,7 +2247,7 @@ extends
 final case class IntervalReading
 (
     override val sup: BaseReading = null,
-    IntervalBlocks: List[String] = List()
+    IntervalBlocks: List[String] = null
 )
 extends
     Element
@@ -2332,11 +2332,11 @@ final case class Meter
     override val sup: EndDevice = null,
     connectionCategory: String = null,
     formNumber: String = null,
-    MeterMultipliers: List[String] = List(),
-    MeterReadings: List[String] = List(),
-    MeterReplacementWorkTasks: List[String] = List(),
-    MeterServiceWorkTask: List[String] = List(),
-    VendingTransactions: List[String] = List()
+    MeterMultipliers: List[String] = null,
+    MeterReadings: List[String] = null,
+    MeterReplacementWorkTasks: List[String] = null,
+    MeterServiceWorkTask: List[String] = null,
+    VendingTransactions: List[String] = null
 )
 extends
     Element
@@ -2536,10 +2536,10 @@ final case class MeterReading
     isCoincidentTrigger: Boolean = false,
     valuesInterval: String = null,
     CustomerAgreement: String = null,
-    EndDeviceEvents: List[String] = List(),
-    IntervalBlocks: List[String] = List(),
+    EndDeviceEvents: List[String] = null,
+    IntervalBlocks: List[String] = null,
     Meter: String = null,
-    Readings: List[String] = List(),
+    Readings: List[String] = null,
     UsagePoint: String = null
 )
 extends
@@ -2740,8 +2740,8 @@ final case class MetrologyRequirement
 (
     override val sup: IdentifiedObject = null,
     reason: String = null,
-    ReadingTypes: List[String] = List(),
-    UsagePoints: List[String] = List()
+    ReadingTypes: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -3067,7 +3067,7 @@ final case class PanPricing
 (
     override val sup: EndDeviceAction = null,
     providerID: Int = 0,
-    PanPricingDetails: List[String] = List()
+    PanPricingDetails: List[String] = null
 )
 extends
     Element
@@ -3315,7 +3315,7 @@ final case class PendingCalculation
     scalarDenominator: Int = 0,
     scalarFloat: Double = 0.0,
     scalarNumerator: Int = 0,
-    IntervalBlocks: List[String] = List(),
+    IntervalBlocks: List[String] = null,
     ReadingType: String = null
 )
 extends
@@ -3504,7 +3504,7 @@ final case class Reading
     position: Int = 0,
     reason: String = null,
     valueMissing: Boolean = false,
-    MeterReadings: List[String] = List(),
+    MeterReadings: List[String] = null,
     ReadingType: String = null
 )
 extends
@@ -3787,7 +3787,7 @@ final case class ReadingQualityType
     category: String = null,
     subCategory: String = null,
     systemId: String = null,
-    ReadingQualities: List[String] = List()
+    ReadingQualities: List[String] = null
 )
 extends
     Element
@@ -3925,11 +3925,11 @@ final case class ReadingType
     tou: Int = 0,
     unit: String = null,
     Channel: String = null,
-    ConsumptionTariffIntervals: List[String] = List(),
-    IntervalBlocks: List[String] = List(),
-    MetrologyRequirements: List[String] = List(),
+    ConsumptionTariffIntervals: List[String] = null,
+    IntervalBlocks: List[String] = null,
+    MetrologyRequirements: List[String] = null,
     PendingCalculation: String = null,
-    Readings: List[String] = List()
+    Readings: List[String] = null
 )
 extends
     Element
@@ -4110,7 +4110,7 @@ final case class Register
     rightDigitCount: Int = 0,
     touTier: String = null,
     touTierName: String = null,
-    Channels: List[String] = List(),
+    Channels: List[String] = null,
     EndDeviceFunction: String = null,
     Usage_Point: String = null
 )
@@ -4409,7 +4409,7 @@ extends
  * @param MeterReadings [[ch.ninecode.model.MeterReading MeterReading]] All meter readings obtained from this usage point.
  * @param MeterServiceWorkTasks [[ch.ninecode.model.MeterWorkTask MeterWorkTask]] All meter service work tasks at this usage point.
  * @param MetrologyRequirements [[ch.ninecode.model.MetrologyRequirement MetrologyRequirement]] All metrology requirements for this usage point.
- * @param Outage [[ch.ninecode.model.Outage Outage]] <em>undocumented</em>
+ * @param Outage [[ch.ninecode.model.Outage Outage]] All outages at this usage point.
  * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures applicable to this service delivery point (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer).
  * @param Register [[ch.ninecode.model.Register Register]] <em>undocumented</em>
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category delivered by this usage point.
@@ -4445,24 +4445,24 @@ final case class UsagePoint
     readRoute: String = null,
     serviceDeliveryRemark: String = null,
     servicePriority: String = null,
-    ConfigurationEvents: List[String] = List(),
+    ConfigurationEvents: List[String] = null,
     CustomerAgreement: String = null,
-    EndDeviceControls: List[String] = List(),
-    EndDeviceEvents: List[String] = List(),
-    EndDevices: List[String] = List(),
+    EndDeviceControls: List[String] = null,
+    EndDeviceEvents: List[String] = null,
+    EndDevices: List[String] = null,
     EnvironmentalMonitoringStation: String = null,
-    Equipments: List[String] = List(),
-    MeterReadings: List[String] = List(),
-    MeterServiceWorkTasks: List[String] = List(),
-    MetrologyRequirements: List[String] = List(),
-    Outage: List[String] = List(),
-    PricingStructures: List[String] = List(),
-    Register: List[String] = List(),
+    Equipments: List[String] = null,
+    MeterReadings: List[String] = null,
+    MeterServiceWorkTasks: List[String] = null,
+    MetrologyRequirements: List[String] = null,
+    Outage: List[String] = null,
+    PricingStructures: List[String] = null,
+    Register: List[String] = null,
     ServiceCategory: String = null,
     ServiceLocation: String = null,
-    ServiceMultipliers: List[String] = List(),
+    ServiceMultipliers: List[String] = null,
     ServiceSupplier: String = null,
-    UsagePointGroups: List[String] = List(),
+    UsagePointGroups: List[String] = null,
     UsagePointLocation: String = null
 )
 extends
@@ -4715,9 +4715,9 @@ final case class UsagePointGroup
 (
     override val sup: IdentifiedObject = null,
     `type`: String = null,
-    DemandResponsePrograms: List[String] = List(),
-    EndDeviceControls: List[String] = List(),
-    UsagePoints: List[String] = List()
+    DemandResponsePrograms: List[String] = null,
+    EndDeviceControls: List[String] = null,
+    UsagePoints: List[String] = null
 )
 extends
     Element
@@ -4814,7 +4814,7 @@ final case class UsagePointLocation
     accessMethod: String = null,
     remark: String = null,
     siteAccessProblem: String = null,
-    UsagePoints: List[String] = List()
+    UsagePoints: List[String] = null
 )
 extends
     Element

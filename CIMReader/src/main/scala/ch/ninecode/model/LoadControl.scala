@@ -40,7 +40,7 @@ final case class ConnectDisconnectFunction
     isRemoteAutoDisconOp: Boolean = false,
     isRemoteAutoReconOp: Boolean = false,
     rcdInfo: String = null,
-    Switches: List[String] = List()
+    Switches: List[String] = null
 )
 extends
     Element

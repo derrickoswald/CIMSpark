@@ -77,7 +77,7 @@ final case class ACDCConverter
     uc: Double = 0.0,
     udc: Double = 0.0,
     valveU0: Double = 0.0,
-    DCTerminals: List[String] = List(),
+    DCTerminals: List[String] = null,
     PccTerminal: String = null
 )
 extends
@@ -745,8 +745,8 @@ final case class DCConductingEquipment
 (
     override val sup: Equipment = null,
     ratedUdc: Double = 0.0,
-    DCTerminals: List[String] = List(),
-    ProtectiveActionAdjustment: List[String] = List()
+    DCTerminals: List[String] = null,
+    ProtectiveActionAdjustment: List[String] = null
 )
 extends
     Element
@@ -971,8 +971,8 @@ extends
 final case class DCEquipmentContainer
 (
     override val sup: EquipmentContainer = null,
-    DCNodes: List[String] = List(),
-    DCTopologicalNode: List[String] = List()
+    DCNodes: List[String] = null,
+    DCTopologicalNode: List[String] = null
 )
 extends
     Element
@@ -1307,7 +1307,7 @@ final case class DCNode
 (
     override val sup: IdentifiedObject = null,
     DCEquipmentContainer: String = null,
-    DCTerminals: List[String] = List(),
+    DCTerminals: List[String] = null,
     DCTopologicalNode: String = null
 )
 extends
@@ -1687,7 +1687,7 @@ extends
 final case class DCTopologicalIsland
 (
     override val sup: IdentifiedObject = null,
-    DCTopologicalNodes: List[String] = List()
+    DCTopologicalNodes: List[String] = null
 )
 extends
     Element
@@ -1767,8 +1767,8 @@ final case class DCTopologicalNode
 (
     override val sup: IdentifiedObject = null,
     DCEquipmentContainer: String = null,
-    DCNodes: List[String] = List(),
-    DCTerminals: List[String] = List(),
+    DCNodes: List[String] = null,
+    DCTerminals: List[String] = null,
     DCTopologicalIsland: String = null
 )
 extends
@@ -1865,7 +1865,7 @@ final case class PerLengthDCLineParameter
     capacitance: Double = 0.0,
     inductance: Double = 0.0,
     resistance: Double = 0.0,
-    DCLineSegments: List[String] = List()
+    DCLineSegments: List[String] = null
 )
 extends
     Element
@@ -1952,7 +1952,7 @@ extends
 final case class VsCapabilityCurve
 (
     override val sup: Curve = null,
-    VsConverterDCSides: List[String] = List()
+    VsConverterDCSides: List[String] = null
 )
 extends
     Element

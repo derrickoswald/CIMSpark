@@ -28,7 +28,7 @@ final case class ErpBOM
 (
     override val sup: ErpDocument = null,
     Design: String = null,
-    ErpBomItemDatas: List[String] = List()
+    ErpBomItemDatas: List[String] = null
 )
 extends
     Element
@@ -353,7 +353,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpCompetency
 (
     override val sup: ErpIdentifiedObject = null,
-    ErpPersons: List[String] = List()
+    ErpPersons: List[String] = null
 )
 extends
     Element
@@ -814,7 +814,7 @@ final case class ErpInvoice
     transactionDateTime: String = null,
     transferType: String = null,
     CustomerAccount: String = null,
-    ErpInvoiceLineItems: List[String] = List()
+    ErpInvoiceLineItems: List[String] = null
 )
 extends
     Element
@@ -965,18 +965,18 @@ final case class ErpInvoiceLineItem
     lineVersion: String = null,
     netAmount: Double = 0.0,
     previousAmount: Double = 0.0,
-    ComponentErpInvoiceLineItems: List[String] = List(),
+    ComponentErpInvoiceLineItems: List[String] = null,
     ContainerErpInvoiceLineItem: String = null,
-    CustomerBillingInfos: List[String] = List(),
+    CustomerBillingInfos: List[String] = null,
     ErpInvoice: String = null,
-    ErpJournalEntries: List[String] = List(),
+    ErpJournalEntries: List[String] = null,
     ErpPayableLineItem: String = null,
-    ErpPayments: List[String] = List(),
+    ErpPayments: List[String] = null,
     ErpQuoteLineItem: String = null,
     ErpRecDelvLineItem: String = null,
     ErpRecLineItem: String = null,
-    UserAttributes: List[String] = List(),
-    WorkBillingInfos: List[String] = List()
+    UserAttributes: List[String] = null,
+    WorkBillingInfos: List[String] = null
 )
 extends
     Element
@@ -1330,7 +1330,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpJournal
 (
     override val sup: ErpDocument = null,
-    ErpJournalEntries: List[String] = List()
+    ErpJournalEntries: List[String] = null
 )
 extends
     Element
@@ -1426,12 +1426,12 @@ final case class ErpJournalEntry
     sourceID: String = null,
     status: String = null,
     transactionDateTime: String = null,
-    CostTypes: List[String] = List(),
+    CostTypes: List[String] = null,
     ErpInvoiceLineItem: String = null,
     ErpJournal: String = null,
     ErpLedgerEntry: String = null,
-    ErpPayableLineItems: List[String] = List(),
-    ErpRecLineItems: List[String] = List()
+    ErpPayableLineItems: List[String] = null,
+    ErpRecLineItems: List[String] = null
 )
 extends
     Element
@@ -1655,7 +1655,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpLedger
 (
     override val sup: ErpDocument = null,
-    ErpLedgerEntries: List[String] = List()
+    ErpLedgerEntries: List[String] = null
 )
 extends
     Element
@@ -1736,7 +1736,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpLedgerBudget
 (
     override val sup: ErpDocument = null,
-    ErpLedBudLineItems: List[String] = List()
+    ErpLedBudLineItems: List[String] = null
 )
 extends
     Element
@@ -1833,7 +1833,7 @@ final case class ErpLedgerEntry
     ErpJounalEntry: String = null,
     ErpLedger: String = null,
     ErpLedgerEntry_attr: String = null,
-    UserAttributes: List[String] = List()
+    UserAttributes: List[String] = null
 )
 extends
     Element
@@ -2056,8 +2056,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpPayable
 (
     override val sup: ErpDocument = null,
-    ContractorItems: List[String] = List(),
-    ErpPayableLineItems: List[String] = List()
+    ContractorItems: List[String] = null,
+    ErpPayableLineItems: List[String] = null
 )
 extends
     Element
@@ -2147,9 +2147,9 @@ final case class ErpPayableLineItem
     override val sup: ErpIdentifiedObject = null,
     status: String = null,
     ErpInvoiceLineItem: String = null,
-    ErpJournalEntries: List[String] = List(),
+    ErpJournalEntries: List[String] = null,
     ErpPayable: String = null,
-    ErpPayments: List[String] = List()
+    ErpPayments: List[String] = null
 )
 extends
     Element
@@ -2254,9 +2254,9 @@ final case class ErpPayment
 (
     override val sup: ErpDocument = null,
     termsPayment: String = null,
-    ErpInvoiceLineItems: List[String] = List(),
-    ErpPayableLineItems: List[String] = List(),
-    ErpRecLineItems: List[String] = List()
+    ErpInvoiceLineItems: List[String] = null,
+    ErpPayableLineItems: List[String] = null,
+    ErpRecLineItems: List[String] = null
 )
 extends
     Element
@@ -2352,7 +2352,7 @@ final case class ErpPersonnel
 (
     override val sup: ErpIdentifiedObject = null,
     status: String = null,
-    ErpPersons: List[String] = List()
+    ErpPersons: List[String] = null
 )
 extends
     Element
@@ -2441,10 +2441,10 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpProjectAccounting
 (
     override val sup: ErpDocument = null,
-    ErpTimeEntries: List[String] = List(),
-    Projects: List[String] = List(),
-    WorkCostDetails: List[String] = List(),
-    Works: List[String] = List()
+    ErpTimeEntries: List[String] = null,
+    Projects: List[String] = null,
+    WorkCostDetails: List[String] = null,
+    Works: List[String] = null
 )
 extends
     Element
@@ -2540,7 +2540,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpPurchaseOrder
 (
     override val sup: ErpDocument = null,
-    ErpPOLineItems: List[String] = List()
+    ErpPOLineItems: List[String] = null
 )
 extends
     Element
@@ -2621,7 +2621,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpQuote
 (
     override val sup: ErpDocument = null,
-    ErpQuoteLineItems: List[String] = List()
+    ErpQuoteLineItems: List[String] = null
 )
 extends
     Element
@@ -2821,7 +2821,7 @@ final case class ErpRecDelvLineItem
 (
     override val sup: ErpIdentifiedObject = null,
     status: String = null,
-    Assets: List[String] = List(),
+    Assets: List[String] = null,
     ErpInvoiceLineItem: String = null,
     ErpPOLineItem: String = null,
     ErpReceiveDelivery: String = null
@@ -2929,8 +2929,8 @@ final case class ErpRecLineItem
     override val sup: ErpIdentifiedObject = null,
     status: String = null,
     ErpInvoiceLineItem: String = null,
-    ErpJournalEntries: List[String] = List(),
-    ErpPayments: List[String] = List(),
+    ErpJournalEntries: List[String] = null,
+    ErpPayments: List[String] = null,
     ErpReceivable: String = null
 )
 extends
@@ -3032,7 +3032,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpReceivable
 (
     override val sup: ErpDocument = null,
-    ErpRecLineItems: List[String] = List()
+    ErpRecLineItems: List[String] = null
 )
 extends
     Element
@@ -3113,7 +3113,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpReceiveDelivery
 (
     override val sup: ErpDocument = null,
-    ErpRecDelvLineItems: List[String] = List()
+    ErpRecDelvLineItems: List[String] = null
 )
 extends
     Element
@@ -3332,7 +3332,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpRequisition
 (
     override val sup: ErpDocument = null,
-    ErpReqLineItems: List[String] = List()
+    ErpReqLineItems: List[String] = null
 )
 extends
     Element
@@ -3657,7 +3657,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 final case class ErpTimeSheet
 (
     override val sup: ErpDocument = null,
-    ErpTimeEntries: List[String] = List()
+    ErpTimeEntries: List[String] = null
 )
 extends
     Element

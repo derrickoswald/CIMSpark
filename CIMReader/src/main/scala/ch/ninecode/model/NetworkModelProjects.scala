@@ -219,7 +219,7 @@ extends
 final case class NetworkModelProject
 (
     override val sup: NetworkModelProjectComponent = null,
-    ContainedProject: List[String] = List()
+    ContainedProject: List[String] = null
 )
 extends
     Element
@@ -290,7 +290,7 @@ extends
 final case class NetworkModelProject2
 (
     override val sup: NetworkModelProjectComponent2 = null,
-    Child: List[String] = List()
+    Child: List[String] = null
 )
 extends
     Element
@@ -366,7 +366,7 @@ extends
 final case class NetworkModelProjectChange
 (
     override val sup: NetworkModelProjectComponent = null,
-    NetworkModelProjectChangeVersion: List[String] = List()
+    NetworkModelProjectChangeVersion: List[String] = null
 )
 extends
     Element
@@ -623,8 +623,8 @@ final case class NetworkModelProjectComponent
 (
     override val sup: IdentifiedObject = null,
     ContainingProject: String = null,
-    ProjectARelationships: List[String] = List(),
-    ProjectBRelationships: List[String] = List()
+    ProjectARelationships: List[String] = null,
+    ProjectBRelationships: List[String] = null
 )
 extends
     Element
@@ -940,8 +940,8 @@ final case class NetworkModelProjectStage
     changesetVersion: Int = 0,
     commissionedDate: String = null,
     plannedCommissionedDate: String = null,
-    ChangeSets: List[String] = List(),
-    DenpendecyDependingStage: List[String] = List(),
+    ChangeSets: List[String] = null,
+    DenpendecyDependingStage: List[String] = null,
     DependencyDependentOnStage: String = null
 )
 extends
@@ -1042,7 +1042,7 @@ extends
 final case class NetworkModelProjectState
 (
     override val sup: IdentifiedObject = null,
-    NetworkModelProjectChangeVersion: List[String] = List()
+    NetworkModelProjectChangeVersion: List[String] = null
 )
 extends
     Element

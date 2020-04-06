@@ -23,8 +23,8 @@ final case class Accumulator
 (
     override val sup: Measurement = null,
     maxValue: Int = 0,
-    AccumulatorValues: List[String] = List(),
-    LimitSets: List[String] = List()
+    AccumulatorValues: List[String] = null,
+    LimitSets: List[String] = null
 )
 extends
     Element
@@ -191,8 +191,8 @@ extends
 final case class AccumulatorLimitSet
 (
     override val sup: LimitSet = null,
-    Limits: List[String] = List(),
-    Measurements: List[String] = List()
+    Limits: List[String] = null,
+    Measurements: List[String] = null
 )
 extends
     Element
@@ -445,8 +445,8 @@ final case class Analog
     minValue: Double = 0.0,
     normalValue: Double = 0.0,
     positiveFlowIn: Boolean = false,
-    AnalogValues: List[String] = List(),
-    LimitSets: List[String] = List()
+    AnalogValues: List[String] = null,
+    LimitSets: List[String] = null
 )
 extends
     Element
@@ -713,8 +713,8 @@ extends
 final case class AnalogLimitSet
 (
     override val sup: LimitSet = null,
-    Limits: List[String] = List(),
-    Measurements: List[String] = List()
+    Limits: List[String] = null,
+    Measurements: List[String] = null
 )
 extends
     Element
@@ -798,8 +798,8 @@ final case class AnalogValue
 (
     override val sup: MeasurementValue = null,
     value: Double = 0.0,
-    AltGeneratingUnit: List[String] = List(),
-    AltTieMeas: List[String] = List(),
+    AltGeneratingUnit: List[String] = null,
+    AltTieMeas: List[String] = null,
     Analog: String = null,
     AnalogControl: String = null
 )
@@ -1121,7 +1121,7 @@ final case class Discrete
     maxValue: Int = 0,
     minValue: Int = 0,
     normalValue: Int = 0,
-    DiscreteValues: List[String] = List(),
+    DiscreteValues: List[String] = null,
     ValueAliasSet: String = null
 )
 extends
@@ -1306,7 +1306,7 @@ extends
 final case class IOPoint
 (
     override val sup: IdentifiedObject = null,
-    BilateralToIOPoint: List[String] = List(),
+    BilateralToIOPoint: List[String] = null,
     IOPointSource: String = null
 )
 extends
@@ -1389,7 +1389,7 @@ extends
 final case class Limit
 (
     override val sup: IdentifiedObject = null,
-    Procedures: List[String] = List()
+    Procedures: List[String] = null
 )
 extends
     Element
@@ -1568,13 +1568,13 @@ final case class Measurement
     unitSymbol: String = null,
     Asset: String = null,
     CalculationMethodHierarchy: String = null,
-    Locations: List[String] = List(),
+    Locations: List[String] = null,
     MeasurementAction: String = null,
-    MeasurementCalculatorInput: List[String] = List(),
-    PinMeasurement: List[String] = List(),
+    MeasurementCalculatorInput: List[String] = null,
+    PinMeasurement: List[String] = null,
     PowerSystemResource: String = null,
-    Procedures: List[String] = List(),
-    ProtectiveActionAdjustment: List[String] = List(),
+    Procedures: List[String] = null,
+    ProtectiveActionAdjustment: List[String] = null,
     Terminal: String = null
 )
 extends
@@ -1732,7 +1732,7 @@ final case class MeasurementValue
     ErpPerson: String = null,
     MeasurementValueQuality: String = null,
     MeasurementValueSource: String = null,
-    ProcedureDataSet: List[String] = List(),
+    ProcedureDataSet: List[String] = null,
     RemoteSource: String = null
 )
 extends
@@ -1920,7 +1920,7 @@ extends
 final case class MeasurementValueSource
 (
     override val sup: IdentifiedObject = null,
-    MeasurementValues: List[String] = List()
+    MeasurementValues: List[String] = null
 )
 extends
     Element
@@ -2289,7 +2289,7 @@ extends
 final case class StringMeasurement
 (
     override val sup: Measurement = null,
-    StringMeasurementValues: List[String] = List()
+    StringMeasurementValues: List[String] = null
 )
 extends
     Element
@@ -2449,10 +2449,10 @@ extends
 final case class ValueAliasSet
 (
     override val sup: IdentifiedObject = null,
-    Commands: List[String] = List(),
-    Discretes: List[String] = List(),
-    RaiseLowerCommands: List[String] = List(),
-    Values: List[String] = List()
+    Commands: List[String] = null,
+    Discretes: List[String] = null,
+    RaiseLowerCommands: List[String] = null,
+    Values: List[String] = null
 )
 extends
     Element

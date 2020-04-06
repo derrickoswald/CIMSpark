@@ -721,7 +721,7 @@ final case class HeatRecoveryBoiler
 (
     override val sup: FossilSteamSupply = null,
     steamSupplyRating2: Double = 0.0,
-    CombustionTurbines: List[String] = List()
+    CombustionTurbines: List[String] = null
 )
 extends
     Element
@@ -1121,7 +1121,7 @@ final case class PrimeMover
 (
     override val sup: PowerSystemResource = null,
     primeMoverRating: Double = 0.0,
-    SynchronousMachines: List[String] = List()
+    SynchronousMachines: List[String] = null
 )
 extends
     Element
@@ -1202,7 +1202,7 @@ final case class SteamSupply
 (
     override val sup: PowerSystemResource = null,
     steamSupplyRating: Double = 0.0,
-    SteamTurbines: List[String] = List()
+    SteamTurbines: List[String] = null
 )
 extends
     Element
@@ -1305,7 +1305,7 @@ final case class SteamTurbine
     shaft2PowerLP1: Double = 0.0,
     shaft2PowerLP2: Double = 0.0,
     steamChestTC: Double = 0.0,
-    SteamSupplys: List[String] = List()
+    SteamSupplys: List[String] = null
 )
 extends
     Element

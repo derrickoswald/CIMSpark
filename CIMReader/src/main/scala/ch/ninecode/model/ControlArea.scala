@@ -208,9 +208,9 @@ final case class ControlArea
     netInterchange: Double = 0.0,
     pTolerance: Double = 0.0,
     `type`: String = null,
-    ControlAreaGeneratingUnit: List[String] = List(),
+    ControlAreaGeneratingUnit: List[String] = null,
     EnergyArea: String = null,
-    TieFlow: List[String] = List()
+    TieFlow: List[String] = null
 )
 extends
     Element
@@ -313,7 +313,7 @@ extends
 final case class ControlAreaGeneratingUnit
 (
     override val sup: IdentifiedObject = null,
-    AltGeneratingUnitMeas: List[String] = List(),
+    AltGeneratingUnitMeas: List[String] = null,
     ControlArea: String = null,
     GeneratingUnit: String = null
 )
@@ -405,7 +405,7 @@ final case class TieFlow
 (
     override val sup: IdentifiedObject = null,
     positiveFlowIn: Boolean = false,
-    AltTieMeas: List[String] = List(),
+    AltTieMeas: List[String] = null,
     ControlArea: String = null,
     Terminal: String = null
 )

@@ -903,7 +903,7 @@ extends
 final case class PowerTransformerInfo
 (
     override val sup: AssetInfo = null,
-    TransformerTankInfos: List[String] = List()
+    TransformerTankInfos: List[String] = null
 )
 extends
     Element
@@ -1000,7 +1000,7 @@ final case class ShortCircuitTest
     power: Double = 0.0,
     voltage: Double = 0.0,
     EnergisedEnd: String = null,
-    GroundedEnds: List[String] = List()
+    GroundedEnds: List[String] = null
 )
 extends
     Element
@@ -1619,13 +1619,13 @@ final case class TransformerEndInfo
     ratedU: Double = 0.0,
     shortTermS: Double = 0.0,
     CoreAdmittance: String = null,
-    EnergisedEndNoLoadTests: List[String] = List(),
-    EnergisedEndOpenCircuitTests: List[String] = List(),
-    EnergisedEndShortCircuitTests: List[String] = List(),
-    FromMeshImpedances: List[String] = List(),
-    GroundedEndShortCircuitTests: List[String] = List(),
-    OpenEndOpenCircuitTests: List[String] = List(),
-    ToMeshImpedances: List[String] = List(),
+    EnergisedEndNoLoadTests: List[String] = null,
+    EnergisedEndOpenCircuitTests: List[String] = null,
+    EnergisedEndShortCircuitTests: List[String] = null,
+    FromMeshImpedances: List[String] = null,
+    GroundedEndShortCircuitTests: List[String] = null,
+    OpenEndOpenCircuitTests: List[String] = null,
+    ToMeshImpedances: List[String] = null,
     TransformerStarImpedance: String = null,
     TransformerTankInfo: String = null
 )
@@ -1786,7 +1786,7 @@ final case class TransformerTankInfo
 (
     override val sup: AssetInfo = null,
     PowerTransformerInfo: String = null,
-    TransformerEndInfos: List[String] = List()
+    TransformerEndInfos: List[String] = null
 )
 extends
     Element
@@ -1944,8 +1944,8 @@ extends
 final case class WireAssemblyInfo
 (
     override val sup: AssetInfo = null,
-    PerLengthLineParameter: List[String] = List(),
-    WirePhaseInfo: List[String] = List()
+    PerLengthLineParameter: List[String] = null,
+    WirePhaseInfo: List[String] = null
 )
 extends
     Element
@@ -2055,7 +2055,7 @@ final case class WireInfo
     ratedCurrent: Double = 0.0,
     sizeDescription: String = null,
     strandCount: Int = 0,
-    WirePhaseInfo: List[String] = List()
+    WirePhaseInfo: List[String] = null
 )
 extends
     Element
@@ -2290,7 +2290,7 @@ final case class WirePosition
     override val sup: IdentifiedObject = null,
     xCoord: Double = 0.0,
     yCoord: Double = 0.0,
-    WirePhaseInfo: List[String] = List(),
+    WirePhaseInfo: List[String] = null,
     WireSpacingInfo: String = null
 )
 extends
@@ -2393,8 +2393,8 @@ final case class WireSpacing
     phaseWireSpacing: Double = 0.0,
     usage: String = null,
     DuctBank: String = null,
-    Structures: List[String] = List(),
-    WirePositions: List[String] = List()
+    Structures: List[String] = null,
+    WirePositions: List[String] = null
 )
 extends
     Element

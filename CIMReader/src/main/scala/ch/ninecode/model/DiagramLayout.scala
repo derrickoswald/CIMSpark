@@ -32,7 +32,7 @@ final case class Diagram
     x2InitialView: Double = 0.0,
     y1InitialView: Double = 0.0,
     y2InitialView: Double = 0.0,
-    DiagramElements: List[String] = List(),
+    DiagramElements: List[String] = null,
     DiagramStyle: String = null
 )
 extends
@@ -161,10 +161,10 @@ final case class DiagramObject
     offsetY: Double = 0.0,
     rotation: Double = 0.0,
     Diagram: String = null,
-    DiagramObjectPoints: List[String] = List(),
+    DiagramObjectPoints: List[String] = null,
     DiagramObjectStyle: String = null,
     IdentifiedObject_attr: String = null,
-    VisibilityLayers: List[String] = List()
+    VisibilityLayers: List[String] = null
 )
 extends
     Element
@@ -280,7 +280,7 @@ extends
 final case class DiagramObjectGluePoint
 (
     override val sup: BasicElement = null,
-    DiagramObjectPoints: List[String] = List()
+    DiagramObjectPoints: List[String] = null
 )
 extends
     Element
@@ -464,7 +464,7 @@ extends
 final case class DiagramObjectStyle
 (
     override val sup: IdentifiedObject = null,
-    StyledObjects: List[String] = List()
+    StyledObjects: List[String] = null
 )
 extends
     Element
@@ -540,7 +540,7 @@ extends
 final case class DiagramStyle
 (
     override val sup: IdentifiedObject = null,
-    Diagram: List[String] = List()
+    Diagram: List[String] = null
 )
 extends
     Element
@@ -692,7 +692,7 @@ final case class VisibilityLayer
 (
     override val sup: IdentifiedObject = null,
     drawingOrder: Int = 0,
-    VisibleObjects: List[String] = List()
+    VisibleObjects: List[String] = null
 )
 extends
     Element

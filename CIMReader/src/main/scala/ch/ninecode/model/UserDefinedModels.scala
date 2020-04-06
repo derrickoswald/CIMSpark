@@ -28,7 +28,7 @@ final case class AsynchronousMachineUserDefined
 (
     override val sup: AsynchronousMachineDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -116,7 +116,7 @@ final case class CSCUserDefined
 (
     override val sup: CSCDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -204,7 +204,7 @@ final case class DiscontinuousExcitationControlUserDefined
 (
     override val sup: DiscontinuousExcitationControlDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -292,7 +292,7 @@ final case class ExcitationSystemUserDefined
 (
     override val sup: ExcitationSystemDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -380,7 +380,7 @@ final case class LoadUserDefined
 (
     override val sup: LoadDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -468,7 +468,7 @@ final case class MechanicalLoadUserDefined
 (
     override val sup: MechanicalLoadDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -556,7 +556,7 @@ final case class OverexcitationLimiterUserDefined
 (
     override val sup: OverexcitationLimiterDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -644,7 +644,7 @@ final case class PFVArControllerType1UserDefined
 (
     override val sup: PFVArControllerType1Dynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -732,7 +732,7 @@ final case class PFVArControllerType2UserDefined
 (
     override val sup: PFVArControllerType2Dynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -820,7 +820,7 @@ final case class PowerSystemStabilizerUserDefined
 (
     override val sup: PowerSystemStabilizerDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1157,7 +1157,7 @@ final case class SVCUserDefined
 (
     override val sup: StaticVarCompensatorDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1245,7 +1245,7 @@ final case class SynchronousMachineUserDefined
 (
     override val sup: SynchronousMachineDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1333,7 +1333,7 @@ final case class TurbineGovernorUserDefined
 (
     override val sup: TurbineGovernorDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1421,7 +1421,7 @@ final case class TurbineLoadControllerUserDefined
 (
     override val sup: TurbineLoadControllerDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1509,7 +1509,7 @@ final case class UnderexcitationLimiterUserDefined
 (
     override val sup: UnderexcitationLimiterDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1597,7 +1597,7 @@ final case class VSCUserDefined
 (
     override val sup: VSCDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1685,7 +1685,7 @@ final case class VoltageAdjusterUserDefined
 (
     override val sup: VoltageAdjusterDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1773,7 +1773,7 @@ final case class VoltageCompensatorUserDefined
 (
     override val sup: VoltageCompensatorDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1861,7 +1861,7 @@ final case class WindPlantUserDefined
 (
     override val sup: WindPlantDynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -1949,7 +1949,7 @@ final case class WindType1or2UserDefined
 (
     override val sup: WindTurbineType1or2Dynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element
@@ -2037,7 +2037,7 @@ final case class WindType3or4UserDefined
 (
     override val sup: WindTurbineType3or4Dynamics = null,
     proprietary: Boolean = false,
-    ProprietaryParameterDynamics: List[String] = List()
+    ProprietaryParameterDynamics: List[String] = null
 )
 extends
     Element

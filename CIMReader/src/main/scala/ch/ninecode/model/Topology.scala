@@ -28,7 +28,7 @@ final case class BusNameMarker
     override val sup: IdentifiedObject = null,
     priority: Int = 0,
     ReportingGroup: String = null,
-    Terminal: List[String] = List(),
+    Terminal: List[String] = null,
     TopologicalNode: String = null
 )
 extends
@@ -126,7 +126,7 @@ final case class TopologicalIsland
 (
     override val sup: IdentifiedObject = null,
     AngleRefTopologicalNode: String = null,
-    TopologicalNodes: List[String] = List()
+    TopologicalNodes: List[String] = null
 )
 extends
     Element
@@ -231,13 +231,13 @@ final case class TopologicalNode
     qInjection: Double = 0.0,
     AngleRefTopologicalIsland: String = null,
     BaseVoltage: String = null,
-    BusNameMarker: List[String] = List(),
+    BusNameMarker: List[String] = null,
     ConnectivityNodeContainer: String = null,
-    ConnectivityNodes: List[String] = List(),
+    ConnectivityNodes: List[String] = null,
     ReportingGroup: String = null,
-    SvInjection: List[String] = List(),
-    SvVoltage: List[String] = List(),
-    Terminal: List[String] = List(),
+    SvInjection: List[String] = null,
+    SvVoltage: List[String] = null,
+    Terminal: List[String] = null,
     TopologicalIsland: String = null
 )
 extends

@@ -21,7 +21,7 @@ final case class Contingency
 (
     override val sup: IdentifiedObject = null,
     mustStudy: Boolean = false,
-    ContingencyElement: List[String] = List()
+    ContingencyElement: List[String] = null
 )
 extends
     Element

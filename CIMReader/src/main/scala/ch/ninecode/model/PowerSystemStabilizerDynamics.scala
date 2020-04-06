@@ -21,7 +21,7 @@ final case class PowerSystemStabilizerDynamics
 (
     override val sup: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
-    RemoteInputSignal: List[String] = List()
+    RemoteInputSignal: List[String] = null
 )
 extends
     Element

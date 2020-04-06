@@ -25,11 +25,11 @@ final case class AdjacentCASet
 (
     override val sup: IdentifiedObject = null,
     lossPercentage_1: Double = 0.0,
-    BidSelfSched: List[String] = List(),
+    BidSelfSched: List[String] = null,
     HostControlArea: String = null,
     RTO: String = null,
-    RegisteredResource: List[String] = List(),
-    SubControlArea: List[String] = List()
+    RegisteredResource: List[String] = null,
+    SubControlArea: List[String] = null
 )
 extends
     Element
@@ -142,13 +142,13 @@ final case class AggregateNode
     override val sup: IdentifiedObject = null,
     anodeType: String = null,
     qualifASOrder: Int = 0,
-    AreaLoadCurve: List[String] = List(),
-    CnodeDistributionFactor: List[String] = List(),
-    Instruction: List[String] = List(),
-    Pnode: List[String] = List(),
+    AreaLoadCurve: List[String] = null,
+    CnodeDistributionFactor: List[String] = null,
+    Instruction: List[String] = null,
+    Pnode: List[String] = null,
     RTO: String = null,
-    RegisteredResource: List[String] = List(),
-    SubControlArea: List[String] = List()
+    RegisteredResource: List[String] = null,
+    SubControlArea: List[String] = null
 )
 extends
     Element
@@ -278,14 +278,14 @@ final case class AggregatedPnode
     override val sup: Pnode = null,
     apnodeType: String = null,
     participationCategory: String = null,
-    GenDistributionFactor: List[String] = List(),
-    LoadDistributionFactor: List[String] = List(),
-    MPMTestResults: List[String] = List(),
-    MPMTestThreshold: List[String] = List(),
-    MktCombinedCyclePlant: List[String] = List(),
-    PnodeDistributionFactor: List[String] = List(),
-    TACArea: List[String] = List(),
-    TradingHubValues: List[String] = List()
+    GenDistributionFactor: List[String] = null,
+    LoadDistributionFactor: List[String] = null,
+    MPMTestResults: List[String] = null,
+    MPMTestThreshold: List[String] = null,
+    MktCombinedCyclePlant: List[String] = null,
+    PnodeDistributionFactor: List[String] = null,
+    TACArea: List[String] = null,
+    TradingHubValues: List[String] = null
 )
 extends
     Element
@@ -633,12 +633,12 @@ final case class CombinedCycleConfiguration
 (
     override val sup: RegisteredGenerator = null,
     primaryConfiguration: Boolean = false,
-    CombinedCycleConfigurationMember: List[String] = List(),
+    CombinedCycleConfigurationMember: List[String] = null,
     CombinedCycleLogicalConfiguration: String = null,
-    FromTransitionState: List[String] = List(),
+    FromTransitionState: List[String] = null,
     ShutdownFlag: Boolean = false,
     StartupFlag: Boolean = false,
-    ToTransitionState: List[String] = List()
+    ToTransitionState: List[String] = null
 )
 extends
     Element
@@ -840,7 +840,7 @@ extends
 final case class CombinedCycleLogicalConfiguration
 (
     override val sup: IdentifiedObject = null,
-    CombinedCycleConfiguration: List[String] = List(),
+    CombinedCycleConfiguration: List[String] = null,
     MktCombinedCyclePlant: String = null
 )
 extends
@@ -1010,7 +1010,7 @@ extends
 final case class CongestionArea
 (
     override val sup: AggregatedPnode = null,
-    IndividualPnode: List[String] = List()
+    IndividualPnode: List[String] = null
 )
 extends
     Element
@@ -1251,16 +1251,16 @@ final case class ContractRight
     physicalRightsDAM: String = null,
     physicalRightsRTM: String = null,
     startupLeadTime: Int = 0,
-    BidSelfSched: List[String] = List(),
+    BidSelfSched: List[String] = null,
     Chain_TransmissionRightChain: String = null,
-    ContractDistributionFactor: List[String] = List(),
+    ContractDistributionFactor: List[String] = null,
     Ind_TransmissionRightChain: String = null,
     RTO: String = null,
     SchedulingCoordinator: String = null,
-    SubstitutionResourceList: List[String] = List(),
-    TREntitlement: List[String] = List(),
+    SubstitutionResourceList: List[String] = null,
+    TREntitlement: List[String] = null,
     TRType: String = null,
-    TransmissionInterfaceEntitlement: List[String] = List()
+    TransmissionInterfaceEntitlement: List[String] = null
 )
 extends
     Element
@@ -1469,8 +1469,8 @@ final case class ControlAreaDesignation
     override val sup: BasicElement = null,
     attained: String = null,
     `native`: String = null,
-    RegisteredResource: List[String] = List(),
-    SubControlArea: List[String] = List()
+    RegisteredResource: List[String] = null,
+    SubControlArea: List[String] = null
 )
 extends
     Element
@@ -1585,26 +1585,26 @@ final case class Flowgate
     exportMWRating: Double = 0.0,
     importMWRating: Double = 0.0,
     CongestionRevenueRight: String = null,
-    ConstraintResults: List[String] = List(),
-    ContractDistributionFactor: List[String] = List(),
-    FTRs: List[String] = List(),
-    FlowgateRelief: List[String] = List(),
-    FlowgateValue: List[String] = List(),
+    ConstraintResults: List[String] = null,
+    ContractDistributionFactor: List[String] = null,
+    FTRs: List[String] = null,
+    FlowgateRelief: List[String] = null,
+    FlowgateValue: List[String] = null,
     From_SubControlArea: String = null,
-    GeneratingUnitDynamicValues: List[String] = List(),
+    GeneratingUnitDynamicValues: List[String] = null,
     GenericConstraints: String = null,
     HostControlArea: String = null,
-    InterTie: List[String] = List(),
-    InterTieResults: List[String] = List(),
-    MktLine: List[String] = List(),
-    MktPowerTransformer: List[String] = List(),
-    MktTerminal: List[String] = List(),
-    RegisteredInterTie: List[String] = List(),
+    InterTie: List[String] = null,
+    InterTieResults: List[String] = null,
+    MktLine: List[String] = null,
+    MktPowerTransformer: List[String] = null,
+    MktTerminal: List[String] = null,
+    RegisteredInterTie: List[String] = null,
     SecurityConstraints: String = null,
     To_SubControlArea: String = null,
-    TranmissionRightEntitlement: List[String] = List(),
-    TransmissionCapacity: List[String] = List(),
-    ViolationLimits: List[String] = List()
+    TranmissionRightEntitlement: List[String] = null,
+    TransmissionCapacity: List[String] = null,
+    ViolationLimits: List[String] = null
 )
 extends
     Element
@@ -2092,7 +2092,7 @@ final case class ForbiddenRegion
     crossingCost: Double = 0.0,
     highMW: Double = 0.0,
     lowMW: Double = 0.0,
-    RegisteredResource: List[String] = List()
+    RegisteredResource: List[String] = null
 )
 extends
     Element
@@ -2343,7 +2343,7 @@ final case class FuelRegion
     GasPrice: String = null,
     OilPrice: String = null,
     RTO: String = null,
-    RegisteredGenerator: List[String] = List()
+    RegisteredGenerator: List[String] = null
 )
 extends
     Element
@@ -2542,16 +2542,16 @@ final case class HostControlArea
     freqSetPoint: Double = 0.0,
     frequencyBiasFactor: Double = 0.0,
     AdjacentCASet: String = null,
-    BidSelfSched: List[String] = List(),
-    CnodeDistributionFactor: List[String] = List(),
+    BidSelfSched: List[String] = null,
+    CnodeDistributionFactor: List[String] = null,
     Controls: String = null,
-    Flowgate: List[String] = List(),
-    LossClearingResults: List[String] = List(),
+    Flowgate: List[String] = null,
+    LossClearingResults: List[String] = null,
     RTO: String = null,
-    RegisteredResource: List[String] = List(),
-    SubControlAreas: List[String] = List(),
-    SysLoadDistribuFactor: List[String] = List(),
-    TransferInterface: List[String] = List()
+    RegisteredResource: List[String] = null,
+    SubControlAreas: List[String] = null,
+    SysLoadDistribuFactor: List[String] = null,
+    TransferInterface: List[String] = null
 )
 extends
     Element
@@ -2693,11 +2693,11 @@ extends
 final case class IndividualPnode
 (
     override val sup: Pnode = null,
-    CongestionArea: List[String] = List(),
+    CongestionArea: List[String] = null,
     GenDistributionFactor: String = null,
     LoadDistributionFactor: String = null,
     MktConnectivityNode: String = null,
-    PnodeDistributionFactor: List[String] = List()
+    PnodeDistributionFactor: List[String] = null
 )
 extends
     Element
@@ -2947,7 +2947,7 @@ final case class LocalReliabilityArea
 (
     override val sup: IdentifiedObject = null,
     RTO: String = null,
-    RegisteredGenerator: List[String] = List()
+    RegisteredGenerator: List[String] = null
 )
 extends
     Element
@@ -3045,9 +3045,9 @@ final case class MPMTestCategory
     purposeFlag: String = null,
     testIdentifier: String = null,
     testMethod: String = null,
-    MPMResourceStatus: List[String] = List(),
-    MPMTestResults: List[String] = List(),
-    MPMTestThreshold: List[String] = List()
+    MPMResourceStatus: List[String] = null,
+    MPMTestResults: List[String] = null,
+    MPMTestThreshold: List[String] = null
 )
 extends
     Element
@@ -3152,9 +3152,9 @@ final case class MPMTestThreshold
     marketType: String = null,
     percent: Double = 0.0,
     price: Double = 0.0,
-    AggregatedPnode: List[String] = List(),
+    AggregatedPnode: List[String] = null,
     MPMTestCategory: String = null,
-    RegisteredResource: List[String] = List()
+    RegisteredResource: List[String] = null
 )
 extends
     Element
@@ -3267,7 +3267,7 @@ final case class MSSAggregation
     ignoreMarginalLosses: String = null,
     loadFollowing: String = null,
     rucProcurement: String = null,
-    MeteredSubSystem: List[String] = List(),
+    MeteredSubSystem: List[String] = null,
     RTO: String = null
 )
 extends
@@ -3498,8 +3498,8 @@ final case class MarketPerson
     status: String = null,
     suffix: String = null,
     userID: String = null,
-    MarketParticipant: List[String] = List(),
-    MarketSkills: List[String] = List()
+    MarketParticipant: List[String] = null,
+    MarketSkills: List[String] = null
 )
 extends
     Element
@@ -3650,7 +3650,7 @@ final case class MarketQualificationRequirement
     qualificationID: String = null,
     status: Int = 0,
     statusType: String = null,
-    MarketSkills: List[String] = List()
+    MarketSkills: List[String] = null
 )
 extends
     Element
@@ -3749,9 +3749,9 @@ extends
 final case class MarketRegion
 (
     override val sup: AggregateNode = null,
-    ExPostMarketRegionResults: List[String] = List(),
-    MarketRegionResults: List[String] = List(),
-    ReserveDemandCurve: List[String] = List()
+    ExPostMarketRegionResults: List[String] = null,
+    MarketRegionResults: List[String] = null,
+    ReserveDemandCurve: List[String] = null
 )
 extends
     Element
@@ -3843,7 +3843,7 @@ final case class MarketSkill
     effectiveDateTime: String = null,
     level: String = null,
     MarketPerson: String = null,
-    MarketQualificationRequirements: List[String] = List()
+    MarketQualificationRequirements: List[String] = null
 )
 extends
     Element
@@ -3998,7 +3998,7 @@ final case class MeteredSubSystem
 (
     override val sup: IdentifiedObject = null,
     MSSAggregation: String = null,
-    MSSZone: List[String] = List()
+    MSSZone: List[String] = null
 )
 extends
     Element
@@ -4082,7 +4082,7 @@ final case class MktCombinedCyclePlant
 (
     override val sup: CombinedCyclePlant = null,
     AggregatedPnode: String = null,
-    CombinedCycleLogicalConfiguration: List[String] = List()
+    CombinedCycleLogicalConfiguration: List[String] = null
 )
 extends
     Element
@@ -4235,8 +4235,8 @@ final case class MktContingency
     ltcControlFlag: Boolean = false,
     participationFactorSet: String = null,
     screeningFlag: Boolean = false,
-    ConstraintResults: List[String] = List(),
-    ContingencyConstraintLimit: List[String] = List(),
+    ConstraintResults: List[String] = null,
+    ContingencyConstraintLimit: List[String] = null,
     TransferInterfaceSolutionA: String = null,
     TransferInterfaceSolutionB: String = null
 )
@@ -4426,7 +4426,7 @@ extends
 final case class MktThermalGeneratingUnit
 (
     override val sup: ThermalGeneratingUnit = null,
-    CombinedCycleConfigurationMember: List[String] = List()
+    CombinedCycleConfigurationMember: List[String] = null
 )
 extends
     Element
@@ -4773,21 +4773,21 @@ final case class Pnode
 (
     override val sup: IdentifiedObject = null,
     isPublic: Boolean = false,
-    AggregateNode: List[String] = List(),
-    CommodityDefinition: List[String] = List(),
-    DeliveryTransactionBids: List[String] = List(),
-    ExPostResults: List[String] = List(),
-    FTRs: List[String] = List(),
-    MktMeasurement: List[String] = List(),
-    OrgPnodeAllocation: List[String] = List(),
-    PnodeResults: List[String] = List(),
+    AggregateNode: List[String] = null,
+    CommodityDefinition: List[String] = null,
+    DeliveryTransactionBids: List[String] = null,
+    ExPostResults: List[String] = null,
+    FTRs: List[String] = null,
+    MktMeasurement: List[String] = null,
+    OrgPnodeAllocation: List[String] = null,
+    PnodeResults: List[String] = null,
     RTO: String = null,
-    ReceiptTransactionBids: List[String] = List(),
-    RegisteredResources: List[String] = List(),
-    SinkCRRSegment: List[String] = List(),
-    SourceCRRSegment: List[String] = List(),
+    ReceiptTransactionBids: List[String] = null,
+    RegisteredResources: List[String] = null,
+    SinkCRRSegment: List[String] = null,
+    SourceCRRSegment: List[String] = null,
     SubControlArea: String = null,
-    Trade: List[String] = List()
+    Trade: List[String] = null
 )
 extends
     Element
@@ -5436,22 +5436,22 @@ extends
 final case class RTO
 (
     override val sup: MarketParticipant = null,
-    AdjacentCASet: List[String] = List(),
-    AggregateNode: List[String] = List(),
-    CommodityDefinition: List[String] = List(),
-    EnergyMarkets: List[String] = List(),
-    FuelRegion: List[String] = List(),
-    HostControlArea: List[String] = List(),
-    LocalReliabilityArea: List[String] = List(),
-    MSSAggregation: List[String] = List(),
-    MktConnectivityNode: List[String] = List(),
-    Pnodes: List[String] = List(),
-    ResourceGroupReqs: List[String] = List(),
-    SecurityConstraints: List[String] = List(),
-    SecurityConstraintsLinear: List[String] = List(),
-    SubControlArea: List[String] = List(),
-    TransmissionContractRight: List[String] = List(),
-    TransmissionRightChain: List[String] = List()
+    AdjacentCASet: List[String] = null,
+    AggregateNode: List[String] = null,
+    CommodityDefinition: List[String] = null,
+    EnergyMarkets: List[String] = null,
+    FuelRegion: List[String] = null,
+    HostControlArea: List[String] = null,
+    LocalReliabilityArea: List[String] = null,
+    MSSAggregation: List[String] = null,
+    MktConnectivityNode: List[String] = null,
+    Pnodes: List[String] = null,
+    ResourceGroupReqs: List[String] = null,
+    SecurityConstraints: List[String] = null,
+    SecurityConstraintsLinear: List[String] = null,
+    SubControlArea: List[String] = null,
+    TransmissionContractRight: List[String] = null,
+    TransmissionRightChain: List[String] = null
 )
 extends
     Element
@@ -5602,7 +5602,7 @@ extends
 final case class RUCZone
 (
     override val sup: AggregateNode = null,
-    LossClearingResults: List[String] = List()
+    LossClearingResults: List[String] = null
 )
 extends
     Element
@@ -5680,8 +5680,8 @@ final case class RegisteredDistributedResource
 (
     override val sup: RegisteredResource = null,
     distributedResourceType: String = null,
-    ResourcePerformanceRatings: List[String] = List(),
-    ResponseMethods: List[String] = List()
+    ResourcePerformanceRatings: List[String] = null,
+    ResponseMethods: List[String] = null
 )
 extends
     Element
@@ -5904,11 +5904,11 @@ final case class RegisteredGenerator
     unitType: String = null,
     useLimitFlag: String = null,
     variableEnergyResource: String = null,
-    AuxillaryObject: List[String] = List(),
+    AuxillaryObject: List[String] = null,
     EnergyPriceIndex: String = null,
     FuelCostCurve: String = null,
     FuelRegion: String = null,
-    GeneratingBids: List[String] = List(),
+    GeneratingBids: List[String] = null,
     LocalReliabilityArea: String = null,
     MktHeatRateCurve: String = null,
     RMNRFlag: String = null,
@@ -5921,12 +5921,12 @@ final case class RegisteredGenerator
     RMRStartUpTimeCurve: String = null,
     RMTFlag: String = null,
     RegulatingLimit: String = null,
-    StartUpCostCurves: List[String] = List(),
+    StartUpCostCurves: List[String] = null,
     StartUpEnergyCurve: String = null,
     StartUpFuelCurve: String = null,
     StartUpTimeCurve: String = null,
-    Trade: List[String] = List(),
-    UnitInitialConditions: List[String] = List()
+    Trade: List[String] = null,
+    UnitInitialConditions: List[String] = null
 )
 extends
     Element
@@ -6332,9 +6332,9 @@ final case class RegisteredInterTie
     minHourlyBlockLimit: Int = 0,
     Flowgate: String = null,
     InterTieBid: String = null,
-    InterTieDispatchResponse: List[String] = List(),
-    InterchangeSchedule: List[String] = List(),
-    WheelingCounterParty: List[String] = List()
+    InterTieDispatchResponse: List[String] = null,
+    InterchangeSchedule: List[String] = null,
+    WheelingCounterParty: List[String] = null
 )
 extends
     Element
@@ -6461,8 +6461,8 @@ final case class RegisteredLoad
     blockLoadTransfer: Boolean = false,
     dynamicallyScheduledLoadResource: Boolean = false,
     dynamicallyScheduledQualification: Boolean = false,
-    AuxillaryObject: List[String] = List(),
-    LoadBids: List[String] = List()
+    AuxillaryObject: List[String] = null,
+    LoadBids: List[String] = null
 )
 extends
     Element
@@ -7027,7 +7027,7 @@ final case class ResourceVerifiableCosts
     MktHeatRateCurve: String = null,
     RegisteredResource: String = null,
     ResourceOperationMaintenanceCost: String = null,
-    ResourceStartupCost: List[String] = List()
+    ResourceStartupCost: List[String] = null
 )
 extends
     Element
@@ -7236,13 +7236,13 @@ final case class SchedulingCoordinator
     lastModified: String = null,
     qualificationStatus: String = null,
     scid: String = null,
-    FromSCTrade: List[String] = List(),
+    FromSCTrade: List[String] = null,
     LoadRatio: String = null,
     MarketParticipant_attr: String = null,
-    SubmitFromSCTrade: List[String] = List(),
-    SubmitToSCTrade: List[String] = List(),
-    ToSCTrade: List[String] = List(),
-    TransmissionContractRight: List[String] = List()
+    SubmitFromSCTrade: List[String] = null,
+    SubmitToSCTrade: List[String] = null,
+    ToSCTrade: List[String] = null,
+    TransmissionContractRight: List[String] = null
 )
 extends
     Element
@@ -7448,8 +7448,8 @@ final case class SchedulingPoint
 (
     override val sup: IdentifiedObject = null,
     Flowgate: String = null,
-    InterchangeSchedule: List[String] = List(),
-    RegisteredResource: List[String] = List()
+    InterchangeSchedule: List[String] = null,
+    RegisteredResource: List[String] = null
 )
 extends
     Element
@@ -7726,27 +7726,27 @@ final case class SubControlArea
     minSelfSchedMW: Double = 0.0,
     quadraticCoefficient: Double = 0.0,
     AdjacentCASet: String = null,
-    AggregateNode: List[String] = List(),
+    AggregateNode: List[String] = null,
     AreaReserveSpecification: String = null,
-    BidSelfSched: List[String] = List(),
-    CnodeDistributionFactor: List[String] = List(),
-    ControlAreaDesignation: List[String] = List(),
-    ExPostLossResults: List[String] = List(),
-    Export_EnergyTransactions: List[String] = List(),
-    From_Flowgate: List[String] = List(),
-    GeneralClearingResults: List[String] = List(),
+    BidSelfSched: List[String] = null,
+    CnodeDistributionFactor: List[String] = null,
+    ControlAreaDesignation: List[String] = null,
+    ExPostLossResults: List[String] = null,
+    Export_EnergyTransactions: List[String] = null,
+    From_Flowgate: List[String] = null,
+    GeneralClearingResults: List[String] = null,
     HostControlArea: String = null,
-    Import_EnergyTransactions: List[String] = List(),
-    InadvertentAccount: List[String] = List(),
-    LossClearingResults: List[String] = List(),
-    Pnode: List[String] = List(),
+    Import_EnergyTransactions: List[String] = null,
+    InadvertentAccount: List[String] = null,
+    LossClearingResults: List[String] = null,
+    Pnode: List[String] = null,
     RTO: String = null,
-    Receive_DynamicSchedules: List[String] = List(),
-    RegisteredResource: List[String] = List(),
-    Send_DynamicSchedules: List[String] = List(),
-    SideA_TieLines: List[String] = List(),
-    SideB_TieLines: List[String] = List(),
-    To_Flowgate: List[String] = List()
+    Receive_DynamicSchedules: List[String] = null,
+    RegisteredResource: List[String] = null,
+    Send_DynamicSchedules: List[String] = null,
+    SideA_TieLines: List[String] = null,
+    SideB_TieLines: List[String] = null,
+    To_Flowgate: List[String] = null
 )
 extends
     Element
@@ -8057,8 +8057,8 @@ extends
 final case class TACArea
 (
     override val sup: IdentifiedObject = null,
-    AggregatedPnode: List[String] = List(),
-    AreaLoadCurve: List[String] = List()
+    AggregatedPnode: List[String] = null,
+    AreaLoadCurve: List[String] = null
 )
 extends
     Element
@@ -8142,7 +8142,7 @@ final case class TransmissionRightChain
 (
     override val sup: IdentifiedObject = null,
     Chain_ContractRight: String = null,
-    Ind_ContractRight: List[String] = List(),
+    Ind_ContractRight: List[String] = null,
     RTO: String = null
 )
 extends
@@ -8228,7 +8228,7 @@ extends
 final case class WheelingCounterParty
 (
     override val sup: IdentifiedObject = null,
-    RegisteredInterTie: List[String] = List()
+    RegisteredInterTie: List[String] = null
 )
 extends
     Element
