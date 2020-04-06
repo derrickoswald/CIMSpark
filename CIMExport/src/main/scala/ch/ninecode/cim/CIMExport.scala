@@ -176,31 +176,51 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         (id, transformer, "Feature", geometry, properties)
     }
 
-    def doctor_stop_nodes (elements: Iterable[Element], stopNodes: Set[Item]): Iterable[Element] =
+    def removeTopology (elements: Iterable[Element]): Iterable[Element] =
     {
-        // null out the stop node island reference
-        elements.map
+        elements.flatMap
         {
-            case node: TopologicalNode =>
-                if (stopNodes.exists (_._1 == node.id))
-                    TopologicalNode (
-                        node.IdentifiedObject,
-                        node.pInjection,
-                        node.qInjection,
-                        node.AngleRefTopologicalIsland,
-                        node.BaseVoltage,
-                        node.BusNameMarker,
-                        node.ConnectivityNodeContainer,
-                        node.ConnectivityNodes,
-                        node.ReportingGroup,
-                        node.SvInjection,
-                        node.SvVoltage,
-                        node.Terminal,
-                        null // TopologicalIsland
+            case terminal: Terminal =>
+                Some (
+                    // since Element extends Row and Row defines copy(), terminal.copy (TopologicalNode = null) becomes:
+                    Terminal (
+                        terminal.ACDCTerminal,
+                        phases = terminal.phases,
+                        AuxiliaryEquipment = terminal.AuxiliaryEquipment,
+                        BranchGroupTerminal = terminal.BranchGroupTerminal,
+                        Bushing = terminal.Bushing,
+                        Circuit = terminal.Circuit,
+                        ConductingEquipment = terminal.ConductingEquipment,
+                        ConnectivityNode = terminal.ConnectivityNode,
+                        ConverterDCSides = terminal.ConverterDCSides,
+                        EquipmentFaults = terminal.EquipmentFaults,
+                        HasFirstMutualCoupling = terminal.HasFirstMutualCoupling,
+                        HasSecondMutualCoupling = terminal.HasSecondMutualCoupling,
+                        NormalHeadFeeder = terminal.NormalHeadFeeder,
+                        PinTerminal = terminal.PinTerminal,
+                        RegulatingControl = terminal.RegulatingControl,
+                        RemoteInputSignal = terminal.RemoteInputSignal,
+                        SvPowerFlow = terminal.SvPowerFlow,
+                        TieFlow = terminal.TieFlow,
+                        TopologicalNode = null, // null out node reference
+                        TransformerEnd = terminal.TransformerEnd
                     )
-                else
-                    node
-            case element => element
+                )
+
+            case node: ConnectivityNode =>
+                Some (
+                    ConnectivityNode (
+                        node.IdentifiedObject,
+                        ConnectivityNodeContainer = node.ConnectivityNodeContainer,
+                        Terminals = node.Terminals,
+                        TopologicalNode = null // null out node reference
+                    )
+                )
+
+            case node: TopologicalNode => None
+            case node: TopologicalIsland => None
+
+            case element => Some (element)
         }
     }
 
@@ -208,7 +228,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         options: ExportOptions,
         trafokreise: RDD[(Island, Iterable[Element])],
         labeled: RDD[(Island, Element)],
-        stopNodes: Set[Item]): Int =
+        stopTerminals: Set[Item]): Int =
     {
         val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
         if (schema.make)
@@ -233,7 +253,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 group =>
                 {
                     val (transformer, elements) = group
-                    val fixed_elements = doctor_stop_nodes (elements, stopNodes)
+                    val fixed_elements = removeTopology (elements)
                     log.info (s"exporting $transformer")
                     val (filesize, zipdata) = export_iterable_blob (fixed_elements, transformer)
                     (id, transformer, fixed_elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
@@ -413,7 +433,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Find the list of dependents that should be included for the given element.
      * @param relations the list of relation descriptions
-     * @param stop a set of ConnectivityNode and TopologicalNode mRID that will limit the dependency check
+     * @param stop a set of Terminal mRID that will limit the dependency check
      * @param element the element to check
      * @return the dependents as pairs of mRID ("if you include me, include him")
      */
@@ -440,12 +460,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                             if (relation.field == "TopologicalIsland")
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "TopologicalNode")
-                                if (stop.contains (mrid))
+                                if (stop.contains (e.id))
                                     None
                                 else
                                     List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "ConnectivityNode")
-                                if (stop.contains (mrid))
+                                if (stop.contains (e.id))
                                     None
                                 else
                                     List ((e.id, mrid), (mrid, e.id))
@@ -482,7 +502,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * Export related.
      *
      * @param what a PairRDD, the keys are mrid to check, and the values are the name we will save to
-     * @param stop a set of ConnectivityNode and Topological mRID that will limit the dependency check
+     * @param stop a set of Terminal mRID that will limit the dependency check
      * @return the number of related groups processed
      */
     def labelRelated (what: RDD[Item], stop: Set[Item] = Set ()): RDD[(Island, Element)] =
@@ -513,8 +533,20 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         }
         while (!todo.isEmpty)
 
-        // add stopping nodes
-        done = done :+ session.sparkContext.parallelize (stop.toSeq).keyBy (x => s"${x._1}${x._2}")
+        // add stopping connectivity nodes (ConnectivityNode referenced by stop Terminal)
+        val nodes: RDD[Item] = getOrElse[Terminal].flatMap (
+            terminal =>
+                {
+                    stop.find (_._1 == terminal.id) match
+                    {
+                        case Some (i: Item) =>
+                            Some ((terminal.ConnectivityNode, i._2))
+                        case _ =>
+                            None
+                    }
+                }
+        )
+        done = done :+ nodes.keyBy (x => s"${x._1}${x._2}")
 
         // reduce to n executors
         val n = session.sparkContext.getExecutorMemoryStatus.size
@@ -581,6 +613,15 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         total
     }
 
+    val voltages: Map[String, Double] = getOrElse[BaseVoltage]
+        .map (v => (v.id, v.nominalVoltage * 1000.0))
+        .collect
+        .toMap
+        .withDefaultValue (0.0)
+
+    // eliminate "230V" tranformers for public lighting
+    def n7 (v: String): Boolean = voltages (v) >= 400.0
+
     /**
      * Export every transformer service area.
      *
@@ -594,7 +635,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val node_by_island = getOrElse[TopologicalNode].map (z => (z.id, z.TopologicalIsland))
         val ends = getOrElse[PowerTransformerEnd]
         val transformers = ends
-            .filter (_.TransformerEnd.endNumber != 1)
+            .filter (end => end.TransformerEnd.endNumber != 1 && n7 (end.TransformerEnd.BaseVoltage))
             .map (x => (x.TransformerEnd.Terminal, x.PowerTransformer))
             .join (term_by_node).values
             .map (_.swap)
@@ -616,24 +657,11 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             .values
             .collect
             .toSet
-        val stopNodes: Set[Item] = getOrElse[Terminal]
-            .flatMap (
-                terminal =>
-                {
-                    stopTerminals.find (_._1 == terminal.id) match
-                    {
-                        case Some (item) => List ((terminal.ConnectivityNode, item._2), (terminal.TopologicalNode, item._2))
-                        case _ => List ()
-                    }
-                }
-            )
-            .collect
-            .toSet
-        val labeled = labelRelated (start, stopNodes)
+        val labeled = labelRelated (start, stopTerminals)
         val trafokreise = labeled.groupByKey
 
         val total = if (options.cassandra)
-            saveToCassandra (options, trafokreise, labeled, stopNodes)
+            saveToCassandra (options, trafokreise, labeled, stopTerminals)
         else
         {
             val dir = if (options.outputdir.endsWith ("/")) options.outputdir else s"${options.outputdir}/"
@@ -641,7 +669,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 group =>
                 {
                     val (transformer, elements) = group
-                    val fixed_elements = doctor_stop_nodes (elements, stopNodes)
+                    val fixed_elements = removeTopology (elements)
                     val filename = s"$dir$transformer.rdf"
                     log.info (s"exporting $filename")
                     export_iterable_file (fixed_elements, filename)
