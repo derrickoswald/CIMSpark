@@ -122,6 +122,9 @@ class CIMRelation (
     )
     extends
         Element
+    {
+        override def copy (): Row = { clone ().asInstanceOf[Row] }
+    }
 
     /**
      * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned

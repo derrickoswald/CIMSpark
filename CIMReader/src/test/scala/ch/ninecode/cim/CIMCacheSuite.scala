@@ -1,9 +1,9 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
 
 import scala.collection.mutable
+import scala.collection.JavaConversions.mapAsJavaMap
 
 import org.apache.spark.sql.SparkSession
 
@@ -31,12 +31,13 @@ class CIMCacheSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val cache = new File (s"${FILE_DEPOT}DemoData_cache")
-            cache.delete ()
-            val options = new util.HashMap[String, String] ()
-            options.put ("ch.ninecode.cim.cache", s"${FILE_DEPOT}DemoData_cache")
+            deleteRecursive (cache)
+            val options = Map[String, String] (
+                "ch.ninecode.cim.cache" -> s"${FILE_DEPOT}DemoData_cache")
             val elements = readFile (filename, options)
             val count = elements.count
             assert (cache.exists (), "cache created (%s elements)".format (count))
+            deleteRecursive (cache)
     }
 
     test ("use cache")
@@ -45,17 +46,17 @@ class CIMCacheSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val cache = new File (s"${FILE_DEPOT}DemoData_cache")
-            cache.delete ()
-            val options = new util.HashMap[String, String] ()
-            options.put ("ch.ninecode.cim.cache", s"${FILE_DEPOT}DemoData_cache")
+            deleteRecursive (cache)
+            val options = Map[String, String] (
+                "ch.ninecode.cim.cache" -> s"${FILE_DEPOT}DemoData_cache")
             val elements1 = readFile (filename, options)
             val count1 = elements1.count
             val counts = new mutable.HashMap[String,Long] ()
             spark.sparkContext.getPersistentRDDs.foreach (x => counts (x._2.name) = x._2.count)
 
             // nothing up my sleeve
-            elements1.unpersist (true)
-            spark.sparkContext.getPersistentRDDs.foreach (x => { x._2.unpersist (true); x._2.name = null })
+            val _ = elements1.unpersist (true)
+            spark.sparkContext.getPersistentRDDs.foreach (x => { val _ = x._2.unpersist (true); x._2.name = null })
 
             assert (cache.exists (), "cache created")
             val elements2 = readFile (filename, options)
@@ -63,5 +64,6 @@ class CIMCacheSuite extends ch.ninecode.SparkSuite
             assert (count1 == count2, "cache used")
 
             spark.sparkContext.getPersistentRDDs.foreach (x => assert (counts (x._2.name) == x._2.count, "RDD[%s] count".format (x._2.name)))
+            deleteRecursive (cache)
     }
 }

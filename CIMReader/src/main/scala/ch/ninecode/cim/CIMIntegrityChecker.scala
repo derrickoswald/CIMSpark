@@ -52,21 +52,20 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
 
     def message (child: String, field: String, parent: String) (problem: (String, Product)): String =
     {
-        val key = problem._1
-        val obj = problem._2
-        val s = new StringBuilder ()
-        s.append (child)
-        s.append (" ")
-        s.append (primary_key (obj)) // equipment.id
-        s.append (" field ")
-        s.append (field)
-        s.append (" ")
-        s.append (" references ")
-        s.append (parent)
-        s.append (" ")
-        s.append (key)
-        s.append (" that is not present")
-        s.toString
+        val (key, obj) = problem
+        new StringBuilder ()
+            .append (child)
+            .append (" ")
+            .append (primary_key (obj)) // equipment.id
+            .append (" field ")
+            .append (field)
+            .append (" ")
+            .append (" references ")
+            .append (parent)
+            .append (" ")
+            .append (key)
+            .append (" that is not present")
+            .toString
     }
 
     def run (): String =
@@ -104,10 +103,8 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
         // val equipment: RDD[Equipment] = getOrElse[Equipment]
         // val equipment: RDD[Equipment] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "Equipment").head._2.asInstanceOf[RDD[Equipment]]
 
-        type child = info.subsetter.basetype
         type childrdd = info.subsetter.rddtype
         val companion: ClassInfo = classes.filter (_.name == relation.clazz).head
-        type parent = companion.subsetter.basetype
         type parentrdd = companion.subsetter.rddtype
 
         if (log.isDebugEnabled)

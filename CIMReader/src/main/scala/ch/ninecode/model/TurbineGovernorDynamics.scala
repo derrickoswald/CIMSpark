@@ -36,16 +36,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
-    override def copy (): Row = { clone ().asInstanceOf[CrossCompoundTurbineGovernorDynamics] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -235,16 +241,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovCT1] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -615,16 +627,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovCT2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -937,16 +955,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGAST] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1146,16 +1170,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGAST1] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1422,16 +1452,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGAST2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1680,16 +1716,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGAST3] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1864,16 +1906,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGAST4] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2047,16 +2095,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovGASTWD] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2288,16 +2342,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydro1] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2498,16 +2558,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydro2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2793,16 +2859,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydro3] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3122,16 +3194,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydro4] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3455,16 +3533,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroDD] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3748,16 +3832,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroFrancis] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3947,16 +4037,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroIEEE0] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4126,16 +4222,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroIEEE2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4400,16 +4502,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroPID] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4668,16 +4776,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroPID2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4917,16 +5031,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroPelton] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5226,16 +5346,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroR] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5603,16 +5729,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroWEH] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5931,16 +6063,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovHydroWPID] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6110,16 +6248,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteam0] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6332,16 +6476,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteam1] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6579,16 +6729,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteam2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6731,16 +6887,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamBB] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6919,16 +7081,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CrossCompoundTurbineGovernorDynamics: CrossCompoundTurbineGovernorDynamics = sup.asInstanceOf[CrossCompoundTurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamCC] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def CrossCompoundTurbineGovernorDynamics: CrossCompoundTurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7159,16 +7327,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamEU] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7391,16 +7565,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamFV2] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7599,16 +7779,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamFV3] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7943,16 +8129,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamFV4] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8278,16 +8470,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamIEEE1] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8454,16 +8652,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[GovSteamSGO] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8577,16 +8781,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
-    override def copy (): Row = { clone ().asInstanceOf[TurbineGovernorDynamics] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -34,16 +34,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { clone ().asInstanceOf[ConformLoad] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def EnergyConsumer: EnergyConsumer = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -112,16 +118,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
-    override def copy (): Row = { clone ().asInstanceOf[ConformLoadGroup] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def LoadGroup: LoadGroup = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -195,16 +207,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[ConformLoadSchedule] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -273,16 +291,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[DayType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def IdentifiedObject: IdentifiedObject = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -351,16 +375,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[EnergyArea] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def IdentifiedObject: IdentifiedObject = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -427,16 +457,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
-    override def copy (): Row = { clone ().asInstanceOf[LoadArea] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def EnergyArea: EnergyArea = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -503,16 +539,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[LoadGroup] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def IdentifiedObject: IdentifiedObject = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -624,16 +666,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[LoadResponseCharacteristic] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def IdentifiedObject: IdentifiedObject = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -745,16 +793,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { clone ().asInstanceOf[NonConformLoad] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def EnergyConsumer: EnergyConsumer = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -823,16 +877,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
-    override def copy (): Row = { clone ().asInstanceOf[NonConformLoadGroup] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def LoadGroup: LoadGroup = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -904,16 +964,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[NonConformLoadSchedule] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -984,16 +1050,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { clone ().asInstanceOf[PowerCutZone] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def PowerSystemResource: PowerSystemResource = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1075,16 +1147,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Season] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def IdentifiedObject: IdentifiedObject = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1167,16 +1245,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[SeasonDayTypeSchedule] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1246,16 +1330,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { clone ().asInstanceOf[StationSupply] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def EnergyConsumer: EnergyConsumer = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         sup.export_fields
@@ -1273,7 +1363,6 @@ extends
 
     def parse (context: Context): StationSupply =
     {
-        implicit val ctx: Context = context
         val ret = StationSupply (
             EnergyConsumer.parse (context)
         )
@@ -1310,16 +1399,22 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
-    override def copy (): Row = { clone ().asInstanceOf[SubLoadArea] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    def EnergyArea: EnergyArea = sup
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

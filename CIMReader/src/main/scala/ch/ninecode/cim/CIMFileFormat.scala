@@ -5,6 +5,7 @@ import org.apache.hadoop.fs.FileStatus
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.Job
 import org.apache.spark.sql.Encoders
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.execution.datasources.FileFormat
@@ -37,6 +38,9 @@ extends
     )
     extends
         Element
+    {
+        override def copy (): Row = { clone ().asInstanceOf[Row] }
+    }
 
     /**
      * When possible, this method should return the schema of the given `files`.

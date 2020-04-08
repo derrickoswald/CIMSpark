@@ -1,7 +1,8 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
+
+import scala.collection.JavaConversions.mapAsJavaMap
 
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
@@ -172,8 +173,8 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             def readFileAuto (context: SQLContext, filename: String): DataFrame =
             {
-                val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-                options.put ("ch.ninecode.cim.do_topo_islands", "true")
+                val options = Map[String, String] (
+                    "ch.ninecode.cim.do_topo_islands" -> "true")
                 readFile (filename, options)
             }
 

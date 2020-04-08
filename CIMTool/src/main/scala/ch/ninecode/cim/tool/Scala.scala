@@ -273,23 +273,27 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 s.append (cls.sup.name)
                 s.append (""": """)
                 s.append (cls.sup.name)
-                s.append (""" = sup.asInstanceOf[""")
-                s.append (cls.sup.name)
+                s.append (""" = sup""")
             }
             else
-                s.append (""" Element: Element = sup.asInstanceOf[Element""")
-            s.append ("""]
-            |    override def copy (): Row = { clone ().asInstanceOf[""".stripMargin)
-            s.append (name)
-            s.append ("""] }
-            |    override def get (i: Int): Object =
-            |    {
-            |        if (i < productArity)
-            |            productElement (i).asInstanceOf[AnyRef]
-            |        else
-            |            throw new IllegalArgumentException (s"invalid property index $i")
-            |    }
-            |    override def length: Int = productArity
+                s.append (""" Element: Element = sup.asInstanceOf[Element]""")
+            s.append ("""
+            |    //
+            |    // Row overrides
+            |    //
+            |
+            |    /**
+            |     * Return a copy of this object as a Row.
+            |     *
+            |     * Creates a clone of this object for use in Row manipulations.
+            |     *
+            |     * @return The copy of the object.
+            |     * @group Row
+            |     * @groupname Row SQL Row Implementation
+            |     * @groupdesc Row Members related to implementing the SQL Row interface
+            |     */
+            |    override def copy (): Row = { clone ().asInstanceOf[Row] }""".stripMargin)
+            s.append ("""
             |    override def export_fields: String =
             |    {
             |""".stripMargin.format (name))
@@ -310,18 +314,18 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             else
                 s.append ("        sup.export_fields\n")
             s.append ("""    }
-            |    override def export: String =
-            |    {
-            |        "\t<cim:%s rdf:ID=\"%s\">\n%s\t</cim:%s>".format (id, export_fields)
-            |    }
-            |}
-            |""".stripMargin.format (cls.name, "%s", "%s", cls.name))
+                |    override def export: String =
+                |    {
+                |        "\t<cim:%s rdf:ID=\"%s\">\n%s\t</cim:%s>".format (id, export_fields)
+                |    }
+                |}
+                |""".stripMargin.format (cls.name, "%s", "%s", cls.name))
             s.append ("""
-            |object %s
-            |extends
-            |    Parseable[%s]
-            |{
-            |""".stripMargin.format (name, name))
+                |object %s
+                |extends
+                |    Parseable[%s]
+                |{
+                |""".stripMargin.format (name, name))
 
             val any = members.exists (_.name != "sup")
             if (any)
@@ -352,10 +356,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             s.append ("""
             |    def parse (context: Context): %s =
             |    {
-            |        implicit val ctx: Context = context
             |""".stripMargin.format (name))
             if (any)
             {
+                s.append ("        implicit val ctx: Context = context\n")
                 val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
                 s.append ("        implicit val bitfields: Array[Int] = Array(%s)\n".format (initializer))
             }
@@ -372,7 +376,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             }
             s.append (
                 if (identified_object)
-                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") s"{${masker (x)}; base.id}" else masker (x) )))
+                    wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x) )))
                 else
                     wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else masker (x))))
             )

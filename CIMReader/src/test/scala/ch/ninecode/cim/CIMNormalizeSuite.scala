@@ -1,10 +1,12 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
+
+import scala.collection.JavaConversions.mapAsJavaMap
+
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model._
-import org.apache.spark.sql.SparkSession
 
 class CIMNormalizeSuite
 extends
@@ -46,9 +48,9 @@ extends
                 s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
                 s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
             )
-            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-            options.put ("ch.ninecode.cim.do_about", "true")
-            options.put ("ch.ninecode.cim.do_normalize", "true") // apply normalization
+            val options = Map[String, String] (
+                "ch.ninecode.cim.do_about" -> "true",
+                "ch.ninecode.cim.do_normalize" -> "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)
 
             assert (elements.count === 665)
@@ -92,9 +94,9 @@ extends
                 s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SV_v2.xml",
                 s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
             )
-            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-            options.put ("ch.ninecode.cim.do_about", "true")
-            options.put ("ch.ninecode.cim.do_normalize", "true") // apply normalization
+            val options = Map[String, String] (
+                "ch.ninecode.cim.do_about" -> "true",
+                "ch.ninecode.cim.do_normalize" -> "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)
 
             // grep "rdf:ID" *.xml | wc

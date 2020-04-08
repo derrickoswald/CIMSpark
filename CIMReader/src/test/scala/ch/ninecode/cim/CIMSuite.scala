@@ -113,7 +113,7 @@ yadda yadda"""
         val parser = new CHIM (xml)
         intercept[Exception]
         {
-            CHIM.parse (parser)
+            val _ = CHIM.parse (parser)
             fail ("invalid voltage accepted")
         }
     }
@@ -139,10 +139,11 @@ yadda yadda"""
         val result = CHIM.parse (parser)
         assert (result._1.size === 1)
         assert (result._2.length === 0)
-        val cs = result._1 ("wgs84")
-        assert (cs.isInstanceOf[CoordinateSystem])
-        val cs2 = cs.asInstanceOf[CoordinateSystem]
-        assert (cs2.crsUrn === "EPSG::4326")
+        result._1 ("wgs84") match
+        {
+            case cs: CoordinateSystem => assert (cs.crsUrn === "EPSG::4326")
+            case _ => assert (false, "not a CoordinateSystem")
+        }
     }
 
     test ("Many-to-Many")

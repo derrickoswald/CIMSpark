@@ -2,6 +2,8 @@ package ch.ninecode.cim
 
 import java.io.File
 
+import scala.collection.JavaConversions.mapAsJavaMap
+
 import org.apache.spark.sql.SparkSession
 
 class CIMSparkSuite extends ch.ninecode.SparkSuite
@@ -35,31 +37,26 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
     test ("Basic")
     {
         implicit session: SparkSession =>
-
-        val options = new java.util.HashMap[String, String] ().asInstanceOf[java.util.Map[String,String]]
-        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
-        options.put ("ch.ninecode.cim.make_edges", "true")
-        options.put ("ch.ninecode.cim.do_topo_islands", "true")
-        val elements = readFile (FILENAME, options)
-        assert (elements.count () === ELEMENTS1x)
-        val edges = session.sqlContext.sql ("select * from edges")
-        val count = edges.count
-        markup (s"edge count: $count")
-        assert (count === 8348)
+            val options = Map[String, String] (
+                "ch.ninecode.cim.make_edges" -> "true",
+                "ch.ninecode.cim.do_topo_islands" -> "true")
+            val elements = readFile (FILENAME, options)
+            assert (elements.count () === ELEMENTS1x)
+            val edges = session.sqlContext.sql ("select * from edges")
+            val count = edges.count
+            markup (s"edge count: $count")
+            assert (count === 8348)
     }
 
     test ("Dedup")
     {
         implicit session: SparkSession =>
-
-        val options = new java.util.HashMap[String, String] ().asInstanceOf[java.util.Map[String,String]]
-        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
-        val elements1 = readFile (FILENAME, options)
-        val count1 = elements1.count ()
-        assert (count1 === ELEMENTS1x)
-        options.put ("ch.ninecode.cim.do_deduplication", "true")
-        val elements2 = readFile (s"$FILENAME,$FILENAME", options)
-        val count2 = elements2.count ()
-        assert (count1 === count2)
+            val elements1 = readFile (FILENAME)
+            val count1 = elements1.count ()
+            assert (count1 === ELEMENTS1x)
+            val options = Map[String, String] ("ch.ninecode.cim.do_deduplication" -> "true")
+            val elements2 = readFile (s"$FILENAME,$FILENAME", options)
+            val count2 = elements2.count ()
+            assert (count1 === count2)
     }
 }

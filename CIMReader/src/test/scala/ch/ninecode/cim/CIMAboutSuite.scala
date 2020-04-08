@@ -1,10 +1,12 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
+
+import scala.collection.JavaConversions.mapAsJavaMap
+
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model._
-import org.apache.spark.sql.SparkSession
 
 class CIMAboutSuite extends ch.ninecode.SparkSuite
 {
@@ -201,15 +203,14 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
+        val options = Map[String, String] ("ch.ninecode.cim.do_about" -> "true")
         val elements = readFile (filenames.mkString (","), options)
 
         assert (elements.count === 665)
         for (pair <- BelgiumElementCount)
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair <- BelgiumElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (spark.sparkContext.getPersistentRDDs.find (_._2.name == pair._1).map (_._2.count).contains (pair._2), pair._1)
 
         // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
         val terminals = get[Terminal]
@@ -257,15 +258,14 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
+        val options = Map[String, String] ("ch.ninecode.cim.do_about" -> "true")
         val elements = readFile (filenames.mkString (","), options)
 
         assert (elements.count === 567)
         for (pair <- NetherlandsElementCount)
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair <- NetherlandsElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (spark.sparkContext.getPersistentRDDs.find (_._2.name == pair._1).map (_._2.count).contains (pair._2), pair._1)
 
         // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
         val terminals = get[Terminal]
@@ -320,15 +320,14 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
+        val options = Map[String, String] ("ch.ninecode.cim.do_about" -> "true")
         val elements = readFile (filenames.mkString (","), options)
 
         assert (elements.count === 1206) // BaseCaseElementCount.map (_._2).sum is off by 6 = TapChangerControl (isA RegulatingControl)
         for (pair <- BaseCaseElementCount)
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair <- BaseCaseElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter(_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (spark.sparkContext.getPersistentRDDs.find (_._2.name == pair._1).map (_._2.count).contains (pair._2), pair._1)
 
         // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
         val terminals = get[Terminal]

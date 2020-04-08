@@ -119,15 +119,14 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
                 var piece = random.nextInt (size / 10)
                 if (offset + piece > size)
                     piece = size - offset
-                var (xml, start, end) = CHIM.read (FILENAME2x, offset, piece)
+                val (xml, start, end) = CHIM.read (FILENAME2x, offset, piece)
                 // println (s"${start}:${end} ${offset}+${piece} ${xml.substring (0, 50)}")
                 val parser = new CHIM (xml, start, end, offset, offset + piece)
-                xml = null
                 val result = CHIM.parse (parser)
                 // println (s"${result._1.size} elements and ${result._2.size} unknowns")
                 assert (result._2.count (!_.contains ("<entsoe:")) === 0)
                 val rdd = session.sparkContext.parallelize (result._1.keys.toSeq)
-                if (null != last)
+                val _ = if (null != last)
                 {
                     val int = rdd.intersection (last)
                     if (int.count () != 0)

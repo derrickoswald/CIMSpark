@@ -127,7 +127,7 @@ with
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def length: Int = 1
+    override def length: Int = productArity
 
     /**
      * Get the value of the field at index <code>i</code>.
@@ -140,23 +140,11 @@ with
      */
     override def get (i: Int): Object =
     {
-        if (0 == i)
-            sup
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException (s"invalid property index $i")
     }
-
-    /**
-     * Return a copy of this object as a Row.
-     *
-     * Creates a clone of this object for use in Row manipulations.
-     *
-     * @return The copy of the object.
-     * @group Row
-     * @groupname Row SQL Row Implementation
-     * @groupdesc Row Members related to implementing the SQL Row interface
-     */
-    override def copy (): Row = { throw new Exception ("copy() should be overridden in derived classes") }
 
     /**
      * Emit one XML element.
@@ -172,21 +160,7 @@ with
     {
         if (null != value)
         {
-            s.append ("\t\t<")
-            s.append (namespace)
-            s.append (":")
-            s.append (clz)
-            s.append (".")
-            s.append (field)
-            s.append (">")
-            s.append (value.toString)
-            s.append ("</")
-            s.append (namespace)
-            s.append (":")
-            s.append (clz)
-            s.append (".")
-            s.append (field)
-            s.append (">\n")
+            val _ = s.append (s"		<$namespace:$clz.$field>${value.toString}</$namespace:$clz.$field>\n")
         }
     }
 
@@ -204,17 +178,10 @@ with
     {
         if (null != value)
         {
-            s.append ("\t\t<")
-            s.append (namespace)
-            s.append (":")
-            s.append (clz)
-            s.append (".")
-            s.append (field)
-            s.append (" rdf:resource=\"")
             val v = value.toString
-            if (!v.startsWith ("http://")) s.append ("#") // relative
-            s.append (v)
-            s.append ("\"/>\n")
+            val prefix = if (!v.startsWith ("http://")) "#" else "" // relative
+            val q = "\""
+            val _ = s.append (s"		<$namespace:$clz.$field rdf:resource=$q$prefix$v$q/>\n")
         }
     }
 
@@ -286,15 +253,21 @@ extends
      */
     override def about: Boolean = _about
 
-    override def copy(): Row = clone ().asInstanceOf[Element]
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException (s"invalid property index $i")
-    }
-    override def length: Int = productArity
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 }
 
 object BasicElement
@@ -380,10 +353,12 @@ extends
      */
     var name: String = ""
 
-    def parse(context: Context): Unknown =
+    def parse (context: Context): Unknown =
     {
         if (Context.DEBUG && (context.errors.size < Context.MAXERRORS))
-            context.errors += s"""Unknown element "$name" at line ${context.line_number()}"""
+        {
+            val _ = context.errors += s"""Unknown element "$name" at line ${context.line_number()}"""
+        }
         Unknown (
             BasicElement.parse(context),
             context.subxml,

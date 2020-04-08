@@ -693,13 +693,12 @@ object CHIM
             while (offset < size)
             {
                 val start = System.nanoTime
-                var (xml, lo, hi) = read (filename, offset, CHUNK)
+                val (xml, lo, hi) = read (filename, offset, CHUNK)
                 val before = System.nanoTime
                 reading += (before - start) / 1000
 
                 val parser = new CHIM (xml, lo, hi, offset, offset + CHUNK)
                 offset += CHUNK
-                xml = null
                 val map = CHIM.parse (parser)
                 val _ = result ++= map._1
 
