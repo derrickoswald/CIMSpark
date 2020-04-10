@@ -16,13 +16,17 @@ case class Class (
     var pkg: Package,
     stereotype: String,
     sup: Class = null)
+extends
+    ProgramaticName
 {
-    def this (row: Row, pkg: Package) = this (row.getXUID, Class.kludgeName (row, pkg), row.getNote, pkg, if (row.hasStereotype) row.getStereotype else null, null)
     override def toString: String = "%s:%s%s%s".format (pkg.name, name, if (null != stereotype) s" ($stereotype)" else "", if (null != sup) s" subclass of ${sup.name}" else "")
 }
 
 object Class
 {
+    def apply (row: Row, pkg: Package): Class =
+        Class (row.getXUID, kludgeName (row, pkg), row.getNote, pkg, if (row.hasStereotype) row.getStereotype else null, null)
+
     /**
      * Override the name of "Profile" and "ResourceCertification" to avoid case class clashes
      * @param row the row of class information

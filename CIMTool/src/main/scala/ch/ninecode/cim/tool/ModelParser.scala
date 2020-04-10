@@ -34,7 +34,7 @@ case class ModelParser (model: File)
         val packs = getPackageTable
             .iterator
             .map (Row)
-            .map (row => (row.getPackageID, (row.getParentID, new Package (row))))
+            .map (row => (row.getPackageID, (row.getParentID, Package (row))))
             .toMap
 
         // adjust parent values
@@ -67,7 +67,7 @@ case class ModelParser (model: File)
                     val typ = row.getObjectType
                     if (!typ.equals ("Class") && !typ.equals ("Enumeration"))
                         throw new Exception ("pkg: %s name: %s unhandled type: %s".format (pkg.name, row.getName, typ))
-                    new Class (row, pkg)
+                    Class (row, pkg)
                 }
             )
 

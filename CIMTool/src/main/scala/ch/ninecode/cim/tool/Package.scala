@@ -15,7 +15,13 @@ case class Package (
     global: Boolean,
     notes: String,
     parent: Package = null)
+extends
+    ProgramaticName
 {
-    def this (row: Row) = this (row.getXUID, row.getName, row.getName.equals ("Model"), row.getNotes, null)
-    override def toString: String = "%s%s%s".format (if (null != parent) s"${parent.name}:" else "", name, if (global) " global" else "")
+   override def toString: String = "%s%s%s".format (if (null != parent) s"${parent.name}:" else "", name, if (global) " global" else "")
+}
+
+object Package
+{
+    def apply (row: Row): Package = Package (row.getXUID, row.getName, row.getName.equals ("Model"), row.getNotes, null)
 }

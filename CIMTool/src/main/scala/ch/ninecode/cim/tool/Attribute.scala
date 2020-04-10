@@ -21,6 +21,21 @@ case class Attribute (
     typ: String,
     classifier: Class,
     dflt: String)
+extends
+    ProgramaticName
 {
+    lazy val attribute_name: String =
+    {
+        val attr = valid_class_name
+        val stupid_name =
+            if (attr == cls.name)
+                s"${attr}_attr"
+            else if ((cls.sup != null) && (name == cls.sup.name))
+                s"${attr}_attr"
+            else
+                attr
+        stupid_name
+    }
+
     override def toString: String = "%s:%s.%s %s %s".format (pkg.name, cls.name, name, typ, if (null != classifier) s" (${classifier.name})" else "")
 }
