@@ -92,31 +92,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <!-- see http://davidb.github.com/scala-maven-plugin -->
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>${version.dependency.scalamavenplugin}</version>
-                <configuration>
-                    <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
-                    <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
-                    <args>
-                        <arg>-deprecation</arg>
-                        <arg>-feature</arg>
-                        <arg>-unchecked</arg>
-                        <arg>-Xlint:_</arg>
-                        <arg>-target:jvm-1.8</arg>
-                    </args>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- disable surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
