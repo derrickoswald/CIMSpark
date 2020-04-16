@@ -4,7 +4,6 @@ import java.io.Closeable
 import java.io.File
 import java.util.Properties
 
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 object CIMTool
@@ -44,8 +43,8 @@ object CIMTool
             case Some (options) =>
                 if (options.valid)
                 {
-                    System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
-                    val log: Logger = LoggerFactory.getLogger (getClass)
+                    val _ = System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
+                    val log = LoggerFactory.getLogger (getClass)
                     val file = options.cim.file
                     log.info (s"""generating CIM classes from file "$file"""")
                     val parser = ModelParser (new File (s"private_data/$file"))

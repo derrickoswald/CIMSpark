@@ -5,11 +5,11 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
 import scala.collection.mutable
 import scala.collection.SortedSet
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
@@ -189,6 +189,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             else
                 s.append (""" Element: Element = sup.asInstanceOf[Element]""")
             s.append ("""
+            |
             |    //
             |    // Row overrides
             |    //
@@ -203,7 +204,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |     * @groupname Row SQL Row Implementation
             |     * @groupdesc Row Members related to implementing the SQL Row interface
             |     */
-            |    override def copy (): Row = { clone ().asInstanceOf[Row] }""".stripMargin)
+            |    override def copy (): Row = { clone ().asInstanceOf[Row] }
+            |""".stripMargin)
             s.append ("""
             |    override def export_fields: String =
             |    {
@@ -397,7 +399,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 registers = registers :+ """            %s.register""".format (sc.register (pkg))
                 package_docs = package_docs :+ " *"
                 package_docs = package_docs :+ s" * ===${pkg.name}==="
-                package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
+                if (pkg.notes != null)
+                    package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
             }
             else
                 log.debug ("no text generated for package %s (%s)".format (pkg.xuid, pkg.name))

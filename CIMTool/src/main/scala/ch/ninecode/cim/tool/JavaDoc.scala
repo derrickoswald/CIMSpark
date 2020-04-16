@@ -11,20 +11,27 @@ case class JavaDoc (
     group_description: String = null)
 {
     lazy val spaces: String = (for (_ <- 0 until leftpad) yield " ").mkString ("")
-    val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
-    val (summary, body) =
+    lazy val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
+    lazy val (summary, body) =
         if (null != note)
         {
             val n = note.replace ("\r\n", "\n").split ("\n").map (_.trim).mkString ("\n")
             val matcher = regex.matcher (n)
             if (matcher.find ())
-                ({ (if (null != matcher.group (1)) matcher.group (1) else matcher.group (3)).trim },
-                 { (if (null != matcher.group (2)) matcher.group (2) else matcher.group (4)).trim })
+            {
+                val h = matcher.group (1)
+                val d = matcher.group (2)
+                val (header, description) = if ((null == h) || (null == d))
+                    (matcher.group (3), matcher.group (4))
+                else
+                    (h, d)
+                (toList (header), toList (description))
+            }
             else
-                (n.trim, "")
+                (toList (n), List ())
         }
     else
-        ("", "")
+        (List (), List ())
 
     def edit (s: String): String =
     {
@@ -38,42 +45,45 @@ case class JavaDoc (
         l4.mkString ("\n")
     }
 
-    def asterisks (s: String): String =
-    {
-        s.replace ("\n", "\n * ")
-    }
+    def toList (s: String): List[String] = if ("" == s) List () else edit (s).split ("\n").toList
 
-    def addGroupStuff (s: StringBuilder): Unit =
+    def groupStuff: List[String] =
     {
-        if ((null != group) && ("" != group))
-            s.append (s"\n * @group $group")
-        if ((null != group_name) && ("" != group_name))
-            s.append (s"\n * @groupname $group $group_name")
-        if ((null != group_description) && ("" != group_description))
-            s.append (s"\n * @groupdesc $group $group_description")
+        def compose (prefix: String, suffix: String): Option[String] =
+        {
+            if ((null != group) && ("" != group) && (null != suffix))
+                if ("" == suffix)
+                    Some (s"$prefix $group")
+                else
+                    Some (s"$prefix $group $suffix")
+            else
+                None
+        }
+
+        val strings =
+            compose ("@group", "") ::
+            compose ("@groupname", group_name) ::
+            compose ("@groupdesc", group_description) ::
+            Nil
+        strings.flatten
     }
 
     def contents: String =
     {
-        val s = new StringBuilder ()
-        if ((null != note) && (note != ""))
+        val text: List[String] = if ((null != note) && (note != ""))
         {
-            s.append (""" * """)
-            s.append (asterisks (edit (summary)))
-            if ("" != body)
-            {
-                s.append ("""
-                      | *
-                      | * """.stripMargin)
-                s.append (asterisks (edit (body)))
-            }
-            s.append ("""
-                        | *""".stripMargin)
-            for (member <- members)
-                s.append (s"\n${member.javaDoc}")
+            val b = (if (body.nonEmpty) (List ("") :: body :: Nil).flatten else List ())
+            val m = for (member <- members.toList)
+                yield member.javaDoc
+            (summary ::
+                b ::
+                List ("") ::
+                m ::
+                Nil).flatten
         }
-        addGroupStuff (s)
-        s.toString
+        else
+            List ()
+        (text :: groupStuff :: Nil).flatten .map (l => if ("" == l) " *" else s" * $l").mkString ("\n")
     }
 
     def asText: String =

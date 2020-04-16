@@ -55,14 +55,6 @@ case class Member (
     }
 
     /**
-     * Add Javadoc asterisks in summary or body text.
-     *
-     * @param s the string to prefix lines with asterisks
-     * @return the Javadoc string
-     */
-    def asterisks (s: String): String = s.replace ("\n", "\n *        ")
-
-    /**
      * Generate the Javadoc string for a member.
      *
      * @return text suitable for use as a Javadoc
@@ -74,14 +66,14 @@ case class Member (
             s" [[ch.ninecode.model.$referenced_class $referenced_class]]"
         else
             ""
-        val summary = if ("" != jd.summary)
-            asterisks (edit (jd.summary))
+        val summary = if (jd.summary.nonEmpty)
+            jd.summary.mkString ("\n *        ")
         else
             "<em>undocumented</em>"
-        val body = if ("" != jd.body)
-            s"\n *        ${asterisks (edit (jd.body))}"
+        val body = if (jd.body.nonEmpty)
+            jd.body.mkString ("\n *        ", "\n *        ", "")
         else
             ""
-        s" * @param $name$ref $summary$body"
+        s"@param $name$ref $summary$body"
     }
 }

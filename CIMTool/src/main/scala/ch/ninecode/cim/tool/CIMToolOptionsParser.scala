@@ -2,6 +2,7 @@ package ch.ninecode.cim.tool
 
 import scopt.OptionParser
 
+@SuppressWarnings (Array ("org.wartremover.warts.NonUnitStatements"))
 class CIMToolOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: String)
     extends OptionParser[CIMToolOptions](APPLICATION_NAME)
 {
@@ -26,39 +27,38 @@ class CIMToolOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: Strin
             }
     }
 
-    opt [Unit]("unittest").
-        hidden ().
-        action ((_, c) => { unittest = true; c.copy (unittest = true) }).
-        text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
+    opt[Unit]("unittest")
+        .hidden ()
+        .action ((_, c) => { unittest = true; c.copy (unittest = true) })
+        .text (s"unit testing - don't call sys.exit() [${default.unittest}]")
 
-    opt [LogLevels.Value]("log").
-        action ((x, c) => c.copy (loglevel = x)).
-        text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.loglevel))
+    opt[LogLevels.Value]("log")
+        .action ((x, c) => c.copy (loglevel = x))
+        .text (s"log level, one of ${LogLevels.values.mkString (",")} [${default.loglevel}]")
 
-    opt [CIMVersion]("cim").
-        action ((x, c) => c.copy (cim = x)).
-        text ("cim version, one of %s [%s]".format (VersionRead.versions.mkString (","), default.cim.name))
+    opt[CIMVersion]("cim")
+        .action ((x, c) => c.copy (cim = x))
+        .text (s"cim version, one of ${VersionRead.versions.mkString (",")} [${default.cim.name}]")
 
-    opt [Target]("target").
-        action ((x, c) => c.copy (target = x)).
-        text ("output target language, one of %s [%s]".format (TargetRead.languages.mkString (","), default.target.name))
+    opt[Target]("target")
+        .action ((x, c) => c.copy (target = x))
+        .text (s"output target language, one of ${TargetRead.languages.mkString (",")} [${default.target.name}]")
 
-    opt [String]("directory").
-        action ((x, c) => c.copy (directory = x)).
-        text ("output directory [%s]".format (default.directory))
+    opt[String]("directory")
+        .action ((x, c) => c.copy (directory = x))
+        .text (s"output directory [${default.directory}]")
 
-    help ("help").
-        hidden ().
-        validate (Unit => { helpout = true; Right (Unit) })
+    help ("help")
+        .hidden ()
+        .validate (Unit => { helpout = true; Right (Unit) })
 
-    version ("version").
-        validate (Unit => { versionout = true; Right (Unit) }).
-        text ("Scala: %s, Spark: %s, %s: %s".format (
-                APPLICATION_VERSION.split ("-")(0),
-                APPLICATION_VERSION.split ("-")(1),
-                APPLICATION_NAME,
-                APPLICATION_VERSION.split ("-")(2)
-            )
+    version ("version")
+        .validate (Unit => { versionout = true; Right (Unit) })
+        .text (
+            {
+                val version = APPLICATION_VERSION.split ("-")
+                s"Scala: ${version(0)}, Spark: ${version(1)}, $APPLICATION_NAME: ${version(2)}"
+            }
         )
 
     checkConfig (o => { o.valid = !(helpout || versionout); Right (Unit) })

@@ -6,11 +6,11 @@ case class Row (fields: com.healthmarketscience.jackcess.Row)
 
     def getInt (name: String): Int =
     {
-        val raw = fields.get (name)
-        if ((null != raw) && raw.isInstanceOf[Int])
-            raw.asInstanceOf[Int]
-        else
-            0
+        fields.get (name) match
+        {
+            case i: Integer => i
+            case _ => 0
+        }
     }
 
     def getString (name: String): String =
@@ -24,15 +24,9 @@ case class Row (fields: com.healthmarketscience.jackcess.Row)
 
     def getTrimmedString (name: String): String =
     {
-        val text = getString (name)
-        if (null != text)
-        {
-            val trimmed = text.trim
-            if (0 != trimmed.length)
-                trimmed
-            else
-                null
-        }
+        val trimmed = getString (name).trim
+        if (0 != trimmed.length)
+            trimmed
         else
             null
     }

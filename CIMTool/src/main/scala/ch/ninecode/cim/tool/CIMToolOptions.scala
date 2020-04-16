@@ -21,6 +21,6 @@ final case class CIMToolOptions (
     unittest: Boolean = false,
     loglevel: LogLevels.Value = LogLevels.WARN,
     cim: CIMVersion = cim100,
-    target: Target = scala_language,
+    target: Target = ScalaLanguage,
     directory: String = "target"
 )

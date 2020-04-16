@@ -5,6 +5,7 @@ import java.nio.charset.Charset
 
 import scala.collection.JavaConversions._
 import scala.collection.SortedSet
+
 import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.DatabaseBuilder
 import com.healthmarketscience.jackcess.Table
