@@ -39,6 +39,7 @@ import ch.ninecode.model._
 class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER) extends CIMRDD with Serializable
 {
     implicit val session: SparkSession = spark
+    implicit val storage_level: StorageLevel = storage // for put()
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     /**
@@ -72,11 +73,16 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
      */
     def deduplicate (elements: Iterable[Element]): Element =
     {
-        val ret = elements.head
-        if (1 != elements.size)
-            // check for equality
-            check (ret, elements.tail)
-        ret
+        elements.toList match
+        {
+            case head :: Nil =>
+                head
+            case head :: tail =>
+                // check for equality
+                check (head, tail)
+                head
+            case _ => BasicElement ()
+        }
     }
 
     /**
@@ -101,10 +107,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)
 
         // swap the old Elements RDD for the new one
-        elements.name = "duplicate_Elements"
-        new_elements.name = "Elements"
-        new_elements.persist (storage)
-        if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
+        put (new_elements, "Elements")
 
         new_elements
     }

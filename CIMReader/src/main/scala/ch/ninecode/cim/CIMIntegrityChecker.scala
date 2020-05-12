@@ -52,20 +52,8 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
 
     def message (child: String, field: String, parent: String) (problem: (String, Product)): String =
     {
-        val (key, obj) = problem
-        new StringBuilder ()
-            .append (child)
-            .append (" ")
-            .append (primary_key (obj)) // equipment.id
-            .append (" field ")
-            .append (field)
-            .append (" ")
-            .append (" references ")
-            .append (parent)
-            .append (" ")
-            .append (key)
-            .append (" that is not present")
-            .toString
+        val (key: String, obj: Product) = problem
+        s"$child ${primary_key (obj)} field $field references $parent $key that is not present"
     }
 
     def run (): String =
@@ -104,33 +92,27 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
         // val equipment: RDD[Equipment] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "Equipment").head._2.asInstanceOf[RDD[Equipment]]
 
         type childrdd = info.subsetter.rddtype
-        val companion: ClassInfo = classes.filter (_.name == relation.clazz).head
+        val companion: ClassInfo = classes.find (_.name == relation.clazz).getOrElse (ch.ninecode.model.Unknown.register)
         type parentrdd = companion.subsetter.rddtype
 
         if (log.isDebugEnabled)
             log.debug (s"${info.name}.${relation.field} => ${relation.clazz}")
-        val cc: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == info.name)
-        if (cc.nonEmpty)
-        {
-            val ccc: childrdd = cc.head._2.asInstanceOf[childrdd]
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == info.name).map (x => x._2)
+            .fold ("")
+            {
+                case rdd: childrdd =>
+                    //val container: RDD[EquipmentContainer] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "EquipmentContainer").head._2.asInstanceOf[RDD[EquipmentContainer]]
+                    spark.sparkContext.getPersistentRDDs.find (_._2.name == companion.name).map (x => x._2)
+                        .fold (
+                            // every instance is an error
+                            new Worker (relation, info.name, rdd, companion.name, null).run ()
+                        )
+                    {
+                        case pcc: parentrdd =>
+                            new Worker (relation, info.name, rdd, companion.name, pcc).run ()
+                    }
+            }
 
-            //val container: RDD[EquipmentContainer] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "EquipmentContainer").head._2.asInstanceOf[RDD[EquipmentContainer]]
-            val pc: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == companion.name)
-            if (pc.nonEmpty)
-            {
-                val pcc: parentrdd = pc.head._2.asInstanceOf[parentrdd]
-                val worker = new Worker (relation, info.name, ccc, companion.name, pcc)
-                worker.run ()
-            }
-            else
-            {
-                // every instance is an error
-                val worker = new Worker (relation, info.name, ccc, companion.name, null)
-                worker.run ()
-            }
-        }
-        else
-            ""
     }
 
     def checkClass (classes: List[ClassInfo]) (info: ClassInfo): Option[String] =

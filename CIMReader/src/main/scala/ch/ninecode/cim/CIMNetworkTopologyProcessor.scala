@@ -356,14 +356,30 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         {
             // check for uniqueness of VertexId
             val duplicates = vertices.groupByKey.filter (_._2.size > 1)
-            if (!duplicates.isEmpty ())
-                duplicates.collect.map (x => { log.error (s"VertexId clash (${x._1}) for ${x._2.head.node_label} and ${x._2.tail.head.node_label}"); 1 })
+            duplicates.collect.foreach (
+                x =>
+                {
+                    val (vertex, data) = x
+                    data.toList match
+                    {
+                        case head :: tail :: Nil =>
+                            log.error (s"VertexId clash ($vertex) for ${head.node_label} and ${tail.node_label}")
+                        case _ =>
+                    }
+                }
+            )
 
             // check for missing vertices
             val cn = edges.flatMap (x => List ((x.attr.id_cn_1, x.attr.id_equ), (x.attr.id_cn_2, x.attr.id_equ)))
-            val missing = cn.leftOuterJoin (vertices.keyBy (_._2.node_label)).filter (_._2._2 match { case None => true case _ => false } ).map (x => (x._2._1, x._1))
-            if (!missing.isEmpty)
-                missing.collect.map (x => { log.error (s"${x._1} missing ConnectivityNode ${x._2}"); 1 })
+            val missing = cn.leftOuterJoin (vertices.keyBy (_._2.node_label))
+                .filter (_._2._2 match { case None => true case _ => false } ).map (x => (x._2._1, x._1))
+            missing.collect.foreach (
+                x =>
+                {
+                    val (id, node) = x
+                    log.error (s"$id missing ConnectivityNode $node")
+                }
+            )
         }
 
         // construct the initial graph from the edges
@@ -512,7 +528,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         island.bitfields = Array (0)
 
         (
-            nodes.head._1._1.island,
+            nodes.headOption.fold (0L)(x => x._1._1.island),
             island
         )
     }
@@ -712,8 +728,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), options.storage, options.storage)
 
         // persist the RDD to avoid recomputation
-        ret.vertices.persist (options.storage)
-        ret.edges.persist (options.storage)
+        { val _ = ret.vertices.persist (options.storage) }
+        { val _ = ret.edges.persist (options.storage) }
 
         ret
     }
@@ -775,14 +791,26 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             put (new_ti)
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            val nodes = nodes_with_islands.groupBy (_._1.node).map (x => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
+            val nodes = nodes_with_islands.groupBy (_._1.node)
+                // keep the head of the Iterable
+                // .map (x => (x._1, x._2.head))
+                .flatMapValues  (_.toList match { case head :: _ => Some (head) case _ => None })
+                .map (x => (x._1, x._2._1, Some (x._2._2))).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
+
+            // unpersist the graph nodes and edges
+            { val _ = graph.vertices.unpersist (false) }
+            { val _ = graph.edges.unpersist (false) }
             (nodes, new_ti)
         }
         else
         {
-            val nodes = graph.vertices.values.groupBy (_.node).map (x => (x._1, x._2.head, None)).map (to_nodes)
+            val nodes = graph.vertices.values.groupBy (_.node)
+                // keep the head of the Iterable
+                // .map (x => (x._1, x._2.head))
+                .flatMapValues  (_.toList match { case head :: _ => Some (head) case _ => None })
+                .map (x => (x._1, x._2, None)).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])

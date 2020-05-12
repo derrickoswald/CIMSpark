@@ -411,7 +411,7 @@ with Serializable
         val asseted_edges = located_edges.keyBy (_._1.id_equ).leftOuterJoin (assets.flatMap (psr)).map (x => (x._2._1._1, x._2._1._2, x._2._2))
 
         // join with topological nodes if requested
-        if (topological_nodes)
+        val _ = if (topological_nodes)
         {
             val topologicals = getOrElse[TopologicalNode].keyBy (_.id)
             val topo1 = asseted_edges.keyBy (_._1.cn_1).leftOuterJoin (topologicals).values.map (x => (x._1._1, x._1._2, x._1._3, x._2))

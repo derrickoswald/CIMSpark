@@ -55,7 +55,9 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
     {
         val matcher = lines.matcher (string)
         while (matcher.find ())
-            n += (matcher.start () + offset)
+        {
+            val _ = n += (matcher.start () + offset)
+        }
         n
     }
 
@@ -66,6 +68,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
      */
+    @SuppressWarnings (Array ("org.wartremover.warts.Return"))
     def line_number (offset: Long = end): Int =
     {
         var min = 0
@@ -106,7 +109,9 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
             {
                 ret &&= subxml.charAt (index).isWhitespace
                 if (!ret && errors.size < MAXERRORS)
-                    errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, pair._1).trim (), line_number ())
+                {
+                    val _ = errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, pair._1).trim (), line_number ())
+                }
                 index += 1
             }
             index = pair._2
@@ -115,7 +120,9 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         {
             ret &&= subxml.charAt (index).isWhitespace
             if (!ret && errors.size < MAXERRORS)
-                errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, subxml.length ()).trim (), line_number ())
+            {
+                val _ = errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, subxml.length ()).trim (), line_number ())
+            }
             index += 1
         }
 

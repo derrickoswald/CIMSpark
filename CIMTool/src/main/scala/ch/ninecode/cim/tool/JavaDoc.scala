@@ -68,6 +68,8 @@ case class JavaDoc (
         strings.flatten
     }
 
+    def asterisk (s: String): String = if ("" == s) " *" else s" * $s"
+
     def contents: String =
     {
         val text: List[String] = if ((null != note) && (note != ""))
@@ -83,7 +85,7 @@ case class JavaDoc (
         }
         else
             List ()
-        (text :: groupStuff :: Nil).flatten .map (l => if ("" == l) " *" else s" * $l").mkString ("\n")
+        (text :: groupStuff :: Nil).flatten.map (asterisk).mkString ("\n")
     }
 
     def asText: String =

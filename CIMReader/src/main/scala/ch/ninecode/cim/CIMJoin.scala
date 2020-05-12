@@ -299,10 +299,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                 )
 
         // swap the old Elements RDD for the new one
-        old_elements.name = "unjoined_Elements"
-        new_elements.name = "Elements"
-        new_elements.persist (storage)
-        if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
+        put (new_elements, "Elements")
 
         new_elements
     }

@@ -33,14 +33,19 @@ extends
                 val globPath = SparkHadoopUtil.get.globPathIfNecessary (qualified)
                 if (globPath.isEmpty)
                     throw new java.io.FileNotFoundException (s"Path does not exist: $qualified")
-                if (!fs.exists(globPath.head))
-                    throw new java.io.FileNotFoundException (s"Path does not exist: ${globPath.head}")
+                globPath.foreach (
+                    p =>
+                    {
+                        if (!fs.exists (p))
+                            throw new java.io.FileNotFoundException (s"Path does not exist: $p")
+                    }
+                )
                 globPath
         }
         val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
         val partitionSchema = fileCatalog.partitionSpec().partitionColumns
         val format = new CIMFileFormat ()
-        val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).get
+        val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).orNull
         new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters) (session)
     }
 }

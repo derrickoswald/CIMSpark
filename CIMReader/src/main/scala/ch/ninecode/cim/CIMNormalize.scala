@@ -24,6 +24,7 @@ with
     Serializable
 {
     implicit val session: SparkSession = spark
+    implicit val level: StorageLevel = storage // for put()
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     /**
@@ -196,10 +197,7 @@ with
         val new_elements: RDD[Element] = cleaned.subtractByKey (fixed2).union (fixed2).values
 
         // swap the old Elements RDD for the new one
-        old_elements.name = "denormalized_Elements"
-        new_elements.name = "Elements"
-        new_elements.persist (storage)
-        if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
+        put (new_elements, "Elements")
 
         new_elements
     }

@@ -154,15 +154,16 @@ trait CIMRDD
      * @return The named, viewed and possibly checkpointed original RDD.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): RDD[T] =
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): Unit =
     {
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
-        {
-            case Some ((_: Int, old: RDD[_])) =>
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == name).foreach (
+            x =>
+            {
+                val (_, old) = x
                 old.setName (null).unpersist (true)
-            case Some (_) | None =>
-        }
-        rdd.setName (name).persist (storage)
+            }
+        )
+        val _ = rdd.setName (name).persist (storage)
         if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         val tag: universe.TypeTag[T] = typeTag[T]
         val runtime_class: Class[_] = classTag[T].runtimeClass
@@ -174,7 +175,6 @@ trait CIMRDD
         }
         else
             spark.createDataFrame (rdd).createOrReplaceTempView (name)
-        rdd
     }
 
     /**
@@ -236,7 +236,7 @@ trait CIMRDD
      * @param storage The storage level for persistence.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): RDD[T] = put (rdd, nameOf[T])
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): Unit = put (rdd, nameOf[T])
 
     /**
      * Get a typed DataSet for the given class.

@@ -171,9 +171,10 @@ class CIMRelation (
         var ret: RDD[Row] = null
 
         // remove any existing RDD created by this relation
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements") match
-        {
-            case Some ((_: Int, old: RDD[_])) =>
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements").foreach (
+            x =>
+            {
+                val (_, old) = x
                 // aggregate the set of subclass names
                 val names = old.asInstanceOf[RDD[Element]]
                     .aggregate (Set[String]()) (
@@ -190,8 +191,8 @@ class CIMRelation (
                     }
                 // remove the Element rdd
                 old.setName (null).unpersist (true)
-            case Some (_) | None =>
-        }
+            }
+        )
 
         if (_Cache != "")
         {

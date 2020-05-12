@@ -66,7 +66,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     def save (context: SQLContext, rdd: rddtype, storage: StorageLevel): Unit =
     {
         rdd.name = cls
-        rdd.persist (storage)
+        val _ = rdd.persist (storage)
         if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         val df = context.sparkSession.createDataFrame (rdd)(tag)
         val altered_schema = modify_schema (runtime_class, df.schema)
