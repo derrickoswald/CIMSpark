@@ -188,12 +188,7 @@ case class ModelParser (model: File)
      */
     def classesFor (pkg: Package): SortedSet[Class] =
     {
-        // ToDo: in Scala 2.12 this could be
-        //  implicit val ordering: Ordering[Class] = (a: Class, b: Class) => a.name.compareTo (b.name)
-        implicit val ordering: Ordering[Class] = new Ordering[Class]
-        {
-            def compare (a: Class, b: Class): Int = a.name.compareTo (b.name)
-        }
+        implicit val ordering: Ordering[Class] = (a: Class, b: Class) => a.name.compareTo (b.name)
 
         def stereo (cls: Class): Boolean =
             (cls.stereotype != "enumeration") &&
