@@ -3,7 +3,7 @@ package ch.ninecode.cim.tool
 import java.io.File
 import java.nio.charset.Charset
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters.asScalaIteratorConverter
 import scala.collection.SortedSet
 
 import com.healthmarketscience.jackcess.Database
@@ -34,6 +34,7 @@ case class ModelParser (model: File)
     {
         val packs = getPackageTable
             .iterator
+            .asScala
             .map (Row)
             .map (row => (row.getPackageID, (row.getParentID, Package (row))))
             .toMap
@@ -57,6 +58,7 @@ case class ModelParser (model: File)
         val skip = Array ("Boundary", "Note", "Package", "Text", "Object", "Constraint")
         val classes = getObjectTable
             .iterator
+            .asScala
             .map (Row)
             .filter (row => !skip.contains (row.getObjectType))
             .map (row => (row.getObjectID, row))
@@ -75,7 +77,7 @@ case class ModelParser (model: File)
         // get a map of superclass id values
         val supers = (
             for (
-                row <- getConnectorTable.iterator.map (Row);
+                row <- getConnectorTable.iterator.asScala.map (Row);
                 typ = row.getConnectorType
                 if typ.equals ("Generalization")
             )
@@ -96,7 +98,7 @@ case class ModelParser (model: File)
         val ret = scala.collection.mutable.Map[ID,List[Attribute]] ()
 
         for (
-            row <- getAttributeTable.iterator.map (Row);
+            row <- getAttributeTable.iterator.asScala.map (Row);
             cls_id = row.getObjectID;
             cls = classes.getOrElse (cls_id, null)
         )
@@ -125,7 +127,7 @@ case class ModelParser (model: File)
     def extractAssociations: Set[Role] =
     {
         val ret = for (
-            row <- getConnectorTable.iterator.map (Row);
+            row <- getConnectorTable.iterator.asScala.map (Row);
             typ = row.getConnectorType
             if typ.equals ("Association") || typ.equals ("Aggregation");
             src = classes.getOrElse (row.getStartObjectID, null);
@@ -148,7 +150,7 @@ case class ModelParser (model: File)
     {
         val empty = Set[String]()
         val ret = for (
-            row <- getObjectTable.iterator.map (Row)
+            row <- getObjectTable.iterator.asScala.map (Row)
             if row.getObjectType.equals ("Class");
             cls_id = row.getObjectID;
             xuid = row.getXUID;
@@ -186,6 +188,8 @@ case class ModelParser (model: File)
      */
     def classesFor (pkg: Package): SortedSet[Class] =
     {
+        // ToDo: in Scala 2.12 this could be
+        //  implicit val ordering: Ordering[Class] = (a: Class, b: Class) => a.name.compareTo (b.name)
         implicit val ordering: Ordering[Class] = new Ordering[Class]
         {
             def compare (a: Class, b: Class): Int = a.name.compareTo (b.name)

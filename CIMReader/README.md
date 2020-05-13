@@ -350,3 +350,72 @@ switch = sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.Identi
 rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 ```
 
+# PySpark
+
+Execute pyspark with either the --jar or --packages option referring to a CIMReader jar file.
+
+```
+pyspark --jars <path_to_jar>/CIMReader-<cimreader_version>.jar
+```
+
+__Note: The following works, but might not be optimal from a PySpark perspective.__
+
+```
+sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/TRA10938_TRA10939.new.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.do_topo_islands 'true')")
+elements = spark.sql ("select * from elements")
+elements.count ()
+2887
+
+lines = spark.sql ("select * from ACLineSegment")
+lines.show (10)
++--------------------+----+---+----+---+---------+---------+--------------------------+-----+-----+-------------------+-----+----+----------+-------------------+-----------------+------------------+
+|           Conductor|b0ch|bch|g0ch|gch|        r|       r0|shortCircuitEndTemperature|    x|   x0|ACLineSegmentPhases|Clamp| Cut|LineFaults|LineGroundingAction|LineJumpingAction|PerLengthImpedance|
++--------------------+----+---+----+---+---------+---------+--------------------------+-----+-----+-------------------+-----+----+----------+-------------------+-----------------+------------------+
+|[[[[[[, KLE44242]...| 0.0|0.0| 0.0|0.0|0.4174182|1.6696728|                     200.0| 0.09| 0.36|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, VER4629],...| 0.0|0.0| 0.0|0.0|      0.0|      0.0|                       0.0|  0.0|  0.0|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, KLE43894]...| 0.0|0.0| 0.0|0.0|0.5651864|2.2607456|                     200.0| 0.09| 0.36|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, KLE44244]...| 0.0|0.0| 0.0|0.0|0.1337464|0.5349856|                     200.0|0.089|0.356|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, VER408759...| 0.0|0.0| 0.0|0.0|      0.0|      0.0|                       0.0|  0.0|  0.0|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, KLE44211]...| 0.0|0.0| 0.0|0.0|0.2081698|0.8326792|                     200.0|0.069|0.276|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, VER5086],...| 0.0|0.0| 0.0|0.0|      0.0|      0.0|                       0.0|  0.0|  0.0|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, KLE44213]...| 0.0|0.0| 0.0|0.0|0.7841422|3.1365688|                     200.0|0.092|0.368|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, KLE44215]...| 0.0|0.0| 0.0|0.0|0.2081698|0.8326792|                     200.0|0.069|0.276|               null| null|null|      null|               null|             null|              null|
+|[[[[[[, VER4630],...| 0.0|0.0| 0.0|0.0|      0.0|      0.0|                       0.0|  0.0|  0.0|               null| null|null|      null|               null|             null|              null|
++--------------------+----+---+----+---+---------+---------+--------------------------+-----+-----+-------------------+-----+----+----------+-------------------+-----------------+------------------+
+only showing top 10 rows
+
+switches = spark.sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
+switches.show (10)
++-------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
+|         mRID|           aliasName|                name|         description| open|normalOpen|CoordinateSystem|    xPosition|    yPosition|
++-------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
+|HAS17324_fuse|                null|           Unbekannt|       Fuse HAS17324|false|     false|           wgs84|7.50320957170|46.9730419603|
+|     SIG13911|240842629:nis_el_...|G4-SEV-FUC (NH-La...|                null|false|      true|    pseudo_wgs84|7.50112095282|46.9737210015|
+|HAS17337_fuse|                null|           Unbekannt|       Fuse HAS17337|false|     false|           wgs84|7.50188816143|46.9728596359|
+|    SIG129713|277921763:nis_el_...|Gr2-DIN-WEB (NH-L...|                null|false|      true|    pseudo_wgs84|7.50179274304|46.9744530167|
+|HAS17201_fuse|                null|           Unbekannt|       Fuse HAS17201|false|     false|           wgs84|7.50197474612|46.9741915585|
+|HAS91265_fuse|                null|           Unbekannt|       Fuse HAS91265|false|     false|           wgs84|7.50177084919|46.9750677768|
+|     SIG65509|243117214:nis_el_...|Gr3-DIN-WEB (NH-L...|Fuse SIG65509 SIC...|false|     false|    pseudo_wgs84|7.50263992060|46.9731551678|
+|     SIG13908|240842530:nis_el_...|G4-SEV-FUC (NH-La...|                null|false|      true|    pseudo_wgs84|7.50108809822|46.9737210192|
+|       SIG574|240306320:nis_el_...|G4-SEV-FUC (NH-Si...|                null|false|      true|    pseudo_wgs84|7.50359791204|46.9719968679|
+|HAS17220_fuse|                null|           Unbekannt|       Fuse HAS17220|false|     false|           wgs84|7.50135795842|46.9735427213|
++-------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
+only showing top 10 rows
+
+switchp = switches.toPandas ()
+switchp.shape
+(74, 9)
+switchp
+             mRID                        aliasName                                    name             description  ...  normalOpen  CoordinateSystem      xPosition      yPosition
+0   HAS17324_fuse                             None                               Unbekannt           Fuse HAS17324  ...       False             wgs84  7.50320957170  46.9730419603
+1        SIG13911  240842629:nis_el_int_fuse_group   G4-SEV-FUC (NH-Lastschaltleiste 400V)                    None  ...        True      pseudo_wgs84  7.50112095282  46.9737210015
+2   HAS17337_fuse                             None                               Unbekannt           Fuse HAS17337  ...       False             wgs84  7.50188816143  46.9728596359
+3       SIG129713  277921763:nis_el_int_fuse_group  Gr2-DIN-WEB (NH-Lastschaltleiste 400V)                    None  ...        True      pseudo_wgs84  7.50179274304  46.9744530167
+4   HAS17201_fuse                             None                               Unbekannt           Fuse HAS17201  ...       False             wgs84  7.50197474612  46.9741915585
+..            ...                              ...                                     ...                     ...  ...         ...               ...            ...            ...
+69       SIG13909  240842563:nis_el_int_fuse_group   G4-SEV-FUC (NH-Lastschaltleiste 400V)                    None  ...        True      pseudo_wgs84  7.50115380742  46.9737209837
+70  HAS17202_fuse                             None                               Unbekannt           Fuse HAS17202  ...       False             wgs84  7.50140680876  46.9741165233
+71  HAS17222_fuse                             None                               Unbekannt           Fuse HAS17222  ...       False             wgs84  7.50127662603  46.9739572510
+72         SIG468  240302822:nis_el_int_fuse_group   G4-SEV-FUC (NH-Sicherungsgruppe 400V)      Fuse SIG468 SIC468  ...       False      pseudo_wgs84  7.50288700735  46.9730627751
+73       SIG48118  242396960:nis_el_int_fuse_group  Gr2-DIN-WEB (NH-Lastschaltleiste 400V)  Fuse SIG48118 SIC48118  ...       False      pseudo_wgs84  7.50295532143  46.9731549929
+```
