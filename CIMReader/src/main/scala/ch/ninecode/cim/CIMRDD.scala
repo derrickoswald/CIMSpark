@@ -58,11 +58,10 @@ trait CIMRDD
      *
      * @param name The name of the RDD, usually the same as the CIM class.
      * @param spark The Spark session which persisted the named RDD.
-     * @param log A logger for error messages.
      * @tparam T The type of objects contained in the named RDD.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): Boolean =
+    def test[T : ClassTag](name: String)(implicit spark: SparkSession): Boolean =
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
@@ -104,12 +103,11 @@ trait CIMRDD
      *
      * @param name The name of the RDD, usually the same as the CIM class.
      * @param spark The Spark session which persisted the named RDD.
-     * @param log A logger for error messages.
      * @tparam T The type of objects contained in the named RDD.
      * @return The typed RDD, e.g. <code>RDD[T]</code>, as either the persisted RDD or an empty one if none was found.
      *
      */
-    def getOrElse[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
+    def getOrElse[T : ClassTag](name: String)(implicit spark: SparkSession): RDD[T] =
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {

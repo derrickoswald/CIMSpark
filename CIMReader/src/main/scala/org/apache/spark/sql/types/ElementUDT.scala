@@ -1,12 +1,10 @@
 package org.apache.spark.sql.types
 
-import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.unsafe.types.UTF8String
 
-import ch.ninecode.cim.CHIM
 import ch.ninecode.model.BasicElement
 import ch.ninecode.model.Element
 
@@ -56,11 +54,11 @@ class ElementUDT extends UserDefinedType[Element]
         else
             datum match
             {
-                case row: UnsafeRow => // only GenericInternalRow and InternalRow are used, kept for reference
+                case _: UnsafeRow => // only GenericInternalRow and InternalRow are used, kept for reference
                     BasicElement (null, "")
-                case row: GenericInternalRow =>
+                case _: GenericInternalRow =>
                     BasicElement (null, "")
-                case row: InternalRow =>
+                case _: InternalRow =>
                     BasicElement (null, "")
                 case _: Any =>
                     BasicElement (null, "")
@@ -73,7 +71,7 @@ class ElementUDT extends UserDefinedType[Element]
     {
         o match
         {
-            case v: ElementUDT => true
+            case _: ElementUDT => true
             case _ => false
         }
     }

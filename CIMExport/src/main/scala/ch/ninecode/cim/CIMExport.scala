@@ -3,7 +3,6 @@ package ch.ninecode.cim
 import java.io.ByteArrayOutputStream
 import java.net.URI
 import java.nio.charset.StandardCharsets
-import java.time.LocalDateTime
 import java.util.Date
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
@@ -217,8 +216,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                     )
                 )
 
-            case node: TopologicalNode => None
-            case node: TopologicalIsland => None
+            case _: TopologicalNode => None
+            case _: TopologicalIsland => None
 
             case element => Some (element)
         }
@@ -227,8 +226,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     def saveToCassandra (
         options: ExportOptions,
         trafokreise: RDD[(Island, Iterable[Element])],
-        labeled: RDD[(Island, Element)],
-        stopTerminals: Set[Item]): Int =
+        labeled: RDD[(Island, Element)]): Int =
     {
         val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
         if (schema.make)
@@ -403,7 +401,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     def foreign[T] (fn: T => String) (x: T): (String, String) = pair (fn (x))
 
-    def narrow[T] (rdd: RDD[(String, (T, String))]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.map (x => (x._1, x._2._1))
+    def narrow[T] (rdd: RDD[(String, (T, String))]): RDD[(String, T)] = rdd.map (x => (x._1, x._2._1))
 
     def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x => (x._1, x._2._1))
 
@@ -661,7 +659,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val trafokreise = labeled.groupByKey
 
         val total = if (options.cassandra)
-            saveToCassandra (options, trafokreise, labeled, stopTerminals)
+            saveToCassandra (options, trafokreise, labeled)
         else
         {
             val dir = if (options.outputdir.endsWith ("/")) options.outputdir else s"${options.outputdir}/"

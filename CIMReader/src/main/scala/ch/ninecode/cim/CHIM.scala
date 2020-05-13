@@ -627,7 +627,7 @@ object CHIM
             val skipped = in.skip (start)
             if (start == skipped)
             {
-                val extra = if (in.available () > end - start) CHIM.OVERREAD else 0
+                val extra = if (in.available () > end - start) overread else 0
                 // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
                 val size = (end - start + extra).toInt
                 val buffer = new Array[Byte] (size)
@@ -657,7 +657,7 @@ object CHIM
                     else
                         low
 
-                val len = new String (buffer, first, size - first - extra, "UTF-8").length
+                val len = new String (buffer, first, (size - first - extra).toInt, "UTF-8").length
                 val xml = new String (buffer, first, size - first, "UTF-8")
                 (xml, first, first + len)
             }

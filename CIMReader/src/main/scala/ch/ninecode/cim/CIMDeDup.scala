@@ -2,7 +2,6 @@ package ch.ninecode.cim
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger

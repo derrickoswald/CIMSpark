@@ -1,14 +1,7 @@
 package ch.ninecode
 
-import java.io.BufferedOutputStream
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util
-import java.util.zip.ZipInputStream
 
-import scala.collection.JavaConversions.mapAsJavaMap
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 
@@ -59,7 +52,7 @@ class SparkSuite extends fixture.FunSuite with Unzip
         finally session.stop() // clean up the fixture
     }
 
-    def readFile (filename: String, options: util.Map[String, String] = Map[String, String] ())(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: Map[String, String] = Map[String, String] ())(implicit spark: SparkSession): DataFrame =
     {
         spark.read.format ("ch.ninecode.cim").options (options).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
     }

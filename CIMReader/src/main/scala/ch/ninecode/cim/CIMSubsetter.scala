@@ -3,7 +3,6 @@ package ch.ninecode.cim
 import scala.reflect._
 import scala.reflect.runtime.universe._
 import org.apache.spark.rdd.RDD
-import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.StructType

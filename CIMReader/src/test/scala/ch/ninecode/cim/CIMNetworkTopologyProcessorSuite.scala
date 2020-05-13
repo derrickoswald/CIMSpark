@@ -2,10 +2,7 @@ package ch.ninecode.cim
 
 import java.io.File
 
-import scala.collection.JavaConversions.mapAsJavaMap
-
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 
@@ -171,7 +168,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
     {
         implicit session: SparkSession =>
 
-            def readFileAuto (context: SQLContext, filename: String): DataFrame =
+            def readFileAuto (filename: String): DataFrame =
             {
                 val options = Map[String, String] (
                     "ch.ninecode.cim.do_topo_islands" -> "true")
@@ -181,7 +178,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val start = System.nanoTime ()
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
-            val elements= readFileAuto (session.sqlContext, filename)
+            val elements= readFileAuto (filename)
             assert (elements.count == 1802, "# elements")
 
             val read = System.nanoTime ()

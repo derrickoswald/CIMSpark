@@ -198,7 +198,6 @@ object CIMServerJDBC
             case Some (arguments) =>
                 if (!arguments.quiet)
                     org.apache.log4j.LogManager.getLogger (APPLICATION_NAME).setLevel (org.apache.log4j.Level.INFO)
-                val log = LoggerFactory.getLogger (APPLICATION_NAME)
 
                 val configuration = new SparkConf ()
                 configuration.setAppName (APPLICATION_NAME)
