@@ -239,7 +239,7 @@ $voltage
 
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (ExportOptions (files = Seq (DEMO_DATA1), outputdir = "target/"))
+            export.exportAllTransformers (CIMExportOptions (files = Seq (DEMO_DATA1), outputdir = "target/"))
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             transformers.foreach (
@@ -274,7 +274,7 @@ $voltage
 
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (ExportOptions (files = Seq (DEMO_DATA2), outputdir = "target/"))
+            export.exportAllTransformers (CIMExportOptions (files = Seq (DEMO_DATA2), outputdir = "target/"))
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             transformers.foreach (

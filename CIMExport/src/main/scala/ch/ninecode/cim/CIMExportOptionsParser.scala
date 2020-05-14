@@ -3,11 +3,11 @@ package ch.ninecode.cim
 import scopt.OptionParser
 
 class CIMExportOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: String)
-    extends OptionParser[ExportOptions](APPLICATION_NAME)
+    extends OptionParser[CIMExportOptions](APPLICATION_NAME)
 {
     head (APPLICATION_NAME, APPLICATION_VERSION)
 
-    val default = new ExportOptions
+    val default = new CIMExportOptions
     var unittest = false
     var helpout = false
     var versionout = false

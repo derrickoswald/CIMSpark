@@ -41,7 +41,7 @@ object LogLevels extends Enumeration
  * @param replication  The Casandra keyspace replication factor to use - if the keyspace needs to be created.
  * @param files        The list of CIM files to process.
  */
-final case class ExportOptions
+final case class CIMExportOptions
 (
     var valid: Boolean = true,
     unittest: Boolean = false,

@@ -66,7 +66,7 @@ object CIMExportMain
     {
         val optionparser = new CIMExportOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 
-        optionparser.parse (args, ExportOptions ()) match
+        optionparser.parse (args, CIMExportOptions ()) match
         {
             case Some (options) =>
                 if (options.valid)

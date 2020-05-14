@@ -224,12 +224,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     }
 
     def saveToCassandra (
-        options: ExportOptions,
+        options: CIMExportOptions,
         trafokreise: RDD[(Island, Iterable[Element])],
         labeled: RDD[(Island, Element)]): Int =
     {
-        val schema = Schema (session, options.keyspace, options.replication, LogLevels.toLog4j (options.loglevel))
-        if (schema.make)
+        val schema = Schema (session, """/export_schema.sql""", LogLevels.toLog4j (options.loglevel))
+        if (schema.make (keyspace = options.keyspace, replication = options.replication))
         {
             val id = java.util.UUID.randomUUID.toString
             val time = new Date ().getTime
@@ -626,7 +626,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * @param options the export options
      * @return the number of transformers processed
      */
-    def exportAllTransformers (options: ExportOptions): Int =
+    def exportAllTransformers (options: CIMExportOptions): Int =
     {
         // get transformer low voltage pins
         val term_by_node = getOrElse[Terminal].map (y => (y.id, y.TopologicalNode))
