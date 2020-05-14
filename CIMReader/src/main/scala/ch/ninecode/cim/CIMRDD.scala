@@ -194,11 +194,10 @@ trait CIMRDD
      * class type (the usual case).
      *
      * @param spark The Spark session which persisted the typed RDD.
-     * @param log A logger for error messages.
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T : ClassTag](implicit spark: SparkSession, log: Logger): Boolean = test[T] (nameOf[T])
+    def test[T : ClassTag](implicit spark: SparkSession): Boolean = test[T] (nameOf[T])
 
     /**
      * Get the typed RDD.
@@ -220,11 +219,10 @@ trait CIMRDD
      * class type (the usual case).
      *
      * @param spark The Spark session which persisted the typed RDD.
-     * @param log A logger for error messages.
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.
      */
-    def getOrElse[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] = getOrElse (nameOf[T])
+    def getOrElse[T : ClassTag](implicit spark: SparkSession): RDD[T] = getOrElse (nameOf[T])
 
     /**
      * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
@@ -240,11 +238,10 @@ trait CIMRDD
      * Get a typed DataSet for the given class.
      *
      * @param spark The Spark session.
-     * @param log A logger for error messages.
      * @tparam T The type of RDD.
      * @return A typed dataset of the RDD.
      */
-    def asDataSet[T <: Product : ClassTag : TypeTag](implicit spark: SparkSession, log: Logger): Dataset[T] =
+    def asDataSet[T <: Product : ClassTag : TypeTag](implicit spark: SparkSession): Dataset[T] =
     {
         import spark.sqlContext.implicits._
         val rdd = getOrElse[T]
