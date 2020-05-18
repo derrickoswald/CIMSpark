@@ -101,6 +101,120 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             Member (name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "null", "", referenced_class)
     }
 
+    def declaration (name: String, members: SortedSet[Member]): String =
+    {
+        def initializers: List[String] =
+        {
+            for (product <- members.toList)
+                yield
+                {
+                    val over = if (product.over) "override val " else ""
+                    s"    $over${product.variable}: ${product.datatype} = ${product.initializer}"
+                }
+        }
+        s"""final case class $name
+            |(
+            |${initializers.mkString (",\n|")}
+            |)
+            |extends
+            |    Element""".stripMargin
+    }
+
+    def superclass (cls: Class): String =
+    {
+        val sup = if (null != cls.sup)
+            s"${cls.sup.name}: ${cls.sup.name} = sup"
+        else
+            " Element: Element = sup.asInstanceOf[Element]"
+        s"""
+            |    /**
+            |     * Return the superclass object.
+            |     *
+            |     * @return The typed superclass nested object.
+            |     * @group Hierarchy
+            |     * @groupname Hierarchy Class Hierarchy Related
+            |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+            |     */
+            |    def $sup""".stripMargin
+    }
+
+    def row_overrides: String =
+    {
+        s"""
+            |
+            |    //
+            |    // Row overrides
+            |    //
+            |
+            |    /**
+            |     * Return a copy of this object as a Row.
+            |     *
+            |     * Creates a clone of this object for use in Row manipulations.
+            |     *
+            |     * @return The copy of the object.
+            |     * @group Row
+            |     * @groupname Row SQL Row Implementation
+            |     * @groupdesc Row Members related to implementing the SQL Row interface
+            |     */
+            |    override def copy (): Row = { clone ().asInstanceOf[Row] }
+            |""".stripMargin
+    }
+
+    def export_fields (name: String, fields: SortedSet[Member]): String =
+    {
+        val ref = if (fields.exists (!_.reference))
+            s"        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element ($name.fields (position), value)\n|"
+        else
+            ""
+        val single = if (fields.exists (x => x.reference && !x.multiple))
+            s"        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute ($name.fields (position), value)\n|"
+        else
+            ""
+        val multiple = if (fields.exists (_.multiple))
+            s"        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute ($name.fields (position), x))\n|"
+        else
+            ""
+        val emits = fields.iterator.zipWithIndex.map (
+            x =>
+            {
+                val (member, index) = x
+                val emit = if (member.multiple)
+                    "emitattrs"
+                else if (member.reference)
+                    "emitattr"
+                else
+                    "emitelem"
+                s"$emit ($index, ${member.variable})"
+            }
+        ).mkString ("        ", "\n        ", "")
+        if (fields.nonEmpty)
+        {
+            s"""
+                |    override def export_fields: String =
+                |    {
+                |        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+                |        implicit val clz: String = $name.cls
+                |$ref$single$multiple$emits
+                |        s.toString
+                |    }""".stripMargin
+        }
+        else
+            s"""
+                |    override def export_fields: String =
+                |    {
+                |        sup.export_fields
+                |    }""".stripMargin
+    }
+
+    def export (cls: Class): String =
+    {
+        s"""
+            |    override def export: String =
+            |    {
+            |        "\\t<cim:${cls.name} rdf:ID=\\"%s\\">\\n%s\\t</cim:${cls.name}>".format (id, export_fields)
+            |    }""".stripMargin
+    }
+
     def asText (pkg: Package): String =
     {
         val case_classes = parser.classesFor (pkg)
@@ -140,100 +254,16 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                         .union (parser.rolesFor (cls).map (details).toSet)
             val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
             val s = new StringBuilder ()
-            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package %s".format (pkg.name), pkg.notes).asText)
-            s.append ("final case class ")
-            s.append (name)
-            s.append ("""
-                |(
-                |""".stripMargin)
-            val initializers = new StringBuilder ()
-            for (product <- members)
-            {
-                if (initializers.nonEmpty)
-                {
-                    initializers.append (", ")
-                    s.append (""",
-                    |""".stripMargin)
-                }
-                initializers.append (product.initializer)
-                s.append ("""    """)
-                if (product.over) s.append ("""override val """)
-                s.append (product.variable)
-                s.append (""": """)
-                s.append (product.datatype)
-                s.append (""" = """)
-                s.append (product.initializer)
-            }
+                .append (JavaDoc (cls.note, 0, members, pkg.name, "Package %s".format (pkg.name), pkg.notes).asText)
+                .append (declaration (name, members))
+                .append ("\n{")
+                .append (superclass (cls))
+                .append (row_overrides)
+                .append (export_fields (name, fields))
+                .append (export (cls))
+                .append ("\n}\n")
 
-            s.append ("""
-            |)
-            |extends
-            |    Element
-            |{
-            |    /**
-            |     * Return the superclass object.
-            |     *
-            |     * @return The typed superclass nested object.
-            |     * @group Hierarchy
-            |     * @groupname Hierarchy Class Hierarchy Related
-            |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-            |     */
-            |    def """.stripMargin)
-            if (null != cls.sup)
-            {
-                s.append (cls.sup.name)
-                s.append (""": """)
-                s.append (cls.sup.name)
-                s.append (""" = sup""")
-            }
-            else
-                s.append (""" Element: Element = sup.asInstanceOf[Element]""")
-            s.append ("""
-            |
-            |    //
-            |    // Row overrides
-            |    //
-            |
-            |    /**
-            |     * Return a copy of this object as a Row.
-            |     *
-            |     * Creates a clone of this object for use in Row manipulations.
-            |     *
-            |     * @return The copy of the object.
-            |     * @group Row
-            |     * @groupname Row SQL Row Implementation
-            |     * @groupdesc Row Members related to implementing the SQL Row interface
-            |     */
-            |    override def copy (): Row = { clone ().asInstanceOf[Row] }
-            |""".stripMargin)
-            s.append ("""
-            |    override def export_fields: String =
-            |    {
-            |""".stripMargin.format (name))
-            if (fields.exists (_.name != "sup"))
-            {
-                s.append ("""        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-                    |        implicit val clz: String = %s.cls
-                    |""".stripMargin.format (name))
-                if (fields.exists (!_.reference))
-                    s.append ("        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (%s.fields (position), value)\n".format (name))
-                if (fields.exists (x => x.reference && !x.multiple))
-                    s.append ("        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (%s.fields (position), value)\n".format (name))
-                if (fields.exists (_.multiple))
-                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (%s.fields (position), x))\n".format (name))
-                s.append (fields.iterator.zipWithIndex.map (x => { val emit = if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem"; s"$emit (${x._2}, ${x._1.variable})" }).mkString ("        ", "\n        ", "\n"))
-                s.append ("        s.toString\n")
-            }
-            else
-                s.append ("        sup.export_fields\n")
-            s.append ("""    }
-                |    override def export: String =
-                |    {
-                |        "\t<cim:%s rdf:ID=\"%s\">\n%s\t</cim:%s>".format (id, export_fields)
-                |    }
-                |}
-                |""".stripMargin.format (cls.name, "%s", "%s", cls.name))
-            s.append ("""
+        s.append ("""
                 |object %s
                 |extends
                 |    Parseable[%s]
