@@ -120,10 +120,36 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def retainSwitch (switch: Switch): Boolean =
     {
-        if (0 != (switch.bitfields(retainedMask / 32) & (1 << (retainedMask % 32))))
-            switch.retained
-        else
-            false
+        options.force_retain_switches match
+        {
+            case ForceTrue => true
+            case ForceFalse => false
+            case Unforced =>
+                if (0 != (switch.bitfields(retainedMask / 32) & (1 << (retainedMask % 32))))
+                    switch.retained
+                else
+                    false
+        }
+    }
+
+    /**
+     * Method to determine if a fuse should be retained in the topology.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch should be retained, <code>false</code> otherwise.
+     */
+    def retainFuse (switch: Switch): Boolean =
+    {
+        options.force_retain_fuses match
+        {
+            case ForceTrue => true
+            case ForceFalse => false
+            case Unforced =>
+                if (0 != (switch.bitfields(retainedMask / 32) & (1 << (retainedMask % 32))))
+                    switch.retained
+                else
+                    false
+        }
     }
 
     /**
@@ -134,12 +160,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isSwitchOneNode (switch: Switch): Boolean =
     {
-        options.force_retain_switches match
-        {
-            case ForceTrue => false
-            case ForceFalse => true
-            case Unforced => !retainSwitch (switch) && switchClosed (switch)
-        }
+        !retainSwitch (switch) && switchClosed (switch)
     }
 
     /**
@@ -150,12 +171,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isFuseOneNode (switch: Switch): Boolean =
     {
-        options.force_retain_fuses match
-        {
-            case ForceTrue => false
-            case ForceFalse => true
-            case Unforced => !retainSwitch (switch) && switchClosed (switch)
-        }
+        !retainFuse (switch) && switchClosed (switch)
     }
 
     /**
