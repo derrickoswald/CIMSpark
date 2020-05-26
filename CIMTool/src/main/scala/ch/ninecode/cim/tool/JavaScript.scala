@@ -14,11 +14,75 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
 {
     val log: Logger = LoggerFactory.getLogger (getClass)
 
+    def isPrimitive (typ: String): Boolean =
+    {
+        parser.domains.find (_.name == typ)
+            .map (domain => (domain.stereotype == "Primitive") || (domain.stereotype == "CIMDatatype"))
+            .fold (false)(identity)
+    }
+
+    def isEnumeration (typ: String): Boolean =
+    {
+        parser.domains.find (_.name == typ)
+            .map (_.stereotype == "enumeration")
+            .fold (false)(identity)
+    }
+
+    def valid_attribute_name (name: String): String =
+    {
+        val n = name
+            .replace (" ", "_")
+            .replace (".", "_")
+            .replace (",", "_")
+            .replace ("/", "_")
+            .replace ("-", "_")
+            .replace ("%", "_")
+        if (n.charAt (0).isDigit)
+            s"_$n"
+        else
+            n
+    }
+
+    def generateEnumerations (classes: Seq[(String, Class)]): String =
+    {
+        (
+            for (x <- classes)
+                yield
+                {
+                    val (name, cls) = x
+                    val attributes = parser.attributesFor (cls)
+
+                    // https://stijndewitt.com/2014/01/26/enums-in-javascript/
+                    //            let SizeEnum = {
+                    //                SMALL: 1,
+                    //                MEDIUM: 2,
+                    //                LARGE: 3,
+                    //            };
+
+                    // output enumeration declaration
+                    val s = new StringBuilder ()
+                    val jd = JavaDoc (cls.note, 8).asText
+                    val att = attributes.map (
+                        attribute =>
+                            s"""            "${valid_attribute_name (attribute.name)}": "${attribute.name}"""")
+                        .mkString (",\n")
+                    s"""$jd        let ${name} =
+                       |        {
+                       |$att
+                       |        };
+                       |        Object.freeze ($name);
+                       |
+                       |""".stripMargin
+
+                }
+        )
+        .mkString
+    }
+
     def asText (pkg: Package): String =
     {
         val requires = mutable.Set[Package]()
         val provides = mutable.Set[(String,String)]()
-        val enumerations = mutable.Set[String]()
         // order the classes based on their superclass to avoid "ReferenceError: can't access lexical declaration `blah' before initialization"
         val classes: List[(Int, Class)] = parser.classes.filter (_._2.pkg == pkg).toList
         case class Joe (name: String, superclass: String, superclass_package: String, objectID: Int, cls: Class)
@@ -29,7 +93,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     if (null != cls._2.sup)
                     {
                         val sup_pkg = cls._2.sup.pkg
-                        val superclass_package = if (sup_pkg != pkg) { requires.add (sup_pkg); sup_pkg.name} else ""
+                        val superclass_package = if (sup_pkg != pkg) { val _ = requires.add (sup_pkg); sup_pkg.name } else ""
                         val superclass = cls._2.sup.name
                         (superclass, superclass_package)
                     }
@@ -53,8 +117,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         {
             if (list.nonEmpty)
             {
-                val head = list.head
-                val rest = list.tail
+                val head :: rest = list
                 val name = if (head.superclass_package == "") head.superclass else "Element" // outside our package might as well be Element
                 val dag = get (name) (graph)
                 if (null != dag)
@@ -78,65 +141,16 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         val bunch2 = read (graph.children)
         val classes2 = bunch2.map (x => x.cls)
 
-        def valid_attribute_name (name: String): String =
-        {
-            val n = name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("/", "_").replace ("-", "_").replace ("%", "_")
-            if (n.charAt (0).isDigit)
-                s"_$n"
-            else
-                n
-        }
         def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
-        def isPrimitive (typ: String): Boolean =
-        {
-            val domain = parser.domains.filter (_.name == typ)
-            domain.nonEmpty && ((domain.head.stereotype == "Primitive") || (domain.head.stereotype == "CIMDatatype"))
-        }
-        def isEnumeration (typ: String): Boolean =
-        {
-            val domain = parser.domains.filter (_.name == typ)
-            domain.nonEmpty && (domain.head.stereotype == "enumeration")
-        }
+
+        val enumerationList = classes2
+            .filter (_.stereotype == "enumeration")
+            .map (cls => (cls.name.replace ("-", "_"), cls))
+        enumerationList.foreach (x => provides.add (x._1, x._1))
+        val enumerations = enumerationList.map (_._1).toSet
+
         val p = new StringBuilder ()
-
-        // do the enumerations
-        for (cls <- classes2)
-        {
-            val s = new StringBuilder ()
-
-            // get name
-            val name = cls.name.replace ("-", "_")
-            val attributes = parser.attributesFor (cls)
-
-            if (cls.stereotype == "enumeration")
-            {
-                provides.add ((name, name))
-                enumerations.add (name)
-
-                // add javaDoc
-                if (null != cls.note)
-                    s.append (JavaDoc (cls.note, 8).asText)
-
-                // https://stijndewitt.com/2014/01/26/enums-in-javascript/
-                //            let SizeEnum = {
-                //                SMALL: 1,
-                //                MEDIUM: 2,
-                //                LARGE: 3,
-                //                properties: {
-                //                    1: {name: "small", value: 1, code: "S"},
-                //                    2: {name: "medium", value: 2, code: "M"},
-                //                    3: {name: "large", value: 3, code: "L"}
-                //                }
-                //            };
-
-                // output enumeration declaration
-                s.append ("        let %s =\n        {\n".format (name))
-                s.append (attributes.map (attribute => """            "%s": "%s"""".format (valid_attribute_name (attribute.name), attribute.name)).mkString (",\n"))
-                s.append ("\n        };\n        Object.freeze (%s);\n\n".format (name))
-            }
-
-            p.append (s)
-        }
+            .append (generateEnumerations (enumerationList))
 
         // do the regular classes
         for (cls <- classes2)
@@ -173,32 +187,32 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                 // output class declaration
                 s.append ("        class %s extends %s%s".format (internal, superclass_package, superclass))
                 // output constructor and store function
-                s.append ("""
-                    |        {
-                    |            constructor (template, cim_data)
-                    |            {
-                    |                super (template, cim_data);
-                    |                let bucket = cim_data.%s;
-                    |                if (null == bucket)
-                    |                   cim_data.%s = bucket = {};
-                    |                bucket[template.id] = template;
-                    |            }
-                    |
-                    |            remove (obj, cim_data)
-                    |            {
-                    |               super.remove (obj, cim_data);
-                    |               delete cim_data.%s[obj.id];
-                    |            }
-                    |""".stripMargin.format (name, name, name))
+                    .append ("""
+                        |        {
+                        |            constructor (template, cim_data)
+                        |            {
+                        |                super (template, cim_data);
+                        |                let bucket = cim_data.%s;
+                        |                if (null == bucket)
+                        |                   cim_data.%s = bucket = {};
+                        |                bucket[template.id] = template;
+                        |            }
+                        |
+                        |            remove (obj, cim_data)
+                        |            {
+                        |               super.remove (obj, cim_data);
+                        |               delete cim_data.%s[obj.id];
+                        |            }
+                        |""".stripMargin.format (name, name, name))
 
 
                 // output parse function
-                s.append ("""
-                    |            parse (context, sub)
-                    |            {
-                    |                let obj = %s%s.prototype.parse.call (this, context, sub);
-                    |                obj.cls = "%s";
-                    |""".stripMargin.format (superclass_package, superclass, cls.name))
+                    .append ("""
+                        |            parse (context, sub)
+                        |            {
+                        |                let obj = %s%s.prototype.parse.call (this, context, sub);
+                        |                obj.cls = "%s";
+                        |""".stripMargin.format (superclass_package, superclass, cls.name))
                 for (attribute <- attributes)
                 {
                     val n = attribute.name.replace ("""/""", """\/""")
