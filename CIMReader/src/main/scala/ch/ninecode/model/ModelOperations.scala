@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A model operation argument referencing a dataset instance.
  *
- * @param sup [[ch.ninecode.model.ModelOperationArg ModelOperationArg]] Reference to the superclass object.
+ * @param ModelOperationArg [[ch.ninecode.model.ModelOperationArg ModelOperationArg]] Reference to the superclass object.
  * @param Dataset [[ch.ninecode.model.InstanceSet InstanceSet]] Dataset referenced by this argument of a model operation..
  * @param OperationDatasetArgDescription [[ch.ninecode.model.DatasetArgDescription DatasetArgDescription]] The type of role for this dataset role.
  *        Should only reference role types that belong to the operation type of the associated operation.
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class DatasetArg
 (
-    override val sup: ModelOperationArg = null,
+    ModelOperationArg: ModelOperationArg = null,
     Dataset: String = null,
     OperationDatasetArgDescription: String = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelOperationArg: ModelOperationArg = sup
+    override def sup: ModelOperationArg = ModelOperationArg
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -95,13 +97,12 @@ extends
 }
 
 /**
-
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
 final case class DatasetArgDescription
 (
-    override val sup: ModelOperationArgDescription = null,
+    ModelOperationArgDescription: ModelOperationArgDescription = null,
     OperationDatasetArg: List[String] = null
 )
 extends
@@ -115,7 +116,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelOperationArgDescription: ModelOperationArgDescription = sup
+    override def sup: ModelOperationArgDescription = ModelOperationArgDescription
+
     //
     // Row overrides
     //
@@ -131,6 +133,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -173,7 +176,7 @@ extends
 /**
  * A generic model operation argument referencing an incremental change description.
  *
- * @param sup [[ch.ninecode.model.ModelOperationArg ModelOperationArg]] Reference to the superclass object.
+ * @param ModelOperationArg [[ch.ninecode.model.ModelOperationArg ModelOperationArg]] Reference to the superclass object.
  * @param IncrementalDataset [[ch.ninecode.model.ChangeSet ChangeSet]] <em>undocumented</em>
  * @param IncrementalDatasetArgDescription [[ch.ninecode.model.IncrementalDatasetArgDescription IncrementalDatasetArgDescription]] <em>undocumented</em>
  * @group ModelOperations
@@ -181,7 +184,7 @@ extends
  */
 final case class IncrementalDatasetArg
 (
-    override val sup: ModelOperationArg = null,
+    ModelOperationArg: ModelOperationArg = null,
     IncrementalDataset: String = null,
     IncrementalDatasetArgDescription: String = null
 )
@@ -196,7 +199,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelOperationArg: ModelOperationArg = sup
+    override def sup: ModelOperationArg = ModelOperationArg
+
     //
     // Row overrides
     //
@@ -212,6 +216,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -257,13 +262,12 @@ extends
 }
 
 /**
-
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
 final case class IncrementalDatasetArgDescription
 (
-    override val sup: ModelOperationArgDescription = null,
+    ModelOperationArgDescription: ModelOperationArgDescription = null,
     IncrementalDatasetArg: List[String] = null
 )
 extends
@@ -277,7 +281,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelOperationArgDescription: ModelOperationArgDescription = sup
+    override def sup: ModelOperationArgDescription = ModelOperationArgDescription
+
     //
     // Row overrides
     //
@@ -293,6 +298,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -335,7 +341,7 @@ extends
 /**
  * An operation performed on models.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param sequenceNumber Sequence number within a operation sequence, lower is first.
  *        Normally starts with 1.
  * @param ModelOperationArg [[ch.ninecode.model.ModelOperationArg ModelOperationArg]] Arguments of the operation.
@@ -346,7 +352,7 @@ extends
  */
 final case class ModelOperation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     sequenceNumber: Int = 0,
     ModelOperationArg: List[String] = null,
     ModelOperationDescription: String = null,
@@ -363,7 +369,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -379,6 +386,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -439,7 +447,7 @@ extends
  *
  * The role is applicable only in the context of a single operation.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param sequenceNumber The sequence number of the argument in an operation.
  *        Argument entries are considered in numerical order where the operation requires an ordering.
  * @param ModelOperation [[ch.ninecode.model.ModelOperation ModelOperation]] The opeation for the operation argument.
@@ -448,7 +456,7 @@ extends
  */
 final case class ModelOperationArg
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     sequenceNumber: Int = 0,
     ModelOperation: String = null
 )
@@ -463,7 +471,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -479,6 +488,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -526,7 +536,7 @@ extends
 /**
  * The type of custom operation dataset role for an operation description.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param multiplicityMaximum The maximum multiplicity of the instance arguments that should be supplied for a single operation.
  *        Use -1 to indicate unlimited.
  * @param multiplicityMinimum The minimum multiplicity of the instance arguments that should be supplied for a single operation.
@@ -538,7 +548,7 @@ extends
  */
 final case class ModelOperationArgDescription
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     multiplicityMaximum: Int = 0,
     multiplicityMinimum: Int = 0,
     ModelOperationDefinition: String = null
@@ -554,7 +564,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -570,6 +581,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -623,7 +635,7 @@ extends
  *
  * This class is referenced by model operations and defines the kind of operation.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelOperation [[ch.ninecode.model.ModelOperation ModelOperation]] The instances of operations that conform to this operation type.
  * @param OperationDatasetArgDescription [[ch.ninecode.model.ModelOperationArgDescription ModelOperationArgDescription]] The type of dataset roles that can be used for a type of general model operation.
  * @group ModelOperations
@@ -631,7 +643,7 @@ extends
  */
 final case class ModelOperationDescription
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelOperation: List[String] = null,
     OperationDatasetArgDescription: List[String] = null
 )
@@ -646,7 +658,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -662,6 +675,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -711,14 +725,14 @@ extends
  *
  * For example, this may be used to describe a specific audit trail, a script or other specific set of actions on specific datasets.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelOperation [[ch.ninecode.model.ModelOperation ModelOperation]] <em>undocumented</em>
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
  */
 final case class ModelOperationSequence
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelOperation: List[String] = null
 )
 extends
@@ -732,7 +746,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -748,6 +763,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

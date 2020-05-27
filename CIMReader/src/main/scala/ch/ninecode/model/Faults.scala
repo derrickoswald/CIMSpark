@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This class is not used to specify faults internal to the equipment.
  *
- * @param sup [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
+ * @param Fault [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal connecting to the bus to which the fault is applied.
  * @group Faults
  * @groupname Faults Package Faults
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class EquipmentFault
 (
-    override val sup: Fault = null,
+    Fault: Fault = null,
     Terminal: String = null
 )
 extends
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Fault: Fault = sup
+    override def sup: Fault = Fault
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -92,7 +94,7 @@ extends
 /**
  * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modelled (for example, a tree falling on a line).
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param impedance [[ch.ninecode.model.FaultImpedance FaultImpedance]] Fault impedance.
  *        Its usage is described by 'kind'.
  * @param kind The kind of phase fault.
@@ -109,7 +111,7 @@ extends
  */
 final case class Fault
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     impedance: String = null,
     kind: String = null,
     occurredDateTime: String = null,
@@ -130,7 +132,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -146,6 +149,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -222,7 +226,7 @@ extends
 /**
  * Type of cause of the fault.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ConfigurationEvent [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] <em>undocumented</em>
  * @param Faults [[ch.ninecode.model.Fault Fault]] All faults with this cause type.
  * @group Faults
@@ -231,7 +235,7 @@ extends
  */
 final case class FaultCauseType
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ConfigurationEvent: List[String] = null,
     Faults: List[String] = null
 )
@@ -246,7 +250,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -262,6 +267,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -309,7 +315,7 @@ extends
 /**
  * Impedance description for the fault.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param rGround The resistance of the fault between phases and ground.
  * @param rLineToLine The resistance of the fault between phases.
  * @param xGround The reactance of the fault between phases and ground.
@@ -320,7 +326,7 @@ extends
  */
 final case class FaultImpedance
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     rGround: Double = 0.0,
     rLineToLine: Double = 0.0,
     xGround: Double = 0.0,
@@ -337,7 +343,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -353,6 +360,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -404,7 +412,7 @@ extends
 /**
  * A fault that occurs on an AC line segment at some point along the length.
  *
- * @param sup [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
+ * @param Fault [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
  * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment of this line fault.
  * @group Faults
@@ -413,7 +421,7 @@ extends
  */
 final case class LineFault
 (
-    override val sup: Fault = null,
+    Fault: Fault = null,
     lengthFromTerminal1: Double = 0.0,
     ACLineSegment: String = null
 )
@@ -428,7 +436,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Fault: Fault = sup
+    override def sup: Fault = Fault
+
     //
     // Row overrides
     //
@@ -444,6 +453,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

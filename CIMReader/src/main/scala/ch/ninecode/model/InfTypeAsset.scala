@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * It defines both the Real and Reactive power properties (modelled at the PSR level as a GeneratingUnit + SynchronousMachine).
  *
- * @param sup [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] Reference to the superclass object.
+ * @param CatalogAssetType [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] Reference to the superclass object.
  * @param maxP Maximum real power limit.
  * @param maxQ Maximum reactive power limit.
  * @param minP Minimum real power generated.
@@ -34,7 +34,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class GeneratorTypeAsset
 (
-    override val sup: CatalogAssetType = null,
+    CatalogAssetType: CatalogAssetType = null,
     maxP: Double = 0.0,
     maxQ: Double = 0.0,
     minP: Double = 0.0,
@@ -63,7 +63,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CatalogAssetType: CatalogAssetType = sup
+    override def sup: CatalogAssetType = CatalogAssetType
+
     //
     // Row overrides
     //
@@ -79,6 +80,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -180,7 +182,7 @@ extends
  *
  * It is not associated with a particular manufacturer.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param TypeAssets [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @group InfTypeAsset
@@ -188,7 +190,7 @@ extends
  */
 final case class TypeAssetCatalogue
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     TypeAssets: List[String] = null
 )
@@ -203,7 +205,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -219,6 +222,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

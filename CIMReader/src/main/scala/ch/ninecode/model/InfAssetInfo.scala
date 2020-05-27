@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param AssetModelCatalogueItems [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
  * @group InfAssetInfo
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AssetModelCatalogue
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     AssetModelCatalogueItems: List[String] = null
 )
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -100,7 +102,7 @@ extends
  *
  * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param unitCost Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
  * @param AssetModel [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] <em>undocumented</em>
@@ -112,7 +114,7 @@ extends
  */
 final case class AssetModelCatalogueItem
 (
-    override val sup: Document = null,
+    Document: Document = null,
     unitCost: Double = 0.0,
     AssetModel: String = null,
     AssetModelCatalogue: String = null,
@@ -130,7 +132,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -146,6 +149,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -209,14 +213,14 @@ extends
 /**
  * Properties of breaker assets.
  *
- * @param sup [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
+ * @param OldSwitchInfo [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
  * @param phaseTrip Phase trip rating.
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
 final case class BreakerInfo
 (
-    override val sup: OldSwitchInfo = null,
+    OldSwitchInfo: OldSwitchInfo = null,
     phaseTrip: Double = 0.0
 )
 extends
@@ -230,7 +234,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OldSwitchInfo: OldSwitchInfo = sup
+    override def sup: OldSwitchInfo = OldSwitchInfo
+
     //
     // Row overrides
     //
@@ -246,6 +251,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -285,7 +291,7 @@ extends
 /**
  * Properties of a composite switch.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param ganged True if multi-phase switch controls all phases concurrently.
  * @param initOpMode Initial operating mode, with the following values: Automatic, Manual.
  * @param interruptingRating Breaking capacity, or short circuit rating, is the maximum rated current which the device can safely interrupt at the rated voltage.
@@ -300,7 +306,7 @@ extends
  */
 final case class CompositeSwitchInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     ganged: Boolean = false,
     initOpMode: String = null,
     interruptingRating: Double = 0.0,
@@ -322,7 +328,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -338,6 +345,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -410,7 +418,7 @@ extends
 /**
  * Properties of current transformer asset.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Accuracy limit.
  * @param coreCount Number of cores.
@@ -432,7 +440,7 @@ extends
  */
 final case class CurrentTransformerInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     accuracyClass: String = null,
     accuracyLimit: Double = 0.0,
     coreCount: Int = 0,
@@ -461,7 +469,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -477,6 +486,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -577,14 +587,14 @@ extends
 /**
  * Parameters of fault indicator asset.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param resetKind Kind of reset mechanisim of this fault indicator.
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
 final case class FaultIndicatorInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     resetKind: String = null
 )
 extends
@@ -598,7 +608,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -614,6 +625,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -653,7 +665,7 @@ extends
 /**
  * Properties of switch assets.
  *
- * @param sup [[ch.ninecode.model.SwitchInfo SwitchInfo]] Reference to the superclass object.
+ * @param SwitchInfo [[ch.ninecode.model.SwitchInfo SwitchInfo]] Reference to the superclass object.
  * @param dielectricStrength The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
  * @param loadBreak True if switch has load breaking capabiity.
  *        Unless specified false, this is always assumed to be true for breakers and reclosers.
@@ -667,7 +679,7 @@ extends
  */
 final case class OldSwitchInfo
 (
-    override val sup: SwitchInfo = null,
+    SwitchInfo: SwitchInfo = null,
     dielectricStrength: Double = 0.0,
     loadBreak: Boolean = false,
     makingCapacity: Double = 0.0,
@@ -687,7 +699,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchInfo: SwitchInfo = sup
+    override def sup: SwitchInfo = SwitchInfo
+
     //
     // Row overrides
     //
@@ -703,6 +716,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -764,13 +778,12 @@ extends
 }
 
 /**
-
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
 final case class OldTransformerEndInfo
 (
-    override val sup: TransformerEndInfo = null,
+    TransformerEndInfo: TransformerEndInfo = null,
     dayOverLoadRating: Double = 0.0,
     hourOverLoadRating: Double = 0.0,
     solidInsulationWeight: Double = 0.0,
@@ -787,7 +800,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TransformerEndInfo: TransformerEndInfo = sup
+    override def sup: TransformerEndInfo = TransformerEndInfo
+
     //
     // Row overrides
     //
@@ -803,6 +817,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -853,13 +868,12 @@ extends
 }
 
 /**
-
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
 final case class OldTransformerTankInfo
 (
-    override val sup: TransformerTankInfo = null,
+    TransformerTankInfo: TransformerTankInfo = null,
     constructionKind: String = null,
     coreCoilsWeight: Double = 0.0,
     coreKind: String = null,
@@ -878,7 +892,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TransformerTankInfo: TransformerTankInfo = sup
+    override def sup: TransformerTankInfo = TransformerTankInfo
+
     //
     // Row overrides
     //
@@ -894,6 +909,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -954,7 +970,7 @@ extends
 /**
  * Properties of potential transformer asset.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param accuracyClass <em>undocumented</em>
  * @param nominalRatio <em>undocumented</em>
  * @param primaryRatio Ratio for the primary winding tap changer.
@@ -967,7 +983,7 @@ extends
  */
 final case class PotentialTransformerInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     accuracyClass: String = null,
     nominalRatio: String = null,
     primaryRatio: String = null,
@@ -987,7 +1003,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -1003,6 +1020,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1067,7 +1085,7 @@ extends
 /**
  * Properties of protection equipment asset.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param groundTrip Actual ground trip for this type of relay, if applicable.
  * @param phaseTrip Actual phase trip for this type of relay, if applicable.
  * @group InfAssetInfo
@@ -1075,7 +1093,7 @@ extends
  */
 final case class ProtectionEquipmentInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     groundTrip: Double = 0.0,
     phaseTrip: Double = 0.0
 )
@@ -1090,7 +1108,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -1106,6 +1125,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1149,7 +1169,7 @@ extends
 /**
  * Properties of recloser assets.
  *
- * @param sup [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
+ * @param OldSwitchInfo [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
  * @param groundTripCapable True if device has ground trip capability.
  * @param groundTripNormalEnabled True if normal status of ground trip is enabled.
  * @param groundTripRating Ground trip rating.
@@ -1160,7 +1180,7 @@ extends
  */
 final case class RecloserInfo
 (
-    override val sup: OldSwitchInfo = null,
+    OldSwitchInfo: OldSwitchInfo = null,
     groundTripCapable: Boolean = false,
     groundTripNormalEnabled: Boolean = false,
     groundTripRating: Double = 0.0,
@@ -1178,7 +1198,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OldSwitchInfo: OldSwitchInfo = sup
+    override def sup: OldSwitchInfo = OldSwitchInfo
+
     //
     // Row overrides
     //
@@ -1194,6 +1215,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1249,7 +1271,7 @@ extends
 /**
  * Properties of surge arrester.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param continuousOperatingVoltage Maximum continuous power frequency voltage allowed on the surge arrester.
  * @param isPolymer If true, the arrester has a polymer housing, porcelain otherwise.
  * @param lightningImpulseDischargeVoltage Residual voltage during an 8x20 microsecond current impulse at the nominal discharge current level.
@@ -1267,7 +1289,7 @@ extends
  */
 final case class SurgeArresterInfo
 (
-    override val sup: AssetInfo = null,
+    AssetInfo: AssetInfo = null,
     continuousOperatingVoltage: Double = 0.0,
     isPolymer: Boolean = false,
     lightningImpulseDischargeVoltage: Double = 0.0,
@@ -1289,7 +1311,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup
+    override def sup: AssetInfo = AssetInfo
+
     //
     // Row overrides
     //
@@ -1305,6 +1328,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

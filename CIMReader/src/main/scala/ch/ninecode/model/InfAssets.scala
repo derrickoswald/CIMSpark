@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
@@ -38,7 +38,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class AssetPropertyCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     Assets: List[String] = null,
     Specification: String = null
 )
@@ -53,7 +53,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -69,6 +70,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -119,7 +121,7 @@ extends
  *
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param testKind Kind of test for this bushing.
  * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
@@ -147,7 +149,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class BushingInsulationPF
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     testKind: String = null,
     Bushing: String = null,
@@ -164,7 +166,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -180,6 +183,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -238,7 +242,7 @@ extends
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
  * For example, for three stages, the power rating may be 15/20/25 MVA and the cooling is OA/FA/FOA. The 15 MVA rating goes with the OA cooling (Oil and Air cooling). This is called the self cooled rating as there are no external cooling enhancements. The 20 MVA rating goes with the FA cooling (Forced Air cooling), this means that when the fans are running and thus enhancing the cooling characteristics, the transformer can operate at a power level of 20 MVA. The 25 MVA rating goes with the FOA cooling (Forced Oil and Air cooling), this means that when the fans and pumps are running and thus enhancing the cooling characteristics even more than before, the transformer can operate at a power level of 25 MVA. This 15/20/25 MVA does not state how the power is split between the various windings. It may be 25 MVA input on the primary, 25 MVA output on the secondary and 0 MVA output on the tertiary. It may also operate at 25 MVA input on the primary, 17 MVA output on the secondary and 8 MVA output on the tertiary.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param coolingKind Kind of cooling system.
  * @param powerRating The power rating associated with type of cooling specified for this stage.
  * @param stage Stage of cooling and associated power rating.
@@ -266,7 +270,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class CoolingPowerRating
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     coolingKind: String = null,
     powerRating: Double = 0.0,
     stage: Int = 0,
@@ -283,7 +287,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -299,6 +304,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -357,7 +363,7 @@ extends
  *
  * Units and multipliers are specified per dimension.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param orientation A description of the orientation of the object relative to the dimensions.
  *        As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
  * @param sizeDepth Depth measurement.
@@ -388,7 +394,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class DimensionsInfo
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     orientation: String = null,
     sizeDepth: Double = 0.0,
     sizeDiameter: Double = 0.0,
@@ -407,7 +413,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -423,6 +430,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -486,7 +494,7 @@ extends
 /**
  * Pole asset.
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param Structure [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param baseKind Kind of base for this pole.
  * @param breastBlock True if a block of material has been attached to base of pole in ground for stability.
  *        This technique is used primarily when anchors can not be used.
@@ -494,7 +502,7 @@ extends
  * @param construction The framing structure mounted on the pole.
  * @param diameter Diameter of the pole.
  * @param jpaReference Joint pole agreement reference number.
- * @param length Length of the pole (inclusive of any section of the pole that may be underground post-installation).
+ * @param len Length of the pole (inclusive of any section of the pole that may be underground post-installation).
  * @param preservativeKind Kind of preservative for this pole.
  * @param speciesType Pole species.
  *        Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
@@ -524,7 +532,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Pole
 (
-    override val sup: Structure = null,
+    Structure: Structure = null,
     baseKind: String = null,
     breastBlock: Boolean = false,
     classification: String = null,
@@ -549,7 +557,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup
+    override def sup: Structure = Structure
+
     //
     // Row overrides
     //
@@ -565,6 +574,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -653,7 +663,7 @@ extends
 /**
  * Reconditioning information for an asset.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param PowerRatings [[ch.ninecode.model.CoolingPowerRating CoolingPowerRating]] <em>undocumented</em>
@@ -681,7 +691,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Reconditioning
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dateTime: String = null,
     Asset: String = null,
     PowerRatings: List[String] = null,
@@ -698,7 +708,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -714,6 +725,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -772,7 +784,7 @@ extends
 /**
  * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mTTR Mean time to repair (MTTR - hours).
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
@@ -800,7 +812,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class ReliabilityInfo
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     mTTR: Double = 0.0,
     momFailureRate: Double = 0.0,
     Assets: List[String] = null,
@@ -817,7 +829,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -833,6 +846,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -892,7 +906,7 @@ extends
  *
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param AssetProperites [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify further properties of the asset covered with this specification.
  *        Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.
  * @param AssetPropertyCurves [[ch.ninecode.model.AssetPropertyCurve AssetPropertyCurve]] <em>undocumented</em>
@@ -925,7 +939,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Specification
 (
-    override val sup: Document = null,
+    Document: Document = null,
     AssetProperites: List[String] = null,
     AssetPropertyCurves: List[String] = null,
     DimensionsInfos: List[String] = null,
@@ -945,7 +959,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -961,6 +976,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1036,7 +1052,7 @@ extends
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
  * When used for planning purposes, a transmission tower carrying two 3-phase circuits will have 2 instances of Connection, each of which will have 3 MountingPoint instances, one for each phase all with coordinates relative to a common origin on the tower. (It may also have a 3rd Connection with a single MountingPoint for the Neutral line).
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param Structure [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param constructionKind Construction structure on the tower.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -1061,7 +1077,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class Tower
 (
-    override val sup: Structure = null,
+    Structure: Structure = null,
     constructionKind: String = null
 )
 extends
@@ -1075,7 +1091,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup
+    override def sup: Structure = Structure
+
     //
     // Row overrides
     //
@@ -1091,6 +1108,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1132,7 +1150,7 @@ extends
  *
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param bushingTemp Bushing temperature.
  * @param dga Dissolved Gas Analysis.
  *        Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
@@ -1178,7 +1196,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class TransformerObservation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     bushingTemp: Double = 0.0,
     dga: String = null,
     freqResp: String = null,
@@ -1210,7 +1228,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1226,6 +1245,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1346,7 +1366,7 @@ extends
 /**
  * Underground structure.
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param Structure [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param hasVentilation True if vault is ventilating.
  * @param kind True if vault is ventilating.
  * @param material Primary material of underground structure.
@@ -1374,7 +1394,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class UndergroundStructure
 (
-    override val sup: Structure = null,
+    Structure: Structure = null,
     hasVentilation: Boolean = false,
     kind: String = null,
     material: String = null,
@@ -1391,7 +1411,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup
+    override def sup: Structure = Structure
+
     //
     // Row overrides
     //
@@ -1407,6 +1428,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1459,7 +1481,7 @@ extends
 /**
  * Winding insulation condition as a result of a test.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param insulationPFStatus Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  * @param insulationResistance For testType, status of Winding Insulation Resistance as of statusDate.
  *        Typical values are: Acceptable, Questionable, Failed.
@@ -1491,7 +1513,7 @@ Asset work triggers are used to determine when inspection and/or maintenance are
  */
 final case class WindingInsulation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     insulationPFStatus: String = null,
     insulationResistance: String = null,
     leakageReactance: Double = 0.0,
@@ -1511,7 +1533,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1527,6 +1550,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

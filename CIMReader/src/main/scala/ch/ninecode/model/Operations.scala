@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Action on clearance document as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Clearance action to perform.
  * @param Clearance [[ch.ninecode.model.ClearanceDocument ClearanceDocument]] Clearance associated with this clearance action.
  * @group Operations
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ClearanceAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     Clearance: String = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -98,7 +100,7 @@ extends
  *
  * Tagged equipment is not allowed to be operated.
  *
- * @param sup [[ch.ninecode.model.SafetyDocument SafetyDocument]] Reference to the superclass object.
+ * @param SafetyDocument [[ch.ninecode.model.SafetyDocument SafetyDocument]] Reference to the superclass object.
  * @param mustBeDeenergised If true, the equipment must be deenergised.
  * @param mustBeGrounded If true, the equipment must be grounded.
  * @param ClearanceAction [[ch.ninecode.model.ClearanceAction ClearanceAction]] Clearance action associated with this clearance.
@@ -109,7 +111,7 @@ extends
  */
 final case class ClearanceDocument
 (
-    override val sup: SafetyDocument = null,
+    SafetyDocument: SafetyDocument = null,
     mustBeDeenergised: Boolean = false,
     mustBeGrounded: Boolean = false,
     ClearanceAction: String = null,
@@ -126,7 +128,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SafetyDocument: SafetyDocument = sup
+    override def sup: SafetyDocument = SafetyDocument
+
     //
     // Row overrides
     //
@@ -142,6 +145,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -199,7 +203,7 @@ extends
 /**
  * Control executed as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param analogValue The analog value used for the analog control, the raise/lower control and the set point control
  * @param discreteValue The integer value used for the command or the accumulator reset.
  * @param Control [[ch.ninecode.model.Control Control]] <em>undocumented</em>
@@ -209,7 +213,7 @@ extends
  */
 final case class ControlAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     analogValue: Double = 0.0,
     discreteValue: Int = 0,
     Control: String = null
@@ -225,7 +229,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -241,6 +246,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -292,7 +298,7 @@ extends
 /**
  * Action on cut as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param Cut [[ch.ninecode.model.Cut Cut]] Cut on which this action is taken.
  * @group Operations
@@ -301,7 +307,7 @@ extends
  */
 final case class CutAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     Cut: String = null
 )
@@ -316,7 +322,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -332,6 +339,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -378,7 +386,7 @@ extends
 /**
  * Action on energy source as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy source on which this action is taken.
  * @group Operations
@@ -387,7 +395,7 @@ extends
  */
 final case class EnergySourceAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     EnergySource: String = null
 )
@@ -402,7 +410,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -418,6 +427,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -464,7 +474,7 @@ extends
 /**
  * The Estimated Restoration Time for a single outage
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param confidenceKind provides the confidence level that this ERT can be accomplished.
  *        This may be changed/updated as needed.
  * @param ert estimated time the outage will be restored
@@ -476,7 +486,7 @@ extends
  */
 final case class EstimatedRestorationTime
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     confidenceKind: String = null,
     ert: String = null,
     ertSource: String = null,
@@ -493,7 +503,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -509,6 +520,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -565,7 +577,7 @@ extends
 /**
  * Crew member on work site responsible for all local safety measures for the work crew doing maintenance, construction and repair in a substation or on a power line/cable.
  *
- * @param sup [[ch.ninecode.model.CrewMember CrewMember]] Reference to the superclass object.
+ * @param CrewMember [[ch.ninecode.model.CrewMember CrewMember]] Reference to the superclass object.
  * @param IssuedSafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents issued to this supervisor.
  * @param ReleasedSafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents released by this supervisor.
  * @group Operations
@@ -574,7 +586,7 @@ extends
  */
 final case class FieldSafetySupervisor
 (
-    override val sup: CrewMember = null,
+    CrewMember: CrewMember = null,
     IssuedSafetyDocuments: List[String] = null,
     ReleasedSafetyDocuments: List[String] = null
 )
@@ -589,7 +601,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CrewMember: CrewMember = sup
+    override def sup: CrewMember = CrewMember
+
     //
     // Row overrides
     //
@@ -605,6 +618,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -652,7 +666,7 @@ extends
 /**
  * An arbitrary switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
@@ -660,7 +674,7 @@ extends
  */
 final case class GenericAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     PowerSystemResource: String = null
 )
 extends
@@ -674,7 +688,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -690,6 +705,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -732,7 +748,7 @@ extends
 /**
  * Action on ground as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param AlongACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment that this ground action will affect.
  *        This is the only way to access relationship to clamp in case the ground needs to be placed along the line segment.
@@ -745,7 +761,7 @@ extends
  */
 final case class GroundAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     AlongACLineSegment: String = null,
     Ground: String = null,
@@ -762,7 +778,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -778,6 +795,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -836,7 +854,7 @@ extends
  *
  * It may have to do with an outage.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cause Cause of this incident.
  * @param CustomerNotifications [[ch.ninecode.model.CustomerNotification CustomerNotification]] All notifications for a customer related to the status change of this incident.
  * @param IncidentHazard [[ch.ninecode.model.IncidentHazard IncidentHazard]] All hazards associated with this incident.
@@ -852,7 +870,7 @@ extends
  */
 final case class Incident
 (
-    override val sup: Document = null,
+    Document: Document = null,
     cause: String = null,
     CustomerNotifications: List[String] = null,
     IncidentHazard: List[String] = null,
@@ -874,7 +892,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -890,6 +909,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -973,7 +993,7 @@ extends
 /**
  * Action on jumper as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param AlongACLineSegments [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment that this jumper action will affect.
  *        This is the only way to access relationship to clamp in case the jumper needs to connect along the line segment.
@@ -986,7 +1006,7 @@ extends
  */
 final case class JumperAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     AlongACLineSegments: List[String] = null,
     JumpedEquipments: List[String] = null,
@@ -1003,7 +1023,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -1019,6 +1040,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1076,7 +1098,7 @@ extends
 /**
  * Measurement taken as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
@@ -1084,7 +1106,7 @@ extends
  */
 final case class MeasurementAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     Measurement: String = null
 )
 extends
@@ -1098,7 +1120,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -1114,6 +1137,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1158,7 +1182,7 @@ extends
  *
  * In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param activePeriod Interval during which this restriction is applied.
  * @param restrictedValue Restricted (new) value; includes unit of measure and potentially multiplier.
  * @param Equipments [[ch.ninecode.model.Equipment Equipment]] All equipments to which this restriction applies.
@@ -1169,7 +1193,7 @@ extends
  */
 final case class OperationalRestriction
 (
-    override val sup: Document = null,
+    Document: Document = null,
     activePeriod: String = null,
     restrictedValue: String = null,
     Equipments: List[String] = null,
@@ -1186,7 +1210,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -1202,6 +1227,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1258,7 +1284,7 @@ extends
 /**
  * Operational tag placed on a power system resource or asset in the context of switching plan execution or other work in the field.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param Asset [[ch.ninecode.model.Asset Asset]] Asset on which this tag has been placed.
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resource on which this tag has been placed.
  * @param TagAction [[ch.ninecode.model.TagAction TagAction]] Tag action associated with this tag.
@@ -1268,7 +1294,7 @@ extends
  */
 final case class OperationalTag
 (
-    override val sup: Document = null,
+    Document: Document = null,
     Asset: String = null,
     PowerSystemResource: String = null,
     TagAction: String = null
@@ -1284,7 +1310,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -1300,6 +1327,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1352,7 +1380,7 @@ extends
 /**
  * Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.
  *
- * @param sup [[ch.ninecode.model.OperationalRestriction OperationalRestriction]] Reference to the superclass object.
+ * @param OperationalRestriction [[ch.ninecode.model.OperationalRestriction OperationalRestriction]] Reference to the superclass object.
  * @param changeType Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
  * @param PlannedOutage [[ch.ninecode.model.PlannedOutage PlannedOutage]] Planned equipment outage with this updated rating.
  * @group Operations
@@ -1361,7 +1389,7 @@ extends
  */
 final case class OperationalUpdatedRating
 (
-    override val sup: OperationalRestriction = null,
+    OperationalRestriction: OperationalRestriction = null,
     changeType: String = null,
     PlannedOutage: String = null
 )
@@ -1376,7 +1404,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationalRestriction: OperationalRestriction = sup
+    override def sup: OperationalRestriction = OperationalRestriction
+
     //
     // Row overrides
     //
@@ -1392,6 +1421,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1439,7 +1469,7 @@ extends
 /**
  * Operator with responsibility that the work in high voltage installation is executed in a safe manner and according to safety regulation.
  *
- * @param sup [[ch.ninecode.model.Operator Operator]] Reference to the superclass object.
+ * @param Operator [[ch.ninecode.model.Operator Operator]] Reference to the superclass object.
  * @param IssuedSafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents issued by this supervisor.
  * @param ReleasedSafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents released to this supervisor.
  * @group Operations
@@ -1448,7 +1478,7 @@ extends
  */
 final case class OperationsSafetySupervisor
 (
-    override val sup: Operator = null,
+    Operator: Operator = null,
     IssuedSafetyDocuments: List[String] = null,
     ReleasedSafetyDocuments: List[String] = null
 )
@@ -1463,7 +1493,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Operator: Operator = sup
+    override def sup: Operator = Operator
+
     //
     // Row overrides
     //
@@ -1479,6 +1510,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1537,7 +1569,7 @@ extends
  * - a request for service, maintenance or construction work in the field, or
  * - an operator-defined outage for what-if/contingency network analysis.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param actualPeriod Actual outage period; end of the period corresponds to the actual restoration time.
  * @param communityDescriptor a name to denote the community - this could be a name or a code of some kind.
  * @param customersRestored number of customers that have been restored in the area.
@@ -1573,7 +1605,7 @@ extends
  */
 final case class Outage
 (
-    override val sup: Document = null,
+    Document: Document = null,
     actualPeriod: String = null,
     communityDescriptor: String = null,
     customersRestored: Int = 0,
@@ -1608,7 +1640,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -1624,6 +1657,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1763,7 +1797,7 @@ extends
 /**
  * This defines the area covered by the Outage.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param earliestReportedTime This is the reported time of the first outage report
  * @param metersServed defines the number of meters served in the defined area.
  * @param outageAreaKind defines the type of area that has the outage - county, state, zipcode, etc.
@@ -1774,7 +1808,7 @@ extends
  */
 final case class OutageArea
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     earliestReportedTime: String = null,
     metersServed: Int = 0,
     outageAreaKind: String = null,
@@ -1791,7 +1825,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1807,6 +1842,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1863,7 +1899,7 @@ extends
 /**
  * Transmits an outage plan to a crew in order for the planned outage to be executed.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param comment Free-form comment associated with the outage order
  * @param Location [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @param OutagePlan [[ch.ninecode.model.OutagePlan OutagePlan]] <em>undocumented</em>
@@ -1873,7 +1909,7 @@ extends
  */
 final case class OutageOrder
 (
-    override val sup: Document = null,
+    Document: Document = null,
     comment: String = null,
     Location: List[String] = null,
     OutagePlan: String = null
@@ -1889,7 +1925,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -1905,6 +1942,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1960,7 +1998,7 @@ extends
  *
  * It will reference switching plans that are used to execute the planned outage.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param approvedDateTime The date and time the outage plan was approved
  * @param cancelledDateTime Date and Time the planned outage was canceled.
  * @param plannedPeriod planned start and end time of the planned outage.
@@ -1975,7 +2013,7 @@ extends
  */
 final case class OutagePlan
 (
-    override val sup: Document = null,
+    Document: Document = null,
     approvedDateTime: String = null,
     cancelledDateTime: String = null,
     plannedPeriod: String = null,
@@ -1996,7 +2034,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -2012,6 +2051,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2087,7 +2127,7 @@ extends
 /**
  * Event recording the change in operational status of a power system resource; may be for an event that has already occurred or for a planned activity.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param kind Kind of event.
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resource that generated this event.
  * @group Operations
@@ -2096,7 +2136,7 @@ extends
  */
 final case class PSREvent
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     kind: String = null,
     PowerSystemResource: String = null
 )
@@ -2111,7 +2151,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -2127,6 +2168,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2171,14 +2213,13 @@ extends
 }
 
 /**
-
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 final case class PlannedOutage
 (
-    override val sup: Outage = null,
+    Outage: Outage = null,
     reason: String = null,
     FieldDispatchHistory: String = null,
     OutagePlan: String = null,
@@ -2195,7 +2236,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Outage: Outage = sup
+    override def sup: Outage = Outage
+
     //
     // Row overrides
     //
@@ -2211,6 +2253,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2269,7 +2312,7 @@ extends
 /**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param issuedDateTime Date and time this safety document has been issued.
  * @param releasedDateTime Date and time this safety document has been released.
  * @param IssuedBySupervisor [[ch.ninecode.model.OperationsSafetySupervisor OperationsSafetySupervisor]] Supervisor that issued this safety document.
@@ -2283,7 +2326,7 @@ extends
  */
 final case class SafetyDocument
 (
-    override val sup: Document = null,
+    Document: Document = null,
     issuedDateTime: String = null,
     releasedDateTime: String = null,
     IssuedBySupervisor: String = null,
@@ -2303,7 +2346,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -2319,6 +2363,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2392,7 +2437,7 @@ extends
  *
  * These counts are sometimes referred to as total and critical customer count.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param criticalCount Number of critical service (delivery) points affected by an outage.
  * @param totalCount Number of all service (delivery) points affected by an outage.
  * @group Operations
@@ -2401,7 +2446,7 @@ extends
  */
 final case class ServicePointOutageSummary
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     criticalCount: Int = 0,
     totalCount: Int = 0
 )
@@ -2416,7 +2461,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2432,6 +2478,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2475,7 +2522,7 @@ extends
 /**
  * Action on switch as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param OperatedSwitch [[ch.ninecode.model.Switch Switch]] Switch that is the object of this switch action.
  * @param PlannedOutage [[ch.ninecode.model.Outage Outage]] Planned outage for whose scope this switch action applies.
@@ -2485,7 +2532,7 @@ extends
  */
 final case class SwitchAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     OperatedSwitch: String = null,
     PlannedOutage: String = null
@@ -2501,7 +2548,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -2517,6 +2565,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2568,7 +2617,7 @@ extends
 /**
  * Atomic switching action.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param description Free text description of this activity.
  * @param executedDateTime Actual date and time of this switching step.
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
@@ -2584,7 +2633,7 @@ extends
  */
 final case class SwitchingAction
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     description: String = null,
     executedDateTime: String = null,
     isFreeSequence: Boolean = false,
@@ -2606,7 +2655,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2622,6 +2672,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2703,7 +2754,7 @@ extends
  *
  * The switching action may or may not be a consequential event in response to a request to complete the action.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
@@ -2711,7 +2762,7 @@ extends
  */
 final case class SwitchingEvent
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     SwitchingAction: String = null
 )
 extends
@@ -2725,7 +2776,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -2741,6 +2793,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2783,7 +2836,7 @@ extends
 /**
  * Transmits a switching plan to a crew in order for the plan to be executed.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param comment Free-form comment associated with the switching order.
  * @param plannedExecutionInterval The planned start and end time for the switching order.
  * @param Location [[ch.ninecode.model.Location Location]] <em>undocumented</em>
@@ -2794,7 +2847,7 @@ extends
  */
 final case class SwitchingOrder
 (
-    override val sup: Document = null,
+    Document: Document = null,
     comment: String = null,
     plannedExecutionInterval: String = null,
     Location: List[String] = null,
@@ -2811,7 +2864,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -2827,6 +2881,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2887,7 +2942,7 @@ extends
  *
  * - bring back in service previously de-energised equipment or part of the network.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param approvedDateTime The date and time the switching plan was approved
  * @param cancelledDateTime Date and Time the switching plan was cancelled.
  * @param plannedPeriod the planned start and end times for the switching plan.
@@ -2906,7 +2961,7 @@ extends
  */
 final case class SwitchingPlan
 (
-    override val sup: Document = null,
+    Document: Document = null,
     approvedDateTime: String = null,
     cancelledDateTime: String = null,
     plannedPeriod: String = null,
@@ -2931,7 +2986,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -2947,6 +3003,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3041,7 +3098,7 @@ extends
 /**
  * A document used to request that a switching plan be created for a particular purpose.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param comment Free-form text to describe the request
  * @param equipmentToBeIsolated free-form list of the equipment to be isolated by the switching
  * @param forwardSwitchingDateTimeInterval <em>undocumented</em>
@@ -3060,7 +3117,7 @@ extends
  */
 final case class SwitchingPlanRequest
 (
-    override val sup: Document = null,
+    Document: Document = null,
     comment: String = null,
     equipmentToBeIsolated: String = null,
     forwardSwitchingDateTimeInterval: String = null,
@@ -3085,7 +3142,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -3101,6 +3159,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3190,7 +3249,7 @@ extends
 /**
  * Atomic switching step; can be part of a switching step group, or part of a switching plan.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] <em>undocumented</em>
  * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] <em>undocumented</em>
@@ -3200,7 +3259,7 @@ extends
  */
 final case class SwitchingStep
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     sequenceNumber: Int = 0,
     SwitchingAction: String = null,
     SwitchingStepGroup: String = null
@@ -3216,7 +3275,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3232,6 +3292,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3284,7 +3345,7 @@ extends
 /**
  * A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param description Descriptive information concerning the switching step group.
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param purpose Describes the overall purpose of the steps in this switching step group.
@@ -3297,7 +3358,7 @@ extends
  */
 final case class SwitchingStepGroup
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     description: String = null,
     isFreeSequence: Boolean = false,
     purpose: String = null,
@@ -3316,7 +3377,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3332,6 +3394,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3397,7 +3460,7 @@ extends
 /**
  * Action on operation tag as a switching step.
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Kind of tag action.
  * @param OperationalTag [[ch.ninecode.model.OperationalTag OperationalTag]] Tag associated with this tag action.
  * @group Operations
@@ -3406,7 +3469,7 @@ extends
  */
 final case class TagAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     kind: String = null,
     OperationalTag: String = null
 )
@@ -3421,7 +3484,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -3437,6 +3501,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3483,7 +3548,7 @@ extends
 /**
  * Trouble order sends an incident to a crew to initiate a response to an unplanned outage.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param comment Free-form comment associated with the trouble order.
  * @param plannedExecutionInterval The planned start and end time for the trouble order.
  * @param Incident [[ch.ninecode.model.Incident Incident]] <em>undocumented</em>
@@ -3494,7 +3559,7 @@ extends
  */
 final case class TroubleOrder
 (
-    override val sup: Document = null,
+    Document: Document = null,
     comment: String = null,
     plannedExecutionInterval: String = null,
     Incident: String = null,
@@ -3511,7 +3576,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -3527,6 +3593,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3593,7 +3660,7 @@ extends
  * - an operator command, reflecting information obtained from the field crew.
  * Outage restoration may be performed using a switching plan which complements the outage information with detailed switching activities, including the relationship to the crew and work.
  *
- * @param sup [[ch.ninecode.model.Outage Outage]] Reference to the superclass object.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] Reference to the superclass object.
  * @param cause The cause of this outage.
  *        This is the cause that is used to present to external entities.  That is, the cause is weather, equipment failure, etc.
  *        
@@ -3608,7 +3675,7 @@ extends
  */
 final case class UnplannedOutage
 (
-    override val sup: Outage = null,
+    Outage: Outage = null,
     cause: String = null,
     causeKind: String = null,
     reportedStartTime: String = null,
@@ -3626,7 +3693,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Outage: Outage = sup
+    override def sup: Outage = Outage
+
     //
     // Row overrides
     //
@@ -3642,6 +3710,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3703,7 +3772,7 @@ extends
 /**
  * Verification of a switch position or other condition as a switching step
  *
- * @param sup [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param verificationCondition freeform description of the condition to be verified
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] <em>undocumented</em>
  * @group Operations
@@ -3712,7 +3781,7 @@ extends
  */
 final case class VerificationAction
 (
-    override val sup: SwitchingAction = null,
+    SwitchingAction: SwitchingAction = null,
     verificationCondition: String = null,
     PowerSystemResource: String = null
 )
@@ -3727,7 +3796,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SwitchingAction: SwitchingAction = sup
+    override def sup: SwitchingAction = SwitchingAction
+
     //
     // Row overrides
     //
@@ -3743,6 +3813,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

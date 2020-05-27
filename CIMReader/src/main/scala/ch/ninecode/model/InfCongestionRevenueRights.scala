@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param action Buy, Sell
  * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
  * @param class Peak, Off-peak, 24-hour
@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class FTR
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     action: String = null,
     baseEnergy: Double = 0.0,
     `class`: String = null,
@@ -45,7 +45,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -61,6 +62,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -135,7 +137,7 @@ extends
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
  *
- * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
+ * @param Limit [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param enforced True if limit is enforced.
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
@@ -144,7 +146,7 @@ extends
  */
 final case class ViolationLimit
 (
-    override val sup: Limit = null,
+    Limit: Limit = null,
     enforced: Boolean = false,
     Flowgate: String = null,
     MktMeasurement: String = null
@@ -160,7 +162,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Limit: Limit = sup
+    override def sup: Limit = Limit
+
     //
     // Row overrides
     //
@@ -176,6 +179,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

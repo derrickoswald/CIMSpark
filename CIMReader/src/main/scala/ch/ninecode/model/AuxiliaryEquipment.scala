@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * AuxiliaryEquipment is attached to primary equipment via an association with Terminal.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal at the equipment where the AuxiliaryEquipment is attached.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AuxiliaryEquipment
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     Terminal: String = null
 )
 extends
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -94,7 +96,7 @@ extends
  *
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
  *
- * @param sup [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Percent of rated current for which the CT remains accurate within specified limits.
  * @param coreBurden Power burden of the CT core.
@@ -106,7 +108,7 @@ extends
  */
 final case class CurrentTransformer
 (
-    override val sup: Sensor = null,
+    Sensor: Sensor = null,
     accuracyClass: String = null,
     accuracyLimit: Double = 0.0,
     coreBurden: Double = 0.0,
@@ -124,7 +126,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup
+    override def sup: Sensor = Sensor
+
     //
     // Row overrides
     //
@@ -140,6 +143,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -197,14 +201,14 @@ extends
  *
  * It is used for FLISR (Fault Location, Isolation and Restoration) purposes, assisting with the dispatch of crews to "most likely" part of the network (i.e. assists with determining circuit section where the fault most likely happened).
  *
- * @param sup [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
+ * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class FaultIndicator
 (
-    override val sup: AuxiliaryEquipment = null
+    AuxiliaryEquipment: AuxiliaryEquipment = null
 )
 extends
     Element
@@ -217,7 +221,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup
+    override def sup: AuxiliaryEquipment = AuxiliaryEquipment
+
     //
     // Row overrides
     //
@@ -233,6 +238,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -260,14 +266,14 @@ extends
 /**
  * Represents a two terminal and power conducting device of negligible impedance that senses flow through the device.
  *
- * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class FlowSensor
 (
-    override val sup: ConductingEquipment = null
+    ConductingEquipment: ConductingEquipment = null
 )
 extends
     Element
@@ -280,7 +286,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup
+    override def sup: ConductingEquipment = ConductingEquipment
+
     //
     // Row overrides
     //
@@ -296,6 +303,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -323,14 +331,14 @@ extends
 /**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
  *
- * @param sup [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class PostLineSensor
 (
-    override val sup: Sensor = null
+    Sensor: Sensor = null
 )
 extends
     Element
@@ -343,7 +351,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup
+    override def sup: Sensor = Sensor
+
     //
     // Row overrides
     //
@@ -359,6 +368,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -388,7 +398,7 @@ extends
  *
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
  *
- * @param sup [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass PT accuracy classification.
  * @param nominalRatio Nominal ratio between the primary and secondary voltage.
  * @param ptClass Potential transformer (PT) classification covering burden.
@@ -399,7 +409,7 @@ extends
  */
 final case class PotentialTransformer
 (
-    override val sup: Sensor = null,
+    Sensor: Sensor = null,
     accuracyClass: String = null,
     nominalRatio: Double = 0.0,
     ptClass: String = null,
@@ -416,7 +426,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup
+    override def sup: Sensor = Sensor
+
     //
     // Row overrides
     //
@@ -432,6 +443,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -484,14 +496,14 @@ extends
 /**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
  *
- * @param sup [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
+ * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class Sensor
 (
-    override val sup: AuxiliaryEquipment = null
+    AuxiliaryEquipment: AuxiliaryEquipment = null
 )
 extends
     Element
@@ -504,7 +516,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup
+    override def sup: AuxiliaryEquipment = AuxiliaryEquipment
+
     //
     // Row overrides
     //
@@ -520,6 +533,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -547,14 +561,14 @@ extends
 /**
  * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
  *
- * @param sup [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
+ * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class SurgeArrester
 (
-    override val sup: AuxiliaryEquipment = null
+    AuxiliaryEquipment: AuxiliaryEquipment = null
 )
 extends
     Element
@@ -567,7 +581,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup
+    override def sup: AuxiliaryEquipment = AuxiliaryEquipment
+
     //
     // Row overrides
     //
@@ -583,6 +598,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -610,14 +626,14 @@ extends
 /**
  * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
  *
- * @param sup [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
+ * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 final case class WaveTrap
 (
-    override val sup: AuxiliaryEquipment = null
+    AuxiliaryEquipment: AuxiliaryEquipment = null
 )
 extends
     Element
@@ -630,7 +646,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup
+    override def sup: AuxiliaryEquipment = AuxiliaryEquipment
+
     //
     // Row overrides
     //
@@ -646,6 +663,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

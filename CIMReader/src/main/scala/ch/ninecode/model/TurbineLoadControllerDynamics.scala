@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  *
- * @param sup [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
+ * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
  * @param db Controller deadband (<i>db</i>).
  *        Typical value = 0.
  * @param emax Maximum control error (<i>Emax</i>) (see parameter detail 4).
@@ -49,7 +49,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class TurbLCFB1
 (
-    override val sup: TurbineLoadControllerDynamics = null,
+    TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = null,
     db: Double = 0.0,
     emax: Double = 0.0,
     fb: Double = 0.0,
@@ -74,7 +74,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = sup
+    override def sup: TurbineLoadControllerDynamics = TurbineLoadControllerDynamics
+
     //
     // Row overrides
     //
@@ -90,6 +91,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -173,7 +175,7 @@ extends
 /**
  * Turbine load controller function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor controlled by this turbine load controller.
  * @group TurbineLoadControllerDynamics
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
@@ -181,7 +183,7 @@ extends
  */
 final case class TurbineLoadControllerDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     TurbineGovernorDynamics: String = null
 )
 extends
@@ -195,7 +197,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -211,6 +214,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

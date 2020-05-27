@@ -13,7 +13,7 @@ import ch.ninecode.cim.Relationship
  * This load is usually the aggregation of many individual load devices and the load model is an approximate representation of the aggregate response of the load devices to system disturbances.
  * Standard aggregate load model comprised of static and/or dynamic components.  A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can be used to represent the aggregate response of the motor components of the load.
  *
- * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param LoadMotor [[ch.ninecode.model.LoadMotor LoadMotor]] Aggregate motor (dynamic) load associated with this aggregate load.
  * @param LoadStatic [[ch.ninecode.model.LoadStatic LoadStatic]] Aggregate static load associated with this aggregate load.
  * @group LoadDynamics
@@ -24,7 +24,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadAggregate
 (
-    override val sup: LoadDynamics = null,
+    LoadDynamics: LoadDynamics = null,
     LoadMotor: String = null,
     LoadStatic: String = null
 )
@@ -39,7 +39,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadDynamics: LoadDynamics = sup
+    override def sup: LoadDynamics = LoadDynamics
+
     //
     // Row overrides
     //
@@ -55,6 +56,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -104,7 +106,7 @@ extends
  *
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
  *
- * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param epfd Active load-frequency dependence index (dynamic) (<i>Epfd</i>).
  *        Typical value = 1,5.
  * @param epfs Active load-frequency dependence index (static) (<i>Epfs</i>).
@@ -135,7 +137,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadComposite
 (
-    override val sup: LoadDynamics = null,
+    LoadDynamics: LoadDynamics = null,
     epfd: Double = 0.0,
     epfs: Double = 0.0,
     epvd: Double = 0.0,
@@ -159,7 +161,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadDynamics: LoadDynamics = sup
+    override def sup: LoadDynamics = LoadDynamics
+
     //
     // Row overrides
     //
@@ -175,6 +178,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -257,7 +261,7 @@ extends
  *
  * The load model is always applied to individual bus loads (energy consumers).
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer to which this dynamics load model applies.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
@@ -267,7 +271,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadDynamics
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     EnergyConsumer: List[String] = null
 )
 extends
@@ -281,7 +285,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -297,6 +302,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -341,7 +347,7 @@ extends
  *
  * This model can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as it can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
  *
- * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param bs Steady state voltage index for reactive power (<i>BS</i>).
  * @param bt Transient voltage index for reactive power (<i>BT</i>).
  * @param genericNonLinearLoadModelType Type of generic non-linear load model.
@@ -357,7 +363,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadGenericNonLinear
 (
-    override val sup: LoadDynamics = null,
+    LoadDynamics: LoadDynamics = null,
     bs: Double = 0.0,
     bt: Double = 0.0,
     genericNonLinearLoadModelType: String = null,
@@ -377,7 +383,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadDynamics: LoadDynamics = sup
+    override def sup: LoadDynamics = LoadDynamics
+
     //
     // Row overrides
     //
@@ -393,6 +400,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -463,7 +471,7 @@ extends
  * The reactive power demand of the motor is calculated during initialisation as a function of voltage at the load bus. This reactive power demand can be less than or greater than the constant <i>Q</i> component of the load.  If the motor's reactive demand is greater than the constant <i>Q</i> component of the load, the model inserts a shunt capacitor at the terminal of the motor to bring its reactive demand down to equal the constant <i>Q</i> reactive load.
  * If an induction motor load model and a static load model are both present for a load, the motor <i>Pfrac</i> is assumed to be subtracted from the power flow constant <i>P</i> load before the static load model is applied.  The remainder of the load, if any, is then represented by the static load model.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param d Damping factor (<i>D</i>).
  *        Unit = delta <i>P</i>/delta speed.  Typical value = 2.
  * @param h Inertia constant (<i>H</i>) (&gt;= 0).
@@ -499,7 +507,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadMotor
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     d: Double = 0.0,
     h: Double = 0.0,
     lfac: Double = 0.0,
@@ -526,7 +534,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -542,6 +551,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -639,7 +649,7 @@ extends
  *
  * This model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ep1 First term voltage exponent for active power (<i>Ep1</i>).
  *        Used only when .staticLoadModelType = exponential.
  * @param ep2 Second term voltage exponent for active power (<i>Ep2</i>).
@@ -683,7 +693,7 @@ Large industrial motors or groups of similar motors can be represented by a sync
  */
 final case class LoadStatic
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ep1: Double = 0.0,
     ep2: Double = 0.0,
     ep3: Double = 0.0,
@@ -714,7 +724,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -730,6 +741,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

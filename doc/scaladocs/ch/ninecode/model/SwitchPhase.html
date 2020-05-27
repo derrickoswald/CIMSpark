@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SwitchPhase - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.model.SwitchPhase</title>
-          <meta name="description" content="SwitchPhase - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.model.SwitchPhase" />
-          <meta name="keywords" content="SwitchPhase CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.model.SwitchPhase" />
+          <title>SwitchPhase - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.model.SwitchPhase</title>
+          <meta name="description" content="SwitchPhase - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.model.SwitchPhase" />
+          <meta name="keywords" content="SwitchPhase CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.model.SwitchPhase" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchPhase</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> = <span class="symbol">null</span></span>, <span name="closed">closed: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="normalOpen">normalOpen: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="phaseSide1">phaseSide1: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="phaseSide2">phaseSide2: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="Switch">Switch: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SwitchPhase</span><span class="params">(<span name="PowerSystemResource">PowerSystemResource: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> = <span class="symbol">null</span></span>, <span name="closed">closed: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="normalOpen">normalOpen: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="phaseSide1">phaseSide1: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="phaseSide2">phaseSide2: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="Switch">Switch: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Single phase of a multi-phase switch when its attributes might be different per phase.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">closed</dt><dd class="cmt"><p>The attribute tells if the switch is considered closed when used as input to topology processing.</p></dd><dt class="param">normalOpen</dt><dd class="cmt"><p>Used in cases when no Measurement for the status value is present.
+</p></div><dl class="paramcmts block"><dt class="param">PowerSystemResource</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">closed</dt><dd class="cmt"><p>The attribute tells if the switch is considered closed when used as input to topology processing.</p></dd><dt class="param">normalOpen</dt><dd class="cmt"><p>Used in cases when no Measurement for the status value is present.
        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.</p></dd><dt class="param">phaseSide1</dt><dd class="cmt"><p>Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
        Should be a phase contained in that terminal’s phases attribute.</p></dd><dt class="param">phaseSide2</dt><dd class="cmt"><p>Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
        Should be a phase contained in that terminal’s Terminal.phases attribute.</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>The maximum continuous current carrying capacity in amps governed by the device material and construction.</p></dd><dt class="param">Switch</dt><dd class="cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> The switch of the switch phase.</p></dd></dl><div class="toggleContainer block">
@@ -66,7 +66,7 @@
         <div id="order">
               <span class="filtertype">Ordering</span>
               <ol>
-                
+                <li class="group out"><span>Grouped</span></li>
                 <li class="alpha in"><span>Alphabetic</span></li>
                 <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
@@ -95,7 +95,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.model.SwitchPhase#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,closed:Boolean,normalOpen:Boolean,phaseSide1:String,phaseSide2:String,ratedCurrent:Double,Switch:String):ch.ninecode.model.SwitchPhase"></a>
+      <a id="&lt;init&gt;(PowerSystemResource:ch.ninecode.model.PowerSystemResource,closed:Boolean,normalOpen:Boolean,phaseSide1:String,phaseSide2:String,ratedCurrent:Double,Switch:String):ch.ninecode.model.SwitchPhase"></a>
       <a id="&lt;init&gt;:SwitchPhase"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -103,14 +103,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchPhase</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> = <span class="symbol">null</span></span>, <span name="closed">closed: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="normalOpen">normalOpen: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="phaseSide1">phaseSide1: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="phaseSide2">phaseSide2: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="Switch">Switch: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
+        <span class="name">SwitchPhase</span><span class="params">(<span name="PowerSystemResource">PowerSystemResource: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> = <span class="symbol">null</span></span>, <span name="closed">closed: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="normalOpen">normalOpen: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="phaseSide1">phaseSide1: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="phaseSide2">phaseSide2: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="ratedCurrent">ratedCurrent: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="Switch">Switch: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SwitchPhase@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,closed:Boolean,normalOpen:Boolean,phaseSide1:String,phaseSide2:String,ratedCurrent:Double,Switch:String):ch.ninecode.model.SwitchPhase" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SwitchPhase@&lt;init&gt;(PowerSystemResource:ch.ninecode.model.PowerSystemResource,closed:Boolean,normalOpen:Boolean,phaseSide1:String,phaseSide2:String,ratedCurrent:Double,Switch:String):ch.ninecode.model.SwitchPhase" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">closed</dt><dd class="cmt"><p>The attribute tells if the switch is considered closed when used as input to topology processing.</p></dd><dt class="param">normalOpen</dt><dd class="cmt"><p>Used in cases when no Measurement for the status value is present.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">PowerSystemResource</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">closed</dt><dd class="cmt"><p>The attribute tells if the switch is considered closed when used as input to topology processing.</p></dd><dt class="param">normalOpen</dt><dd class="cmt"><p>Used in cases when no Measurement for the status value is present.
        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.</p></dd><dt class="param">phaseSide1</dt><dd class="cmt"><p>Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
        Should be a phase contained in that terminal’s phases attribute.</p></dd><dt class="param">phaseSide2</dt><dd class="cmt"><p>Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
        Should be a phase contained in that terminal’s Terminal.phases attribute.</p></dd><dt class="param">ratedCurrent</dt><dd class="cmt"><p>The maximum continuous current carrying capacity in amps governed by the device material and construction.</p></dd><dt class="param">Switch</dt><dd class="cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> The switch of the switch phase.</p></dd></dl></div>
@@ -174,13 +174,13 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.SwitchPhase#PowerSystemResource" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+    </li><li name="ch.ninecode.model.SwitchPhase#PowerSystemResource" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="PowerSystemResource:ch.ninecode.model.PowerSystemResource"></a>
       <a id="PowerSystemResource:PowerSystemResource"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">PowerSystemResource</span><span class="result">: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>
@@ -190,8 +190,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+      <p class="shortcomment cmt"><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p>
     </li><li name="ch.ninecode.model.SwitchPhase#Switch" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Switch:String"></a>
       <a id="Switch:String"></a>
@@ -1212,13 +1211,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.SwitchPhase#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.SwitchPhase#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="sup:ch.ninecode.model.PowerSystemResource"></a>
       <a id="sup:PowerSystemResource"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">sup</span><span class="result">: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>
@@ -1228,7 +1227,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.SwitchPhase">SwitchPhase</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.SwitchPhase">SwitchPhase</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

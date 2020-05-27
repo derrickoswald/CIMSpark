@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Power factor or VAr controller type 2 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power factor or VAr controller type 2 is associated.
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class PFVArControllerType2Dynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null
 )
 extends
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -96,7 +98,7 @@ extends
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
  * [Footnote: Basler SCP-250 is an example of a suitable product available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of this product.]
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param j Selector (<i>J</i>).
  *        true = control mode for reactive power
  *        false = control mode for power factor.
@@ -114,7 +116,7 @@ extends
  */
 final case class PFVArType2Common1
 (
-    override val sup: PFVArControllerType2Dynamics = null,
+    PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = null,
     j: Boolean = false,
     ki: Double = 0.0,
     kp: Double = 0.0,
@@ -132,7 +134,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup
+    override def sup: PFVArControllerType2Dynamics = PFVArControllerType2Dynamics
+
     //
     // Row overrides
     //
@@ -148,6 +151,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -206,7 +210,7 @@ extends
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
  * Reference: IEEE 421.5-2005, 11.4.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
@@ -228,7 +232,7 @@ extends
  */
 final case class PFVArType2IEEEPFController
 (
-    override val sup: PFVArControllerType2Dynamics = null,
+    PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = null,
     exlon: Boolean = false,
     ki: Double = 0.0,
     kp: Double = 0.0,
@@ -248,7 +252,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup
+    override def sup: PFVArControllerType2Dynamics = PFVArControllerType2Dynamics
+
     //
     // Row overrides
     //
@@ -264,6 +269,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -330,7 +336,7 @@ extends
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
  * Reference: IEEE 421.5-2005, 11.5.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
@@ -349,7 +355,7 @@ extends
  */
 final case class PFVArType2IEEEVArController
 (
-    override val sup: PFVArControllerType2Dynamics = null,
+    PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = null,
     exlon: Boolean = false,
     ki: Double = 0.0,
     kp: Double = 0.0,
@@ -369,7 +375,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup
+    override def sup: PFVArControllerType2Dynamics = PFVArControllerType2Dynamics
+
     //
     // Row overrides
     //
@@ -385,6 +392,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

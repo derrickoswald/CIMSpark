@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mustStudy Set true if must study this contingency.
  * @param ContingencyElement [[ch.ninecode.model.ContingencyElement ContingencyElement]] A contingency can have any number of contingency elements.
  * @group Contingency
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class Contingency
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     mustStudy: Boolean = false,
     ContingencyElement: List[String] = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -97,7 +99,7 @@ extends
 /**
  * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Contingency [[ch.ninecode.model.Contingency Contingency]] A contingency element belongs to one contingency.
  * @group Contingency
  * @groupname Contingency Package Contingency
@@ -105,7 +107,7 @@ extends
  */
 final case class ContingencyElement
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Contingency: String = null
 )
 extends
@@ -119,7 +121,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -135,6 +138,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -177,7 +181,7 @@ extends
 /**
  * Equipment whose in service status is to change, such as a power transformer or AC line segment.
  *
- * @param sup [[ch.ninecode.model.ContingencyElement ContingencyElement]] Reference to the superclass object.
+ * @param ContingencyElement [[ch.ninecode.model.ContingencyElement ContingencyElement]] Reference to the superclass object.
  * @param contingentStatus The status for the associated equipment when in the contingency state.
  *        This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The single piece of equipment to which to apply the contingency.
@@ -187,7 +191,7 @@ extends
  */
 final case class ContingencyEquipment
 (
-    override val sup: ContingencyElement = null,
+    ContingencyElement: ContingencyElement = null,
     contingentStatus: String = null,
     Equipment: String = null
 )
@@ -202,7 +206,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ContingencyElement: ContingencyElement = sup
+    override def sup: ContingencyElement = ContingencyElement
+
     //
     // Row overrides
     //
@@ -218,6 +223,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

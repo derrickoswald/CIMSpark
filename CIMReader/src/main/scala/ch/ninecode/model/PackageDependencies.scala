@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This is not the same as the combined packages version.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param date Date of last change to the main package dependencies in format YYYY-MM-DD.
  *        This is updated when the version attribute is updated.
  * @param version The version of the main subpackages of the combined CIM model.
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class PackageDependenciesCIMVersion
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     date: String = null,
     version: String = null
 )
@@ -38,7 +38,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -54,6 +55,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

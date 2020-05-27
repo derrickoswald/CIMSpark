@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * <i>Irated</i> is the rated machine excitation current (calculated from nameplate conditions: <i>V</i><i><sub>nom</sub></i>, <i>P</i><i><sub>nom</sub></i>, <i>CosPhi</i><i><sub>nom</sub></i>).
  *
- * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param ifdlim Limit value of rated field current (<i>I</i><i><sub>FDLIM</sub></i>).
  *        Typical value = 1,05.
  * @param koi Gain Over excitation limiter (<i>K</i><i><sub>OI</sub></i>).
@@ -27,7 +27,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class OverexcLim2
 (
-    override val sup: OverexcitationLimiterDynamics = null,
+    OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = null,
     ifdlim: Double = 0.0,
     koi: Double = 0.0,
     voimax: Double = 0.0,
@@ -44,7 +44,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup
+    override def sup: OverexcitationLimiterDynamics = OverexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -60,6 +61,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -114,7 +116,7 @@ extends
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
  * Reference: IEEE OEL 421.5-2005, 9.
  *
- * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param hyst OEL pickup/drop-out hysteresis (<i>HYST</i>).
  *        Typical value = 0,03.
  * @param ifdlim OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).
@@ -133,7 +135,7 @@ extends
  */
 final case class OverexcLimIEEE
 (
-    override val sup: OverexcitationLimiterDynamics = null,
+    OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = null,
     hyst: Double = 0.0,
     ifdlim: Double = 0.0,
     ifdmax: Double = 0.0,
@@ -152,7 +154,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup
+    override def sup: OverexcitationLimiterDynamics = OverexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -168,6 +171,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -227,7 +231,7 @@ extends
 /**
  * Field voltage over excitation limiter.
  *
- * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param efd1 Low voltage point on the inverse time characteristic (<i>EFD</i><i><sub>1</sub></i>).
  *        Typical value = 1,1.
  * @param efd2 Mid voltage point on the inverse time characteristic (<i>EFD</i><i><sub>2</sub></i>).
@@ -253,7 +257,7 @@ extends
  */
 final case class OverexcLimX1
 (
-    override val sup: OverexcitationLimiterDynamics = null,
+    OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     efd3: Double = 0.0,
@@ -276,7 +280,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup
+    override def sup: OverexcitationLimiterDynamics = OverexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -292,6 +297,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -367,7 +373,7 @@ extends
 /**
  * Field voltage or current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
  *
- * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param efd1 Low voltage or current point on the inverse time characteristic (<i>EFD</i><i><sub>1</sub></i>).
  *        Typical value = 1,1.
  * @param efd2 Mid voltage or current point on the inverse time characteristic (<i>EFD</i><i><sub>2</sub></i>).
@@ -396,7 +402,7 @@ extends
  */
 final case class OverexcLimX2
 (
-    override val sup: OverexcitationLimiterDynamics = null,
+    OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     efd3: Double = 0.0,
@@ -420,7 +426,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup
+    override def sup: OverexcitationLimiterDynamics = OverexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -436,6 +443,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -515,7 +523,7 @@ extends
 /**
  * Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this overexcitation limiter model is associated.
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
@@ -523,7 +531,7 @@ extends
  */
 final case class OverexcitationLimiterDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null
 )
 extends
@@ -537,7 +545,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -553,6 +562,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Limit on active power flow.
  *
- * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal value of active power limit.
  * @param value Value of active power limit.
  * @group OperationalLimits
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ActivePowerLimit
 (
-    override val sup: OperationalLimit = null,
+    OperationalLimit: OperationalLimit = null,
     normalValue: Double = 0.0,
     value: Double = 0.0
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationalLimit: OperationalLimit = sup
+    override def sup: OperationalLimit = OperationalLimit
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -93,7 +95,7 @@ extends
 /**
  * Apparent power limit.
  *
- * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal apparent power limit.
  * @param value The apparent power limit.
  * @group OperationalLimits
@@ -102,7 +104,7 @@ extends
  */
 final case class ApparentPowerLimit
 (
-    override val sup: OperationalLimit = null,
+    OperationalLimit: OperationalLimit = null,
     normalValue: Double = 0.0,
     value: Double = 0.0
 )
@@ -117,7 +119,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationalLimit: OperationalLimit = sup
+    override def sup: OperationalLimit = OperationalLimit
+
     //
     // Row overrides
     //
@@ -133,6 +136,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -178,7 +182,7 @@ extends
  *
  * A branch group need not form a cutset of the network.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param maximumActivePower The maximum active power flow.
  * @param maximumReactivePower The maximum reactive power flow.
  * @param minimumActivePower The minimum active power flow.
@@ -193,7 +197,7 @@ extends
  */
 final case class BranchGroup
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     maximumActivePower: Double = 0.0,
     maximumReactivePower: Double = 0.0,
     minimumActivePower: Double = 0.0,
@@ -214,7 +218,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -230,6 +235,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -302,7 +308,7 @@ extends
 /**
  * A specific directed terminal flow for a branch group.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param positiveFlowIn The flow into the terminal is summed if set true.
  *        The flow out of the terminal is summed if set false.
  * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] The branch group to which the directed branch group terminals belong.
@@ -313,7 +319,7 @@ extends
  */
 final case class BranchGroupTerminal
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     positiveFlowIn: Boolean = false,
     BranchGroup: String = null,
     Terminal: String = null
@@ -329,7 +335,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -345,6 +352,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -397,7 +405,7 @@ extends
 /**
  * Operational limit on current.
  *
- * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal value for limit on current flow.
  * @param value Limit on current flow.
  * @group OperationalLimits
@@ -406,7 +414,7 @@ extends
  */
 final case class CurrentLimit
 (
-    override val sup: OperationalLimit = null,
+    OperationalLimit: OperationalLimit = null,
     normalValue: Double = 0.0,
     value: Double = 0.0
 )
@@ -421,7 +429,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationalLimit: OperationalLimit = sup
+    override def sup: OperationalLimit = OperationalLimit
+
     //
     // Row overrides
     //
@@ -437,6 +446,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -486,7 +496,7 @@ extends
  * acceptableDuration_1 &lt; acceptableDuration_2 &lt; acceptableDuration_3 &lt; ...
  * A value_x with direction="high" shall be greater than a value_y with direction="low".
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] The limit dependency models which are used to calculate this limit.
  *        If no limit dependencies are specified then the native limit value is used.
  * @param LimitScalingLimit [[ch.ninecode.model.LimitScalingLimit LimitScalingLimit]] <em>undocumented</em>
@@ -498,7 +508,7 @@ extends
  */
 final case class OperationalLimit
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     LimitDependencyModel: List[String] = null,
     LimitScalingLimit: List[String] = null,
     OperationalLimitSet: String = null,
@@ -515,7 +525,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -531,6 +542,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -591,7 +603,7 @@ extends
  *
  * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment to which the limit set applies.
  * @param OperationalLimitValue [[ch.ninecode.model.OperationalLimit OperationalLimit]] Values of equipment limits.
  * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] The terminal where the operational limit set apply.
@@ -601,7 +613,7 @@ extends
  */
 final case class OperationalLimitSet
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Equipment: String = null,
     OperationalLimitValue: List[String] = null,
     Terminal: String = null
@@ -617,7 +629,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -633,6 +646,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -686,7 +700,7 @@ extends
 /**
  * The operational meaning of a category of limits.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptableDuration The nominal acceptable duration of the limit.
  *        Limits are commonly expressed in terms of the time limit for which the limit is normally acceptable. The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
@@ -699,7 +713,7 @@ extends
  */
 final case class OperationalLimitType
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     acceptableDuration: Double = 0.0,
     direction: String = null,
     OperationalLimit: List[String] = null,
@@ -717,7 +731,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -733,6 +748,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -795,7 +811,7 @@ extends
 /**
  * Operational limit applied to voltage.
  *
- * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal limit on voltage.
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.
  * @param value Limit on voltage.
@@ -806,7 +822,7 @@ extends
  */
 final case class VoltageLimit
 (
-    override val sup: OperationalLimit = null,
+    OperationalLimit: OperationalLimit = null,
     normalValue: Double = 0.0,
     value: Double = 0.0
 )
@@ -821,7 +837,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationalLimit: OperationalLimit = sup
+    override def sup: OperationalLimit = OperationalLimit
+
     //
     // Row overrides
     //
@@ -837,6 +854,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

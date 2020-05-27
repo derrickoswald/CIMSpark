@@ -10,14 +10,14 @@ import ch.ninecode.cim.Relationship
 /**
  * Examples would be "Boundary" or "Region" type of frame.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelFrame [[ch.ninecode.model.FrameworkPart FrameworkPart]] Model frames of the model frame type.
  * @group unused
  * @groupname unused Package unused
  */
 final case class ModelFrameType
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelFrame: List[String] = null
 )
 extends
@@ -31,7 +31,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -47,6 +48,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

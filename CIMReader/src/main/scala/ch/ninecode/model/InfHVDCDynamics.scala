@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * All the measurements are filtered by a first lag element with a time constant TM.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param tm Time constant.
  * @param BlockingFunction [[ch.ninecode.model.BlockingFunction BlockingFunction]] <em>undocumented</em>
  * @param DCvoltageControl [[ch.ninecode.model.DCvoltageControl DCvoltageControl]] <em>undocumented</em>
@@ -25,7 +25,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class Delay
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     tm: Double = 0.0,
     BlockingFunction: String = null,
     DCvoltageControl: String = null,
@@ -47,7 +47,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -63,6 +64,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -143,13 +145,12 @@ extends
 }
 
 /**
-
  * @group InfHVDCDynamics
  * @groupname InfHVDCDynamics Package InfHVDCDynamics
  */
 final case class HVDCLookUpTable
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     functionKind: String = null,
     input: Double = 0.0,
     output: Double = 0.0,
@@ -167,7 +168,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -183,6 +185,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

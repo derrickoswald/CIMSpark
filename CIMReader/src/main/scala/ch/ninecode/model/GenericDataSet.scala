@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * A given registered target object  MRID may only be referenced once by the contained change set members.
  *
- * @param sup [[ch.ninecode.model.DataSet DataSet]] Reference to the superclass object.
+ * @param DataSet [[ch.ninecode.model.DataSet DataSet]] Reference to the superclass object.
  * @param ChangeSetMember [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Data objects contained in the dataset.
  * @param IncrementalDatasetArg [[ch.ninecode.model.IncrementalDatasetArg IncrementalDatasetArg]] <em>undocumented</em>
  * @param NMProjectStage [[ch.ninecode.model.NetworkModelProjectStage NetworkModelProjectStage]] <em>undocumented</em>
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ChangeSet
 (
-    override val sup: DataSet = null,
+    DataSet: DataSet = null,
     ChangeSetMember: List[String] = null,
     IncrementalDatasetArg: List[String] = null,
     NMProjectStage: String = null,
@@ -40,7 +40,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DataSet: DataSet = sup
+    override def sup: DataSet = DataSet
+
     //
     // Row overrides
     //
@@ -56,6 +57,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -114,7 +116,7 @@ extends
 /**
  * A CRUD-style data object.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param Changeset [[ch.ninecode.model.ChangeSet ChangeSet]] Dataset containing the data objects.
  * @param PropertiesObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The CIM object holding the properties of this dataset context.
  *        Sometimes properties are not required and only the reference to the registered object is required.
@@ -125,7 +127,7 @@ extends
  */
 final case class ChangeSetMember
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Changeset: String = null,
     PropertiesObject: String = null,
     TargetObject: String = null
@@ -141,7 +143,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -157,6 +160,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -212,7 +216,7 @@ extends
  * The MRID can be used in an audit trail, not in reusable script intended to work with new versions of data.
  * A dataset could be serialized multiple times and in multiple technologies, yet retain the same identity.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param description The description is a free human readable text describing or naming the object.
  *        It may be non unique and may not correlate to a naming hierarchy.
  * @param mRID Master resource identifier issued by a model authority.
@@ -227,7 +231,7 @@ extends
  */
 final case class DataSet
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     description: String = null,
     mRID: String = null,
     name: String = null,
@@ -245,7 +249,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -261,6 +266,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -320,14 +326,13 @@ extends
 }
 
 /**
-
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
 final case class GenericDataSetVersion
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     majorVersion: String = null,
     minorVersion: String = null,
     published: String = null
@@ -343,7 +348,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -359,6 +365,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -408,7 +415,7 @@ extends
  *
  * This corresponds to a payload of instance data.
  *
- * @param sup [[ch.ninecode.model.DataSet DataSet]] Reference to the superclass object.
+ * @param DataSet [[ch.ninecode.model.DataSet DataSet]] Reference to the superclass object.
  * @param DatasetArg [[ch.ninecode.model.DatasetArg DatasetArg]] The role of a dataset in the context of an operation.
  * @param InstanceSetMember [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Data objects contained in the dataset.
  * @group GenericDataSet
@@ -417,7 +424,7 @@ extends
  */
 final case class InstanceSet
 (
-    override val sup: DataSet = null,
+    DataSet: DataSet = null,
     DatasetArg: List[String] = null,
     InstanceSetMember: List[String] = null
 )
@@ -432,7 +439,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DataSet: DataSet = sup
+    override def sup: DataSet = DataSet
+
     //
     // Row overrides
     //
@@ -448,6 +456,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -495,14 +504,14 @@ extends
 /**
  * An object is to be created in the context.
  *
- * @param sup [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
+ * @param ChangeSetMember [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
 final case class ObjectCreation
 (
-    override val sup: ChangeSetMember = null
+    ChangeSetMember: ChangeSetMember = null
 )
 extends
     Element
@@ -515,7 +524,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ChangeSetMember: ChangeSetMember = sup
+    override def sup: ChangeSetMember = ChangeSetMember
+
     //
     // Row overrides
     //
@@ -531,6 +541,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -558,14 +569,14 @@ extends
 /**
  * An object is to be deleted in the context.
  *
- * @param sup [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
+ * @param ChangeSetMember [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
  * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
  */
 final case class ObjectDeletion
 (
-    override val sup: ChangeSetMember = null
+    ChangeSetMember: ChangeSetMember = null
 )
 extends
     Element
@@ -578,7 +589,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ChangeSetMember: ChangeSetMember = sup
+    override def sup: ChangeSetMember = ChangeSetMember
+
     //
     // Row overrides
     //
@@ -594,6 +606,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -621,7 +634,7 @@ extends
 /**
  * The object already exists and is to be modified.
  *
- * @param sup [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
+ * @param ChangeSetMember [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
  * @param ObjectReverseModification [[ch.ninecode.model.ObjectReverseModification ObjectReverseModification]] The data object holding preconditions of updates.
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
@@ -629,7 +642,7 @@ extends
  */
 final case class ObjectModification
 (
-    override val sup: ChangeSetMember = null,
+    ChangeSetMember: ChangeSetMember = null,
     ObjectReverseModification: String = null
 )
 extends
@@ -643,7 +656,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ChangeSetMember: ChangeSetMember = sup
+    override def sup: ChangeSetMember = ChangeSetMember
+
     //
     // Row overrides
     //
@@ -659,6 +673,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -701,7 +716,7 @@ extends
 /**
  * Used to specify precondition properties for a preconditioned update.
  *
- * @param sup [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
+ * @param ChangeSetMember [[ch.ninecode.model.ChangeSetMember ChangeSetMember]] Reference to the superclass object.
  * @param ObjectModification [[ch.ninecode.model.ObjectModification ObjectModification]] The associated data object representing the update.
  *        Normally the associaiton is specifed, but in the case of a proxy object where the association is removed, we might not reference any data object as it would only reference a proxy data object with no associations.
  * @group GenericDataSet
@@ -710,7 +725,7 @@ extends
  */
 final case class ObjectReverseModification
 (
-    override val sup: ChangeSetMember = null,
+    ChangeSetMember: ChangeSetMember = null,
     ObjectModification: String = null
 )
 extends
@@ -724,7 +739,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ChangeSetMember: ChangeSetMember = sup
+    override def sup: ChangeSetMember = ChangeSetMember
+
     //
     // Row overrides
     //
@@ -740,6 +756,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -784,7 +801,7 @@ extends
  *
  * The MRID is usually defined as a static value by the document or artifact that defines the contents of the profile and the rules for using the profile.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DataSet [[ch.ninecode.model.DataSet DataSet]] The data sets that make use of the profile.
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
@@ -792,7 +809,7 @@ extends
  */
 final case class Profile2
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     DataSet: List[String] = null
 )
 extends
@@ -806,7 +823,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -822,6 +840,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

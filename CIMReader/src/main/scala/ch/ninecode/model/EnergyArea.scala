@@ -8,13 +8,12 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class BlockDispatchComponent
 (
-    override val sup: EnergyComponent = null
+    EnergyComponent: EnergyComponent = null
 )
 extends
     Element
@@ -27,7 +26,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyComponent: EnergyComponent = sup
+    override def sup: EnergyComponent = EnergyComponent
+
     //
     // Row overrides
     //
@@ -43,6 +43,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -68,13 +69,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class BlockDispatchInstruction
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -87,7 +87,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -103,6 +104,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -128,13 +130,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class BlockDispatchOrder
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     p: Double = 0.0,
     sequence: Int = 0
 )
@@ -149,7 +150,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -165,6 +167,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -206,13 +209,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class EnergyComponent
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -225,7 +227,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -241,6 +244,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -266,13 +270,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class EnergyGroup
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     isSlack: Boolean = false,
     p: Double = 0.0
 )
@@ -287,7 +290,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -303,6 +307,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -344,13 +349,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class EnergyTypeReference
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     kind: String = null
 )
 extends
@@ -364,7 +368,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -380,6 +385,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -417,13 +423,12 @@ extends
 }
 
 /**
-
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
  */
 final case class ProportionalDistributionComponent
 (
-    override val sup: EnergyComponent = null,
+    EnergyComponent: EnergyComponent = null,
     distributionFactor: Double = 0.0
 )
 extends
@@ -437,7 +442,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnergyComponent: EnergyComponent = sup
+    override def sup: EnergyComponent = EnergyComponent
+
     //
     // Row overrides
     //
@@ -453,6 +459,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

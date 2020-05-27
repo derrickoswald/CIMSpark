@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
  *
- * @param sup [[ch.ninecode.model.EndDeviceFunction EndDeviceFunction]] Reference to the superclass object.
+ * @param EndDeviceFunction [[ch.ninecode.model.EndDeviceFunction EndDeviceFunction]] Reference to the superclass object.
  * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
  * @param isConnected True if this function is in the connected state.
  * @param isDelayedDiscon If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.
@@ -31,7 +31,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ConnectDisconnectFunction
 (
-    override val sup: EndDeviceFunction = null,
+    EndDeviceFunction: EndDeviceFunction = null,
     eventCount: Int = 0,
     isConnected: Boolean = false,
     isDelayedDiscon: Boolean = false,
@@ -53,7 +53,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EndDeviceFunction: EndDeviceFunction = sup
+    override def sup: EndDeviceFunction = EndDeviceFunction
+
     //
     // Row overrides
     //
@@ -69,6 +70,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -146,7 +148,7 @@ extends
 /**
  * Details of remote connect and disconnect function.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param armedTimeout Setting of the timeout elapsed time.
  * @param customerVoltageLimit Voltage limit on customer side of RCD switch above which the connect should not be made.
  * @param energyLimit Limit of energy before disconnect.
@@ -165,7 +167,7 @@ extends
  */
 final case class RemoteConnectDisconnectInfo
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     armedTimeout: Double = 0.0,
     customerVoltageLimit: Double = 0.0,
     energyLimit: Double = 0.0,
@@ -190,7 +192,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -206,6 +209,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This list is not exhausted, as other roles may exist.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param balancingAuthority Balancing authority.
  * @param competitiveRetailer Competitive retailer.
  * @param complianceMonitor Compliance monitor.
@@ -126,7 +126,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class MarketRoleKind
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     balancingAuthority: String = null,
     competitiveRetailer: String = null,
     complianceMonitor: String = null,
@@ -193,7 +193,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -209,6 +210,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

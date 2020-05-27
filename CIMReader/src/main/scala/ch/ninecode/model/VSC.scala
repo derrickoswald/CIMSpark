@@ -8,13 +8,12 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class BlockingFunction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -29,7 +28,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -45,6 +45,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -92,7 +93,7 @@ extends
 /**
  * DC voltage control used for voltage regulation.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param kivdc Integral gain of the DC voltage regulator (Kivdc).
  * @param kpvdc Proportional gain of the DC voltage regulator (Kpvdc).
  * @param vdcmax Maximum DC voltage (Vdcmax).
@@ -104,7 +105,7 @@ extends
  */
 final case class DCvoltageControl
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     kivdc: Double = 0.0,
     kpvdc: Double = 0.0,
     vdcmax: Double = 0.0,
@@ -123,7 +124,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -139,6 +141,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -201,13 +204,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class PFmode
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -222,7 +224,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -238,6 +241,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -283,13 +287,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class Pcontrol
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -304,7 +307,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -320,6 +324,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -365,13 +370,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class Qlimiter
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -386,7 +390,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -402,6 +407,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -447,13 +453,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class Qmode
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -468,7 +473,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -484,6 +490,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -529,13 +536,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class Qregulator
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     HVDClookUpTable: List[String] = null,
     VSCtype1: String = null
@@ -551,7 +557,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -567,6 +574,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -618,13 +626,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class Umode
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Delay: String = null,
     VSCtype1: String = null
 )
@@ -639,7 +646,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -655,6 +663,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -700,13 +709,12 @@ extends
 }
 
 /**
-
  * @group VSC
  * @groupname VSC Package VSC
  */
 final case class VSCtype1
 (
-    override val sup: VSCDynamics = null,
+    VSCDynamics: VSCDynamics = null,
     BlockingFunction: String = null,
     DCvoltageControl: String = null,
     PFmodel: String = null,
@@ -727,7 +735,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VSCDynamics: VSCDynamics = sup
+    override def sup: VSCDynamics = VSCDynamics
+
     //
     // Row overrides
     //
@@ -743,6 +752,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

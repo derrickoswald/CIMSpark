@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Only one availability plan shall be valid for the same period.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param validPeriod The period of time for which the plan is valid.
  * @group InfAvailabilityPlans
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AvailablityPlan
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     validPeriod: String = null
 )
 extends
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -87,14 +89,13 @@ extends
 }
 
 /**
-
  * @group InfAvailabilityPlans
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
 final case class EquipmentUnavailabilitySchedule
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -107,7 +108,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -123,6 +125,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -148,14 +151,13 @@ extends
 }
 
 /**
-
  * @group InfAvailabilityPlans
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
  * @groupdesc InfAvailabilityPlans Contains the planned schedules for equipment availability, primarily intended for future studies.
  */
 final case class UnavailabilityScheduleDependency
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     UnavailabilityScheduleDependsOn: String = null,
     UnavailabilityScheduleImpacts: String = null
 )
@@ -170,7 +172,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -186,6 +189,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -235,7 +239,7 @@ extends
  *
  * This could open or close a switch that is not directly connected to the unavailable equipment .
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param open The switch is to be open during the scheduled period.
  * @group InfAvailabilityPlans
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
@@ -243,7 +247,7 @@ extends
  */
 final case class UnavailabilitySwitchAction
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     open: Boolean = false
 )
 extends
@@ -257,7 +261,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -273,6 +278,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -312,7 +318,7 @@ extends
 /**
  * A schedule of unavailability for one or more specified equipment that need to follow the same scheduling periods.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DependsOn [[ch.ninecode.model.UnavailabilityScheduleDependency UnavailabilityScheduleDependency]] <em>undocumented</em>
  * @param Impacts [[ch.ninecode.model.UnavailabilityScheduleDependency UnavailabilityScheduleDependency]] <em>undocumented</em>
  * @group InfAvailabilityPlans
@@ -321,7 +327,7 @@ extends
  */
 final case class UnavailablitySchedule
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     DependsOn: List[String] = null,
     Impacts: List[String] = null
 )
@@ -336,7 +342,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -352,6 +359,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

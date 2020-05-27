@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param kind Kind of role the organisation is with regards to the congestion revenue rights.
  * @param status Status of congestion revenue rights organisation role.
  * @param CongestionRevenueRight [[ch.ninecode.model.CongestionRevenueRight CongestionRevenueRight]] <em>undocumented</em>
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class CRROrgRole
 (
-    override val sup: OrganisationRole = null,
+    OrganisationRole: OrganisationRole = null,
     kind: String = null,
     status: String = null,
     CongestionRevenueRight: String = null
@@ -36,7 +36,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup
+    override def sup: OrganisationRole = OrganisationRole
+
     //
     // Row overrides
     //
@@ -52,6 +53,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -104,7 +106,7 @@ extends
  *
  * The segment class contains amount, clearing price, start date and time, end date and time.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param amount Dollar amount = quantity x clearingPrice
  * @param clearingPrice Clearing price of a CRR
  * @param endDateTime segment end date time
@@ -119,7 +121,7 @@ extends
  */
 final case class CRRSegment
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     amount: Double = 0.0,
     clearingPrice: Double = 0.0,
     endDateTime: String = null,
@@ -140,7 +142,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -156,6 +159,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -231,10 +235,10 @@ extends
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
  *
  * A CRR is a financial concept that is used to hedge congestion charges.
- * 
+ *
  * The CRR is usually settled based on the Locational Marginal Prices (LMPs) that are calculated in the day-ahead market. These LMPs are determined by the Day-ahead resource schedules/bids. CRRs will not hedge against marginal losses. If the congestion component of LMP at the sink is greater than at the source, then the CRR owner is entitled to receive a portion of congestion revenues. If the congestion component at the sink is less than at the source, then an obligation-type CRR owner will be charged, but an option-type CRR owner will not.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cRRcategory CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right.
  *        If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records.
  * @param cRRtype Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
@@ -252,7 +256,7 @@ extends
  */
 final case class CongestionRevenueRight
 (
-    override val sup: Document = null,
+    Document: Document = null,
     cRRcategory: String = null,
     cRRtype: String = null,
     hedgeType: String = null,
@@ -274,7 +278,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -290,6 +295,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

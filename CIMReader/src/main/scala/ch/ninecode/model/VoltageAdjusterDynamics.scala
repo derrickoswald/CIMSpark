@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Reference: IEEE 421.5-2005, 11.1.
  *
- * @param sup [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
+ * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
  * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
  *        Unit = s / PU.  Typical value = 300.
  * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
@@ -31,7 +31,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class VAdjIEEE
 (
-    override val sup: VoltageAdjusterDynamics = null,
+    VoltageAdjusterDynamics: VoltageAdjusterDynamics = null,
     adjslew: Double = 0.0,
     taoff: Double = 0.0,
     taon: Double = 0.0,
@@ -50,7 +50,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VoltageAdjusterDynamics: VoltageAdjusterDynamics = sup
+    override def sup: VoltageAdjusterDynamics = VoltageAdjusterDynamics
+
     //
     // Row overrides
     //
@@ -66,6 +67,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -125,7 +127,7 @@ extends
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model with which this voltage adjuster is associated.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
@@ -134,7 +136,7 @@ extends
  */
 final case class VoltageAdjusterDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     PFVArControllerType1Dynamics: String = null
 )
 extends
@@ -148,7 +150,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -164,6 +167,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

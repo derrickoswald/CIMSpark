@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * The tie point can be a network branch (e.g., transmission line or transformer) or a switching device. For transmission lines, the interchange area boundary is usually at a designated point such as the middle of the line. Line end metering is then corrected for line losses.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tiePointMWRating The MW rating of the tie point.
  * @param ByMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the B side of a tie point
  * @param ForMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the A side of a tie point
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class TiePoint
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     tiePointMWRating: Double = 0.0,
     ByMktMeasurement: List[String] = null,
     ForMktMeasurement: List[String] = null
@@ -37,7 +37,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -53,6 +54,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

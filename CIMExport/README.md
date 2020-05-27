@@ -36,8 +36,8 @@ The normal build process also generates a stand-alone program in the `target/` d
 This is executed using the `spark-submit` command. It can provide help text with the --help option: 
 
 ``` bash
-$ spark-submit --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g target/CIMExport-2.11-2.4.5-4.1.3-jar-with-dependencies.jar --help
-CIMExportMain 2.11-2.4.5-4.1.3
+$ spark-submit --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g target/CIMExport-2.11-2.4.5-4.2.0-jar-with-dependencies.jar --help
+CIMExportMain 2.11-2.4.5-4.2.0
 Usage: CIMExportMain [options] <CIM> <CIM> ...
 
 Extracts subsets of CIM files based on topology.

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * The ICCP data provider lists the data it makes available to an ICCP data consumer.  This data is described by ProvidedBilateralPoints. The relation between an ICCP data provider and a consumer is established by a BilateralExchangeAgreement.  It is up to the ICCP data consumer to select what ProvidedBilateralPoints to use.  The selection made is not described in this information model.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param CommunicationLink [[ch.ninecode.model.CommunicationLink CommunicationLink]] Communication addressing for a Bilateral Table used by a ICCP data provider or consumer.
  * @param ConsumerBilateralExchange [[ch.ninecode.model.BilateralExchangeAgreement BilateralExchangeAgreement]] Agreement to information subscriber.
  * @param ProvidedBilateralIOPoint [[ch.ninecode.model.ProvidedBilateralPoint ProvidedBilateralPoint]] ICCP information in a Bilateral table that will be exposed to a remote peer.
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class BilateralExchangeActor
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     CommunicationLink: List[String] = null,
     ConsumerBilateralExchange: List[String] = null,
     ProvidedBilateralIOPoint: List[String] = null,
@@ -40,7 +40,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -56,6 +57,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -113,7 +115,7 @@ extends
 /**
  * This is the representation of the information exchange agreement between peers.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Consumer [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Subscriber of information from a remote peer.
  * @param Provider [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Provider of information to a remote peer.
  * @group ICCPConfiguration
@@ -122,7 +124,7 @@ extends
  */
 final case class BilateralExchangeAgreement
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Consumer: String = null,
     Provider: String = null
 )
@@ -137,7 +139,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -153,6 +156,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -202,7 +206,7 @@ extends
  *
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
  * @param scope Indicates if the Point is global scoped (e.g.
@@ -214,7 +218,7 @@ extends
  */
 final case class ICCPInformationMessage
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     localReference: String = null,
     scope: String = null,
     TASE2BilateralTable: List[String] = null
@@ -230,7 +234,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -246,6 +251,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -300,7 +306,7 @@ extends
  *
  * The name attribute shall be used as the DataValue name used for the exchange.
  *
- * @param sup [[ch.ninecode.model.ProvidedBilateralPoint ProvidedBilateralPoint]] Reference to the superclass object.
+ * @param ProvidedBilateralPoint [[ch.ninecode.model.ProvidedBilateralPoint ProvidedBilateralPoint]] Reference to the superclass object.
  * @param accessPriviledge Provides information regarding the access privileges allowed to the ICCP Point.
  * @param pointQuality Specifies the type of ICCP quality that will be conveyed as part of the ICCP Point.
  * @param pointType Indicates the ICCP Point type that is to be conveyed.
@@ -316,7 +322,7 @@ extends
  */
 final case class ICCPProvidedPoint
 (
-    override val sup: ProvidedBilateralPoint = null,
+    ProvidedBilateralPoint: ProvidedBilateralPoint = null,
     accessPriviledge: String = null,
     pointQuality: String = null,
     pointType: String = null,
@@ -333,7 +339,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProvidedBilateralPoint: ProvidedBilateralPoint = sup
+    override def sup: ProvidedBilateralPoint = ProvidedBilateralPoint
+
     //
     // Row overrides
     //
@@ -349,6 +356,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -400,14 +408,14 @@ extends
 /**
  * Indicates that the ICCP information is global in nature and normally is available to all authorized peers.
  *
- * @param sup [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Reference to the superclass object.
+ * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Reference to the superclass object.
  * @group ICCPConfiguration
  * @groupname ICCPConfiguration Package ICCPConfiguration
  * @groupdesc ICCPConfiguration This package models configuration of ICCP required for bilateral exchanges.
  */
 final case class ICCPVCC
 (
-    override val sup: BilateralExchangeActor = null
+    BilateralExchangeActor: BilateralExchangeActor = null
 )
 extends
     Element
@@ -420,7 +428,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BilateralExchangeActor: BilateralExchangeActor = sup
+    override def sup: BilateralExchangeActor = BilateralExchangeActor
+
     //
     // Row overrides
     //
@@ -436,6 +445,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -463,7 +473,7 @@ extends
 /**
  * This contains the information that a particular actor exposes for a particular agreed upon ICCP Bilateral Table.
  *
- * @param sup [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Reference to the superclass object.
+ * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Reference to the superclass object.
  * @param applicationSecurityRequirement Specifies the expected security mechanism, per IEC 62351-4, to be utilized.
  * @param calling Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
  *        If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.
@@ -488,7 +498,7 @@ extends
  */
 final case class ICCPVirtualControlCentre
 (
-    override val sup: BilateralExchangeActor = null,
+    BilateralExchangeActor: BilateralExchangeActor = null,
     applicationSecurityRequirement: String = null,
     calling: Boolean = false,
     clientAndServer: Boolean = false,
@@ -513,7 +523,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BilateralExchangeActor: BilateralExchangeActor = sup
+    override def sup: BilateralExchangeActor = BilateralExchangeActor
+
     //
     // Row overrides
     //
@@ -529,6 +540,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -613,7 +625,7 @@ extends
 /**
  * Indicates the point source for an IO Point.
  *
- * @param sup [[ch.ninecode.model.MeasurementValueSource MeasurementValueSource]] Reference to the superclass object.
+ * @param MeasurementValueSource [[ch.ninecode.model.MeasurementValueSource MeasurementValueSource]] Reference to the superclass object.
  * @param IOPoint [[ch.ninecode.model.IOPoint IOPoint]] ICCP point for a local measurement value source.
  * @group ICCPConfiguration
  * @groupname ICCPConfiguration Package ICCPConfiguration
@@ -621,7 +633,7 @@ extends
  */
 final case class IOPointSource
 (
-    override val sup: MeasurementValueSource = null,
+    MeasurementValueSource: MeasurementValueSource = null,
     IOPoint: List[String] = null
 )
 extends
@@ -635,7 +647,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MeasurementValueSource: MeasurementValueSource = sup
+    override def sup: MeasurementValueSource = MeasurementValueSource
+
     //
     // Row overrides
     //
@@ -651,6 +664,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -693,7 +707,7 @@ extends
 /**
  * Internet Protocol Access Point – used to represent an addressing structure is based upon an Internet Protocol (IP) address.
  *
- * @param sup [[ch.ninecode.model.CommunicationLink CommunicationLink]] Reference to the superclass object.
+ * @param CommunicationLink [[ch.ninecode.model.CommunicationLink CommunicationLink]] Reference to the superclass object.
  * @param address Is the dotted decimal IP Address resolve the IP address.
  *        The format is controlled by the value of the addressType.
  * @param addressType IP address type.
@@ -706,7 +720,7 @@ extends
  */
 final case class IPAccessPoint
 (
-    override val sup: CommunicationLink = null,
+    CommunicationLink: CommunicationLink = null,
     address: String = null,
     addressType: String = null,
     gateway: String = null,
@@ -723,7 +737,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CommunicationLink: CommunicationLink = sup
+    override def sup: CommunicationLink = CommunicationLink
+
     //
     // Row overrides
     //
@@ -739,6 +754,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -791,7 +807,7 @@ extends
 /**
  * Is a set of configure addressing information that is required since ICCP utilizes addressing other than a TCP port.
  *
- * @param sup [[ch.ninecode.model.TCPAccessPoint TCPAccessPoint]] Reference to the superclass object.
+ * @param TCPAccessPoint [[ch.ninecode.model.TCPAccessPoint TCPAccessPoint]] Reference to the superclass object.
  * @param aeInvoke Is part of the Application Entity addressing as specified by ISO Addressing.
  * @param aeQual Is the AE qualifier and represents further application level addressing information.
  * @param apInvoke Is a further application level OSI addressing parameter.
@@ -807,7 +823,7 @@ extends
  */
 final case class ISOUpperLayer
 (
-    override val sup: TCPAccessPoint = null,
+    TCPAccessPoint: TCPAccessPoint = null,
     aeInvoke: Int = 0,
     aeQual: Int = 0,
     apInvoke: Int = 0,
@@ -828,7 +844,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TCPAccessPoint: TCPAccessPoint = sup
+    override def sup: TCPAccessPoint = TCPAccessPoint
+
     //
     // Row overrides
     //
@@ -844,6 +861,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -915,7 +933,7 @@ extends
 /**
  * Allows declaration of ICCP points to be provided through a Bilateral Table agreement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] Remote peer that will receive ICCP information in a Bilateral table.
  * @param IOPoint [[ch.ninecode.model.IOPoint IOPoint]] Measurement or control for the bilateral ICCP point.
  * @group ICCPConfiguration
@@ -924,7 +942,7 @@ extends
  */
 final case class ProvidedBilateralPoint
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     BilateralExchangeActor: String = null,
     IOPoint: String = null
 )
@@ -939,7 +957,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -955,6 +974,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1004,7 +1024,7 @@ extends
  *
  * Actual certificates are exchanged externally to the CIM exchange.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param issuerName Represents the CA that issued the certificate.
  *        Defined to be per X.509.
  * @param serialNumber Is the serial number of the certificate per X.509 definition.
@@ -1016,7 +1036,7 @@ extends
  */
 final case class PublicX509Certificate
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     issuerName: String = null,
     serialNumber: String = null,
     ISOUpperLayer: String = null,
@@ -1033,7 +1053,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1049,6 +1070,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1107,7 +1129,7 @@ extends
  *
  * Hence the ICCP bilateral (table) descriptions are created by exchanging ICCP Provider data between the parties.
  *
- * @param sup [[ch.ninecode.model.BilateralExchangeAgreement BilateralExchangeAgreement]] Reference to the superclass object.
+ * @param BilateralExchangeAgreement [[ch.ninecode.model.BilateralExchangeAgreement BilateralExchangeAgreement]] Reference to the superclass object.
  * @param bilateralTableID Specifies the version of the Bilateral Table configuration that is being exchanged.
  * @param bilateralTableVersion The Version attribute identifies a unique version of the Bilateral Table.
  *        If any changes are made to a Bilateral Table, then a new unique value for this attribute shall be generated.
@@ -1120,7 +1142,7 @@ extends
  */
 final case class TASE2BilateralTable
 (
-    override val sup: BilateralExchangeAgreement = null,
+    BilateralExchangeAgreement: BilateralExchangeAgreement = null,
     bilateralTableID: String = null,
     bilateralTableVersion: String = null,
     tase2version: String = null,
@@ -1137,7 +1159,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BilateralExchangeAgreement: BilateralExchangeAgreement = sup
+    override def sup: BilateralExchangeAgreement = BilateralExchangeAgreement
+
     //
     // Row overrides
     //
@@ -1153,6 +1176,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1208,7 +1232,7 @@ extends
 /**
  * Allows addressing and behavioural information regarding the use of TCP by ICCP links.
  *
- * @param sup [[ch.ninecode.model.IPAccessPoint IPAccessPoint]] Reference to the superclass object.
+ * @param IPAccessPoint [[ch.ninecode.model.IPAccessPoint IPAccessPoint]] Reference to the superclass object.
  * @param keepAliveTime Indicates the default interval at which TCP will check if the TCP connection is still valid.
  * @param port This value is only needed to be specified for called nodes (e.g. those that respond to a TCP.
  *        Open request).
@@ -1224,7 +1248,7 @@ extends
  */
 final case class TCPAccessPoint
 (
-    override val sup: IPAccessPoint = null,
+    IPAccessPoint: IPAccessPoint = null,
     keepAliveTime: Int = 0,
     port: Int = 0,
     PublicX509Certificate: List[String] = null
@@ -1240,7 +1264,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IPAccessPoint: IPAccessPoint = sup
+    override def sup: IPAccessPoint = IPAccessPoint
+
     //
     // Row overrides
     //
@@ -1256,6 +1281,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

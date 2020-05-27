@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Relationship between time (Y1-axis) vs. MW (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
  *        Max, Min,
  * @group InfReferenceData
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class LoadReductionTimeCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     loadReductionTimeCurveType: String = null
 )
 extends
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -91,7 +93,7 @@ extends
  *
  * Use for future use case when developing the RegisteredDistributedResource specialized classes.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param maxBaseLoad Maximum Base Load (MW), per Participating Load Resource
  * @param maxDeploymentTime Maximum Deployment time (seconds)
  * @param maxLoadRedTimesPerDay Maximum Number of Daily Load Curtailments
@@ -114,7 +116,7 @@ extends
  */
 final case class RegisteredControllableLoad
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     maxBaseLoad: Double = 0.0,
     maxDeploymentTime: Double = 0.0,
     maxLoadRedTimesPerDay: Int = 0,
@@ -139,7 +141,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -155,6 +158,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

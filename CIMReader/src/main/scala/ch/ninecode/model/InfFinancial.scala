@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param CAChildOf [[ch.ninecode.model.TieLine TieLine]] A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
  * @param ControlledBy [[ch.ninecode.model.HostControlArea HostControlArea]] A ControlAreaCompany controls a ControlArea.
  * @group InfFinancial
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ControlAreaOperator
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     CAChildOf: List[String] = null,
     ControlledBy: String = null
 )
@@ -36,7 +36,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -52,6 +53,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -100,7 +102,7 @@ extends
 /**
  * The energy buyer in the energy marketplace.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param CustChildOf [[ch.ninecode.model.TieLine TieLine]] A  ControlAreaOperator or CustomerConsumer may ring their perimeter with metering, which can create a unique SubControlArea at the collection of metering points, called a TieLine.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
@@ -108,7 +110,7 @@ extends
  */
 final case class CustomerConsumer
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     CustChildOf: List[String] = null
 )
 extends
@@ -122,7 +124,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -138,6 +141,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -180,7 +184,7 @@ extends
 /**
  * The energy seller in the energy marketplace.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param ProvidedBy [[ch.ninecode.model.EnergyProduct EnergyProduct]] <em>undocumented</em>
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
@@ -188,7 +192,7 @@ extends
  */
 final case class GenerationProvider
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     ProvidedBy: List[String] = null
 )
 extends
@@ -202,7 +206,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -218,6 +223,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -260,7 +266,7 @@ extends
 /**
  * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param defaultIntegrationMethod The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *        Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
  * @group InfFinancial
@@ -269,7 +275,7 @@ extends
  */
 final case class IntSchedAgreement
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     defaultIntegrationMethod: String = null
 )
 extends
@@ -283,7 +289,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -299,6 +306,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -338,7 +346,7 @@ extends
 /**
  * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param HoldsTitleTo_EnergyProducts [[ch.ninecode.model.EnergyProduct EnergyProduct]] A Marketer holds title to an EnergyProduct.
  * @param Resells_EnergyProduct [[ch.ninecode.model.EnergyProduct EnergyProduct]] A Marketer may resell an EnergyProduct.
  * @group InfFinancial
@@ -347,7 +355,7 @@ extends
  */
 final case class Marketer
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     HoldsTitleTo_EnergyProducts: List[String] = null,
     Resells_EnergyProduct: List[String] = null
 )
@@ -362,7 +370,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -378,6 +387,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -425,14 +435,14 @@ extends
 /**
  * Contracts for services offered commercially.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
 final case class OpenAccessProduct
 (
-    override val sup: Agreement = null
+    Agreement: Agreement = null
 )
 extends
     Element
@@ -445,7 +455,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -461,6 +472,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -486,14 +498,13 @@ extends
 }
 
 /**
-
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
 final case class TransmissionProduct
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     transmissionProductType: String = null,
     LocationFor: List[String] = null,
     TransmissionProvider: String = null
@@ -509,7 +520,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -525,6 +537,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -580,7 +593,7 @@ extends
  *
  * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param For [[ch.ninecode.model.LossProfile LossProfile]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  * @param TransmissionProducts [[ch.ninecode.model.TransmissionProduct TransmissionProduct]] A TransmissionProvider offers a TransmissionProduct.
@@ -590,7 +603,7 @@ extends
  */
 final case class TransmissionProvider
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     For: List[String] = null,
     TransmissionProducts: List[String] = null
 )
@@ -605,7 +618,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -621,6 +635,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

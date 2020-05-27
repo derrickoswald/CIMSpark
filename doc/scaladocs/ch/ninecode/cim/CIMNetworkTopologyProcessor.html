@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
-          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
-          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
+          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -807,6 +807,24 @@ Otherwise it calls the <a href="#process(_options:ch.ninecode.cim.CIMTopologyOpt
     </span>
       <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#retainFuse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="retainFuse(switch:ch.ninecode.model.Switch):Boolean"></a>
+      <a id="retainFuse(Switch):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">retainFuse</span><span class="params">(<span name="switch">switch: <a href="../model/Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@retainFuse(switch:ch.ninecode.model.Switch):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Method to determine if a fuse should be retained in the topology.</p><div class="fullcomment"><div class="comment cmt"><p>Method to determine if a fuse should be retained in the topology.
+</p></div><dl class="paramcmts block"><dt class="param">switch</dt><dd class="cmt"><p>The switch object to test.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the switch should be retained, <code>false</code> otherwise.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#retainSwitch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="retainSwitch(switch:ch.ninecode.model.Switch):Boolean"></a>
       <a id="retainSwitch(Switch):Boolean"></a>

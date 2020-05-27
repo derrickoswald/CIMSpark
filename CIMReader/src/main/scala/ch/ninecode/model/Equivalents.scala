@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * The class represents equivalent branches.
  *
- * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
+ * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
  *        EquivalentBranch is a result of network reduction prior to the data exchange.
@@ -61,7 +61,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class EquivalentBranch
 (
-    override val sup: EquivalentEquipment = null,
+    EquivalentEquipment: EquivalentEquipment = null,
     negativeR12: Double = 0.0,
     negativeR21: Double = 0.0,
     negativeX12: Double = 0.0,
@@ -90,7 +90,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EquivalentEquipment: EquivalentEquipment = sup
+    override def sup: EquivalentEquipment = EquivalentEquipment
+
     //
     // Row overrides
     //
@@ -106,6 +107,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -207,7 +209,7 @@ extends
  *
  * The class is the base for equivalent objects of different types.
  *
- * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param EquivalentNetwork [[ch.ninecode.model.EquivalentNetwork EquivalentNetwork]] The equivalent where the reduced model belongs.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
@@ -215,7 +217,7 @@ extends
  */
 final case class EquivalentEquipment
 (
-    override val sup: ConductingEquipment = null,
+    ConductingEquipment: ConductingEquipment = null,
     EquivalentNetwork: String = null
 )
 extends
@@ -229,7 +231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup
+    override def sup: ConductingEquipment = ConductingEquipment
+
     //
     // Row overrides
     //
@@ -245,6 +248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -289,7 +293,7 @@ extends
  *
  * Voltage regulation is allowed only at the point of connection.
  *
- * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
+ * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param maxP Maximum active power of the injection.
  * @param maxQ Maximum reactive power of the injection.
  *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
@@ -331,7 +335,7 @@ extends
  */
 final case class EquivalentInjection
 (
-    override val sup: EquivalentEquipment = null,
+    EquivalentEquipment: EquivalentEquipment = null,
     maxP: Double = 0.0,
     maxQ: Double = 0.0,
     minP: Double = 0.0,
@@ -360,7 +364,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EquivalentEquipment: EquivalentEquipment = sup
+    override def sup: EquivalentEquipment = EquivalentEquipment
+
     //
     // Row overrides
     //
@@ -376,6 +381,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -481,7 +487,7 @@ extends
  *
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
  *
- * @param sup [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
+ * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
  * @param EquivalentEquipments [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] The associated reduced equivalents.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
@@ -489,7 +495,7 @@ extends
  */
 final case class EquivalentNetwork
 (
-    override val sup: ConnectivityNodeContainer = null,
+    ConnectivityNodeContainer: ConnectivityNodeContainer = null,
     EquivalentEquipments: List[String] = null
 )
 extends
@@ -503,7 +509,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConnectivityNodeContainer: ConnectivityNodeContainer = sup
+    override def sup: ConnectivityNodeContainer = ConnectivityNodeContainer
+
     //
     // Row overrides
     //
@@ -519,6 +526,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -561,7 +569,7 @@ extends
 /**
  * The class represents equivalent shunts.
  *
- * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
+ * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param b Positive sequence shunt susceptance.
  * @param g Positive sequence shunt conductance.
  * @group Equivalents
@@ -570,7 +578,7 @@ extends
  */
 final case class EquivalentShunt
 (
-    override val sup: EquivalentEquipment = null,
+    EquivalentEquipment: EquivalentEquipment = null,
     b: Double = 0.0,
     g: Double = 0.0
 )
@@ -585,7 +593,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EquivalentEquipment: EquivalentEquipment = sup
+    override def sup: EquivalentEquipment = EquivalentEquipment
+
     //
     // Row overrides
     //
@@ -601,6 +610,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

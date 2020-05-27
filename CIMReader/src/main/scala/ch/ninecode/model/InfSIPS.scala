@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Logical gate than support logical operation based on the input.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind The logical operation of the gate.
  * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Input to the gate.
  * @param PinGate [[ch.ninecode.model.PinGate PinGate]] <em>undocumented</em>
@@ -27,7 +27,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class Gate
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     kind: String = null,
     GateInputPin: List[String] = null,
     PinGate: List[String] = null,
@@ -50,7 +50,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -66,6 +67,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -155,7 +157,7 @@ extends
  *
  * The condition described in the input pin will give a logical true or false. Result from measurement and calculation are converted to a true or false.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param aDLogicKind The compare operation.
  * @param absoluteValue If true, use the absolute value for compare..
  * @param duration The duration the compare condition need to be present before given a true.
@@ -170,7 +172,7 @@ extends
  */
 final case class GateInputPin
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     aDLogicKind: String = null,
     absoluteValue: Boolean = false,
     duration: Double = 0.0,
@@ -190,7 +192,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -206,6 +209,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -273,7 +277,7 @@ extends
 /**
  * Result of a calculation of one or more measurement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind Calculation operation executed on the operants.
  * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] Used in the calculation.
  * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
@@ -283,7 +287,7 @@ extends
  */
 final case class MeasurementCalculator
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     kind: String = null,
     MeasurementCalculatorInput: List[String] = null,
     PinMeasurement: List[String] = null
@@ -299,7 +303,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -315,6 +320,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -369,7 +375,7 @@ extends
  *
  * Support Analog, Discrete and Accumulator.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param absoluteValue If true, use the absolute value for the calculation.
  * @param order Positive number that defines the order of the operant in the calculation. 0 = default.
  *        The order is not relevant (e.g. summation).
@@ -381,7 +387,7 @@ extends
  */
 final case class MeasurementCalculatorInput
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     absoluteValue: Boolean = false,
     order: Int = 0,
     Measurement: String = null,
@@ -398,7 +404,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -414,6 +421,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -470,7 +478,7 @@ extends
 /**
  * Value associated with branch group is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the branch group.
  * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] The branch group that should be used in compare.
  * @group InfSIPS
@@ -479,7 +487,7 @@ extends
  */
 final case class PinBranchGroup
 (
-    override val sup: GateInputPin = null,
+    GateInputPin: GateInputPin = null,
     kind: String = null,
     BranchGroup: String = null
 )
@@ -494,7 +502,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup
+    override def sup: GateInputPin = GateInputPin
+
     //
     // Row overrides
     //
@@ -510,6 +519,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -556,7 +566,7 @@ extends
 /**
  * Value associated with Equipment is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the equipment.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The Equipment that should be used in compare.
  * @group InfSIPS
@@ -565,7 +575,7 @@ extends
  */
 final case class PinEquipment
 (
-    override val sup: GateInputPin = null,
+    GateInputPin: GateInputPin = null,
     kind: String = null,
     Equipment: String = null
 )
@@ -580,7 +590,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup
+    override def sup: GateInputPin = GateInputPin
+
     //
     // Row overrides
     //
@@ -596,6 +607,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -642,7 +654,7 @@ extends
 /**
  * An output from one gate represent an input to another gate.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param GateOutput [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -650,7 +662,7 @@ extends
  */
 final case class PinGate
 (
-    override val sup: GateInputPin = null,
+    GateInputPin: GateInputPin = null,
     GateOutput: String = null
 )
 extends
@@ -664,7 +676,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup
+    override def sup: GateInputPin = GateInputPin
+
     //
     // Row overrides
     //
@@ -680,6 +693,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -722,7 +736,7 @@ extends
 /**
  * Gate input pin that is associated with a Measurement or a calculation of Measurement.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param Measurement [[ch.ninecode.model.Measurement Measurement]] The Measurement that should be used in compare.
  * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] Result of the calculation used as input to a gate.
  * @group InfSIPS
@@ -731,7 +745,7 @@ extends
  */
 final case class PinMeasurement
 (
-    override val sup: GateInputPin = null,
+    GateInputPin: GateInputPin = null,
     Measurement: String = null,
     MeasurementCalculator: String = null
 )
@@ -746,7 +760,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup
+    override def sup: GateInputPin = GateInputPin
+
     //
     // Row overrides
     //
@@ -762,6 +777,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -809,7 +825,7 @@ extends
 /**
  * Value associated with Terminal is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the terminal.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal that should be used in compare.
  * @group InfSIPS
@@ -818,7 +834,7 @@ extends
  */
 final case class PinTerminal
 (
-    override val sup: GateInputPin = null,
+    GateInputPin: GateInputPin = null,
     kind: String = null,
     Terminal: String = null
 )
@@ -833,7 +849,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup
+    override def sup: GateInputPin = GateInputPin
+
     //
     // Row overrides
     //
@@ -849,6 +866,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -895,7 +913,7 @@ extends
 /**
  * A protective action for supporting the integrity of the power system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param enabled The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
  * @param normalEnabled The default/normal value used when other active signal/values are missing.
@@ -909,7 +927,7 @@ extends
  */
 final case class ProtectiveAction
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     enabled: Boolean = false,
     normalEnabled: Boolean = false,
     GateComCondition: String = null,
@@ -928,7 +946,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -944,6 +963,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1012,7 +1032,7 @@ extends
  *
  * The operating condition is adjusted.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
  * @param byPercentage The adjustment is given in percent of the active value.
  * @param byValue The adjustment is given in value of the active value.
  * @param kind Defines the kind of adjustment that should be done.
@@ -1029,7 +1049,7 @@ extends
  */
 final case class ProtectiveActionAdjustment
 (
-    override val sup: ProtectiveAction = null,
+    ProtectiveAction: ProtectiveAction = null,
     byPercentage: Double = 0.0,
     byValue: Double = 0.0,
     kind: String = null,
@@ -1050,7 +1070,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup
+    override def sup: ProtectiveAction = ProtectiveAction
+
     //
     // Row overrides
     //
@@ -1066,6 +1087,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1139,7 +1161,7 @@ extends
 /**
  * A collection of protective actions to protect the integrity of the power system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Set of ProtectiveAction belonging to a ProtectiveActionCollection.
  * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] When condition to the StageTrigger is met, the actions in the ProtectiveActionCollection are activated/triggered.
  * @group InfSIPS
@@ -1148,7 +1170,7 @@ extends
  */
 final case class ProtectiveActionCollection
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ProtectiveAction: List[String] = null,
     StageTrigger: List[String] = null
 )
@@ -1163,7 +1185,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1179,6 +1202,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1226,7 +1250,7 @@ extends
 /**
  * Protective action to put an Equipment in-service/out-of-service.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
  * @param inService If true the equipment is put in-service, otherwise out-of-service.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfSIPS
@@ -1235,7 +1259,7 @@ extends
  */
 final case class ProtectiveActionEquipment
 (
-    override val sup: ProtectiveAction = null,
+    ProtectiveAction: ProtectiveAction = null,
     inService: Boolean = false,
     Equipment: String = null
 )
@@ -1250,7 +1274,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup
+    override def sup: ProtectiveAction = ProtectiveAction
+
     //
     // Row overrides
     //
@@ -1266,6 +1291,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1313,7 +1339,7 @@ extends
 /**
  * Protective action to change regulation to Equipment.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
  * @param isRegulating If true the regulator is put in-service, otherwise out-of-service (no regulation).
  * @param targetValue The target value specified the new case input for the regulator.
  *        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
@@ -1324,7 +1350,7 @@ extends
  */
 final case class ProtectiveActionRegulation
 (
-    override val sup: ProtectiveAction = null,
+    ProtectiveAction: ProtectiveAction = null,
     isRegulating: Boolean = false,
     targetValue: Double = 0.0,
     RegulatingControl: String = null
@@ -1340,7 +1366,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup
+    override def sup: ProtectiveAction = ProtectiveAction
+
     //
     // Row overrides
     //
@@ -1356,6 +1383,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1407,7 +1435,7 @@ extends
 /**
  * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param armed The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
  * @param kind Kind of Remedial Action Scheme (RAS).
@@ -1421,7 +1449,7 @@ extends
  */
 final case class RemedialActionScheme
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     armed: Boolean = false,
     kind: String = null,
     normalArmed: Boolean = false,
@@ -1440,7 +1468,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1456,6 +1485,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1522,7 +1552,7 @@ extends
 /**
  * Stage of a remedial action scheme.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A stage with higher priority needs be activated before a lower stage can be activated.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
@@ -1533,7 +1563,7 @@ extends
  */
 final case class Stage
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     priority: Int = 0,
     RemedialActionScheme: String = null,
     StageTrigger: List[String] = null
@@ -1549,7 +1579,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1565,6 +1596,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1618,7 +1650,7 @@ extends
 /**
  * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param armed The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
  * @param normalArmed The default/normal value used when other active signal/values are missing.
@@ -1635,7 +1667,7 @@ extends
  */
 final case class StageTrigger
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     armed: Boolean = false,
     normalArmed: Boolean = false,
     priority: Int = 0,
@@ -1656,7 +1688,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1672,6 +1705,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1747,7 +1781,7 @@ extends
 /**
  * A conditions that can trigger remedial actions.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param GateTrigger [[ch.ninecode.model.Gate Gate]] The resulting Gate that is the condition for the Trigger.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
  * @group InfSIPS
@@ -1756,7 +1790,7 @@ extends
  */
 final case class TriggerCondition
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     GateTrigger: String = null,
     RemedialActionScheme: String = null
 )
@@ -1771,7 +1805,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1787,6 +1822,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

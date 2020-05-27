@@ -52,7 +52,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     nis.WorkLocation.Location.IdentifiedObject.TargetingCIMDataObject
                 )
                 val location = Location (
-                    sup = id,
+                    IdentifiedObject = id,
                     direction = isu.WorkLocation.Location.direction,
                     electronicAddress = isu.WorkLocation.Location.electronicAddress,
                     geoInfoReference = isu.WorkLocation.Location.geoInfoReference,
@@ -140,7 +140,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
             // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
             case Some (x) =>
                 UserAttribute (
-                    sup = BasicElement (null, a._1.id),
+                    Element = BasicElement (null, a._1.id),
                     name = x._1.id,
                     sequenceNumber = a._1.sequenceNumber,
                     value = a._1.value,

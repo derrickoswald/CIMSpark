@@ -12,14 +12,14 @@ import ch.ninecode.cim.Relationship
  *
  * Identifies interval
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param InterTieResults [[ch.ninecode.model.InterTieResults InterTieResults]] <em>undocumented</em>
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
 final case class InterTieClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     InterTieResults: List[String] = null
 )
 extends
@@ -33,7 +33,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -49,6 +50,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -93,7 +95,7 @@ extends
  *
  * Currently, this is defined as the loop flow compensation MW value.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param baseMW Net Actual MW Flow
  * @param clearedValue Net Dispatched MW
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
@@ -103,7 +105,7 @@ extends
  */
 final case class InterTieResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     baseMW: Double = 0.0,
     clearedValue: Double = 0.0,
     Flowgate: String = null,
@@ -120,7 +122,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -136,6 +139,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -192,7 +196,7 @@ extends
 /**
  * Market case clearing results are posted for a given settlement period.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param caseType Settlement period:
  *        'DA - Bid-in'
  *        'DA - Reliability'
@@ -210,7 +214,7 @@ extends
  */
 final case class MarketCaseClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     caseType: String = null,
     modifiedDate: String = null,
     postedDate: String = null,
@@ -227,7 +231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -243,6 +248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -298,7 +304,7 @@ extends
 /**
  * Binding security constrained clearing results posted for a given settlement period.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param mwFlow Optimal MW flow
  * @param mwLimit Binding MW limit.
  * @param shadowPrice Security constraint shadow price.
@@ -307,7 +313,7 @@ extends
  */
 final case class SecurityConstraintsClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     mwFlow: Double = 0.0,
     mwLimit: Double = 0.0,
     shadowPrice: Double = 0.0
@@ -323,7 +329,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -339,6 +346,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

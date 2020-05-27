@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Common representation for work and work tasks.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param kind Kind of work.
  * @param priority Priority of work.
  * @param statusKind Kind of work status.
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class BaseWork
 (
-    override val sup: Document = null,
+    Document: Document = null,
     kind: String = null,
     priority: String = null,
     statusKind: String = null,
@@ -42,7 +42,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -58,6 +59,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -123,7 +125,7 @@ extends
 /**
  * Description of location internal to a building.
  *
- * @param sup [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
+ * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
  * @param buildingName Name of building where location is.
  * @param buildingNumber Number of building where location is.
  * @param floor Floor of location.
@@ -134,7 +136,7 @@ extends
  */
 final case class InternalLocation
 (
-    override val sup: WorkLocation = null,
+    WorkLocation: WorkLocation = null,
     buildingName: String = null,
     buildingNumber: String = null,
     floor: Int = 0,
@@ -151,7 +153,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkLocation: WorkLocation = sup
+    override def sup: WorkLocation = WorkLocation
+
     //
     // Row overrides
     //
@@ -167,6 +170,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -218,7 +222,7 @@ extends
 /**
  * Location where to perform maintenance work.
  *
- * @param sup [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
+ * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
  * @param block (if applicable) Name, identifier, or description of the block in which work is to occur.
  * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
  * @param nearestIntersection The names of streets at the nearest intersection to work area.
@@ -229,7 +233,7 @@ extends
  */
 final case class MaintenanceLocation
 (
-    override val sup: WorkLocation = null,
+    WorkLocation: WorkLocation = null,
     block: String = null,
     lot: String = null,
     nearestIntersection: String = null,
@@ -246,7 +250,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkLocation: WorkLocation = sup
+    override def sup: WorkLocation = WorkLocation
+
     //
     // Row overrides
     //
@@ -262,6 +267,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -315,7 +321,7 @@ extends
  *
  * Costs associated with this are considered preventive maintenance (PM) costs.
  *
- * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
  * @param breakerMaintenanceKind Kind of breaker maintenance performed by this maintenance work task.
  * @param transformerMaintenanceKind Kind of transformer maintenance performed by this maintenance work task.
  * @group Work
@@ -324,7 +330,7 @@ extends
  */
 final case class MaintenanceWorkTask
 (
-    override val sup: WorkTask = null,
+    WorkTask: WorkTask = null,
     breakerMaintenanceKind: String = null,
     transformerMaintenanceKind: String = null
 )
@@ -339,7 +345,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkTask: WorkTask = sup
+    override def sup: WorkTask = WorkTask
+
     //
     // Row overrides
     //
@@ -355,6 +362,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -400,7 +408,7 @@ extends
  *
  * It includes items such as nuts, bolts, brackets, glue, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param quantity Quantity of material used.
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
@@ -410,7 +418,7 @@ extends
  */
 final case class MaterialItem
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     quantity: String = null,
     TypeMaterial: String = null,
     WorkTask: String = null
@@ -426,7 +434,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -442,6 +451,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -493,7 +503,7 @@ extends
 /**
  * Asset component to be repaired or problem area to be corrected.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param breakerRepairItem Breaker component or problem area which is the focus of this maintenance work task (for work tasks related to breakers only).
  * @param transformerRepairItem Transformer component or problem area which is the focus of this maintenance work task (for work tasks related to transformers only).
  * @param RepairWorkTask [[ch.ninecode.model.RepairWorkTask RepairWorkTask]] Repair work task under which breaker item of this type is repaired.
@@ -503,7 +513,7 @@ extends
  */
 final case class RepairItem
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     breakerRepairItem: String = null,
     transformerRepairItem: String = null,
     RepairWorkTask: List[String] = null
@@ -519,7 +529,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -535,6 +546,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -588,7 +600,7 @@ extends
  *
  * Costs associated with this are considered corrective maintenance (CM) costs.
  *
- * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
  * @param emergency Repair work is emergency.
  * @param BreakerRepairItem [[ch.ninecode.model.RepairItem RepairItem]] Type of breaker item to be repaird by this repair work task.
  * @group Work
@@ -597,7 +609,7 @@ extends
  */
 final case class RepairWorkTask
 (
-    override val sup: WorkTask = null,
+    WorkTask: WorkTask = null,
     emergency: Boolean = false,
     BreakerRepairItem: List[String] = null
 )
@@ -612,7 +624,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkTask: WorkTask = sup
+    override def sup: WorkTask = WorkTask
+
     //
     // Row overrides
     //
@@ -628,6 +641,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -675,7 +689,7 @@ extends
 /**
  * Tool asset.
  *
- * @param sup [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
+ * @param WorkAsset [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  * @group Work
  * @groupname Work Package Work
@@ -683,7 +697,7 @@ extends
  */
 final case class Tool
 (
-    override val sup: WorkAsset = null,
+    WorkAsset: WorkAsset = null,
     lastCalibrationDate: String = null
 )
 extends
@@ -697,7 +711,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkAsset: WorkAsset = sup
+    override def sup: WorkAsset = WorkAsset
+
     //
     // Row overrides
     //
@@ -713,6 +728,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -752,7 +768,7 @@ extends
 /**
  * Vehicle asset.
  *
- * @param sup [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
+ * @param WorkAsset [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param odometerReadDateTime Date and time the last odometer reading was recorded.
  * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
  *        Refer to associated ActivityRecords for earlier readings.
@@ -763,7 +779,7 @@ extends
  */
 final case class Vehicle
 (
-    override val sup: WorkAsset = null,
+    WorkAsset: WorkAsset = null,
     odometerReadDateTime: String = null,
     odometerReading: Double = 0.0,
     usageKind: String = null
@@ -779,7 +795,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WorkAsset: WorkAsset = sup
+    override def sup: WorkAsset = WorkAsset
+
     //
     // Row overrides
     //
@@ -795,6 +812,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -843,7 +861,7 @@ extends
 /**
  * Document used to request, initiate, track and record work.
  *
- * @param sup [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
+ * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
  * @param requestDateTime Date and time work was requested.
  * @param workOrderNumber Work order number (or other unique identifying information) for this work.
  * @param Appointments [[ch.ninecode.model.Appointment Appointment]] All appointments for this work.
@@ -863,7 +881,7 @@ extends
  */
 final case class Work
 (
-    override val sup: BaseWork = null,
+    BaseWork: BaseWork = null,
     requestDateTime: String = null,
     workOrderNumber: String = null,
     Appointments: List[String] = null,
@@ -889,7 +907,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BaseWork: BaseWork = sup
+    override def sup: BaseWork = BaseWork
+
     //
     // Row overrides
     //
@@ -905,6 +924,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1007,7 +1027,7 @@ extends
 /**
  * Records information about the status of work or work task at a point in time.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
  * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Base work that this activity record tracks.
  * @group Work
@@ -1016,7 +1036,7 @@ extends
  */
 final case class WorkActivityRecord
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     percentComplete: Double = 0.0,
     BaseWork: String = null
 )
@@ -1031,7 +1051,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -1047,6 +1068,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1094,7 +1116,7 @@ extends
 /**
  * Asset used to perform work.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param Asset [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param CUWorkEquipmentAsset [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
  * @param Crew [[ch.ninecode.model.Crew Crew]] Crew using this work asset.
  * @group Work
@@ -1103,7 +1125,7 @@ extends
  */
 final case class WorkAsset
 (
-    override val sup: Asset = null,
+    Asset: Asset = null,
     CUWorkEquipmentAsset: String = null,
     Crew: String = null
 )
@@ -1118,7 +1140,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup
+    override def sup: Asset = Asset
+
     //
     // Row overrides
     //
@@ -1134,6 +1157,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1181,7 +1205,7 @@ extends
 /**
  * Information about a particular location for various forms of work.
  *
- * @param sup [[ch.ninecode.model.Location Location]] Reference to the superclass object.
+ * @param Location [[ch.ninecode.model.Location Location]] Reference to the superclass object.
  * @param BaseWorks [[ch.ninecode.model.BaseWork BaseWork]] All works/tasks at this location.
  * @param DesignLocations [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param OneCallRequest [[ch.ninecode.model.OneCallRequest OneCallRequest]] <em>undocumented</em>
@@ -1191,7 +1215,7 @@ extends
  */
 final case class WorkLocation
 (
-    override val sup: Location = null,
+    Location: Location = null,
     BaseWorks: List[String] = null,
     DesignLocations: List[String] = null,
     OneCallRequest: String = null
@@ -1207,7 +1231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Location: Location = sup
+    override def sup: Location = Location
+
     //
     // Row overrides
     //
@@ -1223,6 +1248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1276,7 +1302,7 @@ extends
 /**
  * A task within a set of work.
  *
- * @param sup [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
+ * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
  * @param completedDateTime Date and time work task was completed.
  * @param contractorCost Total contractor costs associated with the work task.
  * @param crewETA Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
@@ -1301,7 +1327,7 @@ extends
  */
 final case class WorkTask
 (
-    override val sup: BaseWork = null,
+    BaseWork: BaseWork = null,
     completedDateTime: String = null,
     contractorCost: Double = 0.0,
     crewETA: String = null,
@@ -1332,7 +1358,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BaseWork: BaseWork = sup
+    override def sup: BaseWork = BaseWork
+
     //
     // Row overrides
     //
@@ -1348,6 +1375,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1466,7 +1494,7 @@ extends
 /**
  * Time schedule specific to work.
  *
- * @param sup [[ch.ninecode.model.TimeSchedule TimeSchedule]] Reference to the superclass object.
+ * @param TimeSchedule [[ch.ninecode.model.TimeSchedule TimeSchedule]] Reference to the superclass object.
  * @param kind [[ch.ninecode.model.WorkTimeScheduleKind WorkTimeScheduleKind]] Kind of this work schedule.
  * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Time schedule for this work or work task.
  * @group Work
@@ -1475,7 +1503,7 @@ extends
  */
 final case class WorkTimeSchedule
 (
-    override val sup: TimeSchedule = null,
+    TimeSchedule: TimeSchedule = null,
     kind: String = null,
     BaseWork: String = null
 )
@@ -1490,7 +1518,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TimeSchedule: TimeSchedule = sup
+    override def sup: TimeSchedule = TimeSchedule
+
     //
     // Row overrides
     //
@@ -1506,6 +1535,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1553,7 +1583,7 @@ extends
 /**
  * Kind of work schedule.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param actual Actual work time schedule.
  * @param earliest Earliest work time schedule.
  * @param estimate Estimate work time schedule.
@@ -1566,7 +1596,7 @@ extends
  */
 final case class WorkTimeScheduleKind
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     actual: String = null,
     earliest: String = null,
     estimate: String = null,
@@ -1585,7 +1615,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1601,6 +1632,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

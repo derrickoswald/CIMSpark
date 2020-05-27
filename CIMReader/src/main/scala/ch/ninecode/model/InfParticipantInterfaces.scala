@@ -11,17 +11,17 @@ import ch.ninecode.cim.Relationship
  * A unique identifier of a wheeling transaction.
  *
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
- * 
+ *
  * This schedule is assocated with the hourly parameters in a resource bid.
  *
- * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
+ * @param BidHourlySchedule [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group InfParticipantInterfaces
  * @groupname InfParticipantInterfaces Package InfParticipantInterfaces
  */
 final case class WheelingReferenceSchedule
 (
-    override val sup: BidHourlySchedule = null,
+    BidHourlySchedule: BidHourlySchedule = null,
     value: String = null
 )
 extends
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlySchedule: BidHourlySchedule = sup
+    override def sup: BidHourlySchedule = BidHourlySchedule
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param hvlvgates Indicates if both HV gate and LV gate are active (<i>HVLVgates</i>).
  *        true = gates are used
  *        false = gates are not used.
@@ -65,7 +65,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     hvlvgates: Boolean = false,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -100,7 +100,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -116,6 +117,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -239,7 +241,7 @@ extends
 /**
  * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param hvgate Indicates if HV gate is active (<i>HVgate</i>).
  *        true = gate is used
  *        false = gate is not used.
@@ -308,7 +310,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     hvgate: Boolean = false,
     ka: Double = 0.0,
     kb: Double = 0.0,
@@ -349,7 +351,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -365,6 +368,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -512,7 +516,7 @@ extends
 /**
  * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>Efdn</i>) (&gt; 0).
  *        Typical value = 2,36.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
@@ -573,7 +577,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdn: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -612,7 +616,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -628,6 +633,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -767,7 +773,7 @@ extends
 /**
  * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
  *        Typical value = 200.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
@@ -794,7 +800,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC4A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     ta: Double = 0.0,
@@ -816,7 +822,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -832,6 +839,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -903,7 +911,7 @@ extends
 /**
  * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param a Coefficient to allow different usage of the model (<i>a</i>).
  *        Typical value = 1.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd1</i>) (&gt; 0).
@@ -948,7 +956,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC5A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     a: Double = 0.0,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
@@ -979,7 +987,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -995,6 +1004,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1102,7 +1112,7 @@ extends
 /**
  * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
  *        Typical value = 536.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
@@ -1157,7 +1167,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC6A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     kd: Double = 0.0,
@@ -1193,7 +1203,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -1209,6 +1220,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1336,7 +1348,7 @@ extends
 /**
  * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param inlim Input limiter indicator.
  *        true = input limiter <i>Vimax</i> and <i>Vimin</i> is considered
  *        false = input limiter <i>Vimax </i>and <i>Vimin</i> is not considered.
@@ -1406,7 +1418,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAC8B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     inlim: Boolean = false,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -1446,7 +1458,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -1462,6 +1475,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1607,7 +1621,7 @@ extends
  *
  * It represents static field voltage or excitation current feedback excitation system.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param blint Governor control flag (<i>BLINT</i>).
  *        0 = lead-lag regulator
  *        1 = proportional integral regulator.
@@ -1650,7 +1664,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcANS
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     blint: Int = 0,
     ifmn: Double = 0.0,
     ifmx: Double = 0.0,
@@ -1677,7 +1691,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -1693,6 +1708,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1786,7 +1802,7 @@ extends
  *
  * It represents an exciter dynamo and electromechanical regulator.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
  *        Typical value = 4.18.
  * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
@@ -1819,7 +1835,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR1
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     ka: Double = 0.0,
@@ -1844,7 +1860,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -1860,6 +1877,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1945,7 +1963,7 @@ extends
  *
  * It represents an alternator and rotating diodes and electromechanic voltage regulators.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
  *        Typical value = 4,18.
  * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
@@ -1980,7 +1998,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR2
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     ka: Double = 0.0,
@@ -2006,7 +2024,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2022,6 +2041,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2111,7 +2131,7 @@ extends
  *
  * It represents an exciter dynamo and electric regulator.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
  *        Typical value = 4,18.
  * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
@@ -2144,7 +2164,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR3
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     ka: Double = 0.0,
@@ -2169,7 +2189,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2185,6 +2206,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2270,7 +2292,7 @@ extends
  *
  * It represents a static exciter and electric voltage regulator.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param imul AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
  *        true = selector is connected
  *        false = selector is not connected.
@@ -2309,7 +2331,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR4
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     imul: Boolean = false,
     ka: Double = 0.0,
     ke: Double = 0.0,
@@ -2336,7 +2358,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2352,6 +2375,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2445,7 +2469,7 @@ extends
  *
  * This model can be used as a very simple representation of manual voltage control.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Gain (<i>Ka</i>).
  * @param rex Effective output resistance (<i>Rex</i>). <i>Rex</i> represents the effective output resistance seen by the excitation system.
  * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
@@ -2457,7 +2481,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR5
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     rex: Double = 0.0,
     ta: Double = 0.0
@@ -2473,7 +2497,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2489,6 +2514,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2536,7 +2562,7 @@ extends
 /**
  * IVO excitation system.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param a1 Lead coefficient (<i>A</i><i><sub>1</sub></i>).
  *        Typical value = 0,5.
  * @param a2 Lag coefficient (<i>A</i><i><sub>2</sub></i>).
@@ -2587,7 +2613,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcAVR7
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     a1: Double = 0.0,
     a2: Double = 0.0,
     a3: Double = 0.0,
@@ -2621,7 +2647,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2637,6 +2664,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2758,7 +2786,7 @@ extends
  *
  * This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Maximum open circuit exciter voltage (<i>Efdmax</i>) (&gt; ExcBBC.efdmin).
  *        Typical value = 5.
  * @param efdmin Minimum open circuit exciter voltage (<i>Efdmin</i>) (&lt; ExcBBC.efdmax).
@@ -2791,7 +2819,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcBBC
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     efdmin: Double = 0.0,
     k: Double = 0.0,
@@ -2815,7 +2843,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2831,6 +2860,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2910,7 +2940,7 @@ extends
 /**
  * Czech proportion/integral exciter.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Exciter output maximum limit (<i>Efdmax</i>) (&gt; ExcCZ.efdmin).
  * @param efdmin Exciter output minimum limit (<i>Efdmin</i>) (&lt; ExcCZ.efdmax).
  * @param ka Regulator gain (<i>Ka</i>).
@@ -2929,7 +2959,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcCZ
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     efdmin: Double = 0.0,
     ka: Double = 0.0,
@@ -2952,7 +2982,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -2968,6 +2999,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3043,7 +3075,7 @@ extends
 /**
  * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
  *        Typical value = 3,1.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
@@ -3091,7 +3123,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     efdmax: Double = 0.0,
@@ -3122,7 +3154,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -3138,6 +3171,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3247,7 +3281,7 @@ extends
  *
  * DC type 2 excitation system model with added speed multiplier, added lead-lag, and voltage-dependent limits.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
  *        Typical value = 3,05.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
@@ -3297,7 +3331,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     exclim: Boolean = false,
@@ -3328,7 +3362,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -3344,6 +3379,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3453,7 +3489,7 @@ extends
  *
  * DC old type 4.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
  *        Typical value = 2,6.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
@@ -3499,7 +3535,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     efdlim: Boolean = false,
@@ -3528,7 +3564,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -3544,6 +3581,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3643,7 +3681,7 @@ extends
 /**
  * Modified old IEEE type 3 excitation system.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param exclim (<i>exclim</i>).
  *        true = lower limit of zero is applied to integrator output
  *        false = lower limit of zero not applied to integrator output.
@@ -3684,7 +3722,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcDC3A1
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     exclim: Boolean = false,
     ka: Double = 0.0,
     ke: Double = 0.0,
@@ -3711,7 +3749,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -3727,6 +3766,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3820,7 +3860,7 @@ extends
  *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  A power system stabilizer with power input is included in the model.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param dpnf Controller follow up deadband (<i>Dpnf</i>).
  *        Typical value = 0.
  * @param efmax Maximum open circuit excitation voltage (<i>Efmax</i>) (&gt; ExcELIN1.efmin).
@@ -3859,7 +3899,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcELIN1
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     dpnf: Double = 0.0,
     efmax: Double = 0.0,
     efmin: Double = 0.0,
@@ -3887,7 +3927,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -3903,6 +3944,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4000,7 +4042,7 @@ extends
  *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  Power system stabilizer models used in conjunction with this excitation system model: PssELIN2, PssIEEE2B, Pss2B.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdbas Gain (<i>Efdbas</i>).
  *        Typical value = 0,1.
  * @param iefmax Limiter (<i>I</i><i><sub>efmax</sub></i>) (&gt; ExcELIN2.iefmin).
@@ -4063,7 +4105,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcELIN2
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdbas: Double = 0.0,
     iefmax: Double = 0.0,
     iefmax2: Double = 0.0,
@@ -4103,7 +4145,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -4119,6 +4162,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4262,7 +4306,7 @@ extends
 /**
  * Hungarian excitation system, with built-in voltage transducer.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ae Major loop PI tag gain factor (<i>Ae</i>).
  *        Typical value = 3.
  * @param ai Minor loop PI tag gain factor (<i>Ai</i>).
@@ -4295,7 +4339,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcHU
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ae: Double = 0.0,
     ai: Double = 0.0,
     atr: Double = 0.0,
@@ -4320,7 +4364,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -4336,6 +4381,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4422,7 +4468,7 @@ extends
  * The model represents the field-controlled alternator-rectifier excitation systems designated type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
  * Reference: IEEE 421.5-2005, 6.1.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 400.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -4467,7 +4513,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     kd: Double = 0.0,
@@ -4498,7 +4544,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -4514,6 +4561,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4624,7 +4672,7 @@ extends
  * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The type AC2A model is similar to that of type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
  * Reference: IEEE 421.5-2005, 6.2.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 400.
  * @param kb Second stage regulator gain (<i>K</i><i><sub>B</sub></i>) (&gt; 0).
@@ -4675,7 +4723,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kb: Double = 0.0,
     kc: Double = 0.0,
@@ -4709,7 +4757,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -4725,6 +4774,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4847,7 +4897,7 @@ extends
  * The model represents the field-controlled alternator-rectifier excitation systems designated type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier whose inputs are the voltage regulator command signal, <i>Va</i>, and the exciter output voltage, <i>Efd</i>, times <i>K</i><i><sub>R</sub></i>.  This model is applicable to excitation systems employing static voltage regulators.
  * Reference: IEEE 421.5-2005, 6.3.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>E</i><i><sub>FDN</sub></i>) (&gt; 0).
  *        Typical value = 2,36.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -4898,7 +4948,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdn: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -4932,7 +4982,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -4948,6 +4999,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5070,7 +5122,7 @@ extends
  * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other types of AC systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modelled; however, transient loading effects on the exciter alternator are included.
  * Reference: IEEE 421.5-2005, 6.4.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 200.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -5097,7 +5149,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC4A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     ta: Double = 0.0,
@@ -5119,7 +5171,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -5135,6 +5188,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5209,7 +5263,7 @@ extends
  * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other AC models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the DC models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
  * Reference: IEEE 421.5-2005, 6.5.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
  *        Typical value = 5,6.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
@@ -5246,7 +5300,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC5A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     ka: Double = 0.0,
@@ -5273,7 +5327,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -5289,6 +5344,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5383,7 +5439,7 @@ extends
  * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <i>V</i><i><sub>R</sub></i>, is a function of terminal voltage, <i>V</i><i><sub>T</sub></i>. The field current limiter included in the original model AC6A remains in the 2005 update.
  * Reference: IEEE 421.5-2005, 6.6.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 536.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -5436,7 +5492,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC6A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     kd: Double = 0.0,
@@ -5471,7 +5527,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -5487,6 +5544,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5613,7 +5671,7 @@ extends
  * The model represents excitation systems which consist of an AC alternator with either stationary or rotating rectifiers to produce the DC field requirements. It is an upgrade to earlier AC excitation systems, which replace only the controls but retain the AC alternator and diode rectifier bridge.
  * Reference: IEEE 421.5-2005, 6.7. Note, however, that in IEEE 421.5-2005, the [1 / <i>sT</i><i><sub>E</sub></i>] block is shown as [1 / (1 + <i>sT</i><i><sub>E</sub></i>)], which is incorrect.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
  *        Typical value = 0,18.
  * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
@@ -5674,7 +5732,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC7B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kc: Double = 0.0,
     kd: Double = 0.0,
     kdr: Double = 0.0,
@@ -5713,7 +5771,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -5729,6 +5788,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5871,7 +5931,7 @@ extends
  * This model represents a PID voltage regulator with either a brushless exciter or DC exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<i>K</i><i><sub>PR</sub></i>), integral (<i>K</i><i><sub>IR</sub></i>), and derivative (<i>K</i><i><sub>DR</sub></i>) gains. The representation of the brushless exciter (<i>T</i><i><sub>E</sub></i>, <i>K</i><i><sub>E</sub></i>, <i>S</i><i><sub>E</sub></i>, <i>K</i><i><sub>C</sub></i>, <i>K</i><i><sub>D</sub></i>) is similar to the model type AC2A. The type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding DC rotating main exciters can be represented with the AC type AC8B model with the parameters <i>K</i><i><sub>C</sub></i> and <i>K</i><i><sub>D</sub></i> set to 0.  For thyristor power stages fed from the generator terminals, the limits <i>V</i><i><sub>RMAX</sub></i> and <i>V</i><i><sub>RMIN</sub></i><i> </i>should be a function of terminal voltage: V<i><sub>T</sub></i> x <i>V</i><i><sub>RMAX</sub></i><sub> </sub>and <i>V</i><i><sub>T</sub></i> x <i>V</i><i><sub>RMIN</sub></i>.
  * Reference: IEEE 421.5-2005, 6.8.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 1.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -5916,7 +5976,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEAC8B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     kd: Double = 0.0,
@@ -5947,7 +6007,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -5963,6 +6024,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6073,7 +6135,7 @@ extends
  * This model represents field-controlled DC commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
  * Reference: IEEE 421.5-2005, 5.1.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
  *        Typical value = 3,1.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
@@ -6119,7 +6181,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     exclim: Boolean = false,
@@ -6148,7 +6210,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -6164,6 +6227,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6267,7 +6331,7 @@ extends
  * It is representative of solid-state replacements for various forms of older mechanical and rotating amplifier regulating equipment connected to DC commutator exciters.
  * Reference: IEEE 421.5-2005, 5.2.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
  *        Typical value = 3,05.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
@@ -6310,7 +6374,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     exclim: Double = 0.0,
@@ -6339,7 +6403,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -6355,6 +6420,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6457,7 +6523,7 @@ extends
  * This model represents older systems, in particular those DC commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
  * Reference: IEEE 421.5-2005, 5.3.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
  *        Typical value = 3,375.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
@@ -6491,7 +6557,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     exclim: Boolean = false,
@@ -6515,7 +6581,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -6531,6 +6598,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6613,7 +6681,7 @@ extends
  * These excitation systems utilize a field-controlled DC commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
  * Reference: IEEE 421.5-2005, 5.4.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
  *        Typical value = 1,75.
  * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
@@ -6664,7 +6732,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEDC4B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efd1: Double = 0.0,
     efd2: Double = 0.0,
     ka: Double = 0.0,
@@ -6696,7 +6764,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -6712,6 +6781,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6826,7 +6896,7 @@ extends
  * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit’s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
  * Reference: IEEE 421.5-2005, 7.1.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i><i>)</i>.
  *        Typical value = 0.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -6875,7 +6945,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ilr: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -6907,7 +6977,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -6923,6 +6994,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7038,7 +7110,7 @@ extends
  * Some static systems use both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated type ST2A and are represented by ExcIEEEST2A.
  * Reference: IEEE 421.5-2005, 7.2.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Maximum field voltage (<i>E</i><i><sub>FDMax</sub></i>) (&gt;= 0).
  *        Typical value = 99.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -7075,7 +7147,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -7101,7 +7173,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -7117,6 +7190,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7207,7 +7281,7 @@ extends
  * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges in either series or shunt configurations. The power source can consist of only a potential source, either fed from the machine terminals or from internal windings. Some designs can have compound power sources utilizing both machine potential and current. These power sources are represented as phasor combinations of machine terminal current and voltage and are accommodated by suitable parameters in model type ST3A which is represented by ExcIEEEST3A.
  * Reference: IEEE 421.5-2005, 7.3.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        This is parameter <i>K</i> in the IEEE standard. Typical value = 200.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -7256,7 +7330,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ka: Double = 0.0,
     kc: Double = 0.0,
     kg: Double = 0.0,
@@ -7289,7 +7363,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -7305,6 +7380,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7423,7 +7499,7 @@ extends
  * This model is a variation of the type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modelled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
  * Reference: IEEE 421.5-2005, 7.4.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
  *        Typical value = 0,113.
  * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
@@ -7464,7 +7540,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST4B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kc: Double = 0.0,
     kg: Double = 0.0,
     ki: Double = 0.0,
@@ -7493,7 +7569,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -7509,6 +7586,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7612,7 +7690,7 @@ extends
  * The block diagram in the IEEE 421.5 standard has input signal <i>Vc </i>and does not indicate the summation point with <i>Vref</i>. The implementation of the ExcIEEEST5B shall consider summation point with <i>Vref</i>.
  * Reference: IEEE 421.5-2005, 7.5.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
  *        Typical value = 0,004.
  * @param kr Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
@@ -7655,7 +7733,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST5B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kc: Double = 0.0,
     kr: Double = 0.0,
     t1: Double = 0.0,
@@ -7685,7 +7763,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -7701,6 +7780,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7807,7 +7887,7 @@ extends
  * This model consists of a PI voltage regulator with an inner loop field voltage regulator and pre-control. The field voltage regulator implements a proportional control. The pre-control and the delay in the feedback circuit increase the dynamic response.
  * Reference: IEEE 421.5-2005, 7.6.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i>) (&gt; 0).
  *        Typical value = 4,164.
  * @param kci Exciter output current limit adjustment (<i>K</i><i><sub>CI</sub></i>) (&gt; 0).
@@ -7844,7 +7924,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST6B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ilr: Double = 0.0,
     kci: Double = 0.0,
     kff: Double = 0.0,
@@ -7871,7 +7951,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -7887,6 +7968,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7982,7 +8064,7 @@ extends
  * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows the introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from PSS) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
  * Reference: IEEE 421.5-2005, 7.7.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kh High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
  *        Typical value = 1.
  * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
@@ -8021,7 +8103,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcIEEEST7B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kh: Double = 0.0,
     kia: Double = 0.0,
     kl: Double = 0.0,
@@ -8049,7 +8131,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -8065,6 +8148,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8161,7 +8245,7 @@ extends
 /**
  * Bus or solid fed SCR (silicon-controlled rectifier) bridge excitation system model type NI (NVE).
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param busFedSelector Fed by selector (<i>BusFedSelector</i>).
  *        true = bus fed (switch is closed)
  *        false = solid fed (switch is open).
@@ -8194,7 +8278,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcNI
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     busFedSelector: Boolean = false,
     ka: Double = 0.0,
     kf: Double = 0.0,
@@ -8217,7 +8301,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -8233,6 +8318,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8308,7 +8394,7 @@ extends
 /**
  * Modified IEEE type ST1 excitation system with semi-continuous and acting terminal voltage limiter.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Saturation parameter (<i>E</i><i><sub>1</sub></i>).
  * @param e2 Saturation parameter (<i>E</i><i><sub>2</sub></i>).
  * @param ka Gain (<i>K</i><i><sub>A</sub></i>).
@@ -8336,7 +8422,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcOEX3T
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     ka: Double = 0.0,
@@ -8368,7 +8454,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -8384,6 +8471,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8497,7 +8585,7 @@ extends
  *
  * This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
  *        Typical value = 0.
  * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
@@ -8552,7 +8640,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcPIC
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     efdmax: Double = 0.0,
@@ -8588,7 +8676,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -8604,6 +8693,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8733,7 +8823,7 @@ extends
  *
  * This model can be used to represent a wide range of excitation systems whose DC power source is an AC or DC generator. It encompasses IEEE type AC1, AC2, DC1, and DC2 excitation system models.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
  *        Typical value = 3.
  * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
@@ -8814,7 +8904,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcREXS
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     e1: Double = 0.0,
     e2: Double = 0.0,
     fbf: String = null,
@@ -8863,7 +8953,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -8879,6 +8970,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9061,7 +9153,7 @@ extends
  *
  * This excitation system shall be always used together with power system stabilizer type PssRQB.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ki0 Voltage reference input gain (<i>Ki0</i>).
  *        Typical value = 12,7.
  * @param ki1 Voltage input gain (<i>Ki1</i>).
@@ -9096,7 +9188,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcRQB
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ki0: Double = 0.0,
     ki1: Double = 0.0,
     klir: Double = 0.0,
@@ -9122,7 +9214,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -9138,6 +9231,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9225,7 +9319,7 @@ extends
 /**
  * Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param cswitch Power source switch (<i>Cswitch</i>).
  *        true = fixed voltage of 1.0 PU
  *        false = generator terminal voltage.
@@ -9251,7 +9345,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSCRX
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     cswitch: Boolean = false,
     emax: Double = 0.0,
     emin: Double = 0.0,
@@ -9272,7 +9366,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -9288,6 +9383,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9355,7 +9451,7 @@ extends
 /**
  * Simplified excitation system.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Field voltage clipping maximum limit (<i>Efdmax</i>) (&gt; ExcSEXS.efdmin).
  *        Typical value = 5.
  * @param efdmin Field voltage clipping minimum limit (<i>Efdmin</i>) (&lt; ExcSEXS.efdmax).
@@ -9384,7 +9480,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSEXS
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     efdmin: Double = 0.0,
     emax: Double = 0.0,
@@ -9407,7 +9503,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -9423,6 +9520,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9500,7 +9598,7 @@ extends
  *
  * UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).
  * @param efdmin Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).
  * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
@@ -9573,7 +9671,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcSK
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     efdmin: Double = 0.0,
     emax: Double = 0.0,
@@ -9618,7 +9716,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -9634,6 +9733,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9797,7 +9897,7 @@ extends
 /**
  * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>Ilr</i>).
  *        Typical value = 0.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
@@ -9842,7 +9942,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST1A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ilr: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -9873,7 +9973,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -9889,6 +9990,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -9996,7 +10098,7 @@ extends
 /**
  * Modified IEEE ST2A static excitation system with another lead-lag block added to match the model defined by WECC.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Maximum field voltage (<i>Efdmax</i>) (&gt;= 0).
  *        Typical value = 99.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
@@ -10037,7 +10139,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST2A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     ka: Double = 0.0,
     kc: Double = 0.0,
@@ -10065,7 +10167,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -10081,6 +10184,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -10176,7 +10280,7 @@ extends
 /**
  * Modified IEEE ST3A static excitation system with added speed multiplier.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
  *        Typical value = 6,9.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
@@ -10225,7 +10329,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST3A
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     efdmax: Double = 0.0,
     kc: Double = 0.0,
     kg: Double = 0.0,
@@ -10258,7 +10362,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -10274,6 +10379,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -10389,7 +10495,7 @@ extends
 /**
  * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <i>Vgmax</i>.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
  *        Typical value = 0,113.
  * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
@@ -10440,7 +10546,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST4B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kc: Double = 0.0,
     kg: Double = 0.0,
     ki: Double = 0.0,
@@ -10472,7 +10578,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -10488,6 +10595,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -10599,7 +10707,7 @@ extends
 /**
  * Modified IEEE ST6B static excitation system with PID controller and optional inner feedback loop.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>Ilr</i>) (&gt; 0).
  *        Typical value = 4,164.
  * @param k1 Selector (<i>K1</i>).
@@ -10660,7 +10768,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST6B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     ilr: Double = 0.0,
     k1: Boolean = false,
     kcl: Double = 0.0,
@@ -10696,7 +10804,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -10712,6 +10821,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -10840,7 +10950,7 @@ extends
 /**
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kh High-value gate feedback gain (<i>Kh</i>) (&gt;= 0).
  *        Typical value = 1.
  * @param kia Voltage regulator integral gain (<i>Kia</i>) (&gt;= 0).
@@ -10881,7 +10991,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcST7B
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     kh: Double = 0.0,
     kia: Double = 0.0,
     kl: Double = 0.0,
@@ -10910,7 +11020,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -10926,6 +11037,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -11026,7 +11138,7 @@ extends
 /**
  * Excitation system function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Discontinuous excitation control model associated with this excitation system model.
  * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Overexcitation limiter model associated with this excitation system model.
  * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model associated with this excitation system model.
@@ -11043,7 +11155,7 @@ The parameters are different for each excitation system model; the same paramete
  */
 final case class ExcitationSystemDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     DiscontinuousExcitationControlDynamics: String = null,
     OverexcitationLimiterDynamics: String = null,
     PFVArControllerType1Dynamics: String = null,
@@ -11064,7 +11176,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -11080,6 +11193,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

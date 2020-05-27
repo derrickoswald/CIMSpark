@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
  * @param severity Severity level of event resulting in this activity record.
@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ActivityRecord
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     createdDateTime: String = null,
     reason: String = null,
     severity: String = null,
@@ -44,7 +44,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -60,6 +61,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -132,7 +134,7 @@ extends
  *
  * The specifics of the services are, in turn, defined via one or more service agreements.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param signDate Date this agreement was consummated among associated persons and/or organisations.
  * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
  * @group Common
@@ -141,7 +143,7 @@ extends
  */
 final case class Agreement
 (
-    override val sup: Document = null,
+    Document: Document = null,
     signDate: String = null,
     validityInterval: String = null
 )
@@ -156,7 +158,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -172,6 +175,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -216,7 +220,7 @@ extends
 /**
  * Meeting time and location.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
  * @param Persons [[ch.ninecode.model.PersonRole PersonRole]] All persons for this appointment.
@@ -227,7 +231,7 @@ extends
  */
 final case class Appointment
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     callAhead: Boolean = false,
     meetingInterval: String = null,
     Persons: List[String] = null,
@@ -244,7 +248,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -260,6 +265,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -317,7 +323,7 @@ extends
 /**
  * Person who accepted/signed or rejected the document.
  *
- * @param sup [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
+ * @param DocumentPersonRole [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
  * @param Documents [[ch.ninecode.model.Document Document]] All documents for this approver.
  * @group Common
  * @groupname Common Package Common
@@ -325,7 +331,7 @@ extends
  */
 final case class Approver
 (
-    override val sup: DocumentPersonRole = null,
+    DocumentPersonRole: DocumentPersonRole = null,
     Documents: List[String] = null
 )
 extends
@@ -339,7 +345,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DocumentPersonRole: DocumentPersonRole = sup
+    override def sup: DocumentPersonRole = DocumentPersonRole
+
     //
     // Row overrides
     //
@@ -355,6 +362,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -397,7 +405,7 @@ extends
 /**
  * Person who created document or activity record.
  *
- * @param sup [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
+ * @param DocumentPersonRole [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
  * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] All activity records with this author.
  * @param Documents [[ch.ninecode.model.Document Document]] All documents of this this author.
  * @group Common
@@ -406,7 +414,7 @@ extends
  */
 final case class Author
 (
-    override val sup: DocumentPersonRole = null,
+    DocumentPersonRole: DocumentPersonRole = null,
     ActivityRecords: List[String] = null,
     Documents: List[String] = null
 )
@@ -421,7 +429,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DocumentPersonRole: DocumentPersonRole = sup
+    override def sup: DocumentPersonRole = DocumentPersonRole
+
     //
     // Row overrides
     //
@@ -437,6 +446,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -484,7 +494,7 @@ extends
 /**
  * Used to report details on creation, change or deletion of an entity or its configuration.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param effectiveDateTime Date and time this event has or will become effective.
  * @param modifiedBy Source/initiator of modification.
  * @param remark Free text remarks.
@@ -503,7 +513,7 @@ extends
  */
 final case class ConfigurationEvent
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     effectiveDateTime: String = null,
     modifiedBy: String = null,
     remark: String = null,
@@ -528,7 +538,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -544,6 +555,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -639,7 +651,7 @@ extends
 /**
  * Coordinate reference system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
  *        PositionPoints'.
  *        An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
@@ -651,7 +663,7 @@ extends
  */
 final case class CoordinateSystem
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     crsUrn: String = null,
     Locations: List[String] = null
 )
@@ -666,7 +678,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -682,6 +695,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -729,7 +743,7 @@ extends
 /**
  * Group of people with specific skills, tools, and vehicles.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status [[ch.ninecode.model.Status Status]] Status of this crew.
  * @param CrewMembers [[ch.ninecode.model.CrewMember CrewMember]] All members of this crew.
  * @param CrewType [[ch.ninecode.model.CrewType CrewType]] Type of this crew.
@@ -745,7 +759,7 @@ extends
  */
 final case class Crew
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     CrewMembers: List[String] = null,
     CrewType: String = null,
@@ -767,7 +781,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -783,6 +798,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -866,7 +882,7 @@ extends
 /**
  * Member of a crew.
  *
- * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
+ * @param OperationPersonRole [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
  * @param Crew [[ch.ninecode.model.Crew Crew]] Crew to which this crew member belongs.
  * @group Common
  * @groupname Common Package Common
@@ -874,7 +890,7 @@ extends
  */
 final case class CrewMember
 (
-    override val sup: OperationPersonRole = null,
+    OperationPersonRole: OperationPersonRole = null,
     Crew: String = null
 )
 extends
@@ -888,7 +904,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationPersonRole: OperationPersonRole = sup
+    override def sup: OperationPersonRole = OperationPersonRole
+
     //
     // Row overrides
     //
@@ -904,6 +921,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -948,7 +966,7 @@ extends
  *
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Crews [[ch.ninecode.model.Crew Crew]] All crews of this type.
  * @group Common
  * @groupname Common Package Common
@@ -956,7 +974,7 @@ extends
  */
 final case class CrewType
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Crews: List[String] = null
 )
 extends
@@ -970,7 +988,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -986,6 +1005,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1030,7 +1050,7 @@ extends
  *
  * It will frequently contain references to other objects, such as assets, people and power system resources.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param authorName Name of the author of this document.
  * @param comment Free text comment.
  * @param createdDateTime Date and time that this document was created.
@@ -1057,7 +1077,7 @@ extends
  */
 final case class Document
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     authorName: String = null,
     comment: String = null,
     createdDateTime: String = null,
@@ -1086,7 +1106,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1102,6 +1123,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1213,14 +1235,14 @@ extends
 /**
  * Person role with respect to documents.
  *
- * @param sup [[ch.ninecode.model.PersonRole PersonRole]] Reference to the superclass object.
+ * @param PersonRole [[ch.ninecode.model.PersonRole PersonRole]] Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class DocumentPersonRole
 (
-    override val sup: PersonRole = null
+    PersonRole: PersonRole = null
 )
 extends
     Element
@@ -1233,7 +1255,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PersonRole: PersonRole = sup
+    override def sup: PersonRole = PersonRole
+
     //
     // Row overrides
     //
@@ -1249,6 +1272,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1276,7 +1300,7 @@ extends
 /**
  * Person who modified the document.
  *
- * @param sup [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
+ * @param DocumentPersonRole [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
  * @param Documents [[ch.ninecode.model.Document Document]] All documents for this editor.
  * @group Common
  * @groupname Common Package Common
@@ -1284,7 +1308,7 @@ extends
  */
 final case class Editor
 (
-    override val sup: DocumentPersonRole = null,
+    DocumentPersonRole: DocumentPersonRole = null,
     Documents: List[String] = null
 )
 extends
@@ -1298,7 +1322,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DocumentPersonRole: DocumentPersonRole = sup
+    override def sup: DocumentPersonRole = DocumentPersonRole
+
     //
     // Row overrides
     //
@@ -1314,6 +1339,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1356,7 +1382,7 @@ extends
 /**
  * Electronic address information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param email1 Primary email address.
  * @param email2 Alternate email address.
  * @param lan Address on local area network.
@@ -1371,7 +1397,7 @@ extends
  */
 final case class ElectronicAddress
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     email1: String = null,
     email2: String = null,
     lan: String = null,
@@ -1392,7 +1418,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1408,6 +1435,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1473,14 +1501,13 @@ extends
 }
 
 /**
-
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class ExtensionItem
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     extName: String = null,
     extType: String = null,
     extValue: String = null
@@ -1496,7 +1523,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1512,6 +1540,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1557,14 +1586,13 @@ extends
 }
 
 /**
-
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class ExtensionsList
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     extensionsItem: String = null
 )
 extends
@@ -1578,7 +1606,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1594,6 +1623,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1636,7 +1666,7 @@ extends
 /**
  * The history of field dispatch statuses for this work.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Crew [[ch.ninecode.model.Crew Crew]] <em>undocumented</em>
  * @param FieldDispatchStep [[ch.ninecode.model.FieldDispatchStep FieldDispatchStep]] <em>undocumented</em>
  * @param PlannedOutage [[ch.ninecode.model.PlannedOutage PlannedOutage]] <em>undocumented</em>
@@ -1647,7 +1677,7 @@ extends
  */
 final case class FieldDispatchHistory
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Crew: String = null,
     FieldDispatchStep: List[String] = null,
     PlannedOutage: String = null,
@@ -1664,7 +1694,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1680,6 +1711,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1738,7 +1770,7 @@ extends
 /**
  * Details of the step in the field dispatch history.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param dispatchStatus The status of one or more crews dispatched to perform field work at one or more work sites
  * @param occurredDateTime The date and time at which the dispatch status occurred.
  * @param remarks freeform comments related to the dispatch to perform field work.
@@ -1751,7 +1783,7 @@ extends
  */
 final case class FieldDispatchStep
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     dispatchStatus: String = null,
     occurredDateTime: String = null,
     remarks: String = null,
@@ -1769,7 +1801,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1785,6 +1818,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1844,7 +1878,7 @@ extends
 /**
  * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status [[ch.ninecode.model.Status Status]] Status of this hazard.
  * @param type Type of this hazard.
  * @group Common
@@ -1853,7 +1887,7 @@ extends
  */
 final case class Hazard
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     `type`: String = null
 )
@@ -1868,7 +1902,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1884,6 +1919,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1931,7 +1967,7 @@ extends
 /**
  * Person who issued the document and is responsible for its content.
  *
- * @param sup [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
+ * @param DocumentPersonRole [[ch.ninecode.model.DocumentPersonRole DocumentPersonRole]] Reference to the superclass object.
  * @param Documents [[ch.ninecode.model.Document Document]] All documents for this issuer.
  * @group Common
  * @groupname Common Package Common
@@ -1939,7 +1975,7 @@ extends
  */
 final case class Issuer
 (
-    override val sup: DocumentPersonRole = null,
+    DocumentPersonRole: DocumentPersonRole = null,
     Documents: List[String] = null
 )
 extends
@@ -1953,7 +1989,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DocumentPersonRole: DocumentPersonRole = sup
+    override def sup: DocumentPersonRole = DocumentPersonRole
+
     //
     // Row overrides
     //
@@ -1969,6 +2006,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2013,7 +2051,7 @@ extends
  *
  * It can be defined with one or more postition points (coordinates) in a given coordinate system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
  *        For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
  * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
@@ -2050,7 +2088,7 @@ extends
  */
 final case class Location
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     direction: String = null,
     electronicAddress: String = null,
     geoInfoReference: String = null,
@@ -2090,7 +2128,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2106,6 +2145,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2277,14 +2317,14 @@ extends
 /**
  * Person role in the context of utility operations.
  *
- * @param sup [[ch.ninecode.model.PersonRole PersonRole]] Reference to the superclass object.
+ * @param PersonRole [[ch.ninecode.model.PersonRole PersonRole]] Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class OperationPersonRole
 (
-    override val sup: PersonRole = null
+    PersonRole: PersonRole = null
 )
 extends
     Element
@@ -2297,7 +2337,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PersonRole: PersonRole = sup
+    override def sup: PersonRole = PersonRole
+
     //
     // Row overrides
     //
@@ -2313,6 +2354,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2340,7 +2382,7 @@ extends
 /**
  * Control room operator.
  *
- * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
+ * @param OperationPersonRole [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
  * @param Incidents [[ch.ninecode.model.Incident Incident]] All incidents owned by this operator.
  * @param SwitchingSteps [[ch.ninecode.model.SwitchingAction SwitchingAction]] All switching steps this operator is responsible for.
  * @group Common
@@ -2349,7 +2391,7 @@ extends
  */
 final case class Operator
 (
-    override val sup: OperationPersonRole = null,
+    OperationPersonRole: OperationPersonRole = null,
     Incidents: List[String] = null,
     SwitchingSteps: List[String] = null
 )
@@ -2364,7 +2406,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OperationPersonRole: OperationPersonRole = sup
+    override def sup: OperationPersonRole = OperationPersonRole
+
     //
     // Row overrides
     //
@@ -2380,6 +2423,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2427,7 +2471,7 @@ extends
 /**
  * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
  * @param phone1 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Phone number.
  * @param phone2 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Additional phone number.
@@ -2442,7 +2486,7 @@ extends
  */
 final case class Organisation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     electronicAddress: String = null,
     phone1: String = null,
     phone2: String = null,
@@ -2463,7 +2507,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2479,6 +2524,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2557,7 +2603,7 @@ extends
 /**
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this organisation role.
  * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Organisation having this role.
  * @group Common
@@ -2566,7 +2612,7 @@ extends
  */
 final case class OrganisationRole
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ConfigurationEvents: List[String] = null,
     Organisation: String = null
 )
@@ -2581,7 +2627,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2597,6 +2644,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2645,7 +2693,7 @@ extends
 /**
  * Ownership of e.g. asset.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param share Share of this ownership.
  * @param Asset [[ch.ninecode.model.Asset Asset]] Asset that is object of this ownership.
  * @param AssetOwner [[ch.ninecode.model.AssetOwner AssetOwner]] Asset owner that is subject in this ownership.
@@ -2655,7 +2703,7 @@ extends
  */
 final case class Ownership
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     share: Double = 0.0,
     Asset: String = null,
     AssetOwner: String = null
@@ -2671,7 +2719,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2687,6 +2736,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2737,14 +2787,13 @@ extends
 }
 
 /**
-
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class ParentOrganization
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     Organisation_attr: List[String] = null
 )
 extends
@@ -2758,7 +2807,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -2774,6 +2824,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2816,7 +2867,7 @@ extends
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
  * @param firstName Person's first name.
  * @param landlinePhone [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Landline phone number.
@@ -2833,7 +2884,7 @@ extends
  */
 final case class Person
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     electronicAddress: String = null,
     firstName: String = null,
     landlinePhone: String = null,
@@ -2856,7 +2907,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2872,6 +2924,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2953,14 +3006,13 @@ extends
 }
 
 /**
-
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 final case class PersonRole
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Appointments: List[String] = null,
     ConfigurationEvents: List[String] = null,
     Person: String = null
@@ -2976,7 +3028,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2992,6 +3045,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3047,7 +3101,7 @@ extends
  *
  * CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param groupNumber Zero-relative sequence number of this group within a series of points; used when there is a need to express disjoint groups of points that are considered to be part of a single location.
  * @param sequenceNumber Zero-relative sequence number of this point within a series of points.
  * @param xPosition X axis position.
@@ -3060,7 +3114,7 @@ extends
  */
 final case class PositionPoint
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     groupNumber: Int = 0,
     sequenceNumber: Int = 0,
     xPosition: String = null,
@@ -3079,7 +3133,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3095,6 +3150,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3158,7 +3214,7 @@ extends
 /**
  * Priority definition.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param justification Justification for 'rank'.
  * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
  * @param type Type describing 'rank'; e.g., high, emergency, etc.
@@ -3168,7 +3224,7 @@ extends
  */
 final case class Priority
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     justification: String = null,
     rank: Int = 0,
     `type`: String = null
@@ -3184,7 +3240,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3200,6 +3257,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3247,7 +3305,7 @@ extends
 /**
  * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
  * @param type Type of scheduled event.
@@ -3259,7 +3317,7 @@ extends
  */
 final case class ScheduledEvent
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     duration: Double = 0.0,
     status: String = null,
     `type`: String = null,
@@ -3277,7 +3335,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3293,6 +3352,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3355,7 +3415,7 @@ extends
 /**
  * Schedule parameters for an activity that is to occur, is occurring, or has completed.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param estimatedWindow Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
  * @param requestedWindow Requested date and time interval for activity execution.
  * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
@@ -3367,7 +3427,7 @@ extends
  */
 final case class ScheduledEventData
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     estimatedWindow: String = null,
     requestedWindow: String = null,
     status: String = null,
@@ -3385,7 +3445,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3401,6 +3462,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3462,7 +3524,7 @@ extends
 /**
  * Current status information relevant to an entity.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param dateTime Date and time for which status 'value' applies.
  * @param reason Reason code or explanation for why an object went to the current status 'value'.
  * @param remark Pertinent information regarding the current 'value', as free form text.
@@ -3473,7 +3535,7 @@ extends
  */
 final case class Status
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     dateTime: String = null,
     reason: String = null,
     remark: String = null,
@@ -3490,7 +3552,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3506,6 +3569,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3557,7 +3621,7 @@ extends
 /**
  * General purpose street and postal address information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param language The language in which the address is specified, using ISO 639-1 two digit language code.
  * @param poBox Post office box.
  * @param postalCode Postal code for the address.
@@ -3570,7 +3634,7 @@ extends
  */
 final case class StreetAddress
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     language: String = null,
     poBox: String = null,
     postalCode: String = null,
@@ -3589,7 +3653,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3605,6 +3670,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3670,7 +3736,7 @@ extends
 /**
  * Street details, in the context of address.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param addressGeneral First line of a free form address or some additional address information (for example a mail stop).
  * @param addressGeneral2 (if applicable) Second line of a free form address.
  * @param addressGeneral3 (if applicable) Third line of a free form address.
@@ -3693,7 +3759,7 @@ extends
  */
 final case class StreetDetail
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     addressGeneral: String = null,
     addressGeneral2: String = null,
     addressGeneral3: String = null,
@@ -3719,7 +3785,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3735,6 +3802,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3822,7 +3890,7 @@ extends
 /**
  * Telephone number.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param areaCode (if applicable) Area or region code.
  * @param cityCode City code.
  * @param countryCode Country code.
@@ -3837,7 +3905,7 @@ extends
  */
 final case class TelephoneNumber
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     areaCode: String = null,
     cityCode: String = null,
     countryCode: String = null,
@@ -3858,7 +3926,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3874,6 +3943,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3941,7 +4011,7 @@ extends
 /**
  * A point in time within a sequence of points in time relative to a time schedule.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dateTime Absolute date and time for this time point.
  *        For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
  * @param relativeTimeInterval (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
@@ -3955,7 +4025,7 @@ extends
  */
 final case class TimePoint
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dateTime: String = null,
     relativeTimeInterval: Double = 0.0,
     sequenceNumber: Int = 0,
@@ -3974,7 +4044,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3990,6 +4061,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4056,7 +4128,7 @@ extends
  *
  * Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param disabled True if this schedule is deactivated (disabled).
  * @param offset The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
  *        For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.
@@ -4071,7 +4143,7 @@ extends
  */
 final case class TimeSchedule
 (
-    override val sup: Document = null,
+    Document: Document = null,
     disabled: Boolean = false,
     offset: Double = 0.0,
     recurrencePattern: String = null,
@@ -4090,7 +4162,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -4106,6 +4179,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4170,7 +4244,7 @@ extends
 /**
  * Town details, in the context of address.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param code Town code.
  * @param country Name of the country.
  * @param name Town name.
@@ -4183,7 +4257,7 @@ extends
  */
 final case class TownDetail
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     code: String = null,
     country: String = null,
     name: String = null,
@@ -4201,7 +4275,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -4217,6 +4292,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4272,7 +4348,7 @@ extends
 /**
  * Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param name Name of an attribute.
  * @param sequenceNumber Sequence number for this attribute in a list of attributes.
  * @param value Value of an attribute, including unit information.
@@ -4288,7 +4364,7 @@ extends
  */
 final case class UserAttribute
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     name: String = null,
     sequenceNumber: Int = 0,
     value: String = null,
@@ -4310,7 +4386,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -4326,6 +4403,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4409,7 +4487,7 @@ extends
  *
  * This could be used to track the version for any group of objects or devices over time. For example, for a DERGroup, the requesting system may want to get the details of a specific version of a DERGroup.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param date date of this version
  * @param major major release level for this version
  * @param minor minor release level for this version
@@ -4420,7 +4498,7 @@ extends
  */
 final case class Version
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     date: String = null,
     major: Int = 0,
     minor: Int = 0,
@@ -4437,7 +4515,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -4453,6 +4532,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

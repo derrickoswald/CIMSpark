@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Model of results of market clearing with respect to  Ancillary Service products.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param MarketCaseClearing [[ch.ninecode.model.MarketCaseClearing MarketCaseClearing]] <em>undocumented</em>
  * @param MarketRegionResults [[ch.ninecode.model.MarketRegionResults MarketRegionResults]] <em>undocumented</em>
  * @group MarketResults
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AncillaryServiceClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     MarketCaseClearing: String = null,
     MarketRegionResults: List[String] = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -98,7 +100,7 @@ extends
 /**
  * Models various charges to support billing and settlement.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param calculationLevel Level in charge calculation order.
  * @param configVersion The version of configuration of calculation logic in the settlement.
  * @param deleteStatus <em>undocumented</em>
@@ -126,7 +128,7 @@ extends
  */
 final case class BillDeterminant
 (
-    override val sup: Document = null,
+    Document: Document = null,
     calculationLevel: String = null,
     configVersion: String = null,
     deleteStatus: String = null,
@@ -160,7 +162,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -176,6 +179,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -303,7 +307,7 @@ extends
 /**
  * A type of profile for financial charges.
  *
- * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
+ * @param Profile [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
  * @param numberInterval The number of intervals in the profile data.
  * @param type The type of profile.
@@ -319,7 +323,7 @@ extends
  */
 final case class ChargeProfile
 (
-    override val sup: Profile = null,
+    Profile: Profile = null,
     frequency: String = null,
     numberInterval: Int = 0,
     `type`: String = null,
@@ -340,7 +344,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Profile: Profile = sup
+    override def sup: Profile = Profile
+
     //
     // Row overrides
     //
@@ -356,6 +361,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -431,7 +437,7 @@ extends
 /**
  * Model of various charges associated with an energy profile to support billing and settlement.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param sequence The sequence number of the profile.
  * @param timeStamp The date and time of an interval.
  * @param value The value of an interval given a profile type (amount, price, or quantity), subject to the UOM.
@@ -443,7 +449,7 @@ extends
  */
 final case class ChargeProfileData
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     sequence: Int = 0,
     timeStamp: String = null,
     value: Double = 0.0,
@@ -461,7 +467,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -477,6 +484,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -537,7 +545,7 @@ extends
 /**
  * Models results of market clearing which call for commitment of units.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param Commitments [[ch.ninecode.model.Commitments Commitments]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -545,7 +553,7 @@ extends
  */
 final case class CommitmentClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     Commitments: List[String] = null
 )
 extends
@@ -559,7 +567,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -575,6 +584,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -619,7 +629,7 @@ extends
  *
  * This information is relevant to all markets.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param commitmentType the type of UC status (self commitment, ISO commitment, or SCUC commitment)
  * @param instructionCost Total cost associated with changing the status of the resource.
  * @param instructionType Indicator of either a Start-Up or a Shut-Down.
@@ -645,7 +655,7 @@ extends
  */
 final case class Commitments
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     commitmentType: String = null,
     instructionCost: Double = 0.0,
     instructionType: String = null,
@@ -670,7 +680,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -686,6 +697,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -777,7 +789,7 @@ extends
  *
  * The interval may be long, e.g. a year, or very short, e.g. 5 minutes.  There will be many instances of the CommodityPrice class for each instance of the CommodityDefinition to which it is associated.  Note that there may be more than once price associated with a given interval and these variances are described by the association (or associations) with the PriceDescriptor class.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param timeIntervalPeriod The time interval over which the CommodityPrice is valid, using the standard conventions associated with the DateTimeInterval class.
  * @param value The price of the Commodity, expressed as a floating point value with the currency and unit of measure defined in the associated CommodityDefinition class.
  * @param CommodityDefinition [[ch.ninecode.model.CommodityDefinition CommodityDefinition]] <em>undocumented</em>
@@ -789,7 +801,7 @@ extends
  */
 final case class CommodityPrice
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     timeIntervalPeriod: String = null,
     value: Double = 0.0,
     CommodityDefinition: String = null,
@@ -807,7 +819,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -823,6 +836,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -884,7 +898,7 @@ extends
 /**
  * Groups all items associated with Binding Constraints and Constraint Violations per interval and market.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ConstraintResults [[ch.ninecode.model.ConstraintResults ConstraintResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -892,7 +906,7 @@ extends
  */
 final case class ConstraintClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ConstraintResults: List[String] = null
 )
 extends
@@ -906,7 +920,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -922,6 +937,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -966,7 +982,7 @@ extends
  *
  * The data includes the constraint type (binding or violated), the solved value for the constraint, and the associated shadow price.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param baseFlow Branch base Power Flow.
  * @param bindingLimit MW Limit.
  * @param clearedValue Cleared MW.
@@ -994,7 +1010,7 @@ extends
  */
 final case class ConstraintResults
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     baseFlow: Double = 0.0,
     bindingLimit: Double = 0.0,
     clearedValue: Double = 0.0,
@@ -1025,7 +1041,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1041,6 +1058,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1156,7 +1174,7 @@ extends
  *
  * This information is only relevant to the RT interval market.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param mwDOP Dispatched Operating Point (MW)
  * @param plotPriority A value used to establish priority of the DOP when plotting.
  *        This is only applicable when two DOPs exist for the same time, but with different MW values.  E.g. when indicating a step in the curve.  Its used to determine if the curve steps up or down.
@@ -1176,7 +1194,7 @@ extends
  */
 final case class DopInstruction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     mwDOP: Double = 0.0,
     plotPriority: Int = 0,
     runIndicatorDOP: String = null,
@@ -1198,7 +1216,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1214,6 +1233,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1293,7 +1313,7 @@ extends
  *
  * This information is only relevant to the RT interval market.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param actualRampRate Actual ramp rate.
  * @param compliantIndicator Flag indicating whether or not the resource was in compliance with the instruction (plus/minus 10%).
  *        Directs if a unit is allowed to set the price (ex-post pricing).
@@ -1328,7 +1348,7 @@ extends
  */
 final case class DotInstruction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     actualRampRate: Double = 0.0,
     compliantIndicator: String = null,
     economicMaxOverride: Double = 0.0,
@@ -1363,7 +1383,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1379,6 +1400,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1508,7 +1530,7 @@ extends
 /**
  * Model of ex-post calcultion of MW losses.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ExPostLossResults [[ch.ninecode.model.ExPostLossResults ExPostLossResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1516,7 +1538,7 @@ extends
  */
 final case class ExPostLoss
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ExPostLossResults: List[String] = null
 )
 extends
@@ -1530,7 +1552,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -1546,6 +1569,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1590,7 +1614,7 @@ extends
  *
  * Summarizes loss in two categories losses on the the extra high voltage transmission and total losses. Calculated for each subcontrol area.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param ehvLossMW EHV MW losses in the company
  *        Attribute Usage: Information purposes - Output of LPA engine.
  * @param totalLossMW Total MW losses in the company
@@ -1603,7 +1627,7 @@ extends
  */
 final case class ExPostLossResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     ehvLossMW: Double = 0.0,
     totalLossMW: Double = 0.0,
     ExPostLoss: String = null,
@@ -1620,7 +1644,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1636,6 +1661,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1692,7 +1718,7 @@ extends
 /**
  * Model of ex-post calculation of cleared MW on a regional basis.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ExPostMarketRegionResults [[ch.ninecode.model.ExPostMarketRegionResults ExPostMarketRegionResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1700,7 +1726,7 @@ extends
  */
 final case class ExPostMarketRegion
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ExPostMarketRegionResults: String = null
 )
 extends
@@ -1714,7 +1740,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -1730,6 +1757,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1774,7 +1802,7 @@ extends
  *
  * Includes cleared price.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param exPostClearedPrice <em>undocumented</em>
  * @param ExPostMarketRegion [[ch.ninecode.model.ExPostMarketRegion ExPostMarketRegion]] <em>undocumented</em>
  * @param MarketRegion [[ch.ninecode.model.MarketRegion MarketRegion]] <em>undocumented</em>
@@ -1784,7 +1812,7 @@ extends
  */
 final case class ExPostMarketRegionResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     exPostClearedPrice: Double = 0.0,
     ExPostMarketRegion: String = null,
     MarketRegion: String = null
@@ -1800,7 +1828,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1816,6 +1845,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1868,7 +1898,7 @@ extends
 /**
  * Model of ex-post pricing of nodes.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param energyPrice market energy price
  * @param ExPostResults [[ch.ninecode.model.ExPostPricingResults ExPostPricingResults]] <em>undocumented</em>
  * @group MarketResults
@@ -1877,7 +1907,7 @@ extends
  */
 final case class ExPostPricing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     energyPrice: Double = 0.0,
     ExPostResults: List[String] = null
 )
@@ -1892,7 +1922,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -1908,6 +1939,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1957,7 +1989,7 @@ extends
  *
  * Includes LMP information, pnode based.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW; congestion component of the hourly LMP at a specific pricing node
  *        Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly congestion component of LMP for each pricing node.
  * @param lmp 5 min weighted average LMP; the Location Marginal Price of the Pnode for which price calculation is carried out.
@@ -1972,7 +2004,7 @@ extends
  */
 final case class ExPostPricingResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     congestLMP: Double = 0.0,
     lmp: Double = 0.0,
     lossLMP: Double = 0.0,
@@ -1990,7 +2022,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2006,6 +2039,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2066,7 +2100,7 @@ extends
 /**
  * Model of ex-post pricing of resources.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ExPostResourceResults [[ch.ninecode.model.ExPostResourceResults ExPostResourceResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2074,7 +2108,7 @@ extends
  */
 final case class ExPostResource
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ExPostResourceResults: List[String] = null
 )
 extends
@@ -2088,7 +2122,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -2104,6 +2139,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2148,7 +2184,7 @@ extends
  *
  * Resource based.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param congestionLMP LMP component in USD (deprecated)
  * @param desiredMW Desired output of unit
  * @param dispatchRate Unit Dispatch rate from real time unit dispatch.
@@ -2167,7 +2203,7 @@ extends
  */
 final case class ExPostResourceResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     congestionLMP: Double = 0.0,
     desiredMW: Double = 0.0,
     dispatchRate: Double = 0.0,
@@ -2191,7 +2227,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2207,6 +2244,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2293,7 +2331,7 @@ extends
  *
  * Identifies interval.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param GeneralClearingResults [[ch.ninecode.model.GeneralClearingResults GeneralClearingResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2301,7 +2339,7 @@ extends
  */
 final case class GeneralClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     GeneralClearingResults: List[String] = null
 )
 extends
@@ -2315,7 +2353,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -2331,6 +2370,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2373,7 +2413,7 @@ extends
 /**
  * Provides the adjusted load forecast value on a load forecast zone basis.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param loadForecast Load Prediction/Forecast (MW), by Time Period (5', 10', 15')
  * @param totalLoad Amount of load in the control zone
  *        Attribute Usage: hourly load value for the specific area
@@ -2387,7 +2427,7 @@ extends
  */
 final case class GeneralClearingResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     loadForecast: Double = 0.0,
     totalLoad: Double = 0.0,
     totalNetInterchange: Double = 0.0,
@@ -2405,7 +2445,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2421,6 +2462,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2483,7 +2525,7 @@ extends
  *
  * Identifies interval.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ActualDemandResponseEvent [[ch.ninecode.model.DistributedResourceActualEvent DistributedResourceActualEvent]] ActualDemandResponseEvents may exist that are not part of a cordinated MarketActualEvent associated to a Market.
  *        These ActualDemandResponseEvents can have many InstructionClearing Instructions for specified RegisteredResources or Distributed Energy Resource type of AggregateNodes.
  * @param Instructions [[ch.ninecode.model.Instructions Instructions]] <em>undocumented</em>
@@ -2494,7 +2536,7 @@ extends
  */
 final case class InstructionClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ActualDemandResponseEvent: String = null,
     Instructions: List[String] = null,
     ResourceDeploymentStatus: List[String] = null
@@ -2510,7 +2552,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -2526,6 +2569,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2581,7 +2625,7 @@ extends
  *
  * Identifies interval.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param DopInstruction [[ch.ninecode.model.DopInstruction DopInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2589,7 +2633,7 @@ extends
  */
 final case class InstructionClearingDOP
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     DopInstruction: List[String] = null
 )
 extends
@@ -2603,7 +2647,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -2619,6 +2664,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2663,7 +2709,7 @@ extends
  *
  * Identifies interval.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
  * @param DemandResponseActualEvent [[ch.ninecode.model.DistributedResourceActualEvent DistributedResourceActualEvent]] <em>undocumented</em>
@@ -2674,7 +2720,7 @@ extends
  */
 final case class InstructionClearingDOT
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     contingencyActive: String = null,
     dispatchMode: String = null,
     DemandResponseActualEvent: String = null,
@@ -2691,7 +2737,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -2707,6 +2754,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2765,7 +2813,7 @@ extends
  *
  * This information is relevant to the DA Market (RUC only) as well as the RT Market (HASP, Pre-dispatch, and Interval).
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param bindingDOD Binding dispatch operating delta provides a relative delta to be applied.
  *        Typically used in demand response instructions. The binding<font color="#0f0f0f">DOD instructions are cumulative; in other words a second DOD instruction does not replace the previous DOD, instead the second DOD adds to the previous DODs.</font>
  * @param bindingDOT <em>undocumented</em>
@@ -2795,7 +2843,7 @@ extends
  */
 final case class Instructions
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     bindingDOD: Double = 0.0,
     bindingDOT: Double = 0.0,
     bindingInstruction: String = null,
@@ -2823,7 +2871,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2839,6 +2888,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2943,7 +2993,7 @@ extends
  *
  * Related to Registered Resources in Metered Subsystems.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param dataEntryTimeStamp Time the data entry was performed
  * @param tempLoadFollowingDownManualCap temporarily manually entered LFD capacity
  * @param tempLoadFollowingUpManualCap temporarily manually entered LFU capacity.
@@ -2957,7 +3007,7 @@ extends
  */
 final case class LoadFollowingOperatorInput
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     dataEntryTimeStamp: String = null,
     tempLoadFollowingDownManualCap: Double = 0.0,
     tempLoadFollowingUpManualCap: Double = 0.0,
@@ -2977,7 +3027,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2993,6 +3044,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3060,7 +3112,7 @@ extends
 /**
  * RT only and is published on 5 minute intervals for the previous RT time interval results.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param LossClearingResults [[ch.ninecode.model.LossClearingResults LossClearingResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -3068,7 +3120,7 @@ extends
  */
 final case class LossClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     LossClearingResults: List[String] = null
 )
 extends
@@ -3082,7 +3134,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -3098,6 +3151,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3140,7 +3194,7 @@ extends
 /**
  * Provides the MW loss for RUC Zones, subcontrol areas, and the total loss.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param lossMW <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param LossClearing [[ch.ninecode.model.LossClearing LossClearing]] <em>undocumented</em>
@@ -3152,7 +3206,7 @@ extends
  */
 final case class LossClearingResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     lossMW: Double = 0.0,
     HostControlArea: String = null,
     LossClearing: String = null,
@@ -3170,7 +3224,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3186,6 +3241,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3250,7 +3306,7 @@ extends
  *
  * Interval based.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param mitigationOccuredFlag <em>undocumented</em>
  * @param LMPMFinalFlag <em>undocumented</em>
  * @param MPMTestResults [[ch.ninecode.model.MPMTestResults MPMTestResults]] <em>undocumented</em>
@@ -3261,7 +3317,7 @@ extends
  */
 final case class MPMClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     mitigationOccuredFlag: String = null,
     LMPMFinalFlag: String = null,
     MPMTestResults: List[String] = null,
@@ -3278,7 +3334,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -3294,6 +3351,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3349,7 +3407,7 @@ extends
 /**
  * Model of results of Market Power tests, gives status of resource for the associated interval.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param resourceStatus Interval Test Status
  *        'N' - not applicable
  * @param MPMTestCategory [[ch.ninecode.model.MPMTestCategory MPMTestCategory]] <em>undocumented</em>
@@ -3361,7 +3419,7 @@ extends
  */
 final case class MPMResourceStatus
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     resourceStatus: String = null,
     MPMTestCategory: String = null,
     MitigatedBidClearing: List[String] = null,
@@ -3378,7 +3436,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3394,6 +3453,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3454,7 +3514,7 @@ extends
  *
  * There are relationships to Zone for Designated Congestion Area Tests, CurveSchedData for bid segment tests, to the SubControlArea for the system wide level tests, and Pnodes for the LMPM impact tests.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param marginPercent Used to show the Margin % result of the Impact test
  * @param outcome The results of the test.
  *        For the Price, Impact, and Conduct tests, typical values are NA, Pass, Fail, Disable, or Skip.
@@ -3467,7 +3527,7 @@ extends
  */
 final case class MPMTestResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     marginPercent: Double = 0.0,
     outcome: String = null,
     AggregatedPnode: String = null,
@@ -3485,7 +3545,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3501,6 +3562,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3564,7 +3626,7 @@ extends
  *
  * The specific data is commodity type (Regulation Up, Regulation Down, Spinning Reserve, Non-spinning Reserve, or Total Up reserves) based for the cleared MW, cleared price, and total capacity required for the region.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param clearedMW Cleared generation Value in MW.
  *        For AS, this value is clearedMW = AS Total.  For AS, clearedMW - selfScheduleMW = AS Procured
  * @param clearedPrice Marginal Price (\$/MW) for the commodity (Energy, Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) based on the pricing run.
@@ -3590,7 +3652,7 @@ extends
  */
 final case class MarketRegionResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     clearedMW: Double = 0.0,
     clearedPrice: Double = 0.0,
     dispatchCtMW: Double = 0.0,
@@ -3620,7 +3682,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3636,6 +3699,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3747,7 +3811,7 @@ extends
  *
  * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param ancillarySvcCost Total  AS Cost (i.e., payment) (\$) over the time horizon
  * @param contingentOperatingResAvail Global Contingent Operating Reserve Availability Indicator (Yes/No)
  * @param energyCost Total Energy Cost (\$) over the time horizon
@@ -3762,7 +3826,7 @@ extends
  */
 final case class MarketResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     ancillarySvcCost: Double = 0.0,
     contingentOperatingResAvail: String = null,
     energyCost: Double = 0.0,
@@ -3783,7 +3847,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -3799,6 +3864,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3872,7 +3938,7 @@ extends
  *
  * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param end The end of a bill period.
  * @param referenceNumber The version number of previous statement (in the case of true up).
  * @param start The start of a bill period.
@@ -3885,7 +3951,7 @@ extends
  */
 final case class MarketStatement
 (
-    override val sup: Document = null,
+    Document: Document = null,
     end: String = null,
     referenceNumber: String = null,
     start: String = null,
@@ -3904,7 +3970,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -3920,6 +3987,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3983,7 +4051,7 @@ extends
 /**
  * An individual line item on an ISO settlement statement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param currentAmount Current settlement amount.
  * @param currentISOAmount Current ISO settlement amount.
  * @param currentISOQuantity Current ISO settlement quantity.
@@ -4013,7 +4081,7 @@ extends
  */
 final case class MarketStatementLineItem
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     currentAmount: Double = 0.0,
     currentISOAmount: Double = 0.0,
     currentISOQuantity: Double = 0.0,
@@ -4049,7 +4117,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -4065,6 +4134,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4201,7 +4271,7 @@ extends
 /**
  * Mitigated bid results posted for a given settlement period.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param MitigatedBidClearing [[ch.ninecode.model.MitigatedBidClearing MitigatedBidClearing]] <em>undocumented</em>
  * @group MarketResults
@@ -4210,7 +4280,7 @@ extends
  */
 final case class MitigatedBid
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Bid: String = null,
     MitigatedBidClearing: List[String] = null
 )
@@ -4225,7 +4295,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -4241,6 +4312,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4291,7 +4363,7 @@ extends
  *
  * Interval based.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param MPMResourceStatus [[ch.ninecode.model.MPMResourceStatus MPMResourceStatus]] <em>undocumented</em>
  * @param MitigatedBid [[ch.ninecode.model.MitigatedBid MitigatedBid]] <em>undocumented</em>
  * @param RMRDetermination [[ch.ninecode.model.RMRDetermination RMRDetermination]] <em>undocumented</em>
@@ -4301,7 +4373,7 @@ extends
  */
 final case class MitigatedBidClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     MPMResourceStatus: List[String] = null,
     MitigatedBid: List[String] = null,
     RMRDetermination: List[String] = null
@@ -4317,7 +4389,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -4333,6 +4406,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4387,7 +4461,7 @@ extends
  *
  * Indicates segment of piece-wise linear bid, that has been mitigated.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param segmentMW Mitigated bid segment MW value
  * @param segmentNumber Mitigated Bid Segment Number
@@ -4399,7 +4473,7 @@ extends
  */
 final case class MitigatedBidSegment
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     intervalStartTime: String = null,
     segmentMW: Double = 0.0,
     segmentNumber: Int = 0,
@@ -4417,7 +4491,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -4433,6 +4508,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4496,7 +4572,7 @@ extends
  *
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param adjustedAmount <em>undocumented</em>
  * @param amount The charge amount of the product/service.
  * @param billEnd Bill period end date
@@ -4531,7 +4607,7 @@ extends
  */
 final case class PassThroughBill
 (
-    override val sup: Document = null,
+    Document: Document = null,
     adjustedAmount: Double = 0.0,
     amount: Double = 0.0,
     billEnd: String = null,
@@ -4571,7 +4647,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -4587,6 +4664,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4737,7 +4815,7 @@ extends
 /**
  * Pricing node clearing results posted for a given settlement period.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param CommodityPrice [[ch.ninecode.model.CommodityPrice CommodityPrice]] <em>undocumented</em>
  * @param PnodeResults [[ch.ninecode.model.PnodeResults PnodeResults]] <em>undocumented</em>
  * @group MarketResults
@@ -4746,7 +4824,7 @@ extends
  */
 final case class PnodeClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     CommodityPrice: List[String] = null,
     PnodeResults: List[String] = null
 )
@@ -4761,7 +4839,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -4777,6 +4856,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4826,7 +4906,7 @@ extends
  *
  * There are several prices produced based on the run type (MPM, RUC, Pricing, or Scheduling/Dispatch).
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
  * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
  * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW.
@@ -4843,7 +4923,7 @@ extends
  */
 final case class PnodeResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     congestLMP: Double = 0.0,
     costLMP: Double = 0.0,
     lossLMP: Double = 0.0,
@@ -4866,7 +4946,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -4882,6 +4963,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4964,7 +5046,7 @@ extends
  *
  * For example, a price may be forecasted a year ahead, a month ahead, a day ahead, an hour ahead, and in real time; this is defined using the MarketType. Additionally a price may have one or more components. For example, a locational marginal energy price may be the arithmetic sum of the system price, the congestion price, and the loss price.  The priceType enumeration is used determine if the price is the complete price (priceType="total") or one of potentially many constituent components.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param marketType The time frame for the price, using the standard conventions associated with the MarketType enumeration.
  * @param priceType The "kind" of price being described.
  *        In general, the priceType will either be "total" to signify that the price is the price paid to buy or sell the commodity, sometimes referred to as an "all-in" price, or one of potentially many components.
@@ -4975,7 +5057,7 @@ extends
  */
 final case class PriceDescriptor
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     marketType: String = null,
     priceType: String = null,
     CommodityPrice: List[String] = null
@@ -4991,7 +5073,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -5007,6 +5090,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5058,7 +5142,7 @@ extends
 /**
  * Indicates whether unit is a reliablity must run unit: required to be on to satisfy Grid Code Reliablitiy criteria, load demand, or voltage support.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param MitigatedBidClearing [[ch.ninecode.model.MitigatedBidClearing MitigatedBidClearing]] <em>undocumented</em>
  * @group MarketResults
@@ -5067,7 +5151,7 @@ extends
  */
 final case class RMRDetermination
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     Bid: String = null,
     MitigatedBidClearing: List[String] = null
 )
@@ -5082,7 +5166,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -5098,6 +5183,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5146,7 +5232,7 @@ extends
 /**
  * RMR Operator's entry of the RMR requirement per market interval.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param manuallySchedRMRMw The lower of the original pre-dispatch or the AC run schedule (Also known as the RMR Reguirement) becomes the pre-dispatch value.
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
@@ -5158,7 +5244,7 @@ extends
  */
 final case class RMROperatorInput
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     manuallySchedRMRMw: Double = 0.0,
     updateTimeStamp: String = null,
     updateType: String = null,
@@ -5176,7 +5262,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -5192,6 +5279,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5251,7 +5339,7 @@ extends
 /**
  * This class models the information about the RUC awards.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param clearedPrice Marginal Price (\$/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
  * @param marketProductType major product type may include the following but not limited to:
  *        
@@ -5277,7 +5365,7 @@ extends
  */
 final case class RUCAwardInstruction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     clearedPrice: Double = 0.0,
     marketProductType: String = null,
     updateTimeStamp: String = null,
@@ -5300,7 +5388,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -5316,6 +5405,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5399,7 +5489,7 @@ extends
  *
  * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
  * @param RUCAwardInstruction [[ch.ninecode.model.RUCAwardInstruction RUCAwardInstruction]] <em>undocumented</em>
@@ -5410,7 +5500,7 @@ extends
  */
 final case class ResourceAwardClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     contingencyActive: String = null,
     dispatchMode: String = null,
     RUCAwardInstruction: List[String] = null,
@@ -5427,7 +5517,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -5443,6 +5534,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5501,7 +5593,7 @@ extends
  *
  * Contains details of award as attributes.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param awardMW For DA Energy: Not Applicable;
  *        
  *        For DA AS: DA AS market award;
@@ -5556,7 +5648,7 @@ extends
  */
 final case class ResourceAwardInstruction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     awardMW: Double = 0.0,
     clearedMW: Double = 0.0,
     clearedPrice: Double = 0.0,
@@ -5601,7 +5693,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -5617,6 +5710,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5790,7 +5884,7 @@ extends
  *
  * Associated with ResourceDispatchResults.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ResourceDispatchResults [[ch.ninecode.model.ResourceDispatchResults ResourceDispatchResults]] <em>undocumented</em>
  * @param ResourceLoadFollowingInst [[ch.ninecode.model.ResourceLoadFollowingInst ResourceLoadFollowingInst]] <em>undocumented</em>
  * @group MarketResults
@@ -5799,7 +5893,7 @@ extends
  */
 final case class ResourceClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     ResourceDispatchResults: List[String] = null,
     ResourceLoadFollowingInst: List[String] = null
 )
@@ -5814,7 +5908,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -5830,6 +5925,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5875,14 +5971,13 @@ extends
 }
 
 /**
-
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
  */
 final case class ResourceDeploymentStatus
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     acceptComments: String = null,
     acceptStatus: String = null,
     resourceResponseMW: Double = 0.0,
@@ -5899,7 +5994,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -5915,6 +6011,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5972,7 +6069,7 @@ extends
  *
  * The specific data provided consists of several indicators such as contingency flags, blocked start up, and RMR dispatch. It also provides the projected overall and the regulating status of the resource.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param blockedDispatch Blocked Dispatch Indicator (Yes/No)
  * @param blockedPublishDOP Block sending DOP to ADS (Y/N)
  * @param contingencyFlag Contingent Operating Reserve Indicator (Yes/No).
@@ -5999,7 +6096,7 @@ extends
  */
 final case class ResourceDispatchResults
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     blockedDispatch: String = null,
     blockedPublishDOP: String = null,
     contingencyFlag: String = null,
@@ -6031,7 +6128,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -6047,6 +6145,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6163,7 +6262,7 @@ extends
 /**
  * Model of market clearing results for resources that bid to follow load.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param calcLoadFollowingMW weighted average for RTPD and RTCD and same for RTID
  * @param dispWindowHighLimt <em>undocumented</em>
  * @param dispWindowLowLimt <em>undocumented</em>
@@ -6178,7 +6277,7 @@ extends
  */
 final case class ResourceLoadFollowingInst
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     calcLoadFollowingMW: Double = 0.0,
     dispWindowHighLimt: Double = 0.0,
     dispWindowLowLimt: Double = 0.0,
@@ -6198,7 +6297,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -6214,6 +6314,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6284,7 +6385,7 @@ extends
  *
  * Every resource deployment may have many performance evaluations, using different evaluation metrics or algorithms, or produced by different evaluation authorities.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveEndTime <em>undocumented</em>
  * @param effectiveStartTime <em>undocumented</em>
  * @param evaluationDescription Description of the performance evaluation, e.g. the rating classification used (any is allowed), why the evaluation was performed, anything that describes the demand response performance evaluation.
@@ -6299,7 +6400,7 @@ extends
  */
 final case class ResourcePerformanceEvaluation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     effectiveEndTime: String = null,
     effectiveStartTime: String = null,
     evaluationDescription: String = null,
@@ -6319,7 +6420,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -6335,6 +6437,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6407,7 +6510,7 @@ extends
  *
  * Example include scale factors (e.g. scale a baseline up or down), adders (positive or negative), etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param factorDescription Description (name) of the property (factor).
  * @param factorValue Value of the property (factor).
  * @param ResourcePerformanceEvaluation [[ch.ninecode.model.ResourcePerformanceEvaluation ResourcePerformanceEvaluation]] <em>undocumented</em>
@@ -6417,7 +6520,7 @@ extends
  */
 final case class ResourcePerformanceGlobalFactor
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     factorDescription: String = null,
     factorValue: String = null,
     ResourcePerformanceEvaluation: List[String] = null
@@ -6433,7 +6536,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -6449,6 +6553,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6500,7 +6605,7 @@ extends
 /**
  * Rating of a resource for its demand response performance. e.g. given a set on monthly resource demand response performance evaluations, the resource may be rated with excellent, average, or poor performance for the sample set.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveEndTime starting date time that the rating is valid for
  * @param effectiveStartTime ending date time that the rating is valid for
  * @param ratingDescription the resource's demand response rating description
@@ -6513,7 +6618,7 @@ extends
  */
 final case class ResourcePerformanceRating
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     effectiveEndTime: String = null,
     effectiveStartTime: String = null,
     ratingDescription: String = null,
@@ -6532,7 +6637,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -6548,6 +6654,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6611,7 +6718,7 @@ extends
 /**
  * Represents the performance of a resource as time series data for a specified time period, time interval, and evaluation criteria.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param RegularIntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param timeSeriesDataType Type of the time series data, e.g. baseline data, meter read data, computed performance data.
  * @param timeSeriesDescription Optional description of the time series data, e.g. baseline data, meter read data, computed performance data.
  * @param value1Description Description for the value1 contained within the TimeSeriesFactor.
@@ -6623,7 +6730,7 @@ extends
  */
 final case class ResourcePerformanceTimeSeriesFactor
 (
-    override val sup: RegularIntervalSchedule = null,
+    RegularIntervalSchedule: RegularIntervalSchedule = null,
     timeSeriesDataType: String = null,
     timeSeriesDescription: String = null,
     value1Description: String = null,
@@ -6641,7 +6748,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    override def sup: RegularIntervalSchedule = RegularIntervalSchedule
+
     //
     // Row overrides
     //
@@ -6657,6 +6765,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6718,7 +6827,7 @@ extends
  *
  * Includes self schedule MW,and type of self schedule for each self schedule type included in total self schedule MW value found in ResourceAwardInstruction.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param selfSchedMW Cleared value for the specific self schedule type listed.
  * @param selfSchedType Self schedule breakdown type.
  * @param ResourceAwardInstruction [[ch.ninecode.model.ResourceAwardInstruction ResourceAwardInstruction]] <em>undocumented</em>
@@ -6728,7 +6837,7 @@ extends
  */
 final case class SelfScheduleBreakdown
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     selfSchedMW: Double = 0.0,
     selfSchedType: String = null,
     ResourceAwardInstruction: String = null
@@ -6744,7 +6853,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -6760,6 +6870,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6811,7 +6922,7 @@ extends
 /**
  * Specifies a settlement run.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tradeDate The trade date on which the settlement is run.
  * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
  * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
@@ -6823,7 +6934,7 @@ extends
  */
 final case class Settlement
 (
-    override val sup: Document = null,
+    Document: Document = null,
     tradeDate: String = null,
     EnergyMarket: String = null,
     MajorChargeGroup: List[String] = null,
@@ -6841,7 +6952,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -6857,6 +6969,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6922,7 +7035,7 @@ extends
  *
  * For example, Day Ahead cleared results for the transaction bids for each interval of the market day.
  *
- * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param TransactionBidResults [[ch.ninecode.model.TransactionBidResults TransactionBidResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -6930,7 +7043,7 @@ extends
  */
 final case class TransactionBidClearing
 (
-    override val sup: MarketFactors = null,
+    MarketFactors: MarketFactors = null,
     TransactionBidResults: List[String] = null
 )
 extends
@@ -6944,7 +7057,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketFactors: MarketFactors = sup
+    override def sup: MarketFactors = MarketFactors
+
     //
     // Row overrides
     //
@@ -6960,6 +7074,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7002,7 +7117,7 @@ extends
 /**
  * Contains the cleared results for each TransactionBid submitted to and accepted by the market.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param clearedMW The market transaction megawatt
  * @param clearedPrice The price of the market transaction
  * @param TransactionBid [[ch.ninecode.model.TransactionBid TransactionBid]] <em>undocumented</em>
@@ -7013,7 +7128,7 @@ extends
  */
 final case class TransactionBidResults
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     clearedMW: Double = 0.0,
     clearedPrice: Double = 0.0,
     TransactionBid: String = null,
@@ -7030,7 +7145,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -7046,6 +7162,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

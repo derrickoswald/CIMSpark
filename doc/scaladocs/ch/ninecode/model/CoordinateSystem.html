@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CoordinateSystem - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.model.CoordinateSystem</title>
-          <meta name="description" content="CoordinateSystem - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.model.CoordinateSystem" />
-          <meta name="keywords" content="CoordinateSystem CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.model.CoordinateSystem" />
+          <title>CoordinateSystem - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.model.CoordinateSystem</title>
+          <meta name="description" content="CoordinateSystem - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.model.CoordinateSystem" />
+          <meta name="keywords" content="CoordinateSystem CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.model.CoordinateSystem" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CoordinateSystem</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="crsUrn">crsUrn: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="Locations">Locations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CoordinateSystem</span><span class="params">(<span name="IdentifiedObject">IdentifiedObject: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="crsUrn">crsUrn: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="Locations">Locations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Coordinate reference system.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
+</p></div><dl class="paramcmts block"><dt class="param">IdentifiedObject</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
        PositionPoints'.
        An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
        A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl><div class="toggleContainer block">
@@ -66,7 +66,7 @@
         <div id="order">
               <span class="filtertype">Ordering</span>
               <ol>
-                
+                <li class="group out"><span>Grouped</span></li>
                 <li class="alpha in"><span>Alphabetic</span></li>
                 <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
@@ -95,7 +95,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.model.CoordinateSystem#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crsUrn:String,Locations:List[String]):ch.ninecode.model.CoordinateSystem"></a>
+      <a id="&lt;init&gt;(IdentifiedObject:ch.ninecode.model.IdentifiedObject,crsUrn:String,Locations:List[String]):ch.ninecode.model.CoordinateSystem"></a>
       <a id="&lt;init&gt;:CoordinateSystem"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -103,14 +103,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CoordinateSystem</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="crsUrn">crsUrn: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="Locations">Locations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">null</span></span>)</span>
+        <span class="name">CoordinateSystem</span><span class="params">(<span name="IdentifiedObject">IdentifiedObject: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="crsUrn">crsUrn: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="Locations">Locations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CoordinateSystem@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crsUrn:String,Locations:List[String]):ch.ninecode.model.CoordinateSystem" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CoordinateSystem@&lt;init&gt;(IdentifiedObject:ch.ninecode.model.IdentifiedObject,crsUrn:String,Locations:List[String]):ch.ninecode.model.CoordinateSystem" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">IdentifiedObject</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crsUrn</dt><dd class="cmt"><p>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
        PositionPoints'.
        An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4236.
        A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</p></dd><dt class="param">Locations</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> All locations described with position points in this coordinate system.</p></dd></dl></div>
@@ -174,13 +174,13 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.CoordinateSystem#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+    </li><li name="ch.ninecode.model.CoordinateSystem#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">IdentifiedObject</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
@@ -190,8 +190,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p>
     </li><li name="ch.ninecode.model.CoordinateSystem#Locations" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Locations:List[String]"></a>
       <a id="Locations:List[String]"></a>
@@ -1144,13 +1143,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.CoordinateSystem#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.CoordinateSystem#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="sup:ch.ninecode.model.IdentifiedObject"></a>
       <a id="sup:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">sup</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
@@ -1160,7 +1159,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.CoordinateSystem">CoordinateSystem</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.CoordinateSystem">CoordinateSystem</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

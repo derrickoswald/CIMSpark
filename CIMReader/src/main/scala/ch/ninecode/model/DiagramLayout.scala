@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param orientation Coordinate system orientation of the diagram.
  * @param x1InitialView X coordinate of the first corner of the initial view.
  * @param x2InitialView X coordinate of the second corner of the initial view.
@@ -26,7 +26,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class Diagram
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     orientation: String = null,
     x1InitialView: Double = 0.0,
     x2InitialView: Double = 0.0,
@@ -46,7 +46,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -62,6 +63,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -133,7 +135,7 @@ extends
  *
  * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order of this element.
  *        The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
  * @param isPolygon Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
@@ -152,7 +154,7 @@ extends
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object can have 0 or more points to reflect its layout position, routing (for polylines) or boundary (for polygons).
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
+ * @param IdentifiedObject_attr [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
  * @param VisibilityLayers [[ch.ninecode.model.VisibilityLayer VisibilityLayer]] A diagram object can be part of multiple visibility layers.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -160,7 +162,7 @@ extends
  */
 final case class DiagramObject
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     drawingOrder: Int = 0,
     isPolygon: Boolean = false,
     offsetX: Double = 0.0,
@@ -183,7 +185,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -199,6 +202,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -283,7 +287,7 @@ extends
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object glue point is associated with 2 or more object points that are considered to be 'glued' together.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -291,7 +295,7 @@ extends
  */
 final case class DiagramObjectGluePoint
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     DiagramObjectPoints: List[String] = null
 )
 extends
@@ -305,7 +309,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -321,6 +326,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -365,7 +371,7 @@ extends
  *
  * The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param sequenceNumber The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
  * @param xPosition The X coordinate of this point.
  * @param yPosition The Y coordinate of this point.
@@ -378,7 +384,7 @@ extends
  */
 final case class DiagramObjectPoint
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     sequenceNumber: Int = 0,
     xPosition: Double = 0.0,
     yPosition: Double = 0.0,
@@ -397,7 +403,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -413,6 +420,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -479,7 +487,7 @@ extends
  *
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and colour.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param StyledObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A style can be assigned to multiple diagram objects.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -487,7 +495,7 @@ extends
  */
 final case class DiagramObjectStyle
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     StyledObjects: List[String] = null
 )
 extends
@@ -501,7 +509,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -517,6 +526,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -561,7 +571,7 @@ extends
  *
  * A diagram style describes information such as schematic, geographic, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A DiagramStyle can be used by many Diagrams.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -569,7 +579,7 @@ extends
  */
 final case class DiagramStyle
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Diagram: List[String] = null
 )
 extends
@@ -583,7 +593,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -599,6 +610,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -641,7 +653,7 @@ extends
 /**
  * A diagram object for placing free-text or text derived from an associated domain object.
  *
- * @param sup [[ch.ninecode.model.DiagramObject DiagramObject]] Reference to the superclass object.
+ * @param DiagramObject [[ch.ninecode.model.DiagramObject DiagramObject]] Reference to the superclass object.
  * @param text The text that is displayed by this text diagram object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -649,7 +661,7 @@ extends
  */
 final case class TextDiagramObject
 (
-    override val sup: DiagramObject = null,
+    DiagramObject: DiagramObject = null,
     text: String = null
 )
 extends
@@ -663,7 +675,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DiagramObject: DiagramObject = sup
+    override def sup: DiagramObject = DiagramObject
+
     //
     // Row overrides
     //
@@ -679,6 +692,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -719,10 +733,10 @@ extends
  * Layers are typically used for grouping diagram objects according to themes and scales.
  *
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
- * 
+ *
  * CIM based graphics exchange will support an m:n relationship between diagram objects and layers. It will be the task of the importing system to convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
  *        The higher the number, the later the layer and the objects within it are rendered.
  * @param VisibleObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A visibility layer can contain one or more diagram objects.
@@ -732,7 +746,7 @@ extends
  */
 final case class VisibilityLayer
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     drawingOrder: Int = 0,
     VisibleObjects: List[String] = null
 )
@@ -747,7 +761,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -763,6 +778,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param demographicKind Demographics around the site.
  * @param externalRecordReference Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
  *        The governing organisation is specified in associated Organisation.
@@ -30,7 +30,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class LandProperty
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     demographicKind: String = null,
     externalRecordReference: String = null,
     kind: String = null,
@@ -54,7 +54,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -70,6 +71,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -162,7 +164,7 @@ extends
  *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param propertyData Property related information that describes the Grant's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] Land property this location grant applies to.
@@ -171,7 +173,7 @@ extends
  */
 final case class LocationGrant
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     propertyData: String = null,
     LandProperty: String = null
 )
@@ -186,7 +188,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -202,6 +205,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -251,14 +255,14 @@ extends
  *
  * A red line can be associated with any Location object.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
 final case class RedLine
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null
 )
 extends
@@ -272,7 +276,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -288,6 +293,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -329,7 +335,7 @@ extends
  *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param propertyData Property related information that describes the ROW's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
  * @param LandProperties [[ch.ninecode.model.LandProperty LandProperty]] All land properties this right of way applies to.
@@ -338,7 +344,7 @@ extends
  */
 final case class RightOfWay
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     propertyData: String = null,
     LandProperties: List[String] = null
 )
@@ -353,7 +359,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -369,6 +376,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -416,7 +424,7 @@ extends
 /**
  * Route that is followed, for example by service crews.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param type Classification by utility's work management standards and practices.
  * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
@@ -426,7 +434,7 @@ extends
  */
 final case class Route
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     `type`: String = null,
     Crews: List[String] = null,
@@ -443,7 +451,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -459,6 +468,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -518,14 +528,14 @@ extends
  *
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
  *
- * @param sup [[ch.ninecode.model.Location Location]] Reference to the superclass object.
+ * @param Location [[ch.ninecode.model.Location Location]] Reference to the superclass object.
  * @param kind Kind of this zone.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
 final case class Zone
 (
-    override val sup: Location = null,
+    Location: Location = null,
     kind: String = null
 )
 extends
@@ -539,7 +549,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Location: Location = sup
+    override def sup: Location = Location
+
     //
     // Row overrides
     //
@@ -555,6 +566,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

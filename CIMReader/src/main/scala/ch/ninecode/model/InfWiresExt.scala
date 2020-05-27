@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
  *
- * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
+ * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param capacitiveRating Maximum capacitive reactive power.
  * @param inductiveRating Maximum inductive reactive power.
  * @group InfWiresExt
@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class SVC
 (
-    override val sup: ShuntCompensator = null,
+    ShuntCompensator: ShuntCompensator = null,
     capacitiveRating: Double = 0.0,
     inductiveRating: Double = 0.0
 )
@@ -33,7 +33,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ShuntCompensator: ShuntCompensator = sup
+    override def sup: ShuntCompensator = ShuntCompensator
+
     //
     // Row overrides
     //
@@ -49,6 +50,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -92,7 +94,7 @@ extends
 /**
  * Distribution capacitor bank control settings.
  *
- * @param sup [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
  * @param branchDirect For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out.
  * @param cellSize The size of the individual units that make up the bank.
  * @param controlKind Kind of control (if any).
@@ -119,7 +121,7 @@ extends
  */
 final case class ShuntCompensatorControl
 (
-    override val sup: RegulatingControl = null,
+    RegulatingControl: RegulatingControl = null,
     branchDirect: Int = 0,
     cellSize: Double = 0.0,
     controlKind: String = null,
@@ -150,7 +152,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegulatingControl: RegulatingControl = sup
+    override def sup: RegulatingControl = RegulatingControl
+
     //
     // Row overrides
     //
@@ -166,6 +169,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

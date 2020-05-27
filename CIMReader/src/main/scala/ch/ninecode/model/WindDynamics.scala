@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.1.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param WindGenTurbineType1aIEC [[ch.ninecode.model.WindGenTurbineType1aIEC WindGenTurbineType1aIEC]] Wind turbine type 1A model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -25,7 +25,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroConstIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     WindGenTurbineType1aIEC: String = null
 )
 extends
@@ -39,7 +39,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -55,6 +56,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -99,7 +101,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.2.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
  *        It is a type-dependent parameter.
  * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
@@ -116,7 +118,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroOneDimIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ka: Double = 0.0,
     thetaomega: Double = 0.0,
     WindTurbineType3IEC: String = null
@@ -132,7 +134,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -148,6 +151,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -201,7 +205,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.3.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
  *        It is a type-dependent parameter.
  * @param dptheta Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
@@ -228,7 +232,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroTwoDimIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dpomega: Double = 0.0,
     dptheta: Double = 0.0,
     dpv1: Double = 0.0,
@@ -249,7 +253,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -265,6 +270,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -339,7 +345,7 @@ extends
  * The current limitation model combines the physical limits and the control limits.
  * Reference: IEC 61400-27-1:2015, 5.6.5.8.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
  *        It is a type-dependent parameter.
  * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
@@ -371,7 +377,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContCurrLimIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     imax: Double = 0.0,
     imaxdip: Double = 0.0,
     kpqu: Double = 0.0,
@@ -393,7 +399,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -409,6 +416,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -488,7 +496,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.4.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><i><sub>max</sub></i>).
  *        It is a type-dependent parameter.
  * @param dprefmax Maximum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmax</sub></i>).
@@ -550,7 +558,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType3IEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dpmax: Double = 0.0,
     dprefmax: Double = 0.0,
     dprefmin: Double = 0.0,
@@ -588,7 +596,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -604,6 +613,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -747,7 +757,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.5.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4A</sub></i>).
  *        It is a project-dependent parameter.
  * @param tpordp4a Time constant in power order lag (<i>T</i><i><sub>pordp4A</sub></i>) (&gt;= 0).
@@ -766,7 +776,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4aIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dpmaxp4a: Double = 0.0,
     tpordp4a: Double = 0.0,
     tufiltp4a: Double = 0.0,
@@ -783,7 +793,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -799,6 +810,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -856,7 +868,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.6.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4B</sub></i>).
  *        It is a project-dependent parameter.
  * @param tpaero Time constant in aerodynamic power response (<i>T</i><i><sub>paero</sub></i>) (&gt;= 0).
@@ -877,7 +889,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4bIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dpmaxp4b: Double = 0.0,
     tpaero: Double = 0.0,
     tpordp4b: Double = 0.0,
@@ -895,7 +907,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -911,6 +924,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -972,7 +986,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.2.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dthetamax Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
  *        It is a type-dependent parameter. Unit = degrees / s.
  * @param dthetamin Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
@@ -1005,7 +1019,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPitchAngleIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dthetamax: Double = 0.0,
     dthetamin: Double = 0.0,
     kic: Double = 0.0,
@@ -1029,7 +1043,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1045,6 +1060,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1130,7 +1146,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.7.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param iqh1 Maximum reactive current injection during dip (<i>i</i><i><sub>qh1</sub></i>).
  *        It is a type-dependent parameter.
  * @param iqmax Maximum reactive current injection (<i>i</i><i><sub>qmax</sub></i>) (&gt; WindContQIEC.iqmin).
@@ -1189,7 +1205,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     iqh1: Double = 0.0,
     iqmax: Double = 0.0,
     iqmin: Double = 0.0,
@@ -1226,7 +1242,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1242,6 +1259,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1379,7 +1397,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.9.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param qmax Maximum reactive power (<i>q</i><i><sub>max</sub></i>) (&gt; WindContQLimIEC.qmin).
  *        It is a type-dependent parameter.
  * @param qmin Minimum reactive power (<i>q</i><i><sub>min</sub></i>) (&lt; WindContQLimIEC.qmax).
@@ -1396,7 +1414,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQLimIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     qmax: Double = 0.0,
     qmin: Double = 0.0,
     WindTurbineType3or4IEC: String = null
@@ -1412,7 +1430,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1428,6 +1447,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1481,7 +1501,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.10.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><i><sub>pfiltql</sub></i>) (&gt;= 0).
  *        It is a type-dependent parameter.
  * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><i><sub>ufiltql</sub></i>) (&gt;= 0).
@@ -1499,7 +1519,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQPQULimIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     tpfiltql: Double = 0.0,
     tufiltql: Double = 0.0,
     WindDynamicsLookupTable: List[String] = null,
@@ -1516,7 +1536,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1532,6 +1553,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1591,7 +1613,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.3.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
  *        It is a type-dependent parameter.
  * @param komegafilt Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
@@ -1621,7 +1643,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContRotorRIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     kirr: Double = 0.0,
     komegafilt: Double = 0.0,
     kpfilt: Double = 0.0,
@@ -1644,7 +1666,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1660,6 +1683,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1741,7 +1765,7 @@ extends
 /**
  * Look up table for the purpose of wind standard models.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param input Input value (<i>x</i>) for the lookup table function.
  * @param lookupTableFunctionType Type of the lookup table function.
  * @param output Output value (<i>y</i>) for the lookup table function.
@@ -1766,7 +1790,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindDynamicsLookupTable
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     input: Double = 0.0,
     lookupTableFunctionType: String = null,
     output: Double = 0.0,
@@ -1792,7 +1816,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1808,6 +1833,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1909,7 +1935,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.5.2.2.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindAeroConstIEC [[ch.ninecode.model.WindAeroConstIEC WindAeroConstIEC]] Wind aerodynamic model associated with this wind turbine type 1A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -1922,7 +1948,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1aIEC
 (
-    override val sup: WindTurbineType1or2IEC = null,
+    WindTurbineType1or2IEC: WindTurbineType1or2IEC = null,
     WindAeroConstIEC: String = null
 )
 extends
@@ -1936,7 +1962,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup
+    override def sup: WindTurbineType1or2IEC = WindTurbineType1or2IEC
+
     //
     // Row overrides
     //
@@ -1952,6 +1979,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1996,7 +2024,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.5.2.3.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 1B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -2009,7 +2037,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1bIEC
 (
-    override val sup: WindTurbineType1or2IEC = null,
+    WindTurbineType1or2IEC: WindTurbineType1or2IEC = null,
     WindPitchContPowerIEC: String = null
 )
 extends
@@ -2023,7 +2051,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup
+    override def sup: WindTurbineType1or2IEC = WindTurbineType1or2IEC
+
     //
     // Row overrides
     //
@@ -2039,6 +2068,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2083,7 +2113,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.5.3.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] Wind control rotor resistance model associated with wind turbine type 2 model.
  * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 2 model.
  * @group WindDynamics
@@ -2097,7 +2127,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType2IEC
 (
-    override val sup: WindTurbineType1or2IEC = null,
+    WindTurbineType1or2IEC: WindTurbineType1or2IEC = null,
     WindContRotorRIEC: String = null,
     WindPitchContPowerIEC: String = null
 )
@@ -2112,7 +2142,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup
+    override def sup: WindTurbineType1or2IEC = WindTurbineType1or2IEC
+
     //
     // Row overrides
     //
@@ -2128,6 +2159,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2175,7 +2207,7 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines type 3 generator models of IEC type 3A and 3B.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
  *        It is a project-dependent parameter.
  * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
@@ -2194,7 +2226,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3IEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dipmax: Double = 0.0,
     diqmax: Double = 0.0,
     xs: Double = 0.0,
@@ -2211,7 +2243,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2227,6 +2260,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2284,7 +2318,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.2.
  *
- * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
+ * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
  * @param kpc Current PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
  *        It is a type-dependent parameter.
  * @param tic Current PI controller integration time constant (<i>T</i><i><sub>Ic</sub></i>) (&gt;= 0).
@@ -2301,7 +2335,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3aIEC
 (
-    override val sup: WindGenType3IEC = null,
+    WindGenType3IEC: WindGenType3IEC = null,
     kpc: Double = 0.0,
     tic: Double = 0.0,
     WindTurbineType4IEC: String = null
@@ -2317,7 +2351,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindGenType3IEC: WindGenType3IEC = sup
+    override def sup: WindGenType3IEC = WindGenType3IEC
+
     //
     // Row overrides
     //
@@ -2333,6 +2368,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2386,7 +2422,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.3.
  *
- * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
+ * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
  * @param mwtcwp Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
  *        It is a case-dependent parameter.
  *        true = 1 in the IEC model
@@ -2407,7 +2443,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3bIEC
 (
-    override val sup: WindGenType3IEC = null,
+    WindGenType3IEC: WindGenType3IEC = null,
     mwtcwp: Boolean = false,
     tg: Double = 0.0,
     two: Double = 0.0,
@@ -2424,7 +2460,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindGenType3IEC: WindGenType3IEC = sup
+    override def sup: WindGenType3IEC = WindGenType3IEC
+
     //
     // Row overrides
     //
@@ -2440,6 +2477,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2497,7 +2535,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.4.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
  *        It is a project-dependent parameter.
  * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
@@ -2519,7 +2557,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType4IEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dipmax: Double = 0.0,
     diqmax: Double = 0.0,
     diqmin: Double = 0.0,
@@ -2538,7 +2576,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2554,6 +2593,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2620,7 +2660,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.2.1.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
  *        It is a type-dependent parameter.
  * @param hgen Inertia constant of generator (<i>H</i><i><sub>gen</sub></i>) (&gt;= 0).
@@ -2643,7 +2683,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindMechIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     cdrt: Double = 0.0,
     hgen: Double = 0.0,
     hwtr: Double = 0.0,
@@ -2663,7 +2703,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2679,6 +2720,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2750,7 +2792,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.1.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmax Rate limit for increasing power (<i>dp</i><i><sub>max</sub></i>) (&gt; WindPitchContPowerIEC.dpmin).
  *        It is a type-dependent parameter.
  * @param dpmin Rate limit for decreasing power (<i>dp</i><i><sub>min</sub></i>) (&lt; WindPitchContPowerIEC.dpmax).
@@ -2779,7 +2821,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPitchContPowerIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dpmax: Double = 0.0,
     dpmin: Double = 0.0,
     pmin: Double = 0.0,
@@ -2802,7 +2844,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2818,6 +2861,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2900,7 +2944,7 @@ extends
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant IEC and user-defined wind plants including their control models.
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
  * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 associated with this wind plant.
  * @group WindDynamics
@@ -2914,7 +2958,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     RemoteInputSignal: String = null,
     WindTurbineType3or4Dynamics: List[String] = null
 )
@@ -2929,7 +2973,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -2945,6 +2990,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2995,7 +3041,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dprefmax Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
  *        It is a case-dependent parameter.
  * @param dprefmin Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
@@ -3039,7 +3085,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantFreqPcontrolIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dprefmax: Double = 0.0,
     dprefmin: Double = 0.0,
     dpwprefmax: Double = 0.0,
@@ -3069,7 +3115,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3085,6 +3132,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3196,7 +3244,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param sup [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
+ * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
  * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] Wind plant frequency and active power control model associated with this wind plant.
  * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] Wind plant model with which this wind reactive control is associated.
  * @group WindDynamics
@@ -3210,7 +3258,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantIEC
 (
-    override val sup: WindPlantDynamics = null,
+    WindPlantDynamics: WindPlantDynamics = null,
     WindPlantFreqPcontrolIEC: String = null,
     WindPlantReactiveControlIEC: String = null
 )
@@ -3225,7 +3273,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindPlantDynamics: WindPlantDynamics = sup
+    override def sup: WindPlantDynamics = WindPlantDynamics
+
     //
     // Row overrides
     //
@@ -3241,6 +3290,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3290,7 +3340,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.dxrefmin).
  *        It is a project-dependent parameter.
  * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.dxrefmax).
@@ -3340,7 +3390,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantReactiveControlIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dxrefmax: Double = 0.0,
     dxrefmin: Double = 0.0,
     kiwpx: Double = 0.0,
@@ -3373,7 +3423,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3389,6 +3440,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3512,7 +3564,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.6.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
  *        It is a type-dependent parameter.
  * @param fover Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
@@ -3543,7 +3595,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindProtectionIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dfimax: Double = 0.0,
     fover: Double = 0.0,
     funder: Double = 0.0,
@@ -3566,7 +3618,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3582,6 +3635,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3666,7 +3720,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.5.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tpll Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
  *        It is a type-dependent parameter.
  * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
@@ -3685,7 +3739,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindRefFrameRotIEC
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     tpll: Double = 0.0,
     upll1: Double = 0.0,
     upll2: Double = 0.0,
@@ -3702,7 +3756,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3718,6 +3773,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3775,7 +3831,7 @@ extends
  *
  * Generator model for wind turbine of type 1 or type 2 is a standard asynchronous generator model.
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this wind generator type 1 or type 2 model is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator type 1 or type 2 model.
  * @group WindDynamics
@@ -3789,7 +3845,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2Dynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     AsynchronousMachineDynamics: String = null,
     RemoteInputSignal: String = null
 )
@@ -3804,7 +3860,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -3820,6 +3877,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3870,7 +3928,7 @@ extends
  * Generator model for wind turbine of IEC type 1 or type 2 is a standard asynchronous generator model.
  * Reference: IEC 61400-27-1:2015, 5.5.2 and 5.5.3.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
+ * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
  * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or type 2 model.
  * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or type 2 model.
  * @group WindDynamics
@@ -3884,7 +3942,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2IEC
 (
-    override val sup: WindTurbineType1or2Dynamics = null,
+    WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = null,
     WindMechIEC: String = null,
     WindProtectionIEC: String = null
 )
@@ -3899,7 +3957,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = sup
+    override def sup: WindTurbineType1or2Dynamics = WindTurbineType1or2Dynamics
+
     //
     // Row overrides
     //
@@ -3915,6 +3974,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3962,7 +4022,7 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines type 3 including their control models.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
  * @param WindAeroOneDimIEC [[ch.ninecode.model.WindAeroOneDimIEC WindAeroOneDimIEC]] Wind aerodynamic model associated with this wind generator type 3 model.
  * @param WindAeroTwoDimIEC [[ch.ninecode.model.WindAeroTwoDimIEC WindAeroTwoDimIEC]] Wind aerodynamic model associated with this wind turbine type 3 model.
  * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] Wind control P type 3 model associated with this wind turbine type 3 model.
@@ -3980,7 +4040,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3IEC
 (
-    override val sup: WindTurbineType3or4IEC = null,
+    WindTurbineType3or4IEC: WindTurbineType3or4IEC = null,
     WindAeroOneDimIEC: String = null,
     WindAeroTwoDimIEC: String = null,
     WindContPType3IEC: String = null,
@@ -3999,7 +4059,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType3or4IEC: WindTurbineType3or4IEC = sup
+    override def sup: WindTurbineType3or4IEC = WindTurbineType3or4IEC
+
     //
     // Row overrides
     //
@@ -4015,6 +4076,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4082,7 +4144,7 @@ extends
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant including their control models.
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] The power electronics connection associated with this wind turbine type 3 or type 4 dynamics model.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine type 3 or type 4 models.
  * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or type 4 are associated.
@@ -4097,7 +4159,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4Dynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     PowerElectronicsConnection: String = null,
     RemoteInputSignal: String = null,
     WindPlantDynamics: String = null
@@ -4113,7 +4175,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -4129,6 +4192,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4181,7 +4245,7 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines type 3 and type 4 including their control models.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
  * @param WIndContQIEC [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or type 4 model.
  * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or type 4 model.
  * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or type 4 model.
@@ -4199,7 +4263,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4IEC
 (
-    override val sup: WindTurbineType3or4Dynamics = null,
+    WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = null,
     WIndContQIEC: String = null,
     WindContCurrLimIEC: String = null,
     WindContQLimIEC: String = null,
@@ -4218,7 +4282,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = sup
+    override def sup: WindTurbineType3or4Dynamics = WindTurbineType3or4Dynamics
+
     //
     // Row overrides
     //
@@ -4234,6 +4299,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4301,7 +4367,7 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines type 4 including their control models.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
  * @param WindGenType3aIEC [[ch.ninecode.model.WindGenType3aIEC WindGenType3aIEC]] Wind generator type 3A model associated with this wind turbine type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -4314,7 +4380,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4IEC
 (
-    override val sup: WindTurbineType3or4IEC = null,
+    WindTurbineType3or4IEC: WindTurbineType3or4IEC = null,
     WindGenType3aIEC: String = null
 )
 extends
@@ -4328,7 +4394,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType3or4IEC: WindTurbineType3or4IEC = sup
+    override def sup: WindTurbineType3or4IEC = WindTurbineType3or4IEC
+
     //
     // Row overrides
     //
@@ -4344,6 +4411,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4388,7 +4456,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.5.5.2.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
+ * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
  * @param WindContPType4aIEC [[ch.ninecode.model.WindContPType4aIEC WindContPType4aIEC]] Wind control P type 4A model associated with this wind turbine type 4A model.
  * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4A model.
  * @group WindDynamics
@@ -4402,7 +4470,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4aIEC
 (
-    override val sup: WindTurbineType4IEC = null,
+    WindTurbineType4IEC: WindTurbineType4IEC = null,
     WindContPType4aIEC: String = null,
     WindGenType4IEC: String = null
 )
@@ -4417,7 +4485,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType4IEC: WindTurbineType4IEC = sup
+    override def sup: WindTurbineType4IEC = WindTurbineType4IEC
+
     //
     // Row overrides
     //
@@ -4433,6 +4502,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4482,7 +4552,7 @@ extends
  *
  * Reference: IEC 61400-27-1:2015, 5.5.5.3.
  *
- * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
+ * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
  * @param WindContPType4bIEC [[ch.ninecode.model.WindContPType4bIEC WindContPType4bIEC]] Wind control P type 4B model associated with this wind turbine type 4B model.
  * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4B model.
  * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 4B model.
@@ -4497,7 +4567,7 @@ Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4bIEC
 (
-    override val sup: WindTurbineType4IEC = null,
+    WindTurbineType4IEC: WindTurbineType4IEC = null,
     WindContPType4bIEC: String = null,
     WindGenType4IEC: String = null,
     WindMechIEC: String = null
@@ -4513,7 +4583,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType4IEC: WindTurbineType4IEC = sup
+    override def sup: WindTurbineType4IEC = WindTurbineType4IEC
+
     //
     // Row overrides
     //
@@ -4529,6 +4600,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

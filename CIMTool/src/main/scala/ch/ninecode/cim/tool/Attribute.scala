@@ -36,6 +36,6 @@ extends
                 attr
         stupid_name
     }
-
-    override def toString: String = "%s:%s.%s %s %s".format (pkg.name, cls.name, name, typ, if (null != classifier) s" (${classifier.name})" else "")
+    def classifierString: String = if (null != classifier) s" (${classifier.name})" else ""
+    override def toString: String = s"${pkg.name}:${cls.name}.$name $typ $classifierString"
 }

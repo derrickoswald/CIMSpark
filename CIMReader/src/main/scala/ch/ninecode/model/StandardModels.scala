@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Abstract parent class for all Dynamics function blocks.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param enabled Function block used indicator.
  *        true = use of function block is enabled
  *        false = use of function block is disabled.
@@ -21,7 +21,7 @@ In the CIM, standard dynamic models are expressed by means of a class named with
  */
 final case class DynamicsFunctionBlock
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     enabled: Boolean = false
 )
 extends
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -90,7 +92,7 @@ extends
 /**
  * Abstract parent class for all synchronous and asynchronous machine standard models.
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param damping Damping torque coefficient (<i>D</i>) (&gt;= 0).
  *        A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical value = 0.
  * @param inertia Inertia constant of generator or motor and mechanical load (<i>H</i>) (&gt; 0).
@@ -110,7 +112,7 @@ In the CIM, standard dynamic models are expressed by means of a class named with
  */
 final case class RotatingMachineDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     damping: Double = 0.0,
     inertia: Double = 0.0,
     saturationFactor: Double = 0.0,
@@ -129,7 +131,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -145,6 +148,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

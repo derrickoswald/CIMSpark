@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Reduntant links may exist. The CommunicationLink class inherits PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] ICCP data provider or consumer using communication addressing for a Bilateral table.
  * @param RemoteUnits [[ch.ninecode.model.RemoteUnit RemoteUnit]] RTUs may be attached to communication links.
  * @group SCADA
@@ -22,7 +22,7 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class CommunicationLink
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     BilateralExchangeActor: String = null,
     RemoteUnits: List[String] = null
 )
@@ -37,7 +37,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -53,6 +54,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -101,7 +103,7 @@ extends
 /**
  * Remote controls are outputs that are sent by the remote unit to actuators in the process.
  *
- * @param sup [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
+ * @param RemotePoint [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
  * @param actuatorMaximum The maximum set point value accepted by the remote control point.
  * @param actuatorMinimum The minimum set point value accepted by the remote control point.
  * @param remoteControlled Set to true if the actuator is remotely controlled.
@@ -113,7 +115,7 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteControl
 (
-    override val sup: RemotePoint = null,
+    RemotePoint: RemotePoint = null,
     actuatorMaximum: Double = 0.0,
     actuatorMinimum: Double = 0.0,
     remoteControlled: Boolean = false,
@@ -130,7 +132,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RemotePoint: RemotePoint = sup
+    override def sup: RemotePoint = RemotePoint
+
     //
     // Row overrides
     //
@@ -146,6 +149,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -203,7 +207,7 @@ extends
  *
  * Other units (e.g. control centres) usually also contain calculated values.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param RemoteUnit [[ch.ninecode.model.RemoteUnit RemoteUnit]] Remote unit this point belongs to.
  * @group SCADA
  * @groupname SCADA Package SCADA
@@ -212,7 +216,7 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemotePoint
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     RemoteUnit: String = null
 )
 extends
@@ -226,7 +230,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -242,6 +247,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -284,7 +290,7 @@ extends
 /**
  * Remote sources are state variables that are telemetered or calculated within the remote unit.
  *
- * @param sup [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
+ * @param RemotePoint [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
  * @param deadband The smallest change in value to be reported.
  * @param scanInterval The time interval between scans.
  * @param sensorMaximum The maximum value the telemetry item can return.
@@ -297,7 +303,7 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteSource
 (
-    override val sup: RemotePoint = null,
+    RemotePoint: RemotePoint = null,
     deadband: Double = 0.0,
     scanInterval: Double = 0.0,
     sensorMaximum: Double = 0.0,
@@ -315,7 +321,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RemotePoint: RemotePoint = sup
+    override def sup: RemotePoint = RemotePoint
+
     //
     // Row overrides
     //
@@ -331,6 +338,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -392,7 +400,7 @@ extends
  *
  * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570, etc.). A remote unit contains remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherits PowerSystemResource. The intention is to allow RemoteUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure, etc.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param remoteUnitType Type of remote unit.
  * @param CommunicationLinks [[ch.ninecode.model.CommunicationLink CommunicationLink]] RTUs may be attached to communication links.
  * @param RemotePoints [[ch.ninecode.model.RemotePoint RemotePoint]] Remote points this Remote unit contains.
@@ -403,7 +411,7 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 final case class RemoteUnit
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     remoteUnitType: String = null,
     CommunicationLinks: List[String] = null,
     RemotePoints: List[String] = null
@@ -419,7 +427,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -435,6 +444,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

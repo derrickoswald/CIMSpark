@@ -14,6 +14,7 @@ package ch.ninecode.cim.tool
  * @param initializer initializer string
  * @param function conversion function from String to <code>datatype</code>
  * @param referenced_class referenced CIM class if <code>reference</code> is <code>true</code>
+ * @param isSuper predicate for this member references the superclass
  */
 case class Member (
     name: String,
@@ -26,9 +27,9 @@ case class Member (
     datatype: String,
     initializer: String,
     function: String,
-    referenced_class: String)
+    referenced_class: String,
+    isSuper: Boolean = false)
 {
-
     /**
      * Predicate for 'is this a many-to-many relation'.
      *
@@ -54,6 +55,14 @@ case class Member (
         l4.mkString ("\n")
     }
 
+    def variableAsDoc: String =
+    {
+        if (variable.charAt (0) == '`')
+            variable.substring (1, variable.length - 1)
+        else
+            variable
+    }
+
     /**
      * Generate the Javadoc string for a member.
      *
@@ -74,6 +83,6 @@ case class Member (
             jd.body.mkString ("\n *        ", "\n *        ", "")
         else
             ""
-        s"@param $name$ref $summary$body"
+        s"@param $variableAsDoc$ref $summary$body"
     }
 }

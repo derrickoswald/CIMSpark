@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This is used by ERP systems to transfer Bill of Material information between two business applications.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param ErpBomItemDatas [[ch.ninecode.model.ErpBomItemData ErpBomItemData]] <em>undocumented</em>
  * @group InfERPSupport
@@ -26,7 +26,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBOM
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     Design: String = null,
     ErpBomItemDatas: List[String] = null
 )
@@ -41,7 +41,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -57,6 +58,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -109,7 +111,7 @@ extends
  * A statement of transactions during a fiscal period and the resulting balance is maintained on each account.
  * For Payment metering, the account is associated with Bank and Supplier, reflecting details of the bank account used for depositing revenue collected by TokenVendor. The name of the account holder should be specified in 'name' attribute.
  *
- * @param sup [[ch.ninecode.model.BankAccount BankAccount]] Reference to the superclass object.
+ * @param BankAccount [[ch.ninecode.model.BankAccount BankAccount]] Reference to the superclass object.
  * @param bankABA Bank ABA.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -122,7 +124,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBankAccount
 (
-    override val sup: BankAccount = null,
+    BankAccount: BankAccount = null,
     bankABA: String = null
 )
 extends
@@ -136,7 +138,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BankAccount: BankAccount = sup
+    override def sup: BankAccount = BankAccount
+
     //
     // Row overrides
     //
@@ -152,6 +155,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -191,7 +195,7 @@ extends
 /**
  * An individual item on a bill of materials.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param ErpBOM [[ch.ninecode.model.ErpBOM ErpBOM]] <em>undocumented</em>
  * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
@@ -206,7 +210,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpBomItemData
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     DesignLocation: String = null,
     ErpBOM: String = null,
     TypeAsset: String = null
@@ -222,7 +226,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -238,6 +243,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -292,7 +298,7 @@ extends
  *
  * Each account represents a financial aspect of a business, such as its Accounts Payable, or the value of its inventory, or its office supply expenses.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -304,7 +310,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpChartOfAccounts
 (
-    override val sup: ErpDocument = null
+    ErpDocument: ErpDocument = null
 )
 extends
     Element
@@ -317,7 +323,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -333,6 +340,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -362,7 +370,7 @@ extends
  *
  * Unlike Skills that an ErpPerson must be certified to perform before undertaking certain type of assignments (to be able to perfrom a Craft), ErpCompetency has more to do with typical Human Resource (HR) matters such as schooling, training, etc.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -375,7 +383,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpCompetency
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     ErpPersons: List[String] = null
 )
 extends
@@ -389,7 +397,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -405,6 +414,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -449,7 +459,7 @@ extends
  *
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -461,7 +471,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpDocument
 (
-    override val sup: Document = null
+    Document: Document = null
 )
 extends
     Element
@@ -474,7 +484,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -490,6 +501,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -517,7 +529,7 @@ extends
 /**
  * General Utility Engineering Change Order information.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -529,7 +541,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpEngChangeOrder
 (
-    override val sup: ErpDocument = null
+    ErpDocument: ErpDocument = null
 )
 extends
     Element
@@ -542,7 +554,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -558,6 +571,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -587,7 +601,7 @@ extends
  *
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -599,7 +613,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpIdentifiedObject
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -612,7 +626,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -628,6 +643,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -657,7 +673,7 @@ extends
  *
  * It is used by ERP applications to enable the synchronization of Inventory data that exists on separate Item Master databases. This data is not the master data that describes the attributes of the item such as dimensions, weight, or unit of measure - it describes the item as it exists at a specific location.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfERPSupport
@@ -671,7 +687,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInventory
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     Asset: String = null
 )
@@ -686,7 +702,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -702,6 +719,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -751,7 +769,7 @@ extends
  * Note that a count of a type of asset can be accomplished by the association inherited by AssetModel (from Document) to Asset.
  * It enables ERP applications to transfer an inventory count between ERP and the actual physical inventory location. This count may be a cycle count or a physical count.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -764,7 +782,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInventoryCount
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null
 )
 extends
@@ -778,7 +796,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -794,6 +813,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -835,7 +855,7 @@ extends
  *
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param amount Total amount due on this invoice based on line items and applicable adjustments.
  * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
  * @param dueDate Calculated date upon which the Invoice amount is due.
@@ -859,7 +879,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInvoice
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     amount: Double = 0.0,
     billMediaKind: String = null,
     dueDate: String = null,
@@ -883,7 +903,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -899,6 +920,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -984,7 +1006,7 @@ extends
 /**
  * An individual line item on an invoice.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param billPeriod Bill period for the line item.
  * @param glAccount General Ledger account code, must be a valid combination.
  * @param glDateTime Date and time line item will be posted to the General Ledger.
@@ -1017,7 +1039,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpInvoiceLineItem
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     billPeriod: String = null,
     glAccount: String = null,
     glDateTime: String = null,
@@ -1051,7 +1073,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -1067,6 +1090,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1202,7 +1226,7 @@ extends
 /**
  * Can be used to request an application to process an issue or request information about an issue.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
@@ -1217,7 +1241,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpIssueInventory
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     TypeAsset: String = null,
     TypeMaterial: String = null
@@ -1233,7 +1257,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -1249,6 +1274,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1302,7 +1328,7 @@ extends
  *
  * Item, as used by the OAG, refers to the basic information about an item, including its attributes, cost, and locations. It does not include item quantities. Compare to the Inventory, which includes all quantities and other location-specific information.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfERPSupport
@@ -1316,7 +1342,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpItemMaster
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     Asset: String = null
 )
@@ -1331,7 +1357,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -1347,6 +1374,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1396,7 +1424,7 @@ extends
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
  * A journal represents a change in the balances of a business's financial accounts. Many tasks or transactions throughout an enterprise will result in the creation of a journal. Some examples are creating a customer invoice, paying a vendor, transferring inventory, or paying employees.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1409,7 +1437,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpJournal
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpJournalEntries: List[String] = null
 )
 extends
@@ -1423,7 +1451,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -1439,6 +1468,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1481,7 +1511,7 @@ extends
 /**
  * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param accountID Account identifier for this entry.
  * @param amount The amount of the debit or credit for this account.
  * @param postingDateTime Date and time this entry is to be posted to the ledger.
@@ -1505,7 +1535,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpJournalEntry
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     accountID: String = null,
     amount: Double = 0.0,
     postingDateTime: String = null,
@@ -1530,7 +1560,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -1546,6 +1577,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1639,9 +1671,9 @@ extends
 /**
  * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param ErpLedBudLineItem [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
+ * @param ErpLedBudLineItem_attr [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @param ErpLedgerBudget [[ch.ninecode.model.ErpLedgerBudget ErpLedgerBudget]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1654,7 +1686,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedBudLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     ErpLedBudLineItem_attr: String = null,
     ErpLedgerBudget: String = null
@@ -1670,7 +1702,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -1686,6 +1719,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1739,7 +1773,7 @@ extends
  *
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpLedgerEntries [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1752,7 +1786,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedger
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpLedgerEntries: List[String] = null
 )
 extends
@@ -1766,7 +1800,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -1782,6 +1817,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1826,7 +1862,7 @@ extends
  *
  * They support the transfer budget amounts between all possible source applications throughout an enterprise and a general ledger or budget application.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpLedBudLineItems [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1839,7 +1875,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedgerBudget
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpLedBudLineItems: List[String] = null
 )
 extends
@@ -1853,7 +1889,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -1869,6 +1906,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1911,7 +1949,7 @@ extends
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param accountID Account identifier for this entry.
  * @param accountKind Kind of account for this entry.
  * @param amount The amount of the debit or credit for this account.
@@ -1920,7 +1958,7 @@ extends
  * @param transactionDateTime Date and time journal entry was recorded.
  * @param ErpJounalEntry [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @param ErpLedger [[ch.ninecode.model.ErpLedger ErpLedger]] <em>undocumented</em>
- * @param ErpLedgerEntry [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
+ * @param ErpLedgerEntry_attr [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
  * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1933,7 +1971,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpLedgerEntry
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     accountID: String = null,
     accountKind: String = null,
     amount: Double = 0.0,
@@ -1956,7 +1994,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -1972,6 +2011,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2055,7 +2095,7 @@ extends
 /**
  * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param AssetModelCatalogueItem [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
  * @param ErpPurchaseOrder [[ch.ninecode.model.ErpPurchaseOrder ErpPurchaseOrder]] <em>undocumented</em>
  * @param ErpRecDelLineItem [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
@@ -2071,7 +2111,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPOLineItem
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     AssetModelCatalogueItem: String = null,
     ErpPurchaseOrder: String = null,
     ErpRecDelLineItem: String = null,
@@ -2088,7 +2128,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2104,6 +2145,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2163,7 +2205,7 @@ extends
  *
  * A payable (or voucher) is an open item, approved and ready for payment, in the Accounts Payable ledger.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ContractorItems [[ch.ninecode.model.ContractorItem ContractorItem]] <em>undocumented</em>
  * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
  * @group InfERPSupport
@@ -2177,7 +2219,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayable
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ContractorItems: List[String] = null,
     ErpPayableLineItems: List[String] = null
 )
@@ -2192,7 +2234,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2208,6 +2251,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2255,7 +2299,7 @@ extends
 /**
  * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
@@ -2272,7 +2316,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayableLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     ErpInvoiceLineItem: String = null,
     ErpJournalEntries: List[String] = null,
@@ -2290,7 +2334,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -2306,6 +2351,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2370,7 +2416,7 @@ extends
  *
  * ErpPayable is also updated when payment is to a supplier and ErpReceivable is updated when payment is from a customer. Multiple payments can be made against a single line item and an individual payment can apply to more that one line item.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param termsPayment Payment terms (e.g., net 30).
  * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
@@ -2386,7 +2432,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPayment
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     termsPayment: String = null,
     ErpInvoiceLineItems: List[String] = null,
     ErpPayableLineItems: List[String] = null,
@@ -2403,7 +2449,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2419,6 +2466,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2476,7 +2524,7 @@ extends
 /**
  * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
@@ -2490,7 +2538,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPersonnel
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     ErpPersons: List[String] = null
 )
@@ -2505,7 +2553,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -2521,6 +2570,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2570,7 +2620,7 @@ extends
  *
  * This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
  * @param Projects [[ch.ninecode.model.Project Project]] <em>undocumented</em>
  * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
@@ -2586,7 +2636,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpProjectAccounting
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpTimeEntries: List[String] = null,
     Projects: List[String] = null,
     WorkCostDetails: List[String] = null,
@@ -2603,7 +2653,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2619,6 +2670,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2678,7 +2730,7 @@ extends
  *
  * The PurchaseOrder carries information to and from the buyer and supplier. It is a legally binding document once both Parties agree to the contents and the specified terms and conditions of the order.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpPOLineItems [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2691,7 +2743,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpPurchaseOrder
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpPOLineItems: List[String] = null
 )
 extends
@@ -2705,7 +2757,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2721,6 +2774,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2765,7 +2819,7 @@ extends
  *
  * It includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpQuoteLineItems [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2778,7 +2832,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpQuote
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpQuoteLineItems: List[String] = null
 )
 extends
@@ -2792,7 +2846,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -2808,6 +2863,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2850,7 +2906,7 @@ extends
 /**
  * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param AssetModelCatalogueItem [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
@@ -2869,7 +2925,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpQuoteLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     AssetModelCatalogueItem: String = null,
     Design: String = null,
@@ -2888,7 +2944,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -2904,6 +2961,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2972,7 +3030,7 @@ extends
  *
  * It may be used to indicate receipt of goods in conjunction with a purchase order line item.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
@@ -2989,7 +3047,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRecDelvLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     Assets: List[String] = null,
     ErpInvoiceLineItem: String = null,
@@ -3007,7 +3065,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -3023,6 +3082,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3085,7 +3145,7 @@ extends
 /**
  * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
@@ -3102,7 +3162,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRecLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     ErpInvoiceLineItem: String = null,
     ErpJournalEntries: List[String] = null,
@@ -3120,7 +3180,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -3136,6 +3197,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3200,7 +3262,7 @@ extends
  *
  * It is an open (unpaid) item in the Accounts Receivable ledger.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpRecLineItems [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -3213,7 +3275,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReceivable
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpRecLineItems: List[String] = null
 )
 extends
@@ -3227,7 +3289,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -3243,6 +3306,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3287,7 +3351,7 @@ extends
  *
  * A receivable is an open (unpaid) item in the Accounts Receivable ledger.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpRecDelvLineItems [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -3300,7 +3364,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReceiveDelivery
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpRecDelvLineItems: List[String] = null
 )
 extends
@@ -3314,7 +3378,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -3330,6 +3395,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3372,7 +3438,7 @@ extends
 /**
  * Information that describes a requested item and its attributes.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param code <em>undocumented</em>
  * @param cost Cost of material.
  * @param deliveryDate <em>undocumented</em>
@@ -3394,7 +3460,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpReqLineItem
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     code: String = null,
     cost: Double = 0.0,
     deliveryDate: String = null,
@@ -3417,7 +3483,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -3433,6 +3500,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3518,7 +3586,7 @@ extends
  *
  * Typically, a requisition leads to the creation of a purchase order to a specific supplier.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpReqLineItems [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -3531,7 +3599,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpRequisition
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpReqLineItems: List[String] = null
 )
 extends
@@ -3545,7 +3613,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -3561,6 +3630,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3605,7 +3675,7 @@ extends
  *
  * As used by the OAG, the SalesOrder is a step beyond a PurchaseOrder in that the receiving entity of the order also communicates SalesInformoration about the Order along with the Order itself.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -3617,7 +3687,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpSalesOrder
 (
-    override val sup: ErpDocument = null
+    ErpDocument: ErpDocument = null
 )
 extends
     Element
@@ -3630,7 +3700,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -3646,6 +3717,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -3675,7 +3747,7 @@ extends
  *
  * This enables ERP applications to ensure that the physical location identifiers are synchronized between the business applications.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @group InfERPSupport
@@ -3689,7 +3761,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpSiteLevelData
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     LandProperty: String = null
 )
@@ -3704,7 +3776,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -3720,6 +3793,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3766,7 +3840,7 @@ extends
 /**
  * An individual entry on an ErpTimeSheet.
  *
- * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
  * @param ErpTimeSheet [[ch.ninecode.model.ErpTimeSheet ErpTimeSheet]] <em>undocumented</em>
@@ -3781,7 +3855,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpTimeEntry
 (
-    override val sup: ErpIdentifiedObject = null,
+    ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null,
     ErpProjectAccounting: String = null,
     ErpTimeSheet: String = null
@@ -3797,7 +3871,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpIdentifiedObject: ErpIdentifiedObject = sup
+    override def sup: ErpIdentifiedObject = ErpIdentifiedObject
+
     //
     // Row overrides
     //
@@ -3813,6 +3888,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3866,7 +3942,7 @@ extends
  *
  * Note that ErpTimeSheet inherits the relationship to ErpPerson from Document.
  *
- * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -3879,7 +3955,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 final case class ErpTimeSheet
 (
-    override val sup: ErpDocument = null,
+    ErpDocument: ErpDocument = null,
     ErpTimeEntries: List[String] = null
 )
 extends
@@ -3893,7 +3969,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ErpDocument: ErpDocument = sup
+    override def sup: ErpDocument = ErpDocument
+
     //
     // Row overrides
     //
@@ -3909,6 +3986,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

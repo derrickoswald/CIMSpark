@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Credit/debit movements for an account.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param amount Amount that was credited to/debited from an account.
  *        For example: payment received/interest charge on arrears.
  * @param dateTime Date and time when the credit/debit transaction was performed.
@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AccountMovement
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     amount: Double = 0.0,
     dateTime: String = null,
     reason: String = null
@@ -38,7 +38,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -54,6 +55,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -101,7 +103,7 @@ extends
 /**
  * Unit for accounting; use either 'energyUnit' or 'currencyUnit' to specify the unit for 'value'.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param energyUnit Unit of service.
  * @param monetaryUnit Unit of currency.
  * @param multiplier Multiplier for the 'energyUnit' or 'monetaryUnit'.
@@ -112,7 +114,7 @@ extends
  */
 final case class AccountingUnit
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     energyUnit: Double = 0.0,
     monetaryUnit: String = null,
     multiplier: String = null,
@@ -129,7 +131,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -145,6 +148,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -197,7 +201,7 @@ extends
 /**
  * Variable and dynamic part of auxiliary agreement, generally representing the current state of the account related to the outstanding balance defined in auxiliary agreement.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param balance The total amount currently remaining on this account that is required to be paid in order to settle the account to zero.
  *        This excludes any due amounts not yet paid.
  * @param due [[ch.ninecode.model.Due Due]] Current amounts now due for payment on this account.
@@ -213,7 +217,7 @@ extends
  */
 final case class AuxiliaryAccount
 (
-    override val sup: Document = null,
+    Document: Document = null,
     balance: Double = 0.0,
     due: String = null,
     lastCredit: String = null,
@@ -234,7 +238,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -250,6 +255,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -330,7 +336,7 @@ extends
  * Typically this is used to collect revenue owed by the customer for other services or arrears accrued with the utility for other services. It is typically linked to a prepaid token purchase transaction, thus forcing the customer to make a payment towards settlement of the auxiliary account balance whenever the customer needs to purchase a prepaid token for electricity.
  * The present status of the auxiliary agreement can be defined in the context of the utility's business rules, for example: enabled, disabled, pending, over recovered, under recovered, written off, etc.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param arrearsInterest The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
  * @param auxCycle The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
  *        For example: on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc.
@@ -353,7 +359,7 @@ extends
  */
 final case class AuxiliaryAgreement
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     arrearsInterest: Double = 0.0,
     auxCycle: String = null,
     auxPriorityCode: String = null,
@@ -377,7 +383,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -393,6 +400,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -478,7 +486,7 @@ extends
 /**
  * Details of a bank account.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param accountNumber Operational account reference number.
  * @param bankName Name of bank where account is held.
  * @param branchCode Branch of bank where account is held.
@@ -490,7 +498,7 @@ extends
  */
 final case class BankAccountDetail
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     accountNumber: String = null,
     bankName: String = null,
     branchCode: String = null,
@@ -508,7 +516,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -524,6 +533,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -579,7 +589,7 @@ extends
 /**
  * Documentation of the tender when it is a type of card (credit, debit, etc).
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param accountHolderName Name of account holder.
  * @param cvNumber The card verification number.
  * @param expiryDate The date when this card expires.
@@ -591,7 +601,7 @@ extends
  */
 final case class Card
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     accountHolderName: String = null,
     cvNumber: String = null,
     expiryDate: String = null,
@@ -609,7 +619,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -625,6 +636,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -686,7 +698,7 @@ extends
  *
  * Cashier is under the exclusive management control of Vendor.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @param CashierShifts [[ch.ninecode.model.CashierShift CashierShift]] All shifts operated by this cashier.
  * @group PaymentMetering
@@ -695,7 +707,7 @@ extends
  */
 final case class Cashier
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     electronicAddress: String = null,
     CashierShifts: List[String] = null
 )
@@ -710,7 +722,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -726,6 +739,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -773,7 +787,7 @@ extends
 /**
  * The operating shift for a cashier, during which the cashier may transact against the cashier shift, subject to vendor shift being open.
  *
- * @param sup [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
+ * @param Shift [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
  * @param cashFloat The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
  * @param Cashier [[ch.ninecode.model.Cashier Cashier]] Cashier operating this shift.
  * @param PointOfSale [[ch.ninecode.model.PointOfSale PointOfSale]] Point of sale that is in operation during this shift.
@@ -785,7 +799,7 @@ extends
  */
 final case class CashierShift
 (
-    override val sup: Shift = null,
+    Shift: Shift = null,
     cashFloat: Double = 0.0,
     Cashier: String = null,
     PointOfSale: String = null,
@@ -803,7 +817,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Shift: Shift = sup
+    override def sup: Shift = Shift
+
     //
     // Row overrides
     //
@@ -819,6 +834,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -884,7 +900,7 @@ extends
  *
  * The total charge amount applicable to this instance of charge is the sum of fixed and variable portion.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fixedPortion [[ch.ninecode.model.AccountingUnit AccountingUnit]] The fixed portion of this charge element.
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
@@ -899,7 +915,7 @@ extends
  */
 final case class Charge
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     fixedPortion: String = null,
     kind: String = null,
     variablePortion: Double = 0.0,
@@ -920,7 +936,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -936,6 +953,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1013,7 +1031,7 @@ extends
 /**
  * The actual tender when it is a type of cheque.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param bankAccountDetail [[ch.ninecode.model.BankAccountDetail BankAccountDetail]] Details of the account holder and bank.
  * @param chequeNumber Cheque reference number as printed on the cheque.
  * @param date Date when cheque becomes valid.
@@ -1026,7 +1044,7 @@ extends
  */
 final case class Cheque
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     bankAccountDetail: String = null,
     chequeNumber: String = null,
     date: String = null,
@@ -1045,7 +1063,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1061,6 +1080,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1127,7 +1147,7 @@ extends
  *
  * It is typically used in association with TariffProfile to define the steps or blocks in a step tariff structure, where startValue simultaneously defines the entry value of this step and the closing value of the previous step. Where consumption is >= startValue it falls within this interval and where consumption is < startValue it falls within the previous interval.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startValue The lowest level of consumption that defines the starting point of this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
@@ -1141,7 +1161,7 @@ extends
  */
 final case class ConsumptionTariffInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     sequenceNumber: Int = 0,
     startValue: Double = 0.0,
     Charges: List[String] = null,
@@ -1160,7 +1180,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1176,6 +1197,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1243,7 +1265,7 @@ extends
 /**
  * Details on amounts due for an account.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param arrears Part of 'current' that constitutes the arrears portion.
  * @param charges Part of 'current' that constitutes the charge portion: 'charges' = 'Charge.fixedPortion' + 'Charge.variablePortion'.
  * @param current Current total amount now due: current = principle + arrears + interest + charges.
@@ -1256,7 +1278,7 @@ extends
  */
 final case class Due
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     arrears: Double = 0.0,
     charges: Double = 0.0,
     current: Double = 0.0,
@@ -1274,7 +1296,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1290,6 +1313,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1345,7 +1369,7 @@ extends
 /**
  * Details on an amount line, with rounding, date and note.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param amount Amount for this line item.
  * @param dateTime Date and time when this line was created in the application process.
  * @param note Free format note relevant to this line.
@@ -1356,7 +1380,7 @@ extends
  */
 final case class LineDetail
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     amount: Double = 0.0,
     dateTime: String = null,
     note: String = null,
@@ -1373,7 +1397,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1389,6 +1414,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1442,7 +1468,7 @@ extends
  *
  * Transactions via vendor shift debit the account and bank deposits via bank statement credit the account.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param currentBalance The current operating balance of this account.
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
  * @param MerchantAgreement [[ch.ninecode.model.MerchantAgreement MerchantAgreement]] Merchant agreement that instantiated this merchant account.
@@ -1454,7 +1480,7 @@ extends
  */
 final case class MerchantAccount
 (
-    override val sup: Document = null,
+    Document: Document = null,
     currentBalance: Double = 0.0,
     provisionalBalance: Double = 0.0,
     MerchantAgreement: String = null,
@@ -1472,7 +1498,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -1488,6 +1515,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1552,7 +1580,7 @@ extends
  *
  * The merchant is accountable to the supplier for revenue collected at point of sale.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param MerchantAccounts [[ch.ninecode.model.MerchantAccount MerchantAccount]] All merchant accounts instantiated as a result of this merchant agreement.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1560,7 +1588,7 @@ extends
  */
 final case class MerchantAgreement
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     MerchantAccounts: List[String] = null
 )
 extends
@@ -1574,7 +1602,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -1590,6 +1619,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1632,7 +1662,7 @@ extends
 /**
  * Logical point where transactions take place with operational interaction between cashier and the payment system; in certain cases the point of sale interacts directly with the end customer, in which case the cashier might not be a real person: for example a self-service kiosk or over the internet.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param location Local description for where this point of sale is physically located.
  * @param CashierShifts [[ch.ninecode.model.CashierShift CashierShift]] All shifts this point of sale operated in.
  * @group PaymentMetering
@@ -1641,7 +1671,7 @@ extends
  */
 final case class PointOfSale
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     location: String = null,
     CashierShifts: List[String] = null
 )
@@ -1656,7 +1686,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1672,6 +1703,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1719,7 +1751,7 @@ extends
 /**
  * Record of total receipted payment from customer.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isBankable True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
  * @param line [[ch.ninecode.model.LineDetail LineDetail]] Receipted amount with rounding, date and note.
  * @param CashierShift [[ch.ninecode.model.CashierShift CashierShift]] Cashier shift during which this receipt was recorded.
@@ -1732,7 +1764,7 @@ extends
  */
 final case class Receipt
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     isBankable: Boolean = false,
     line: String = null,
     CashierShift: String = null,
@@ -1751,7 +1783,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1767,6 +1800,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1835,7 +1869,7 @@ extends
 /**
  * Organisation that provides services to customers.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param issuerIdentificationNumber Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
  * @param kind Kind of supplier.
  * @param BankAccounts [[ch.ninecode.model.BankAccount BankAccount]] All BackAccounts this ServiceSupplier owns.
@@ -1847,7 +1881,7 @@ extends
  */
 final case class ServiceSupplier
 (
-    override val sup: OrganisationRole = null,
+    OrganisationRole: OrganisationRole = null,
     issuerIdentificationNumber: String = null,
     kind: String = null,
     BankAccounts: List[String] = null,
@@ -1865,7 +1899,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup
+    override def sup: OrganisationRole = OrganisationRole
+
     //
     // Row overrides
     //
@@ -1881,6 +1916,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1952,7 +1988,7 @@ extends
  * &equals;sum('ReceiptSummary.receiptsTotal').
  * The attributes with "GrandTotal" defined in this class may need to be used when the source data is periodically flushed from the system and then these cannot be derived.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param activityInterval Interval for activity of this shift.
  * @param receiptsGrandTotalBankable Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
  *        Values are obtained from Receipt attributes:
@@ -1976,7 +2012,7 @@ extends
  */
 final case class Shift
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     activityInterval: String = null,
     receiptsGrandTotalBankable: Double = 0.0,
     receiptsGrandTotalNonBankable: Double = 0.0,
@@ -1995,7 +2031,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2011,6 +2048,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2073,7 +2111,7 @@ extends
  *
  * Inherited 'status.value' is defined in the context of the utility's business rules, for example: active, inactive, etc.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tariffCycle The frequency at which the tariff charge schedule is repeated.
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
  * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] All consumption tariff intervals used to define this tariff profile.
@@ -2085,7 +2123,7 @@ extends
  */
 final case class TariffProfile
 (
-    override val sup: Document = null,
+    Document: Document = null,
     tariffCycle: String = null,
     ConsumptionTariffIntervals: List[String] = null,
     Tariffs: List[String] = null,
@@ -2102,7 +2140,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -2118,6 +2157,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2178,7 +2218,7 @@ extends
  * The payment is thus that part of the Tender that goes towards settlement of a particular transaction.
  * Tender is modelled as an aggregation of Cheque and Card. Both these tender types can exist in a single tender bid thus 'accountHolderName' has to exist separately in each of Cheque and Card as each could have a different account holder name.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param amount Amount tendered by customer.
  * @param change Difference between amount tendered by customer and the amount charged by point of sale.
  * @param kind Kind of tender from customer.
@@ -2191,7 +2231,7 @@ extends
  */
 final case class Tender
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     amount: Double = 0.0,
     change: Double = 0.0,
     kind: String = null,
@@ -2210,7 +2250,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2226,6 +2267,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2293,7 +2335,7 @@ extends
  *
  * It is typically used in association with TariffProfile to define the intervals in a time of use tariff structure, where startDateTime simultaneously determines the starting point of this interval and the ending point of the previous interval.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startTime A real time marker that defines the starting time (typically it is the time of day) for this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
@@ -2306,7 +2348,7 @@ extends
  */
 final case class TimeTariffInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     sequenceNumber: Int = 0,
     startTime: String = null,
     Charges: List[String] = null,
@@ -2324,7 +2366,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2340,6 +2383,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2401,7 +2445,7 @@ extends
 /**
  * The record of details of payment for service or token sale.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param diverseReference Formal reference for use with diverse payment (traffic fine for example).
  * @param donorReference Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
  * @param kind Kind of transaction.
@@ -2425,7 +2469,7 @@ extends
  */
 final case class Transaction
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     diverseReference: String = null,
     donorReference: String = null,
     kind: String = null,
@@ -2454,7 +2498,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2470,6 +2515,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2582,7 +2628,7 @@ extends
 /**
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param MerchantAccounts [[ch.ninecode.model.MerchantAccount MerchantAccount]] All merchant accounts registered with this transactor.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2590,7 +2636,7 @@ extends
  */
 final case class Transactor
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     MerchantAccounts: List[String] = null
 )
 extends
@@ -2604,7 +2650,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2620,6 +2667,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2664,7 +2712,7 @@ extends
  *
  * The vendor has a private contract with and is managed by the merchant which is a type of organisation. The vendor is accountable to the merchant for revenue collected, and the merchant is in turn accountable to the supplier.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param VendorShifts [[ch.ninecode.model.VendorShift VendorShift]] All vendor shifts opened and owned by this vendor.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2672,7 +2720,7 @@ extends
  */
 final case class Vendor
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     VendorShifts: List[String] = null
 )
 extends
@@ -2686,7 +2734,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2702,6 +2751,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2746,7 +2796,7 @@ extends
  *
  * It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
  *
- * @param sup [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
+ * @param Shift [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
  * @param merchantDebitAmount The amount that is to be debited from the merchant account for this vendor shift.
  *        This amount reflects the sum(PaymentTransaction.transactionAmount).
  * @param posted If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
@@ -2760,7 +2810,7 @@ extends
  */
 final case class VendorShift
 (
-    override val sup: Shift = null,
+    Shift: Shift = null,
     merchantDebitAmount: Double = 0.0,
     posted: Boolean = false,
     MerchantAccount: String = null,
@@ -2779,7 +2829,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Shift: Shift = sup
+    override def sup: Shift = Shift
+
     //
     // Row overrides
     //
@@ -2795,6 +2846,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

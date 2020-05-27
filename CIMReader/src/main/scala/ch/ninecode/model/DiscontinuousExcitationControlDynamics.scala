@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Reference: IEEE 421.5-2005, 12.2.
  *
- * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
+ * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
  *        Typical value = 0,0015.
  * @param kan Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
@@ -55,7 +55,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class DiscExcContIEEEDEC1A
 (
-    override val sup: DiscontinuousExcitationControlDynamics = null,
+    DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = null,
     esc: Double = 0.0,
     kan: Double = 0.0,
     ketl: Double = 0.0,
@@ -86,7 +86,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup
+    override def sup: DiscontinuousExcitationControlDynamics = DiscontinuousExcitationControlDynamics
+
     //
     // Row overrides
     //
@@ -102,6 +103,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -212,7 +214,7 @@ extends
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
  * Reference: IEEE 421.5-2005 12.3.
  *
- * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
+ * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).
  * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).
  * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).
@@ -225,7 +227,7 @@ extends
  */
 final case class DiscExcContIEEEDEC2A
 (
-    override val sup: DiscontinuousExcitationControlDynamics = null,
+    DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = null,
     td1: Double = 0.0,
     td2: Double = 0.0,
     vdmax: Double = 0.0,
@@ -243,7 +245,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup
+    override def sup: DiscontinuousExcitationControlDynamics = DiscontinuousExcitationControlDynamics
+
     //
     // Row overrides
     //
@@ -259,6 +262,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -317,7 +321,7 @@ extends
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
  * Reference: IEEE 421.5-2005 12.4.
  *
- * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
+ * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
@@ -327,7 +331,7 @@ extends
  */
 final case class DiscExcContIEEEDEC3A
 (
-    override val sup: DiscontinuousExcitationControlDynamics = null,
+    DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = null,
     tdr: Double = 0.0,
     vtmin: Double = 0.0
 )
@@ -342,7 +346,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup
+    override def sup: DiscontinuousExcitationControlDynamics = DiscontinuousExcitationControlDynamics
+
     //
     // Row overrides
     //
@@ -358,6 +363,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -401,7 +407,7 @@ extends
 /**
  * Discontinuous excitation control function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model</font>.
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this discontinuous excitation control model is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this discontinuous excitation control system model.
  * @group DiscontinuousExcitationControlDynamics
@@ -411,7 +417,7 @@ extends
  */
 final case class DiscontinuousExcitationControlDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null
 )
@@ -426,7 +432,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -442,6 +449,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

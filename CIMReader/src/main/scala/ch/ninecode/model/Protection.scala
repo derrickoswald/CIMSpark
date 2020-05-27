@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A device that checks current flow values in any direction or designated direction.
  *
- * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
+ * @param ProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
  * @param currentLimit1 Current limit number one 1 for inverse time pickup.
  * @param currentLimit2 Current limit number 2 for inverse time pickup.
  * @param currentLimit3 Current limit number 3 for inverse time pickup.
@@ -24,7 +24,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class CurrentRelay
 (
-    override val sup: ProtectionEquipment = null,
+    ProtectionEquipment: ProtectionEquipment = null,
     currentLimit1: Double = 0.0,
     currentLimit2: Double = 0.0,
     currentLimit3: Double = 0.0,
@@ -44,7 +44,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectionEquipment: ProtectionEquipment = sup
+    override def sup: ProtectionEquipment = ProtectionEquipment
+
     //
     // Row overrides
     //
@@ -60,6 +61,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -125,7 +127,7 @@ extends
  *
  * Protection equipment is associated with conducting equipment and usually operate circuit breakers.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param highLimit The maximum allowable value.
  * @param lowLimit The minimum allowable value.
  * @param powerDirectionFlag Direction same as positive active power flow value.
@@ -142,7 +144,7 @@ extends
  */
 final case class ProtectionEquipment
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     highLimit: Double = 0.0,
     lowLimit: Double = 0.0,
     powerDirectionFlag: Boolean = false,
@@ -164,7 +166,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -180,6 +183,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -258,7 +262,7 @@ extends
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
  * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
  * @param ProtectedSwitch [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] A breaker may have zero or more automatic reclosures after a trip occurs.
@@ -268,7 +272,7 @@ extends
  */
 final case class RecloseSequence
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     recloseDelay: Double = 0.0,
     recloseStep: Int = 0,
     ProtectedSwitch: String = null
@@ -284,7 +288,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -300,6 +305,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -353,7 +359,7 @@ extends
  *
  * Used to prevent the paralleling of non-synchronous topological islands.
  *
- * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
+ * @param ProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
  * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
  * @param maxFreqDiff The maximum allowable frequency difference across the open device.
  * @param maxVoltDiff The maximum allowable difference voltage across the open device.
@@ -363,7 +369,7 @@ extends
  */
 final case class SynchrocheckRelay
 (
-    override val sup: ProtectionEquipment = null,
+    ProtectionEquipment: ProtectionEquipment = null,
     maxAngleDiff: Double = 0.0,
     maxFreqDiff: Double = 0.0,
     maxVoltDiff: Double = 0.0
@@ -379,7 +385,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectionEquipment: ProtectionEquipment = sup
+    override def sup: ProtectionEquipment = ProtectionEquipment
+
     //
     // Row overrides
     //
@@ -395,6 +402,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

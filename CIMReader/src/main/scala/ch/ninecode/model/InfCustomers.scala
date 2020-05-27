@@ -13,7 +13,7 @@ import ch.ninecode.cim.Relationship
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
  * Use inherited 'type' to indicate that, for example, expected performance will not be met or reported as mandated.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param deadline The deadline for compliance.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ComplianceEvent
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     deadline: String = null
 )
 extends
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -95,7 +97,7 @@ extends
  * One Customer Billing Statement is produced for all Agreements under a CustomerAccount per billing cycle date defined in 'CustomerAccount.billingCycle'.
  * The history of CustomerBillingInfo, Invoices and Payments is to be maintained in associated ActivityRecords.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
  * @param dueDate Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
  *        It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
@@ -115,7 +117,7 @@ extends
  */
 final case class CustomerBillingInfo
 (
-    override val sup: Document = null,
+    Document: Document = null,
     billingDate: String = null,
     dueDate: String = null,
     kind: String = null,
@@ -138,7 +140,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -154,6 +157,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -237,14 +241,14 @@ extends
  *
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 final case class ExternalCustomerAgreement
 (
-    override val sup: Agreement = null
+    Agreement: Agreement = null
 )
 extends
     Element
@@ -257,7 +261,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -273,6 +278,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -300,7 +306,7 @@ extends
 /**
  * Pricing can be based on power quality.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param emergencyHighVoltLimit Emergency high voltage limit.
  * @param emergencyLowVoltLimit Emergency low voltage limit.
  * @param normalHighVoltLimit Normal high voltage limit.
@@ -316,7 +322,7 @@ extends
  */
 final case class PowerQualityPricing
 (
-    override val sup: Document = null,
+    Document: Document = null,
     emergencyHighVoltLimit: Double = 0.0,
     emergencyLowVoltLimit: Double = 0.0,
     normalHighVoltLimit: Double = 0.0,
@@ -338,7 +344,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -354,6 +361,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -430,7 +438,7 @@ extends
  * 1) If power is not restored within 24 hours, customers can claim \$50 for residential customers or \$100 for commercial and industrial customers. In addition for each extra period of 12 hours the customer's supply has not been activated, the customer can claim \$25.
  * 2) If a customer has a question about their electricity bill, the utility will investigate and respond to the inquiry within 15 working days. If utility fails to meet its guarantee, utility will automatically pay the customer \$50.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param applicationPeriod Period in which this service guantee applies.
  * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
  * @param payAmount Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
@@ -441,7 +449,7 @@ extends
  */
 final case class ServiceGuarantee
 (
-    override val sup: Document = null,
+    Document: Document = null,
     applicationPeriod: String = null,
     automaticPay: Boolean = false,
     payAmount: Double = 0.0,
@@ -458,7 +466,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -474,6 +483,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -529,7 +539,7 @@ extends
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
  * Note that Residential Service Agreements are not classified according to the SIC codes.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] <em>undocumented</em>
  * @group InfCustomers
@@ -538,7 +548,7 @@ extends
  */
 final case class StandardIndustryCode
 (
-    override val sup: Document = null,
+    Document: Document = null,
     code: String = null,
     CustomerAgreements: List[String] = null
 )
@@ -553,7 +563,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -569,6 +580,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -616,14 +628,14 @@ extends
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 final case class SubscribePowerCurve
 (
-    override val sup: Curve = null
+    Curve: Curve = null
 )
 extends
     Element
@@ -636,7 +648,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -652,6 +665,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -681,7 +695,7 @@ extends
  *
  * The history of Work Billing Info, Invoices, and Payments is to be maintained in associated ActivityRecords.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param costEstimate Estimated cost for work.
  * @param deposit Amount of price on deposit.
  * @param discount Discount from standard price.
@@ -698,7 +712,7 @@ extends
  */
 final case class WorkBillingInfo
 (
-    override val sup: Document = null,
+    Document: Document = null,
     costEstimate: Double = 0.0,
     deposit: Double = 0.0,
     discount: Double = 0.0,
@@ -721,7 +735,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -737,6 +752,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

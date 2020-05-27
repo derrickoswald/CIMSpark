@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * The control area's reserve specification.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param lowerRegMarginReqt Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes
  * @param opReserveReqt Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
  *        Operating reserve is composed of primary reserve (t less than 10 min) and secondary reserve (10 less than t less than 30 min).
@@ -26,7 +26,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AreaReserveSpec
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     lowerRegMarginReqt: Double = 0.0,
     opReserveReqt: Double = 0.0,
     primaryReserveReqt: Double = 0.0,
@@ -46,7 +46,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -62,6 +63,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -129,7 +131,7 @@ extends
 /**
  * Control area emergency schedules
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param emergencyScheduleMW Net tie MW.
  *        These are three entries, the current emergency schedule interchange and the two future schedules if they exist.
  * @param emergencyScheduleRampTime Ramp time, the ramping time for a schedule.
@@ -143,7 +145,7 @@ extends
  */
 final case class CurrentEmergencyScheduledInterchange
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     emergencyScheduleMW: Double = 0.0,
     emergencyScheduleRampTime: Int = 0,
     emergencyScheduleStartTime: String = null,
@@ -160,7 +162,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -176,6 +179,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -231,7 +235,7 @@ extends
 /**
  * Control area current net tie (scheduled interchange) sent to real time dispatch.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param currentNetTieMW Current control area net tie MW (the sum of the tie line flows, i.e the sum of flows into and out of the control area), the current instantaneous scheduled interchange.
  * @param useEmergencySchedule Use Emergency Schedule
  *        Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
@@ -242,7 +246,7 @@ extends
  */
 final case class CurrentScheduledInterchange
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     currentNetTieMW: Double = 0.0,
     useEmergencySchedule: Boolean = false,
     InternalControlArea: String = null
@@ -258,7 +262,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -274,6 +279,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -327,7 +333,7 @@ extends
  *
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
  *
- * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
+ * @param Profile [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may be curtailed by any of the participating entities.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
@@ -335,7 +341,7 @@ extends
  */
 final case class CurtailmentProfile
 (
-    override val sup: Profile = null,
+    Profile: Profile = null,
     EnergyTransaction: String = null
 )
 extends
@@ -349,7 +355,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Profile: Profile = sup
+    override def sup: Profile = Profile
+
     //
     // Row overrides
     //
@@ -365,6 +372,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -409,7 +417,7 @@ extends
  *
  * Dynamic schedules are sent and received by control areas.
  *
- * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
+ * @param BasicIntervalSchedule [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
  * @param dynSchedSignRev Dynamic schedule sign reversal required (true/false)
  * @param dynSchedStatus The "active" or "inactive" status of the dynamic schedule
  * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
@@ -421,7 +429,7 @@ extends
  */
 final case class DynamicSchedule
 (
-    override val sup: BasicIntervalSchedule = null,
+    BasicIntervalSchedule: BasicIntervalSchedule = null,
     dynSchedSignRev: Boolean = false,
     dynSchedStatus: String = null,
     MktMeasurement: String = null,
@@ -439,7 +447,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BasicIntervalSchedule: BasicIntervalSchedule = sup
+    override def sup: BasicIntervalSchedule = BasicIntervalSchedule
+
     //
     // Row overrides
     //
@@ -455,6 +464,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -516,7 +526,7 @@ extends
 /**
  * An EnergyProduct is offered commercially as a ContractOrTariff.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param Agreement [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param EnergyTransactions [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] The "Source" for an EnergyTransaction is an EnergyProduct which is injected into a ControlArea.
  *        Typically this is a ServicePoint.
  * @param GenerationProvider [[ch.ninecode.model.GenerationProvider GenerationProvider]] <em>undocumented</em>
@@ -528,7 +538,7 @@ extends
  */
 final case class EnergyProduct
 (
-    override val sup: Agreement = null,
+    Agreement: Agreement = null,
     EnergyTransactions: List[String] = null,
     GenerationProvider: String = null,
     ResoldBy_Marketer: List[String] = null,
@@ -545,7 +555,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup
+    override def sup: Agreement = Agreement
+
     //
     // Row overrides
     //
@@ -561,6 +572,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -621,7 +633,7 @@ extends
  *
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] A control area can have one or more net inadvertent interchange accounts
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
@@ -629,7 +641,7 @@ extends
  */
 final case class InadvertentAccount
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     SubControlArea: String = null
 )
 extends
@@ -643,7 +655,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -659,6 +672,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -703,7 +717,7 @@ extends
  *
  * Real time generation control affects only the internal control area.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param CurrentEmergencySI [[ch.ninecode.model.CurrentEmergencyScheduledInterchange CurrentEmergencyScheduledInterchange]] <em>undocumented</em>
  * @param CurrentScheduledInterchange [[ch.ninecode.model.CurrentScheduledInterchange CurrentScheduledInterchange]] <em>undocumented</em>
  * @group InfEnergyScheduling
@@ -712,7 +726,7 @@ extends
  */
 final case class InternalControlArea
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     CurrentEmergencySI: List[String] = null,
     CurrentScheduledInterchange: String = null
 )
@@ -727,7 +741,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -743,6 +758,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -791,9 +807,9 @@ extends
 /**
  * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
  *
- * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
+ * @param Profile [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may have a LossProfile.
- * @param HasLoss_ [[ch.ninecode.model.TransmissionProvider TransmissionProvider]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+ * @param HasLoss_1 [[ch.ninecode.model.TransmissionProvider TransmissionProvider]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
@@ -801,7 +817,7 @@ extends
  */
 final case class LossProfile
 (
-    override val sup: Profile = null,
+    Profile: Profile = null,
     EnergyTransaction: String = null,
     HasLoss_1: String = null
 )
@@ -816,7 +832,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Profile: Profile = sup
+    override def sup: Profile = Profile
+
     //
     // Row overrides
     //
@@ -832,6 +849,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -877,14 +895,13 @@ extends
 }
 
 /**
-
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 final case class TieLine
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     EnergyTransaction: String = null,
     ParentOfA: List[String] = null,
     ParentOfB: String = null,
@@ -902,7 +919,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -918,6 +936,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -981,7 +1000,7 @@ extends
 /**
  * A corridor containing one or more rights of way
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param ContainedIn [[ch.ninecode.model.TransmissionPath TransmissionPath]] A TransmissionPath is contained in a TransmissionCorridor.
  * @param TransmissionRightOfWays [[ch.ninecode.model.TransmissionRightOfWay TransmissionRightOfWay]] A transmission right-of-way is a member of a transmission corridor
  * @group InfEnergyScheduling
@@ -990,7 +1009,7 @@ extends
  */
 final case class TransmissionCorridor
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     ContainedIn: List[String] = null,
     TransmissionRightOfWays: List[String] = null
 )
@@ -1005,7 +1024,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1021,6 +1041,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1068,7 +1089,7 @@ extends
 /**
  * A collection of transmission lines that are close proximity to each other.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param MktLine [[ch.ninecode.model.MktLine MktLine]] <em>undocumented</em>
  * @param TransmissionCorridor [[ch.ninecode.model.TransmissionCorridor TransmissionCorridor]] A transmission right-of-way is a member of a transmission corridor
  * @group InfEnergyScheduling
@@ -1077,7 +1098,7 @@ extends
  */
 final case class TransmissionRightOfWay
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     MktLine: List[String] = null,
     TransmissionCorridor: String = null
 )
@@ -1092,7 +1113,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1108,6 +1130,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

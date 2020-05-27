@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
  *
- * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
+ * @param SteamSupply [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param highPowerLimit High power limit.
  * @param inCoreThermalTC In-core thermal time constant.
  * @param integralGain Integral gain.
@@ -38,7 +38,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class BWRSteamSupply
 (
-    override val sup: SteamSupply = null,
+    SteamSupply: SteamSupply = null,
     highPowerLimit: Double = 0.0,
     inCoreThermalTC: Double = 0.0,
     integralGain: Double = 0.0,
@@ -72,7 +72,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SteamSupply: SteamSupply = sup
+    override def sup: SteamSupply = SteamSupply
+
     //
     // Row overrides
     //
@@ -88,6 +89,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -207,7 +209,7 @@ extends
 /**
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param CombustionTurbine [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have an active power versus ambient temperature relationship.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
@@ -215,7 +217,7 @@ extends
  */
 final case class CTTempActivePowerCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     CombustionTurbine: String = null
 )
 extends
@@ -229,7 +231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -245,6 +248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -287,7 +291,7 @@ extends
 /**
  * A prime mover that is typically fuelled by gas or light oil.
  *
- * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
+ * @param PrimeMover [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param ambientTemp Default ambient temperature to be used in modelling applications.
  * @param auxPowerVersusFrequency Off-nominal frequency effect on turbine auxiliaries.
  *        Per unit reduction in auxiliary active power consumption versus per unit reduction in frequency (from rated frequency).
@@ -308,7 +312,7 @@ extends
  */
 final case class CombustionTurbine
 (
-    override val sup: PrimeMover = null,
+    PrimeMover: PrimeMover = null,
     ambientTemp: Double = 0.0,
     auxPowerVersusFrequency: Double = 0.0,
     auxPowerVersusVoltage: Double = 0.0,
@@ -332,7 +336,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PrimeMover: PrimeMover = sup
+    override def sup: PrimeMover = PrimeMover
+
     //
     // Row overrides
     //
@@ -348,6 +353,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -433,7 +439,7 @@ extends
 /**
  * Drum boiler.
  *
- * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
+ * @param FossilSteamSupply [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @param drumBoilerRating Rating of drum boiler in steam units.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
@@ -441,7 +447,7 @@ extends
  */
 final case class DrumBoiler
 (
-    override val sup: FossilSteamSupply = null,
+    FossilSteamSupply: FossilSteamSupply = null,
     drumBoilerRating: Double = 0.0
 )
 extends
@@ -455,7 +461,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FossilSteamSupply: FossilSteamSupply = sup
+    override def sup: FossilSteamSupply = FossilSteamSupply
+
     //
     // Row overrides
     //
@@ -471,6 +478,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -510,7 +518,7 @@ extends
 /**
  * Fossil fuelled boiler (e.g., coal, oil, gas).
  *
- * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
+ * @param SteamSupply [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param auxPowerVersusFrequency Off nominal frequency effect on auxiliary real power.
  *        Per unit active power variation versus per unit frequency variation.
  * @param auxPowerVersusVoltage Off nominal voltage effect on auxiliary real power.
@@ -545,7 +553,7 @@ extends
  */
 final case class FossilSteamSupply
 (
-    override val sup: SteamSupply = null,
+    SteamSupply: SteamSupply = null,
     auxPowerVersusFrequency: Double = 0.0,
     auxPowerVersusVoltage: Double = 0.0,
     boilerControlMode: String = null,
@@ -584,7 +592,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SteamSupply: SteamSupply = sup
+    override def sup: SteamSupply = SteamSupply
+
     //
     // Row overrides
     //
@@ -600,6 +609,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -740,7 +750,7 @@ extends
 /**
  * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
  *
- * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
+ * @param FossilSteamSupply [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
  * @param CombustionTurbines [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have a heat recovery boiler for making steam.
  * @group GenerationTrainingSimulation
@@ -749,7 +759,7 @@ extends
  */
 final case class HeatRecoveryBoiler
 (
-    override val sup: FossilSteamSupply = null,
+    FossilSteamSupply: FossilSteamSupply = null,
     steamSupplyRating2: Double = 0.0,
     CombustionTurbines: List[String] = null
 )
@@ -764,7 +774,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FossilSteamSupply: FossilSteamSupply = sup
+    override def sup: FossilSteamSupply = FossilSteamSupply
+
     //
     // Row overrides
     //
@@ -780,6 +791,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -829,7 +841,7 @@ extends
  *
  * Typical turbine types are: Francis, Kaplan, and Pelton.
  *
- * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
+ * @param PrimeMover [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param gateRateLimit Gate rate limit.
  * @param gateUpperLimit Gate upper limit.
  * @param maxHeadMaxP Maximum efficiency active power at maximum head conditions.
@@ -847,7 +859,7 @@ extends
  */
 final case class HydroTurbine
 (
-    override val sup: PrimeMover = null,
+    PrimeMover: PrimeMover = null,
     gateRateLimit: Double = 0.0,
     gateUpperLimit: Double = 0.0,
     maxHeadMaxP: Double = 0.0,
@@ -871,7 +883,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PrimeMover: PrimeMover = sup
+    override def sup: PrimeMover = PrimeMover
+
     //
     // Row overrides
     //
@@ -887,6 +900,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -967,7 +981,7 @@ extends
 /**
  * Pressurized water reactor used as a steam supply to a steam turbine.
  *
- * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
+ * @param SteamSupply [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param coldLegFBLagTC Cold leg feedback lag time constant.
  * @param coldLegFBLeadTC1 Cold leg feedback lead time constant.
  * @param coldLegFBLeadTC2 Cold leg feedback lead time constant.
@@ -994,7 +1008,7 @@ extends
  */
 final case class PWRSteamSupply
 (
-    override val sup: SteamSupply = null,
+    SteamSupply: SteamSupply = null,
     coldLegFBLagTC: Double = 0.0,
     coldLegFBLeadTC1: Double = 0.0,
     coldLegFBLeadTC2: Double = 0.0,
@@ -1027,7 +1041,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SteamSupply: SteamSupply = sup
+    override def sup: SteamSupply = SteamSupply
+
     //
     // Row overrides
     //
@@ -1043,6 +1058,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1158,7 +1174,7 @@ extends
 /**
  * The machine used to develop mechanical energy used to drive a generator.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param primeMoverRating Rating of prime mover.
  * @param SynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines this Prime mover drives.
  * @group GenerationTrainingSimulation
@@ -1167,7 +1183,7 @@ extends
  */
 final case class PrimeMover
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     primeMoverRating: Double = 0.0,
     SynchronousMachines: List[String] = null
 )
@@ -1182,7 +1198,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1198,6 +1215,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1245,7 +1263,7 @@ extends
 /**
  * Steam supply for steam turbine.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param steamSupplyRating Rating of steam supply.
  * @param SteamTurbines [[ch.ninecode.model.SteamTurbine SteamTurbine]] Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
@@ -1254,7 +1272,7 @@ extends
  */
 final case class SteamSupply
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     steamSupplyRating: Double = 0.0,
     SteamTurbines: List[String] = null
 )
@@ -1269,7 +1287,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1285,6 +1304,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1332,7 +1352,7 @@ extends
 /**
  * Steam turbine.
  *
- * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
+ * @param PrimeMover [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param crossoverTC Crossover time constant.
  * @param reheater1TC First reheater time constant.
  * @param reheater2TC Second reheater time constant.
@@ -1352,7 +1372,7 @@ extends
  */
 final case class SteamTurbine
 (
-    override val sup: PrimeMover = null,
+    PrimeMover: PrimeMover = null,
     crossoverTC: Double = 0.0,
     reheater1TC: Double = 0.0,
     reheater2TC: Double = 0.0,
@@ -1378,7 +1398,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PrimeMover: PrimeMover = sup
+    override def sup: PrimeMover = PrimeMover
+
     //
     // Row overrides
     //
@@ -1394,6 +1415,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1485,14 +1507,14 @@ extends
 /**
  * Once-through subcritical boiler.
  *
- * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
+ * @param FossilSteamSupply [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 final case class Subcritical
 (
-    override val sup: FossilSteamSupply = null
+    FossilSteamSupply: FossilSteamSupply = null
 )
 extends
     Element
@@ -1505,7 +1527,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FossilSteamSupply: FossilSteamSupply = sup
+    override def sup: FossilSteamSupply = FossilSteamSupply
+
     //
     // Row overrides
     //
@@ -1521,6 +1544,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1548,14 +1572,14 @@ extends
 /**
  * Once-through supercritical boiler.
  *
- * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
+ * @param FossilSteamSupply [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 final case class Supercritical
 (
-    override val sup: FossilSteamSupply = null
+    FossilSteamSupply: FossilSteamSupply = null
 )
 extends
     Element
@@ -1568,7 +1592,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FossilSteamSupply: FossilSteamSupply = sup
+    override def sup: FossilSteamSupply = FossilSteamSupply
+
     //
     // Row overrides
     //
@@ -1584,6 +1609,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

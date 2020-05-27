@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * - whether or not “subtransient saliency” (<i>X''q</i> not = <i>X''d</i>) is represented.
  * It is not necessary for each simulation tool to have separate models for each of the model types.  The same model can often be used for several types by alternative logic within the model.  Also, differences in saturation representation might not result in significant model performance differences so model substitutions are often acceptable.
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @param efdBaseRatio Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
  *        Typical value = 1.
  * @param ifdBaseType Excitation base system mode.
@@ -32,7 +32,7 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineDetailed
 (
-    override val sup: SynchronousMachineDynamics = null,
+    SynchronousMachineDynamics: SynchronousMachineDynamics = null,
     efdBaseRatio: Double = 0.0,
     ifdBaseType: String = null,
     saturationFactor120QAxis: Double = 0.0,
@@ -49,7 +49,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup
+    override def sup: SynchronousMachineDynamics = SynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -65,6 +66,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -128,7 +130,7 @@ extends
  * <li><font color="#0f0f0f">Synchronous machine parameters such as <i>Xl, Xd, Xp</i> etc. are actually used as inductances in the models,</font> but are commonly referred to as reactances since, at nominal frequency, the PU values are the same. However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
  * </ol>
  *
- * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param RotatingMachineDynamics [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param CrossCompoundTurbineGovernorDyanmics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] The cross-compound turbine governor with which this high-pressure synchronous machine is associated.
  * @param CrossCompoundTurbineGovernorDynamics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] The cross-compound turbine governor with which this low-pressure synchronous machine is associated.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model associated with this synchronous machine model.
@@ -144,7 +146,7 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineDynamics
 (
-    override val sup: RotatingMachineDynamics = null,
+    RotatingMachineDynamics: RotatingMachineDynamics = null,
     CrossCompoundTurbineGovernorDyanmics: String = null,
     CrossCompoundTurbineGovernorDynamics: String = null,
     ExcitationSystemDynamics: String = null,
@@ -164,7 +166,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RotatingMachineDynamics: RotatingMachineDynamics = sup
+    override def sup: RotatingMachineDynamics = RotatingMachineDynamics
+
     //
     // Row overrides
     //
@@ -180,6 +183,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -277,7 +281,7 @@ extends
  * tppqo = (xaq x x1q + xaq x x2q + x1q x x2q) / (2 x pi x nominal frequency x r2q x (xaq + x1q)
  * These are only valid for a simplified model where "Canay" reactance is zero.
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
+ * @param SynchronousMachineDetailed [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param r1d Direct-axis damper 1 winding resistance.
  * @param r1q Quadrature-axis damper 1 winding resistance.
  * @param r2q Quadrature-axis damper 2 winding resistance.
@@ -296,7 +300,7 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineEquivalentCircuit
 (
-    override val sup: SynchronousMachineDetailed = null,
+    SynchronousMachineDetailed: SynchronousMachineDetailed = null,
     r1d: Double = 0.0,
     r1q: Double = 0.0,
     r2q: Double = 0.0,
@@ -320,7 +324,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup
+    override def sup: SynchronousMachineDetailed = SynchronousMachineDetailed
+
     //
     // Row overrides
     //
@@ -336,6 +341,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -423,7 +429,7 @@ extends
  * - RotatingMachineDynamics.statorLeakageReactance (used to exchange <i>jXp </i>for SynchronousMachineSimplified);
  * - RotatingMachineDynamics.statorResistance (<i>Rs</i>).
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
  * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
@@ -431,7 +437,7 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineSimplified
 (
-    override val sup: SynchronousMachineDynamics = null
+    SynchronousMachineDynamics: SynchronousMachineDynamics = null
 )
 extends
     Element
@@ -444,7 +450,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup
+    override def sup: SynchronousMachineDynamics = SynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -460,6 +467,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -516,7 +524,7 @@ extends
  * - .tppqo (<i>T''qo</i>);
  * - .tc.
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
+ * @param SynchronousMachineDetailed [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param ks Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).
  *        Used only by type J model.  Typical value = 0.
  * @param modelType Type of synchronous machine model used in dynamic simulation applications.
@@ -550,7 +558,7 @@ The interconnection with the electrical network equations can differ among simul
  */
 final case class SynchronousMachineTimeConstantReactance
 (
-    override val sup: SynchronousMachineDetailed = null,
+    SynchronousMachineDetailed: SynchronousMachineDetailed = null,
     ks: Double = 0.0,
     modelType: String = null,
     rotorType: String = null,
@@ -577,7 +585,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup
+    override def sup: SynchronousMachineDetailed = SynchronousMachineDetailed
+
     //
     // Row overrides
     //
@@ -593,6 +602,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

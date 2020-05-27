@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindRefFrameRotIEC - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.model.WindRefFrameRotIEC</title>
-          <meta name="description" content="WindRefFrameRotIEC - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.model.WindRefFrameRotIEC" />
-          <meta name="keywords" content="WindRefFrameRotIEC CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.model.WindRefFrameRotIEC" />
+          <title>WindRefFrameRotIEC - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.model.WindRefFrameRotIEC</title>
+          <meta name="description" content="WindRefFrameRotIEC - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.model.WindRefFrameRotIEC" />
+          <meta name="keywords" content="WindRefFrameRotIEC CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.model.WindRefFrameRotIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">WindRefFrameRotIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="tpll">tpll: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll1">upll1: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll2">upll2: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">WindRefFrameRotIEC</span><span class="params">(<span name="IdentifiedObject">IdentifiedObject: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="tpll">tpll: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll1">upll1: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll2">upll2: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Reference frame rotation model.</p><p>Reference: IEC 61400-27-1:2015, 5.6.3.5.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">tpll</dt><dd class="cmt"><p>Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
+</p></div><dl class="paramcmts block"><dt class="param">IdentifiedObject</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">tpll</dt><dd class="cmt"><p>Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
        It is a type-dependent parameter.</p></dd><dt class="param">upll1</dt><dd class="cmt"><p>Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
        It is a type-dependent parameter.</p></dd><dt class="param">upll2</dt><dd class="cmt"><p>Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> .
        It is a type-dependent parameter.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or type 4 model with which this reference frame rotation model is associated.</p></dd></dl><div class="toggleContainer block">
@@ -66,7 +66,7 @@
         <div id="order">
               <span class="filtertype">Ordering</span>
               <ol>
-                
+                <li class="group out"><span>Grouped</span></li>
                 <li class="alpha in"><span>Alphabetic</span></li>
                 <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
@@ -95,7 +95,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.model.WindRefFrameRotIEC#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,tpll:Double,upll1:Double,upll2:Double,WindTurbineType3or4IEC:String):ch.ninecode.model.WindRefFrameRotIEC"></a>
+      <a id="&lt;init&gt;(IdentifiedObject:ch.ninecode.model.IdentifiedObject,tpll:Double,upll1:Double,upll2:Double,WindTurbineType3or4IEC:String):ch.ninecode.model.WindRefFrameRotIEC"></a>
       <a id="&lt;init&gt;:WindRefFrameRotIEC"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -103,14 +103,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">WindRefFrameRotIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="tpll">tpll: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll1">upll1: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll2">upll2: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
+        <span class="name">WindRefFrameRotIEC</span><span class="params">(<span name="IdentifiedObject">IdentifiedObject: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> = <span class="symbol">null</span></span>, <span name="tpll">tpll: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll1">upll1: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="upll2">upll2: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.WindRefFrameRotIEC@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,tpll:Double,upll1:Double,upll2:Double,WindTurbineType3or4IEC:String):ch.ninecode.model.WindRefFrameRotIEC" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.WindRefFrameRotIEC@&lt;init&gt;(IdentifiedObject:ch.ninecode.model.IdentifiedObject,tpll:Double,upll1:Double,upll2:Double,WindTurbineType3or4IEC:String):ch.ninecode.model.WindRefFrameRotIEC" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">tpll</dt><dd class="cmt"><p>Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">IdentifiedObject</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">tpll</dt><dd class="cmt"><p>Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
        It is a type-dependent parameter.</p></dd><dt class="param">upll1</dt><dd class="cmt"><p>Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
        It is a type-dependent parameter.</p></dd><dt class="param">upll2</dt><dd class="cmt"><p>Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> .
        It is a type-dependent parameter.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind turbine type 3 or type 4 model with which this reference frame rotation model is associated.</p></dd></dl></div>
@@ -174,13 +174,13 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.WindRefFrameRotIEC#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+    </li><li name="ch.ninecode.model.WindRefFrameRotIEC#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">IdentifiedObject</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
@@ -190,8 +190,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p>
     </li><li name="ch.ninecode.model.WindRefFrameRotIEC#WindTurbineType3or4IEC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="WindTurbineType3or4IEC:String"></a>
       <a id="WindTurbineType3or4IEC:String"></a>
@@ -1124,13 +1123,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.WindRefFrameRotIEC#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.WindRefFrameRotIEC#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="sup:ch.ninecode.model.IdentifiedObject"></a>
       <a id="sup:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">sup</span><span class="result">: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>
@@ -1140,7 +1139,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.WindRefFrameRotIEC">WindRefFrameRotIEC</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.WindRefFrameRotIEC">WindRefFrameRotIEC</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

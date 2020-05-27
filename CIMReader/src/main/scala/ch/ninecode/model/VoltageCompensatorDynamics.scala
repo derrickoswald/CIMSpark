@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Resistive and reactive components of compensation for generator associated with IEEE type 2 voltage compensator for current flow out of another generator in the interconnection.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE type 2 voltage compensator for current flow out of another generator (<i>Rcij</i>).</font>
  * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE type 2 voltage compensator for current flow out of another generator (<i>Xcij</i>).</font>
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Standard synchronous machine out of which current flow is being compensated for.
@@ -28,7 +28,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class GenICompensationForGenJ
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     rcij: Double = 0.0,
     xcij: Double = 0.0,
     SynchronousMachineDynamics: String = null,
@@ -45,7 +45,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -61,6 +62,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -127,7 +129,7 @@ extends
  * </ol>
  * Reference: IEEE 421.5-2005 4.
  *
- * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
+ * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (<i>Rc</i>) (&gt;= 0).</font>
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>
  * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (<i>Xc</i>) (&gt;= 0).</font>
@@ -144,7 +146,7 @@ extends
  */
 final case class VCompIEEEType1
 (
-    override val sup: VoltageCompensatorDynamics = null,
+    VoltageCompensatorDynamics: VoltageCompensatorDynamics = null,
     rc: Double = 0.0,
     tr: Double = 0.0,
     xc: Double = 0.0
@@ -160,7 +162,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup
+    override def sup: VoltageCompensatorDynamics = VoltageCompensatorDynamics
+
     //
     // Row overrides
     //
@@ -176,6 +179,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -231,7 +235,7 @@ extends
  * </ul>
  * <font color="#0f0f0f">Reference: IEEE 421.5-2005, 4.</font>
  *
- * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
+ * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>
  * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of this voltage compensator's generator for current flow out of another generator.
  * @group VoltageCompensatorDynamics
@@ -247,7 +251,7 @@ extends
  */
 final case class VCompIEEEType2
 (
-    override val sup: VoltageCompensatorDynamics = null,
+    VoltageCompensatorDynamics: VoltageCompensatorDynamics = null,
     tr: Double = 0.0,
     GenICompensationForGenJ: List[String] = null
 )
@@ -262,7 +266,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup
+    override def sup: VoltageCompensatorDynamics = VoltageCompensatorDynamics
+
     //
     // Row overrides
     //
@@ -278,6 +283,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -325,7 +331,7 @@ extends
 /**
  * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this voltage compensator is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this voltage compensator model.
  * @group VoltageCompensatorDynamics
@@ -341,7 +347,7 @@ extends
  */
 final case class VoltageCompensatorDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null
 )
@@ -356,7 +362,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -372,6 +379,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Turbine-governor cross-compound function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param HighPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] High-pressure synchronous machine with which this cross-compound turbine governor is associated.
  * @param LowPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Low-pressure synchronous machine with which this cross-compound turbine governor is associated.
  * @group TurbineGovernorDynamics
@@ -21,7 +21,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class CrossCompoundTurbineGovernorDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     HighPressureSynchronousMachineDynamics: String = null,
     LowPressureSynchronousMachineDynamics: String = null
 )
@@ -36,7 +36,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -52,6 +53,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -112,7 +114,7 @@ extends
  * </ul>
  * Additional information on this model is available in the 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, 3.1.2.3 pages 3-4 (GGOV1).
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aset Acceleration limiter setpoint (<i>Aset</i>).
  *        Unit = PU / s.  Typical value = 0,01.
  * @param db Speed governor deadband in PU speed (<i>db</i>).
@@ -193,7 +195,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovCT1
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aset: Double = 0.0,
     db: Double = 0.0,
     dm: Double = 0.0,
@@ -241,7 +243,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -257,6 +260,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -435,7 +439,7 @@ extends
  *
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aset Acceleration limiter setpoint (<i>Aset</i>).
  *        Unit = PU / s.  Typical value = 10.
  * @param db Speed governor deadband in PU speed (<i>db</i>).
@@ -558,7 +562,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovCT2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aset: Double = 0.0,
     db: Double = 0.0,
     dm: Double = 0.0,
@@ -627,7 +631,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -643,6 +648,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -903,7 +909,7 @@ extends
 /**
  * Single shaft gas turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param at Ambient temperature load limit (<i>Load Limit</i>).
  *        Typical value = 1.
  * @param dturb Turbine damping factor (<i>Dturb</i>).
@@ -932,7 +938,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     at: Double = 0.0,
     dturb: Double = 0.0,
     kt: Double = 0.0,
@@ -955,7 +961,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -971,6 +978,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1046,7 +1054,7 @@ extends
 /**
  * Modified single shaft gas turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param a Turbine power time constant numerator scale factor (<i>a</i>).
  *        Typical value = 0,8.
  * @param b Turbine power time constant denominator scale factor (<i>b</i>) (&gt;0).
@@ -1123,7 +1131,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST1
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     a: Double = 0.0,
     b: Double = 0.0,
     db1: Double = 0.0,
@@ -1170,7 +1178,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -1186,6 +1195,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1357,7 +1367,7 @@ extends
 /**
  * Gas turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param a Valve positioner (<i>A</i>).
  * @param af1 Exhaust temperature parameter (<i>Af1</i>).
  *        Unit = PU temperature.  Based on temperature in degrees C.
@@ -1407,7 +1417,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     a: Double = 0.0,
     af1: Double = 0.0,
     af2: Double = 0.0,
@@ -1452,7 +1462,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -1468,6 +1479,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1631,7 +1643,7 @@ extends
 /**
  * Generic turbogas with acceleration and temperature controller.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param bca Acceleration limit set-point (<i>Bca</i>).
  *        Unit = 1/s.  Typical value = 0,01.
  * @param bp Droop (<i>bp</i>).
@@ -1682,7 +1694,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST3
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     bca: Double = 0.0,
     bp: Double = 0.0,
     dtc: Double = 0.0,
@@ -1716,7 +1728,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -1732,6 +1745,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1851,7 +1865,7 @@ extends
 /**
  * Generic turbogas.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param bp Droop (<i>b</i><i><sub>p</sub></i>).
  *        Typical value = 0,05.
  * @param ktm Compressor gain (<i>Ktm</i>).
@@ -1882,7 +1896,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGAST4
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     bp: Double = 0.0,
     ktm: Double = 0.0,
     mnef: Double = 0.0,
@@ -1906,7 +1920,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -1922,6 +1937,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2004,7 +2020,7 @@ extends
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param a Valve positioner (<i>A</i>).
  * @param af1 Exhaust temperature parameter (<i>Af1</i>).
  * @param af2 Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
@@ -2049,7 +2065,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovGASTWD
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     a: Double = 0.0,
     af1: Double = 0.0,
     af2: Double = 0.0,
@@ -2095,7 +2111,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -2111,6 +2128,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2278,7 +2296,7 @@ extends
 /**
  * Basic hydro turbine governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param at Turbine gain (<i>At</i>) (&gt; 0).
  *        Typical value = 1,2.
  * @param dturb Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
@@ -2315,7 +2333,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro1
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     at: Double = 0.0,
     dturb: Double = 0.0,
     gmax: Double = 0.0,
@@ -2342,7 +2360,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -2358,6 +2377,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2449,7 +2469,7 @@ extends
 /**
  * IEEE hydro turbine governor with straightforward penstock configuration and hydraulic-dashpot governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
  *        Typical value = -1.
  * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
@@ -2516,7 +2536,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aturb: Double = 0.0,
     bturb: Double = 0.0,
     db1: Double = 0.0,
@@ -2558,7 +2578,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -2574,6 +2595,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2727,7 +2749,7 @@ extends
  *
  * This model differs from that defined in the IEEE modelling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param at Turbine gain (<i>At</i>) (&gt;0).
  *        Typical value = 1,2.
  * @param db1 Intentional dead-band width (<i>db1</i>).
@@ -2810,7 +2832,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro3
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     at: Double = 0.0,
     db1: Double = 0.0,
     db2: Double = 0.0,
@@ -2859,7 +2881,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -2875,6 +2898,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3056,7 +3080,7 @@ extends
  *
  * Represents plants with straight-forward penstock configurations and hydraulic governors of the traditional 'dashpot' type.  This model can be used to represent simple, Francis/Pelton or Kaplan turbines.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param at Turbine gain (<i>At</i>).
  *        Typical value = 1,2.
  * @param bgv0 Kaplan blade servo point 0 (<i>Bgv0</i>) (= 0 for simple, = 0 for Francis/Pelton).
@@ -3142,7 +3166,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydro4
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     at: Double = 0.0,
     bgv0: Double = 0.0,
     bgv1: Double = 0.0,
@@ -3194,7 +3218,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -3210,6 +3235,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3402,7 +3428,7 @@ extends
 /**
  * Double derivative hydro governor and turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
  *        Typical value = -1.
  * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
@@ -3485,7 +3511,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroDD
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aturb: Double = 0.0,
     bturb: Double = 0.0,
     db1: Double = 0.0,
@@ -3533,7 +3559,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -3549,6 +3576,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3727,7 +3755,7 @@ extends
  * This model can be used to represent three types of governors.
  * A schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton, is provided in the DetailedHydroModelHydraulicSystem diagram.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param am Opening section <i>S</i><i><sub>EFF</sub></i> at the maximum efficiency (<i>Am</i>).
  *        Typical value = 0,7.
  * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
@@ -3792,7 +3820,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroFrancis
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     am: Double = 0.0,
     av0: Double = 0.0,
     av1: Double = 0.0,
@@ -3832,7 +3860,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -3848,6 +3877,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3995,7 +4025,7 @@ extends
  * Used for mechanical-hydraulic and electro-hydraulic turbine governors, with or without steam feedback. Typical values given are for mechanical-hydraulic turbine-governor.
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param k Governor gain (<i>K)</i>.
  * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
@@ -4016,7 +4046,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroIEEE0
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     k: Double = 0.0,
     mwbase: Double = 0.0,
     pmax: Double = 0.0,
@@ -4037,7 +4067,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -4053,6 +4084,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4122,7 +4154,7 @@ extends
  *
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
  *        Typical value = -1.
  * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
@@ -4183,7 +4215,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroIEEE2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aturb: Double = 0.0,
     bturb: Double = 0.0,
     gv1: Double = 0.0,
@@ -4222,7 +4254,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -4238,6 +4271,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4377,7 +4411,7 @@ extends
 /**
  * PID governor and turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
  *        Typical value -1.
  * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
@@ -4456,7 +4490,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPID
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     aturb: Double = 0.0,
     bturb: Double = 0.0,
     db1: Double = 0.0,
@@ -4502,7 +4536,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -4518,6 +4553,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4688,7 +4724,7 @@ extends
  * Represents plants with straightforward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodward<sup>TM</sup> electronic).
  * [Footnote: Woodward electronic governors are an example of suitable products available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param atw Factor multiplying <i>Tw</i> (<i>Atw</i>).
  *        Typical value = 0.
  * @param d Turbine damping factor (<i>D</i>).
@@ -4741,7 +4777,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPID2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     atw: Double = 0.0,
     d: Double = 0.0,
     feedbackSignal: Boolean = false,
@@ -4776,7 +4812,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -4792,6 +4829,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4918,7 +4956,7 @@ extends
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
  * The DetailedHydroModelHydraulicSystem diagram, located under the GovHydroFrancis class, provides a schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
  *        Unit = m<sup>2</sup>. Typical value = 30.
  * @param av1 Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
@@ -4990,7 +5028,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroPelton
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     av0: Double = 0.0,
     av1: Double = 0.0,
     bp: Double = 0.0,
@@ -5031,7 +5069,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -5047,6 +5086,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5194,7 +5234,7 @@ extends
 /**
  * Fourth order lead-lag governor and hydro turbine.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param at Turbine gain (<i>At</i>).
  *        Typical value = 1,2.
  * @param db1 Intentional dead-band width (<i>db1</i>).
@@ -5291,7 +5331,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroR
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     at: Double = 0.0,
     db1: Double = 0.0,
     db2: Double = 0.0,
@@ -5346,7 +5386,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -5362,6 +5403,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5568,7 +5610,7 @@ extends
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param db Speed deadband (<i>db</i>).
  * @param dicn Value to allow the integral controller to advance beyond the gate limits (<i>Dicn</i>).
  * @param dpv Value to allow the pilot valve controller to advance beyond the gate limits (<i>Dpv</i>).
@@ -5665,7 +5707,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroWEH
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     db: Double = 0.0,
     dicn: Double = 0.0,
     dpv: Double = 0.0,
@@ -5729,7 +5771,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -5745,6 +5788,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -5987,7 +6031,7 @@ extends
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param d Turbine damping factor (<i>D</i>).
  *        Unit = delta P / delta speed.
  * @param gatmax Gate opening limit maximum (<i>Gatmax</i>) (&gt; GovHydroWPID.gatmin).
@@ -6028,7 +6072,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovHydroWPID
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     d: Double = 0.0,
     gatmax: Double = 0.0,
     gatmin: Double = 0.0,
@@ -6063,7 +6107,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -6079,6 +6124,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6202,7 +6248,7 @@ extends
 /**
  * A simplified steam turbine governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param dt Turbine damping coefficient (<i>Dt</i>).
  *        Unit = delta P / delta speed. Typical value = 0.
  * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
@@ -6227,7 +6273,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam0
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     dt: Double = 0.0,
     mwbase: Double = 0.0,
     r: Double = 0.0,
@@ -6248,7 +6294,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -6264,6 +6311,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6331,7 +6379,7 @@ extends
 /**
  * Steam turbine governor, based on the GovSteamIEEE1 (with optional deadband and nonlinear valve gain added).
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param db1 Intentional deadband width (<i>db1</i>).
  *        Unit = Hz.  Typical value = 0.
  * @param db2 Unintentional deadband (<i>db2</i>).
@@ -6424,7 +6472,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam1
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     db1: Double = 0.0,
     db2: Double = 0.0,
     eps: Double = 0.0,
@@ -6476,7 +6524,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -6492,6 +6541,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6683,7 +6733,7 @@ extends
 /**
  * Simplified governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param dbf Frequency deadband (<i>DBF</i>).
  *        Typical value = 0.
  * @param k Governor gain (reciprocal of droop) (<i>K</i>).
@@ -6708,7 +6758,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteam2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     dbf: Double = 0.0,
     k: Double = 0.0,
     mnef: Double = 0.0,
@@ -6729,7 +6779,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -6745,6 +6796,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -6812,7 +6864,7 @@ extends
 /**
  * European governor model.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param fcut Frequency deadband (<i>f</i><i><sub>cut</sub></i>) (&gt;= 0).
  *        Typical value = 0,002.
  * @param k2 Gain (<i>K2</i>).
@@ -6857,7 +6909,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamBB
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     fcut: Double = 0.0,
     k2: Double = 0.0,
     k3: Double = 0.0,
@@ -6887,7 +6939,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -6903,6 +6956,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7008,7 +7062,7 @@ extends
  *
  * Unlike tandem compound units, cross compound units are not on the same shaft.
  *
- * @param sup [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] Reference to the superclass object.
+ * @param CrossCompoundTurbineGovernorDynamics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] Reference to the superclass object.
  * @param dhp HP damping factor (<i>Dhp</i>).
  *        Typical value = 0.
  * @param dlp LP damping factor (<i>Dlp</i>).
@@ -7051,7 +7105,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamCC
 (
-    override val sup: CrossCompoundTurbineGovernorDynamics = null,
+    CrossCompoundTurbineGovernorDynamics: CrossCompoundTurbineGovernorDynamics = null,
     dhp: Double = 0.0,
     dlp: Double = 0.0,
     fhp: Double = 0.0,
@@ -7081,7 +7135,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CrossCompoundTurbineGovernorDynamics: CrossCompoundTurbineGovernorDynamics = sup
+    override def sup: CrossCompoundTurbineGovernorDynamics = CrossCompoundTurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -7097,6 +7152,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7200,7 +7256,7 @@ extends
 /**
  * Simplified boiler and steam turbine with PID governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param chc Control valves rate closing limit (<i>Chc</i>).
  *        Unit = PU / s.  Typical value = -3,3.
  * @param cho Control valves rate opening limit (<i>Cho</i>).
@@ -7279,7 +7335,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamEU
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     chc: Double = 0.0,
     cho: Double = 0.0,
     cic: Double = 0.0,
@@ -7327,7 +7383,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -7343,6 +7400,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7518,7 +7576,7 @@ extends
 /**
  * Steam turbine governor with reheat time constants and modelling of the effects of fast valve closing to reduce mechanical power.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param dt (<i>Dt</i>).
  * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).
  * @param mwbase Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
@@ -7540,7 +7598,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV2
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     dt: Double = 0.0,
     k: Double = 0.0,
     mwbase: Double = 0.0,
@@ -7565,7 +7623,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -7581,6 +7640,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7664,7 +7724,7 @@ extends
 /**
  * Simplified GovSteamIEEE1 steam turbine governor with Prmax limit and fast valving.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param gv1 Nonlinear gain valve position point 1 (<i>GV1</i>).
  *        Typical value = 0.
  * @param gv2 Nonlinear gain valve position point 2 (<i>GV2</i>).
@@ -7735,7 +7795,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV3
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     gv1: Double = 0.0,
     gv2: Double = 0.0,
     gv3: Double = 0.0,
@@ -7779,7 +7839,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -7795,6 +7856,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -7954,7 +8016,7 @@ extends
 /**
  * Detailed electro-hydraulic governor for steam unit.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param cpsmn Minimum value of pressure regulator output (<i>Cpsmn</i>).
  *        Typical value = -1.
  * @param cpsmx Maximum value of pressure regulator output (<i>Cpsmx</i>).
@@ -8065,7 +8127,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamFV4
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     cpsmn: Double = 0.0,
     cpsmx: Double = 0.0,
     crmn: Double = 0.0,
@@ -8129,7 +8191,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -8145,6 +8208,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8386,7 +8450,7 @@ extends
  *
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param k Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
  *        Typical value = 25.
  * @param k1 Fraction of HP shaft power after first boiler pass (<i>K1</i>).
@@ -8436,7 +8500,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamIEEE1
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     k: Double = 0.0,
     k1: Double = 0.0,
     k2: Double = 0.0,
@@ -8470,7 +8534,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -8486,6 +8551,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8605,7 +8671,7 @@ extends
 /**
  * Simplified steam turbine governor.
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param k1 One / PU regulation (<i>K1</i>).
  * @param k2 Fraction (<i>K2</i>).
  * @param k3 Fraction (<i>K3</i>).
@@ -8627,7 +8693,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class GovSteamSGO
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     k1: Double = 0.0,
     k2: Double = 0.0,
     k3: Double = 0.0,
@@ -8652,7 +8718,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -8668,6 +8735,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -8751,7 +8819,7 @@ extends
 /**
  * Turbine-governor function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this turbine-governor model is associated.
  *        TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this turbine-governor model is associated.
@@ -8765,7 +8833,7 @@ A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System S
  */
 final case class TurbineGovernorDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     AsynchronousMachineDynamics: String = null,
     SynchronousMachineDynamics: String = null,
     TurbineLoadControllerDynamics: String = null
@@ -8781,7 +8849,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -8797,6 +8866,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

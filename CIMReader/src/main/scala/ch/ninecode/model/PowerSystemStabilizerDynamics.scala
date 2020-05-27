@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power system stabilizer model is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power system stabilizer model.
  * @group PowerSystemStabilizerDynamics
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class PowerSystemStabilizerDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: List[String] = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -98,7 +100,7 @@ extends
 /**
  * Italian PSS with three inputs (speed, frequency, power).
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param kf Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
  *        Typical value = 5.
  * @param komega Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
@@ -137,7 +139,7 @@ extends
  */
 final case class Pss1
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     kf: Double = 0.0,
     komega: Double = 0.0,
     kpe: Double = 0.0,
@@ -165,7 +167,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -181,6 +184,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -278,7 +282,7 @@ extends
  *
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 Notch filter parameter (<i>A</i><i><sub>1</sub></i>).
  * @param a2 Notch filter parameter (<i>A</i><i><sub>2</sub></i>).
  * @param a3 Notch filter parameter (<i>A</i><i><sub>3</sub></i>).
@@ -309,7 +313,7 @@ extends
  */
 final case class Pss1A
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     a1: Double = 0.0,
     a2: Double = 0.0,
     a3: Double = 0.0,
@@ -344,7 +348,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -360,6 +365,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -486,7 +492,7 @@ extends
  *
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a Numerator constant (<i>a</i>).
  *        Typical value = 1.
  * @param ks1 Stabilizer gain (<i>Ks1</i>).
@@ -551,7 +557,7 @@ extends
  */
 final case class Pss2B
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     a: Double = 0.0,
     ks1: Double = 0.0,
     ks2: Double = 0.0,
@@ -593,7 +599,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -609,6 +616,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -760,7 +768,7 @@ extends
 /**
  * PTI microprocessor-based stabilizer type 1.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
  *        Typical value = rotorAngularFrequencyDeviation.
  * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
@@ -787,7 +795,7 @@ extends
  */
 final case class Pss2ST
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     inputSignal1Type: String = null,
     inputSignal2Type: String = null,
     k1: Double = 0.0,
@@ -818,7 +826,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -834,6 +843,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -942,7 +952,7 @@ extends
 /**
  * Detailed Italian PSS.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param ctw2 Selector for second washout enabling (<i>C</i><i><sub>TW2</sub></i>).
  *        true = second washout filter is bypassed
  *        false = second washout filter in use.
@@ -989,7 +999,7 @@ extends
  */
 final case class Pss5
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     ctw2: Boolean = false,
     deadband: Double = 0.0,
     isfreq: Boolean = false,
@@ -1019,7 +1029,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -1035,6 +1046,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1138,7 +1150,7 @@ extends
 /**
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param apss Coefficient (<i>a_PSS</i>).
  *        Typical value = 0,1.
  * @param ks1 Gain (<i>Ks1</i>).
@@ -1167,7 +1179,7 @@ extends
  */
 final case class PssELIN2
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     apss: Double = 0.0,
     ks1: Double = 0.0,
     ks2: Double = 0.0,
@@ -1191,7 +1203,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -1207,6 +1220,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1289,7 +1303,7 @@ extends
  * PSS1A is the generalized form of a PSS with a single input signal.
  * Reference: IEEE 1A 421.5-2005, 8.1.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 PSS signal conditioning frequency filter constant (<i>A1</i>).
  *        Typical value = 0,061.
  * @param a2 PSS signal conditioning frequency filter constant (<i>A2</i>).
@@ -1320,7 +1334,7 @@ extends
  */
 final case class PssIEEE1A
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     a1: Double = 0.0,
     a2: Double = 0.0,
     inputSignalType: String = null,
@@ -1345,7 +1359,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -1361,6 +1376,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1448,7 +1464,7 @@ extends
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
  * Reference: IEEE 2B 421.5-2005, 8.2.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
  *        Typical value = rotorAngularFrequencyDeviation.
  * @param inputSignal2Type Type of input signal #2 (generatorElectricalPower).
@@ -1509,7 +1525,7 @@ extends
  */
 final case class PssIEEE2B
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     inputSignal1Type: String = null,
     inputSignal2Type: String = null,
     ks1: Double = 0.0,
@@ -1549,7 +1565,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -1565,6 +1582,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1713,7 +1731,7 @@ extends
  * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
  * Reference: IEEE 3B 421.5-2005, 8.3.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 Notch filter parameter (<i>A1</i>).
  *        Typical value = 0,359.
  * @param a2 Notch filter parameter (<i>A2</i>).
@@ -1754,7 +1772,7 @@ extends
  */
 final case class PssIEEE3B
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     a1: Double = 0.0,
     a2: Double = 0.0,
     a3: Double = 0.0,
@@ -1784,7 +1802,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -1800,6 +1819,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1909,7 +1929,7 @@ extends
  * Parameter details:
  * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param bwh1 Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
  * @param bwh2 Notch filter 2 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
  * @param bwl1 Notch filter 1 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
@@ -2042,7 +2062,7 @@ extends
  */
 final case class PssIEEE4B
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     bwh1: Double = 0.0,
     bwh2: Double = 0.0,
     bwl1: Double = 0.0,
@@ -2122,7 +2142,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -2138,6 +2159,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2441,7 +2463,7 @@ extends
 /**
  * PTI microprocessor-based stabilizer type 1.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param dtc Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
  *        Typical value = 0,025.
  * @param dtf Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
@@ -2470,7 +2492,7 @@ extends
  */
 final case class PssPTIST1
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     dtc: Double = 0.0,
     dtf: Double = 0.0,
     dtp: Double = 0.0,
@@ -2494,7 +2516,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -2510,6 +2533,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2589,7 +2613,7 @@ extends
 /**
  * PTI microprocessor-based stabilizer type 3.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a0 Filter coefficient (<i>A0</i>).
  * @param a1 Limiter (<i>Al</i>).
  * @param a2 Filter coefficient (<i>A2</i>).
@@ -2645,7 +2669,7 @@ extends
  */
 final case class PssPTIST3
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     a0: Double = 0.0,
     a1: Double = 0.0,
     a2: Double = 0.0,
@@ -2692,7 +2716,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -2708,6 +2733,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2881,7 +2907,7 @@ extends
  *
  * This power system stabilizer is intended to be used together with excitation system type ExcRQB, which is primarily used in nuclear or thermal generating units.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param kdpm Lead lag gain (<i>KDPM</i>).
  *        Typical value = 0,185.
  * @param ki2 Speed input gain (<i>Ki2</i>).
@@ -2908,7 +2934,7 @@ extends
  */
 final case class PssRQB
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     kdpm: Double = 0.0,
     ki2: Double = 0.0,
     ki3: Double = 0.0,
@@ -2931,7 +2957,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -2947,6 +2974,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3022,7 +3050,7 @@ extends
 /**
  * Power sensitive stabilizer model.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param kx Gain (<i>Kx</i>).
  *        Typical value = 2,7.
  * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
@@ -3051,7 +3079,7 @@ extends
  */
 final case class PssSB4
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     kx: Double = 0.0,
     ta: Double = 0.0,
     tb: Double = 0.0,
@@ -3075,7 +3103,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -3091,6 +3120,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3173,7 +3203,7 @@ extends
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param k Main gain (<i>K</i>).
  *        Typical value = 1.
  * @param k0 Gain 0 (<i>K0</i>).
@@ -3206,7 +3236,7 @@ extends
  */
 final case class PssSH
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     k: Double = 0.0,
     k0: Double = 0.0,
     k1: Double = 0.0,
@@ -3232,7 +3262,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -3248,6 +3279,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3335,7 +3367,7 @@ extends
 /**
  * Slovakian PSS with three inputs.
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param k1 Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
  *        Typical value = -0,3.
  * @param k2 Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
@@ -3364,7 +3396,7 @@ extends
  */
 final case class PssSK
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     k1: Double = 0.0,
     k2: Double = 0.0,
     k3: Double = 0.0,
@@ -3388,7 +3420,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -3404,6 +3437,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3486,7 +3520,7 @@ extends
  *
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param hlim Stabilizer output limiter (<i>H</i><i><sub>LIM</sub></i>).
  *        Typical value = 0,5.
  * @param k2 Gain (<i>K2</i>).
@@ -3509,7 +3543,7 @@ extends
  */
 final case class PssSTAB2A
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     hlim: Double = 0.0,
     k2: Double = 0.0,
     k3: Double = 0.0,
@@ -3530,7 +3564,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -3546,6 +3581,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3613,7 +3649,7 @@ extends
 /**
  * Dual input power system stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than PssWECC.inputSignal2Type).
  *        Typical value = rotorAngularFrequencyDeviation.
  * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, busVoltageDerivative - shall be different than PssWECC.inputSignal1Type).
@@ -3656,7 +3692,7 @@ extends
  */
 final case class PssWECC
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     inputSignal1Type: String = null,
     inputSignal2Type: String = null,
     k1: Double = 0.0,
@@ -3687,7 +3723,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -3703,6 +3740,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

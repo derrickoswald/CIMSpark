@@ -8,13 +8,12 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
-
  * @group Feeder
  * @groupname Feeder Package Feeder
  */
 final case class Circuit
 (
-    override val sup: Line = null,
+    Line: Line = null,
     EndBay: List[String] = null,
     EndTerminal: List[String] = null
 )
@@ -29,7 +28,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Line: Line = sup
+    override def sup: Line = Line
+
     //
     // Row overrides
     //
@@ -45,6 +45,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

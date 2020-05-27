@@ -60,7 +60,6 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     //            };
 
                     // output enumeration declaration
-                    val s = new StringBuilder ()
                     val jd = JavaDoc (cls.note, 8).asText
                     val att = attributes.map (
                         attribute =>
@@ -146,7 +145,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         val enumerationList = classes2
             .filter (_.stereotype == "enumeration")
             .map (cls => (cls.name.replace ("-", "_"), cls))
-        enumerationList.foreach (x => provides.add (x._1, x._1))
+        enumerationList.foreach (x => provides.add ((x._1, x._1)))
         val enumerations = enumerationList.map (_._1).toSet
 
         val p = new StringBuilder ()

@@ -10,14 +10,14 @@ import ch.ninecode.cim.Relationship
 /**
  * A description for how to assemble model parts for a specific purpose.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelSpecification [[ch.ninecode.model.ModelPartSpecification ModelPartSpecification]] The models that are part of the assembly descrption.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class AssemblyDescription
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelSpecification: List[String] = null
 )
 extends
@@ -31,7 +31,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -47,6 +48,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -89,13 +91,13 @@ extends
 /**
  * A collection of model parts when combined form a case or part of a case.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class AssemblyManifest
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -108,7 +110,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -124,6 +127,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -151,13 +155,13 @@ extends
 /**
  * A complete model can be used in applications to perform meaningful calculations, e.g. a study case in offline tools or a real time model in a SCADA/EMS.
  *
- * @param sup [[ch.ninecode.model.ModelToBeDeleted ModelToBeDeleted]] Reference to the superclass object.
+ * @param ModelToBeDeleted [[ch.ninecode.model.ModelToBeDeleted ModelToBeDeleted]] Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class CompleteModelToBeDeleted
 (
-    override val sup: ModelToBeDeleted = null
+    ModelToBeDeleted: ModelToBeDeleted = null
 )
 extends
     Element
@@ -170,7 +174,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelToBeDeleted: ModelToBeDeleted = sup
+    override def sup: ModelToBeDeleted = ModelToBeDeleted
+
     //
     // Row overrides
     //
@@ -186,6 +191,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -215,7 +221,7 @@ extends
  *
  * For example, it could be generator group used to represent generators in state estimator, planning, planning dynamics, short circuit, or real-time dynamics etc., but does not specifically represent any one alternative model. This need to know what objects to be removed in the realization of any one alternate model.
  *
- * @param sup [[ch.ninecode.model.ModelAuthoritySet ModelAuthoritySet]] Reference to the superclass object.
+ * @param ModelAuthoritySet [[ch.ninecode.model.ModelAuthoritySet ModelAuthoritySet]] Reference to the superclass object.
  * @param Frame [[ch.ninecode.model.NetworkFrame NetworkFrame]] <em>undocumented</em>
  * @param ModelFrameType [[ch.ninecode.model.ModelFrameType ModelFrameType]] Model frame type of the model frame.
  * @group NetworkModelFrames
@@ -223,7 +229,7 @@ extends
  */
 final case class FrameworkPart
 (
-    override val sup: ModelAuthoritySet = null,
+    ModelAuthoritySet: ModelAuthoritySet = null,
     Frame: String = null,
     ModelFrameType: String = null
 )
@@ -238,7 +244,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelAuthoritySet: ModelAuthoritySet = sup
+    override def sup: ModelAuthoritySet = ModelAuthoritySet
+
     //
     // Row overrides
     //
@@ -254,6 +261,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -301,13 +309,13 @@ extends
 /**
  * Load a model part version.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class LoadModelPartVersion
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -320,7 +328,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -336,6 +345,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -363,14 +373,14 @@ extends
 /**
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelingAuthoritySets [[ch.ninecode.model.ModelAuthoritySet ModelAuthoritySet]] Modeling Authority Sets supplied and maintained by this Modeling Authority.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class ModelAuthority
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelingAuthoritySets: List[String] = null
 )
 extends
@@ -384,7 +394,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -400,6 +411,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -444,7 +456,7 @@ extends
  *
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ModelSpecification [[ch.ninecode.model.ModelPartSpecification ModelPartSpecification]] Models of the model frame.
  * @param ModelingAuthority [[ch.ninecode.model.ModelAuthority ModelAuthority]] Modeling Authority suppliying and maintaining the data for the objects in this Modeling Authority Set.
  * @group NetworkModelFrames
@@ -452,7 +464,7 @@ extends
  */
 final case class ModelAuthoritySet
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ModelSpecification: List[String] = null,
     ModelingAuthority: String = null
 )
@@ -467,7 +479,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -483,6 +496,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -533,7 +547,7 @@ extends
  *
  * For example,  state estimator, planning, planning dynamics, short circuit, or real-time dynamics etc.     The model must conform to a profile.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AssemblyDescription [[ch.ninecode.model.AssemblyDescription AssemblyDescription]] The assembly description into which model parts should be included.
  * @param FrameworkPart [[ch.ninecode.model.ModelAuthoritySet ModelAuthoritySet]] Model frame of the model part.
  * @param Model [[ch.ninecode.model.ModelPartVersion ModelPartVersion]] Modle parts conforming to the model part specification.
@@ -542,7 +556,7 @@ extends
  */
 final case class ModelPartSpecification
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     AssemblyDescription: List[String] = null,
     FrameworkPart: String = null,
     Model: List[String] = null
@@ -558,7 +572,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -574,6 +589,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -629,14 +645,14 @@ extends
  *
  * New instances of this class with new identity are instantiated upon changes to the content of this class or changes to the associated data set.  Instances of this class are considered immutable.  The case audit trail can reference this immutable data to exactly reproduce a case.
  *
- * @param sup [[ch.ninecode.model.ModelToBeDeleted ModelToBeDeleted]] Reference to the superclass object.
+ * @param ModelToBeDeleted [[ch.ninecode.model.ModelToBeDeleted ModelToBeDeleted]] Reference to the superclass object.
  * @param ModelSpecification [[ch.ninecode.model.ModelPartSpecification ModelPartSpecification]] Model specification of the modelt.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class ModelPartVersion
 (
-    override val sup: ModelToBeDeleted = null,
+    ModelToBeDeleted: ModelToBeDeleted = null,
     ModelSpecification: String = null
 )
 extends
@@ -650,7 +666,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ModelToBeDeleted: ModelToBeDeleted = sup
+    override def sup: ModelToBeDeleted = ModelToBeDeleted
+
     //
     // Row overrides
     //
@@ -666,6 +683,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -708,13 +726,13 @@ extends
 /**
  * A Model is a collection of Datasets.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class ModelToBeDeleted
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -727,7 +745,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -743,6 +762,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -770,13 +790,13 @@ extends
 /**
  * A framework part that is a boundary between 2 frames.
  *
- * @param sup [[ch.ninecode.model.FrameworkPart FrameworkPart]] Reference to the superclass object.
+ * @param FrameworkPart [[ch.ninecode.model.FrameworkPart FrameworkPart]] Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class NetworkBoundary
 (
-    override val sup: FrameworkPart = null
+    FrameworkPart: FrameworkPart = null
 )
 extends
     Element
@@ -789,7 +809,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FrameworkPart: FrameworkPart = sup
+    override def sup: FrameworkPart = FrameworkPart
+
     //
     // Row overrides
     //
@@ -805,6 +826,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -832,14 +854,14 @@ extends
 /**
  * A region isolated by boundaries.
  *
- * @param sup [[ch.ninecode.model.FrameworkPart FrameworkPart]] Reference to the superclass object.
- * @param FrameworkPart [[ch.ninecode.model.FrameworkPart FrameworkPart]] <em>undocumented</em>
+ * @param FrameworkPart [[ch.ninecode.model.FrameworkPart FrameworkPart]] Reference to the superclass object.
+ * @param FrameworkPart_attr [[ch.ninecode.model.FrameworkPart FrameworkPart]] <em>undocumented</em>
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class NetworkFrame
 (
-    override val sup: FrameworkPart = null,
+    FrameworkPart: FrameworkPart = null,
     FrameworkPart_attr: List[String] = null
 )
 extends
@@ -853,7 +875,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FrameworkPart: FrameworkPart = sup
+    override def sup: FrameworkPart = FrameworkPart
+
     //
     // Row overrides
     //
@@ -869,6 +892,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -911,13 +935,13 @@ extends
 /**
  * Instructions to build a network model case, including when appropriate the results.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class NetworkModelCaseDefinition
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -930,7 +954,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -946,6 +971,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -971,13 +997,12 @@ extends
 }
 
 /**
-
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
  */
 final case class Operation
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -990,7 +1015,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1006,6 +1032,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

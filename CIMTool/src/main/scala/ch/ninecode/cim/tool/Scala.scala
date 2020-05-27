@@ -1,6 +1,5 @@
 package ch.ninecode.cim.tool
 
-import java.io.File
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -29,7 +28,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
           | *
           | * Classes are nested according to the hierarchical package structure found in CIM.
           | *
-          | * Each class has the reference to its parent class, available as the generic <code>sup</code> field,
+          | * Each class has the reference to its parent class, available as the <code>sup</code> method,
           | * and also as a typed reference of the same name as the parent class.
           | *
           | * This is illustrated in the following image, where the object with id TE1932 (a Switch) is found in
@@ -48,9 +47,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     {
         def unquote (variable: String): String = if ('`' == variable.charAt (0)) variable.substring (1, variable.length - 1) else variable
         def compare (a: Member, b: Member): Int =
-            if (a.name == "sup")
+            if (a.isSuper)
                 -1
-            else if (b.name == "sup")
+            else if (b.isSuper)
                 1
             else
             {
@@ -177,9 +176,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def superclass (cls: Class): String =
     {
         val sup = if (null != cls.sup)
-            s"${cls.sup.name}: ${cls.sup.name} = sup"
+            cls.sup.name
         else
-            " Element: Element = sup.asInstanceOf[Element]"
+            "Element"
         s"""
             |    /**
             |     * Return the superclass object.
@@ -189,7 +188,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             |     * @groupname Hierarchy Class Hierarchy Related
             |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
             |     */
-            |    def $sup""".stripMargin
+            |    override def sup: $sup = $sup""".stripMargin
     }
 
     def row_overrides: String =
@@ -320,10 +319,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             ""
     }
 
-    def parse (name: String, members: SortedSet[Member]): String =
+    def parse (cls: Class, name: String, members: SortedSet[Member]): String =
     {
         val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
-        val fields: SortedSet[Member] = members.filter ("sup" != _.name)
+        val fields: SortedSet[Member] = members.filter (!_.isSuper)
         val boilerplate = if (fields.nonEmpty)
         {
             val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
@@ -349,9 +348,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             s"$mask (${member.variable} (), ${index - 1})"
         }
         val parsers = if (identified_object)
-                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x) )))
+                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) "base" else if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x) )))
             else
-                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.name == "sup") s"${x._1.datatype}.parse (context)" else masker (x))))
+                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) s"${x._1.datatype}.parse (context)" else masker (x))))
 
         val update = if (fields.nonEmpty)
             """
@@ -379,12 +378,16 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         for (cls <- case_classes)
         {
             val name = cls.valid_class_name
-            val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, "1", "", if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else cls.sup.valid_class_name)
+            val supname = if (null == cls.sup)
+                "Element"
+            else
+                cls.sup.name
+            val supclass = Member (supname, supname, false, "Reference to the superclass object.", false, "1", "", if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else cls.sup.valid_class_name, true)
             val members: mutable.SortedSet[Member] =
-                mutable.SortedSet[Member](sup) ++
+                mutable.SortedSet[Member](supclass) ++
                     parser.attributesFor (cls).map (details (case_classes)).toSet
                         .union (parser.rolesFor (cls).map (details).toSet)
-            val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
+            val fields: mutable.SortedSet[Member] = members.filter (!_.isSuper)
             val s = new StringBuilder ()
                 .append (JavaDoc (cls.note, 0, members, pkg.name, s"Package ${pkg.name}", pkg.notes).asText)
                 .append (declareClass (name, members))
@@ -397,7 +400,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append (declareObject (name))
                 .append ("\n{\n")
                 .append (parseRelationships (fields))
-                .append (parse (name, members))
+                .append (parse (cls, name, members))
                 .append ("\n")
 
             p.append (s)

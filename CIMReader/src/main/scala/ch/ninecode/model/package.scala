@@ -14,7 +14,7 @@ package ch.ninecode
  *
  * Classes are nested according to the hierarchical package structure found in CIM.
  *
- * Each class has the reference to its parent class, available as the generic <code>sup</code> field,
+ * Each class has the reference to its parent class, available as the <code>sup</code> method,
  * and also as a typed reference of the same name as the parent class.
  *
  * This is illustrated in the following image, where the object with id TE1932 (a Switch) is found in
@@ -30,7 +30,6 @@ package ch.ninecode
  * The classes are also listed in the panel on the left for easy reference.
  *
  * ===AlternateModels===
-
  *
  * ===AssetInfo===
  * This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses.
@@ -39,7 +38,6 @@ package ch.ninecode
  *
  *
  * ===AssetMeas===
-
  *
  * ===Assets===
  * This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -59,7 +57,6 @@ package ch.ninecode
  *
  *
  * ===CSC===
-
  *
  * ===Common===
  * This package contains the information classes that support distribution management in general.
@@ -96,7 +93,6 @@ package ch.ninecode
  *
  *
  * ===DER===
-
  *
  * ===DiagramLayout===
  * This package describes diagram layout.
@@ -123,13 +119,10 @@ package ch.ninecode
  *
  *
  * ===EnergyArea===
-
  *
  * ===EnvDomain===
-
  *
  * ===Environmental===
-
  *
  * ===Equivalents===
  * The equivalents package models equivalent networks.
@@ -152,7 +145,6 @@ package ch.ninecode
  *
  *
  * ===Feeder===
-
  *
  * ===GenerationTrainingSimulation===
  * The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -185,13 +177,12 @@ package ch.ninecode
  *
  *
  * ===InfAssetInfo===
-
  *
  * ===InfAssets===
  * The package is used to define asset-level models for objects.
  *
  * Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
- * 
+ *
  * TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
  * "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
  * The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
@@ -219,21 +210,19 @@ package ch.ninecode
  *
  *
  * ===InfCongestionRevenueRights===
-
  *
  * ===InfCustomers===
  * The package is used to define detailed customer models.
  *
  *
  * ===InfDomain===
-
  *
  * ===InfERPSupport===
  * The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG).
  *
  * It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
  * If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
- * 
+ *
  * TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
  * "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
  * If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
@@ -246,7 +235,6 @@ package ch.ninecode
  *
  *
  * ===InfExternalInputs===
-
  *
  * ===InfFinancial===
  * This package is responsible for Settlement and Billing.
@@ -255,19 +243,14 @@ package ch.ninecode
  *
  *
  * ===InfHVDCDynamics===
-
  *
  * ===InfLocations===
-
  *
  * ===InfMarketOpCommon===
-
  *
  * ===InfMarketOperations===
-
  *
  * ===InfMarketResults===
-
  *
  * ===InfOperationalLimits===
  * The description of computed or dynamic limits.
@@ -276,13 +259,10 @@ package ch.ninecode
  *
  *
  * ===InfParticipantInterfaces===
-
  *
  * ===InfReferenceData===
-
  *
  * ===InfReservation===
-
  *
  * ===InfSIPS===
  * System Integrity Protection Schemes (SIPS) (IEC terminology).
@@ -291,16 +271,14 @@ package ch.ninecode
  *
  *
  * ===InfTypeAsset===
-
  *
  * ===InfWiresExt===
-
  *
  * ===InfWork===
  * The package covers all types of work, including inspection, maintenance, repair, restoration, and construction.
  *
  * It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
- * 
+ *
  * TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
  * "The Work package is used to define classes related to work. There are several different aspects of work.
  * The Work Initiation (Work, Project, Request).
@@ -329,7 +307,7 @@ package ch.ninecode
  * This package is responsible for modelling the energy consumers and the system load as curves and associated curve data.
  *
  * Special circumstances that may affect the load, such as seasons and day types, are also included here.
- * 
+ *
  * This information is used by Load Forecasting and Load Management.
  *
  *
@@ -374,10 +352,8 @@ package ch.ninecode
  *
  *
  * ===ModelOperations===
-
  *
  * ===NetworkModelFrames===
-
  *
  * ===NetworkModelProjects===
  * Defining meta-data for a change set in the functional Power System model.
@@ -519,7 +495,6 @@ package ch.ninecode
  *
  *
  * ===VSC===
-
  *
  * ===VoltageAdjusterDynamics===
  * <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
@@ -534,8 +509,8 @@ package ch.ninecode
  * <font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
  * <font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
  * <font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
- * 
- * 
+ *
+ *
  * <font color="#0f0f0f">
  * </font>
  *
@@ -562,7 +537,6 @@ package ch.ninecode
  *
  *
  * ===unused===
-
  */
 package object model
 {

@@ -212,7 +212,7 @@ with
  * Not all elements really have an mRID (classes in package Common like PositionPoint and PostalAddress)
  * But Spark needs identifiers for joins, so, for now all elements have an mRID.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param mRID Master resource identifier issued by a model authority. By convention, this is used as the RDF id in the CIM XML.
  * @group Added
  * @groupname Added Classes added by CIMReader
@@ -220,7 +220,7 @@ with
  */
 case class BasicElement
 (
-    override val sup: Element = null,
+    Element: Element = null,
     mRID: String = null
 )
 extends
@@ -230,6 +230,8 @@ extends
      * Zero arg constructor.
      */
     def this () = { this (null, null) }
+
+    override def sup: Element = Element
 
     /**
      * Return the unique ID for the object, the mRID for IdentifiedObject derived classes.
@@ -309,7 +311,7 @@ object BasicElement
  *
  * Default parsed element, when no other more specific class applies.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param guts Internal contents of the XML element with the unrecognized name.
  * @param line The line number on which the unknown XML element starts, <em>in Spark this is relative to the split being processed</em>.
  * @param start The starting character position of the unknown XML element, <em>in Spark this is relative to the split being processed</em>.
@@ -319,7 +321,7 @@ object BasicElement
  * @groupdesc Low level classes needed to parse the hierarchical CIM classes and generate nested RDD of.
  */
 case class Unknown(
-    override val sup: Element = null,
+    Element: Element = null,
     guts: String,
     line: Int,
     start: Long,
@@ -331,7 +333,7 @@ extends
      * Zero arg constructor.
      */
     def this() = { this (null, null, 0, 0L, 0L) }
-    def Element: Element = sup
+    override def sup: Element = Element
     override def copy (): Row = { clone ().asInstanceOf[Unknown] }
     override def get (i: Int): Object =
     {

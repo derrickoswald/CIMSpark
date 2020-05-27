@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ninecode - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode</title>
-          <meta name="description" content="ninecode - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode" />
-          <meta name="keywords" content="ninecode CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode" />
+          <title>ninecode - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode</title>
+          <meta name="description" content="ninecode - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode" />
+          <meta name="keywords" content="ninecode CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -110,7 +110,7 @@ The reader fits into the overall Spark architecture as shown in the following im
       <p class="shortcomment cmt">Provides Common Information Model (CIM) classes for electrical, topological, asset, spatial
 and other categories of objects that are germane to electric network operations.</p><div class="fullcomment"><div class="comment cmt"><h4>Overview</h4><p>Provides Common Information Model (CIM) classes for electrical, topological, asset, spatial
 and other categories of objects that are germane to electric network operations.</p><p>Some examples are shown in the following image:</p><p><img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/information.svg" width="700"></p><p>These classes are the types of, and objects contained in, the RDD that are created by the CIMReader,
-e.g. RDD[Switch].</p><p>Classes are nested according to the hierarchical package structure found in CIM.</p><p>Each class has the reference to its parent class, available as the generic <code>sup</code> field,
+e.g. RDD[Switch].</p><p>Classes are nested according to the hierarchical package structure found in CIM.</p><p>Each class has the reference to its parent class, available as the <code>sup</code> method,
 and also as a typed reference of the same name as the parent class.</p><p>This is illustrated in the following image, where the object with id TE1932 (a Switch) is found in
 RDD[Switch] and all RDD for which the relation 'a Switch &quot;Is A&quot; <em>X</em>' holds,
 e.g. RDD[ConductingEquipment]:</p><p><img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/nested.svg" width="700"></p><p>The packages and their descriptions are itemized below.</p><p>A short summary of all classes is found below that.

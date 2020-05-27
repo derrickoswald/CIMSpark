@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -26,7 +26,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class AsynchronousMachineUserDefined
 (
-    override val sup: AsynchronousMachineDynamics = null,
+    AsynchronousMachineDynamics: AsynchronousMachineDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -41,7 +41,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup
+    override def sup: AsynchronousMachineDynamics = AsynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -57,6 +58,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -104,7 +106,7 @@ extends
 /**
  * Current source converter (CSC) function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.CSCDynamics CSCDynamics]] Reference to the superclass object.
+ * @param CSCDynamics [[ch.ninecode.model.CSCDynamics CSCDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -120,7 +122,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class CSCUserDefined
 (
-    override val sup: CSCDynamics = null,
+    CSCDynamics: CSCDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -135,7 +137,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CSCDynamics: CSCDynamics = sup
+    override def sup: CSCDynamics = CSCDynamics
+
     //
     // Row overrides
     //
@@ -151,6 +154,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -198,7 +202,7 @@ extends
 /**
  * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
+ * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -214,7 +218,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class DiscontinuousExcitationControlUserDefined
 (
-    override val sup: DiscontinuousExcitationControlDynamics = null,
+    DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -229,7 +233,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup
+    override def sup: DiscontinuousExcitationControlDynamics = DiscontinuousExcitationControlDynamics
+
     //
     // Row overrides
     //
@@ -245,6 +250,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -292,7 +298,7 @@ extends
 /**
  * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -308,7 +314,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class ExcitationSystemUserDefined
 (
-    override val sup: ExcitationSystemDynamics = null,
+    ExcitationSystemDynamics: ExcitationSystemDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -323,7 +329,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup
+    override def sup: ExcitationSystemDynamics = ExcitationSystemDynamics
+
     //
     // Row overrides
     //
@@ -339,6 +346,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -386,7 +394,7 @@ extends
 /**
  * Load whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -402,7 +410,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class LoadUserDefined
 (
-    override val sup: LoadDynamics = null,
+    LoadDynamics: LoadDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -417,7 +425,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LoadDynamics: LoadDynamics = sup
+    override def sup: LoadDynamics = LoadDynamics
+
     //
     // Row overrides
     //
@@ -433,6 +442,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -480,7 +490,7 @@ extends
 /**
  * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
+ * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -496,7 +506,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class MechanicalLoadUserDefined
 (
-    override val sup: MechanicalLoadDynamics = null,
+    MechanicalLoadDynamics: MechanicalLoadDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -511,7 +521,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MechanicalLoadDynamics: MechanicalLoadDynamics = sup
+    override def sup: MechanicalLoadDynamics = MechanicalLoadDynamics
+
     //
     // Row overrides
     //
@@ -527,6 +538,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -574,7 +586,7 @@ extends
 /**
  * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -590,7 +602,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class OverexcitationLimiterUserDefined
 (
-    override val sup: OverexcitationLimiterDynamics = null,
+    OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -605,7 +617,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup
+    override def sup: OverexcitationLimiterDynamics = OverexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -621,6 +634,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -668,7 +682,7 @@ extends
 /**
  * Power factor or VAr controller type 1 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -684,7 +698,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PFVArControllerType1UserDefined
 (
-    override val sup: PFVArControllerType1Dynamics = null,
+    PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -699,7 +713,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup
+    override def sup: PFVArControllerType1Dynamics = PFVArControllerType1Dynamics
+
     //
     // Row overrides
     //
@@ -715,6 +730,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -762,7 +778,7 @@ extends
 /**
  * Power factor or VAr controller type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -778,7 +794,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PFVArControllerType2UserDefined
 (
-    override val sup: PFVArControllerType2Dynamics = null,
+    PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -793,7 +809,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup
+    override def sup: PFVArControllerType2Dynamics = PFVArControllerType2Dynamics
+
     //
     // Row overrides
     //
@@ -809,6 +826,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -856,7 +874,7 @@ extends
 /**
  * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -872,7 +890,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class PowerSystemStabilizerUserDefined
 (
-    override val sup: PowerSystemStabilizerDynamics = null,
+    PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -887,7 +905,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup
+    override def sup: PowerSystemStabilizerDynamics = PowerSystemStabilizerDynamics
+
     //
     // Row overrides
     //
@@ -903,6 +922,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -952,7 +972,7 @@ extends
  *
  * This class does not inherit from IdentifiedObject since it is not intended that a single instance of it be referenced by more than one proprietary user-defined model instance.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param booleanParameterValue Boolean parameter value.
  *        If this attribute is populated, integerParameterValue and floatParameterValue will not be.
  * @param floatParameterValue Floating point parameter value.
@@ -992,7 +1012,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class ProprietaryParameterDynamics
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     booleanParameterValue: Boolean = false,
     floatParameterValue: Double = 0.0,
     integerParameterValue: Int = 0,
@@ -1030,7 +1050,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1046,6 +1067,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1205,7 +1227,7 @@ extends
 /**
  * Static var compensator (SVC) function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.StaticVarCompensatorDynamics StaticVarCompensatorDynamics]] Reference to the superclass object.
+ * @param StaticVarCompensatorDynamics [[ch.ninecode.model.StaticVarCompensatorDynamics StaticVarCompensatorDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1221,7 +1243,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class SVCUserDefined
 (
-    override val sup: StaticVarCompensatorDynamics = null,
+    StaticVarCompensatorDynamics: StaticVarCompensatorDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1236,7 +1258,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StaticVarCompensatorDynamics: StaticVarCompensatorDynamics = sup
+    override def sup: StaticVarCompensatorDynamics = StaticVarCompensatorDynamics
+
     //
     // Row overrides
     //
@@ -1252,6 +1275,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1299,7 +1323,7 @@ extends
 /**
  * Synchronous machine whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1315,7 +1339,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class SynchronousMachineUserDefined
 (
-    override val sup: SynchronousMachineDynamics = null,
+    SynchronousMachineDynamics: SynchronousMachineDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1330,7 +1354,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup
+    override def sup: SynchronousMachineDynamics = SynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -1346,6 +1371,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1393,7 +1419,7 @@ extends
 /**
  * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1409,7 +1435,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class TurbineGovernorUserDefined
 (
-    override val sup: TurbineGovernorDynamics = null,
+    TurbineGovernorDynamics: TurbineGovernorDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1424,7 +1450,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup
+    override def sup: TurbineGovernorDynamics = TurbineGovernorDynamics
+
     //
     // Row overrides
     //
@@ -1440,6 +1467,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1487,7 +1515,7 @@ extends
 /**
  * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
+ * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1503,7 +1531,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class TurbineLoadControllerUserDefined
 (
-    override val sup: TurbineLoadControllerDynamics = null,
+    TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1518,7 +1546,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = sup
+    override def sup: TurbineLoadControllerDynamics = TurbineLoadControllerDynamics
+
     //
     // Row overrides
     //
@@ -1534,6 +1563,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1581,7 +1611,7 @@ extends
 /**
  * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1597,7 +1627,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class UnderexcitationLimiterUserDefined
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1612,7 +1642,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -1628,6 +1659,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1675,7 +1707,7 @@ extends
 /**
  * Voltage source converter (VSC) function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.VSCDynamics VSCDynamics]] Reference to the superclass object.
+ * @param VSCDynamics [[ch.ninecode.model.VSCDynamics VSCDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1691,7 +1723,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VSCUserDefined
 (
-    override val sup: VSCDynamics = null,
+    VSCDynamics: VSCDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1706,7 +1738,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VSCDynamics: VSCDynamics = sup
+    override def sup: VSCDynamics = VSCDynamics
+
     //
     // Row overrides
     //
@@ -1722,6 +1755,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1769,7 +1803,7 @@ extends
 /**
  * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
+ * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1785,7 +1819,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VoltageAdjusterUserDefined
 (
-    override val sup: VoltageAdjusterDynamics = null,
+    VoltageAdjusterDynamics: VoltageAdjusterDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1800,7 +1834,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VoltageAdjusterDynamics: VoltageAdjusterDynamics = sup
+    override def sup: VoltageAdjusterDynamics = VoltageAdjusterDynamics
+
     //
     // Row overrides
     //
@@ -1816,6 +1851,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1863,7 +1899,7 @@ extends
 /**
  * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
+ * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1879,7 +1915,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class VoltageCompensatorUserDefined
 (
-    override val sup: VoltageCompensatorDynamics = null,
+    VoltageCompensatorDynamics: VoltageCompensatorDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1894,7 +1930,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup
+    override def sup: VoltageCompensatorDynamics = VoltageCompensatorDynamics
+
     //
     // Row overrides
     //
@@ -1910,6 +1947,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1957,7 +1995,7 @@ extends
 /**
  * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
+ * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1973,7 +2011,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindPlantUserDefined
 (
-    override val sup: WindPlantDynamics = null,
+    WindPlantDynamics: WindPlantDynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -1988,7 +2026,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindPlantDynamics: WindPlantDynamics = sup
+    override def sup: WindPlantDynamics = WindPlantDynamics
+
     //
     // Row overrides
     //
@@ -2004,6 +2043,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2051,7 +2091,7 @@ extends
 /**
  * Wind type 1 or type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
+ * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -2067,7 +2107,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindType1or2UserDefined
 (
-    override val sup: WindTurbineType1or2Dynamics = null,
+    WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -2082,7 +2122,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = sup
+    override def sup: WindTurbineType1or2Dynamics = WindTurbineType1or2Dynamics
+
     //
     // Row overrides
     //
@@ -2098,6 +2139,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2145,7 +2187,7 @@ extends
 /**
  * Wind type 3 or type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on a proprietary model as opposed to a detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -2161,7 +2203,7 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
  */
 final case class WindType3or4UserDefined
 (
-    override val sup: WindTurbineType3or4Dynamics = null,
+    WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = null,
     proprietary: Boolean = false,
     ProprietaryParameterDynamics: List[String] = null
 )
@@ -2176,7 +2218,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = sup
+    override def sup: WindTurbineType3or4Dynamics = WindTurbineType3or4Dynamics
+
     //
     // Row overrides
     //
@@ -2192,6 +2235,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Interval between two dates.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param end End date of this interval.
  * @param start Start date of this interval.
  * @group Domain
@@ -24,7 +24,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DateInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     end: String = null,
     start: String = null
 )
@@ -39,7 +39,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -55,6 +56,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -98,7 +100,7 @@ extends
 /**
  * Interval between two date and time points, where the interval includes the start time but excludes end time.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param end End date and time of this interval.
  *        The end date and time where the interval is defined up to, but excluded.
  * @param start Start date and time of this interval.
@@ -114,7 +116,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DateTimeInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     end: String = null,
     start: String = null
 )
@@ -129,7 +131,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -145,6 +148,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -188,7 +192,7 @@ extends
 /**
  * Quantity with decimal value and associated unit or currency information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param currency Currency of this quantity.
  * @param multiplier Unit multiplier of this quantity.
  * @param unit Unit of this quantity.
@@ -204,7 +208,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class DecimalQuantity
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     currency: String = null,
     multiplier: String = null,
     unit: String = null,
@@ -221,7 +225,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -237,6 +242,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -289,7 +295,7 @@ extends
 /**
  * Quantity with float value and associated unit information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
  * @param unit Unit of this quantity.
  * @param value Value of this quantity.
@@ -304,7 +310,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class FloatQuantity
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     multiplier: String = null,
     unit: String = null,
     value: Double = 0.0
@@ -320,7 +326,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -336,6 +343,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -384,7 +392,7 @@ extends
 /**
  * Quantity with integer value and associated unit information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
  * @param unit Unit of this quantity.
  * @param value Value of this quantity.
@@ -399,7 +407,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class IntegerQuantity
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     multiplier: String = null,
     unit: String = null,
     value: Int = 0
@@ -415,7 +423,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -431,6 +440,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -479,7 +489,7 @@ extends
 /**
  * Interval between two times specified as month and day.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
  * @group Domain
@@ -493,7 +503,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class MonthDayInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     end: String = null,
     start: String = null
 )
@@ -508,7 +518,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -524,6 +535,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -567,7 +579,7 @@ extends
 /**
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
  * @param unit Unit of this quantity.
  * @param value Value of this quantity.
@@ -582,7 +594,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class StringQuantity
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     multiplier: String = null,
     unit: String = null,
     value: String = null
@@ -598,7 +610,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -614,6 +627,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -662,7 +676,7 @@ extends
 /**
  * Interval between two times.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
  * @group Domain
@@ -676,7 +690,7 @@ For all datatypes both positive and negative values are allowed unless stated ot
  */
 final case class TimeInterval
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     end: String = null,
     start: String = null
 )
@@ -691,7 +705,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -707,6 +722,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

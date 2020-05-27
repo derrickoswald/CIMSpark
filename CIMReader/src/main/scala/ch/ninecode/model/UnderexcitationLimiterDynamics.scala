@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look –up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kui Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
  *        Typical value = 0,1.
  * @param p0 Segment P initial point (<i>P</i><i><sub>0</sub></i>).
@@ -33,7 +33,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class UnderexcLim2Simplified
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     kui: Double = 0.0,
     p0: Double = 0.0,
     p1: Double = 0.0,
@@ -53,7 +53,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -69,6 +70,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -134,7 +136,7 @@ extends
  *
  * Reference: IEEE UEL1 421.5-2005, 10.1.
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kuc UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
  *        Typical value = 1,38.
  * @param kuf UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
@@ -169,7 +171,7 @@ extends
  */
 final case class UnderexcLimIEEE1
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     kuc: Double = 0.0,
     kuf: Double = 0.0,
     kui: Double = 0.0,
@@ -197,7 +199,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -213,6 +216,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -310,7 +314,7 @@ extends
  *
  * Reference: IEEE UEL2 421.5-2005, 10.2  (limit characteristic lookup table shown in Figure 10.4 (p 32)).
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (<i>k1</i>).
  *        Typical value = 2.
  * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (<i>k2</i>).
@@ -385,7 +389,7 @@ extends
  */
 final case class UnderexcLimIEEE2
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     k1: Double = 0.0,
     k2: Double = 0.0,
     kfb: Double = 0.0,
@@ -438,7 +442,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -454,6 +459,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -649,7 +655,7 @@ extends
 /**
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param k Minimum excitation limit slope (<i>K</i>) (&gt; 0).
  * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
  * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
@@ -662,7 +668,7 @@ extends
  */
 final case class UnderexcLimX1
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     k: Double = 0.0,
     kf2: Double = 0.0,
     km: Double = 0.0,
@@ -681,7 +687,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -697,6 +704,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -756,7 +764,7 @@ extends
 /**
  * <font color="#0f0f0f">Westinghouse minimum excitation limiter.</font>
  *
- * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
  * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
  * @param melmax Minimum excitation limit value (<i>MELMAX</i>).
@@ -770,7 +778,7 @@ extends
  */
 final case class UnderexcLimX2
 (
-    override val sup: UnderexcitationLimiterDynamics = null,
+    UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = null,
     kf2: Double = 0.0,
     km: Double = 0.0,
     melmax: Double = 0.0,
@@ -790,7 +798,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup
+    override def sup: UnderexcitationLimiterDynamics = UnderexcitationLimiterDynamics
+
     //
     // Row overrides
     //
@@ -806,6 +815,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -869,7 +879,7 @@ extends
 /**
  * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this underexcitation limiter model is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this underexcitation limiter model.
  * @group UnderexcitationLimiterDynamics
@@ -878,7 +888,7 @@ extends
  */
 final case class UnderexcitationLimiterDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null
 )
@@ -893,7 +903,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -909,6 +920,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

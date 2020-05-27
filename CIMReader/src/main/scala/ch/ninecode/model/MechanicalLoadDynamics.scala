@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Mechanical load model type 1.
  *
- * @param sup [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
+ * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
  * @param a Speed squared coefficient (<i>a</i>).
  * @param b Speed coefficient (<i>b</i>).
  * @param d Speed to the exponent coefficient (<i>d</i>).
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class MechLoad1
 (
-    override val sup: MechanicalLoadDynamics = null,
+    MechanicalLoadDynamics: MechanicalLoadDynamics = null,
     a: Double = 0.0,
     b: Double = 0.0,
     d: Double = 0.0,
@@ -38,7 +38,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MechanicalLoadDynamics: MechanicalLoadDynamics = sup
+    override def sup: MechanicalLoadDynamics = MechanicalLoadDynamics
+
     //
     // Row overrides
     //
@@ -54,6 +55,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -105,7 +107,7 @@ extends
 /**
  * Mechanical load function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this mechanical load model is associated.
  *        MechanicalLoadDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this mechanical load model is associated.
@@ -116,7 +118,7 @@ extends
  */
 final case class MechanicalLoadDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     AsynchronousMachineDynamics: String = null,
     SynchronousMachineDynamics: String = null
 )
@@ -131,7 +133,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -147,6 +150,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

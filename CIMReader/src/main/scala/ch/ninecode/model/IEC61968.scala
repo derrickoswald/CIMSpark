@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * IEC 61968 version number assigned to this UML model.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param date (const=2016-10-31) Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
  * @param version (const=IEC61968CIM13v09) Form is IEC61968CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
  *        For example IEC61968CIM10v17.
@@ -21,7 +21,7 @@ Currently, normative parts of the model support the needs of information exchang
  */
 final case class IEC61968CIMVersion
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     date: String = null,
     version: String = null
 )
@@ -36,7 +36,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -52,6 +53,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

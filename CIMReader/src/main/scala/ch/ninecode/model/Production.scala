@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param airCompressorRating Rating of the CAES air compressor.
  * @param CAESPlant [[ch.ninecode.model.CAESPlant CAESPlant]] An air compressor may be a member of a compressed air energy storage plant.
  * @param CombustionTurbine [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A CAES air compressor is driven by combustion turbine.
@@ -20,7 +20,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AirCompressor
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     airCompressorRating: Double = 0.0,
     CAESPlant: String = null,
     CombustionTurbine: String = null
@@ -36,7 +36,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -52,6 +53,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -104,7 +106,7 @@ extends
 /**
  * An electrochemical energy storage device.
  *
- * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
  * @param batteryState The current state of the battery (charging, full, etc.).
  * @param ratedE Full energy storage capacity of the battery.
  * @param storedE Amount of energy currently stored; no more than ratedE.
@@ -114,7 +116,7 @@ extends
  */
 final case class BatteryUnit
 (
-    override val sup: PowerElectronicsUnit = null,
+    PowerElectronicsUnit: PowerElectronicsUnit = null,
     batteryState: String = null,
     ratedE: Double = 0.0,
     storedE: Double = 0.0
@@ -130,7 +132,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerElectronicsUnit: PowerElectronicsUnit = sup
+    override def sup: PowerElectronicsUnit = PowerElectronicsUnit
+
     //
     // Row overrides
     //
@@ -146,6 +149,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -194,7 +198,7 @@ extends
 /**
  * Compressed air energy storage plant.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param energyStorageCapacity The rated energy storage capacity.
  * @param ratedCapacityP The CAES plant's gross rated generating capacity.
  * @param AirCompressor [[ch.ninecode.model.AirCompressor AirCompressor]] An air compressor may be a member of a compressed air energy storage plant.
@@ -205,7 +209,7 @@ extends
  */
 final case class CAESPlant
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     energyStorageCapacity: Double = 0.0,
     ratedCapacityP: Double = 0.0,
     AirCompressor: String = null,
@@ -222,7 +226,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -238,6 +243,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -296,7 +302,7 @@ extends
  *
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param cogenHPSendoutRating The high pressure steam sendout.
  * @param cogenHPSteamRating The high pressure steam rating.
  * @param cogenLPSendoutRating The low pressure steam sendout.
@@ -310,7 +316,7 @@ extends
  */
 final case class CogenerationPlant
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     cogenHPSendoutRating: Double = 0.0,
     cogenHPSteamRating: Double = 0.0,
     cogenLPSendoutRating: Double = 0.0,
@@ -330,7 +336,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -346,6 +353,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -415,7 +423,7 @@ extends
 /**
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
  * @param ThermalGeneratingUnits [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a combined cycle plant.
  * @group Production
@@ -424,7 +432,7 @@ extends
  */
 final case class CombinedCyclePlant
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     combCyclePlantRating: Double = 0.0,
     ThermalGeneratingUnits: List[String] = null
 )
@@ -439,7 +447,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -455,6 +464,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -504,7 +514,7 @@ extends
  *
  * A unit may have zero or more emission accounts, and will typically have one for tracking usage and one for tracking credits.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionType The type of emission, for example sulfur dioxide (SO2).
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide).
  * @param emissionValueSource The source of the emission value.
@@ -515,7 +525,7 @@ extends
  */
 final case class EmissionAccount
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     emissionType: String = null,
     emissionValueSource: String = null,
     ThermalGeneratingUnit: String = null
@@ -531,7 +541,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -547,6 +558,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -599,7 +611,7 @@ extends
  *
  * This curve applies when only one type of fuel is being burned.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionContent The emission content per quantity of fuel burned.
  * @param emissionType The type of emission, which also gives the production rate measurement unit.
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide).
@@ -611,7 +623,7 @@ extends
  */
 final case class EmissionCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     emissionContent: Double = 0.0,
     emissionType: String = null,
     isNetGrossP: Boolean = false,
@@ -628,7 +640,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -644,6 +657,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -701,7 +715,7 @@ extends
  *
  * For example, coal, oil, gas, etc.   These are the specific fuels that the generating unit can consume.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fossilFuelType The type of fossil fuel, such as coal, oil, or gas.
  * @param fuelCost The cost in terms of heat value for the given type of fuel.
  * @param fuelDispatchCost The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost.
@@ -722,7 +736,7 @@ extends
  */
 final case class FossilFuel
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     fossilFuelType: String = null,
     fuelCost: Double = 0.0,
     fuelDispatchCost: Double = 0.0,
@@ -747,7 +761,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -763,6 +778,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -852,7 +868,7 @@ extends
 /**
  * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param fuelAllocationEndDate The end time and date of the fuel allocation schedule.
  * @param fuelAllocationStartDate The start time and date of the fuel allocation schedule.
  * @param fuelType The type of fuel, which also indicates the corresponding measurement unit.
@@ -866,7 +882,7 @@ extends
  */
 final case class FuelAllocationSchedule
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     fuelAllocationEndDate: String = null,
     fuelAllocationStartDate: String = null,
     fuelType: String = null,
@@ -886,7 +902,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -902,6 +919,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -972,7 +990,7 @@ extends
  *
  * The operating cost curve for thermal units is derived from heat input and fuel costs. The operating cost curve for hydro units is derived from water flow rates and equivalent water costs.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
  * @group Production
@@ -981,7 +999,7 @@ extends
  */
 final case class GenUnitOpCostCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     isNetGrossP: Boolean = false,
     GeneratingUnit: String = null
 )
@@ -996,7 +1014,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -1012,6 +1031,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1061,7 +1081,7 @@ extends
  *
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param RegularIntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have an operating schedule, indicating the planned operation of the unit.
  * @group Production
  * @groupname Production Package Production
@@ -1069,7 +1089,7 @@ extends
  */
 final case class GenUnitOpSchedule
 (
-    override val sup: RegularIntervalSchedule = null,
+    RegularIntervalSchedule: RegularIntervalSchedule = null,
     GeneratingUnit: String = null
 )
 extends
@@ -1083,7 +1103,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    override def sup: RegularIntervalSchedule = RegularIntervalSchedule
+
     //
     // Row overrides
     //
@@ -1099,6 +1120,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1143,7 +1165,7 @@ extends
  *
  * For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param allocSpinResP The planned unused capacity (spinning reserve) which can be used to support emergency load.
  * @param autoCntrlMarginP The planned unused capacity which can be used to support automatic control overruns.
  * @param baseP For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
@@ -1201,7 +1223,7 @@ extends
  */
 final case class GeneratingUnit
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     allocSpinResP: Double = 0.0,
     autoCntrlMarginP: Double = 0.0,
     baseP: Double = 0.0,
@@ -1256,7 +1278,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -1272,6 +1295,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1486,7 +1510,7 @@ extends
  *
  * Station service loads, when modelled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
  * @group Production
  * @groupname Production Package Production
@@ -1494,7 +1518,7 @@ extends
  */
 final case class GrossToNetActivePowerCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     GeneratingUnit: String = null
 )
 extends
@@ -1508,7 +1532,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -1524,6 +1549,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1568,7 +1594,7 @@ extends
  *
  * The quantity of main fuel used to sustain generation at this output level is prorated for throttling between definition points. The quantity of supplemental fuel used at this output level is fixed and not prorated.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param auxPowerMult Power output - auxiliary power multiplier adjustment factor.
  * @param auxPowerOffset Power output - auxiliary power offset adjustment factor.
  * @param heatInputEff Heat input - efficiency multiplier adjustment factor.
@@ -1581,7 +1607,7 @@ extends
  */
 final case class HeatInputCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     auxPowerMult: Double = 0.0,
     auxPowerOffset: Double = 0.0,
     heatInputEff: Double = 0.0,
@@ -1600,7 +1626,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -1616,6 +1643,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1681,7 +1709,7 @@ extends
  *
  * The heat input is from all fuels.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a heat rate curve.
  * @group Production
@@ -1690,7 +1718,7 @@ extends
  */
 final case class HeatRateCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     isNetGrossP: Boolean = false,
     ThermalGeneratingUnit: String = null
 )
@@ -1705,7 +1733,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -1721,6 +1750,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1772,7 +1802,7 @@ extends
  * where:  E is the efficiency, as a percentage; P is the active power; H is the height; Q is the discharge, volume/time unit; K is a constant.
  * For example, a curve instance for a given net head could show efficiency (Y-axis) versus active power output (X-axis) or versus discharge on the X-axis.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has an efficiency curve.
  * @group Production
  * @groupname Production Package Production
@@ -1780,7 +1810,7 @@ extends
  */
 final case class HydroGeneratingEfficiencyCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     HydroGeneratingUnit: String = null
 )
 extends
@@ -1794,7 +1824,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -1810,6 +1841,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1852,7 +1884,7 @@ extends
 /**
  * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param dropHeight The height water drops from the reservoir mid-point to the turbine.
  * @param energyConversionCapability Energy conversion capability for generating.
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
@@ -1867,7 +1899,7 @@ extends
  */
 final case class HydroGeneratingUnit
 (
-    override val sup: GeneratingUnit = null,
+    GeneratingUnit: GeneratingUnit = null,
     dropHeight: Double = 0.0,
     energyConversionCapability: String = null,
     hydroUnitWaterCost: Double = 0.0,
@@ -1888,7 +1920,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -1904,6 +1937,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1981,7 +2015,7 @@ extends
  *
  * When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param dischargeTravelDelay Water travel delay from tailbay to next downstream hydro power station.
  * @param genRatedP The hydro plant's generating rating active power for rated head conditions.
  * @param hydroPlantStorageType The type of hydro power plant water storage.
@@ -2001,7 +2035,7 @@ extends
  */
 final case class HydroPowerPlant
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     dischargeTravelDelay: Double = 0.0,
     genRatedP: Double = 0.0,
     hydroPlantStorageType: String = null,
@@ -2027,7 +2061,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -2043,6 +2078,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2138,7 +2174,7 @@ extends
 /**
  * A synchronous motor-driven pump, typically associated with a pumped storage plant.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param pumpDischAtMaxHead The pumping discharge under maximum head conditions, usually at full gate.
  * @param pumpDischAtMinHead The pumping discharge under minimum head conditions, usually at full gate.
  * @param pumpPowerAtMaxHead The pumping power under maximum head conditions, usually at full gate.
@@ -2153,7 +2189,7 @@ extends
  */
 final case class HydroPump
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     pumpDischAtMaxHead: Double = 0.0,
     pumpDischAtMinHead: Double = 0.0,
     pumpPowerAtMaxHead: Double = 0.0,
@@ -2173,7 +2209,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -2189,6 +2226,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2260,7 +2298,7 @@ extends
  *
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=available to startup or shutdown)  (2=must pump).
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param RegularIntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  * @group Production
  * @groupname Production Package Production
@@ -2268,7 +2306,7 @@ extends
  */
 final case class HydroPumpOpSchedule
 (
-    override val sup: RegularIntervalSchedule = null,
+    RegularIntervalSchedule: RegularIntervalSchedule = null,
     HydroPump: String = null
 )
 extends
@@ -2282,7 +2320,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    override def sup: RegularIntervalSchedule = RegularIntervalSchedule
+
     //
     // Row overrides
     //
@@ -2298,6 +2337,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2342,7 +2382,7 @@ extends
  *
  * The IHR curve represents the slope of the HeatInputCurve. Note that the "incremental heat rate" and the "heat rate" have the same engineering units.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have an incremental heat rate curve.
  * @group Production
@@ -2351,7 +2391,7 @@ extends
  */
 final case class IncrementalHeatRateCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     isNetGrossP: Boolean = false,
     ThermalGeneratingUnit: String = null
 )
@@ -2366,7 +2406,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -2382,6 +2423,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2431,7 +2473,7 @@ extends
  *
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param RegularIntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a "natural" inflow forecast.
  * @group Production
  * @groupname Production Package Production
@@ -2439,7 +2481,7 @@ extends
  */
 final case class InflowForecast
 (
-    override val sup: RegularIntervalSchedule = null,
+    RegularIntervalSchedule: RegularIntervalSchedule = null,
     Reservoir: String = null
 )
 extends
@@ -2453,7 +2495,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    override def sup: RegularIntervalSchedule = RegularIntervalSchedule
+
     //
     // Row overrides
     //
@@ -2469,6 +2512,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2513,7 +2557,7 @@ extends
  *
  * The  volume is at the Y-axis and the reservoir level at the X-axis.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a level versus volume relationship.
  * @group Production
  * @groupname Production Package Production
@@ -2521,7 +2565,7 @@ extends
  */
 final case class LevelVsVolumeCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     Reservoir: String = null
 )
 extends
@@ -2535,7 +2579,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -2551,6 +2596,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2593,14 +2639,14 @@ extends
 /**
  * A nuclear generating unit.
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 final case class NuclearGeneratingUnit
 (
-    override val sup: GeneratingUnit = null
+    GeneratingUnit: GeneratingUnit = null
 )
 extends
     Element
@@ -2613,7 +2659,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -2629,6 +2676,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2658,7 +2706,7 @@ extends
  *
  * One or more turbines may be connected to the same penstock.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has a penstock loss curve.
  * @group Production
  * @groupname Production Package Production
@@ -2666,7 +2714,7 @@ extends
  */
 final case class PenstockLossCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     HydroGeneratingUnit: String = null
 )
 extends
@@ -2680,7 +2728,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -2696,6 +2745,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2738,14 +2788,14 @@ extends
 /**
  * A photovoltaic device or an aggregation of such devices.
  *
- * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 final case class PhotoVoltaicUnit
 (
-    override val sup: PowerElectronicsUnit = null
+    PowerElectronicsUnit: PowerElectronicsUnit = null
 )
 extends
     Element
@@ -2758,7 +2808,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerElectronicsUnit: PowerElectronicsUnit = sup
+    override def sup: PowerElectronicsUnit = PowerElectronicsUnit
+
     //
     // Row overrides
     //
@@ -2774,6 +2825,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2801,7 +2853,7 @@ extends
 /**
  * A generating unit or battery or aggregation that connects to the AC network using power electronics rather than rotating machines.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param maxP Maximum active power limit.
  *        This is the maximum (nameplate) limit for the unit.
  * @param minP Minimum active power limit.
@@ -2813,7 +2865,7 @@ extends
  */
 final case class PowerElectronicsUnit
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     maxP: Double = 0.0,
     minP: Double = 0.0,
     PowerElectronicsConnection: String = null
@@ -2829,7 +2881,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -2845,6 +2898,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2896,14 +2950,14 @@ extends
 /**
  * A wind generating unit that connects to the AC network with power electronics rather than rotating machines or an aggregation of such units.
  *
- * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 final case class PowerElectronicsWindUnit
 (
-    override val sup: PowerElectronicsUnit = null
+    PowerElectronicsUnit: PowerElectronicsUnit = null
 )
 extends
     Element
@@ -2916,7 +2970,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerElectronicsUnit: PowerElectronicsUnit = sup
+    override def sup: PowerElectronicsUnit = PowerElectronicsUnit
+
     //
     // Row overrides
     //
@@ -2932,6 +2987,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2961,7 +3017,7 @@ extends
  *
  * The storage is usually behind some type of dam.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param activeStorageCapacity Storage volume between the full supply level and the normal minimum operating level.
  * @param energyStorageRating The reservoir's energy storage rating in energy for given head conditions.
  * @param fullSupplyLevel Full supply level, above which water will spill.
@@ -2987,7 +3043,7 @@ extends
  */
 final case class Reservoir
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     activeStorageCapacity: Double = 0.0,
     energyStorageRating: Double = 0.0,
     fullSupplyLevel: Double = 0.0,
@@ -3018,7 +3074,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -3034,6 +3091,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3152,7 +3210,7 @@ extends
 /**
  * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param shutdownCost Fixed shutdown cost.
  * @param shutdownDate The date and time of the most recent generating unit shutdown.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a shutdown curve.
@@ -3162,7 +3220,7 @@ extends
  */
 final case class ShutdownCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     shutdownCost: Double = 0.0,
     shutdownDate: String = null,
     ThermalGeneratingUnit: String = null
@@ -3178,7 +3236,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3194,6 +3253,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3247,14 +3307,14 @@ extends
  *
  * This class does not represent photovoltaic (PV) generation.
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 final case class SolarGeneratingUnit
 (
-    override val sup: GeneratingUnit = null
+    GeneratingUnit: GeneratingUnit = null
 )
 extends
     Element
@@ -3267,7 +3327,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -3283,6 +3344,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -3310,7 +3372,7 @@ extends
 /**
  * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ignitionFuelType Type of ignition fuel.
  * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup ignition fuel curve.
  * @group Production
@@ -3319,7 +3381,7 @@ extends
  */
 final case class StartIgnFuelCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     ignitionFuelType: String = null,
     StartupModel: String = null
 )
@@ -3334,7 +3396,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3350,6 +3413,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3396,7 +3460,7 @@ extends
 /**
  * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param mainFuelType Type of main fuel.
  * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup main fuel curve.
  * @group Production
@@ -3405,7 +3469,7 @@ extends
  */
 final case class StartMainFuelCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     mainFuelType: String = null,
     StartupModel: String = null
 )
@@ -3420,7 +3484,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3436,6 +3501,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3482,7 +3548,7 @@ extends
 /**
  * Rate in gross active power per minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
  * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup ramp curve.
  * @group Production
@@ -3491,7 +3557,7 @@ extends
  */
 final case class StartRampCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     hotStandbyRamp: Double = 0.0,
     StartupModel: String = null
 )
@@ -3506,7 +3572,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3522,6 +3589,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3569,7 +3637,7 @@ extends
 /**
  * Unit start up characteristics depending on how long the unit has been off line.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fixedMaintCost Fixed maintenance cost.
  * @param hotStandbyHeat The amount of heat input per time unit required for hot standby operation.
  * @param incrementalMaintCost Incremental maintenance cost.
@@ -3592,7 +3660,7 @@ extends
  */
 final case class StartupModel
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     fixedMaintCost: Double = 0.0,
     hotStandbyHeat: Double = 0.0,
     incrementalMaintCost: Double = 0.0,
@@ -3619,7 +3687,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -3635,6 +3704,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3733,7 +3803,7 @@ extends
 /**
  * The cogeneration plant's steam sendout schedule in volume per time unit.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param RegularIntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param CogenerationPlant [[ch.ninecode.model.CogenerationPlant CogenerationPlant]] A cogeneration plant has a steam sendout schedule.
  * @group Production
  * @groupname Production Package Production
@@ -3741,7 +3811,7 @@ extends
  */
 final case class SteamSendoutSchedule
 (
-    override val sup: RegularIntervalSchedule = null,
+    RegularIntervalSchedule: RegularIntervalSchedule = null,
     CogenerationPlant: String = null
 )
 extends
@@ -3755,7 +3825,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup
+    override def sup: RegularIntervalSchedule = RegularIntervalSchedule
+
     //
     // Row overrides
     //
@@ -3771,6 +3842,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3815,7 +3887,7 @@ extends
  *
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has a tailbay loss curve.
  * @group Production
  * @groupname Production Package Production
@@ -3823,7 +3895,7 @@ extends
  */
 final case class TailbayLossCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     HydroGeneratingUnit: String = null
 )
 extends
@@ -3837,7 +3909,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3853,6 +3926,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3897,7 +3971,7 @@ extends
  *
  * Typically in one hour increments for up to 10 days.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param highLevelLimit High target level limit, above which the reservoir operation will be penalized.
  * @param lowLevelLimit Low target level limit, below which the reservoir operation will be penalized.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a water level target schedule.
@@ -3907,7 +3981,7 @@ extends
  */
 final case class TargetLevelSchedule
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     highLevelLimit: Double = 0.0,
     lowLevelLimit: Double = 0.0,
     Reservoir: String = null
@@ -3923,7 +3997,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -3939,6 +4014,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3990,7 +4066,7 @@ extends
 /**
  * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param oMCost Operating and maintenance cost for the thermal unit.
  * @param CAESPlant [[ch.ninecode.model.CAESPlant CAESPlant]] A thermal generating unit may be a member of a compressed air energy storage plant.
  * @param CogenerationPlant [[ch.ninecode.model.CogenerationPlant CogenerationPlant]] A thermal generating unit may be a member of a cogeneration plant.
@@ -4010,7 +4086,7 @@ extends
  */
 final case class ThermalGeneratingUnit
 (
-    override val sup: GeneratingUnit = null,
+    GeneratingUnit: GeneratingUnit = null,
     oMCost: Double = 0.0,
     CAESPlant: String = null,
     CogenerationPlant: String = null,
@@ -4036,7 +4112,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -4052,6 +4129,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -4157,7 +4235,7 @@ extends
  *
  * May be used to represent a single turbine or an aggregation.
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param windGenUnitType The kind of wind generating unit.
  * @group Production
  * @groupname Production Package Production
@@ -4165,7 +4243,7 @@ extends
  */
 final case class WindGeneratingUnit
 (
-    override val sup: GeneratingUnit = null,
+    GeneratingUnit: GeneratingUnit = null,
     windGenUnitType: String = null
 )
 extends
@@ -4179,7 +4257,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -4195,6 +4274,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

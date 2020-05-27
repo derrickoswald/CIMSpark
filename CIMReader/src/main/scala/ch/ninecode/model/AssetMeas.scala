@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Definition of type of analog useful in asset domain.
  *
- * @param sup [[ch.ninecode.model.Analog Analog]] Reference to the superclass object.
+ * @param Analog [[ch.ninecode.model.Analog Analog]] Reference to the superclass object.
  * @param detectionLimit Detection limit of related analog value if different from detection limit of test standard or if there is no test standard.
  *        The detection limit (also known as lower limit of detection or limit of detection (LOD), is the lowest quantity of a substance that can be distinguished from the absence of that substance (a blank value) within a stated confidence limit (generally 1%).
  * @param precision Precision of related analog value if different from precision of test standard or if there is no test standard.
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AssetAnalog
 (
-    override val sup: Analog = null,
+    Analog: Analog = null,
     detectionLimit: Double = 0.0,
     precision: Double = 0.0,
     reportingTemperature: Double = 0.0,
@@ -40,7 +40,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Analog: Analog = sup
+    override def sup: Analog = Analog
+
     //
     // Row overrides
     //
@@ -56,6 +57,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -111,14 +113,14 @@ extends
 /**
  * Definition of type of discrete useful in asset domain.
  *
- * @param sup [[ch.ninecode.model.Discrete Discrete]] Reference to the superclass object.
+ * @param Discrete [[ch.ninecode.model.Discrete Discrete]] Reference to the superclass object.
  * @param TestStandard [[ch.ninecode.model.TestStandard TestStandard]] The lab test standard to which this asset health discrete is related.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class AssetDiscrete
 (
-    override val sup: Discrete = null,
+    Discrete: Discrete = null,
     TestStandard: String = null
 )
 extends
@@ -132,7 +134,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Discrete: Discrete = sup
+    override def sup: Discrete = Discrete
+
     //
     // Row overrides
     //
@@ -148,6 +151,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -190,7 +194,7 @@ extends
 /**
  * Definition of type of string measurement useful in asset domain.
  *
- * @param sup [[ch.ninecode.model.StringMeasurement StringMeasurement]] Reference to the superclass object.
+ * @param StringMeasurement [[ch.ninecode.model.StringMeasurement StringMeasurement]] Reference to the superclass object.
  * @param kind Kind of string useful in asset domain.
  * @param TestStandard [[ch.ninecode.model.TestStandard TestStandard]] Test standard which describes this asset string measurement.
  * @group AssetMeas
@@ -198,7 +202,7 @@ extends
  */
 final case class AssetStringMeasurement
 (
-    override val sup: StringMeasurement = null,
+    StringMeasurement: StringMeasurement = null,
     kind: String = null,
     TestStandard: String = null
 )
@@ -213,7 +217,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StringMeasurement: StringMeasurement = sup
+    override def sup: StringMeasurement = StringMeasurement
+
     //
     // Row overrides
     //
@@ -229,6 +234,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -275,14 +281,14 @@ extends
 /**
  * Temperature or pressure type of asset analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing temperature or pressure related to an asset.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class AssetTemperaturePressureAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -296,7 +302,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -312,6 +319,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -351,7 +359,7 @@ extends
 /**
  * The hierarchy of calculation methods used to derive this measurement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param CalculationMethodOrder [[ch.ninecode.model.CalculationMethodOrder CalculationMethodOrder]] Order of a statistical calculation associated with this calculation method hierarchy.
  * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Measurement to which this calculation method hierarchy applies.
  * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Measurement value to which this calculation method hierarchy applies.
@@ -360,7 +368,7 @@ extends
  */
 final case class CalculationMethodHierarchy
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     CalculationMethodOrder: List[String] = null,
     Measurement: List[String] = null,
     MeasurementValue: String = null
@@ -376,7 +384,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -392,6 +401,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -445,7 +455,7 @@ extends
 /**
  * The order of this calculation method in a hierarchy of calculation methods.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param order Order of the statistical calculation method within the calculation method hierarchy.
  * @param CalculationMethodHierarchy [[ch.ninecode.model.CalculationMethodHierarchy CalculationMethodHierarchy]] The calculation method hierarchy of which this order of statistical calculation is a member.
  * @param StatisicalCalculation [[ch.ninecode.model.StatisticalCalculation StatisticalCalculation]] The statistical calculation done at this order.
@@ -454,7 +464,7 @@ extends
  */
 final case class CalculationMethodOrder
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     order: Int = 0,
     CalculationMethodHierarchy: String = null,
     StatisicalCalculation: String = null
@@ -470,7 +480,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -486,6 +497,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -538,14 +550,14 @@ extends
 /**
  * Asset inspection type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing inspection result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class InspectionAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -559,7 +571,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -575,6 +588,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -614,14 +628,14 @@ extends
 /**
  * Asset inspection type of discrete.
  *
- * @param sup [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
+ * @param AssetDiscrete [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
  * @param kind Kind of discrete representing inspection result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class InspectionDiscrete
 (
-    override val sup: AssetDiscrete = null,
+    AssetDiscrete: AssetDiscrete = null,
     kind: String = null
 )
 extends
@@ -635,7 +649,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetDiscrete: AssetDiscrete = sup
+    override def sup: AssetDiscrete = AssetDiscrete
+
     //
     // Row overrides
     //
@@ -651,6 +666,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -690,14 +706,14 @@ extends
 /**
  * Asset oil analysis fluid test type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil fluid test analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisFluidAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -711,7 +727,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -727,6 +744,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -766,14 +784,14 @@ extends
 /**
  * Asset oil analysis fluid type of discrete.
  *
- * @param sup [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
+ * @param AssetDiscrete [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
  * @param kind Kind of discrete representing oil fluid test analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisFluidDiscrete
 (
-    override val sup: AssetDiscrete = null,
+    AssetDiscrete: AssetDiscrete = null,
     kind: String = null
 )
 extends
@@ -787,7 +805,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetDiscrete: AssetDiscrete = sup
+    override def sup: AssetDiscrete = AssetDiscrete
+
     //
     // Row overrides
     //
@@ -803,6 +822,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -842,14 +862,14 @@ extends
 /**
  * Asset oil analysis gas type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil dissolved gases analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisGasAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -863,7 +883,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -879,6 +900,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -918,14 +940,14 @@ extends
 /**
  * Asset oil analysis metals type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil metals elements analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisMetalsAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -939,7 +961,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -955,6 +978,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -994,14 +1018,14 @@ extends
 /**
  * Asset oil analysis moisture type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil moisture analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisMoistureAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -1015,7 +1039,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -1031,6 +1056,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1070,14 +1096,14 @@ extends
 /**
  * Asset oil analysis PCB type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil PCB analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisPCBAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -1091,7 +1117,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -1107,6 +1134,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1146,14 +1174,14 @@ extends
 /**
  * Asset oil analysis PCB type of discrete.
  *
- * @param sup [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
+ * @param AssetDiscrete [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
  * @param kind Kind of discrete representing oil PCB test analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisPCBDiscrete
 (
-    override val sup: AssetDiscrete = null,
+    AssetDiscrete: AssetDiscrete = null,
     kind: String = null
 )
 extends
@@ -1167,7 +1195,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetDiscrete: AssetDiscrete = sup
+    override def sup: AssetDiscrete = AssetDiscrete
+
     //
     // Row overrides
     //
@@ -1183,6 +1212,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1222,14 +1252,14 @@ extends
 /**
  * Asset oil inspection paper type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil paper degradation analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisPaperAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -1243,7 +1273,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -1259,6 +1290,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1298,14 +1330,14 @@ extends
 /**
  * Asset oil analysis particle type of analog.
  *
- * @param sup [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
+ * @param AssetAnalog [[ch.ninecode.model.AssetAnalog AssetAnalog]] Reference to the superclass object.
  * @param kind Kind of analog representing oil particulate analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisParticleAnalog
 (
-    override val sup: AssetAnalog = null,
+    AssetAnalog: AssetAnalog = null,
     kind: String = null
 )
 extends
@@ -1319,7 +1351,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetAnalog: AssetAnalog = sup
+    override def sup: AssetAnalog = AssetAnalog
+
     //
     // Row overrides
     //
@@ -1335,6 +1368,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1374,14 +1408,14 @@ extends
 /**
  * Asset oil analysis particle type of discrete.
  *
- * @param sup [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
+ * @param AssetDiscrete [[ch.ninecode.model.AssetDiscrete AssetDiscrete]] Reference to the superclass object.
  * @param kind Kind of discrete representing oil particulate analysis result.
  * @group AssetMeas
  * @groupname AssetMeas Package AssetMeas
  */
 final case class OilAnalysisParticleDiscrete
 (
-    override val sup: AssetDiscrete = null,
+    AssetDiscrete: AssetDiscrete = null,
     kind: String = null
 )
 extends
@@ -1395,7 +1429,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetDiscrete: AssetDiscrete = sup
+    override def sup: AssetDiscrete = AssetDiscrete
+
     //
     // Row overrides
     //
@@ -1411,6 +1446,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1454,7 +1490,7 @@ extends
  * F:
  * {Not sure where these came from… delete from UML?}
  *
- * @param sup [[ch.ninecode.model.StatisticalCalculation StatisticalCalculation]] Reference to the superclass object.
+ * @param StatisticalCalculation [[ch.ninecode.model.StatisticalCalculation StatisticalCalculation]] Reference to the superclass object.
  * @param calculationIntervalMagnitude Number of units (of calculationIntervalUnit) in the calculation interval.
  * @param calculationIntervalUnit Unit in which calculation interval is defined.
  * @group AssetMeas
@@ -1462,7 +1498,7 @@ extends
  */
 final case class PeriodicStatisticalCalculation
 (
-    override val sup: StatisticalCalculation = null,
+    StatisticalCalculation: StatisticalCalculation = null,
     calculationIntervalMagnitude: Int = 0,
     calculationIntervalUnit: String = null
 )
@@ -1477,7 +1513,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StatisticalCalculation: StatisticalCalculation = sup
+    override def sup: StatisticalCalculation = StatisticalCalculation
+
     //
     // Row overrides
     //
@@ -1493,6 +1530,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1537,7 +1575,7 @@ extends
 /**
  * Description of statistical calculation performed.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param calculationMode Calculation mode.
  * @param calculationTechnique Kind of statistical calculation, specifying how the measurement value is calculated.
  * @param CalculationMethodOrder [[ch.ninecode.model.CalculationMethodOrder CalculationMethodOrder]] The order in which this statistical calculation is done.
@@ -1546,7 +1584,7 @@ extends
  */
 final case class StatisticalCalculation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     calculationMode: String = null,
     calculationTechnique: String = null,
     CalculationMethodOrder: List[String] = null
@@ -1562,7 +1600,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1578,6 +1617,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

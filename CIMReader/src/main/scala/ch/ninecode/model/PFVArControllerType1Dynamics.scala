@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Power factor or VAr controller type 1 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power actor or VAr controller type 1 model is associated.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power factor or VAr controller type 1 model.
  * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this power factor or VAr controller type 1 model.
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class PFVArControllerType1Dynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null,
     VoltageAdjusterDynamics: String = null
@@ -37,7 +37,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -53,6 +54,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -107,7 +109,7 @@ extends
  *
  * Reference: IEEE 421.5-2005, 11.2.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param ovex Overexcitation Flag (<i>OVEX</i>)
  *        true = overexcited
  *        false = underexcited.
@@ -127,7 +129,7 @@ extends
  */
 final case class PFVArType1IEEEPFController
 (
-    override val sup: PFVArControllerType1Dynamics = null,
+    PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = null,
     ovex: Boolean = false,
     tpfc: Double = 0.0,
     vitmin: Double = 0.0,
@@ -148,7 +150,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup
+    override def sup: PFVArControllerType1Dynamics = PFVArControllerType1Dynamics
+
     //
     // Row overrides
     //
@@ -164,6 +167,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -233,7 +237,7 @@ extends
  *
  * Reference: IEEE 421.5-2005, 11.3.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).
  *        Typical value = 5.
  * @param vvar Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
@@ -249,7 +253,7 @@ extends
  */
 final case class PFVArType1IEEEVArController
 (
-    override val sup: PFVArControllerType1Dynamics = null,
+    PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = null,
     tvarc: Double = 0.0,
     vvar: Double = 0.0,
     vvarcbw: Double = 0.0,
@@ -268,7 +272,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup
+    override def sup: PFVArControllerType1Dynamics = PFVArControllerType1Dynamics
+
     //
     // Row overrides
     //
@@ -284,6 +289,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

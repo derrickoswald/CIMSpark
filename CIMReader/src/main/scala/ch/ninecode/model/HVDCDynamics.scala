@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * CSC function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.HVDCDynamics HVDCDynamics]] Reference to the superclass object.
+ * @param HVDCDynamics [[ch.ninecode.model.HVDCDynamics HVDCDynamics]] Reference to the superclass object.
  * @param CSConverter [[ch.ninecode.model.CsConverter CsConverter]] Current source converter to which current source converter dynamics model applies.
  * @group HVDCDynamics
  * @groupname HVDCDynamics Package HVDCDynamics
@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class CSCDynamics
 (
-    override val sup: HVDCDynamics = null,
+    HVDCDynamics: HVDCDynamics = null,
     CSConverter: String = null
 )
 extends
@@ -32,7 +32,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def HVDCDynamics: HVDCDynamics = sup
+    override def sup: HVDCDynamics = HVDCDynamics
+
     //
     // Row overrides
     //
@@ -48,6 +49,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -90,14 +92,14 @@ extends
 /**
  * HVDC whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @group HVDCDynamics
  * @groupname HVDCDynamics Package HVDCDynamics
  * @groupdesc HVDCDynamics High voltage direct current (HVDC) models.
  */
 final case class HVDCDynamics
 (
-    override val sup: DynamicsFunctionBlock = null
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null
 )
 extends
     Element
@@ -110,7 +112,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -126,6 +129,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -153,7 +157,7 @@ extends
 /**
  * VSC function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.HVDCDynamics HVDCDynamics]] Reference to the superclass object.
+ * @param HVDCDynamics [[ch.ninecode.model.HVDCDynamics HVDCDynamics]] Reference to the superclass object.
  * @param VsConverter [[ch.ninecode.model.VsConverter VsConverter]] Voltage source converter to which voltage source converter dynamics model applies.
  * @group HVDCDynamics
  * @groupname HVDCDynamics Package HVDCDynamics
@@ -161,7 +165,7 @@ extends
  */
 final case class VSCDynamics
 (
-    override val sup: HVDCDynamics = null,
+    HVDCDynamics: HVDCDynamics = null,
     VsConverter: String = null
 )
 extends
@@ -175,7 +179,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def HVDCDynamics: HVDCDynamics = sup
+    override def sup: HVDCDynamics = HVDCDynamics
+
     //
     // Row overrides
     //
@@ -191,6 +196,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

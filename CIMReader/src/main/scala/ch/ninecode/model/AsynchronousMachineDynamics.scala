@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
  * </ol>
  *
- * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param RotatingMachineDynamics [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param AsynchronousMachine [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
  * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this asynchronous machine model.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this asynchronous machine model.
@@ -29,7 +29,7 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineDynamics
 (
-    override val sup: RotatingMachineDynamics = null,
+    RotatingMachineDynamics: RotatingMachineDynamics = null,
     AsynchronousMachine: String = null,
     MechanicalLoadDynamics: String = null,
     TurbineGovernorDynamics: String = null,
@@ -46,7 +46,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RotatingMachineDynamics: RotatingMachineDynamics = sup
+    override def sup: RotatingMachineDynamics = RotatingMachineDynamics
+
     //
     // Row overrides
     //
@@ -62,6 +63,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -132,7 +134,7 @@ extends
  * tpo = (xm + xlr1) / (2 x pi x nominal frequency x rr1)
  * tppo = (xm x xlr1 + xm x xlr2 + xlr1 x xlr2) / (2 x pi x nominal frequency x rr2 x (xm + xlr1).
  *
- * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param rr1 Damper 1 winding resistance.
  * @param rr2 Damper 2 winding resistance.
  * @param xlr1 Damper 1 winding leakage reactance.
@@ -146,7 +148,7 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineEquivalentCircuit
 (
-    override val sup: AsynchronousMachineDynamics = null,
+    AsynchronousMachineDynamics: AsynchronousMachineDynamics = null,
     rr1: Double = 0.0,
     rr2: Double = 0.0,
     xlr1: Double = 0.0,
@@ -164,7 +166,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup
+    override def sup: AsynchronousMachineDynamics = AsynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -180,6 +183,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -253,7 +257,7 @@ extends
  *
  * - .tppo (<i>T''o</i>).
  *
- * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param tpo Transient rotor time constant (<i>T'o</i>) (&gt; AsynchronousMachineTimeConstantReactance.tppo).
  *        Typical value = 5.
  * @param tppo Subtransient rotor time constant (<i>T''o</i>) (&gt; 0).
@@ -272,7 +276,7 @@ The asynchronous machine model is used to model wind generators type 1 and type 
  */
 final case class AsynchronousMachineTimeConstantReactance
 (
-    override val sup: AsynchronousMachineDynamics = null,
+    AsynchronousMachineDynamics: AsynchronousMachineDynamics = null,
     tpo: Double = 0.0,
     tppo: Double = 0.0,
     xp: Double = 0.0,
@@ -290,7 +294,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup
+    override def sup: AsynchronousMachineDynamics = AsynchronousMachineDynamics
+
     //
     // Row overrides
     //
@@ -306,6 +311,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

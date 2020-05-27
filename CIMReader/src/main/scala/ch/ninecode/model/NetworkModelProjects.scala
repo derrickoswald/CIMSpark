@@ -8,14 +8,13 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class AnnotatedProjectDependency
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dependencyType: String = null,
     DependentOnStage: String = null,
     DependingStage: String = null
@@ -31,7 +30,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -47,6 +47,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -96,14 +97,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class CurrentState
 (
-    override val sup: IdentifiedObject = null
+    IdentifiedObject: IdentifiedObject = null
 )
 extends
     Element
@@ -116,7 +116,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -132,6 +133,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -161,14 +163,14 @@ extends
  *
  * The statement is defined in the incremental model.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class DifferentialModel
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -181,7 +183,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -197,6 +200,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -226,7 +230,7 @@ extends
  *
  * Primarily used to organize the phases of an overall project.
  *
- * @param sup [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
+ * @param NetworkModelProjectComponent [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
  * @param ContainedProject [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Projects that are included in this parent project.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -234,7 +238,7 @@ extends
  */
 final case class NetworkModelProject
 (
-    override val sup: NetworkModelProjectComponent = null,
+    NetworkModelProjectComponent: NetworkModelProjectComponent = null,
     ContainedProject: List[String] = null
 )
 extends
@@ -248,7 +252,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectComponent: NetworkModelProjectComponent = sup
+    override def sup: NetworkModelProjectComponent = NetworkModelProjectComponent
+
     //
     // Row overrides
     //
@@ -264,6 +269,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -304,14 +310,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class NetworkModelProject2
 (
-    override val sup: NetworkModelProjectComponent2 = null,
+    NetworkModelProjectComponent2: NetworkModelProjectComponent2 = null,
     Child: List[String] = null
 )
 extends
@@ -325,7 +330,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectComponent2: NetworkModelProjectComponent2 = sup
+    override def sup: NetworkModelProjectComponent2 = NetworkModelProjectComponent2
+
     //
     // Row overrides
     //
@@ -341,6 +347,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -385,7 +392,7 @@ extends
  *
  * Has persistent identity over multiple versions of the associated change set.
  *
- * @param sup [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
+ * @param NetworkModelProjectComponent [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
  * @param NetworkModelProjectChangeVersion [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] A specific version of the network model project change.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -393,7 +400,7 @@ extends
  */
 final case class NetworkModelProjectChange
 (
-    override val sup: NetworkModelProjectComponent = null,
+    NetworkModelProjectComponent: NetworkModelProjectComponent = null,
     NetworkModelProjectChangeVersion: List[String] = null
 )
 extends
@@ -407,7 +414,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectComponent: NetworkModelProjectComponent = sup
+    override def sup: NetworkModelProjectComponent = NetworkModelProjectComponent
+
     //
     // Row overrides
     //
@@ -423,6 +431,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -467,7 +476,7 @@ extends
  *
  * New instances of this class with new identity are instantiated upon changes to the content of this class or changes to the associated change set.  Instances of this class are considered immutable.  The case audit trail can reference this immutable data to exactly reproduce a case.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param comment A user provided comment describing the changes in this version from the previous version.
  * @param effectiveDateTime The date/time the change set is included in the model.
  * @param timeStamp The date/time this version was finalized and thus made immutable.
@@ -483,7 +492,7 @@ extends
  */
 final case class NetworkModelProjectChangeVersion
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     comment: String = null,
     effectiveDateTime: String = null,
     timeStamp: String = null,
@@ -504,7 +513,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -520,6 +530,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -593,14 +604,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class NetworkModelProjectCollection
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -613,7 +623,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -629,6 +640,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -656,7 +668,7 @@ extends
 /**
  * Abstract class for both a network model project and network model change.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ContainingProject [[ch.ninecode.model.NetworkModelProject NetworkModelProject]] The parent project of this project.
  * @param ProjectARelationships [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] <em>undocumented</em>
  * @param ProjectBRelationships [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] <em>undocumented</em>
@@ -666,7 +678,7 @@ extends
  */
 final case class NetworkModelProjectComponent
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ContainingProject: String = null,
     ProjectARelationships: List[String] = null,
     ProjectBRelationships: List[String] = null
@@ -682,7 +694,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -698,6 +711,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -749,14 +763,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class NetworkModelProjectComponent2
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     closed: String = null,
     created: String = null,
     updated: String = null,
@@ -774,7 +787,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -790,6 +804,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -847,14 +862,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class NetworkModelProjectDocument
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -867,7 +881,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -883,6 +898,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -912,7 +928,7 @@ extends
  *
  * This class may be specialized to create specific types of relationships.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ProjectA [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
  * @param ProjectB [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
  * @group NetworkModelProjects
@@ -921,7 +937,7 @@ extends
  */
 final case class NetworkModelProjectRelationship
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ProjectA: String = null,
     ProjectB: String = null
 )
@@ -936,7 +952,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -952,6 +969,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -997,14 +1015,13 @@ extends
 }
 
 /**
-
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class NetworkModelProjectStage
 (
-    override val sup: NetworkModelProjectComponent2 = null,
+    NetworkModelProjectComponent2: NetworkModelProjectComponent2 = null,
     changesetVersion: Int = 0,
     commissionedDate: String = null,
     plannedCommissionedDate: String = null,
@@ -1023,7 +1040,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectComponent2: NetworkModelProjectComponent2 = sup
+    override def sup: NetworkModelProjectComponent2 = NetworkModelProjectComponent2
+
     //
     // Row overrides
     //
@@ -1039,6 +1057,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1107,7 +1126,7 @@ extends
  *
  * States are agreed upon by the exchange community.  Examples are "approved", "proposed", "withdrawn", "committed" etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param NetworkModelProjectChangeVersion [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] The change versions that are at this state.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -1115,7 +1134,7 @@ extends
  */
 final case class NetworkModelProjectState
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     NetworkModelProjectChangeVersion: List[String] = null
 )
 extends
@@ -1129,7 +1148,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1145,6 +1165,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1187,7 +1208,7 @@ extends
 /**
  * Represent the base lifecycle of a functional model change that could be a construction of new elements.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param cancelled The date the Power System Project is in cancelled stage.
  * @param committed The date Power System Project is in committed stage.
  * @param inBuild The date Power System Project is in build stage.
@@ -1198,7 +1219,7 @@ extends
  */
 final case class PowerSystemProjectLifecycleToBeDeleted
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     cancelled: String = null,
     committed: String = null,
     inBuild: String = null,
@@ -1215,7 +1236,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1231,6 +1253,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1285,14 +1308,14 @@ extends
  * Project A is the primary alternative.
  * Multiple project alternatives should not be selected into a single network study case.
  *
- * @param sup [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] Reference to the superclass object.
+ * @param NetworkModelProjectRelationship [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] Reference to the superclass object.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class ProjectAlternative
 (
-    override val sup: NetworkModelProjectRelationship = null
+    NetworkModelProjectRelationship: NetworkModelProjectRelationship = null
 )
 extends
     Element
@@ -1305,7 +1328,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectRelationship: NetworkModelProjectRelationship = sup
+    override def sup: NetworkModelProjectRelationship = NetworkModelProjectRelationship
+
     //
     // Row overrides
     //
@@ -1321,6 +1345,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1348,14 +1373,14 @@ extends
 /**
  * Project A change sets should be applied before Project B during case creation.
  *
- * @param sup [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] Reference to the superclass object.
+ * @param NetworkModelProjectRelationship [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] Reference to the superclass object.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
  */
 final case class ProjectDependency
 (
-    override val sup: NetworkModelProjectRelationship = null
+    NetworkModelProjectRelationship: NetworkModelProjectRelationship = null
 )
 extends
     Element
@@ -1368,7 +1393,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def NetworkModelProjectRelationship: NetworkModelProjectRelationship = sup
+    override def sup: NetworkModelProjectRelationship = NetworkModelProjectRelationship
+
     //
     // Row overrides
     //
@@ -1384,6 +1410,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

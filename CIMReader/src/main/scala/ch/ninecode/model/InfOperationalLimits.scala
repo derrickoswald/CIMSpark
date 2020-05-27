@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * This is a environmental based limit dependency model for calculating operational limits.
  *
- * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
+ * @param LimitDependency [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -18,7 +18,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class EnvironmentalDependentLimit
 (
-    override val sup: LimitDependency = null
+    LimitDependency: LimitDependency = null
 )
 extends
     Element
@@ -31,7 +31,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitDependency: LimitDependency = sup
+    override def sup: LimitDependency = LimitDependency
+
     //
     // Row overrides
     //
@@ -47,6 +48,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -74,7 +76,7 @@ extends
 /**
  * This represents one instance of an equipment that contributes to the calculation of an operational limit.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Equipment contributing toward the series limit.
  *        The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
  * @param SeriesEquipmentDependentLimit [[ch.ninecode.model.SeriesEquipmentDependentLimit SeriesEquipmentDependentLimit]] Calculation in which the refernce to equipment applies.
@@ -85,7 +87,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class EquipmentLimitSeriesComponent
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Equipment: String = null,
     SeriesEquipmentDependentLimit: String = null
 )
@@ -100,7 +102,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -116,6 +119,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -165,7 +169,7 @@ extends
  *
  * These are intended to be shared among operational limits with the same calculation form that apply to a piece of equipment..
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment for which this limit dependency model is organized under.
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] The operational limits to which this limit dependency model applies.
  * @group InfOperationalLimits
@@ -175,7 +179,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class LimitDependency
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Equipment: String = null,
     OperationalLimit: List[String] = null
 )
@@ -190,7 +194,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -206,6 +211,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -254,7 +260,7 @@ extends
 /**
  * Specifies an operational  limit is calculated by scaling another operational limit.
  *
- * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
+ * @param LimitDependency [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @param limitScalingPercent The associated source limit is scaled by this value to compute the limit of the dependency model.
  * @param SourceOperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] <em>undocumented</em>
  * @group InfOperationalLimits
@@ -264,7 +270,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class LimitScalingLimit
 (
-    override val sup: LimitDependency = null,
+    LimitDependency: LimitDependency = null,
     limitScalingPercent: Double = 0.0,
     SourceOperationalLimit: String = null
 )
@@ -279,7 +285,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitDependency: LimitDependency = sup
+    override def sup: LimitDependency = LimitDependency
+
     //
     // Row overrides
     //
@@ -295,6 +302,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -344,7 +352,7 @@ extends
  *
  * This applies to any operational limit assigned to the target operational limit type and without other limit dependency models.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param scalingPercent The percentage scaling of the source limit to compute the target limit.
  *        Applys to operational limits within an operaitonal limit set when both source and target operational limit types exist.
  * @param SourceOperationalLimitType [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] <em>undocumented</em>
@@ -356,7 +364,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class OperatonalLimitTypeScaling
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     scalingPercent: Double = 0.0,
     SourceOperationalLimitType: String = null,
     TargetOperationalLimit: String = null
@@ -372,7 +380,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -388,6 +397,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -438,7 +448,6 @@ extends
 }
 
 /**
-
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -446,7 +455,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledActivePowerLimitValue
 (
-    override val sup: ScheduledLimitValue = null,
+    ScheduledLimitValue: ScheduledLimitValue = null,
     value: Double = 0.0
 )
 extends
@@ -460,7 +469,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ScheduledLimitValue: ScheduledLimitValue = sup
+    override def sup: ScheduledLimitValue = ScheduledLimitValue
+
     //
     // Row overrides
     //
@@ -476,6 +486,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -515,7 +526,7 @@ extends
 /**
  * A time scheduled value for apparent power limit.
  *
- * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
+ * @param ScheduledLimitValue [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The apparent power limit value for the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -524,7 +535,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledApparentPowerLimitValue
 (
-    override val sup: ScheduledLimitValue = null,
+    ScheduledLimitValue: ScheduledLimitValue = null,
     value: Double = 0.0
 )
 extends
@@ -538,7 +549,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ScheduledLimitValue: ScheduledLimitValue = sup
+    override def sup: ScheduledLimitValue = ScheduledLimitValue
+
     //
     // Row overrides
     //
@@ -554,6 +566,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -593,7 +606,7 @@ extends
 /**
  * A current limit that is scheduled.
  *
- * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
+ * @param ScheduledLimitValue [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The current flow limit value applicable at the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -602,7 +615,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledCurrentLimitValue
 (
-    override val sup: ScheduledLimitValue = null,
+    ScheduledLimitValue: ScheduledLimitValue = null,
     value: Double = 0.0
 )
 extends
@@ -616,7 +629,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ScheduledLimitValue: ScheduledLimitValue = sup
+    override def sup: ScheduledLimitValue = ScheduledLimitValue
+
     //
     // Row overrides
     //
@@ -632,6 +646,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -669,7 +684,6 @@ extends
 }
 
 /**
-
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -677,7 +691,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledLimitDependency
 (
-    override val sup: LimitDependency = null,
+    LimitDependency: LimitDependency = null,
     ScheduledLimitValues: List[String] = null
 )
 extends
@@ -691,7 +705,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitDependency: LimitDependency = sup
+    override def sup: LimitDependency = LimitDependency
+
     //
     // Row overrides
     //
@@ -707,6 +722,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -749,7 +765,7 @@ extends
 /**
  * A limit that is applicable during a scheduled time period.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ScheduledLimitDependency [[ch.ninecode.model.ScheduledLimitDependency ScheduledLimitDependency]] <em>undocumented</em>
  * @param Season [[ch.ninecode.model.Season Season]] The season for which the scheduled limits applies.
  *        If not specified, then applicable ot any season.
@@ -760,7 +776,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledLimitValue
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ScheduledLimitDependency: String = null,
     Season: String = null
 )
@@ -775,7 +791,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -791,6 +808,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -838,7 +856,7 @@ extends
 /**
  * A voltage limit value for a scheduled time.
  *
- * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
+ * @param ScheduledLimitValue [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The voltage limit value for the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -847,7 +865,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class ScheduledVoltageLimitValue
 (
-    override val sup: ScheduledLimitValue = null,
+    ScheduledLimitValue: ScheduledLimitValue = null,
     value: Double = 0.0
 )
 extends
@@ -861,7 +879,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ScheduledLimitValue: ScheduledLimitValue = sup
+    override def sup: ScheduledLimitValue = ScheduledLimitValue
+
     //
     // Row overrides
     //
@@ -877,6 +896,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -918,7 +938,7 @@ extends
  *
  * A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
  *
- * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
+ * @param LimitDependency [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @param EquipmentLimitSeriesComponent [[ch.ninecode.model.EquipmentLimitSeriesComponent EquipmentLimitSeriesComponent]] Equipment linkages that participates in the limit calculation.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -927,7 +947,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class SeriesEquipmentDependentLimit
 (
-    override val sup: LimitDependency = null,
+    LimitDependency: LimitDependency = null,
     EquipmentLimitSeriesComponent: List[String] = null
 )
 extends
@@ -941,7 +961,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitDependency: LimitDependency = sup
+    override def sup: LimitDependency = LimitDependency
+
     //
     // Row overrides
     //
@@ -957,6 +978,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -999,7 +1021,7 @@ extends
 /**
  * A point on a table of limit verses temperature.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param limitPercent The scaling of the operational limit in percent.
  * @param temperature The temperature of the table point.
  * @param TemperatureDependentLimitTable [[ch.ninecode.model.TemperatureDependentLimitTable TemperatureDependentLimitTable]] <em>undocumented</em>
@@ -1010,7 +1032,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperatureDependentLimitPoint
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     limitPercent: Double = 0.0,
     temperature: Double = 0.0,
     TemperatureDependentLimitTable: String = null
@@ -1026,7 +1048,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1042,6 +1065,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1093,7 +1117,7 @@ extends
 /**
  * This is a table lookup that provides limit values corresponding to a temperature input.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
+ * @param EnvironmentalDependentLimit [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
  * @param TemperatureLimitTablePoint [[ch.ninecode.model.TemperatureDependentLimitPoint TemperatureDependentLimitPoint]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -1102,7 +1126,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperatureDependentLimitTable
 (
-    override val sup: EnvironmentalDependentLimit = null,
+    EnvironmentalDependentLimit: EnvironmentalDependentLimit = null,
     TemperatureLimitTablePoint: List[String] = null
 )
 extends
@@ -1116,7 +1140,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalDependentLimit: EnvironmentalDependentLimit = sup
+    override def sup: EnvironmentalDependentLimit = EnvironmentalDependentLimit
+
     //
     // Row overrides
     //
@@ -1132,6 +1157,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1174,7 +1200,7 @@ extends
 /**
  * This describes the coefficients of a polynomial function that has temperature as input and calculates limit values as output.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
+ * @param EnvironmentalDependentLimit [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
  * @param coefficient0 The polinomial coefficent of power 0.
  * @param coefficient1 The polinomial coefficent of power 1.
  * @param coefficient2 The polinomial coefficent of power 2.
@@ -1187,7 +1213,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class TemperaturePolynomialLimit
 (
-    override val sup: EnvironmentalDependentLimit = null,
+    EnvironmentalDependentLimit: EnvironmentalDependentLimit = null,
     coefficient0: Double = 0.0,
     coefficient1: Double = 0.0,
     coefficient2: Double = 0.0,
@@ -1205,7 +1231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalDependentLimit: EnvironmentalDependentLimit = sup
+    override def sup: EnvironmentalDependentLimit = EnvironmentalDependentLimit
+
     //
     // Row overrides
     //
@@ -1221,6 +1248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1276,7 +1304,7 @@ extends
 /**
  * This represents a source of ambient temperature.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -1285,7 +1313,7 @@ These classes would likely go into the OperationalLimits package.
  */
 final case class WeatherStation
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     Equipment: List[String] = null
 )
 extends
@@ -1299,7 +1327,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -1315,6 +1344,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

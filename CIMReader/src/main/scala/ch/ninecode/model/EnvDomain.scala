@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Vertical displacement relative to either sealevel, ground or the center of the earth.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param displacement <em>undocumented</em>
  * @param kind <em>undocumented</em>
  * @group EnvDomain
@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class RelativeDisplacement
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     displacement: Double = 0.0,
     kind: String = null
 )
@@ -33,7 +33,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -49,6 +50,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

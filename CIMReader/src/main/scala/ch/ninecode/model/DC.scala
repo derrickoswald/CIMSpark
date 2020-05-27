@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
  *
- * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param baseS Base apparent power of the converter pole.
  * @param idc Converter DC current, also called Id.
  *        Converter state variable, result from power flow.
@@ -59,7 +59,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ACDCConverter
 (
-    override val sup: ConductingEquipment = null,
+    ConductingEquipment: ConductingEquipment = null,
     baseS: Double = 0.0,
     idc: Double = 0.0,
     idleLoss: Double = 0.0,
@@ -91,7 +91,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup
+    override def sup: ConductingEquipment = ConductingEquipment
+
     //
     // Row overrides
     //
@@ -107,6 +108,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -226,7 +228,7 @@ extends
  *
  * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
  *
- * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
+ * @param DCBaseTerminal [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
  * @param DCConductingEquipment [[ch.ninecode.model.ACDCConverter ACDCConverter]] A DC converter terminal belong to an DC converter.
  * @group DC
@@ -235,7 +237,7 @@ extends
  */
 final case class ACDCConverterDCTerminal
 (
-    override val sup: DCBaseTerminal = null,
+    DCBaseTerminal: DCBaseTerminal = null,
     polarity: String = null,
     DCConductingEquipment: String = null
 )
@@ -250,7 +252,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCBaseTerminal: DCBaseTerminal = sup
+    override def sup: DCBaseTerminal = DCBaseTerminal
+
     //
     // Row overrides
     //
@@ -266,6 +269,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -312,7 +316,7 @@ extends
 /**
  * DC side of the current source converter (CSC).
  *
- * @param sup [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
+ * @param ACDCConverter [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
  * @param alpha Firing angle, typical value between 10 degrees and 18 degrees for a rectifier.
  *        CSC state variable, result from power flow.
  * @param gamma Extinction angle.
@@ -347,7 +351,7 @@ extends
  */
 final case class CsConverter
 (
-    override val sup: ACDCConverter = null,
+    ACDCConverter: ACDCConverter = null,
     alpha: Double = 0.0,
     gamma: Double = 0.0,
     maxAlpha: Double = 0.0,
@@ -375,7 +379,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ACDCConverter: ACDCConverter = sup
+    override def sup: ACDCConverter = ACDCConverter
+
     //
     // Row overrides
     //
@@ -391,6 +396,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -492,7 +498,7 @@ extends
  *
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model requires that DC connections are distinct from AC connections.
  *
- * @param sup [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
+ * @param ACDCTerminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
  * @param DCNode [[ch.ninecode.model.DCNode DCNode]] The DC connectivity node to which this DC base terminal connects with zero impedance.
  * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end Terminal.
  *        TopologicalNode.
@@ -502,7 +508,7 @@ extends
  */
 final case class DCBaseTerminal
 (
-    override val sup: ACDCTerminal = null,
+    ACDCTerminal: ACDCTerminal = null,
     DCNode: String = null,
     DCTopologicalNode: String = null
 )
@@ -517,7 +523,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ACDCTerminal: ACDCTerminal = sup
+    override def sup: ACDCTerminal = ACDCTerminal
+
     //
     // Row overrides
     //
@@ -533,6 +540,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -580,14 +588,14 @@ extends
 /**
  * A breaker within a DC system.
  *
- * @param sup [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
+ * @param DCSwitch [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 final case class DCBreaker
 (
-    override val sup: DCSwitch = null
+    DCSwitch: DCSwitch = null
 )
 extends
     Element
@@ -600,7 +608,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCSwitch: DCSwitch = sup
+    override def sup: DCSwitch = DCSwitch
+
     //
     // Row overrides
     //
@@ -616,6 +625,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -643,14 +653,14 @@ extends
 /**
  * A busbar within a DC system.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 final case class DCBusbar
 (
-    override val sup: DCConductingEquipment = null
+    DCConductingEquipment: DCConductingEquipment = null
 )
 extends
     Element
@@ -663,7 +673,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -679,6 +690,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -708,14 +720,14 @@ extends
  *
  * It has typically positive and negative pole terminals and a ground.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 final case class DCChopper
 (
-    override val sup: DCConductingEquipment = null
+    DCConductingEquipment: DCConductingEquipment = null
 )
 extends
     Element
@@ -728,7 +740,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -744,6 +757,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -771,7 +785,7 @@ extends
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param ratedUdc Rated DC device voltage.
  *        Converter configuration data used in power flow.
  * @param DCTerminals [[ch.ninecode.model.DCTerminal DCTerminal]] A DC conducting equipment has DC terminals.
@@ -782,7 +796,7 @@ extends
  */
 final case class DCConductingEquipment
 (
-    override val sup: Equipment = null,
+    Equipment: Equipment = null,
     ratedUdc: Double = 0.0,
     DCTerminals: List[String] = null,
     ProtectiveActionAdjustment: List[String] = null
@@ -798,7 +812,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup
+    override def sup: Equipment = Equipment
+
     //
     // Row overrides
     //
@@ -814,6 +829,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -866,7 +882,7 @@ extends
 /**
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling – DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
  *
- * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
  * @param operationMode The operating mode of an HVDC bipole (bipolar, monopolar metallic return, etc).
  * @param Substation [[ch.ninecode.model.Substation Substation]] The containing substation of the DC converter unit.
  * @group DC
@@ -875,7 +891,7 @@ extends
  */
 final case class DCConverterUnit
 (
-    override val sup: DCEquipmentContainer = null,
+    DCEquipmentContainer: DCEquipmentContainer = null,
     operationMode: String = null,
     Substation: String = null
 )
@@ -890,7 +906,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCEquipmentContainer: DCEquipmentContainer = sup
+    override def sup: DCEquipmentContainer = DCEquipmentContainer
+
     //
     // Row overrides
     //
@@ -906,6 +923,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -952,14 +970,14 @@ extends
 /**
  * A disconnector within a DC system.
  *
- * @param sup [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
+ * @param DCSwitch [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 final case class DCDisconnector
 (
-    override val sup: DCSwitch = null
+    DCSwitch: DCSwitch = null
 )
 extends
     Element
@@ -972,7 +990,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCSwitch: DCSwitch = sup
+    override def sup: DCSwitch = DCSwitch
+
     //
     // Row overrides
     //
@@ -988,6 +1007,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1017,7 +1037,7 @@ extends
  *
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  *
- * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
+ * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] The DC nodes contained in the DC equipment container.
  * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The topological nodes which belong to this connectivity node container.
  * @group DC
@@ -1026,7 +1046,7 @@ extends
  */
 final case class DCEquipmentContainer
 (
-    override val sup: EquipmentContainer = null,
+    EquipmentContainer: EquipmentContainer = null,
     DCNodes: List[String] = null,
     DCTopologicalNode: List[String] = null
 )
@@ -1041,7 +1061,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EquipmentContainer: EquipmentContainer = sup
+    override def sup: EquipmentContainer = EquipmentContainer
+
     //
     // Row overrides
     //
@@ -1057,6 +1078,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1104,7 +1126,7 @@ extends
 /**
  * A ground within a DC system.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param inductance Inductance to ground.
  * @param r Resistance to ground.
  * @group DC
@@ -1113,7 +1135,7 @@ extends
  */
 final case class DCGround
 (
-    override val sup: DCConductingEquipment = null,
+    DCConductingEquipment: DCConductingEquipment = null,
     inductance: Double = 0.0,
     r: Double = 0.0
 )
@@ -1128,7 +1150,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -1144,6 +1167,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1187,7 +1211,7 @@ extends
 /**
  * Overhead lines and/or cables connecting two or more HVDC substations.
  *
- * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
  * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The SubGeographicalRegion containing the DC line.
  * @group DC
  * @groupname DC Package DC
@@ -1195,7 +1219,7 @@ extends
  */
 final case class DCLine
 (
-    override val sup: DCEquipmentContainer = null,
+    DCEquipmentContainer: DCEquipmentContainer = null,
     Region: String = null
 )
 extends
@@ -1209,7 +1233,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCEquipmentContainer: DCEquipmentContainer = sup
+    override def sup: DCEquipmentContainer = DCEquipmentContainer
+
     //
     // Row overrides
     //
@@ -1225,6 +1250,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1267,12 +1293,12 @@ extends
 /**
  * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param capacitance Capacitance of the DC line segment.
  *        Significant for cables only.
  * @param inductance Inductance of the DC line segment.
  *        Negligible compared with DCSeriesDevice used for smoothing.
- * @param length Segment length for calculating line section capabilities.
+ * @param len Segment length for calculating line section capabilities.
  * @param resistance Resistance of the DC line segment.
  * @param PerLengthParameter [[ch.ninecode.model.PerLengthDCLineParameter PerLengthDCLineParameter]] Set of per-length parameters for this line segment.
  * @group DC
@@ -1281,7 +1307,7 @@ extends
  */
 final case class DCLineSegment
 (
-    override val sup: DCConductingEquipment = null,
+    DCConductingEquipment: DCConductingEquipment = null,
     capacitance: Double = 0.0,
     inductance: Double = 0.0,
     len: Double = 0.0,
@@ -1299,7 +1325,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -1315,6 +1342,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1374,7 +1402,7 @@ extends
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] The DC container for the DC nodes.
  * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] DC base terminals interconnected with zero impedance at a this DC connectivity node.
  * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological node to which this DC connectivity node is assigned.
@@ -1385,7 +1413,7 @@ extends
  */
 final case class DCNode
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     DCEquipmentContainer: String = null,
     DCTerminals: List[String] = null,
     DCTopologicalNode: String = null
@@ -1401,7 +1429,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1417,6 +1446,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1472,7 +1502,7 @@ extends
  *
  * Needed for transient and short circuit studies.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param inductance Inductance of the device.
  * @param resistance Resistance of the DC device.
  * @group DC
@@ -1481,7 +1511,7 @@ extends
  */
 final case class DCSeriesDevice
 (
-    override val sup: DCConductingEquipment = null,
+    DCConductingEquipment: DCConductingEquipment = null,
     inductance: Double = 0.0,
     resistance: Double = 0.0
 )
@@ -1496,7 +1526,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -1512,6 +1543,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1557,7 +1589,7 @@ extends
  *
  * Needed for transient and short circuit studies.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param capacitance Capacitance of the DC shunt.
  * @param resistance Resistance of the DC device.
  * @group DC
@@ -1566,7 +1598,7 @@ extends
  */
 final case class DCShunt
 (
-    override val sup: DCConductingEquipment = null,
+    DCConductingEquipment: DCConductingEquipment = null,
     capacitance: Double = 0.0,
     resistance: Double = 0.0
 )
@@ -1581,7 +1613,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -1597,6 +1630,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1640,14 +1674,14 @@ extends
 /**
  * A switch within the DC system.
  *
- * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 final case class DCSwitch
 (
-    override val sup: DCConductingEquipment = null
+    DCConductingEquipment: DCConductingEquipment = null
 )
 extends
     Element
@@ -1660,7 +1694,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCConductingEquipment: DCConductingEquipment = sup
+    override def sup: DCConductingEquipment = DCConductingEquipment
+
     //
     // Row overrides
     //
@@ -1676,6 +1711,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1703,7 +1739,7 @@ extends
 /**
  * An electrical connection point to generic DC conducting equipment.
  *
- * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
+ * @param DCBaseTerminal [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] An DC  terminal belong to a DC conducting equipment.
  * @group DC
  * @groupname DC Package DC
@@ -1711,7 +1747,7 @@ extends
  */
 final case class DCTerminal
 (
-    override val sup: DCBaseTerminal = null,
+    DCBaseTerminal: DCBaseTerminal = null,
     DCConductingEquipment: String = null
 )
 extends
@@ -1725,7 +1761,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DCBaseTerminal: DCBaseTerminal = sup
+    override def sup: DCBaseTerminal = DCBaseTerminal
+
     //
     // Row overrides
     //
@@ -1741,6 +1778,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1787,7 +1825,7 @@ extends
  * - disconnect switches or breakers changing state in a SCADA/EMS.
  * - manual creation, change or deletion of topological nodes in a planning tool.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological nodes in a DC topological island.
  * @group DC
  * @groupname DC Package DC
@@ -1795,7 +1833,7 @@ extends
  */
 final case class DCTopologicalIsland
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     DCTopologicalNodes: List[String] = null
 )
 extends
@@ -1809,7 +1847,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1825,6 +1864,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1867,7 +1907,7 @@ extends
 /**
  * DC bus.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] The connectivity node container to which the topological node belongs.
  * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] The DC connectivity nodes combined together to form this DC topological node.
  *        May depend on the current state of switches in the network.
@@ -1880,7 +1920,7 @@ extends
  */
 final case class DCTopologicalNode
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     DCEquipmentContainer: String = null,
     DCNodes: List[String] = null,
     DCTerminals: List[String] = null,
@@ -1897,7 +1937,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1913,6 +1954,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1971,7 +2013,7 @@ extends
 /**
  * Common type for per-length electrical catalogues describing DC line parameters.
  *
- * @param sup [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Reference to the superclass object.
+ * @param PerLengthLineParameter [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Reference to the superclass object.
  * @param capacitance Capacitance per unit of length of the DC line segment; significant for cables only.
  * @param inductance Inductance per unit of length of the DC line segment.
  * @param resistance Resistance per length of the DC line segment.
@@ -1982,7 +2024,7 @@ extends
  */
 final case class PerLengthDCLineParameter
 (
-    override val sup: PerLengthLineParameter = null,
+    PerLengthLineParameter: PerLengthLineParameter = null,
     capacitance: Double = 0.0,
     inductance: Double = 0.0,
     resistance: Double = 0.0,
@@ -1999,7 +2041,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PerLengthLineParameter: PerLengthLineParameter = sup
+    override def sup: PerLengthLineParameter = PerLengthLineParameter
+
     //
     // Row overrides
     //
@@ -2015,6 +2058,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2070,7 +2114,7 @@ extends
 /**
  * The P-Q capability curve for a voltage source converter, with P on X-axis and Qmin and Qmax on Y1-axis and Y2-axis.
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param VsConverterDCSides [[ch.ninecode.model.VsConverter VsConverter]] All converters with this capability curve.
  * @group DC
  * @groupname DC Package DC
@@ -2078,7 +2122,7 @@ extends
  */
 final case class VsCapabilityCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     VsConverterDCSides: List[String] = null
 )
 extends
@@ -2092,7 +2136,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -2108,6 +2153,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2150,7 +2196,7 @@ extends
 /**
  * DC side of the voltage source converter (VSC).
  *
- * @param sup [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
+ * @param ACDCConverter [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
  * @param delta Angle between uf and uc.
  *        Converter state variable used in power flow.
  * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
@@ -2176,7 +2222,7 @@ extends
  */
 final case class VsConverter
 (
-    override val sup: ACDCConverter = null,
+    ACDCConverter: ACDCConverter = null,
     delta: Double = 0.0,
     droop: Double = 0.0,
     droopCompensation: Double = 0.0,
@@ -2202,7 +2248,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ACDCConverter: ACDCConverter = sup
+    override def sup: ACDCConverter = ACDCConverter
+
     //
     // Row overrides
     //
@@ -2218,6 +2265,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ExcSCRX - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.model.ExcSCRX</title>
-          <meta name="description" content="ExcSCRX - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.model.ExcSCRX" />
-          <meta name="keywords" content="ExcSCRX CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.model.ExcSCRX" />
+          <title>ExcSCRX - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.model.ExcSCRX</title>
+          <meta name="description" content="ExcSCRX - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.model.ExcSCRX" />
+          <meta name="keywords" content="ExcSCRX CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.model.ExcSCRX" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ExcSCRX</span><span class="params">(<span name="sup">sup: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> = <span class="symbol">null</span></span>, <span name="cswitch">cswitch: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="emax">emax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="emin">emin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="rcrfd">rcrfd: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tatb">tatb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="te">te: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ExcSCRX</span><span class="params">(<span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> = <span class="symbol">null</span></span>, <span name="cswitch">cswitch: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="emax">emax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="emin">emin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="rcrfd">rcrfd: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tatb">tatb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="te">te: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
+</p></div><dl class="paramcmts block"><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
        true = fixed voltage of 1.0 PU
        false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
        Typical value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
@@ -72,7 +72,7 @@
         <div id="order">
               <span class="filtertype">Ordering</span>
               <ol>
-                
+                <li class="group out"><span>Grouped</span></li>
                 <li class="alpha in"><span>Alphabetic</span></li>
                 <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
@@ -101,7 +101,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.model.ExcSCRX#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ExcitationSystemDynamics,cswitch:Boolean,emax:Double,emin:Double,k:Double,rcrfd:Double,tatb:Double,tb:Double,te:Double):ch.ninecode.model.ExcSCRX"></a>
+      <a id="&lt;init&gt;(ExcitationSystemDynamics:ch.ninecode.model.ExcitationSystemDynamics,cswitch:Boolean,emax:Double,emin:Double,k:Double,rcrfd:Double,tatb:Double,tb:Double,te:Double):ch.ninecode.model.ExcSCRX"></a>
       <a id="&lt;init&gt;:ExcSCRX"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -109,14 +109,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ExcSCRX</span><span class="params">(<span name="sup">sup: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> = <span class="symbol">null</span></span>, <span name="cswitch">cswitch: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="emax">emax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="emin">emin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="rcrfd">rcrfd: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tatb">tatb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="te">te: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>)</span>
+        <span class="name">ExcSCRX</span><span class="params">(<span name="ExcitationSystemDynamics">ExcitationSystemDynamics: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> = <span class="symbol">null</span></span>, <span name="cswitch">cswitch: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="emax">emax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="emin">emin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="k">k: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="rcrfd">rcrfd: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tatb">tatb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="te">te: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ExcSCRX@&lt;init&gt;(sup:ch.ninecode.model.ExcitationSystemDynamics,cswitch:Boolean,emax:Double,emin:Double,k:Double,rcrfd:Double,tatb:Double,tb:Double,te:Double):ch.ninecode.model.ExcSCRX" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ExcSCRX@&lt;init&gt;(ExcitationSystemDynamics:ch.ninecode.model.ExcitationSystemDynamics,cswitch:Boolean,emax:Double,emin:Double,k:Double,rcrfd:Double,tatb:Double,tb:Double,te:Double):ch.ninecode.model.ExcSCRX" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">ExcitationSystemDynamics</dt><dd class="cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></dd><dt class="param">cswitch</dt><dd class="cmt"><p>Power source switch (<i>Cswitch</i>).
        true = fixed voltage of 1.0 PU
        false = generator terminal voltage.</p></dd><dt class="param">emax</dt><dd class="cmt"><p>Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
        Typical value = 5.</p></dd><dt class="param">emin</dt><dd class="cmt"><p>Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
@@ -186,13 +186,13 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.ExcSCRX#ExcitationSystemDynamics" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+    </li><li name="ch.ninecode.model.ExcSCRX#ExcitationSystemDynamics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ExcitationSystemDynamics:ch.ninecode.model.ExcitationSystemDynamics"></a>
       <a id="ExcitationSystemDynamics:ExcitationSystemDynamics"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">ExcitationSystemDynamics</span><span class="result">: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a></span>
@@ -202,8 +202,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+      <p class="shortcomment cmt"><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
@@ -1210,13 +1209,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.ExcSCRX#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.ExcSCRX#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="sup:ch.ninecode.model.ExcitationSystemDynamics"></a>
       <a id="sup:ExcitationSystemDynamics"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">sup</span><span class="result">: <a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a></span>
@@ -1226,7 +1225,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="ExcitationSystemDynamics.html" class="extype" name="ch.ninecode.model.ExcitationSystemDynamics">ExcitationSystemDynamics</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ExcSCRX">ExcSCRX</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ExcSCRX">ExcSCRX</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

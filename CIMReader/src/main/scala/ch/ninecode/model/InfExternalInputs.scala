@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
  *
- * @param sup [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] Reference to the superclass object.
+ * @param ResourceGroupReq [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] Reference to the superclass object.
  * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] Market product associated with reserve requirement must be a reserve or regulation product.
  * @param ReserveReqCurve [[ch.ninecode.model.ReserveReqCurve ReserveReqCurve]] <em>undocumented</em>
  * @param SensitivityPriceCurve [[ch.ninecode.model.SensitivityPriceCurve SensitivityPriceCurve]] <em>undocumented</em>
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class ReserveReq
 (
-    override val sup: ResourceGroupReq = null,
+    ResourceGroupReq: ResourceGroupReq = null,
     MarketProduct: String = null,
     ReserveReqCurve: String = null,
     SensitivityPriceCurve: String = null
@@ -35,7 +35,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ResourceGroupReq: ResourceGroupReq = sup
+    override def sup: ResourceGroupReq = ResourceGroupReq
+
     //
     // Row overrides
     //
@@ -51,6 +52,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -107,14 +109,14 @@ extends
  * X is time, typically expressed in absolute time
  * Y1 is reserve requirement, typically expressed in MW
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
 final case class ReserveReqCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     ReserveReq: String = null
 )
 extends
@@ -128,7 +130,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -144,6 +147,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -186,7 +190,7 @@ extends
 /**
  * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this group.
  * @param type Type of this group.
  * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
@@ -196,7 +200,7 @@ extends
  */
 final case class ResourceGroup
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     status: String = null,
     `type`: String = null,
     RegisteredResources: List[String] = null,
@@ -213,7 +217,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -229,6 +234,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -286,7 +292,7 @@ extends
 /**
  * Ancillary service requirements for a market.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param RTOs [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param ResourceGroup [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @group InfExternalInputs
@@ -294,7 +300,7 @@ extends
  */
 final case class ResourceGroupReq
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     RTOs: List[String] = null,
     ResourceGroup: String = null
 )
@@ -309,7 +315,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -325,6 +332,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -377,14 +385,14 @@ extends
  * X axis is constrained quantity (e.g., MW)
  * Y1 axis is money per constrained quantity
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
 final case class SensitivityPriceCurve
 (
-    override val sup: Curve = null,
+    Curve: Curve = null,
     ReserveReq: String = null
 )
 extends
@@ -398,7 +406,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup
+    override def sup: Curve = Curve
+
     //
     // Row overrides
     //
@@ -414,6 +423,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

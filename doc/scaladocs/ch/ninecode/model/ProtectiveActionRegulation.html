@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ProtectiveActionRegulation - CIMReader 2.11-2.4.5-4.1.4 API - ch.ninecode.model.ProtectiveActionRegulation</title>
-          <meta name="description" content="ProtectiveActionRegulation - CIMReader 2.11 - 2.4.5 - 4.1.4 API - ch.ninecode.model.ProtectiveActionRegulation" />
-          <meta name="keywords" content="ProtectiveActionRegulation CIMReader 2.11 2.4.5 4.1.4 API ch.ninecode.model.ProtectiveActionRegulation" />
+          <title>ProtectiveActionRegulation - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.model.ProtectiveActionRegulation</title>
+          <meta name="description" content="ProtectiveActionRegulation - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.model.ProtectiveActionRegulation" />
+          <meta name="keywords" content="ProtectiveActionRegulation CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.model.ProtectiveActionRegulation" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ProtectiveActionRegulation</span><span class="params">(<span name="sup">sup: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> = <span class="symbol">null</span></span>, <span name="isRegulating">isRegulating: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ProtectiveActionRegulation</span><span class="params">(<span name="ProtectiveAction">ProtectiveAction: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> = <span class="symbol">null</span></span>, <span name="isRegulating">isRegulating: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Protective action to change regulation to Equipment.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p></dd><dt class="param">isRegulating</dt><dd class="cmt"><p>If true the regulator is put in-service, otherwise out-of-service (no regulation).</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified the new case input for the regulator.
+</p></div><dl class="paramcmts block"><dt class="param">ProtectiveAction</dt><dd class="cmt"><p><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p></dd><dt class="param">isRegulating</dt><dd class="cmt"><p>If true the regulator is put in-service, otherwise out-of-service (no regulation).</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified the new case input for the regulator.
        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.</p></dd><dt class="param">RegulatingControl</dt><dd class="cmt"><p><a href="RegulatingControl.html" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -64,7 +64,7 @@
         <div id="order">
               <span class="filtertype">Ordering</span>
               <ol>
-                
+                <li class="group out"><span>Grouped</span></li>
                 <li class="alpha in"><span>Alphabetic</span></li>
                 <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
@@ -93,7 +93,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.model.ProtectiveActionRegulation#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ProtectiveAction,isRegulating:Boolean,targetValue:Double,RegulatingControl:String):ch.ninecode.model.ProtectiveActionRegulation"></a>
+      <a id="&lt;init&gt;(ProtectiveAction:ch.ninecode.model.ProtectiveAction,isRegulating:Boolean,targetValue:Double,RegulatingControl:String):ch.ninecode.model.ProtectiveActionRegulation"></a>
       <a id="&lt;init&gt;:ProtectiveActionRegulation"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -101,14 +101,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ProtectiveActionRegulation</span><span class="params">(<span name="sup">sup: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> = <span class="symbol">null</span></span>, <span name="isRegulating">isRegulating: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
+        <span class="name">ProtectiveActionRegulation</span><span class="params">(<span name="ProtectiveAction">ProtectiveAction: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> = <span class="symbol">null</span></span>, <span name="isRegulating">isRegulating: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.0</span></span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ProtectiveActionRegulation@&lt;init&gt;(sup:ch.ninecode.model.ProtectiveAction,isRegulating:Boolean,targetValue:Double,RegulatingControl:String):ch.ninecode.model.ProtectiveActionRegulation" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ProtectiveActionRegulation@&lt;init&gt;(ProtectiveAction:ch.ninecode.model.ProtectiveAction,isRegulating:Boolean,targetValue:Double,RegulatingControl:String):ch.ninecode.model.ProtectiveActionRegulation" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p></dd><dt class="param">isRegulating</dt><dd class="cmt"><p>If true the regulator is put in-service, otherwise out-of-service (no regulation).</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified the new case input for the regulator.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">ProtectiveAction</dt><dd class="cmt"><p><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p></dd><dt class="param">isRegulating</dt><dd class="cmt"><p>If true the regulator is put in-service, otherwise out-of-service (no regulation).</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified the new case input for the regulator.
        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.</p></dd><dt class="param">RegulatingControl</dt><dd class="cmt"><p><a href="RegulatingControl.html" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
@@ -170,13 +170,13 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.ProtectiveActionRegulation#ProtectiveAction" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+    </li><li name="ch.ninecode.model.ProtectiveActionRegulation#ProtectiveAction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ProtectiveAction:ch.ninecode.model.ProtectiveAction"></a>
       <a id="ProtectiveAction:ProtectiveAction"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">ProtectiveAction</span><span class="result">: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a></span>
@@ -186,8 +186,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+      <p class="shortcomment cmt"><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p>
     </li><li name="ch.ninecode.model.ProtectiveActionRegulation#RegulatingControl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RegulatingControl:String"></a>
       <a id="RegulatingControl:String"></a>
@@ -1137,13 +1136,13 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
-    </li><li name="ch.ninecode.model.ProtectiveActionRegulation#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="ch.ninecode.model.ProtectiveActionRegulation#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="sup:ch.ninecode.model.ProtectiveAction"></a>
       <a id="sup:ProtectiveAction"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">sup</span><span class="result">: <a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a></span>
@@ -1153,7 +1152,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="ProtectiveAction.html" class="extype" name="ch.ninecode.model.ProtectiveAction">ProtectiveAction</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

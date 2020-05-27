@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
  *
- * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param AccumulatorValues [[ch.ninecode.model.AccumulatorValue AccumulatorValue]] The values connected to this measurement.
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class Accumulator
 (
-    override val sup: Measurement = null,
+    Measurement: Measurement = null,
     maxValue: Int = 0,
     AccumulatorValues: List[String] = null,
     LimitSets: List[String] = null
@@ -37,7 +37,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Measurement: Measurement = sup
+    override def sup: Measurement = Measurement
+
     //
     // Row overrides
     //
@@ -53,6 +54,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -105,7 +107,7 @@ extends
 /**
  * Limit values for Accumulator measurements.
  *
- * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
+ * @param Limit [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
  *        The value is positive.
  * @param LimitSet [[ch.ninecode.model.AccumulatorLimitSet AccumulatorLimitSet]] The set of limits.
@@ -115,7 +117,7 @@ extends
  */
 final case class AccumulatorLimit
 (
-    override val sup: Limit = null,
+    Limit: Limit = null,
     value: Int = 0,
     LimitSet: String = null
 )
@@ -130,7 +132,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Limit: Limit = sup
+    override def sup: Limit = Limit
+
     //
     // Row overrides
     //
@@ -146,6 +149,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -193,7 +197,7 @@ extends
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
  *
- * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
+ * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
  * @param Limits [[ch.ninecode.model.AccumulatorLimit AccumulatorLimit]] The limit values used for supervision of Measurements.
  * @param Measurements [[ch.ninecode.model.Accumulator Accumulator]] The Measurements using the LimitSet.
  * @group Meas
@@ -202,7 +206,7 @@ extends
  */
 final case class AccumulatorLimitSet
 (
-    override val sup: LimitSet = null,
+    LimitSet: LimitSet = null,
     Limits: List[String] = null,
     Measurements: List[String] = null
 )
@@ -217,7 +221,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitSet: LimitSet = sup
+    override def sup: LimitSet = LimitSet
+
     //
     // Row overrides
     //
@@ -233,6 +238,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -280,7 +286,7 @@ extends
 /**
  * This command resets the counter value to zero.
  *
- * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
+ * @param Control [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param AccumulatorValue [[ch.ninecode.model.AccumulatorValue AccumulatorValue]] The accumulator value that is reset by the command.
  * @group Meas
  * @groupname Meas Package Meas
@@ -288,7 +294,7 @@ extends
  */
 final case class AccumulatorReset
 (
-    override val sup: Control = null,
+    Control: Control = null,
     AccumulatorValue: String = null
 )
 extends
@@ -302,7 +308,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Control: Control = sup
+    override def sup: Control = Control
+
     //
     // Row overrides
     //
@@ -318,6 +325,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -360,7 +368,7 @@ extends
 /**
  * AccumulatorValue represents an accumulated (counted) MeasurementValue.
  *
- * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
+ * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
  *        The value is positive.
  * @param Accumulator [[ch.ninecode.model.Accumulator Accumulator]] Measurement to which this value is connected.
@@ -371,7 +379,7 @@ extends
  */
 final case class AccumulatorValue
 (
-    override val sup: MeasurementValue = null,
+    MeasurementValue: MeasurementValue = null,
     value: Int = 0,
     Accumulator: String = null,
     AccumulatorReset: String = null
@@ -387,7 +395,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MeasurementValue: MeasurementValue = sup
+    override def sup: MeasurementValue = MeasurementValue
+
     //
     // Row overrides
     //
@@ -403,6 +412,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -455,7 +465,7 @@ extends
 /**
  * Analog represents an analog Measurement.
  *
- * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param minValue Normal value range minimum for any of the MeasurementValue.values.
@@ -470,7 +480,7 @@ extends
  */
 final case class Analog
 (
-    override val sup: Measurement = null,
+    Measurement: Measurement = null,
     maxValue: Double = 0.0,
     minValue: Double = 0.0,
     normalValue: Double = 0.0,
@@ -489,7 +499,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Measurement: Measurement = sup
+    override def sup: Measurement = Measurement
+
     //
     // Row overrides
     //
@@ -505,6 +516,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -569,7 +581,7 @@ extends
 /**
  * An analog control used for supervisory control.
  *
- * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
+ * @param Control [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
  * @param minValue Normal value range minimum for any of the Control.value.
@@ -581,7 +593,7 @@ extends
  */
 final case class AnalogControl
 (
-    override val sup: Control = null,
+    Control: Control = null,
     maxValue: Double = 0.0,
     minValue: Double = 0.0,
     AnalogValue: String = null
@@ -597,7 +609,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Control: Control = sup
+    override def sup: Control = Control
+
     //
     // Row overrides
     //
@@ -613,6 +626,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -664,7 +678,7 @@ extends
 /**
  * Limit values for Analog measurements.
  *
- * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
+ * @param Limit [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
  * @param LimitSet [[ch.ninecode.model.AnalogLimitSet AnalogLimitSet]] The set of limits.
  * @group Meas
@@ -673,7 +687,7 @@ extends
  */
 final case class AnalogLimit
 (
-    override val sup: Limit = null,
+    Limit: Limit = null,
     value: Double = 0.0,
     LimitSet: String = null
 )
@@ -688,7 +702,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Limit: Limit = sup
+    override def sup: Limit = Limit
+
     //
     // Row overrides
     //
@@ -704,6 +719,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -751,7 +767,7 @@ extends
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
  *
- * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
+ * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
  * @param Limits [[ch.ninecode.model.AnalogLimit AnalogLimit]] The limit values used for supervision of Measurements.
  * @param Measurements [[ch.ninecode.model.Analog Analog]] The Measurements using the LimitSet.
  * @group Meas
@@ -760,7 +776,7 @@ extends
  */
 final case class AnalogLimitSet
 (
-    override val sup: LimitSet = null,
+    LimitSet: LimitSet = null,
     Limits: List[String] = null,
     Measurements: List[String] = null
 )
@@ -775,7 +791,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def LimitSet: LimitSet = sup
+    override def sup: LimitSet = LimitSet
+
     //
     // Row overrides
     //
@@ -791,6 +808,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -838,7 +856,7 @@ extends
 /**
  * AnalogValue represents an analog MeasurementValue.
  *
- * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
+ * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
  * @param AltGeneratingUnit [[ch.ninecode.model.AltGeneratingUnitMeas AltGeneratingUnitMeas]] The alternate generating unit for which this measurement value applies.
  * @param AltTieMeas [[ch.ninecode.model.AltTieMeas AltTieMeas]] The usage of the measurement within the control area specification.
@@ -850,7 +868,7 @@ extends
  */
 final case class AnalogValue
 (
-    override val sup: MeasurementValue = null,
+    MeasurementValue: MeasurementValue = null,
     value: Double = 0.0,
     AltGeneratingUnit: List[String] = null,
     AltTieMeas: List[String] = null,
@@ -868,7 +886,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MeasurementValue: MeasurementValue = sup
+    override def sup: MeasurementValue = MeasurementValue
+
     //
     // Row overrides
     //
@@ -884,6 +903,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -947,7 +967,7 @@ extends
 /**
  * A Command is a discrete control used for supervisory control.
  *
- * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
+ * @param Control [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
  * @param DiscreteValue [[ch.ninecode.model.DiscreteValue DiscreteValue]] The MeasurementValue that is controlled.
@@ -958,7 +978,7 @@ extends
  */
 final case class Command
 (
-    override val sup: Control = null,
+    Control: Control = null,
     normalValue: Int = 0,
     value: Int = 0,
     DiscreteValue: String = null,
@@ -975,7 +995,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Control: Control = sup
+    override def sup: Control = Control
+
     //
     // Row overrides
     //
@@ -991,6 +1012,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1049,7 +1071,7 @@ extends
  *
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
  *
- * @param sup [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
+ * @param IOPoint [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
  * @param controlType Specifies the type of Control, e.g.
  *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
  * @param operationInProgress Indicates that a client is currently sending control commands that has not completed.
@@ -1065,7 +1087,7 @@ extends
  */
 final case class Control
 (
-    override val sup: IOPoint = null,
+    IOPoint: IOPoint = null,
     controlType: String = null,
     operationInProgress: Boolean = false,
     timeStamp: String = null,
@@ -1086,7 +1108,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IOPoint: IOPoint = sup
+    override def sup: IOPoint = IOPoint
+
     //
     // Row overrides
     //
@@ -1102,6 +1125,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1175,7 +1199,7 @@ extends
 /**
  * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
  *
- * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param minValue Normal value range minimum for any of the MeasurementValue.values.
@@ -1189,7 +1213,7 @@ extends
  */
 final case class Discrete
 (
-    override val sup: Measurement = null,
+    Measurement: Measurement = null,
     maxValue: Int = 0,
     minValue: Int = 0,
     normalValue: Int = 0,
@@ -1207,7 +1231,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Measurement: Measurement = sup
+    override def sup: Measurement = Measurement
+
     //
     // Row overrides
     //
@@ -1223,6 +1248,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1284,7 +1310,7 @@ extends
 /**
  * DiscreteValue represents a discrete MeasurementValue.
  *
- * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
+ * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
  * @param Command [[ch.ninecode.model.Command Command]] The Control variable associated with the MeasurementValue.
  * @param Discrete [[ch.ninecode.model.Discrete Discrete]] Measurement to which this value is connected.
@@ -1294,7 +1320,7 @@ extends
  */
 final case class DiscreteValue
 (
-    override val sup: MeasurementValue = null,
+    MeasurementValue: MeasurementValue = null,
     value: Int = 0,
     Command: String = null,
     Discrete: String = null
@@ -1310,7 +1336,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MeasurementValue: MeasurementValue = sup
+    override def sup: MeasurementValue = MeasurementValue
+
     //
     // Row overrides
     //
@@ -1326,6 +1353,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1380,7 +1408,7 @@ extends
  *
  * The purpose is to enable having attributes and associations common for measurement and control.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param BilateralToIOPoint [[ch.ninecode.model.ProvidedBilateralPoint ProvidedBilateralPoint]] Bilateral ICCP point for the measurement or control.
  * @param IOPointSource [[ch.ninecode.model.IOPointSource IOPointSource]] Local merasurement value source for an ICCP point.
  * @group Meas
@@ -1389,7 +1417,7 @@ extends
  */
 final case class IOPoint
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     BilateralToIOPoint: List[String] = null,
     IOPointSource: String = null
 )
@@ -1404,7 +1432,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1420,6 +1449,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1470,7 +1500,7 @@ extends
  *
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Procedures [[ch.ninecode.model.Procedure Procedure]] <em>undocumented</em>
  * @group Meas
  * @groupname Meas Package Meas
@@ -1478,7 +1508,7 @@ extends
  */
 final case class Limit
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Procedures: List[String] = null
 )
 extends
@@ -1492,7 +1522,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1508,6 +1539,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1552,7 +1584,7 @@ extends
  *
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1560,7 +1592,7 @@ extends
  */
 final case class LimitSet
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     isPercentageLimits: Boolean = false
 )
 extends
@@ -1574,7 +1606,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1590,6 +1623,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1635,7 +1669,7 @@ extends
  * If both a Terminal and PSR are associated, and the PSR is of type ConductingEquipment, the associated Terminal should belong to that ConductingEquipment instance.
  * When the sensor location is needed both Measurement-PSR and Measurement-Terminal are used. The Measurement-Terminal association is never used alone.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param measurementType Specifies the type of measurement.
  *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
  *        When the measurementType is set to "Specialization", the type of Measurement is defined in more detail by the specialized class which inherits from Measurement.
@@ -1662,7 +1696,7 @@ extends
  */
 final case class Measurement
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     measurementType: String = null,
     phases: String = null,
     uncefactUnitCode: String = null,
@@ -1690,7 +1724,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1706,6 +1741,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1817,7 +1853,7 @@ extends
  *
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  *
- * @param sup [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
+ * @param IOPoint [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
  * @param timeStamp The time when the value was last updated.
  * @param CalculationMethodHierarchy [[ch.ninecode.model.CalculationMethodHierarchy CalculationMethodHierarchy]] <em>undocumented</em>
@@ -1833,7 +1869,7 @@ extends
  */
 final case class MeasurementValue
 (
-    override val sup: IOPoint = null,
+    IOPoint: IOPoint = null,
     sensorAccuracy: Double = 0.0,
     timeStamp: String = null,
     CalculationMethodHierarchy: String = null,
@@ -1854,7 +1890,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IOPoint: IOPoint = sup
+    override def sup: IOPoint = IOPoint
+
     //
     // Row overrides
     //
@@ -1870,6 +1907,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1949,7 +1987,7 @@ extends
  *
  * Bits 0-10 are defined for substation automation in IEC 61850-7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
  *
- * @param sup [[ch.ninecode.model.Quality61850 Quality61850]] Reference to the superclass object.
+ * @param Quality61850 [[ch.ninecode.model.Quality61850 Quality61850]] Reference to the superclass object.
  * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] A MeasurementValue has a MeasurementValueQuality associated with it.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1957,7 +1995,7 @@ extends
  */
 final case class MeasurementValueQuality
 (
-    override val sup: Quality61850 = null,
+    Quality61850: Quality61850 = null,
     MeasurementValue: String = null
 )
 extends
@@ -1971,7 +2009,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Quality61850: Quality61850 = sup
+    override def sup: Quality61850 = Quality61850
+
     //
     // Row overrides
     //
@@ -1987,6 +2026,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2031,7 +2071,7 @@ extends
  *
  * User conventions for how to use the MeasurementValueSource attributes are defined in IEC 61970-301.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] The MeasurementValues updated by the source.
  * @group Meas
  * @groupname Meas Package Meas
@@ -2039,7 +2079,7 @@ extends
  */
 final case class MeasurementValueSource
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     MeasurementValues: List[String] = null
 )
 extends
@@ -2053,7 +2093,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2069,6 +2110,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2111,7 +2153,7 @@ extends
 /**
  * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param badReference Measurement value may be incorrect due to a reference being out of calibration.
  * @param estimatorReplaced Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
  * @param failure This identifier indicates that a supervision function has detected an internal or external failure, e.g. communication failure.
@@ -2134,7 +2176,7 @@ extends
  */
 final case class Quality61850
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     badReference: Boolean = false,
     estimatorReplaced: Boolean = false,
     failure: Boolean = false,
@@ -2159,7 +2201,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2175,6 +2218,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2261,7 +2305,7 @@ extends
  *
  * Unless otherwise specified, one pulse moves the set point by one.
  *
- * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
+ * @param AnalogControl [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
  * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a Control value to a name.
  * @group Meas
  * @groupname Meas Package Meas
@@ -2269,7 +2313,7 @@ extends
  */
 final case class RaiseLowerCommand
 (
-    override val sup: AnalogControl = null,
+    AnalogControl: AnalogControl = null,
     ValueAliasSet: String = null
 )
 extends
@@ -2283,7 +2327,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AnalogControl: AnalogControl = sup
+    override def sup: AnalogControl = AnalogControl
+
     //
     // Row overrides
     //
@@ -2299,6 +2344,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2341,7 +2387,7 @@ extends
 /**
  * An analog control that issues a set point value.
  *
- * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
+ * @param AnalogControl [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
  * @group Meas
@@ -2350,7 +2396,7 @@ extends
  */
 final case class SetPoint
 (
-    override val sup: AnalogControl = null,
+    AnalogControl: AnalogControl = null,
     normalValue: Double = 0.0,
     value: Double = 0.0
 )
@@ -2365,7 +2411,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AnalogControl: AnalogControl = sup
+    override def sup: AnalogControl = AnalogControl
+
     //
     // Row overrides
     //
@@ -2381,6 +2428,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2424,7 +2472,7 @@ extends
 /**
  * StringMeasurement represents a measurement with values of type string.
  *
- * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param StringMeasurementValues [[ch.ninecode.model.StringMeasurementValue StringMeasurementValue]] The values connected to this measurement.
  * @group Meas
  * @groupname Meas Package Meas
@@ -2432,7 +2480,7 @@ extends
  */
 final case class StringMeasurement
 (
-    override val sup: Measurement = null,
+    Measurement: Measurement = null,
     StringMeasurementValues: List[String] = null
 )
 extends
@@ -2446,7 +2494,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Measurement: Measurement = sup
+    override def sup: Measurement = Measurement
+
     //
     // Row overrides
     //
@@ -2462,6 +2511,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2504,7 +2554,7 @@ extends
 /**
  * StringMeasurementValue represents a measurement value of type string.
  *
- * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
+ * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
  * @param StringMeasurement [[ch.ninecode.model.StringMeasurement StringMeasurement]] Measurement to which this value is connected.
  * @group Meas
@@ -2513,7 +2563,7 @@ extends
  */
 final case class StringMeasurementValue
 (
-    override val sup: MeasurementValue = null,
+    MeasurementValue: MeasurementValue = null,
     value: String = null,
     StringMeasurement: String = null
 )
@@ -2528,7 +2578,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MeasurementValue: MeasurementValue = sup
+    override def sup: MeasurementValue = MeasurementValue
+
     //
     // Row overrides
     //
@@ -2544,6 +2595,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2593,7 +2645,7 @@ extends
  *
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Commands [[ch.ninecode.model.Command Command]] The Commands using the set for translation.
  * @param Discretes [[ch.ninecode.model.Discrete Discrete]] The Measurements using the set for translation.
  * @param RaiseLowerCommands [[ch.ninecode.model.RaiseLowerCommand RaiseLowerCommand]] The Commands using the set for translation.
@@ -2604,7 +2656,7 @@ extends
  */
 final case class ValueAliasSet
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     Commands: List[String] = null,
     Discretes: List[String] = null,
     RaiseLowerCommands: List[String] = null,
@@ -2621,7 +2673,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2637,6 +2690,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2694,7 +2748,7 @@ extends
 /**
  * Describes the translation of one particular value into a name, e.g. 1 as "Open".
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param value The value that is mapped.
  * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet having the ValueToAlias mappings.
  * @group Meas
@@ -2703,7 +2757,7 @@ extends
  */
 final case class ValueToAlias
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     value: Int = 0,
     ValueAliasSet: String = null
 )
@@ -2718,7 +2772,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2734,6 +2789,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

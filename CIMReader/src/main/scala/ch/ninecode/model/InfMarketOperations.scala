@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Bilateral transaction
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param curtailTimeMax Maximum curtailment time in number of trading intervals
  * @param curtailTimeMin Minimum curtailment time in number of trading intervals
  * @param marketType Market type (default=DA)
@@ -32,7 +32,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class BilateralTransaction
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     curtailTimeMax: Int = 0,
     curtailTimeMin: Int = 0,
     marketType: String = null,
@@ -53,7 +53,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -69,6 +70,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -136,7 +138,7 @@ extends
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  * @group InfMarketOperations
@@ -144,7 +146,7 @@ extends
  */
 final case class Participation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     factor: Double = 0.0
 )
 extends
@@ -158,7 +160,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -174,6 +177,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -215,7 +219,7 @@ extends
  *
  * For example, a resource is certified for Non-Spinning reserve for RTM.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param certifiedDAM <em>undocumented</em>
  * @param certifiedNonspinDAM <em>undocumented</em>
  * @param certifiedNonspinDAMMw <em>undocumented</em>
@@ -235,7 +239,7 @@ extends
  */
 final case class ResourceCertification2
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     certifiedDAM: String = null,
     certifiedNonspinDAM: String = null,
     certifiedNonspinDAMMw: Double = 0.0,
@@ -262,7 +266,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -278,6 +283,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

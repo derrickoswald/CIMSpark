@@ -1,7 +1,7 @@
 CIMReader
 ======
 
-Spark access to Common Information Model (CIM) files as RDD and Hive SQL. | [![Maven Central](https://img.shields.io/maven-central/v/ch.ninecode.cim/CIMReader.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ch.ninecode.cim%22%20AND%20a:%22CIMReader%22)
+Spark access to Common Information Model (CIM) files as RDD and SQL. | [![Maven Central](https://img.shields.io/maven-central/v/ch.ninecode.cim/CIMReader.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ch.ninecode.cim%22%20AND%20a:%22CIMReader%22)
 :---         |          ---:
 
 # Overview
@@ -15,7 +15,7 @@ These RDDs can be manipulated by native Spark programs written in
 [Scala, Java or Python](http://spark.apache.org/docs/latest/programming-guide.html),
 or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html) in R.
 
-The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
+These RDDs are also exposed as Spark Dataset tables, allowing SQL access.
 
 # Architecture
 
@@ -33,11 +33,11 @@ cd CIMSpark/CIMReader
 ```
 * Invoke the package command:
 ```
-sbt package
+mvn package
 ```
 or
 ```
-mvn package
+sbt package
 ```
 
 This should produce a jar file in the target/ directory.
@@ -53,7 +53,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.4.5-4.1.3.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-<cimreader_version>.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala library naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -97,7 +97,7 @@ hdfs dfs -ls /data
 ```
 From within the interactive shell in the master container, to start the Spark shell with the CIMReader jar file on the classpath
 ```
-spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:2.11-2.2.0-2.4.0
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:<cimreader_version>
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -107,11 +107,11 @@ The jars for the packages stored in: /root/.ivy2/jars
 ch.ninecode.cim#CIMReader added as a dependency
 :: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
 	confs: [default]
-	found ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 in central
+	found ch.ninecode.cim#CIMReader;<cimreader_version> in central
 	found com.github.scopt#scopt_2.11;3.6.0 in central
 :: resolution report :: resolve 245ms :: artifacts dl 6ms
 	:: modules in use:
-	ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 from central in [default]
+	ch.ninecode.cim#CIMReader;<cimreader_version> from central in [default]
 	com.github.scopt#scopt_2.11;3.6.0 from central in [default]
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
@@ -269,43 +269,12 @@ All RDD are also exposed as temporary tables, so one can use SQL syntax to const
     +--------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
     only showing top 5 rows
 
-To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance,
-there is a stand-alone application built in to the CIMReader called CIMServerJDBC.
-The program can be executed using spark-submit with the name of the CIMServerJDBC jar file
-that includes all necessary dependencies and the CIM file:
-
-    spark-submit /opt/code/CIMServerJDBC-2.11-2.4.5-4.1.3-jar-with-dependencies.jar "hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml"
-    ...
-    Press [Return] to exit...
-
-The program will serve on port 10004 until you press Return.
-Incidentally, the Tracking UI for the Application Master (on the master node port 4040) is really good.
-But it disappears when the program terminates.
-
-There is a small amount of command line help if you specify --help instead of the CIM file name,
-for example on how to change the port number.
-
-There is a [sample Java JDBC program](https://github.com/derrickoswald/CIMSpark/blob/master/src/test/java/ch/ninecode/CIMJava.java) provided in the src/main/java directory.
-
-The Java [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
-can be black-box included by adding this magic incantation in
-the maven pom:
-
-    <dependency>
-        <groupId>org.spark-project.hive</groupId>
-        <artifactId>hive-jdbc</artifactId>
-        <version>1.2.1.spark2</version>
-    </dependency>
-
-Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).
-
-
 # RStudio & R Remote Client
 
 To be able to use the Spark cluster backend inside of RStudio or R running as a remote client:
 
 Download the Spark tarball file from the [Spark download page](http://spark.apache.org/downloads.html).
-Currently we are using Spark 2.4.5 on Hadoop 2.7 in the [sequenciq/spark Docker container](https://hub.docker.com/r/derrickoswald/spark-docker "derrickoswald/spark-docker"),
+Currently we are using Spark 2.4.5 on Hadoop 2.7 in the [derrickoswald/spark-docker container](https://hub.docker.com/r/derrickoswald/spark-docker "derrickoswald/spark-docker"),
 so to match that, use Spark release 2.4.5 (Feb 5 2020), Pre-built for Hadoop 2.7 and later,
 hence the file is currently spark-2.4.5-bin-hadoop2.7.tgz.
 
@@ -321,13 +290,14 @@ Install the SparkR package.
     Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.5-bin-hadoop2.7")
     install.packages (pkgs = file.path(Sys.getenv("SPARK_HOME"), "R", "lib", "SparkR"), repos = NULL)
 
-Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio), except do not specify a local master and include the CIMReader reader as a jar to be shipped to the worker nodes.
+Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio),
+except do not specify a local master and include the CIMReader reader as a jar to be shipped to the worker nodes.
 
 ```
 # set up the Spark system
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.5-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-2.11-2.4.5-4.1.3.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-<cimreader_version>.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):

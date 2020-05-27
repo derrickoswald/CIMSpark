@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Model that describes the Congestion Revenue Rights Auction Market.
  *
- * @param sup [[ch.ninecode.model.Market Market]] Reference to the superclass object.
+ * @param Market [[ch.ninecode.model.Market Market]] Reference to the superclass object.
  * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
  * @param CongestionRevenueRight [[ch.ninecode.model.CongestionRevenueRight CongestionRevenueRight]] <em>undocumented</em>
  * @group MarketPlan
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class CRRMarket
 (
-    override val sup: Market = null,
+    Market: Market = null,
     labelID: String = null,
     CongestionRevenueRight: List[String] = null
 )
@@ -34,7 +34,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Market: Market = sup
+    override def sup: Market = Market
+
     //
     // Row overrides
     //
@@ -50,6 +51,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -99,7 +101,7 @@ extends
  *
  * The CommodityDefinition is a container for these two parameters, plus the unit of measure and the currency in which the Commodity is traded.  Each CommodityDefinition should be relatively static; defined once and rarely changed.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param commodityCurrency The currency in which the Commodity is traded, using the standard conventions associated with the Currency enumeration.
  * @param commodityUnit The unit of measure in which the Commodity is traded, using the standard conventions associated with the UnitSymbol enumeration.
  * @param commodityUnitMultiplier The unit multiplier, e.g. "k" to convert the unit "W-h" to "kW-h", using the standard conventions associated with the UnitMultiplier enumeration.
@@ -113,7 +115,7 @@ extends
  */
 final case class CommodityDefinition
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     commodityCurrency: String = null,
     commodityUnit: String = null,
     commodityUnitMultiplier: String = null,
@@ -133,7 +135,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -149,6 +152,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -221,7 +225,7 @@ extends
  *
  * These events are created by ISO/RTO system operations and managed  by a demand response management system (DRMS). These events may or may not be coordinated with the Market Events and a defined Energy Market. The event will call for the deployment of a number of registered resources, or for deployment of resources within a zone (an organizational area within the power system that contains a number of resources).
  *
- * @param sup [[ch.ninecode.model.MarketActualEvent MarketActualEvent]] Reference to the superclass object.
+ * @param MarketActualEvent [[ch.ninecode.model.MarketActualEvent MarketActualEvent]] Reference to the superclass object.
  * @param totalPowerAdjustment Total active power adjustment (e.g. load reduction) requested for this demand response event.
  * @param InstructionClearing [[ch.ninecode.model.InstructionClearing InstructionClearing]] ActualDemandResponseEvents may exist that are not part of a coordinated MarketActualEvent associated to a Market.
  *        These ActualDemandResponseEvents can have many InstructionClearing Instructions for specified RegisteredResources or DemandResponse AggregateNodes.
@@ -233,7 +237,7 @@ extends
  */
 final case class DistributedResourceActualEvent
 (
-    override val sup: MarketActualEvent = null,
+    MarketActualEvent: MarketActualEvent = null,
     totalPowerAdjustment: Double = 0.0,
     InstructionClearing: List[String] = null,
     InstructionClearingDOT: List[String] = null,
@@ -250,7 +254,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def MarketActualEvent: MarketActualEvent = sup
+    override def sup: MarketActualEvent = MarketActualEvent
+
     //
     // Row overrides
     //
@@ -266,6 +271,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -325,7 +331,7 @@ extends
  *
  * Energy, Spinning Reserve, Non-Spinning Reserve) with a description of the Market operation control parameters.
  *
- * @param sup [[ch.ninecode.model.Market Market]] Reference to the superclass object.
+ * @param Market [[ch.ninecode.model.Market Market]] Reference to the superclass object.
  * @param Bids [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param MarketResults [[ch.ninecode.model.MarketResults MarketResults]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
@@ -337,7 +343,7 @@ extends
  */
 final case class EnergyMarket
 (
-    override val sup: Market = null,
+    Market: Market = null,
     Bids: List[String] = null,
     MarketResults: String = null,
     RTO: String = null,
@@ -355,7 +361,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Market: Market = sup
+    override def sup: Market = Market
+
     //
     // Row overrides
     //
@@ -371,6 +378,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -436,7 +444,7 @@ extends
  *
  * Day Ahead Market, Real Time Market) with a description of the Market operation control parameters.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param actualEnd Market ending time - actual market end
  * @param actualStart Market starting time - actual market start
  * @param dst True if daylight savings time (DST) is in effect.
@@ -464,7 +472,7 @@ extends
  */
 final case class Market
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     actualEnd: String = null,
     actualStart: String = null,
     dst: Boolean = false,
@@ -490,7 +498,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -506,6 +515,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -599,7 +609,7 @@ extends
 /**
  * This class represents the actual instance of an event.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param eventComments Free format comments for the event, for any purpose needed.
  * @param eventEndTime End time of the event.
  * @param eventStartTime Start time of the event.
@@ -614,7 +624,7 @@ extends
  */
 final case class MarketActualEvent
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     eventComments: String = null,
     eventEndTime: String = null,
     eventStartTime: String = null,
@@ -634,7 +644,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -650,6 +661,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -718,7 +730,7 @@ extends
 /**
  * Aggregation of market information relative for a specific time interval.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param intervalEndTime The end of the time interval for which requirement is defined.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
  * @param Market [[ch.ninecode.model.Market Market]] <em>undocumented</em>
@@ -729,7 +741,7 @@ extends
  */
 final case class MarketFactors
 (
-    override val sup: Document = null,
+    Document: Document = null,
     intervalEndTime: String = null,
     intervalStartTime: String = null,
     Market: String = null,
@@ -746,7 +758,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup
+    override def sup: Document = Document
+
     //
     // Row overrides
     //
@@ -762,6 +775,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -819,7 +833,7 @@ extends
 /**
  * This class identifies a set of planned markets.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tradingDay Planned market trading day.
  * @param PlannedMarket [[ch.ninecode.model.PlannedMarket PlannedMarket]] A market plan has a number of markets (DA, HA, RT).
  * @group MarketPlan
@@ -828,7 +842,7 @@ extends
  */
 final case class MarketPlan
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     tradingDay: String = null,
     PlannedMarket: List[String] = null
 )
@@ -843,7 +857,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -859,6 +874,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -908,7 +924,7 @@ extends
  *
  * Ancillary service product examples include: Regulation, Regulation Up, Regulation Down, Spinning Reserve, Non-Spinning Reserve, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param marketProductType Market product type examples:
  *        
  *        EN (Energy)
@@ -933,7 +949,7 @@ extends
  */
 final case class MarketProduct
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     marketProductType: String = null,
     rampInterval: Double = 0.0,
     BidError: List[String] = null,
@@ -956,7 +972,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -972,6 +989,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1061,7 +1079,7 @@ extends
  *
  * For example, a Day Ahead market opens with the Bid Submission, ends with the closing of the Bid Submission. The market run represent the whole process. MarketRuns can be defined for markets such as Day Ahead Market, Real Time Market, Hour Ahead Market, Week Ahead Market, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param executionType The execution type; Day Ahead, Intra Day, Real Time Pre-Dispatch, Real Time Dispatch
  * @param marketApprovalTime Approved time for case.
  *        Identifies the time that the dispatcher approved a specific real time unit dispatch case
@@ -1082,7 +1100,7 @@ extends
  */
 final case class MarketRun
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     executionType: String = null,
     marketApprovalTime: String = null,
     marketApprovedStatus: Boolean = false,
@@ -1106,7 +1124,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1122,6 +1141,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1210,7 +1230,7 @@ extends
  *
  * For example a planned DA/HA/RT market.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param marketEndTime Market end time.
  * @param marketStartTime Market start time.
  * @param marketType Market type.
@@ -1223,7 +1243,7 @@ extends
  */
 final case class PlannedMarket
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     marketEndTime: String = null,
     marketStartTime: String = null,
     marketType: String = null,
@@ -1242,7 +1262,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1258,6 +1279,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1326,7 +1348,7 @@ extends
  *
  * Used to model the various planned events in a market (closing time, clearing time, etc.)
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param eventType Planned event type.
  * @param plannedTime This is relative time so that this attribute can be used by more than one planned market.
  *        For example the bid submission is 10am everyday.
@@ -1338,7 +1360,7 @@ extends
  */
 final case class PlannedMarketEvent
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     eventType: String = null,
     plannedTime: Int = 0,
     MarketActualEvent: List[String] = null,
@@ -1355,7 +1377,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1371,6 +1394,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * An environmental monitoring station, examples of which could be a weather station or a seismic monitoring station.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dstObserved Whether this station is currently reporting using daylight saving time.
  *        Intended to aid a utility Weather Service in interpreting information coming from a station and has no direct relationship to the manner in which time is expressed in EnvironmentalValueSet.
  * @param isNetworked Indication that station is part of a network of stations used to monitor weather phenomena covering a large geographical area.
@@ -28,7 +28,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class EnvironmentalMonitoringStation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     dstObserved: Boolean = false,
     isNetworked: Boolean = false,
     timeZoneOffset: Double = 0.0,
@@ -49,7 +49,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -65,6 +66,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -143,7 +145,7 @@ extends
  *
  * This class is used to identify organizations that can participate in market management and/or market operations.
  *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
@@ -157,7 +159,7 @@ extends
  */
 final case class MarketParticipant
 (
-    override val sup: Organisation = null,
+    Organisation: Organisation = null,
     Bid: List[String] = null,
     MarketDocument: List[String] = null,
     MarketPerson: List[String] = null,
@@ -177,7 +179,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Organisation: Organisation = sup
+    override def sup: Organisation = Organisation
+
     //
     // Row overrides
     //
@@ -193,6 +196,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -265,7 +269,7 @@ extends
 /**
  * The external intended behavior played by a party within the electricity market.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param type The kind of market roles that can be played by parties for given domains within the electricity market.
  *        Types are flexible using dataType of string for free-entry of role types.
  * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
@@ -275,7 +279,7 @@ extends
  */
 final case class MarketRole
 (
-    override val sup: OrganisationRole = null,
+    OrganisationRole: OrganisationRole = null,
     `type`: String = null,
     MarketParticipant: List[String] = null
 )
@@ -290,7 +294,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup
+    override def sup: OrganisationRole = OrganisationRole
+
     //
     // Row overrides
     //
@@ -306,6 +311,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -353,7 +359,7 @@ extends
 /**
  * Subclass of IEC61970:Production:GeneratingUnit.
  *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param GeneratingUnitDynamicValues [[ch.ninecode.model.GeneratingUnitDynamicValues GeneratingUnitDynamicValues]] <em>undocumented</em>
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
@@ -361,7 +367,7 @@ extends
  */
 final case class MktGeneratingUnit
 (
-    override val sup: GeneratingUnit = null,
+    GeneratingUnit: GeneratingUnit = null,
     GeneratingUnitDynamicValues: List[String] = null
 )
 extends
@@ -375,7 +381,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeneratingUnit: GeneratingUnit = sup
+    override def sup: GeneratingUnit = GeneratingUnit
+
     //
     // Row overrides
     //
@@ -391,6 +398,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -435,7 +443,7 @@ extends
  *
  * Examples include generating unit, load, and non-physical generator or load.
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param commercialOpDate Resource Commercial Operation Date.
  * @param contingencyAvailFlag Contingent operating reserve availiability (Yes/No).
  *        Resource is availiable to participate with capacity in contingency dispatch.
@@ -447,7 +455,7 @@ extends
  * @param isAggregatedRes A flag to indicate if a resource is an aggregated resource.
  * @param lastModified Indication of the last time this item was modified/versioned.
  * @param marketParticipationFlag Market Participation flag: indicates whether the resource participate in the market.
- * @param maxBaseSelfSchedQty  Maximum base self schedule quantity.
+ * @param maxBaseSelfSchedQty_1 Maximum base self schedule quantity.
  * @param maxOnTime Maximum on time after start up.
  * @param minDispatchTime Minimum number of consecutive hours a resource shall be dispatched if bid is accepted.
  * @param minOffTime Minimum off time after shut down.
@@ -516,7 +524,7 @@ extends
  */
 final case class RegisteredResource
 (
-    override val sup: PowerSystemResource = null,
+    PowerSystemResource: PowerSystemResource = null,
     commercialOpDate: String = null,
     contingencyAvailFlag: String = null,
     dispatchable: Boolean = false,
@@ -598,7 +606,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup
+    override def sup: PowerSystemResource = PowerSystemResource
+
     //
     // Row overrides
     //
@@ -614,6 +623,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -975,7 +985,7 @@ extends
  *
  * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. Capacities may be defined for active power or reactive power.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param capacityType capacity type
  *        
  *        The types are but not limited to:
@@ -997,7 +1007,7 @@ extends
  */
 final case class ResourceCapacity
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     capacityType: String = null,
     defaultCapacity: Double = 0.0,
     maximumCapacity: Double = 0.0,
@@ -1016,7 +1026,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1032,6 +1043,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

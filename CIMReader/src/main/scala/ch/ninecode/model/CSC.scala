@@ -8,13 +8,12 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class CCAinverter
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -27,7 +26,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -43,6 +43,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -68,13 +69,12 @@ extends
 }
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class CCArectifierControl
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -87,7 +87,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -103,6 +104,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -128,13 +130,12 @@ extends
 }
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class CSCtype1
 (
-    override val sup: CSCDynamics = null
+    CSCDynamics: CSCDynamics = null
 )
 extends
     Element
@@ -147,7 +148,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def CSCDynamics: CSCDynamics = sup
+    override def sup: CSCDynamics = CSCDynamics
+
     //
     // Row overrides
     //
@@ -163,6 +165,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -188,13 +191,12 @@ extends
 }
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class IdcInverterControl
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -207,7 +209,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -223,6 +226,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -248,13 +252,12 @@ extends
 }
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class IgnAngleContInverter
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -267,7 +270,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -283,6 +287,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -308,13 +313,12 @@ extends
 }
 
 /**
-
  * @group CSC
  * @groupname CSC Package CSC
  */
 final case class VDCOL
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -327,7 +331,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -343,6 +348,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

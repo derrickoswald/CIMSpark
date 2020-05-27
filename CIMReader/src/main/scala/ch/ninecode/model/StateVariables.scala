@@ -10,14 +10,14 @@ import ch.ninecode.cim.Relationship
 /**
  * An abstract class for state variables.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables
  * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 final case class StateVariable
 (
-    override val sup: BasicElement = null
+    Element: BasicElement = null
 )
 extends
     Element
@@ -30,7 +30,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -46,6 +47,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -75,7 +77,7 @@ extends
  *
  * The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param pInjection The active power mismatch between calculated injection and initial injection.
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param phase The terminal phase at which the connection is applied.
@@ -89,7 +91,7 @@ extends
  */
 final case class SvInjection
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     pInjection: Double = 0.0,
     phase: String = null,
     qInjection: Double = 0.0,
@@ -106,7 +108,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -122,6 +125,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -179,7 +183,7 @@ extends
  *
  * Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param p The active power flow.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  * @param phase The individual phase of the flow.
@@ -193,7 +197,7 @@ extends
  */
 final case class SvPowerFlow
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     p: Double = 0.0,
     phase: String = null,
     q: Double = 0.0,
@@ -210,7 +214,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -226,6 +231,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -281,7 +287,7 @@ extends
 /**
  * State variable for the number of sections in service for a shunt compensator.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param phase The terminal phase at which the connection is applied.
  *        If missing, the injection is assumed to be balanced among non-neutral phases.
  * @param sections The number of sections in service as a continuous variable.
@@ -293,7 +299,7 @@ extends
  */
 final case class SvShuntCompensatorSections
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     phase: String = null,
     sections: Double = 0.0,
     ShuntCompensator: String = null
@@ -309,7 +315,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -325,6 +332,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -376,7 +384,7 @@ extends
 /**
  * State variable for status.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param inService The in service status as a result of topology processing.
  *        It indicates if the equipment is considered as energized by the power flow. It reflects if the equipment is connected within a solvable island.  It does not necessarily reflect whether or not the island was solved by the power flow.
  * @param phase The individual phase status.
@@ -388,7 +396,7 @@ extends
  */
 final case class SvStatus
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     inService: Boolean = false,
     phase: String = null,
     ConductingEquipment: String = null
@@ -404,7 +412,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -420,6 +429,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -471,7 +481,7 @@ extends
 /**
  * State variable for switch.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param open The attribute tells if the computed state of the switch is considered open.
  * @param phase The terminal phase at which the connection is applied.
  *        If missing, the injection is assumed to be balanced among non-neutral phases.
@@ -482,7 +492,7 @@ extends
  */
 final case class SvSwitch
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     open: Boolean = false,
     phase: String = null,
     Switch: String = null
@@ -498,7 +508,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -514,6 +525,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -565,7 +577,7 @@ extends
 /**
  * State variable for transformer tap step.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param position The floating point tap position.
  *        This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
  * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] The tap changer associated with the tap step state.
@@ -575,7 +587,7 @@ extends
  */
 final case class SvTapStep
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     position: Double = 0.0,
     TapChanger: String = null
 )
@@ -590,7 +602,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -606,6 +619,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -653,7 +667,7 @@ extends
 /**
  * State variable for voltage.
  *
- * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param StateVariable [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param angle The voltage angle of the topological node complex voltage with respect to system reference.
  * @param phase If specified the voltage is the line to ground voltage of the individual phase.
  *        If unspecified, then the voltage is assumed balanced.
@@ -665,7 +679,7 @@ extends
  */
 final case class SvVoltage
 (
-    override val sup: StateVariable = null,
+    StateVariable: StateVariable = null,
     angle: Double = 0.0,
     phase: String = null,
     v: Double = 0.0,
@@ -682,7 +696,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StateVariable: StateVariable = sup
+    override def sup: StateVariable = StateVariable
+
     //
     // Row overrides
     //
@@ -698,6 +713,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * Note:  the name of the list is reflected in the .name attribute (inherited from IdentifiedObject).
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param version The version of the named list of alert types.
  * @param EnvironmentalAlert [[ch.ninecode.model.EnvironmentalAlert EnvironmentalAlert]] An alert whose type is drawn from this alert type list.
  * @param EnvironmentalDataAuthority [[ch.ninecode.model.EnvironmentalDataAuthority EnvironmentalDataAuthority]] The environmental data authority responsible for publishing this list of alert types.
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class AlertTypeList
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     version: String = null,
     EnvironmentalAlert: List[String] = null,
     EnvironmentalDataAuthority: String = null
@@ -37,7 +37,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -53,6 +54,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -106,14 +108,14 @@ extends
 /**
  * Analog (float) measuring an atmospheric condition.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
+ * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
  * @param kind Kind of atmospheric analog.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class AtmosphericAnalog
 (
-    override val sup: EnvironmentalAnalog = null,
+    EnvironmentalAnalog: EnvironmentalAnalog = null,
     kind: String = null
 )
 extends
@@ -127,7 +129,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalAnalog: EnvironmentalAnalog = sup
+    override def sup: EnvironmentalAnalog = EnvironmentalAnalog
+
     //
     // Row overrides
     //
@@ -143,6 +146,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -182,7 +186,7 @@ extends
 /**
  * An atmospheric phenomenon with a base and altitude providing the vertical coverage (combined with the Location to provide three dimensional space).
  *
- * @param sup [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
+ * @param EnvironmentalPhenomenon [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
  * @param altitude The maximum altitude of the phenomenon.
  * @param base The base altitude of the phenomenon.
  * @param direction The direction the phenomenon is moving.
@@ -194,7 +198,7 @@ extends
  */
 final case class AtmosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon = null,
+    EnvironmentalPhenomenon: EnvironmentalPhenomenon = null,
     altitude: String = null,
     base: String = null,
     direction: Double = 0.0,
@@ -213,7 +217,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalPhenomenon: EnvironmentalPhenomenon = sup
+    override def sup: EnvironmentalPhenomenon = EnvironmentalPhenomenon
+
     //
     // Row overrides
     //
@@ -229,6 +234,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -289,7 +295,7 @@ extends
 /**
  * A classification condition used to define preconditions that must be met by a phenomena classification.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration The duration of the of the condition in seconds
  * @param test The test applied to the value.
  * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Analog which contributes to the definition of this classification condition.
@@ -300,7 +306,7 @@ extends
  */
 final case class ClassificationCondition
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     duration: Double = 0.0,
     test: String = null,
     EnvironmentalAnalog: List[String] = null,
@@ -318,7 +324,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -334,6 +341,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -396,14 +404,14 @@ extends
 /**
  * A classified cloud phenomenon with a type.
  *
- * @param sup [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
+ * @param AtmosphericPhenomenon [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
  * @param kind The type of the cloud as defined by the CloudKind enumeration.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class CloudCondition
 (
-    override val sup: AtmosphericPhenomenon = null,
+    AtmosphericPhenomenon: AtmosphericPhenomenon = null,
     kind: String = null
 )
 extends
@@ -417,7 +425,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AtmosphericPhenomenon: AtmosphericPhenomenon = sup
+    override def sup: AtmosphericPhenomenon = AtmosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -433,6 +442,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -472,7 +482,7 @@ extends
 /**
  * A cyclone (or tropical cyclone), a rapidly-rotating storm system characterized by a low-pressure center, strong winds, and a spiral arrangement of thunderstorms that produce heavy rain.
  *
- * @param sup [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
+ * @param AtmosphericPhenomenon [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
  * @param centralPressure The central pressure of the cyclone during the time interval.
  * @param maxSurfaceWindSpeed The maximum surface wind speed of the cyclone during the time interval.
  * @param windForce Wind Force as classified on the Beaufort Scale (0-12) during the time interval.
@@ -481,7 +491,7 @@ extends
  */
 final case class Cyclone
 (
-    override val sup: AtmosphericPhenomenon = null,
+    AtmosphericPhenomenon: AtmosphericPhenomenon = null,
     centralPressure: Double = 0.0,
     maxSurfaceWindSpeed: Double = 0.0,
     windForce: Int = 0
@@ -497,7 +507,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AtmosphericPhenomenon: AtmosphericPhenomenon = sup
+    override def sup: AtmosphericPhenomenon = AtmosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -513,6 +524,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -560,7 +572,7 @@ extends
 /**
  * An earthquake.
  *
- * @param sup [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
+ * @param GeosphericPhenomenon [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
  * @param focalDepth The depth below the earth's surface of the earthquake's focal point.
  * @param intensity The intensity of the earthquake as defined by the Modified Mercalli Intensity (MMI) scale.
  *        Possible values are 1-12, corresponding to I-XII.
@@ -571,7 +583,7 @@ extends
  */
 final case class Earthquake
 (
-    override val sup: GeosphericPhenomenon = null,
+    GeosphericPhenomenon: GeosphericPhenomenon = null,
     focalDepth: String = null,
     intensity: Int = 0,
     magnitude: Double = 0.0
@@ -587,7 +599,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeosphericPhenomenon: GeosphericPhenomenon = sup
+    override def sup: GeosphericPhenomenon = GeosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -603,6 +616,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -651,7 +665,7 @@ extends
 /**
  * An environmental alert issued by a provider or system.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param alertType The type of the issued alert which is drawn from the specified alert type list.
  * @param cancelledDateTime Time and date alert cancelled.
  *        Used only if alert is cancelled before it expires.
@@ -666,7 +680,7 @@ extends
  */
 final case class EnvironmentalAlert
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     alertType: String = null,
     cancelledDateTime: String = null,
     headline: String = null,
@@ -686,7 +700,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -702,6 +717,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -772,7 +788,7 @@ extends
 /**
  * Analog (float) measurement of relevance in the environmental domain.
  *
- * @param sup [[ch.ninecode.model.Analog Analog]] Reference to the superclass object.
+ * @param Analog [[ch.ninecode.model.Analog Analog]] Reference to the superclass object.
  * @param ClassificationCondition [[ch.ninecode.model.ClassificationCondition ClassificationCondition]] Classification condition which this analog helps define.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Observation or forecast with which this environmental analog measurement is associated.
  * @param EnvironmentalMonitoringStation [[ch.ninecode.model.EnvironmentalMonitoringStation EnvironmentalMonitoringStation]] Monitoring station which provides this environmental analog measurement.
@@ -782,7 +798,7 @@ extends
  */
 final case class EnvironmentalAnalog
 (
-    override val sup: Analog = null,
+    Analog: Analog = null,
     ClassificationCondition: String = null,
     EnvironmentalInformation: String = null,
     EnvironmentalMonitoringStation: String = null,
@@ -799,7 +815,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Analog: Analog = sup
+    override def sup: Analog = Analog
+
     //
     // Row overrides
     //
@@ -815,6 +832,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -874,7 +892,7 @@ extends
  *
  * A triplicate of enumerated values representing intensity, coverage, type of weather is used. These may be concatenated into the string value.
  *
- * @param sup [[ch.ninecode.model.StringMeasurementValue StringMeasurementValue]] Reference to the superclass object.
+ * @param StringMeasurementValue [[ch.ninecode.model.StringMeasurementValue StringMeasurementValue]] Reference to the superclass object.
  * @param coverageKind Code representing the coverage of the weather condition.
  * @param intensityKind Code representing the intensity of the weather condition.
  * @param probabilityPercent Probability of weather condition occurring during the time interval expressed as a percentage.
@@ -885,7 +903,7 @@ extends
  */
 final case class EnvironmentalCodedValue
 (
-    override val sup: StringMeasurementValue = null,
+    StringMeasurementValue: StringMeasurementValue = null,
     coverageKind: String = null,
     intensityKind: String = null,
     probabilityPercent: Double = 0.0,
@@ -902,7 +920,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StringMeasurementValue: StringMeasurementValue = sup
+    override def sup: StringMeasurementValue = StringMeasurementValue
+
     //
     // Row overrides
     //
@@ -918,6 +937,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -970,7 +990,7 @@ extends
 /**
  * An entity defining classifications or categories of environmental information, like phenomena or alerts.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param AlertTypeList [[ch.ninecode.model.AlertTypeList AlertTypeList]] A specific version of a list of alerts published by this environmental data authority.
  * @param PhenomenonClassification [[ch.ninecode.model.PhenomenonClassification PhenomenonClassification]] Phenomenon classification defined by this environmental data authority.
  * @group Environmental
@@ -978,7 +998,7 @@ extends
  */
 final case class EnvironmentalDataAuthority
 (
-    override val sup: OrganisationRole = null,
+    OrganisationRole: OrganisationRole = null,
     AlertTypeList: List[String] = null,
     PhenomenonClassification: List[String] = null
 )
@@ -993,7 +1013,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup
+    override def sup: OrganisationRole = OrganisationRole
+
     //
     // Row overrides
     //
@@ -1009,6 +1030,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1058,7 +1080,7 @@ extends
  *
  * Could be an observed weather data provider, an entity providing forecasts, an authority providing alerts, etc.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param EnvironmentalAlert [[ch.ninecode.model.EnvironmentalAlert EnvironmentalAlert]] Alert issued by this environmental data provider.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Environmental information provided by this environmental data provider.
  * @group Environmental
@@ -1066,7 +1088,7 @@ extends
  */
 final case class EnvironmentalDataProvider
 (
-    override val sup: OrganisationRole = null,
+    OrganisationRole: OrganisationRole = null,
     EnvironmentalAlert: List[String] = null,
     EnvironmentalInformation: List[String] = null
 )
@@ -1081,7 +1103,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup
+    override def sup: OrganisationRole = OrganisationRole
+
     //
     // Row overrides
     //
@@ -1097,6 +1120,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1144,7 +1168,7 @@ extends
 /**
  * Discrete (integer) measurement of relevance in the environmental domain.
  *
- * @param sup [[ch.ninecode.model.Discrete Discrete]] Reference to the superclass object.
+ * @param Discrete [[ch.ninecode.model.Discrete Discrete]] Reference to the superclass object.
  * @param kind Kind of environmental discrete (integer).
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Observation or forecast with which this environmental discrete (integer) is associated.
  * @group Environmental
@@ -1152,7 +1176,7 @@ extends
  */
 final case class EnvironmentalDiscrete
 (
-    override val sup: Discrete = null,
+    Discrete: Discrete = null,
     kind: String = null,
     EnvironmentalInformation: String = null
 )
@@ -1167,7 +1191,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Discrete: Discrete = sup
+    override def sup: Discrete = Discrete
+
     //
     // Row overrides
     //
@@ -1183,6 +1208,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1235,14 +1261,14 @@ extends
  * <li>to identify assets that were (or are forecast to be) affected by a phenomenon or set of measurements</li>
  * </ul>
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Forecast or observation related to this environmental event.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class EnvironmentalEvent
 (
-    override val sup: ActivityRecord = null,
+    ActivityRecord: ActivityRecord = null,
     EnvironmentalInformation: List[String] = null
 )
 extends
@@ -1256,7 +1282,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup
+    override def sup: ActivityRecord = ActivityRecord
+
     //
     // Row overrides
     //
@@ -1272,6 +1299,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1314,7 +1342,7 @@ extends
 /**
  * Abstract class (with concrete child classes of Observation and Forecast) that groups phenomenon and/or environmental value sets.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param created The timestamp of when the forecast was created
  * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Environmental analog associated with this observation or forecast.
  * @param EnvironmentalDataProvider [[ch.ninecode.model.EnvironmentalDataProvider EnvironmentalDataProvider]] Environmental data provider supplying this environmental information.
@@ -1327,7 +1355,7 @@ extends
  */
 final case class EnvironmentalInformation
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     created: String = null,
     EnvironmentalAnalog: List[String] = null,
     EnvironmentalDataProvider: String = null,
@@ -1347,7 +1375,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -1363,6 +1392,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1438,7 +1468,7 @@ extends
  *
  * Used when an environmental alert or phenomenon has multiple locations associated with it.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param kind The kind of location.
  *        Typical values might be center, extent, primary, secondary, etc.
  * @param EnvironmentalAlert [[ch.ninecode.model.EnvironmentalAlert EnvironmentalAlert]] Environmental alert applying to location of this type.
@@ -1449,7 +1479,7 @@ extends
  */
 final case class EnvironmentalLocationType
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     kind: String = null,
     EnvironmentalAlert: List[String] = null,
     EnvironmentalPhenomenon: List[String] = null,
@@ -1466,7 +1496,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1482,6 +1513,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1539,7 +1571,7 @@ extends
 /**
  * The actual or forecast characteristics of an environmental phenomenon at a specific point in time (or during a specific time interval) that may have both a center and area/line location.
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param timeInterval The timestamp of the phenomenon as a single point or time interval.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] The forecast or observation of which this phenomenon description is a part.
  * @param EnvironmentalLocationKind [[ch.ninecode.model.EnvironmentalLocationType EnvironmentalLocationType]] Location of relevance to this environmental phenomenon.
@@ -1549,7 +1581,7 @@ extends
  */
 final case class EnvironmentalPhenomenon
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     timeInterval: String = null,
     EnvironmentalInformation: String = null,
     EnvironmentalLocationKind: List[String] = null,
@@ -1566,7 +1598,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -1582,6 +1615,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1639,7 +1673,7 @@ extends
 /**
  * String measurement of relevance in the environmental domain.
  *
- * @param sup [[ch.ninecode.model.StringMeasurement StringMeasurement]] Reference to the superclass object.
+ * @param StringMeasurement [[ch.ninecode.model.StringMeasurement StringMeasurement]] Reference to the superclass object.
  * @param ClassificationCondition [[ch.ninecode.model.ClassificationCondition ClassificationCondition]] Classification condition which this string measurement helps define.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Observation or forecast with which this environmental string is associated.
  * @group Environmental
@@ -1647,7 +1681,7 @@ extends
  */
 final case class EnvironmentalStringMeasurement
 (
-    override val sup: StringMeasurement = null,
+    StringMeasurement: StringMeasurement = null,
     ClassificationCondition: String = null,
     EnvironmentalInformation: String = null
 )
@@ -1662,7 +1696,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def StringMeasurement: StringMeasurement = sup
+    override def sup: StringMeasurement = StringMeasurement
+
     //
     // Row overrides
     //
@@ -1678,6 +1713,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1727,13 +1763,13 @@ extends
  *
  * Associated location information is assumed to describe the total area burned as of a specified time.
  *
- * @param sup [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
+ * @param GeosphericPhenomenon [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Fire
 (
-    override val sup: GeosphericPhenomenon = null
+    GeosphericPhenomenon: GeosphericPhenomenon = null
 )
 extends
     Element
@@ -1746,7 +1782,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeosphericPhenomenon: GeosphericPhenomenon = sup
+    override def sup: GeosphericPhenomenon = GeosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -1762,6 +1799,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1789,13 +1827,13 @@ extends
 /**
  * A flood, an overflowing of a large amount of water beyond its normal confines, esp. over what is normally dry land.
  *
- * @param sup [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
+ * @param HydrosphericPhenomenon [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Flood
 (
-    override val sup: HydrosphericPhenomenon = null
+    HydrosphericPhenomenon: HydrosphericPhenomenon = null
 )
 extends
     Element
@@ -1808,7 +1846,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def HydrosphericPhenomenon: HydrosphericPhenomenon = sup
+    override def sup: HydrosphericPhenomenon = HydrosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -1824,6 +1863,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -1851,7 +1891,7 @@ extends
 /**
  * A forecast group of value sets and/or phenomena characteristics.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Reference to the superclass object.
+ * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Reference to the superclass object.
  * @param validFor The interval for which the forecast is valid.
  *        For example, a forecast issued now for tomorrow might be valid for the next 2 hours.
  * @group Environmental
@@ -1859,7 +1899,7 @@ extends
  */
 final case class Forecast
 (
-    override val sup: EnvironmentalInformation = null,
+    EnvironmentalInformation: EnvironmentalInformation = null,
     validFor: String = null
 )
 extends
@@ -1873,7 +1913,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalInformation: EnvironmentalInformation = sup
+    override def sup: EnvironmentalInformation = EnvironmentalInformation
+
     //
     // Row overrides
     //
@@ -1889,6 +1930,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -1928,14 +1970,14 @@ extends
 /**
  * Analog (float) measuring a geospheric condition.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
+ * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
  * @param kind Kind of geospheric analog.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class GeosphericAnalog
 (
-    override val sup: EnvironmentalAnalog = null,
+    EnvironmentalAnalog: EnvironmentalAnalog = null,
     kind: String = null
 )
 extends
@@ -1949,7 +1991,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalAnalog: EnvironmentalAnalog = sup
+    override def sup: EnvironmentalAnalog = EnvironmentalAnalog
+
     //
     // Row overrides
     //
@@ -1965,6 +2008,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2004,13 +2048,13 @@ extends
 /**
  * A geospheric phenomenon.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
+ * @param EnvironmentalPhenomenon [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class GeosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon = null
+    EnvironmentalPhenomenon: EnvironmentalPhenomenon = null
 )
 extends
     Element
@@ -2023,7 +2067,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalPhenomenon: EnvironmentalPhenomenon = sup
+    override def sup: EnvironmentalPhenomenon = EnvironmentalPhenomenon
+
     //
     // Row overrides
     //
@@ -2039,6 +2084,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2066,14 +2112,14 @@ extends
 /**
  * A hurricane, a subtype of cyclone occurring in the North Atlantic Ocean or North-eastern Pacific Ocean whose intensity is measured using the Saffir-Simpson Hurricane Scale.
  *
- * @param sup [[ch.ninecode.model.Cyclone Cyclone]] Reference to the superclass object.
+ * @param Cyclone [[ch.ninecode.model.Cyclone Cyclone]] Reference to the superclass object.
  * @param category The hurricane's category during the time interval, using Saffir-Simpson Hurricane Wind Scale, a 1 to 5 rating based on a hurricane's sustained wind speed.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Hurricane
 (
-    override val sup: Cyclone = null,
+    Cyclone: Cyclone = null,
     category: Int = 0
 )
 extends
@@ -2087,7 +2133,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Cyclone: Cyclone = sup
+    override def sup: Cyclone = Cyclone
+
     //
     // Row overrides
     //
@@ -2103,6 +2150,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2142,14 +2190,14 @@ extends
 /**
  * Analog (float) measuring a hydrospheric condition.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
+ * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
  * @param kind Kind of hydrospheric analog.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class HydrosphericAnalog
 (
-    override val sup: EnvironmentalAnalog = null,
+    EnvironmentalAnalog: EnvironmentalAnalog = null,
     kind: String = null
 )
 extends
@@ -2163,7 +2211,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalAnalog: EnvironmentalAnalog = sup
+    override def sup: EnvironmentalAnalog = EnvironmentalAnalog
+
     //
     // Row overrides
     //
@@ -2179,6 +2228,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2218,13 +2268,13 @@ extends
 /**
  * A hydrospheric phenomenon.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
+ * @param EnvironmentalPhenomenon [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class HydrosphericPhenomenon
 (
-    override val sup: EnvironmentalPhenomenon = null
+    EnvironmentalPhenomenon: EnvironmentalPhenomenon = null
 )
 extends
     Element
@@ -2237,7 +2287,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalPhenomenon: EnvironmentalPhenomenon = sup
+    override def sup: EnvironmentalPhenomenon = EnvironmentalPhenomenon
+
     //
     // Row overrides
     //
@@ -2253,6 +2304,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2280,13 +2332,13 @@ extends
 /**
  * A landslide, a large mass of rocks and earth that suddenly and quickly moves down the side of a mountain or hill.
  *
- * @param sup [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
+ * @param GeosphericPhenomenon [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Landslide
 (
-    override val sup: GeosphericPhenomenon = null
+    GeosphericPhenomenon: GeosphericPhenomenon = null
 )
 extends
     Element
@@ -2299,7 +2351,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeosphericPhenomenon: GeosphericPhenomenon = sup
+    override def sup: GeosphericPhenomenon = GeosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -2315,6 +2368,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2342,7 +2396,7 @@ extends
 /**
  * A cloud-to-ground lightning strike at a particular location.
  *
- * @param sup [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
+ * @param GeosphericPhenomenon [[ch.ninecode.model.GeosphericPhenomenon GeosphericPhenomenon]] Reference to the superclass object.
  * @param errorEllipseConfidence Likelihood that strike fell within errorEllipse.
  * @param errorEllipseMajorSemiAxis Length of major semi-axis (longest radius) of the error ellipse.
  * @param errorEllipseMinorSemiAxis Length of minor semi-axis (shortest radius) of the error ellipse.
@@ -2355,7 +2409,7 @@ extends
  */
 final case class LightningStrike
 (
-    override val sup: GeosphericPhenomenon = null,
+    GeosphericPhenomenon: GeosphericPhenomenon = null,
     errorEllipseConfidence: Double = 0.0,
     errorEllipseMajorSemiAxis: Double = 0.0,
     errorEllipseMinorSemiAxis: Double = 0.0,
@@ -2374,7 +2428,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GeosphericPhenomenon: GeosphericPhenomenon = sup
+    override def sup: GeosphericPhenomenon = GeosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -2390,6 +2445,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2449,7 +2505,7 @@ extends
 /**
  * A magnetic storm, a temporary disturbance of the earth's magnetic field, induced by radiation and streams of charged particles from the sun.
  *
- * @param sup [[ch.ninecode.model.SpacePhenomenon SpacePhenomenon]] Reference to the superclass object.
+ * @param SpacePhenomenon [[ch.ninecode.model.SpacePhenomenon SpacePhenomenon]] Reference to the superclass object.
  * @param changeDst Change in the disturbance  - storm time (Dst) index.
  *        The size of a geomagnetic storm is classified as:
  *        - moderate ( -50 nT &gt;minimum of Dst &gt; -100 nT)
@@ -2460,7 +2516,7 @@ extends
  */
 final case class MagneticStorm
 (
-    override val sup: SpacePhenomenon = null,
+    SpacePhenomenon: SpacePhenomenon = null,
     changeDst: Double = 0.0
 )
 extends
@@ -2474,7 +2530,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SpacePhenomenon: SpacePhenomenon = sup
+    override def sup: SpacePhenomenon = SpacePhenomenon
+
     //
     // Row overrides
     //
@@ -2490,6 +2547,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2529,13 +2587,13 @@ extends
 /**
  * Observed (actual non-forecast) values sets and/or phenomena characteristics.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Reference to the superclass object.
+ * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Observation
 (
-    override val sup: EnvironmentalInformation = null
+    EnvironmentalInformation: EnvironmentalInformation = null
 )
 extends
     Element
@@ -2548,7 +2606,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalInformation: EnvironmentalInformation = sup
+    override def sup: EnvironmentalInformation = EnvironmentalInformation
+
     //
     // Row overrides
     //
@@ -2564,6 +2623,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2591,7 +2651,7 @@ extends
 /**
  * A pre-defined phenomenon classification as defined by a particular authority.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ClassificationCondition [[ch.ninecode.model.ClassificationCondition ClassificationCondition]] Condition contributing to the classification of this phenomenon.
  * @param EnvironmentalDataAuthority [[ch.ninecode.model.EnvironmentalDataAuthority EnvironmentalDataAuthority]] Authority defining this environmental phenomenon.
  * @param EnvironmentalPhenomenon [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] <em>undocumented</em>
@@ -2600,7 +2660,7 @@ extends
  */
 final case class PhenomenonClassification
 (
-    override val sup: IdentifiedObject = null,
+    IdentifiedObject: IdentifiedObject = null,
     ClassificationCondition: List[String] = null,
     EnvironmentalDataAuthority: String = null,
     EnvironmentalPhenomenon: List[String] = null
@@ -2616,7 +2676,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup
+    override def sup: IdentifiedObject = IdentifiedObject
+
     //
     // Row overrides
     //
@@ -2632,6 +2693,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2687,7 +2749,7 @@ extends
  *
  * The associated EnvironmentalValueSets describe the maximum range of possible environmental values the station is capable of returning.  This attribute is intended primarily to assist a utility in managing its stations. </font>
  *
- * @param sup Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param reportingIntervalPeriod Number of units of time making up reporting period.
  * @param reportingIntervalType Unit of time in which reporting period is expressed.
  * @param reportingMethod Indicates how the weather station reports observations.
@@ -2698,7 +2760,7 @@ extends
  */
 final case class ReportingCapability
 (
-    override val sup: BasicElement = null,
+    Element: BasicElement = null,
     reportingIntervalPeriod: Int = 0,
     reportingIntervalType: String = null,
     reportingMethod: String = null,
@@ -2716,7 +2778,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    override def sup: Element = Element
+
     //
     // Row overrides
     //
@@ -2732,6 +2795,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2793,14 +2857,14 @@ extends
 /**
  * Analog (float) measuring a space (extra-terrestrial) condition.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
+ * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Reference to the superclass object.
  * @param kind Kind of space analog.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class SpaceAnalog
 (
-    override val sup: EnvironmentalAnalog = null,
+    EnvironmentalAnalog: EnvironmentalAnalog = null,
     kind: String = null
 )
 extends
@@ -2814,7 +2878,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalAnalog: EnvironmentalAnalog = sup
+    override def sup: EnvironmentalAnalog = EnvironmentalAnalog
+
     //
     // Row overrides
     //
@@ -2830,6 +2895,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -2869,13 +2935,13 @@ extends
 /**
  * An extra-terrestrial phenomenon.
  *
- * @param sup [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
+ * @param EnvironmentalPhenomenon [[ch.ninecode.model.EnvironmentalPhenomenon EnvironmentalPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class SpacePhenomenon
 (
-    override val sup: EnvironmentalPhenomenon = null
+    EnvironmentalPhenomenon: EnvironmentalPhenomenon = null
 )
 extends
     Element
@@ -2888,7 +2954,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def EnvironmentalPhenomenon: EnvironmentalPhenomenon = sup
+    override def sup: EnvironmentalPhenomenon = EnvironmentalPhenomenon
+
     //
     // Row overrides
     //
@@ -2904,6 +2971,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields
@@ -2931,7 +2999,7 @@ extends
 /**
  * A tornado, a violent destructive whirling wind accompanied by a funnel-shaped cloud that progresses in a narrow path over the land.
  *
- * @param sup [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
+ * @param AtmosphericPhenomenon [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
  * @param fScale Fujita scale (referred to as EF-scale starting in 2007) for the tornado.
  * @param width Width of the tornado during the time interval.
  * @group Environmental
@@ -2939,7 +3007,7 @@ extends
  */
 final case class Tornado
 (
-    override val sup: AtmosphericPhenomenon = null,
+    AtmosphericPhenomenon: AtmosphericPhenomenon = null,
     fScale: String = null,
     width: Double = 0.0
 )
@@ -2954,7 +3022,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AtmosphericPhenomenon: AtmosphericPhenomenon = sup
+    override def sup: AtmosphericPhenomenon = AtmosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -2970,6 +3039,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3014,7 +3084,7 @@ extends
 /**
  * A tropical cyclone, a subtype of cyclone that forms to the east of 90°E in the Southern Hemisphere whose intensity is measured by the Australian tropical cyclone intensity scale.
  *
- * @param sup [[ch.ninecode.model.Cyclone Cyclone]] Reference to the superclass object.
+ * @param Cyclone [[ch.ninecode.model.Cyclone Cyclone]] Reference to the superclass object.
  * @param category Strength of tropical cyclone during the time interval, based on Australian Bureau of Meteorology Category System where:
  *        1 - tropical cyclone, with typical gusts over flat land 90-125 km/h
  *        2 - tropical cyclone, with typical gusts over flat land 125-164 km/h
@@ -3026,7 +3096,7 @@ extends
  */
 final case class TropicalCycloneAustralia
 (
-    override val sup: Cyclone = null,
+    Cyclone: Cyclone = null,
     category: Int = 0
 )
 extends
@@ -3040,7 +3110,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Cyclone: Cyclone = sup
+    override def sup: Cyclone = Cyclone
+
     //
     // Row overrides
     //
@@ -3056,6 +3127,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3095,7 +3167,7 @@ extends
 /**
  * A tsunami (tidal wave), a long high sea wave caused by an earthquake, submarine landslide, or other disturbance.
  *
- * @param sup [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
+ * @param HydrosphericPhenomenon [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
  * @param intensity Tsunami intensity on the Papadopoulos-Imamura tsunami intensity scale.
  *        Possible values are 1-12, corresponding to I-XII.
  * @param magnitude Tsunami magnitude in the Tsunami Magnitude Scale (Mt).
@@ -3105,7 +3177,7 @@ extends
  */
 final case class Tsunami
 (
-    override val sup: HydrosphericPhenomenon = null,
+    HydrosphericPhenomenon: HydrosphericPhenomenon = null,
     intensity: Int = 0,
     magnitude: Double = 0.0
 )
@@ -3120,7 +3192,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def HydrosphericPhenomenon: HydrosphericPhenomenon = sup
+    override def sup: HydrosphericPhenomenon = HydrosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -3136,6 +3209,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3179,7 +3253,7 @@ extends
 /**
  * An ash cloud formed as a result of a volcanic eruption.
  *
- * @param sup [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
+ * @param AtmosphericPhenomenon [[ch.ninecode.model.AtmosphericPhenomenon AtmosphericPhenomenon]] Reference to the superclass object.
  * @param density Particulate density of the ash cloud during the time interval.
  * @param particleSize The diameter of the particles during the time interval.
  * @group Environmental
@@ -3187,7 +3261,7 @@ extends
  */
 final case class VolcanicAshCloud
 (
-    override val sup: AtmosphericPhenomenon = null,
+    AtmosphericPhenomenon: AtmosphericPhenomenon = null,
     density: Double = 0.0,
     particleSize: Double = 0.0
 )
@@ -3202,7 +3276,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AtmosphericPhenomenon: AtmosphericPhenomenon = sup
+    override def sup: AtmosphericPhenomenon = AtmosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -3218,6 +3293,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
@@ -3261,13 +3337,13 @@ extends
 /**
  * A whirlpool, a rapidly rotating mass of water in a river or sea into which objects may be drawn, typically caused by the meeting of conflicting currents.
  *
- * @param sup [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
+ * @param HydrosphericPhenomenon [[ch.ninecode.model.HydrosphericPhenomenon HydrosphericPhenomenon]] Reference to the superclass object.
  * @group Environmental
  * @groupname Environmental Package Environmental
  */
 final case class Whirlpool
 (
-    override val sup: HydrosphericPhenomenon = null
+    HydrosphericPhenomenon: HydrosphericPhenomenon = null
 )
 extends
     Element
@@ -3280,7 +3356,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def HydrosphericPhenomenon: HydrosphericPhenomenon = sup
+    override def sup: HydrosphericPhenomenon = HydrosphericPhenomenon
+
     //
     // Row overrides
     //
@@ -3296,6 +3373,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         sup.export_fields

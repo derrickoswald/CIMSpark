@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Static var compensator whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param StaticVarCompensator [[ch.ninecode.model.StaticVarCompensator StaticVarCompensator]] Static Var Compensator to which Static Var Compensator dynamics model applies.
  * @group StaticVarCompensatorDynamics
  * @groupname StaticVarCompensatorDynamics Package StaticVarCompensatorDynamics
@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  */
 final case class StaticVarCompensatorDynamics
 (
-    override val sup: DynamicsFunctionBlock = null,
+    DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     StaticVarCompensator: String = null
 )
 extends
@@ -32,7 +32,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup
+    override def sup: DynamicsFunctionBlock = DynamicsFunctionBlock
+
     //
     // Row overrides
     //
@@ -48,6 +49,7 @@ extends
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
     override def copy (): Row = { clone ().asInstanceOf[Row] }
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
