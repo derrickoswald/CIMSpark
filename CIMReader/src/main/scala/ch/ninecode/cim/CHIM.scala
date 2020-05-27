@@ -45,6 +45,31 @@ trait Parser
     val relations: List[Relationship] = List ()
 
     /**
+     * Create the integer array of bitfields from field names.
+     *
+     * @param strings the names of the fields to set the bits for
+     * @return the bitfield array corresponding to the given field names
+     */
+    def fieldsToBitfields (strings: String*): Array[Int] =
+    {
+        val bits = new Array[Int] ((fields.length + 31) / 32)
+        strings.foreach (
+            fieldname =>
+            {
+                val index = fields.indexOf (fieldname)
+                if (-1 != index)
+                    bits(index / 32) |= (1 << (index % 32))
+                else
+                {
+                    // ToDo: better error handling
+                    println (s"""field "$fieldname not fould in fields array of ${getClass.getName}""")
+                }
+            }
+        )
+        bits
+    }
+
+    /**
      * Regular expression to parse an element.
      * For example: <cim:ACLineSegment.r>0.224</cim:ACLineSegment.r>
      * @param cls The class name.

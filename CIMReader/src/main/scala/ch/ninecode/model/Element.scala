@@ -68,9 +68,9 @@ with
      * Field order is specified by the fields array.
      *
      * For classes constructed manually, we initially fill this in with the worst case scenario.
-     * ToDo: this won't work for classes with more than 96 fields (so far none).
+     * ToDo: this won't work for classes with more than 128 fields (so far none).
      */
-    var bitfields: Array[Int] = Array(-1, -1, -1)
+    var bitfields: Array[Int] = Array(-1, -1, -1, -1)
 
     /**
      * Is a field present predicate.
@@ -287,6 +287,8 @@ object BasicElement
      * Simply extracts the rdf:about.
      */
     val about: FielderFunction = parse_element ((Pattern.compile("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
+
+    override val fields: Array[String] = Array[String] ("mRID")
 
     override def parse (context: Context): BasicElement =
     {

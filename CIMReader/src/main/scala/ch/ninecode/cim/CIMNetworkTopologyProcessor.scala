@@ -522,26 +522,21 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             null,
             mRID = name
         )
-        basic.bitfields = Array (Integer.parseInt ("1", 2))
+        basic.bitfields = BasicElement.fieldsToBitfields ("mRID")
         val obj = IdentifiedObject (
             basic,
             aliasName = cn.IdentifiedObject.aliasName,
             description = cn.IdentifiedObject.description,
             mRID = name,
-            name = cn.id,
-            DiagramObjects = List (),
-            InstanceSet = null,
-            Names = List (),
-            PropertiesCIMDataObject = null,
-            TargetingCIMDataObject = List()
+            name = cn.id
         )
-        obj.bitfields = Array (Integer.parseInt ("1111", 2))
+        obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "description", "mRID", "name")
         val island = TopologicalIsland (
             obj,
             AngleRefTopologicalNode = null,
             TopologicalNodes = List()
         )
-        island.bitfields = Array (0)
+        island.bitfields = TopologicalIsland.fieldsToBitfields ()
 
         (
             nodes.headOption.fold (0L)(x => x._1._1.island),
@@ -563,36 +558,20 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             null,
             mRID = name
         )
-        element.bitfields = Array (Integer.parseInt ("1", 2))
+        element.bitfields = BasicElement.fieldsToBitfields ("mRID")
         val obj = IdentifiedObject (
             element,
             aliasName = arg._1.toString,
-            description = null,
-            mRID = name,
-            name = null,
-            DiagramObjects = List (),
-            InstanceSet = null,
-            Names = List (),
-            PropertiesCIMDataObject = null,
-            TargetingCIMDataObject = List()
+            mRID = name
         )
-        obj.bitfields = Array (Integer.parseInt ("101", 2))
+        obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "mRID")
         val node = TopologicalNode (
             obj,
-            pInjection = 0.0,
-            qInjection = 0.0,
-            AngleRefTopologicalIsland = null,
             BaseVoltage = arg._2.voltage,
-            BusNameMarker = List (),
             ConnectivityNodeContainer = arg._2.container,
-            ConnectivityNodes = List (),
-            ReportingGroup = null,
-            SvInjection = List (),
-            SvVoltage = List (),
-            Terminal = List (),
             TopologicalIsland = island
         )
-        node.bitfields = Array (Integer.parseInt ("100000101000", 2))
+        node.bitfields = TopologicalNode.fieldsToBitfields ("BaseVoltage", "ConnectivityNodeContainer", "TopologicalIsland")
         node
     }
 
