@@ -112,7 +112,7 @@ with
      */
     def classes: Seq[String] =
     {
-        Seq (baseclass) ++ (if (null == sup) Seq () else sup.classes)
+        if (null == sup) Seq (baseclass) else Seq (baseclass) ++ sup.classes
     }
 
     //

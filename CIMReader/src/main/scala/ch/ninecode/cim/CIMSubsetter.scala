@@ -74,30 +74,18 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     }
 
     /**
-     * Convert the generic element into an object of type A.
+     * Return the provided Element as this class if possible.
      *
-     * Runs up the hierarchy of nested CIM classes to find this class - or not.
-     *
-     * @param element the generic element
-     * @return the object of this class, or <code>null</code> if the element is not derived from this class
+     * @param element the element to convert
+     * @return Some(A) or None if the Element is not this Subsetter class type.
      */
-    def subclass (element: Element): A =
+    def asThisClass (element: Element): Option[A] =
     {
-        var ret = element
-
-        while ((null != ret) && (ret.getClass != runtime_class))
-            ret = ret.sup
-
-        ret.asInstanceOf[A]
-    }
-
-    /**
-     * Selector for elements of this class.
-     */
-    val pf:PartialFunction[Element, A] =
-    {
-        case element: Element if null != subclass (element) =>
-            subclass (element)
+        element match
+        {
+            case obj: A => Some (obj)
+            case e => if (null == e.sup) None else asThisClass (e.sup)
+        }
     }
 
     /**
@@ -108,7 +96,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
      */
     def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel): Unit =
     {
-        val subrdd = rdd.collect[A] (pf)
+        val subrdd = rdd.flatMap (asThisClass)
         save (context, subrdd, storage)
     }
 }

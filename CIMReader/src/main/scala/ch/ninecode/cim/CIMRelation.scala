@@ -145,7 +145,7 @@ class CIMRelation (
         // aggregate the set of class names
         val names = rdd
             .aggregate (Set[String]()) (
-                (set, element) => element.classes.toSet.union (set),
+                (set, element) => set.union (element.classes.toSet),
                 (set1, set2) => set1.union (set2)
             )
         CHIM.apply_to_all_classes (
