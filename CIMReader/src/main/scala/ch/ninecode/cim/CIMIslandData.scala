@@ -11,7 +11,7 @@ import org.apache.spark.graphx.VertexId
  */
 case class CIMIslandData (
     node: VertexId,
-    var island_label: String,
-    var island: VertexId = Long.MaxValue) extends Serializable
+    island_label: String,
+    island: VertexId = Long.MaxValue) extends Serializable
 
 

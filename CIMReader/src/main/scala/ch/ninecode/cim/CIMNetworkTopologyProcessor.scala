@@ -367,7 +367,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         // map elements with their terminal 'pairs' to edges
         val edges = equipment.keyBy (_.id).join (terms.groupBy (_.ConductingEquipment))
-            .values.flatMap (toEdges).map (asEdge).persist (options.storage)
+            .values.flatMap (toEdges).map (asEdge).persist (options.storage).setName ("CIMNetworkTopology_NodeEdges")
 
         // transformer list(end#, voltage)
         val end_voltages = getOrElse[PowerTransformerEnd].map (x => (x.PowerTransformer, (x.TransformerEnd.endNumber, x.TransformerEnd.BaseVoltage))).groupByKey
@@ -408,7 +408,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             )
 
         // get the vertices
-        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (toVertex).keyBy (_.node).persist (options.storage)
+        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e)
+            .values.map (toVertex).keyBy (_.node).persist (options.storage).setName ("CIMNetworkTopology_NodeVertices")
 
         if (options.debug)
         {
@@ -441,7 +442,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
 
         // construct the initial graph from the edges
-        Graph.apply (vertices, edges, CIMVD (), options.storage, options.storage).cache
+        Graph.apply (vertices, edges, CIMVD (), options.storage, options.storage)
+            .persist (options.storage)
     }
 
     def nodeVertex (id: VertexId, data: CIMVD, message: CIMVD): CIMVD =
@@ -502,7 +504,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         graph.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (nodeVertex, nodeSendMessage, nodeMergeMessage)
             // change to VertexData
             .mapVertices ((_, v) => CIMVertexData (0L, "", v.node, v.node_label, v.voltage, v.container))
-            .cache
+            .persist (options.storage)
     }
 
     def to_islands (nodes: Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal, Element)])]): (VertexId, TopologicalIsland) =
@@ -600,21 +602,17 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
     def update_cn (arg: (ConnectivityNode,Option[CIMVertexData])): ConnectivityNode =
     {
-        val c = arg._1
-        arg._2 match
+        val (c, data) = arg
+        data match
         {
             case Some (node) =>
                 // ToDo: should be: c.copy (TopologicalNode = node.name)
                 val cn = ConnectivityNode (
                     c.IdentifiedObject,
                     ConnectivityNodeContainer = c.ConnectivityNodeContainer,
-                    Terminals = List (),
                     TopologicalNode = node.name
                 )
-                val bitfields = c.bitfields.clone ()
-                val position = ConnectivityNode.fields.indexOf ("TopologicalNode")
-                bitfields(position / 32) |= (1 << (position % 32))
-                cn.bitfields = bitfields
+                cn.bitfields = ConnectivityNode.fieldsToBitfields ("ConnectivityNodeContainer", "TopologicalNode")
                 cn
             case None => c
         }
@@ -658,6 +656,34 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
     }
 
+
+    def islandVertex (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
+    {
+        if (null == msg)
+            // initially assign each node to it's own island
+            attr.copy (island = attr.node)
+        else
+            if (attr.island > msg.island)
+                attr.copy (island = msg.island, island_label = msg.island_label)
+            else
+                attr
+    }
+
+    def islandSendMessage (triplet: EdgeTriplet[CIMIslandData, CIMEdgeData]): Iterator[(VertexId, CIMIslandData)] =
+    {
+        if (!triplet.attr.isConnected)
+            Iterator.empty // send no message across a topological boundary
+        else
+            if (triplet.srcAttr.island < triplet.dstAttr.island)
+                Iterator ((triplet.dstId, triplet.srcAttr))
+            else if (triplet.srcAttr.island > triplet.dstAttr.island)
+                Iterator ((triplet.srcId, triplet.dstAttr))
+            else
+                Iterator.empty
+    }
+
+    def islandMergeMessage (a: CIMIslandData, b: CIMIslandData): CIMIslandData = if (a.island < b.island) a else b
+
     /**
      * Use GraphX to identify nodes that are connected electrically
      * @see isSameIsland(Element)
@@ -692,36 +718,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             }
         }
 
-        def vertex_program (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
-        {
-            if (null == msg)
-            // initially assign each node to it's own island
-                attr.island = attr.node
-            else
-                if (attr.island > msg.island)
-                {
-                    attr.island = msg.island
-                    attr.island_label = msg.island_label
-                }
-
-            attr
-        }
-
-        def send_message (triplet: EdgeTriplet[CIMIslandData, CIMEdgeData]): Iterator[(VertexId, CIMIslandData)] =
-        {
-            if (!triplet.attr.isConnected)
-                Iterator.empty // send no message across a topological boundary
-            else
-                if (triplet.srcAttr.island < triplet.dstAttr.island)
-                    Iterator ((triplet.dstId, triplet.srcAttr))
-                else if (triplet.srcAttr.island > triplet.dstAttr.island)
-                    Iterator ((triplet.srcId, triplet.dstAttr))
-                else
-                    Iterator.empty
-        }
-
-        def merge_message (a: CIMIslandData, b: CIMIslandData): CIMIslandData = if (a.island < b.island) a else b
-
         // make new edges with TopologicalNode VertexId for edges with feet in different nodes
         val e: RDD[CIMEdgeData] = graph.triplets
             .filter (edge => edge.srcAttr.node != edge.dstAttr.node)
@@ -734,7 +730,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val topo_graph: Graph[CIMIslandData, CIMEdgeData] = Graph.apply (nodes, edges, CIMIslandData (0, ""), options.storage, options.storage)
 
         // run the Pregel algorithm over the reduced topological graph
-        val g = topo_graph.pregel[CIMIslandData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
+        val g = topo_graph.pregel[CIMIslandData] (null, 10000, EdgeDirection.Either) (islandVertex, islandSendMessage, islandMergeMessage)
 
         // update the original graph with the islands
         val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).values.map (mapper)
@@ -743,8 +739,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), options.storage, options.storage)
 
         // persist the RDD to avoid recomputation
-        { val _ = ret.vertices.persist (options.storage) }
-        { val _ = ret.edges.persist (options.storage) }
+        { val _ = ret.vertices.persist (options.storage).setName ("CIMNetworkTopology_IslandVertices") }
 
         ret
     }
@@ -820,7 +815,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
             // unpersist the graph nodes and edges
             { val _ = graph.vertices.unpersist (false) }
-            { val _ = graph.edges.unpersist (false) }
             (nodes, new_ti)
         }
         else
