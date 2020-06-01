@@ -180,6 +180,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      * @param element The element to test.
      * @return <code>true</code> if the element is effectively one node, <code>false</code> otherwise.
      */
+    //noinspection ScalaStyle
     def isSameNode (element: Element): Boolean =
     {
         element match
@@ -243,6 +244,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      * @param element The element to test.
      * @return <code>true</code> if the element is effectively one node, <code>false</code> otherwise.
      */
+    //noinspection ScalaStyle
     def isSameIsland (element: Element): Boolean =
     {
         element match
@@ -309,7 +311,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                             terminals(0).ConnectivityNode,
                             terminals(i).ConnectivityNode,
                             conducting.id, // same as terminals(n).ConductingEquipment,
-                            conducting.BaseVoltage, // not really applicable for transformers
                             isSameNode (element), // edge connects its nodes
                             isSameIsland (element)) // edge has its nodes in the same island
                 edges.toList
@@ -471,21 +472,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 {
                     if (options.debug && log.isDebugEnabled)
                         log.debug (s"${triplet.attr.id_equ}: from src:${triplet.srcId} to dst:${triplet.dstId} ${triplet.srcAttr.toString} ---> ${triplet.dstAttr.toString}")
-                    val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.srcAttr.voltage) triplet.srcAttr.voltage else triplet.dstAttr.voltage
-                    if ((null != voltage) && (null == triplet.dstAttr.voltage))
-                        Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = voltage)), (triplet.srcId, triplet.srcAttr.copy (voltage = voltage)))
-                    else
-                        Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = voltage)))
+                    Iterator ((triplet.dstId, triplet.srcAttr))
                 }
                 else if (triplet.srcAttr.node > triplet.dstAttr.node)
                 {
                     if (options.debug && log.isDebugEnabled)
                         log.debug (s"${triplet.attr.id_equ}: from dst:${triplet.dstId} to src:${triplet.srcId} ${triplet.dstAttr.toString} ---> ${triplet.srcAttr.toString}")
-                    val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.dstAttr.voltage) triplet.dstAttr.voltage else triplet.srcAttr.voltage
-                    if ((null != voltage) && (null == triplet.srcAttr.voltage))
-                        Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = voltage)), (triplet.dstId, triplet.dstAttr.copy (voltage = voltage)))
-                    else
-                        Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = voltage)))
+                    Iterator ((triplet.srcId, triplet.dstAttr))
                 }
                 else
                     Iterator.empty
@@ -683,7 +676,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         def to_topo_edge (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): CIMEdgeData =
         {
             val edge = triplet.attr
-            CIMEdgeData (triplet.srcAttr.node_label, triplet.dstAttr.node_label, edge.id_equ, edge.voltage, edge.isZero, edge.isConnected)
+            CIMEdgeData (triplet.srcAttr.node_label, triplet.dstAttr.node_label, edge.id_equ, edge.isZero, edge.isConnected)
         }
 
         def to_island_vertices (edge: CIMEdgeData): Iterable[CIMIslandData] =
