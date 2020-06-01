@@ -350,13 +350,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      * @param a the ConnectivityNode and its voltage
      * @return the data for the vertex
      */
-    def toVertex (a: (ConnectivityNode, String)): CIMVertexData =
+    def toVertex (a: (ConnectivityNode, String)): CIMVD =
     {
         val (node, voltage) = a
-        CIMVertexData (0L, "", asVertexId (node.id), node.id, voltage, node.ConnectivityNodeContainer)
+        CIMVD (asVertexId (node.id), node.id, voltage, node.ConnectivityNodeContainer)
     }
 
-    def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
+    def makeGraph (): Graph[CIMVD, CIMEdgeData] =
     {
         // get Element that are ConductingEquipment
         val equipment = getOrElse[Element]("Elements").filter (conductingEquipment (_).isDefined)
@@ -441,7 +441,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
 
         // construct the initial graph from the edges
-        Graph.apply (vertices, edges, CIMVertexData (), options.storage, options.storage).cache
+        Graph.apply (vertices, edges, CIMVD (), options.storage, options.storage).cache
     }
 
     def nodeVertex (id: VertexId, data: CIMVD, message: CIMVD): CIMVD =
@@ -494,27 +494,15 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         if (a.node <= b.node) a else b
     }
 
-    def identifyNodes (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
+    def identifyNodes (graph: Graph[CIMVD, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
     {
-        // convert to smaller objects
-        val g = graph.mapVertices ((_, v) => CIMVD (v.node, v.node_label, v.voltage))
-
-        // traverse the graph with the Pregel algorithm
-        // assigns the minimum VertexId of all electrically identical nodes (node)
+        // traverse the graph with the Pregel algorithm,
+        // assigns the minimum VertexId of all electrically identical nodes to each of them
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (nodeVertex, nodeSendMessage, nodeMergeMessage).cache
-
-        // transfer the labels back to the full vertices
-        val nv = ng.vertices.join (graph.vertices).map (
-            x =>
-            {
-                val (id, (vd, vertex)) = x
-                (id, vertex.copy (node = vd.node, node_label = vd.node_label))
-            }
-        )
-
-        // rebuild the graph
-        Graph.apply (nv, graph.edges, CIMVertexData (), options.storage, options.storage).cache
+        graph.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (nodeVertex, nodeSendMessage, nodeMergeMessage)
+            // change to VertexData
+            .mapVertices ((_, v) => CIMVertexData (0L, "", v.node, v.node_label, v.voltage, v.container))
+            .cache
     }
 
     def to_islands (nodes: Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal, Element)])]): (VertexId, TopologicalIsland) =
@@ -784,7 +772,9 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         implicit val storage: StorageLevel = options.storage // for put()
 
         // get the initial graph based on edges
-        val initial: Graph[CIMVertexData, CIMEdgeData] = make_graph ()
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"makeGraph")
+        val initial: Graph[CIMVD, CIMEdgeData] = makeGraph ()
 
         // get the topological nodes
         log.info ("identifyNodes")
@@ -815,6 +805,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 log.debug (s"${new_ti.count} islands identified")
 
             // swap the old TopologicalIsland RDD for the new one
+            if (options.debug && log.isDebugEnabled)
+                log.debug (s"RDD[TopologicalIsland]")
             put (new_ti)
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
@@ -844,6 +836,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
 
         // swap the old TopologicalNode RDD for the new one
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"RDD[TopologicalNode]")
         put (new_tn)
 
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
@@ -853,6 +847,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val new_cn = old_cn.keyBy (a => asVertexId (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"RDD[ConnectivityNode]")
         put (new_cn)
 
         // assign every Terminal with a connectivity node to a TopologicalNode
@@ -864,6 +860,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             .union (t_without)
 
         // swap the old Terminal RDD for the new one
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"RDD[Terminal]")
         put (new_terminals)
 
         // make a union of all old RDD as IdentifiedObject
@@ -885,6 +883,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val new_idobj = old_idobj.keyBy (_.id).subtract (oldobj.keyBy (_.id)).values.union (newobj)
 
         // swap the old IdentifiedObject RDD for the new one
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"RDD[IdentifiedObject]")
         put (new_idobj)
 
         // make a union of all old RDD as Element
@@ -905,8 +905,11 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val new_elements = old_elements.keyBy (_.id).subtract (oldelem.keyBy (_.id)).values.union (newelem)
 
         // swap the old Elements RDD for the new one
+        if (options.debug && log.isDebugEnabled)
+            log.debug (s"RDD[Element]")
         put (new_elements, "Elements")
 
+        log.info ("finished Network Topology Processing")
         new_elements
     }
 
