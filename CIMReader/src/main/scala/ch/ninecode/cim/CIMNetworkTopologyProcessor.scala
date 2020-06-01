@@ -268,43 +268,66 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
     }
 
-    def edge_operator (arg: (Element, Iterable[Terminal])): List[CIMEdgeData] =
+    /**
+     * Get the underlying ConductingEquipment superclass.
+     *
+     * @param element the element to traverse
+     * @return Some(ConductingEquipment) or None if the Element is not a ConductingEquipment subclass
+     */
+    def conductingEquipment (element: Element): Option[ConductingEquipment] =
     {
-        var ret = List[CIMEdgeData] ()
-
-        // get the ConductingEquipment
-        var equipment = arg._1
-        while ((null != equipment) && !equipment.getClass.getName.endsWith (".ConductingEquipment"))
-            equipment = equipment.sup
-        if (null != equipment)
+        element match
         {
-            // make an array of terminals sorted by sequence number
-            val terminals = arg._2.filter (x => (null != x.ConnectivityNode) && ("" != x.ConnectivityNode)).toArray.sortBy (_.ACDCTerminal.sequenceNumber)
-            // make an edge for each pair of terminals
-            if (terminals.length >= 2) // eliminate edges without two connectivity nodes
-                for (i <- 1 until terminals.length) // eliminate edges with only one terminal
-                {
-                    // check if this edge connects its nodes
-                    val identical = isSameNode (arg._1)
-                    // check if this edge has its nodes in the same island
-                    val connected = isSameIsland (arg._1)
-                    ret = ret :+ CIMEdgeData (
-                        terminals(0).ConnectivityNode,
-                        terminals(i).ConnectivityNode,
-                        equipment.id, // terminals(n).ConductingEquipment,
-                        equipment.asInstanceOf[ConductingEquipment].BaseVoltage,
-                        identical,
-                        connected)
-                }
+            case conducting: ConductingEquipment => Some (conducting)
+            case null => None
+            case e: Element => conductingEquipment (e.sup)
         }
-        //else // shouldn't happen, terminals always reference ConductingEquipment, right?
-        // throw new Exception (s"element ${e.id} is not derived from ConductingEquipment")
-        // ProtectionEquipment and CurrentRelay are emitted with terminals even though they shouldn't be
-
-        ret
     }
 
-    def vertex_id (string: String): VertexId =
+    /**
+     * Construct edges for terminal pairs of this equipment.
+     *
+     * @param args Element (ConductingEquipment) and the Terminal that reference it
+     * @return edges for each terminal pair
+     */
+    def toEdges (args: (Element, Iterable[Terminal])): List[CIMEdgeData] =
+    {
+        val (element, terms) = args
+        // get the ConductingEquipment
+        conductingEquipment (element) match
+        {
+            case Some (conducting) =>
+                // make an array of terminals sorted by sequence number
+                val terminals = terms
+                    .toArray
+                    .sortBy (_.ACDCTerminal.sequenceNumber)
+                // make an edge for each pair of terminals,
+                // eliminate edges with only one terminal with a ConnectivityNode
+                val edges = for (i <- 1 until terminals.length)
+                    yield
+                        CIMEdgeData (
+                            terminals(0).ConnectivityNode,
+                            terminals(i).ConnectivityNode,
+                            conducting.id, // same as terminals(n).ConductingEquipment,
+                            conducting.BaseVoltage, // not really applicable for transformers
+                            isSameNode (element), // edge connects its nodes
+                            isSameIsland (element)) // edge has its nodes in the same island
+                edges.toList
+            case None =>
+                // shouldn't happen, terminals always reference ConductingEquipment, right?
+                // throw new Exception (s"element ${e.id} is not derived from ConductingEquipment")
+                // ProtectionEquipment and CurrentRelay are emitted with terminals even though they shouldn't be
+                List ()
+        }
+    }
+
+    /**
+     * Compute the hash code for the string to be used as a VertextId (Long).
+     *
+     * @param string the mRID to convert int a VertexId
+     * @return the VertexId for the mRID
+     */
+    def asVertexId (string: String): VertexId =
     {
         var h = 2166136261L
         for (c <- string)
@@ -312,23 +335,40 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         h
     }
 
-    def make_graph_edges (e: CIMEdgeData): Edge[CIMEdgeData] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
+    /**
+     * Create a GraphX Edge.
+     *
+     * @param e the data to pack in the edge
+     * @return an Edge[T] object
+     */
+    def asEdge (e: CIMEdgeData): Edge[CIMEdgeData] = Edge (asVertexId (e.id_cn_1), asVertexId (e.id_cn_2), e)
 
-    def to_vertex (arg: (ConnectivityNode, String)): CIMVertexData =
+    /**
+     * Construct vertex data for the ConnectivityNode and voltage.
+     *
+     * @param a the ConnectivityNode and its voltage
+     * @return the data for the vertex
+     */
+    def toVertex (a: (ConnectivityNode, String)): CIMVertexData =
     {
-        val v = vertex_id (arg._1.id)
-        CIMVertexData (0.asInstanceOf[VertexId], "", v, arg._1.id, arg._2, arg._1.ConnectivityNodeContainer)
+        val (node, voltage) = a
+        CIMVertexData (0L, "", asVertexId (node.id), node.id, voltage, node.ConnectivityNodeContainer)
     }
 
     def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
     {
-        // get the terminals keyed by equipment
-        val terms = getOrElse[Terminal].groupBy (_.ConductingEquipment)
+        // get Element that are ConductingEquipment
+        val equipment = getOrElse[Element]("Elements").filter (conductingEquipment (_).isDefined)
+
+        // get the terminals with ConnectivityNode keyed by equipment
+        val terms = getOrElse[Terminal]
+            .filter (x => (null != x.ConnectivityNode) && ("" != x.ConnectivityNode))
 
         // map elements with their terminal 'pairs' to edges
-        val edges = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
-            .values.flatMap (edge_operator).map (make_graph_edges).persist (options.storage)
+        val edges = equipment.keyBy (_.id).join (terms.groupBy (_.ConductingEquipment))
+            .values.flatMap (toEdges).map (asEdge).persist (options.storage)
 
+        // transformer list(end#, voltage)
         val end_voltages = getOrElse[PowerTransformerEnd].map (x => (x.PowerTransformer, (x.TransformerEnd.endNumber, x.TransformerEnd.BaseVoltage))).groupByKey
         val equipment_voltages = getOrElse[ConductingEquipment].flatMap (
             x =>
@@ -336,12 +376,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                     None
                 else
                     Some((x.id, Iterable ((1, x.BaseVoltage), (2, x.BaseVoltage))))) // same voltage for both terminals
+            .union (end_voltages)
 
         // get the voltage for each ConnectivityNode by joining through Terminal
-        val e = getOrElse[Terminal]
-            .filter (x => (null != x.ConductingEquipment) && (null != x.ConnectivityNode))
-            .map (x => (x.ConductingEquipment, (x.ACDCTerminal.sequenceNumber, x.ConnectivityNode))).groupByKey
-            .join (equipment_voltages.union (end_voltages)).values // ([(term#, ConnectivityNode)], [(end#, voltage)])
+        val e = terms
+            .map (x => (x.ConductingEquipment, (x.ACDCTerminal.sequenceNumber, x.ConnectivityNode)))
+            .groupByKey
+            .join (equipment_voltages).values // ([(term#, ConnectivityNode)], [(end#, voltage)])
             .flatMap (
                 x =>
                     x._1.flatMap (
@@ -360,13 +401,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                     val voltage = voltages.headOption.getOrElse ("Unknown")
                     if (options.debug)
                         if (!voltages.forall (_ == voltage))
-                            log.error (s"conflicting edge voltages on node ${x._1} (${voltages.take(10).mkString (",")})")
+                            log.error (s"conflicting voltages on node ${x._1} (${voltages.mkString (",")})")
                     (x._1, voltage)
                 }
             )
 
         // get the vertices
-        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (options.storage)
+        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (toVertex).keyBy (_.node).persist (options.storage)
 
         if (options.debug)
         {
@@ -531,11 +572,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             name = cn.id
         )
         obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "description", "mRID", "name")
-        val island = TopologicalIsland (
-            obj,
-            AngleRefTopologicalNode = null,
-            TopologicalNodes = List()
-        )
+        val island = TopologicalIsland (obj)
         island.bitfields = TopologicalIsland.fieldsToBitfields ()
 
         (
@@ -652,9 +689,9 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         def to_island_vertices (edge: CIMEdgeData): Iterable[CIMIslandData] =
         {
             if (edge.id_cn_2 == null)
-                List (CIMIslandData (vertex_id (edge.id_cn_1), edge.id_cn_1))
+                List (CIMIslandData (asVertexId (edge.id_cn_1), edge.id_cn_1))
             else
-                List (CIMIslandData (vertex_id (edge.id_cn_1), edge.id_cn_1), CIMIslandData (vertex_id (edge.id_cn_2), edge.id_cn_2))
+                List (CIMIslandData (asVertexId (edge.id_cn_1), edge.id_cn_1), CIMIslandData (asVertexId (edge.id_cn_2), edge.id_cn_2))
         }
 
         def mapper (d: ((VertexId, CIMVertexData), Option[CIMIslandData])): (VertexId, CIMVertexData) =
@@ -666,7 +703,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                     d._1._2.island_label = data.island_label
                     d._1
                 case _ =>
-                    d._1._2.island = vertex_id (d._1._2.node_label)
+                    d._1._2.island = asVertexId (d._1._2.node_label)
                     d._1._2.island_label = d._1._2.node_label
                     d._1
             }
@@ -709,7 +746,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         val nodes: RDD[(VertexId, CIMIslandData)] = e.flatMap (to_island_vertices).keyBy (_.node)
 
-        val edges: RDD[Edge[CIMEdgeData]] = e.map (x => Edge (vertex_id (x.id_cn_1), vertex_id (x.id_cn_2), x))
+        val edges: RDD[Edge[CIMEdgeData]] = e.map (x => Edge (asVertexId (x.id_cn_1), asVertexId (x.id_cn_2), x))
 
         val topo_graph: Graph[CIMIslandData, CIMEdgeData] = Graph.apply (nodes, edges, CIMIslandData (0, ""), options.storage, options.storage)
 
@@ -773,7 +810,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             val elements = getOrElse[Element]("Elements").keyBy (_.id)
             val terms = getOrElse[Terminal].keyBy (_.ConductingEquipment).join (elements).values
             // map each graph vertex to the terminals
-            val vertices = getOrElse[ConnectivityNode].map (x => (vertex_id (x.id), x))
+            val vertices = getOrElse[ConnectivityNode].map (x => (asVertexId (x.id), x))
             val td_plus = graph.vertices.join (vertices).values.filter (_._1.island != 0L).keyBy (_._2.id).leftOuterJoin (terms.keyBy (_._1.ConnectivityNode)).values
             val islands = td_plus.groupBy (_._1._1.island).values.filter (_.exists (_._2.isDefined)).map (to_islands)
 
@@ -818,7 +855,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         // assign every ConnectivityNode to a TopologicalNode
         val old_cn = getOrElse[ConnectivityNode]
-        val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
+        val new_cn = old_cn.keyBy (a => asVertexId (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
         put (new_cn)
@@ -828,7 +865,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val old_terminals = getOrElse[Terminal]
         val t_with = old_terminals.filter (null != _.ConnectivityNode)
         val t_without = old_terminals.filter (null == _.ConnectivityNode)
-        val new_terminals = t_with.keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).values.map (update_terminals)
+        val new_terminals = t_with.keyBy (a => asVertexId (a.ConnectivityNode)).leftOuterJoin (graph.vertices).values.map (update_terminals)
             .union (t_without)
 
         // swap the old Terminal RDD for the new one
