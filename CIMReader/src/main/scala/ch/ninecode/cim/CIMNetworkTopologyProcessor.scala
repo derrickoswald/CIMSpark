@@ -444,69 +444,74 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         Graph.apply (vertices, edges, CIMVertexData (), options.storage, options.storage).cache
     }
 
-    def identifyNodes (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
+    def nodeVertex (id: VertexId, data: CIMVD, message: CIMVD): CIMVD =
     {
-        def vertex_program (id: VertexId, data: CIMVD, message: CIMVD): CIMVD =
-        {
-            if (null != message) // not initialization call?
-                if (data.node > message.node)
-                {
-                    data.node = message.node
-                    data.node_label = message.node_label
-                    data.voltage = message.voltage
-                }
-            data
-        }
-
-        def send_message (triplet: EdgeTriplet[CIMVD, CIMEdgeData]): Iterator[(VertexId, CIMVD)] =
-        {
-            if (!triplet.attr.isZero)
-                Iterator.empty // send no message across a topological boundary
+        if (null != message) // not initialization call?
+            if (data.node > message.node)
+                message
             else
-            {
-                if (options.debug)
-                    if ((null != triplet.srcAttr.voltage) && (null != triplet.dstAttr.voltage))
-                        if (triplet.srcAttr.voltage != triplet.dstAttr.voltage)
-                            log.error (s"conflicting node voltages across edge ${triplet.attr.id_equ}, ${triplet.srcAttr.node_label}:${triplet.srcAttr.voltage}, ${triplet.dstAttr.node_label}:${triplet.dstAttr.voltage}")
-                if (triplet.srcAttr.node < triplet.dstAttr.node)
-                {
-                    if (options.debug && log.isDebugEnabled)
-                        log.debug (s"${triplet.attr.id_equ}: from src:${triplet.srcId} to dst:${triplet.dstId} ${triplet.srcAttr.toString} ---> ${triplet.dstAttr.toString}")
-                    Iterator ((triplet.dstId, triplet.srcAttr))
-                }
-                else if (triplet.srcAttr.node > triplet.dstAttr.node)
-                {
-                    if (options.debug && log.isDebugEnabled)
-                        log.debug (s"${triplet.attr.id_equ}: from dst:${triplet.dstId} to src:${triplet.srcId} ${triplet.dstAttr.toString} ---> ${triplet.srcAttr.toString}")
-                    Iterator ((triplet.srcId, triplet.dstAttr))
-                }
-                else
-                    Iterator.empty
-            }
-        }
+                data
+        else
+            data
+    }
 
-        def merge_message (a: CIMVD, b: CIMVD): CIMVD =
+    def nodeSendMessage (triplet: EdgeTriplet[CIMVD, CIMEdgeData]): Iterator[(VertexId, CIMVD)] =
+    {
+        if (!triplet.attr.isZero)
+            Iterator.empty // send no message across a topological boundary
+        else
         {
             if (options.debug)
-                if ((null != a.voltage) && (null != b.voltage))
-                    if (a.voltage != b.voltage)
-                    {
-                        val (from, to) = if (a.node <= b.node) (b, a) else (a, b)
-                        log.error (s"conflicting node voltages, merging: ${from.node_label}:${from.voltage} into ${to.node_label}:${to.voltage}")
-                    }
-            if (a.node <= b.node) a else b
+                if ((null != triplet.srcAttr.voltage) && (null != triplet.dstAttr.voltage))
+                    if (triplet.srcAttr.voltage != triplet.dstAttr.voltage)
+                        log.error (s"conflicting node voltages across edge ${triplet.attr.id_equ}, ${triplet.srcAttr.node_label}:${triplet.srcAttr.voltage}, ${triplet.dstAttr.node_label}:${triplet.dstAttr.voltage}")
+            if (triplet.srcAttr.node < triplet.dstAttr.node)
+            {
+                if (options.debug && log.isDebugEnabled)
+                    log.debug (s"${triplet.attr.id_equ}: from src:${triplet.srcId} to dst:${triplet.dstId} ${triplet.srcAttr.toString} ---> ${triplet.dstAttr.toString}")
+                Iterator ((triplet.dstId, triplet.srcAttr))
+            }
+            else if (triplet.srcAttr.node > triplet.dstAttr.node)
+            {
+                if (options.debug && log.isDebugEnabled)
+                    log.debug (s"${triplet.attr.id_equ}: from dst:${triplet.dstId} to src:${triplet.srcId} ${triplet.dstAttr.toString} ---> ${triplet.srcAttr.toString}")
+                Iterator ((triplet.srcId, triplet.dstAttr))
+            }
+            else
+                Iterator.empty
         }
+    }
 
+    def nodeMergeMessage (a: CIMVD, b: CIMVD): CIMVD =
+    {
+        if (options.debug)
+            if ((null != a.voltage) && (null != b.voltage))
+                if (a.voltage != b.voltage)
+                {
+                    val (from, to) = if (a.node <= b.node) (b, a) else (a, b)
+                    log.error (s"conflicting node voltages, merging: ${from.node_label}:${from.voltage} into ${to.node_label}:${to.voltage}")
+                }
+        if (a.node <= b.node) a else b
+    }
+
+    def identifyNodes (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
+    {
         // convert to smaller objects
         val g = graph.mapVertices ((_, v) => CIMVD (v.node, v.node_label, v.voltage))
 
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
+        val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (nodeVertex, nodeSendMessage, nodeMergeMessage).cache
 
         // transfer the labels back to the full vertices
-        val nv = ng.vertices.join (graph.vertices).map (x => { val v = x._2._2; v.node = x._2._1.node; v.node_label = x._2._1.node_label; (x._1, v) })
+        val nv = ng.vertices.join (graph.vertices).map (
+            x =>
+            {
+                val (id, (vd, vertex)) = x
+                (id, vertex.copy (node = vd.node, node_label = vd.node_label))
+            }
+        )
 
         // rebuild the graph
         Graph.apply (nv, graph.edges, CIMVertexData (), options.storage, options.storage).cache
@@ -689,16 +694,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         def mapper (d: ((VertexId, CIMVertexData), Option[CIMIslandData])): (VertexId, CIMVertexData) =
         {
-            d._2 match
+            val ((id, vertex), island) = d
+            island match
             {
-                case Some(data) =>
-                    d._1._2.island = data.island
-                    d._1._2.island_label = data.island_label
-                    d._1
+                case Some (data) =>
+                    (id, vertex.copy (island = data.island, island_label = data.island_label))
                 case _ =>
-                    d._1._2.island = asVertexId (d._1._2.node_label)
-                    d._1._2.island_label = d._1._2.node_label
-                    d._1
+                    (id, vertex.copy (island = asVertexId (vertex.node_label), island_label = vertex.node_label))
             }
         }
 
@@ -782,7 +784,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         implicit val storage: StorageLevel = options.storage // for put()
 
         // get the initial graph based on edges
-        val initial = make_graph ()
+        val initial: Graph[CIMVertexData, CIMEdgeData] = make_graph ()
 
         // get the topological nodes
         log.info ("identifyNodes")

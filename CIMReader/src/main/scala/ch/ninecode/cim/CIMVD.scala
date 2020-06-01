@@ -9,9 +9,9 @@ import org.apache.spark.graphx.VertexId
  * @param voltage the nominal voltage of the node
  */
 case class CIMVD (
-    var node: VertexId = Long.MaxValue,
-    var node_label: String = "",
-    var voltage: String = null)
+    node: VertexId = Long.MaxValue,
+    node_label: String = "",
+    voltage: String = null)
 {
     override def toString: String = s"$node_label:$voltage"
 }
