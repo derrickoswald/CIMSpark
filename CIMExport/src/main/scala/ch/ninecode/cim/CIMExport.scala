@@ -296,50 +296,55 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             val cls = e.getClass
             val raw = cls.getName
             val clazz = raw.substring (raw.lastIndexOf (".") + 1)
-            val related = relations (clazz)
-            val l = related.flatMap (
-                relation ⇒
-                {
-                    val method = cls.getDeclaredMethod (relation.field)
-                    method.setAccessible (true)
-                    val ref = method.invoke (e)
-                    if (null != ref)
-                    {
-                        val mrid = ref.toString
-                        if ("" != mrid)
-                            if (relation.field == "TopologicalIsland")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "TopologicalNode")
-                                if (stop.contains (e.id))
-                                    None
+            val l = relations.get (clazz) match
+            {
+                case Some (related) =>
+                    related.flatMap (
+                        relation =>
+                        {
+                            val method = cls.getDeclaredMethod (relation.field)
+                            method.setAccessible (true)
+                            val ref = method.invoke (e)
+                            if (null != ref)
+                            {
+                                val mrid = ref.toString
+                                if ("" != mrid)
+                                    if (relation.field == "TopologicalIsland")
+                                        List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "TopologicalNode")
+                                        if (stop.contains (e.id))
+                                            None
+                                        else
+                                            List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "ConnectivityNode")
+                                        if (stop.contains (e.id))
+                                            None
+                                        else
+                                            List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "Location")
+                                        List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "PerLengthParameters")
+                                        Some ((e.id, ref.asInstanceOf[List[String]].head))
+                                    else if (relation.field == "PowerTransformer")
+                                        List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
+                                        List ((e.id, mrid), (mrid, e.id))
+                                    else if (relation.field == "DiagramObject")
+                                        List ((e.id, mrid), (mrid, e.id))
+                                    else if (!relation.multiple)
+                                        Some ((e.id, mrid))
+                                    else
+                                        None
                                 else
-                                    List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "ConnectivityNode")
-                                if (stop.contains (e.id))
                                     None
-                                else
-                                    List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "Location")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "PerLengthParameters")
-                                Some ((e.id, ref.asInstanceOf[List[String]].head))
-                            else if (relation.field == "PowerTransformer")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "DiagramObject")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (!relation.multiple)
-                                Some ((e.id, mrid))
+                            }
                             else
                                 None
-                        else
-                            None
-                    }
-                    else
-                        None
-                }
-            )
+                        }
+                    )
+                case None =>
+                    List ()
+            }
             list = list ++ l
             e = e.sup
         }

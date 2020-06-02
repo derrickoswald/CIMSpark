@@ -36,7 +36,7 @@ class CIMExportSuite extends SparkSuite
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    val DEMO_DATA: String = s"${FILE_DEPOT}DemoData_with_medium_voltage.rdf"
+    val DEMO_DATA: String = s"${FILE_DEPOT}DemoData.rdf"
 
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
@@ -45,7 +45,7 @@ class CIMExportSuite extends SparkSuite
         new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_Assembled_v2.zip", s"${FILE_DEPOT}MicroGrid/BaseCase_BC/")
         new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
-        new Unzip ().unzip (s"${FILE_DEPOT}DemoData_with_medium_voltage.zip", FILE_DEPOT)
+        new Unzip ().unzip (s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
         // run the tests
         val ret = super.run (testName, args)
         // erase the unpacked files
