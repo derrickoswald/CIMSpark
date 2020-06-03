@@ -522,7 +522,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                     {
                         case _: PowerTransformer =>
                             if (terminal.ACDCTerminal.sequenceNumber > 1)
-                                (current._1 :+ terminal, cn)
+                                (current._1 :+ terminal, best)
                             else
                                 (current._1, best)
                         case _ =>
@@ -752,6 +752,16 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     def process (identify_islands: Boolean): RDD[Element] =
         process (options.copy (identify_islands = identify_islands))
 
+    def alphabetical (x: Iterable[(CIMVertexData, TopologicalIsland)]): (CIMVertexData, TopologicalIsland) =
+    {
+        x.toArray.sortWith (_._1.node_label < _._1.node_label)(0)
+    }
+
+    def alphabetical2 (x: Iterable[CIMVertexData]): CIMVertexData =
+    {
+        x.toArray.sortWith (_.node_label < _.node_label)(0)
+    }
+
     /**
      * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
@@ -806,9 +816,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
             val nodes = nodes_with_islands.groupBy (_._1.node)
-                // keep the head of the Iterable
-                // .map (x => (x._1, x._2.head))
-                .flatMapValues  (_.toList match { case head :: _ => Some (head) case _ => None })
+                .mapValues  (alphabetical)
                 .map (x => (x._1, x._2._1, Some (x._2._2))).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
@@ -820,9 +828,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         else
         {
             val nodes = graph.vertices.values.groupBy (_.node)
-                // keep the head of the Iterable
-                // .map (x => (x._1, x._2.head))
-                .flatMapValues  (_.toList match { case head :: _ => Some (head) case _ => None })
+                .mapValues  (alphabetical2)
                 .map (x => (x._1, x._2, None)).map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
