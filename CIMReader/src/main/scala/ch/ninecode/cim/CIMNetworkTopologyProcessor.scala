@@ -450,7 +450,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     {
         if (null != message) // not initialization call?
             if (data.node > message.node)
-                message
+                data.copy (node = message.node)
             else
                 data
         else
