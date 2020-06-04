@@ -456,7 +456,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
 
         // transfer the labels back to the full vertices
-        val nv = ng.vertices.join (graph.vertices).map (x => { val v = x._2._2; v.node = x._2._1.node; v.node_label = x._2._1.node_label; (x._1, v) })
+        val nv = ng.vertices.join (graph.vertices).map (x => { val v = x._2._2; v.node = x._2._1.node; (x._1, v) })
 
         // rebuild the graph
         Graph.apply (nv, graph.edges, CIMVertexData (), options.storage, options.storage).cache
