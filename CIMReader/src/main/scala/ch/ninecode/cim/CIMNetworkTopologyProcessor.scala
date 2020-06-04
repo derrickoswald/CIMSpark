@@ -450,7 +450,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     {
         if (null != message) // not initialization call?
             if (data.node > message.node)
-                data.copy (node = message.node)
+                message
             else
                 data
         else
@@ -752,16 +752,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     def process (identify_islands: Boolean): RDD[Element] =
         process (options.copy (identify_islands = identify_islands))
 
-    def alphabetical (x: Iterable[(CIMVertexData, TopologicalIsland)]): (CIMVertexData, TopologicalIsland) =
-    {
-        x.toArray.sortWith (_._1.node_label < _._1.node_label)(0)
-    }
-
-    def alphabetical2 (x: Iterable[CIMVertexData]): CIMVertexData =
-    {
-        x.toArray.sortWith (_.node_label < _.node_label)(0)
-    }
-
     /**
      * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
@@ -814,10 +804,12 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 log.debug (s"RDD[TopologicalIsland]")
             put (new_ti)
 
-            val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            val nodes = nodes_with_islands.groupBy (_._1.node)
-                .mapValues  (alphabetical)
-                .map (x => (x._1, x._2._1, Some (x._2._2))).map (to_nodes)
+            // we only need the source vertex from each group to make nodes
+            val nodes = graph.vertices
+                .filter (x => x._1 == x._2.node) // vertex id in the graph is the same vertex id of the ConnectivityNode
+                .keyBy (_._2.island).join (islands).values
+                .map (x => (x._1._1, x._1._2, Some (x._2)))
+                .map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
 
@@ -827,9 +819,11 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
         else
         {
-            val nodes = graph.vertices.values.groupBy (_.node)
-                .mapValues  (alphabetical2)
-                .map (x => (x._1, x._2, None)).map (to_nodes)
+            // we only need the source vertex from each group to make nodes
+            val nodes = graph.vertices
+                .filter (x => x._1 == x._2.node) // vertex id in the graph is the same vertex id of the ConnectivityNode
+                .map (x => (x._1, x._2, None))
+                .map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
