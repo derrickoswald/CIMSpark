@@ -456,7 +456,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
 
         // transfer the labels back to the full vertices
-        val nv = ng.vertices.join (graph.vertices).map (x => { val v = x._2._2; v.node = x._2._1.node; (x._1, v) })
+        val nv = ng.vertices.join (graph.vertices).map (x => { val v = x._2._2; v.node = x._2._1.node; v.node_label = x._2._1.node_label; (x._1, v) })
 
         // rebuild the graph
         Graph.apply (nv, graph.edges, CIMVertexData (), options.storage, options.storage).cache
@@ -733,16 +733,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     def process (identify_islands: Boolean): RDD[Element] =
         process (options.copy (identify_islands = identify_islands))
 
-    def alphabetical (x: Iterable[(CIMVertexData, TopologicalIsland)]): (CIMVertexData, TopologicalIsland) =
-    {
-        x.toArray.sortWith (_._1.node_label < _._1.node_label)(0)
-    }
-
-    def alphabetical2 (x: Iterable[CIMVertexData]): CIMVertexData =
-    {
-        x.toArray.sortWith (_.node_label < _.node_label)(0)
-    }
-
     /**
      * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
@@ -791,19 +781,23 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             // swap the old TopologicalIsland RDD for the new one
             put (new_ti)
 
-            val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            val nodes = nodes_with_islands.groupBy (_._1.node)
-                .mapValues (alphabetical)
-                .map (x => (x._1, x._2._1, Some (x._2._2))).map (to_nodes)
+            // we only need the source vertex from each group to make nodes
+            val nodes = graph.vertices
+                .filter (x => x._1 == x._2.node) // vertex id in the graph is the same vertex id of the ConnectivityNode
+                .keyBy (_._2.island).join (islands).values
+                .map (x => (x._1._1, x._1._2, Some (x._2)))
+                .map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
             (nodes, new_ti)
         }
         else
         {
-            val nodes = graph.vertices.values.groupBy (_.node)
-                .mapValues (alphabetical2)
-                .map (x => (x._1, x._2, None)).map (to_nodes)
+            // we only need the source vertex from each group to make nodes
+            val nodes = graph.vertices
+                .filter (x => x._1 == x._2.node) // vertex id in the graph is the same vertex id of the ConnectivityNode
+                .map (x => (x._1, x._2, None))
+                .map (to_nodes)
             if (options.debug && log.isDebugEnabled)
                 log.debug (s"${nodes.count} nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
