@@ -11,20 +11,27 @@ class CIMExportOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: Str
     var unittest = false
     var helpout = false
     var versionout = false
+    val COMMA = ","
+    val EQUAL = "="
 
     implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
 
     implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
         s =>
         {
-            var ret = Map[String, String] ()
-            val ss = s.split (",")
-            for (p <- ss)
-            {
-                val kv = p.split ("=")
-                ret = ret + ((kv(0), kv(1)))
-            }
-            ret
+            val pairs = for (p <- s.split (COMMA); kv = p.split (EQUAL))
+                yield
+                {
+                    if (2 == kv.length)
+                        Some ((kv(0), kv(1)))
+                    else
+                    {
+                        reportError (s"unrecognized key=value pair '$p'")
+                        helpout = true
+                        None
+                    }
+                }
+            pairs.flatten.toMap
         }
     )
 
@@ -38,83 +45,92 @@ class CIMExportOptionsParser (APPLICATION_NAME: String, APPLICATION_VERSION: Str
             }
     }
 
-    opt [Unit]("unittest").
-        hidden ().
-        action ((_, c) => { unittest = true; c.copy (unittest = true) }).
-        text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
+    opt[Unit]("unittest")
+        .hidden ()
+        .action ((_, c) => { unittest = true; c.copy (unittest = true) })
+        .text (s"unit testing - don't call sys.exit() [${default.unittest}}]")
 
-    opt [LogLevels.Value]("log").
-        action ((x, c) => c.copy (loglevel = x)).
-        text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.loglevel))
+    opt[LogLevels.Value]("log")
+        .action ((x, c) => c.copy (loglevel = x))
+        .text (s"log level, one of ${LogLevels.values.iterator.mkString (COMMA)} [${default.loglevel}]")
 
-    opt [String]("master").valueName ("MASTER_URL").
-        action ((x, c) ⇒ c.copy (master = x)).
-        text ("local[*], spark://host:port, mesos://host:port, yarn [%s]".format (default.master))
+    opt[String]("master")
+        .valueName ("MASTER_URL")
+        .action ((x, c) => c.copy (master = x))
+        .text (s"local[*], spark://host:port, mesos://host:port, yarn [${default.master}]")
 
-    opt[Map[String,String]]("sparkopts").valueName ("k1=v1,k2=v2").
-        action ((x, c) => c.copy (sparkopts = x)).
-        text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ s"${x._1}=${x._2}").mkString (",")))
+    opt[Map[String,String]]("sparkopts")
+        .valueName (s"k1${EQUAL}v1${COMMA}k2${EQUAL}v2")
+        .action ((x, c) => c.copy (sparkopts = x))
+        .text (s"Spark options [${default.sparkopts.map (x => s"${x._1}$EQUAL${x._2}").mkString (COMMA)}]")
 
-    opt[Map[String,String]]("cimopts").valueName ("k1=v1,k2=v2").
-        action ((x, c) => c.copy (cimopts = x)).
-        text ("CIMReader options [%s]".format (default.cimopts.map (x ⇒ s"${x._1}=${x._2}").mkString (",")))
+    opt[Map[String,String]]("cimopts")
+        .valueName (s"k1${EQUAL}v1${COMMA}k2${EQUAL}v2")
+        .action ((x, c) => c.copy (cimopts = x))
+        .text (s"CIMReader options [${default.cimopts.map (x => s"${x._1}$EQUAL${x._2}").mkString (COMMA)}]")
 
-    opt[Unit]("all").
-        action ((_, c) => c.copy (all = true)).
-        text ("export entire processed file [%s]".format (default.all))
+    opt[Unit]("all")
+        .action ((_, c) => c.copy (all = true))
+        .text (s"export entire processed file [${default.all}]")
 
-    opt[Unit]("islands").
-        action ((_, c) => c.copy (islands = true)).
-        text ("export topological islands [%s]".format (default.islands))
+    opt[Unit]("islands")
+        .action ((_, c) => c.copy (islands = true))
+        .text (s"export topological islands [${default.islands}]")
 
-    opt[Unit]("transformers").
-        action ((_, c) => c.copy (transformers = true)).
-        text ("export transformer service areas [%s]".format (default.transformers))
+    opt[Unit]("transformers")
+        .action ((_, c) => c.copy (transformers = true))
+        .text (s"export transformer service areas [${default.transformers}]")
 
-    opt[String]("outputfile").valueName ("<file>").
-        action ((x, c) => c.copy (outputfile = x)).
-        text ("output file name [%s]".format (default.outputfile))
+    opt[String]("outputfile")
+        .valueName ("<file>")
+        .action ((x, c) => c.copy (outputfile = x))
+        .text (s"output file name [${default.outputfile}]")
 
-    opt[String]("outputdir").valueName ("<dir>").
-        action ((x, c) => c.copy (outputdir = x)).
-        text ("output directory name [%s]".format (default.outputdir))
+    opt[String]("outputdir")
+        .valueName ("<dir>")
+        .action ((x, c) => c.copy (outputdir = x))
+        .text (s"output directory name [${default.outputdir}]")
 
-    opt[Unit]("cassandra").
-        action ((_, c) => c.copy (cassandra = true)).
-        text ("output transformer metadata to cassandra [%s]".format (default.cassandra))
+    opt[Unit]("cassandra")
+        .action ((_, c) => c.copy (cassandra = true))
+        .text (s"output transformer metadata to cassandra [${default.cassandra}]")
 
-    opt [String]("host").valueName ("<cassandra>").
-        action ((x, c) ⇒ c.copy (host = x)).
-        text ("Cassandra connection host (listen_address or seed in cassandra.yaml) [%s]".format (default.host))
+    opt[String]("host")
+        .valueName ("<cassandra>")
+        .action ((x, c) => c.copy (host = x))
+        .text (s"Cassandra connection host (listen_address or seed in cassandra.yaml) [${default.host}]")
 
-    opt [Int]("port").valueName ("<port_number>").
-        action ((x, c) ⇒ c.copy (port = x)).
-        text ("Cassandra connection port [%s]".format (default.port))
+    opt[Int]("port")
+        .valueName ("<port_number>")
+        .action ((x, c) => c.copy (port = x))
+        .text (s"Cassandra connection port [${default.port}]")
 
-    opt [String]("keyspace").valueName ("<name>").
-        action ((x, c) ⇒ c.copy (keyspace = x)).
-        text ("keyspace to use if Cassandra is specified [%s]".format (default.keyspace))
+    opt[String]("keyspace")
+        .valueName ("<name>")
+        .action ((x, c) => c.copy (keyspace = x))
+        .text (s"keyspace to use if Cassandra is specified [${default.keyspace}]")
 
-    opt [Int]("replication").valueName ("<number>").
-        action ((x, c) ⇒ c.copy (replication = x)).
-        text ("replication factor to use if Cassandra is specified and the keyspace doesn't exist [%s]".format (default.replication))
+    opt[Int]("replication")
+        .valueName ("<number>")
+        .action ((x, c) => c.copy (replication = x))
+        .text (s"replication factor to use if Cassandra is specified and the keyspace doesn't exist [${default.replication}]")
 
-    arg[String]("<CIM> <CIM> ...").unbounded ().
-        action ((x, c) => c.copy (files = c.files :+ x)).
-        text ("CIM rdf files to process")
+    arg[String]("<CIM> <CIM> ...")
+        .unbounded ()
+        .action ((x, c) => c.copy (files = c.files :+ x))
+        .text ("CIM rdf files to process")
 
-    help ("help").
-        hidden ().
-        validate (Unit => { helpout = true; Right (Unit) })
+    help ("help")
+        .hidden ()
+        .validate (Unit => { helpout = true; Right (Unit) })
 
-    version ("version").
-        validate (Unit => { versionout = true; Right (Unit) }).
-            text ("Scala: %s, Spark: %s, %s: %s".format (
-                APPLICATION_VERSION.split ("-")(0),
-                APPLICATION_VERSION.split ("-")(1),
-                APPLICATION_NAME,
-                APPLICATION_VERSION.split ("-")(2)
-            )
+    version ("version")
+        .validate (Unit => { versionout = true; Right (Unit) })
+        .text (
+            {
+                val version = APPLICATION_VERSION.split ("-")
+                s"Scala: ${version(0)}, Spark: ${version(1)}, $APPLICATION_NAME: ${version(2)}"
+            }
         )
 
     checkConfig (o => { o.valid = !(helpout || versionout); Right (Unit) })
