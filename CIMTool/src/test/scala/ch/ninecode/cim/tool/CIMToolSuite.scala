@@ -1,10 +1,10 @@
 package ch.ninecode.cim.tool
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import ch.ninecode.cim.tool.CIMTool.main
 
-class CIMToolSuite extends FunSuite
+class CIMToolSuite extends AnyFunSuite
 {
     test ("Help")
     {

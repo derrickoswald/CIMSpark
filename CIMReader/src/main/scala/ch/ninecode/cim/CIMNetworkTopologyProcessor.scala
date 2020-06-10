@@ -325,7 +325,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     /**
      * Compute the hash code for the string to be used as a VertextId (Long).
      *
-     * @param string the mRID to convert int a VertexId
+     * @param string the mRID to convert into a VertexId
      * @return the VertexId for the mRID
      */
     def asVertexId (string: String): VertexId =

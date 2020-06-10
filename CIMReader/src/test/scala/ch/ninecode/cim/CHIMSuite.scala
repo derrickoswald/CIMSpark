@@ -1,10 +1,14 @@
 package ch.ninecode.cim
 
-import org.scalatest.FunSuite
+import ch.ninecode.model.Asset
+import ch.ninecode.model.BasicElement
+import ch.ninecode.model.IdentifiedObject
+import ch.ninecode.model.RegisteredGenerator
+import ch.ninecode.model.OASISDataItems
 
-import ch.ninecode.model._
+import org.scalatest.funsuite.AnyFunSuite
 
-class CHIMSuite extends FunSuite
+class CHIMSuite extends AnyFunSuite
 {
     test ("Basic")
     {

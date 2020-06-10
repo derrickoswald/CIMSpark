@@ -1,15 +1,15 @@
 package ch.ninecode.cim
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import ch.ninecode.model._
 
-class CIMSuite extends FunSuite
+class CIMSuite extends AnyFunSuite
 {
   /**
-   * Link to the scaladoc - very clear and detailed tutorial of FunSuite
+   * Link to the scaladoc - very clear and detailed tutorial of AnyFunSuite
    *
-   * http://doc.scalatest.org/2.2.4/index.html#org.scalatest.FunSuite
+   * http://doc.scalatest.org/3.1.2/org/scalatest/funsuite/AnyFunSuite.html
    *
    * Operators
    *  - test

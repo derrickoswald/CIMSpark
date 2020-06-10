@@ -13,9 +13,9 @@ import org.apache.spark.sql.SparkSession
 import ch.ninecode.cim.CIMClasses
 
 import org.scalatest.Outcome
-import org.scalatest.fixture
+import org.scalatest.funsuite.FixtureAnyFunSuite
 
-class SparkSuite extends fixture.FunSuite with Unzip
+class SparkSuite extends FixtureAnyFunSuite with Unzip
 {
     type FixtureParam = SparkSession
 

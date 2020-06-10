@@ -5,20 +5,22 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util
 import java.util.zip.ZipInputStream
 
 import scala.reflect.ClassTag
 import scala.reflect.classTag
+
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SparkSession
-import org.scalatest.Outcome
-import org.scalatest.fixture
+
 import ch.ninecode.cim.CIMClasses
 
-class SparkSuite extends fixture.FunSuite
+import org.scalatest.Outcome
+import org.scalatest.funsuite.FixtureAnyFunSuite
+
+class SparkSuite extends FixtureAnyFunSuite
 {
     type FixtureParam = SparkSession
 

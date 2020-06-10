@@ -90,35 +90,31 @@
         <version.dependency.maven-enforcer-plugin>1.4.1</version.dependency.maven-enforcer-plugin>
         <version.dependency.maven-deploy-plugin>2.8.2</version.dependency.maven-deploy-plugin>
         <version.dependency.maven-failsafe-plugin>2.22.2</version.dependency.maven-failsafe-plugin>
-        <version.dependency.maven-surefire-plugin>2.18.1</version.dependency.maven-surefire-plugin>
-        <version.dependency.build-helper-maven-plugin>3.0.0</version.dependency.build-helper-maven-plugin>
-        <version.dependency.build-helper-maven-plugin>3.0.0</version.dependency.build-helper-maven-plugin>
+        <version.dependency.maven-surefire-plugin>2.22.2</version.dependency.maven-surefire-plugin>
+        <version.dependency.build-helper-maven-plugin>3.1.0</version.dependency.build-helper-maven-plugin>
         <version.dependency.maven-gpg-plugin>1.6</version.dependency.maven-gpg-plugin>
-        <version.dependency.maven-source-plugin>3.1.0</version.dependency.maven-source-plugin>
-        <version.dependency.maven-site-plugin>3.8.2</version.dependency.maven-site-plugin>
-        <version.dependency.maven-project-info-reports-plugin>3.0.0</version.dependency.maven-project-info-reports-plugin>
+        <version.dependency.maven-source-plugin>3.2.1</version.dependency.maven-source-plugin>
+        <version.dependency.maven-site-plugin>3.9.0</version.dependency.maven-site-plugin>
+        <version.dependency.maven-project-info-reports-plugin>3.1.0</version.dependency.maven-project-info-reports-plugin>
         <version.dependency.buildnumber-maven-plugin>1.4</version.dependency.buildnumber-maven-plugin>
-        <version.dependency.scala-maven-plugin>4.2.0</version.dependency.scala-maven-plugin>
+        <version.dependency.scala-maven-plugin>4.4.0</version.dependency.scala-maven-plugin>
+        <version.dependency.scalatest-maven-plugin>2.0.0</version.dependency.scalatest-maven-plugin>
 
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
         <version.dependency.scalalibrary>2.11.12</version.dependency.scalalibrary>
-        <version.dependency.scalamavenplugin>4.1.0</version.dependency.scalamavenplugin>
 
         <!-- Spark versions -->
-        <version.dependency.hadoop>2.7.6</version.dependency.hadoop>
         <version.dependency.spark>2.4.5</version.dependency.spark>
-        <version.dependency.cassandra_spark>2.4.1</version.dependency.cassandra_spark>
+        <version.dependency.cassandra_spark>2.4.3</version.dependency.cassandra_spark>
+        <!-- version.dependency.hadoop>2.7.6</version.dependency.hadoop -->
 
         <!-- Component versions -->
-        <version.dependency.json>1.1.2</version.dependency.json>
-        <version.dependency.sqlite>3.21.0.1</version.dependency.sqlite>
         <version.dependency.scopt>4.0.0-RC2</version.dependency.scopt>
 
         <!-- test versions -->
-        <version.dependency.junit>4.12</version.dependency.junit>
-        <version.dependency.scalatest>3.0.8</version.dependency.scalatest>
-        <version.dependency.scalatest-maven-plugin>2.0.0</version.dependency.scalatest-maven-plugin>
+        <version.dependency.junit>4.13</version.dependency.junit>
+        <version.dependency.scalatest>3.1.2</version.dependency.scalatest>
 
     </properties>
 
