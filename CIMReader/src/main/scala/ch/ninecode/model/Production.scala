@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
@@ -73,24 +73,24 @@ extends
 
 object AirCompressor
 extends
-    Parseable[AirCompressor]
+    CIMParseable[AirCompressor]
 {
     override val fields: Array[String] = Array[String] (
         "airCompressorRating",
         "CAESPlant",
         "CombustionTurbine"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CAESPlant", "CAESPlant", "1", "1"),
-        Relationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CAESPlant", "CAESPlant", "1", "1"),
+        CIMRelationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
     )
     val airCompressorRating: Fielder = parse_element (element (cls, fields(0)))
     val CAESPlant: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CombustionTurbine: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AirCompressor =
+    def parse (context: CIMContext): AirCompressor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AirCompressor (
             PowerSystemResource.parse (context),
@@ -169,7 +169,7 @@ extends
 
 object BatteryUnit
 extends
-    Parseable[BatteryUnit]
+    CIMParseable[BatteryUnit]
 {
     override val fields: Array[String] = Array[String] (
         "batteryState",
@@ -180,9 +180,9 @@ extends
     val ratedE: Fielder = parse_element (element (cls, fields(1)))
     val storedE: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): BatteryUnit =
+    def parse (context: CIMContext): BatteryUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BatteryUnit (
             PowerElectronicsUnit.parse (context),
@@ -264,7 +264,7 @@ extends
 
 object CAESPlant
 extends
-    Parseable[CAESPlant]
+    CIMParseable[CAESPlant]
 {
     override val fields: Array[String] = Array[String] (
         "energyStorageCapacity",
@@ -272,18 +272,18 @@ extends
         "AirCompressor",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AirCompressor", "AirCompressor", "1", "1"),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AirCompressor", "AirCompressor", "1", "1"),
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "0..1", "0..1")
     )
     val energyStorageCapacity: Fielder = parse_element (element (cls, fields(0)))
     val ratedCapacityP: Fielder = parse_element (element (cls, fields(1)))
     val AirCompressor: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): CAESPlant =
+    def parse (context: CIMContext): CAESPlant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CAESPlant (
             PowerSystemResource.parse (context),
@@ -378,7 +378,7 @@ extends
 
 object CogenerationPlant
 extends
-    Parseable[CogenerationPlant]
+    CIMParseable[CogenerationPlant]
 {
     override val fields: Array[String] = Array[String] (
         "cogenHPSendoutRating",
@@ -389,9 +389,9 @@ extends
         "SteamSendoutSchedule",
         "ThermalGeneratingUnits"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SteamSendoutSchedule", "SteamSendoutSchedule", "1", "1"),
-        Relationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SteamSendoutSchedule", "SteamSendoutSchedule", "1", "1"),
+        CIMRelationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
     )
     val cogenHPSendoutRating: Fielder = parse_element (element (cls, fields(0)))
     val cogenHPSteamRating: Fielder = parse_element (element (cls, fields(1)))
@@ -401,9 +401,9 @@ extends
     val SteamSendoutSchedule: Fielder = parse_attribute (attribute (cls, fields(5)))
     val ThermalGeneratingUnits: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): CogenerationPlant =
+    def parse (context: CIMContext): CogenerationPlant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CogenerationPlant (
             PowerSystemResource.parse (context),
@@ -483,21 +483,21 @@ extends
 
 object CombinedCyclePlant
 extends
-    Parseable[CombinedCyclePlant]
+    CIMParseable[CombinedCyclePlant]
 {
     override val fields: Array[String] = Array[String] (
         "combCyclePlantRating",
         "ThermalGeneratingUnits"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
     )
     val combCyclePlantRating: Fielder = parse_element (element (cls, fields(0)))
     val ThermalGeneratingUnits: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): CombinedCyclePlant =
+    def parse (context: CIMContext): CombinedCyclePlant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CombinedCyclePlant (
             PowerSystemResource.parse (context),
@@ -577,23 +577,23 @@ extends
 
 object EmissionAccount
 extends
-    Parseable[EmissionAccount]
+    CIMParseable[EmissionAccount]
 {
     override val fields: Array[String] = Array[String] (
         "emissionType",
         "emissionValueSource",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val emissionType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val emissionValueSource: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): EmissionAccount =
+    def parse (context: CIMContext): EmissionAccount =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EmissionAccount (
             Curve.parse (context),
@@ -678,7 +678,7 @@ extends
 
 object EmissionCurve
 extends
-    Parseable[EmissionCurve]
+    CIMParseable[EmissionCurve]
 {
     override val fields: Array[String] = Array[String] (
         "emissionContent",
@@ -686,17 +686,17 @@ extends
         "isNetGrossP",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val emissionContent: Fielder = parse_element (element (cls, fields(0)))
     val emissionType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val isNetGrossP: Fielder = parse_element (element (cls, fields(2)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): EmissionCurve =
+    def parse (context: CIMContext): EmissionCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EmissionCurve (
             Curve.parse (context),
@@ -808,7 +808,7 @@ extends
 
 object FossilFuel
 extends
-    Parseable[FossilFuel]
+    CIMParseable[FossilFuel]
 {
     override val fields: Array[String] = Array[String] (
         "fossilFuelType",
@@ -824,9 +824,9 @@ extends
         "FuelAllocationSchedules",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val fossilFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val fuelCost: Fielder = parse_element (element (cls, fields(1)))
@@ -841,9 +841,9 @@ extends
     val FuelAllocationSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(11)))
 
-    def parse (context: Context): FossilFuel =
+    def parse (context: CIMContext): FossilFuel =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FossilFuel (
             IdentifiedObject.parse (context),
@@ -943,7 +943,7 @@ extends
 
 object FuelAllocationSchedule
 extends
-    Parseable[FuelAllocationSchedule]
+    CIMParseable[FuelAllocationSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "fuelAllocationEndDate",
@@ -954,9 +954,9 @@ extends
         "FossilFuel",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("FossilFuel", "FossilFuel", "1", "0..*"),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("FossilFuel", "FossilFuel", "1", "0..*"),
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val fuelAllocationEndDate: Fielder = parse_element (element (cls, fields(0)))
     val fuelAllocationStartDate: Fielder = parse_element (element (cls, fields(1)))
@@ -966,9 +966,9 @@ extends
     val FossilFuel: Fielder = parse_attribute (attribute (cls, fields(5)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): FuelAllocationSchedule =
+    def parse (context: CIMContext): FuelAllocationSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FuelAllocationSchedule (
             Curve.parse (context),
@@ -1050,21 +1050,21 @@ extends
 
 object GenUnitOpCostCurve
 extends
-    Parseable[GenUnitOpCostCurve]
+    CIMParseable[GenUnitOpCostCurve]
 {
     override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "GeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): GenUnitOpCostCurve =
+    def parse (context: CIMContext): GenUnitOpCostCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GenUnitOpCostCurve (
             Curve.parse (context),
@@ -1137,19 +1137,19 @@ extends
 
 object GenUnitOpSchedule
 extends
-    Parseable[GenUnitOpSchedule]
+    CIMParseable[GenUnitOpSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "GeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneratingUnit", "GeneratingUnit", "1", "0..1")
     )
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): GenUnitOpSchedule =
+    def parse (context: CIMContext): GenUnitOpSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GenUnitOpSchedule (
             RegularIntervalSchedule.parse (context),
@@ -1355,7 +1355,7 @@ extends
 
 object GeneratingUnit
 extends
-    Parseable[GeneratingUnit]
+    CIMParseable[GeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "allocSpinResP",
@@ -1401,12 +1401,12 @@ extends
         "GrossToNetActivePowerCurves",
         "RotatingMachine"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
-        Relationship ("GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"),
-        Relationship ("GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"),
-        Relationship ("GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"),
-        Relationship ("RotatingMachine", "RotatingMachine", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
+        CIMRelationship ("GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"),
+        CIMRelationship ("GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"),
+        CIMRelationship ("GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"),
+        CIMRelationship ("RotatingMachine", "RotatingMachine", "0..*", "0..1")
     )
     val allocSpinResP: Fielder = parse_element (element (cls, fields(0)))
     val autoCntrlMarginP: Fielder = parse_element (element (cls, fields(1)))
@@ -1451,9 +1451,9 @@ extends
     val GrossToNetActivePowerCurves: FielderMultiple = parse_attributes (attribute (cls, fields(40)))
     val RotatingMachine: FielderMultiple = parse_attributes (attribute (cls, fields(41)))
 
-    def parse (context: Context): GeneratingUnit =
+    def parse (context: CIMContext): GeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GeneratingUnit (
             Equipment.parse (context),
@@ -1566,19 +1566,19 @@ extends
 
 object GrossToNetActivePowerCurve
 extends
-    Parseable[GrossToNetActivePowerCurve]
+    CIMParseable[GrossToNetActivePowerCurve]
 {
     override val fields: Array[String] = Array[String] (
         "GeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
     )
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): GrossToNetActivePowerCurve =
+    def parse (context: CIMContext): GrossToNetActivePowerCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GrossToNetActivePowerCurve (
             Curve.parse (context),
@@ -1666,7 +1666,7 @@ extends
 
 object HeatInputCurve
 extends
-    Parseable[HeatInputCurve]
+    CIMParseable[HeatInputCurve]
 {
     override val fields: Array[String] = Array[String] (
         "auxPowerMult",
@@ -1676,8 +1676,8 @@ extends
         "isNetGrossP",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val auxPowerMult: Fielder = parse_element (element (cls, fields(0)))
     val auxPowerOffset: Fielder = parse_element (element (cls, fields(1)))
@@ -1686,9 +1686,9 @@ extends
     val isNetGrossP: Fielder = parse_element (element (cls, fields(4)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): HeatInputCurve =
+    def parse (context: CIMContext): HeatInputCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HeatInputCurve (
             Curve.parse (context),
@@ -1769,21 +1769,21 @@ extends
 
 object HeatRateCurve
 extends
-    Parseable[HeatRateCurve]
+    CIMParseable[HeatRateCurve]
 {
     override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): HeatRateCurve =
+    def parse (context: CIMContext): HeatRateCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HeatRateCurve (
             Curve.parse (context),
@@ -1858,19 +1858,19 @@ extends
 
 object HydroGeneratingEfficiencyCurve
 extends
-    Parseable[HydroGeneratingEfficiencyCurve]
+    CIMParseable[HydroGeneratingEfficiencyCurve]
 {
     override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): HydroGeneratingEfficiencyCurve =
+    def parse (context: CIMContext): HydroGeneratingEfficiencyCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroGeneratingEfficiencyCurve (
             Curve.parse (context),
@@ -1963,7 +1963,7 @@ extends
 
 object HydroGeneratingUnit
 extends
-    Parseable[HydroGeneratingUnit]
+    CIMParseable[HydroGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "dropHeight",
@@ -1975,11 +1975,11 @@ extends
         "PenstockLossCurve",
         "TailbayLossCurve"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurve", "0..*", "1"),
-        Relationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
-        Relationship ("PenstockLossCurve", "PenstockLossCurve", "0..1", "1"),
-        Relationship ("TailbayLossCurve", "TailbayLossCurve", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurve", "0..*", "1"),
+        CIMRelationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
+        CIMRelationship ("PenstockLossCurve", "PenstockLossCurve", "0..1", "1"),
+        CIMRelationship ("TailbayLossCurve", "TailbayLossCurve", "0..*", "1")
     )
     val dropHeight: Fielder = parse_element (element (cls, fields(0)))
     val energyConversionCapability: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1990,9 +1990,9 @@ extends
     val PenstockLossCurve: Fielder = parse_attribute (attribute (cls, fields(6)))
     val TailbayLossCurve: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): HydroGeneratingUnit =
+    def parse (context: CIMContext): HydroGeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroGeneratingUnit (
             GeneratingUnit.parse (context),
@@ -2109,7 +2109,7 @@ extends
 
 object HydroPowerPlant
 extends
-    Parseable[HydroPowerPlant]
+    CIMParseable[HydroPowerPlant]
 {
     override val fields: Array[String] = Array[String] (
         "dischargeTravelDelay",
@@ -2126,11 +2126,11 @@ extends
         "HydroPumps",
         "Reservoir"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GenSourcePumpDischargeReservoir", "Reservoir", "1", "0..*"),
-        Relationship ("HydroGeneratingUnits", "HydroGeneratingUnit", "0..*", "0..1"),
-        Relationship ("HydroPumps", "HydroPump", "0..*", "0..1"),
-        Relationship ("Reservoir", "Reservoir", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GenSourcePumpDischargeReservoir", "Reservoir", "1", "0..*"),
+        CIMRelationship ("HydroGeneratingUnits", "HydroGeneratingUnit", "0..*", "0..1"),
+        CIMRelationship ("HydroPumps", "HydroPump", "0..*", "0..1"),
+        CIMRelationship ("Reservoir", "Reservoir", "0..1", "0..*")
     )
     val dischargeTravelDelay: Fielder = parse_element (element (cls, fields(0)))
     val genRatedP: Fielder = parse_element (element (cls, fields(1)))
@@ -2146,9 +2146,9 @@ extends
     val HydroPumps: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(12)))
 
-    def parse (context: Context): HydroPowerPlant =
+    def parse (context: CIMContext): HydroPowerPlant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroPowerPlant (
             PowerSystemResource.parse (context),
@@ -2250,7 +2250,7 @@ extends
 
 object HydroPump
 extends
-    Parseable[HydroPump]
+    CIMParseable[HydroPump]
 {
     override val fields: Array[String] = Array[String] (
         "pumpDischAtMaxHead",
@@ -2261,10 +2261,10 @@ extends
         "HydroPumpOpSchedule",
         "RotatingMachine"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
-        Relationship ("HydroPumpOpSchedule", "HydroPumpOpSchedule", "0..1", "1"),
-        Relationship ("RotatingMachine", "RotatingMachine", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
+        CIMRelationship ("HydroPumpOpSchedule", "HydroPumpOpSchedule", "0..1", "1"),
+        CIMRelationship ("RotatingMachine", "RotatingMachine", "1", "0..1")
     )
     val pumpDischAtMaxHead: Fielder = parse_element (element (cls, fields(0)))
     val pumpDischAtMinHead: Fielder = parse_element (element (cls, fields(1)))
@@ -2274,9 +2274,9 @@ extends
     val HydroPumpOpSchedule: Fielder = parse_attribute (attribute (cls, fields(5)))
     val RotatingMachine: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): HydroPump =
+    def parse (context: CIMContext): HydroPump =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroPump (
             Equipment.parse (context),
@@ -2354,19 +2354,19 @@ extends
 
 object HydroPumpOpSchedule
 extends
-    Parseable[HydroPumpOpSchedule]
+    CIMParseable[HydroPumpOpSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "HydroPump"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroPump", "HydroPump", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroPump", "HydroPump", "1", "0..1")
     )
     val HydroPump: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): HydroPumpOpSchedule =
+    def parse (context: CIMContext): HydroPumpOpSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroPumpOpSchedule (
             RegularIntervalSchedule.parse (context),
@@ -2442,21 +2442,21 @@ extends
 
 object IncrementalHeatRateCurve
 extends
-    Parseable[IncrementalHeatRateCurve]
+    CIMParseable[IncrementalHeatRateCurve]
 {
     override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): IncrementalHeatRateCurve =
+    def parse (context: CIMContext): IncrementalHeatRateCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IncrementalHeatRateCurve (
             Curve.parse (context),
@@ -2529,19 +2529,19 @@ extends
 
 object InflowForecast
 extends
-    Parseable[InflowForecast]
+    CIMParseable[InflowForecast]
 {
     override val fields: Array[String] = Array[String] (
         "Reservoir"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Reservoir", "Reservoir", "1", "0..*")
     )
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): InflowForecast =
+    def parse (context: CIMContext): InflowForecast =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InflowForecast (
             RegularIntervalSchedule.parse (context),
@@ -2613,19 +2613,19 @@ extends
 
 object LevelVsVolumeCurve
 extends
-    Parseable[LevelVsVolumeCurve]
+    CIMParseable[LevelVsVolumeCurve]
 {
     override val fields: Array[String] = Array[String] (
         "Reservoir"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Reservoir", "Reservoir", "1", "0..*")
     )
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): LevelVsVolumeCurve =
+    def parse (context: CIMContext): LevelVsVolumeCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LevelVsVolumeCurve (
             Curve.parse (context),
@@ -2689,10 +2689,10 @@ extends
 
 object NuclearGeneratingUnit
 extends
-    Parseable[NuclearGeneratingUnit]
+    CIMParseable[NuclearGeneratingUnit]
 {
 
-    def parse (context: Context): NuclearGeneratingUnit =
+    def parse (context: CIMContext): NuclearGeneratingUnit =
     {
         val ret = NuclearGeneratingUnit (
             GeneratingUnit.parse (context)
@@ -2762,19 +2762,19 @@ extends
 
 object PenstockLossCurve
 extends
-    Parseable[PenstockLossCurve]
+    CIMParseable[PenstockLossCurve]
 {
     override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..1")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): PenstockLossCurve =
+    def parse (context: CIMContext): PenstockLossCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PenstockLossCurve (
             Curve.parse (context),
@@ -2838,10 +2838,10 @@ extends
 
 object PhotoVoltaicUnit
 extends
-    Parseable[PhotoVoltaicUnit]
+    CIMParseable[PhotoVoltaicUnit]
 {
 
-    def parse (context: Context): PhotoVoltaicUnit =
+    def parse (context: CIMContext): PhotoVoltaicUnit =
     {
         val ret = PhotoVoltaicUnit (
             PowerElectronicsUnit.parse (context)
@@ -2918,23 +2918,23 @@ extends
 
 object PowerElectronicsUnit
 extends
-    Parseable[PowerElectronicsUnit]
+    CIMParseable[PowerElectronicsUnit]
 {
     override val fields: Array[String] = Array[String] (
         "maxP",
         "minP",
         "PowerElectronicsConnection"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..*")
     )
     val maxP: Fielder = parse_element (element (cls, fields(0)))
     val minP: Fielder = parse_element (element (cls, fields(1)))
     val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): PowerElectronicsUnit =
+    def parse (context: CIMContext): PowerElectronicsUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerElectronicsUnit (
             Equipment.parse (context),
@@ -3000,10 +3000,10 @@ extends
 
 object PowerElectronicsWindUnit
 extends
-    Parseable[PowerElectronicsWindUnit]
+    CIMParseable[PowerElectronicsWindUnit]
 {
 
-    def parse (context: Context): PowerElectronicsWindUnit =
+    def parse (context: CIMContext): PowerElectronicsWindUnit =
     {
         val ret = PowerElectronicsWindUnit (
             PowerElectronicsUnit.parse (context)
@@ -3127,7 +3127,7 @@ extends
 
 object Reservoir
 extends
-    Parseable[Reservoir]
+    CIMParseable[Reservoir]
 {
     override val fields: Array[String] = Array[String] (
         "activeStorageCapacity",
@@ -3149,14 +3149,14 @@ extends
         "TargetLevelSchedule",
         "UpstreamFromHydroPowerPlants"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroPowerPlants", "HydroPowerPlant", "0..*", "0..1"),
-        Relationship ("InflowForecasts", "InflowForecast", "0..*", "1"),
-        Relationship ("LevelVsVolumeCurves", "LevelVsVolumeCurve", "0..*", "1"),
-        Relationship ("SpillsFromReservoir", "Reservoir", "0..1", "0..*"),
-        Relationship ("SpillsIntoReservoirs", "Reservoir", "0..*", "0..1"),
-        Relationship ("TargetLevelSchedule", "TargetLevelSchedule", "0..1", "1"),
-        Relationship ("UpstreamFromHydroPowerPlants", "HydroPowerPlant", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroPowerPlants", "HydroPowerPlant", "0..*", "0..1"),
+        CIMRelationship ("InflowForecasts", "InflowForecast", "0..*", "1"),
+        CIMRelationship ("LevelVsVolumeCurves", "LevelVsVolumeCurve", "0..*", "1"),
+        CIMRelationship ("SpillsFromReservoir", "Reservoir", "0..1", "0..*"),
+        CIMRelationship ("SpillsIntoReservoirs", "Reservoir", "0..*", "0..1"),
+        CIMRelationship ("TargetLevelSchedule", "TargetLevelSchedule", "0..1", "1"),
+        CIMRelationship ("UpstreamFromHydroPowerPlants", "HydroPowerPlant", "0..*", "1")
     )
     val activeStorageCapacity: Fielder = parse_element (element (cls, fields(0)))
     val energyStorageRating: Fielder = parse_element (element (cls, fields(1)))
@@ -3177,9 +3177,9 @@ extends
     val TargetLevelSchedule: Fielder = parse_attribute (attribute (cls, fields(16)))
     val UpstreamFromHydroPowerPlants: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
 
-    def parse (context: Context): Reservoir =
+    def parse (context: CIMContext): Reservoir =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Reservoir (
             PowerSystemResource.parse (context),
@@ -3273,23 +3273,23 @@ extends
 
 object ShutdownCurve
 extends
-    Parseable[ShutdownCurve]
+    CIMParseable[ShutdownCurve]
 {
     override val fields: Array[String] = Array[String] (
         "shutdownCost",
         "shutdownDate",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val shutdownCost: Fielder = parse_element (element (cls, fields(0)))
     val shutdownDate: Fielder = parse_element (element (cls, fields(1)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ShutdownCurve =
+    def parse (context: CIMContext): ShutdownCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ShutdownCurve (
             Curve.parse (context),
@@ -3357,10 +3357,10 @@ extends
 
 object SolarGeneratingUnit
 extends
-    Parseable[SolarGeneratingUnit]
+    CIMParseable[SolarGeneratingUnit]
 {
 
-    def parse (context: Context): SolarGeneratingUnit =
+    def parse (context: CIMContext): SolarGeneratingUnit =
     {
         val ret = SolarGeneratingUnit (
             GeneratingUnit.parse (context)
@@ -3431,21 +3431,21 @@ extends
 
 object StartIgnFuelCurve
 extends
-    Parseable[StartIgnFuelCurve]
+    CIMParseable[StartIgnFuelCurve]
 {
     override val fields: Array[String] = Array[String] (
         "ignitionFuelType",
         "StartupModel"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val ignitionFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): StartIgnFuelCurve =
+    def parse (context: CIMContext): StartIgnFuelCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StartIgnFuelCurve (
             Curve.parse (context),
@@ -3519,21 +3519,21 @@ extends
 
 object StartMainFuelCurve
 extends
-    Parseable[StartMainFuelCurve]
+    CIMParseable[StartMainFuelCurve]
 {
     override val fields: Array[String] = Array[String] (
         "mainFuelType",
         "StartupModel"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val mainFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): StartMainFuelCurve =
+    def parse (context: CIMContext): StartMainFuelCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StartMainFuelCurve (
             Curve.parse (context),
@@ -3608,21 +3608,21 @@ extends
 
 object StartRampCurve
 extends
-    Parseable[StartRampCurve]
+    CIMParseable[StartRampCurve]
 {
     override val fields: Array[String] = Array[String] (
         "hotStandbyRamp",
         "StartupModel"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val hotStandbyRamp: Fielder = parse_element (element (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): StartRampCurve =
+    def parse (context: CIMContext): StartRampCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StartRampCurve (
             Curve.parse (context),
@@ -3735,7 +3735,7 @@ extends
 
 object StartupModel
 extends
-    Parseable[StartupModel]
+    CIMParseable[StartupModel]
 {
     override val fields: Array[String] = Array[String] (
         "fixedMaintCost",
@@ -3753,11 +3753,11 @@ extends
         "StartRampCurve",
         "ThermalGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StartIgnFuelCurve", "StartIgnFuelCurve", "0..1", "1"),
-        Relationship ("StartMainFuelCurve", "StartMainFuelCurve", "0..1", "1"),
-        Relationship ("StartRampCurve", "StartRampCurve", "0..1", "1"),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StartIgnFuelCurve", "StartIgnFuelCurve", "0..1", "1"),
+        CIMRelationship ("StartMainFuelCurve", "StartMainFuelCurve", "0..1", "1"),
+        CIMRelationship ("StartRampCurve", "StartRampCurve", "0..1", "1"),
+        CIMRelationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val fixedMaintCost: Fielder = parse_element (element (cls, fields(0)))
     val hotStandbyHeat: Fielder = parse_element (element (cls, fields(1)))
@@ -3774,9 +3774,9 @@ extends
     val StartRampCurve: Fielder = parse_attribute (attribute (cls, fields(12)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(13)))
 
-    def parse (context: Context): StartupModel =
+    def parse (context: CIMContext): StartupModel =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StartupModel (
             IdentifiedObject.parse (context),
@@ -3859,19 +3859,19 @@ extends
 
 object SteamSendoutSchedule
 extends
-    Parseable[SteamSendoutSchedule]
+    CIMParseable[SteamSendoutSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "CogenerationPlant"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CogenerationPlant", "CogenerationPlant", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CogenerationPlant", "CogenerationPlant", "1", "1")
     )
     val CogenerationPlant: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): SteamSendoutSchedule =
+    def parse (context: CIMContext): SteamSendoutSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SteamSendoutSchedule (
             RegularIntervalSchedule.parse (context),
@@ -3943,19 +3943,19 @@ extends
 
 object TailbayLossCurve
 extends
-    Parseable[TailbayLossCurve]
+    CIMParseable[TailbayLossCurve]
 {
     override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): TailbayLossCurve =
+    def parse (context: CIMContext): TailbayLossCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TailbayLossCurve (
             Curve.parse (context),
@@ -4034,23 +4034,23 @@ extends
 
 object TargetLevelSchedule
 extends
-    Parseable[TargetLevelSchedule]
+    CIMParseable[TargetLevelSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "highLevelLimit",
         "lowLevelLimit",
         "Reservoir"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Reservoir", "Reservoir", "1", "0..1")
     )
     val highLevelLimit: Fielder = parse_element (element (cls, fields(0)))
     val lowLevelLimit: Fielder = parse_element (element (cls, fields(1)))
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): TargetLevelSchedule =
+    def parse (context: CIMContext): TargetLevelSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TargetLevelSchedule (
             Curve.parse (context),
@@ -4160,7 +4160,7 @@ extends
 
 object ThermalGeneratingUnit
 extends
-    Parseable[ThermalGeneratingUnit]
+    CIMParseable[ThermalGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "oMCost",
@@ -4177,19 +4177,19 @@ extends
         "ShutdownCurve",
         "StartupModel"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CAESPlant", "CAESPlant", "0..1", "0..1"),
-        Relationship ("CogenerationPlant", "CogenerationPlant", "0..1", "0..*"),
-        Relationship ("CombinedCyclePlant", "CombinedCyclePlant", "0..1", "0..*"),
-        Relationship ("EmissionCurves", "EmissionCurve", "0..*", "1"),
-        Relationship ("EmmissionAccounts", "EmissionAccount", "0..*", "1"),
-        Relationship ("FossilFuels", "FossilFuel", "0..*", "1"),
-        Relationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
-        Relationship ("HeatInputCurve", "HeatInputCurve", "0..1", "1"),
-        Relationship ("HeatRateCurve", "HeatRateCurve", "0..1", "1"),
-        Relationship ("IncrementalHeatRateCurve", "IncrementalHeatRateCurve", "0..1", "1"),
-        Relationship ("ShutdownCurve", "ShutdownCurve", "0..1", "1"),
-        Relationship ("StartupModel", "StartupModel", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CAESPlant", "CAESPlant", "0..1", "0..1"),
+        CIMRelationship ("CogenerationPlant", "CogenerationPlant", "0..1", "0..*"),
+        CIMRelationship ("CombinedCyclePlant", "CombinedCyclePlant", "0..1", "0..*"),
+        CIMRelationship ("EmissionCurves", "EmissionCurve", "0..*", "1"),
+        CIMRelationship ("EmmissionAccounts", "EmissionAccount", "0..*", "1"),
+        CIMRelationship ("FossilFuels", "FossilFuel", "0..*", "1"),
+        CIMRelationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
+        CIMRelationship ("HeatInputCurve", "HeatInputCurve", "0..1", "1"),
+        CIMRelationship ("HeatRateCurve", "HeatRateCurve", "0..1", "1"),
+        CIMRelationship ("IncrementalHeatRateCurve", "IncrementalHeatRateCurve", "0..1", "1"),
+        CIMRelationship ("ShutdownCurve", "ShutdownCurve", "0..1", "1"),
+        CIMRelationship ("StartupModel", "StartupModel", "0..1", "1")
     )
     val oMCost: Fielder = parse_element (element (cls, fields(0)))
     val CAESPlant: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4205,9 +4205,9 @@ extends
     val ShutdownCurve: Fielder = parse_attribute (attribute (cls, fields(11)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(12)))
 
-    def parse (context: Context): ThermalGeneratingUnit =
+    def parse (context: CIMContext): ThermalGeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ThermalGeneratingUnit (
             GeneratingUnit.parse (context),
@@ -4291,16 +4291,16 @@ extends
 
 object WindGeneratingUnit
 extends
-    Parseable[WindGeneratingUnit]
+    CIMParseable[WindGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "windGenUnitType"
     )
     val windGenUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): WindGeneratingUnit =
+    def parse (context: CIMContext): WindGeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGeneratingUnit (
             GeneratingUnit.parse (context),
@@ -4313,7 +4313,7 @@ extends
 
 private[ninecode] object _Production
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AirCompressor.register,

@@ -273,7 +273,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         s"""
             |object $name
             |extends
-            |    Parseable[$name]""".stripMargin
+            |    CIMParseable[$name]""".stripMargin
     }
 
     def parseRelationships (fields: SortedSet[Member]): String =
@@ -289,8 +289,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             val relationships = if (references.nonEmpty)
                 (for (r <- references.iterator) // need to use iterator here because SortedSet is brain dead
                     yield
-                        s"""        Relationship ("${r.variable}", "${r.referenced_class}", "${r.this_cardinality}", "${r.mate_cardinality}")"""
-                ).mkString ("    override val relations: List[Relationship] = List (\n", ",\n", "\n    )\n")
+                        s"""        CIMRelationship ("${r.variable}", "${r.referenced_class}", "${r.this_cardinality}", "${r.mate_cardinality}")"""
+                ).mkString ("    override val relations: List[CIMRelationship] = List (\n", ",\n", "\n    )\n")
             else
                 ""
 
@@ -327,7 +327,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
             s"""
-                |        implicit val ctx: Context = context
+                |        implicit val ctx: CIMContext = context
                 |        implicit val bitfields: Array[Int] = Array($initializer)""".stripMargin
         }
         else
@@ -360,7 +360,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
         // output the parse method
         s"""
-           |    def parse (context: Context): $name =
+           |    def parse (context: CIMContext): $name =
            |    {$boilerplate$base
            |        val ret = $name (
            |$parsers
@@ -414,10 +414,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     |
                     |import org.apache.spark.sql.Row
                     |
-                    |import ch.ninecode.cim.ClassInfo
-                    |import ch.ninecode.cim.Context
-                    |import ch.ninecode.cim.Parseable
-                    |import ch.ninecode.cim.Relationship
+                    |import ch.ninecode.cim.CIMClassInfo
+                    |import ch.ninecode.cim.CIMContext
+                    |import ch.ninecode.cim.CIMParseable
+                    |import ch.ninecode.cim.CIMRelationship
                     |
                     |""".stripMargin)
                 .append (p.toString)
@@ -425,7 +425,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append (register (pkg))
                 .append ("""
                     |{
-                    |    def register: List[ClassInfo] =
+                    |    def register: List[CIMClassInfo] =
                     |    {
                     |""".stripMargin)
                 .append (case_classes.map (cls => s"${cls.valid_class_name}.register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
@@ -441,13 +441,15 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
     def save (filename: String, text: String): Unit =
     {
-        val _ = Files.write (Paths.get (filename), text.getBytes (StandardCharsets.UTF_8))
+        val file = Paths.get (filename)
+        mkdir (file.getParent.toString)
+        val _ = Files.write (file, text.getBytes (StandardCharsets.UTF_8))
     }
 
     def writeRegistration (registers: List[String]): Unit =
     {
         val register =
-            s"""    lazy val classes: List[ClassInfo] =
+            s"""    lazy val classes: List[CIMClassInfo] =
                |        List (
                |${registers.mkString (",\n")}
                |        ).flatten

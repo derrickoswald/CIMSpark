@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data.
@@ -74,22 +74,22 @@ extends
 
 object LoadAggregate
 extends
-    Parseable[LoadAggregate]
+    CIMParseable[LoadAggregate]
 {
     override val fields: Array[String] = Array[String] (
         "LoadMotor",
         "LoadStatic"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadMotor", "LoadMotor", "0..1", "1"),
-        Relationship ("LoadStatic", "LoadStatic", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadMotor", "LoadMotor", "0..1", "1"),
+        CIMRelationship ("LoadStatic", "LoadStatic", "0..1", "1")
     )
     val LoadMotor: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LoadStatic: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): LoadAggregate =
+    def parse (context: CIMContext): LoadAggregate =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadAggregate (
             LoadDynamics.parse (context),
@@ -205,7 +205,7 @@ extends
 
 object LoadComposite
 extends
-    Parseable[LoadComposite]
+    CIMParseable[LoadComposite]
 {
     override val fields: Array[String] = Array[String] (
         "epfd",
@@ -232,9 +232,9 @@ extends
     val lfac: Fielder = parse_element (element (cls, fields(9)))
     val pfrac: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): LoadComposite =
+    def parse (context: CIMContext): LoadComposite =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadComposite (
             LoadDynamics.parse (context),
@@ -319,19 +319,19 @@ extends
 
 object LoadDynamics
 extends
-    Parseable[LoadDynamics]
+    CIMParseable[LoadDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "EnergyConsumer"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
     )
     val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): LoadDynamics =
+    def parse (context: CIMContext): LoadDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadDynamics (
             IdentifiedObject.parse (context),
@@ -424,7 +424,7 @@ extends
 
 object LoadGenericNonLinear
 extends
-    Parseable[LoadGenericNonLinear]
+    CIMParseable[LoadGenericNonLinear]
 {
     override val fields: Array[String] = Array[String] (
         "bs",
@@ -443,9 +443,9 @@ extends
     val tp: Fielder = parse_element (element (cls, fields(5)))
     val tq: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): LoadGenericNonLinear =
+    def parse (context: CIMContext): LoadGenericNonLinear =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadGenericNonLinear (
             LoadDynamics.parse (context),
@@ -582,7 +582,7 @@ extends
 
 object LoadMotor
 extends
-    Parseable[LoadMotor]
+    CIMParseable[LoadMotor]
 {
     override val fields: Array[String] = Array[String] (
         "d",
@@ -600,8 +600,8 @@ extends
         "vt",
         "LoadAggregate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
     val d: Fielder = parse_element (element (cls, fields(0)))
     val h: Fielder = parse_element (element (cls, fields(1)))
@@ -618,9 +618,9 @@ extends
     val vt: Fielder = parse_element (element (cls, fields(12)))
     val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(13)))
 
-    def parse (context: Context): LoadMotor =
+    def parse (context: CIMContext): LoadMotor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadMotor (
             IdentifiedObject.parse (context),
@@ -776,7 +776,7 @@ extends
 
 object LoadStatic
 extends
-    Parseable[LoadStatic]
+    CIMParseable[LoadStatic]
 {
     override val fields: Array[String] = Array[String] (
         "ep1",
@@ -798,8 +798,8 @@ extends
         "staticLoadModelType",
         "LoadAggregate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
     val ep1: Fielder = parse_element (element (cls, fields(0)))
     val ep2: Fielder = parse_element (element (cls, fields(1)))
@@ -820,9 +820,9 @@ extends
     val staticLoadModelType: Fielder = parse_attribute (attribute (cls, fields(16)))
     val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(17)))
 
-    def parse (context: Context): LoadStatic =
+    def parse (context: CIMContext): LoadStatic =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadStatic (
             IdentifiedObject.parse (context),
@@ -852,7 +852,7 @@ extends
 
 private[ninecode] object _LoadDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             LoadAggregate.register,

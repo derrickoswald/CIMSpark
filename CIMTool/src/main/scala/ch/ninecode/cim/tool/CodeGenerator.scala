@@ -17,7 +17,7 @@ trait CodeGenerator
         val dir = new File (directory)
         if (!dir.exists)
         {
-            val _ = dir.mkdir
+            val _ = dir.mkdirs
         }
     }
 

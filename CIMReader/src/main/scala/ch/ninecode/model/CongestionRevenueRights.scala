@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
@@ -72,23 +72,23 @@ extends
 
 object CRROrgRole
 extends
-    Parseable[CRROrgRole]
+    CIMParseable[CRROrgRole]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "status",
         "CongestionRevenueRight"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CongestionRevenueRight", "CongestionRevenueRight", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CongestionRevenueRight", "CongestionRevenueRight", "1", "1..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CongestionRevenueRight: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): CRROrgRole =
+    def parse (context: CIMContext): CRROrgRole =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CRROrgRole (
             OrganisationRole.parse (context),
@@ -185,7 +185,7 @@ extends
 
 object CRRSegment
 extends
-    Parseable[CRRSegment]
+    CIMParseable[CRRSegment]
 {
     override val fields: Array[String] = Array[String] (
         "amount",
@@ -197,10 +197,10 @@ extends
         "Sink",
         "Source"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CongestionRevenueRight", "CongestionRevenueRight", "1", "1..*"),
-        Relationship ("Sink", "Pnode", "0..*", "0..*"),
-        Relationship ("Source", "Pnode", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CongestionRevenueRight", "CongestionRevenueRight", "1", "1..*"),
+        CIMRelationship ("Sink", "Pnode", "0..*", "0..*"),
+        CIMRelationship ("Source", "Pnode", "0..*", "0..*")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val clearingPrice: Fielder = parse_element (element (cls, fields(1)))
@@ -211,9 +211,9 @@ extends
     val Sink: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val Source: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): CRRSegment =
+    def parse (context: CIMContext): CRRSegment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CRRSegment (
             IdentifiedObject.parse (context),
@@ -322,7 +322,7 @@ extends
 
 object CongestionRevenueRight
 extends
-    Parseable[CongestionRevenueRight]
+    CIMParseable[CongestionRevenueRight]
 {
     override val fields: Array[String] = Array[String] (
         "cRRcategory",
@@ -335,11 +335,11 @@ extends
         "CRRSegment",
         "Flowgate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CRRMarket", "CRRMarket", "1", "1..*"),
-        Relationship ("CRROrgRole", "CRROrgRole", "1..*", "1"),
-        Relationship ("CRRSegment", "CRRSegment", "1..*", "1"),
-        Relationship ("Flowgate", "Flowgate", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CRRMarket", "CRRMarket", "1", "1..*"),
+        CIMRelationship ("CRROrgRole", "CRROrgRole", "1..*", "1"),
+        CIMRelationship ("CRRSegment", "CRRSegment", "1..*", "1"),
+        CIMRelationship ("Flowgate", "Flowgate", "0..1", "0..1")
     )
     val cRRcategory: Fielder = parse_attribute (attribute (cls, fields(0)))
     val cRRtype: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -351,9 +351,9 @@ extends
     val CRRSegment: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(8)))
 
-    def parse (context: Context): CongestionRevenueRight =
+    def parse (context: CIMContext): CongestionRevenueRight =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CongestionRevenueRight (
             Document.parse (context),
@@ -374,7 +374,7 @@ extends
 
 private[ninecode] object _CongestionRevenueRights
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CRROrgRole.register,

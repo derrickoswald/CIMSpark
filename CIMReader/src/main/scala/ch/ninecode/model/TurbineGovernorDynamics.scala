@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Turbine-governor cross-compound function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -71,22 +71,22 @@ extends
 
 object CrossCompoundTurbineGovernorDynamics
 extends
-    Parseable[CrossCompoundTurbineGovernorDynamics]
+    CIMParseable[CrossCompoundTurbineGovernorDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "HighPressureSynchronousMachineDynamics",
         "LowPressureSynchronousMachineDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HighPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
-        Relationship ("LowPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HighPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
+        CIMRelationship ("LowPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1")
     )
     val HighPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LowPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): CrossCompoundTurbineGovernorDynamics =
+    def parse (context: CIMContext): CrossCompoundTurbineGovernorDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CrossCompoundTurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -312,7 +312,7 @@ extends
 
 object GovCT1
 extends
-    Parseable[GovCT1]
+    CIMParseable[GovCT1]
 {
     override val fields: Array[String] = Array[String] (
         "aset",
@@ -387,9 +387,9 @@ extends
     val wfnl: Fielder = parse_element (element (cls, fields(33)))
     val wfspd: Fielder = parse_element (element (cls, fields(34)))
 
-    def parse (context: Context): GovCT1 =
+    def parse (context: CIMContext): GovCT1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovCT1 (
             TurbineGovernorDynamics.parse (context),
@@ -721,7 +721,7 @@ extends
 
 object GovCT2
 extends
-    Parseable[GovCT2]
+    CIMParseable[GovCT2]
 {
     override val fields: Array[String] = Array[String] (
         "aset",
@@ -838,9 +838,9 @@ extends
     val wfnl: Fielder = parse_element (element (cls, fields(54)))
     val wfspd: Fielder = parse_element (element (cls, fields(55)))
 
-    def parse (context: Context): GovCT2 =
+    def parse (context: CIMContext): GovCT2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovCT2 (
             TurbineGovernorDynamics.parse (context),
@@ -1004,7 +1004,7 @@ extends
 
 object GovGAST
 extends
-    Parseable[GovGAST]
+    CIMParseable[GovGAST]
 {
     override val fields: Array[String] = Array[String] (
         "at",
@@ -1029,9 +1029,9 @@ extends
     val vmax: Fielder = parse_element (element (cls, fields(8)))
     val vmin: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): GovGAST =
+    def parse (context: CIMContext): GovGAST =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST (
             TurbineGovernorDynamics.parse (context),
@@ -1245,7 +1245,7 @@ extends
 
 object GovGAST1
 extends
-    Parseable[GovGAST1]
+    CIMParseable[GovGAST1]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -1318,9 +1318,9 @@ extends
     val vmax: Fielder = parse_element (element (cls, fields(32)))
     val vmin: Fielder = parse_element (element (cls, fields(33)))
 
-    def parse (context: Context): GovGAST1 =
+    def parse (context: CIMContext): GovGAST1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST1 (
             TurbineGovernorDynamics.parse (context),
@@ -1527,7 +1527,7 @@ extends
 
 object GovGAST2
 extends
-    Parseable[GovGAST2]
+    CIMParseable[GovGAST2]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -1596,9 +1596,9 @@ extends
     val y: Fielder = parse_element (element (cls, fields(30)))
     val z: Fielder = parse_element (element (cls, fields(31)))
 
-    def parse (context: Context): GovGAST2 =
+    def parse (context: CIMContext): GovGAST2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST2 (
             TurbineGovernorDynamics.parse (context),
@@ -1782,7 +1782,7 @@ extends
 
 object GovGAST3
 extends
-    Parseable[GovGAST3]
+    CIMParseable[GovGAST3]
 {
     override val fields: Array[String] = Array[String] (
         "bca",
@@ -1829,9 +1829,9 @@ extends
     val ttc: Fielder = parse_element (element (cls, fields(19)))
     val ty: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): GovGAST3 =
+    def parse (context: CIMContext): GovGAST3 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST3 (
             TurbineGovernorDynamics.parse (context),
@@ -1964,7 +1964,7 @@ extends
 
 object GovGAST4
 extends
-    Parseable[GovGAST4]
+    CIMParseable[GovGAST4]
 {
     override val fields: Array[String] = Array[String] (
         "bp",
@@ -1991,9 +1991,9 @@ extends
     val tm: Fielder = parse_element (element (cls, fields(9)))
     val ty: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): GovGAST4 =
+    def parse (context: CIMContext): GovGAST4 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovGAST4 (
             TurbineGovernorDynamics.parse (context),
@@ -2177,7 +2177,7 @@ extends
 
 object GovGASTWD
 extends
-    Parseable[GovGASTWD]
+    CIMParseable[GovGASTWD]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -2248,9 +2248,9 @@ extends
     val trate: Fielder = parse_element (element (cls, fields(31)))
     val tt: Fielder = parse_element (element (cls, fields(32)))
 
-    def parse (context: Context): GovGASTWD =
+    def parse (context: CIMContext): GovGASTWD =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovGASTWD (
             TurbineGovernorDynamics.parse (context),
@@ -2407,7 +2407,7 @@ extends
 
 object GovHydro1
 extends
-    Parseable[GovHydro1]
+    CIMParseable[GovHydro1]
 {
     override val fields: Array[String] = Array[String] (
         "at",
@@ -2440,9 +2440,9 @@ extends
     val tw: Fielder = parse_element (element (cls, fields(12)))
     val velm: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): GovHydro1 =
+    def parse (context: CIMContext): GovHydro1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydro1 (
             TurbineGovernorDynamics.parse (context),
@@ -2640,7 +2640,7 @@ extends
 
 object GovHydro2
 extends
-    Parseable[GovHydro2]
+    CIMParseable[GovHydro2]
 {
     override val fields: Array[String] = Array[String] (
         "aturb",
@@ -2703,9 +2703,9 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(27)))
     val uo: Fielder = parse_element (element (cls, fields(28)))
 
-    def parse (context: Context): GovHydro2 =
+    def parse (context: CIMContext): GovHydro2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydro2 (
             TurbineGovernorDynamics.parse (context),
@@ -2950,7 +2950,7 @@ extends
 
 object GovHydro3
 extends
-    Parseable[GovHydro3]
+    CIMParseable[GovHydro3]
 {
     override val fields: Array[String] = Array[String] (
         "at",
@@ -3027,9 +3027,9 @@ extends
     val velcl: Fielder = parse_element (element (cls, fields(34)))
     val velop: Fielder = parse_element (element (cls, fields(35)))
 
-    def parse (context: Context): GovHydro3 =
+    def parse (context: CIMContext): GovHydro3 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro3 (
             TurbineGovernorDynamics.parse (context),
@@ -3291,7 +3291,7 @@ extends
 
 object GovHydro4
 extends
-    Parseable[GovHydro4]
+    CIMParseable[GovHydro4]
 {
     override val fields: Array[String] = Array[String] (
         "at",
@@ -3374,9 +3374,9 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(37)))
     val uo: Fielder = parse_element (element (cls, fields(38)))
 
-    def parse (context: Context): GovHydro4 =
+    def parse (context: CIMContext): GovHydro4 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro4 (
             TurbineGovernorDynamics.parse (context),
@@ -3627,7 +3627,7 @@ extends
 
 object GovHydroDD
 extends
-    Parseable[GovHydroDD]
+    CIMParseable[GovHydroDD]
 {
     override val fields: Array[String] = Array[String] (
         "aturb",
@@ -3702,9 +3702,9 @@ extends
     val velcl: Fielder = parse_element (element (cls, fields(33)))
     val velop: Fielder = parse_element (element (cls, fields(34)))
 
-    def parse (context: Context): GovHydroDD =
+    def parse (context: CIMContext): GovHydroDD =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroDD (
             TurbineGovernorDynamics.parse (context),
@@ -3921,7 +3921,7 @@ extends
 
 object GovHydroFrancis
 extends
-    Parseable[GovHydroFrancis]
+    CIMParseable[GovHydroFrancis]
 {
     override val fields: Array[String] = Array[String] (
         "am",
@@ -3980,9 +3980,9 @@ extends
     val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(25)))
     val zsfc: Fielder = parse_element (element (cls, fields(26)))
 
-    def parse (context: Context): GovHydroFrancis =
+    def parse (context: CIMContext): GovHydroFrancis =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroFrancis (
             TurbineGovernorDynamics.parse (context),
@@ -4108,7 +4108,7 @@ extends
 
 object GovHydroIEEE0
 extends
-    Parseable[GovHydroIEEE0]
+    CIMParseable[GovHydroIEEE0]
 {
     override val fields: Array[String] = Array[String] (
         "k",
@@ -4129,9 +4129,9 @@ extends
     val t3: Fielder = parse_element (element (cls, fields(6)))
     val t4: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): GovHydroIEEE0 =
+    def parse (context: CIMContext): GovHydroIEEE0 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE0 (
             TurbineGovernorDynamics.parse (context),
@@ -4313,7 +4313,7 @@ extends
 
 object GovHydroIEEE2
 extends
-    Parseable[GovHydroIEEE2]
+    CIMParseable[GovHydroIEEE2]
 {
     override val fields: Array[String] = Array[String] (
         "aturb",
@@ -4370,9 +4370,9 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(24)))
     val uo: Fielder = parse_element (element (cls, fields(25)))
 
-    def parse (context: Context): GovHydroIEEE2 =
+    def parse (context: CIMContext): GovHydroIEEE2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE2 (
             TurbineGovernorDynamics.parse (context),
@@ -4602,7 +4602,7 @@ extends
 
 object GovHydroPID
 extends
-    Parseable[GovHydroPID]
+    CIMParseable[GovHydroPID]
 {
     override val fields: Array[String] = Array[String] (
         "aturb",
@@ -4673,9 +4673,9 @@ extends
     val velcl: Fielder = parse_element (element (cls, fields(31)))
     val velop: Fielder = parse_element (element (cls, fields(32)))
 
-    def parse (context: Context): GovHydroPID =
+    def parse (context: CIMContext): GovHydroPID =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroPID (
             TurbineGovernorDynamics.parse (context),
@@ -4867,7 +4867,7 @@ extends
 
 object GovHydroPID2
 extends
-    Parseable[GovHydroPID2]
+    CIMParseable[GovHydroPID2]
 {
     override val fields: Array[String] = Array[String] (
         "atw",
@@ -4916,9 +4916,9 @@ extends
     val velmax: Fielder = parse_element (element (cls, fields(20)))
     val velmin: Fielder = parse_element (element (cls, fields(21)))
 
-    def parse (context: Context): GovHydroPID2 =
+    def parse (context: CIMContext): GovHydroPID2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroPID2 (
             TurbineGovernorDynamics.parse (context),
@@ -5130,7 +5130,7 @@ extends
 
 object GovHydroPelton
 extends
-    Parseable[GovHydroPelton]
+    CIMParseable[GovHydroPelton]
 {
     override val fields: Array[String] = Array[String] (
         "av0",
@@ -5191,9 +5191,9 @@ extends
     val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(26)))
     val zsfc: Fielder = parse_element (element (cls, fields(27)))
 
-    def parse (context: Context): GovHydroPelton =
+    def parse (context: CIMContext): GovHydroPelton =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroPelton (
             TurbineGovernorDynamics.parse (context),
@@ -5461,7 +5461,7 @@ extends
 
 object GovHydroR
 extends
-    Parseable[GovHydroR]
+    CIMParseable[GovHydroR]
 {
     override val fields: Array[String] = Array[String] (
         "at",
@@ -5550,9 +5550,9 @@ extends
     val velcl: Fielder = parse_element (element (cls, fields(40)))
     val velop: Fielder = parse_element (element (cls, fields(41)))
 
-    def parse (context: Context): GovHydroR =
+    def parse (context: CIMContext): GovHydroR =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroR (
             TurbineGovernorDynamics.parse (context),
@@ -5855,7 +5855,7 @@ extends
 
 object GovHydroWEH
 extends
-    Parseable[GovHydroWEH]
+    CIMParseable[GovHydroWEH]
 {
     override val fields: Array[String] = Array[String] (
         "db",
@@ -5962,9 +5962,9 @@ extends
     val tpe: Fielder = parse_element (element (cls, fields(49)))
     val tw: Fielder = parse_element (element (cls, fields(50)))
 
-    def parse (context: Context): GovHydroWEH =
+    def parse (context: CIMContext): GovHydroWEH =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroWEH (
             TurbineGovernorDynamics.parse (context),
@@ -6162,7 +6162,7 @@ extends
 
 object GovHydroWPID
 extends
-    Parseable[GovHydroWPID]
+    CIMParseable[GovHydroWPID]
 {
     override val fields: Array[String] = Array[String] (
         "d",
@@ -6211,9 +6211,9 @@ extends
     val velmax: Fielder = parse_element (element (cls, fields(20)))
     val velmin: Fielder = parse_element (element (cls, fields(21)))
 
-    def parse (context: Context): GovHydroWPID =
+    def parse (context: CIMContext): GovHydroWPID =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovHydroWPID (
             TurbineGovernorDynamics.parse (context),
@@ -6335,7 +6335,7 @@ extends
 
 object GovSteam0
 extends
-    Parseable[GovSteam0]
+    CIMParseable[GovSteam0]
 {
     override val fields: Array[String] = Array[String] (
         "dt",
@@ -6356,9 +6356,9 @@ extends
     val vmax: Fielder = parse_element (element (cls, fields(6)))
     val vmin: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): GovSteam0 =
+    def parse (context: CIMContext): GovSteam0 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteam0 (
             TurbineGovernorDynamics.parse (context),
@@ -6596,7 +6596,7 @@ extends
 
 object GovSteam1
 extends
-    Parseable[GovSteam1]
+    CIMParseable[GovSteam1]
 {
     override val fields: Array[String] = Array[String] (
         "db1",
@@ -6679,9 +6679,9 @@ extends
     val uo: Fielder = parse_element (element (cls, fields(37)))
     val valve: Fielder = parse_element (element (cls, fields(38)))
 
-    def parse (context: Context): GovSteam1 =
+    def parse (context: CIMContext): GovSteam1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteam1 (
             TurbineGovernorDynamics.parse (context),
@@ -6820,7 +6820,7 @@ extends
 
 object GovSteam2
 extends
-    Parseable[GovSteam2]
+    CIMParseable[GovSteam2]
 {
     override val fields: Array[String] = Array[String] (
         "dbf",
@@ -6841,9 +6841,9 @@ extends
     val t1: Fielder = parse_element (element (cls, fields(6)))
     val t2: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): GovSteam2 =
+    def parse (context: CIMContext): GovSteam2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteam2 (
             TurbineGovernorDynamics.parse (context),
@@ -6989,7 +6989,7 @@ extends
 
 object GovSteamBB
 extends
-    Parseable[GovSteamBB]
+    CIMParseable[GovSteamBB]
 {
     override val fields: Array[String] = Array[String] (
         "fcut",
@@ -7028,9 +7028,9 @@ extends
     val td: Fielder = parse_element (element (cls, fields(15)))
     val tn: Fielder = parse_element (element (cls, fields(16)))
 
-    def parse (context: Context): GovSteamBB =
+    def parse (context: CIMContext): GovSteamBB =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamBB (
             TurbineGovernorDynamics.parse (context),
@@ -7185,7 +7185,7 @@ extends
 
 object GovSteamCC
 extends
-    Parseable[GovSteamCC]
+    CIMParseable[GovSteamCC]
 {
     override val fields: Array[String] = Array[String] (
         "dhp",
@@ -7224,9 +7224,9 @@ extends
     val t5hp: Fielder = parse_element (element (cls, fields(15)))
     val t5lp: Fielder = parse_element (element (cls, fields(16)))
 
-    def parse (context: Context): GovSteamCC =
+    def parse (context: CIMContext): GovSteamCC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamCC (
             CrossCompoundTurbineGovernorDynamics.parse (context),
@@ -7451,7 +7451,7 @@ extends
 
 object GovSteamEU
 extends
-    Parseable[GovSteamEU]
+    CIMParseable[GovSteamEU]
 {
     override val fields: Array[String] = Array[String] (
         "chc",
@@ -7526,9 +7526,9 @@ extends
     val wwmax: Fielder = parse_element (element (cls, fields(33)))
     val wwmin: Fielder = parse_element (element (cls, fields(34)))
 
-    def parse (context: Context): GovSteamEU =
+    def parse (context: CIMContext): GovSteamEU =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamEU (
             TurbineGovernorDynamics.parse (context),
@@ -7668,7 +7668,7 @@ extends
 
 object GovSteamFV2
 extends
-    Parseable[GovSteamFV2]
+    CIMParseable[GovSteamFV2]
 {
     override val fields: Array[String] = Array[String] (
         "dt",
@@ -7697,9 +7697,9 @@ extends
     val vmax: Fielder = parse_element (element (cls, fields(10)))
     val vmin: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): GovSteamFV2 =
+    def parse (context: CIMContext): GovSteamFV2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV2 (
             TurbineGovernorDynamics.parse (context),
@@ -7903,7 +7903,7 @@ extends
 
 object GovSteamFV3
 extends
-    Parseable[GovSteamFV3]
+    CIMParseable[GovSteamFV3]
 {
     override val fields: Array[String] = Array[String] (
         "gv1",
@@ -7970,9 +7970,9 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(29)))
     val uo: Fielder = parse_element (element (cls, fields(30)))
 
-    def parse (context: Context): GovSteamFV3 =
+    def parse (context: CIMContext): GovSteamFV3 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
@@ -8275,7 +8275,7 @@ extends
 
 object GovSteamFV4
 extends
-    Parseable[GovSteamFV4]
+    CIMParseable[GovSteamFV4]
 {
     override val fields: Array[String] = Array[String] (
         "cpsmn",
@@ -8382,9 +8382,9 @@ extends
     val ympmn: Fielder = parse_element (element (cls, fields(49)))
     val ympmx: Fielder = parse_element (element (cls, fields(50)))
 
-    def parse (context: Context): GovSteamFV4 =
+    def parse (context: CIMContext): GovSteamFV4 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamFV4 (
             TurbineGovernorDynamics.parse (context),
@@ -8588,7 +8588,7 @@ extends
 
 object GovSteamIEEE1
 extends
-    Parseable[GovSteamIEEE1]
+    CIMParseable[GovSteamIEEE1]
 {
     override val fields: Array[String] = Array[String] (
         "k",
@@ -8635,9 +8635,9 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(19)))
     val uo: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): GovSteamIEEE1 =
+    def parse (context: CIMContext): GovSteamIEEE1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamIEEE1 (
             TurbineGovernorDynamics.parse (context),
@@ -8763,7 +8763,7 @@ extends
 
 object GovSteamSGO
 extends
-    Parseable[GovSteamSGO]
+    CIMParseable[GovSteamSGO]
 {
     override val fields: Array[String] = Array[String] (
         "k1",
@@ -8792,9 +8792,9 @@ extends
     val t5: Fielder = parse_element (element (cls, fields(10)))
     val t6: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): GovSteamSGO =
+    def parse (context: CIMContext): GovSteamSGO =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GovSteamSGO (
             TurbineGovernorDynamics.parse (context),
@@ -8885,25 +8885,25 @@ extends
 
 object TurbineGovernorDynamics
 extends
-    Parseable[TurbineGovernorDynamics]
+    CIMParseable[TurbineGovernorDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "SynchronousMachineDynamics",
         "TurbineLoadControllerDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..*"),
-        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
+        CIMRelationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..*"),
+        CIMRelationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): TurbineGovernorDynamics =
+    def parse (context: CIMContext): TurbineGovernorDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -8918,7 +8918,7 @@ extends
 
 private[ninecode] object _TurbineGovernorDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CrossCompoundTurbineGovernorDynamics.register,

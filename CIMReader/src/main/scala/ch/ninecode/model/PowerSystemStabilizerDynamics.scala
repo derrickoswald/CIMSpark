@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -70,22 +70,22 @@ extends
 
 object PowerSystemStabilizerDynamics
 extends
-    Parseable[PowerSystemStabilizerDynamics]
+    CIMParseable[PowerSystemStabilizerDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..*", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PowerSystemStabilizerDynamics =
+    def parse (context: CIMContext): PowerSystemStabilizerDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerSystemStabilizerDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -215,7 +215,7 @@ extends
 
 object Pss1
 extends
-    Parseable[Pss1]
+    CIMParseable[Pss1]
 {
     override val fields: Array[String] = Array[String] (
         "kf",
@@ -250,9 +250,9 @@ extends
     val vsmn: Fielder = parse_element (element (cls, fields(13)))
     val vsmx: Fielder = parse_element (element (cls, fields(14)))
 
-    def parse (context: Context): Pss1 =
+    def parse (context: CIMContext): Pss1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss1 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -404,7 +404,7 @@ extends
 
 object Pss1A
 extends
-    Parseable[Pss1A]
+    CIMParseable[Pss1A]
 {
     override val fields: Array[String] = Array[String] (
         "a1",
@@ -453,9 +453,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(20)))
     val vrmin: Fielder = parse_element (element (cls, fields(21)))
 
-    def parse (context: Context): Pss1A =
+    def parse (context: CIMContext): Pss1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss1A (
             PowerSystemStabilizerDynamics.parse (context),
@@ -661,7 +661,7 @@ extends
 
 object Pss2B
 extends
-    Parseable[Pss2B]
+    CIMParseable[Pss2B]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -724,9 +724,9 @@ extends
     val vstmax: Fielder = parse_element (element (cls, fields(27)))
     val vstmin: Fielder = parse_element (element (cls, fields(28)))
 
-    def parse (context: Context): Pss2B =
+    def parse (context: CIMContext): Pss2B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss2B (
             PowerSystemStabilizerDynamics.parse (context),
@@ -878,7 +878,7 @@ extends
 
 object Pss2ST
 extends
-    Parseable[Pss2ST]
+    CIMParseable[Pss2ST]
 {
     override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
@@ -919,9 +919,9 @@ extends
     val vcl: Fielder = parse_element (element (cls, fields(16)))
     val vcu: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): Pss2ST =
+    def parse (context: CIMContext): Pss2ST =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss2ST (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1079,7 +1079,7 @@ extends
 
 object Pss5
 extends
-    Parseable[Pss5]
+    CIMParseable[Pss5]
 {
     override val fields: Array[String] = Array[String] (
         "ctw2",
@@ -1118,9 +1118,9 @@ extends
     val vsmn: Fielder = parse_element (element (cls, fields(15)))
     val vsmx: Fielder = parse_element (element (cls, fields(16)))
 
-    def parse (context: Context): Pss5 =
+    def parse (context: CIMContext): Pss5 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss5 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1247,7 +1247,7 @@ extends
 
 object PssELIN2
 extends
-    Parseable[PssELIN2]
+    CIMParseable[PssELIN2]
 {
     override val fields: Array[String] = Array[String] (
         "apss",
@@ -1274,9 +1274,9 @@ extends
     val ts5: Fielder = parse_element (element (cls, fields(9)))
     val ts6: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): PssELIN2 =
+    def parse (context: CIMContext): PssELIN2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssELIN2 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1405,7 +1405,7 @@ extends
 
 object PssIEEE1A
 extends
-    Parseable[PssIEEE1A]
+    CIMParseable[PssIEEE1A]
 {
     override val fields: Array[String] = Array[String] (
         "a1",
@@ -1434,9 +1434,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(10)))
     val vrmin: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): PssIEEE1A =
+    def parse (context: CIMContext): PssIEEE1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE1A (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1626,7 +1626,7 @@ extends
 
 object PssIEEE2B
 extends
-    Parseable[PssIEEE2B]
+    CIMParseable[PssIEEE2B]
 {
     override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
@@ -1685,9 +1685,9 @@ extends
     val vstmax: Fielder = parse_element (element (cls, fields(25)))
     val vstmin: Fielder = parse_element (element (cls, fields(26)))
 
-    def parse (context: Context): PssIEEE2B =
+    def parse (context: CIMContext): PssIEEE2B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE2B (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1852,7 +1852,7 @@ extends
 
 object PssIEEE3B
 extends
-    Parseable[PssIEEE3B]
+    CIMParseable[PssIEEE3B]
 {
     override val fields: Array[String] = Array[String] (
         "a1",
@@ -1891,9 +1891,9 @@ extends
     val vstmax: Fielder = parse_element (element (cls, fields(15)))
     val vstmin: Fielder = parse_element (element (cls, fields(16)))
 
-    def parse (context: Context): PssIEEE3B =
+    def parse (context: CIMContext): PssIEEE3B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE3B (
             PowerSystemStabilizerDynamics.parse (context),
@@ -2242,7 +2242,7 @@ extends
 
 object PssIEEE4B
 extends
-    Parseable[PssIEEE4B]
+    CIMParseable[PssIEEE4B]
 {
     override val fields: Array[String] = Array[String] (
         "bwh1",
@@ -2381,9 +2381,9 @@ extends
     val vstmax: Fielder = parse_element (element (cls, fields(65)))
     val vstmin: Fielder = parse_element (element (cls, fields(66)))
 
-    def parse (context: Context): PssIEEE4B =
+    def parse (context: CIMContext): PssIEEE4B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0,0)
         val ret = PssIEEE4B (
             PowerSystemStabilizerDynamics.parse (context),
@@ -2560,7 +2560,7 @@ extends
 
 object PssPTIST1
 extends
-    Parseable[PssPTIST1]
+    CIMParseable[PssPTIST1]
 {
     override val fields: Array[String] = Array[String] (
         "dtc",
@@ -2587,9 +2587,9 @@ extends
     val tf: Fielder = parse_element (element (cls, fields(9)))
     val tp: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): PssPTIST1 =
+    def parse (context: CIMContext): PssPTIST1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssPTIST1 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -2783,7 +2783,7 @@ extends
 
 object PssPTIST3
 extends
-    Parseable[PssPTIST3]
+    CIMParseable[PssPTIST3]
 {
     override val fields: Array[String] = Array[String] (
         "a0",
@@ -2856,9 +2856,9 @@ extends
     val tf: Fielder = parse_element (element (cls, fields(32)))
     val tp: Fielder = parse_element (element (cls, fields(33)))
 
-    def parse (context: Context): PssPTIST3 =
+    def parse (context: CIMContext): PssPTIST3 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = PssPTIST3 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3000,7 +3000,7 @@ extends
 
 object PssRQB
 extends
-    Parseable[PssRQB]
+    CIMParseable[PssRQB]
 {
     override val fields: Array[String] = Array[String] (
         "kdpm",
@@ -3025,9 +3025,9 @@ extends
     val tomd: Fielder = parse_element (element (cls, fields(8)))
     val tomsl: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): PssRQB =
+    def parse (context: CIMContext): PssRQB =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssRQB (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3147,7 +3147,7 @@ extends
 
 object PssSB4
 extends
-    Parseable[PssSB4]
+    CIMParseable[PssSB4]
 {
     override val fields: Array[String] = Array[String] (
         "kx",
@@ -3174,9 +3174,9 @@ extends
     val vsmax: Fielder = parse_element (element (cls, fields(9)))
     val vsmin: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): PssSB4 =
+    def parse (context: CIMContext): PssSB4 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSB4 (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3308,7 +3308,7 @@ extends
 
 object PssSH
 extends
-    Parseable[PssSH]
+    CIMParseable[PssSH]
 {
     override val fields: Array[String] = Array[String] (
         "k",
@@ -3339,9 +3339,9 @@ extends
     val vsmax: Fielder = parse_element (element (cls, fields(11)))
     val vsmin: Fielder = parse_element (element (cls, fields(12)))
 
-    def parse (context: Context): PssSH =
+    def parse (context: CIMContext): PssSH =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSH (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3464,7 +3464,7 @@ extends
 
 object PssSK
 extends
-    Parseable[PssSK]
+    CIMParseable[PssSK]
 {
     override val fields: Array[String] = Array[String] (
         "k1",
@@ -3491,9 +3491,9 @@ extends
     val vsmax: Fielder = parse_element (element (cls, fields(9)))
     val vsmin: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): PssSK =
+    def parse (context: CIMContext): PssSK =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSK (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3605,7 +3605,7 @@ extends
 
 object PssSTAB2A
 extends
-    Parseable[PssSTAB2A]
+    CIMParseable[PssSTAB2A]
 {
     override val fields: Array[String] = Array[String] (
         "hlim",
@@ -3626,9 +3626,9 @@ extends
     val t3: Fielder = parse_element (element (cls, fields(6)))
     val t5: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): PssSTAB2A =
+    def parse (context: CIMContext): PssSTAB2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSTAB2A (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3775,7 +3775,7 @@ extends
 
 object PssWECC
 extends
-    Parseable[PssWECC]
+    CIMParseable[PssWECC]
 {
     override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
@@ -3816,9 +3816,9 @@ extends
     val vsmax: Fielder = parse_element (element (cls, fields(16)))
     val vsmin: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): PssWECC =
+    def parse (context: CIMContext): PssWECC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PssWECC (
             PowerSystemStabilizerDynamics.parse (context),
@@ -3848,7 +3848,7 @@ extends
 
 private[ninecode] object _PowerSystemStabilizerDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             PowerSystemStabilizerDynamics.register,

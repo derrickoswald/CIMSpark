@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
@@ -68,19 +68,19 @@ extends
 
 object ConformLoad
 extends
-    Parseable[ConformLoad]
+    CIMParseable[ConformLoad]
 {
     override val fields: Array[String] = Array[String] (
         "LoadGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadGroup", "ConformLoadGroup", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadGroup", "ConformLoadGroup", "0..1", "0..*")
     )
     val LoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ConformLoad =
+    def parse (context: CIMContext): ConformLoad =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConformLoad (
             EnergyConsumer.parse (context),
@@ -155,22 +155,22 @@ extends
 
 object ConformLoadGroup
 extends
-    Parseable[ConformLoadGroup]
+    CIMParseable[ConformLoadGroup]
 {
     override val fields: Array[String] = Array[String] (
         "ConformLoadSchedules",
         "EnergyConsumers"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConformLoadSchedules", "ConformLoadSchedule", "0..*", "1"),
-        Relationship ("EnergyConsumers", "ConformLoad", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConformLoadSchedules", "ConformLoadSchedule", "0..*", "1"),
+        CIMRelationship ("EnergyConsumers", "ConformLoad", "0..*", "0..1")
     )
     val ConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ConformLoadGroup =
+    def parse (context: CIMContext): ConformLoadGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConformLoadGroup (
             LoadGroup.parse (context),
@@ -245,19 +245,19 @@ extends
 
 object ConformLoadSchedule
 extends
-    Parseable[ConformLoadSchedule]
+    CIMParseable[ConformLoadSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "ConformLoadGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConformLoadGroup", "ConformLoadGroup", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConformLoadGroup", "ConformLoadGroup", "1", "0..*")
     )
     val ConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ConformLoadSchedule =
+    def parse (context: CIMContext): ConformLoadSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConformLoadSchedule (
             SeasonDayTypeSchedule.parse (context),
@@ -331,19 +331,19 @@ extends
 
 object DayType
 extends
-    Parseable[DayType]
+    CIMParseable[DayType]
 {
     override val fields: Array[String] = Array[String] (
         "SeasonDayTypeSchedules"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
     )
     val SeasonDayTypeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DayType =
+    def parse (context: CIMContext): DayType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DayType (
             IdentifiedObject.parse (context),
@@ -417,19 +417,19 @@ extends
 
 object EnergyArea
 extends
-    Parseable[EnergyArea]
+    CIMParseable[EnergyArea]
 {
     override val fields: Array[String] = Array[String] (
         "ControlArea"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ControlArea", "ControlArea", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ControlArea", "ControlArea", "0..1", "0..1")
     )
     val ControlArea: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): EnergyArea =
+    def parse (context: CIMContext): EnergyArea =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyArea (
             IdentifiedObject.parse (context),
@@ -501,19 +501,19 @@ extends
 
 object LoadArea
 extends
-    Parseable[LoadArea]
+    CIMParseable[LoadArea]
 {
     override val fields: Array[String] = Array[String] (
         "SubLoadAreas"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SubLoadAreas", "SubLoadArea", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SubLoadAreas", "SubLoadArea", "1..*", "1")
     )
     val SubLoadAreas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): LoadArea =
+    def parse (context: CIMContext): LoadArea =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadArea (
             EnergyArea.parse (context),
@@ -585,19 +585,19 @@ extends
 
 object LoadGroup
 extends
-    Parseable[LoadGroup]
+    CIMParseable[LoadGroup]
 {
     override val fields: Array[String] = Array[String] (
         "SubLoadArea"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SubLoadArea", "SubLoadArea", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SubLoadArea", "SubLoadArea", "1", "1..*")
     )
     val SubLoadArea: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): LoadGroup =
+    def parse (context: CIMContext): LoadGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadGroup (
             IdentifiedObject.parse (context),
@@ -726,7 +726,7 @@ extends
 
 object LoadResponseCharacteristic
 extends
-    Parseable[LoadResponseCharacteristic]
+    CIMParseable[LoadResponseCharacteristic]
 {
     override val fields: Array[String] = Array[String] (
         "exponentModel",
@@ -742,8 +742,8 @@ extends
         "qVoltageExponent",
         "EnergyConsumer"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
     )
     val exponentModel: Fielder = parse_element (element (cls, fields(0)))
     val pConstantCurrent: Fielder = parse_element (element (cls, fields(1)))
@@ -758,9 +758,9 @@ extends
     val qVoltageExponent: Fielder = parse_element (element (cls, fields(10)))
     val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
-    def parse (context: Context): LoadResponseCharacteristic =
+    def parse (context: CIMContext): LoadResponseCharacteristic =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadResponseCharacteristic (
             IdentifiedObject.parse (context),
@@ -843,19 +843,19 @@ extends
 
 object NonConformLoad
 extends
-    Parseable[NonConformLoad]
+    CIMParseable[NonConformLoad]
 {
     override val fields: Array[String] = Array[String] (
         "LoadGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadGroup", "NonConformLoadGroup", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadGroup", "NonConformLoadGroup", "0..1", "0..*")
     )
     val LoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): NonConformLoad =
+    def parse (context: CIMContext): NonConformLoad =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NonConformLoad (
             EnergyConsumer.parse (context),
@@ -930,22 +930,22 @@ extends
 
 object NonConformLoadGroup
 extends
-    Parseable[NonConformLoadGroup]
+    CIMParseable[NonConformLoadGroup]
 {
     override val fields: Array[String] = Array[String] (
         "EnergyConsumers",
         "NonConformLoadSchedules"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyConsumers", "NonConformLoad", "0..*", "0..1"),
-        Relationship ("NonConformLoadSchedules", "NonConformLoadSchedule", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumers", "NonConformLoad", "0..*", "0..1"),
+        CIMRelationship ("NonConformLoadSchedules", "NonConformLoadSchedule", "0..*", "1")
     )
     val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val NonConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): NonConformLoadGroup =
+    def parse (context: CIMContext): NonConformLoadGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NonConformLoadGroup (
             LoadGroup.parse (context),
@@ -1018,19 +1018,19 @@ extends
 
 object NonConformLoadSchedule
 extends
-    Parseable[NonConformLoadSchedule]
+    CIMParseable[NonConformLoadSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "NonConformLoadGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("NonConformLoadGroup", "NonConformLoadGroup", "1", "0..*")
     )
     val NonConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): NonConformLoadSchedule =
+    def parse (context: CIMContext): NonConformLoadSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NonConformLoadSchedule (
             SeasonDayTypeSchedule.parse (context),
@@ -1109,23 +1109,23 @@ extends
 
 object PowerCutZone
 extends
-    Parseable[PowerCutZone]
+    CIMParseable[PowerCutZone]
 {
     override val fields: Array[String] = Array[String] (
         "cutLevel1",
         "cutLevel2",
         "EnergyConsumers"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyConsumers", "EnergyConsumer", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumers", "EnergyConsumer", "1..*", "0..1")
     )
     val cutLevel1: Fielder = parse_element (element (cls, fields(0)))
     val cutLevel2: Fielder = parse_element (element (cls, fields(1)))
     val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): PowerCutZone =
+    def parse (context: CIMContext): PowerCutZone =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerCutZone (
             PowerSystemResource.parse (context),
@@ -1209,7 +1209,7 @@ extends
 
 object Season
 extends
-    Parseable[Season]
+    CIMParseable[Season]
 {
     override val fields: Array[String] = Array[String] (
         "endDate",
@@ -1217,18 +1217,18 @@ extends
         "ScheduledLimits",
         "SeasonDayTypeSchedules"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ScheduledLimits", "ScheduledLimitValue", "0..*", "0..1"),
-        Relationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ScheduledLimits", "ScheduledLimitValue", "0..*", "0..1"),
+        CIMRelationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
     )
     val endDate: Fielder = parse_element (element (cls, fields(0)))
     val startDate: Fielder = parse_element (element (cls, fields(1)))
     val ScheduledLimits: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val SeasonDayTypeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): Season =
+    def parse (context: CIMContext): Season =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Season (
             IdentifiedObject.parse (context),
@@ -1306,22 +1306,22 @@ extends
 
 object SeasonDayTypeSchedule
 extends
-    Parseable[SeasonDayTypeSchedule]
+    CIMParseable[SeasonDayTypeSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "DayType",
         "Season"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DayType", "DayType", "0..1", "0..*"),
-        Relationship ("Season", "Season", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DayType", "DayType", "0..1", "0..*"),
+        CIMRelationship ("Season", "Season", "0..1", "0..*")
     )
     val DayType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Season: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): SeasonDayTypeSchedule =
+    def parse (context: CIMContext): SeasonDayTypeSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SeasonDayTypeSchedule (
             RegularIntervalSchedule.parse (context),
@@ -1388,10 +1388,10 @@ extends
 
 object StationSupply
 extends
-    Parseable[StationSupply]
+    CIMParseable[StationSupply]
 {
 
-    def parse (context: Context): StationSupply =
+    def parse (context: CIMContext): StationSupply =
     {
         val ret = StationSupply (
             EnergyConsumer.parse (context)
@@ -1465,22 +1465,22 @@ extends
 
 object SubLoadArea
 extends
-    Parseable[SubLoadArea]
+    CIMParseable[SubLoadArea]
 {
     override val fields: Array[String] = Array[String] (
         "LoadArea",
         "LoadGroups"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LoadArea", "LoadArea", "1", "1..*"),
-        Relationship ("LoadGroups", "LoadGroup", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LoadArea", "LoadArea", "1", "1..*"),
+        CIMRelationship ("LoadGroups", "LoadGroup", "1..*", "1")
     )
     val LoadArea: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LoadGroups: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): SubLoadArea =
+    def parse (context: CIMContext): SubLoadArea =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SubLoadArea (
             EnergyArea.parse (context),
@@ -1494,7 +1494,7 @@ extends
 
 private[ninecode] object _LoadModel
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ConformLoad.register,

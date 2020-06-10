@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
@@ -88,7 +88,7 @@ extends
 
 object FTR
 extends
-    Parseable[FTR]
+    CIMParseable[FTR]
 {
     override val fields: Array[String] = Array[String] (
         "action",
@@ -100,10 +100,10 @@ extends
         "Flowgate",
         "Pnodes"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyPriceCurve", "EnergyPriceCurve", "0..1", "0..*"),
-        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
-        Relationship ("Pnodes", "Pnode", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyPriceCurve", "EnergyPriceCurve", "0..1", "0..*"),
+        CIMRelationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        CIMRelationship ("Pnodes", "Pnode", "0..*", "0..*")
     )
     val action: Fielder = parse_element (element (cls, fields(0)))
     val baseEnergy: Fielder = parse_element (element (cls, fields(1)))
@@ -114,9 +114,9 @@ extends
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): FTR =
+    def parse (context: CIMContext): FTR =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FTR (
             Agreement.parse (context),
@@ -199,24 +199,24 @@ extends
 
 object ViolationLimit
 extends
-    Parseable[ViolationLimit]
+    CIMParseable[ViolationLimit]
 {
     override val fields: Array[String] = Array[String] (
         "enforced",
         "Flowgate",
         "MktMeasurement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
-        Relationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        CIMRelationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*")
     )
     val enforced: Fielder = parse_element (element (cls, fields(0)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MktMeasurement: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ViolationLimit =
+    def parse (context: CIMContext): ViolationLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ViolationLimit (
             Limit.parse (context),
@@ -231,7 +231,7 @@ extends
 
 private[ninecode] object _InfCongestionRevenueRights
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             FTR.register,

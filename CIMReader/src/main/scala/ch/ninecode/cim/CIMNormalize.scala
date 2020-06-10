@@ -46,7 +46,7 @@ with
      * @param relationship the relationship (from the static list in the companion object of the class or superclass with the 1:N relation)
      * @param referred the list of N element id that need to be fixed
      */
-    case class Relation (parent: String, parent_class: String, relationship: Relationship, referred: List[String])
+    case class Relation (parent: String, parent_class: String, relationship: CIMRelationship, referred: List[String])
 
     /**
      * Identify objects that are broken.
@@ -67,8 +67,8 @@ with
         while (null != clz)
         {
             val name = clz.getClass.getName
-            val relationships = companion[Parser](name).relations
-            val fields = companion[Parser](name).fields
+            val relationships = companion[CIMParser](name).relations
+            val fields = companion[CIMParser](name).fields
             val onesies = relationships.filter (_.heavyside)
             onesies.foreach (relationship =>
                 {
@@ -104,7 +104,7 @@ with
         val bitfields = element.bitfields.clone ()
         if (child == class_name.substring (class_name.lastIndexOf (".") + 1)) // e.g. ACLineSegment
         {
-            val field_names = companion[Parser](class_name).fields
+            val field_names = companion[CIMParser](class_name).fields
             val index = field_names.indexOf (field)
             if (-1 != index)
             {

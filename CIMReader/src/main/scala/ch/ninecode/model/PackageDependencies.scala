@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * The version of dependencies description among top level subpackages of the combined CIM model.
@@ -73,7 +73,7 @@ extends
 
 object PackageDependenciesCIMVersion
 extends
-    Parseable[PackageDependenciesCIMVersion]
+    CIMParseable[PackageDependenciesCIMVersion]
 {
     override val fields: Array[String] = Array[String] (
         "date",
@@ -82,9 +82,9 @@ extends
     val date: Fielder = parse_element (element (cls, fields(0)))
     val version: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): PackageDependenciesCIMVersion =
+    def parse (context: CIMContext): PackageDependenciesCIMVersion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PackageDependenciesCIMVersion (
             BasicElement.parse (context),
@@ -98,7 +98,7 @@ extends
 
 private[ninecode] object _PackageDependencies
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             PackageDependenciesCIMVersion.register

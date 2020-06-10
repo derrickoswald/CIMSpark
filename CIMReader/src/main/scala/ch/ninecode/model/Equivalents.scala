@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * The class represents equivalent branches.
@@ -139,7 +139,7 @@ extends
 
 object EquivalentBranch
 extends
-    Parseable[EquivalentBranch]
+    CIMParseable[EquivalentBranch]
 {
     override val fields: Array[String] = Array[String] (
         "negativeR12",
@@ -176,9 +176,9 @@ extends
     val zeroX12: Fielder = parse_element (element (cls, fields(14)))
     val zeroX21: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): EquivalentBranch =
+    def parse (context: CIMContext): EquivalentBranch =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentBranch (
             EquivalentEquipment.parse (context),
@@ -265,19 +265,19 @@ extends
 
 object EquivalentEquipment
 extends
-    Parseable[EquivalentEquipment]
+    CIMParseable[EquivalentEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "EquivalentNetwork"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*")
     )
     val EquivalentNetwork: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): EquivalentEquipment =
+    def parse (context: CIMContext): EquivalentEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentEquipment (
             ConductingEquipment.parse (context),
@@ -414,7 +414,7 @@ extends
 
 object EquivalentInjection
 extends
-    Parseable[EquivalentInjection]
+    CIMParseable[EquivalentInjection]
 {
     override val fields: Array[String] = Array[String] (
         "maxP",
@@ -434,8 +434,8 @@ extends
         "x2",
         "ReactiveCapabilityCurve"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*")
     )
     val maxP: Fielder = parse_element (element (cls, fields(0)))
     val maxQ: Fielder = parse_element (element (cls, fields(1)))
@@ -454,9 +454,9 @@ extends
     val x2: Fielder = parse_element (element (cls, fields(14)))
     val ReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(15)))
 
-    def parse (context: Context): EquivalentInjection =
+    def parse (context: CIMContext): EquivalentInjection =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentInjection (
             EquivalentEquipment.parse (context),
@@ -543,19 +543,19 @@ extends
 
 object EquivalentNetwork
 extends
-    Parseable[EquivalentNetwork]
+    CIMParseable[EquivalentNetwork]
 {
     override val fields: Array[String] = Array[String] (
         "EquivalentEquipments"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1")
     )
     val EquivalentEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): EquivalentNetwork =
+    def parse (context: CIMContext): EquivalentNetwork =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentNetwork (
             ConnectivityNodeContainer.parse (context),
@@ -628,7 +628,7 @@ extends
 
 object EquivalentShunt
 extends
-    Parseable[EquivalentShunt]
+    CIMParseable[EquivalentShunt]
 {
     override val fields: Array[String] = Array[String] (
         "b",
@@ -637,9 +637,9 @@ extends
     val b: Fielder = parse_element (element (cls, fields(0)))
     val g: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): EquivalentShunt =
+    def parse (context: CIMContext): EquivalentShunt =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquivalentShunt (
             EquivalentEquipment.parse (context),
@@ -653,7 +653,7 @@ extends
 
 private[ninecode] object _Equivalents
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             EquivalentBranch.register,

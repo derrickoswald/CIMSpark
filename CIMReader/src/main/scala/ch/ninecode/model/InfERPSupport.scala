@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
@@ -77,22 +77,22 @@ extends
 
 object ErpBOM
 extends
-    Parseable[ErpBOM]
+    CIMParseable[ErpBOM]
 {
     override val fields: Array[String] = Array[String] (
         "Design",
         "ErpBomItemDatas"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Design", "Design", "0..1", "0..*"),
-        Relationship ("ErpBomItemDatas", "ErpBomItemData", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Design", "Design", "0..1", "0..*"),
+        CIMRelationship ("ErpBomItemDatas", "ErpBomItemData", "0..*", "1")
     )
     val Design: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpBOM =
+    def parse (context: CIMContext): ErpBOM =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpBOM (
             ErpDocument.parse (context),
@@ -172,16 +172,16 @@ extends
 
 object ErpBankAccount
 extends
-    Parseable[ErpBankAccount]
+    CIMParseable[ErpBankAccount]
 {
     override val fields: Array[String] = Array[String] (
         "bankABA"
     )
     val bankABA: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): ErpBankAccount =
+    def parse (context: CIMContext): ErpBankAccount =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpBankAccount (
             BankAccount.parse (context),
@@ -262,25 +262,25 @@ extends
 
 object ErpBomItemData
 extends
-    Parseable[ErpBomItemData]
+    CIMParseable[ErpBomItemData]
 {
     override val fields: Array[String] = Array[String] (
         "DesignLocation",
         "ErpBOM",
         "TypeAsset"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DesignLocation", "DesignLocation", "0..1", "0..*"),
-        Relationship ("ErpBOM", "ErpBOM", "1", "0..*"),
-        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DesignLocation", "DesignLocation", "0..1", "0..*"),
+        CIMRelationship ("ErpBOM", "ErpBOM", "1", "0..*"),
+        CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*")
     )
     val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpBOM: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ErpBomItemData =
+    def parse (context: CIMContext): ErpBomItemData =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpBomItemData (
             ErpIdentifiedObject.parse (context),
@@ -353,10 +353,10 @@ extends
 
 object ErpChartOfAccounts
 extends
-    Parseable[ErpChartOfAccounts]
+    CIMParseable[ErpChartOfAccounts]
 {
 
-    def parse (context: Context): ErpChartOfAccounts =
+    def parse (context: CIMContext): ErpChartOfAccounts =
     {
         val ret = ErpChartOfAccounts (
             ErpDocument.parse (context)
@@ -431,19 +431,19 @@ extends
 
 object ErpCompetency
 extends
-    Parseable[ErpCompetency]
+    CIMParseable[ErpCompetency]
 {
     override val fields: Array[String] = Array[String] (
         "ErpPersons"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpPersons", "OldPerson", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..1")
     )
     val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpCompetency =
+    def parse (context: CIMContext): ErpCompetency =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpCompetency (
             ErpIdentifiedObject.parse (context),
@@ -514,10 +514,10 @@ extends
 
 object ErpDocument
 extends
-    Parseable[ErpDocument]
+    CIMParseable[ErpDocument]
 {
 
-    def parse (context: Context): ErpDocument =
+    def parse (context: CIMContext): ErpDocument =
     {
         val ret = ErpDocument (
             Document.parse (context)
@@ -584,10 +584,10 @@ extends
 
 object ErpEngChangeOrder
 extends
-    Parseable[ErpEngChangeOrder]
+    CIMParseable[ErpEngChangeOrder]
 {
 
-    def parse (context: Context): ErpEngChangeOrder =
+    def parse (context: CIMContext): ErpEngChangeOrder =
     {
         val ret = ErpEngChangeOrder (
             ErpDocument.parse (context)
@@ -656,10 +656,10 @@ extends
 
 object ErpIdentifiedObject
 extends
-    Parseable[ErpIdentifiedObject]
+    CIMParseable[ErpIdentifiedObject]
 {
 
-    def parse (context: Context): ErpIdentifiedObject =
+    def parse (context: CIMContext): ErpIdentifiedObject =
     {
         val ret = ErpIdentifiedObject (
             IdentifiedObject.parse (context)
@@ -737,21 +737,21 @@ extends
 
 object ErpInventory
 extends
-    Parseable[ErpInventory]
+    CIMParseable[ErpInventory]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "Asset"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Asset", "Asset", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpInventory =
+    def parse (context: CIMContext): ErpInventory =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpInventory (
             ErpIdentifiedObject.parse (context),
@@ -830,16 +830,16 @@ extends
 
 object ErpInventoryCount
 extends
-    Parseable[ErpInventoryCount]
+    CIMParseable[ErpInventoryCount]
 {
     override val fields: Array[String] = Array[String] (
         "status"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpInventoryCount =
+    def parse (context: CIMContext): ErpInventoryCount =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpInventoryCount (
             ErpIdentifiedObject.parse (context),
@@ -949,7 +949,7 @@ extends
 
 object ErpInvoice
 extends
-    Parseable[ErpInvoice]
+    CIMParseable[ErpInvoice]
 {
     override val fields: Array[String] = Array[String] (
         "amount",
@@ -964,9 +964,9 @@ extends
         "CustomerAccount",
         "ErpInvoiceLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        CIMRelationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "1")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val billMediaKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -980,9 +980,9 @@ extends
     val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(9)))
     val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
-    def parse (context: Context): ErpInvoice =
+    def parse (context: CIMContext): ErpInvoice =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpInvoice (
             ErpDocument.parse (context),
@@ -1129,7 +1129,7 @@ extends
 
 object ErpInvoiceLineItem
 extends
-    Parseable[ErpInvoiceLineItem]
+    CIMParseable[ErpInvoiceLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "billPeriod",
@@ -1154,19 +1154,19 @@ extends
         "UserAttributes",
         "WorkBillingInfos"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ComponentErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..1"),
-        Relationship ("ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
-        Relationship ("CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..*"),
-        Relationship ("ErpInvoice", "ErpInvoice", "1", "0..*"),
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..1"),
-        Relationship ("ErpPayableLineItem", "ErpPayableLineItem", "0..1", "0..1"),
-        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
-        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
-        Relationship ("ErpRecDelvLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
-        Relationship ("ErpRecLineItem", "ErpRecLineItem", "0..1", "0..1"),
-        Relationship ("UserAttributes", "UserAttribute", "0..*", "0..*"),
-        Relationship ("WorkBillingInfos", "WorkBillingInfo", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ComponentErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..1"),
+        CIMRelationship ("ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
+        CIMRelationship ("CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..*"),
+        CIMRelationship ("ErpInvoice", "ErpInvoice", "1", "0..*"),
+        CIMRelationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..1"),
+        CIMRelationship ("ErpPayableLineItem", "ErpPayableLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
+        CIMRelationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpRecDelvLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpRecLineItem", "ErpRecLineItem", "0..1", "0..1"),
+        CIMRelationship ("UserAttributes", "UserAttribute", "0..*", "0..*"),
+        CIMRelationship ("WorkBillingInfos", "WorkBillingInfo", "0..*", "0..*")
     )
     val billPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
     val glAccount: Fielder = parse_element (element (cls, fields(1)))
@@ -1190,9 +1190,9 @@ extends
     val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
     val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
 
-    def parse (context: Context): ErpInvoiceLineItem =
+    def parse (context: CIMContext): ErpInvoiceLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpInvoiceLineItem (
             ErpDocument.parse (context),
@@ -1293,24 +1293,24 @@ extends
 
 object ErpIssueInventory
 extends
-    Parseable[ErpIssueInventory]
+    CIMParseable[ErpIssueInventory]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "TypeAsset",
         "TypeMaterial"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
-        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
+        CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ErpIssueInventory =
+    def parse (context: CIMContext): ErpIssueInventory =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpIssueInventory (
             ErpIdentifiedObject.parse (context),
@@ -1392,21 +1392,21 @@ extends
 
 object ErpItemMaster
 extends
-    Parseable[ErpItemMaster]
+    CIMParseable[ErpItemMaster]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "Asset"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Asset", "Asset", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpItemMaster =
+    def parse (context: CIMContext): ErpItemMaster =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpItemMaster (
             ErpIdentifiedObject.parse (context),
@@ -1485,19 +1485,19 @@ extends
 
 object ErpJournal
 extends
-    Parseable[ErpJournal]
+    CIMParseable[ErpJournal]
 {
     override val fields: Array[String] = Array[String] (
         "ErpJournalEntries"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "1")
     )
     val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpJournal =
+    def parse (context: CIMContext): ErpJournal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpJournal (
             ErpDocument.parse (context),
@@ -1607,7 +1607,7 @@ extends
 
 object ErpJournalEntry
 extends
-    Parseable[ErpJournalEntry]
+    CIMParseable[ErpJournalEntry]
 {
     override val fields: Array[String] = Array[String] (
         "accountID",
@@ -1623,13 +1623,13 @@ extends
         "ErpPayableLineItems",
         "ErpRecLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CostTypes", "CostType", "0..*", "0..*"),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
-        Relationship ("ErpJournal", "ErpJournal", "1", "0..*"),
-        Relationship ("ErpLedgerEntry", "ErpLedgerEntry", "0..1", "0..1"),
-        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
-        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CostTypes", "CostType", "0..*", "0..*"),
+        CIMRelationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
+        CIMRelationship ("ErpJournal", "ErpJournal", "1", "0..*"),
+        CIMRelationship ("ErpLedgerEntry", "ErpLedgerEntry", "0..1", "0..1"),
+        CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
+        CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
     val accountID: Fielder = parse_element (element (cls, fields(0)))
     val amount: Fielder = parse_element (element (cls, fields(1)))
@@ -1644,9 +1644,9 @@ extends
     val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
     val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
-    def parse (context: Context): ErpJournalEntry =
+    def parse (context: CIMContext): ErpJournalEntry =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpJournalEntry (
             ErpIdentifiedObject.parse (context),
@@ -1738,24 +1738,24 @@ extends
 
 object ErpLedBudLineItem
 extends
-    Parseable[ErpLedBudLineItem]
+    CIMParseable[ErpLedBudLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "ErpLedBudLineItem",
         "ErpLedgerBudget"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", "0..1", "0..1"),
-        Relationship ("ErpLedgerBudget", "ErpLedgerBudget", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", "0..1", "0..1"),
+        CIMRelationship ("ErpLedgerBudget", "ErpLedgerBudget", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpLedBudLineItem_attr: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ErpLedgerBudget: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ErpLedBudLineItem =
+    def parse (context: CIMContext): ErpLedBudLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpLedBudLineItem (
             ErpIdentifiedObject.parse (context),
@@ -1834,19 +1834,19 @@ extends
 
 object ErpLedger
 extends
-    Parseable[ErpLedger]
+    CIMParseable[ErpLedger]
 {
     override val fields: Array[String] = Array[String] (
         "ErpLedgerEntries"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpLedgerEntries", "ErpLedgerEntry", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpLedgerEntries", "ErpLedgerEntry", "0..*", "1")
     )
     val ErpLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpLedger =
+    def parse (context: CIMContext): ErpLedger =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpLedger (
             ErpDocument.parse (context),
@@ -1923,19 +1923,19 @@ extends
 
 object ErpLedgerBudget
 extends
-    Parseable[ErpLedgerBudget]
+    CIMParseable[ErpLedgerBudget]
 {
     override val fields: Array[String] = Array[String] (
         "ErpLedBudLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpLedBudLineItems", "ErpLedBudLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpLedBudLineItems", "ErpLedBudLineItem", "0..*", "1")
     )
     val ErpLedBudLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpLedgerBudget =
+    def parse (context: CIMContext): ErpLedgerBudget =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpLedgerBudget (
             ErpDocument.parse (context),
@@ -2039,7 +2039,7 @@ extends
 
 object ErpLedgerEntry
 extends
-    Parseable[ErpLedgerEntry]
+    CIMParseable[ErpLedgerEntry]
 {
     override val fields: Array[String] = Array[String] (
         "accountID",
@@ -2053,11 +2053,11 @@ extends
         "ErpLedgerEntry",
         "UserAttributes"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpJounalEntry", "ErpJournalEntry", "0..1", "0..1"),
-        Relationship ("ErpLedger", "ErpLedger", "1", "0..*"),
-        Relationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", "0..1", "0..1"),
-        Relationship ("UserAttributes", "UserAttribute", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpJounalEntry", "ErpJournalEntry", "0..1", "0..1"),
+        CIMRelationship ("ErpLedger", "ErpLedger", "1", "0..*"),
+        CIMRelationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", "0..1", "0..1"),
+        CIMRelationship ("UserAttributes", "UserAttribute", "0..*", "0..*")
     )
     val accountID: Fielder = parse_element (element (cls, fields(0)))
     val accountKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2070,9 +2070,9 @@ extends
     val ErpLedgerEntry_attr: Fielder = parse_attribute (attribute (cls, fields(8)))
     val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): ErpLedgerEntry =
+    def parse (context: CIMContext): ErpLedgerEntry =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpLedgerEntry (
             ErpIdentifiedObject.parse (context),
@@ -2165,7 +2165,7 @@ extends
 
 object ErpPOLineItem
 extends
-    Parseable[ErpPOLineItem]
+    CIMParseable[ErpPOLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "AssetModelCatalogueItem",
@@ -2173,20 +2173,20 @@ extends
         "ErpRecDelLineItem",
         "ErpReqLineItem"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
-        Relationship ("ErpPurchaseOrder", "ErpPurchaseOrder", "1", "0..*"),
-        Relationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
-        Relationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
+        CIMRelationship ("ErpPurchaseOrder", "ErpPurchaseOrder", "1", "0..*"),
+        CIMRelationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
     val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpPurchaseOrder: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ErpRecDelLineItem: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ErpPOLineItem =
+    def parse (context: CIMContext): ErpPOLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPOLineItem (
             ErpDocument.parse (context),
@@ -2269,22 +2269,22 @@ extends
 
 object ErpPayable
 extends
-    Parseable[ErpPayable]
+    CIMParseable[ErpPayable]
 {
     override val fields: Array[String] = Array[String] (
         "ContractorItems",
         "ErpPayableLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ContractorItems", "ContractorItem", "0..*", "0..*"),
-        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ContractorItems", "ContractorItem", "0..*", "0..*"),
+        CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "1")
     )
     val ContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpPayable =
+    def parse (context: CIMContext): ErpPayable =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPayable (
             ErpDocument.parse (context),
@@ -2373,7 +2373,7 @@ extends
 
 object ErpPayableLineItem
 extends
-    Parseable[ErpPayableLineItem]
+    CIMParseable[ErpPayableLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -2382,11 +2382,11 @@ extends
         "ErpPayable",
         "ErpPayments"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
-        Relationship ("ErpPayable", "ErpPayable", "1", "0..*"),
-        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
+        CIMRelationship ("ErpPayable", "ErpPayable", "1", "0..*"),
+        CIMRelationship ("ErpPayments", "ErpPayment", "0..*", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2394,9 +2394,9 @@ extends
     val ErpPayable: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
-    def parse (context: Context): ErpPayableLineItem =
+    def parse (context: CIMContext): ErpPayableLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPayableLineItem (
             ErpIdentifiedObject.parse (context),
@@ -2487,7 +2487,7 @@ extends
 
 object ErpPayment
 extends
-    Parseable[ErpPayment]
+    CIMParseable[ErpPayment]
 {
     override val fields: Array[String] = Array[String] (
         "termsPayment",
@@ -2495,19 +2495,19 @@ extends
         "ErpPayableLineItems",
         "ErpRecLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
-        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
-        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
+        CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
+        CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
     val termsPayment: Fielder = parse_element (element (cls, fields(0)))
     val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): ErpPayment =
+    def parse (context: CIMContext): ErpPayment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPayment (
             ErpDocument.parse (context),
@@ -2589,21 +2589,21 @@ extends
 
 object ErpPersonnel
 extends
-    Parseable[ErpPersonnel]
+    CIMParseable[ErpPersonnel]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "ErpPersons"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpPersons", "OldPerson", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpPersonnel =
+    def parse (context: CIMContext): ErpPersonnel =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPersonnel (
             ErpIdentifiedObject.parse (context),
@@ -2690,7 +2690,7 @@ extends
 
 object ErpProjectAccounting
 extends
-    Parseable[ErpProjectAccounting]
+    CIMParseable[ErpProjectAccounting]
 {
     override val fields: Array[String] = Array[String] (
         "ErpTimeEntries",
@@ -2698,20 +2698,20 @@ extends
         "WorkCostDetails",
         "Works"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "0..1"),
-        Relationship ("Projects", "Project", "0..*", "1"),
-        Relationship ("WorkCostDetails", "WorkCostDetail", "0..*", "1"),
-        Relationship ("Works", "Work", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "0..1"),
+        CIMRelationship ("Projects", "Project", "0..*", "1"),
+        CIMRelationship ("WorkCostDetails", "WorkCostDetail", "0..*", "1"),
+        CIMRelationship ("Works", "Work", "0..*", "0..1")
     )
     val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val Projects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Works: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): ErpProjectAccounting =
+    def parse (context: CIMContext): ErpProjectAccounting =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpProjectAccounting (
             ErpDocument.parse (context),
@@ -2791,19 +2791,19 @@ extends
 
 object ErpPurchaseOrder
 extends
-    Parseable[ErpPurchaseOrder]
+    CIMParseable[ErpPurchaseOrder]
 {
     override val fields: Array[String] = Array[String] (
         "ErpPOLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "1")
     )
     val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpPurchaseOrder =
+    def parse (context: CIMContext): ErpPurchaseOrder =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpPurchaseOrder (
             ErpDocument.parse (context),
@@ -2880,19 +2880,19 @@ extends
 
 object ErpQuote
 extends
-    Parseable[ErpQuote]
+    CIMParseable[ErpQuote]
 {
     override val fields: Array[String] = Array[String] (
         "ErpQuoteLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "1")
     )
     val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpQuote =
+    def parse (context: CIMContext): ErpQuote =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpQuote (
             ErpDocument.parse (context),
@@ -2983,7 +2983,7 @@ extends
 
 object ErpQuoteLineItem
 extends
-    Parseable[ErpQuoteLineItem]
+    CIMParseable[ErpQuoteLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -2993,12 +2993,12 @@ extends
         "ErpQuote",
         "ErpReqLineItem"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
-        Relationship ("Design", "Design", "0..1", "0..1"),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
-        Relationship ("ErpQuote", "ErpQuote", "1", "0..*"),
-        Relationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
+        CIMRelationship ("Design", "Design", "0..1", "0..1"),
+        CIMRelationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpQuote", "ErpQuote", "1", "0..*"),
+        CIMRelationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3007,9 +3007,9 @@ extends
     val ErpQuote: Fielder = parse_attribute (attribute (cls, fields(4)))
     val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): ErpQuoteLineItem =
+    def parse (context: CIMContext): ErpQuoteLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpQuoteLineItem (
             ErpIdentifiedObject.parse (context),
@@ -3104,7 +3104,7 @@ extends
 
 object ErpRecDelvLineItem
 extends
-    Parseable[ErpRecDelvLineItem]
+    CIMParseable[ErpRecDelvLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -3113,11 +3113,11 @@ extends
         "ErpPOLineItem",
         "ErpReceiveDelivery"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", "0..*", "0..*"),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
-        Relationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
-        Relationship ("ErpReceiveDelivery", "ErpReceiveDelivery", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Assets", "Asset", "0..*", "0..*"),
+        CIMRelationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpReceiveDelivery", "ErpReceiveDelivery", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -3125,9 +3125,9 @@ extends
     val ErpPOLineItem: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ErpReceiveDelivery: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ErpRecDelvLineItem =
+    def parse (context: CIMContext): ErpRecDelvLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpRecDelvLineItem (
             ErpIdentifiedObject.parse (context),
@@ -3219,7 +3219,7 @@ extends
 
 object ErpRecLineItem
 extends
-    Parseable[ErpRecLineItem]
+    CIMParseable[ErpRecLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -3228,11 +3228,11 @@ extends
         "ErpPayments",
         "ErpReceivable"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
-        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
-        Relationship ("ErpReceivable", "ErpReceivable", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
+        CIMRelationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
+        CIMRelationship ("ErpReceivable", "ErpReceivable", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3240,9 +3240,9 @@ extends
     val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val ErpReceivable: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ErpRecLineItem =
+    def parse (context: CIMContext): ErpRecLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpRecLineItem (
             ErpIdentifiedObject.parse (context),
@@ -3323,19 +3323,19 @@ extends
 
 object ErpReceivable
 extends
-    Parseable[ErpReceivable]
+    CIMParseable[ErpReceivable]
 {
     override val fields: Array[String] = Array[String] (
         "ErpRecLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "1")
     )
     val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpReceivable =
+    def parse (context: CIMContext): ErpReceivable =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpReceivable (
             ErpDocument.parse (context),
@@ -3412,19 +3412,19 @@ extends
 
 object ErpReceiveDelivery
 extends
-    Parseable[ErpReceiveDelivery]
+    CIMParseable[ErpReceiveDelivery]
 {
     override val fields: Array[String] = Array[String] (
         "ErpRecDelvLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpRecDelvLineItems", "ErpRecDelvLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpRecDelvLineItems", "ErpRecDelvLineItem", "0..*", "1")
     )
     val ErpRecDelvLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpReceiveDelivery =
+    def parse (context: CIMContext): ErpReceiveDelivery =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpReceiveDelivery (
             ErpDocument.parse (context),
@@ -3527,7 +3527,7 @@ extends
 
 object ErpReqLineItem
 extends
-    Parseable[ErpReqLineItem]
+    CIMParseable[ErpReqLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "code",
@@ -3541,12 +3541,12 @@ extends
         "TypeAsset",
         "TypeMaterial"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
-        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
-        Relationship ("ErpRequisition", "ErpRequisition", "1", "0..*"),
-        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
-        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
+        CIMRelationship ("ErpRequisition", "ErpRequisition", "1", "0..*"),
+        CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
+        CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
     val cost: Fielder = parse_element (element (cls, fields(1)))
@@ -3559,9 +3559,9 @@ extends
     val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(8)))
     val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): ErpReqLineItem =
+    def parse (context: CIMContext): ErpReqLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpReqLineItem (
             ErpIdentifiedObject.parse (context),
@@ -3647,19 +3647,19 @@ extends
 
 object ErpRequisition
 extends
-    Parseable[ErpRequisition]
+    CIMParseable[ErpRequisition]
 {
     override val fields: Array[String] = Array[String] (
         "ErpReqLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpReqLineItems", "ErpReqLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpReqLineItems", "ErpReqLineItem", "0..*", "1")
     )
     val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpRequisition =
+    def parse (context: CIMContext): ErpRequisition =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpRequisition (
             ErpDocument.parse (context),
@@ -3730,10 +3730,10 @@ extends
 
 object ErpSalesOrder
 extends
-    Parseable[ErpSalesOrder]
+    CIMParseable[ErpSalesOrder]
 {
 
-    def parse (context: Context): ErpSalesOrder =
+    def parse (context: CIMContext): ErpSalesOrder =
     {
         val ret = ErpSalesOrder (
             ErpDocument.parse (context)
@@ -3811,21 +3811,21 @@ extends
 
 object ErpSiteLevelData
 extends
-    Parseable[ErpSiteLevelData]
+    CIMParseable[ErpSiteLevelData]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "LandProperty"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LandProperty", "LandProperty", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LandProperty", "LandProperty", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ErpSiteLevelData =
+    def parse (context: CIMContext): ErpSiteLevelData =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpSiteLevelData (
             ErpIdentifiedObject.parse (context),
@@ -3907,24 +3907,24 @@ extends
 
 object ErpTimeEntry
 extends
-    Parseable[ErpTimeEntry]
+    CIMParseable[ErpTimeEntry]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "ErpProjectAccounting",
         "ErpTimeSheet"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
-        Relationship ("ErpTimeSheet", "ErpTimeSheet", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
+        CIMRelationship ("ErpTimeSheet", "ErpTimeSheet", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ErpTimeSheet: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ErpTimeEntry =
+    def parse (context: CIMContext): ErpTimeEntry =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpTimeEntry (
             ErpIdentifiedObject.parse (context),
@@ -4003,19 +4003,19 @@ extends
 
 object ErpTimeSheet
 extends
-    Parseable[ErpTimeSheet]
+    CIMParseable[ErpTimeSheet]
 {
     override val fields: Array[String] = Array[String] (
         "ErpTimeEntries"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "1")
     )
     val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ErpTimeSheet =
+    def parse (context: CIMContext): ErpTimeSheet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ErpTimeSheet (
             ErpDocument.parse (context),
@@ -4028,7 +4028,7 @@ extends
 
 private[ninecode] object _InfERPSupport
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ErpBOM.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
@@ -145,7 +145,7 @@ extends
 
 object ACDCConverter
 extends
-    Parseable[ACDCConverter]
+    CIMParseable[ACDCConverter]
 {
     override val fields: Array[String] = Array[String] (
         "baseS",
@@ -168,9 +168,9 @@ extends
         "DCTerminals",
         "PccTerminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCTerminals", "ACDCConverterDCTerminal", "0..*", "1"),
-        Relationship ("PccTerminal", "Terminal", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCTerminals", "ACDCConverterDCTerminal", "0..*", "1"),
+        CIMRelationship ("PccTerminal", "Terminal", "0..1", "0..*")
     )
     val baseS: Fielder = parse_element (element (cls, fields(0)))
     val idc: Fielder = parse_element (element (cls, fields(1)))
@@ -192,9 +192,9 @@ extends
     val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
     val PccTerminal: Fielder = parse_attribute (attribute (cls, fields(18)))
 
-    def parse (context: Context): ACDCConverter =
+    def parse (context: CIMContext): ACDCConverter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ACDCConverter (
             ConductingEquipment.parse (context),
@@ -287,21 +287,21 @@ extends
 
 object ACDCConverterDCTerminal
 extends
-    Parseable[ACDCConverterDCTerminal]
+    CIMParseable[ACDCConverterDCTerminal]
 {
     override val fields: Array[String] = Array[String] (
         "polarity",
         "DCConductingEquipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCConductingEquipment", "ACDCConverter", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCConductingEquipment", "ACDCConverter", "1", "0..*")
     )
     val polarity: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ACDCConverterDCTerminal =
+    def parse (context: CIMContext): ACDCConverterDCTerminal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ACDCConverterDCTerminal (
             DCBaseTerminal.parse (context),
@@ -428,7 +428,7 @@ extends
 
 object CsConverter
 extends
-    Parseable[CsConverter]
+    CIMParseable[CsConverter]
 {
     override val fields: Array[String] = Array[String] (
         "alpha",
@@ -447,8 +447,8 @@ extends
         "targetIdc",
         "CSCDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CSCDynamics", "CSCDynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CSCDynamics", "CSCDynamics", "0..1", "1")
     )
     val alpha: Fielder = parse_element (element (cls, fields(0)))
     val gamma: Fielder = parse_element (element (cls, fields(1)))
@@ -466,9 +466,9 @@ extends
     val targetIdc: Fielder = parse_element (element (cls, fields(13)))
     val CSCDynamics: Fielder = parse_attribute (attribute (cls, fields(14)))
 
-    def parse (context: Context): CsConverter =
+    def parse (context: CIMContext): CsConverter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CsConverter (
             ACDCConverter.parse (context),
@@ -558,22 +558,22 @@ extends
 
 object DCBaseTerminal
 extends
-    Parseable[DCBaseTerminal]
+    CIMParseable[DCBaseTerminal]
 {
     override val fields: Array[String] = Array[String] (
         "DCNode",
         "DCTopologicalNode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCNode", "DCNode", "0..1", "0..*"),
-        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCNode", "DCNode", "0..1", "0..*"),
+        CIMRelationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
     )
     val DCNode: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): DCBaseTerminal =
+    def parse (context: CIMContext): DCBaseTerminal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCBaseTerminal (
             ACDCTerminal.parse (context),
@@ -638,10 +638,10 @@ extends
 
 object DCBreaker
 extends
-    Parseable[DCBreaker]
+    CIMParseable[DCBreaker]
 {
 
-    def parse (context: Context): DCBreaker =
+    def parse (context: CIMContext): DCBreaker =
     {
         val ret = DCBreaker (
             DCSwitch.parse (context)
@@ -703,10 +703,10 @@ extends
 
 object DCBusbar
 extends
-    Parseable[DCBusbar]
+    CIMParseable[DCBusbar]
 {
 
-    def parse (context: Context): DCBusbar =
+    def parse (context: CIMContext): DCBusbar =
     {
         val ret = DCBusbar (
             DCConductingEquipment.parse (context)
@@ -770,10 +770,10 @@ extends
 
 object DCChopper
 extends
-    Parseable[DCChopper]
+    CIMParseable[DCChopper]
 {
 
-    def parse (context: Context): DCChopper =
+    def parse (context: CIMContext): DCChopper =
     {
         val ret = DCChopper (
             DCConductingEquipment.parse (context)
@@ -849,24 +849,24 @@ extends
 
 object DCConductingEquipment
 extends
-    Parseable[DCConductingEquipment]
+    CIMParseable[DCConductingEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "ratedUdc",
         "DCTerminals",
         "ProtectiveActionAdjustment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCTerminals", "DCTerminal", "0..*", "1"),
-        Relationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCTerminals", "DCTerminal", "0..*", "1"),
+        CIMRelationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1")
     )
     val ratedUdc: Fielder = parse_element (element (cls, fields(0)))
     val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): DCConductingEquipment =
+    def parse (context: CIMContext): DCConductingEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCConductingEquipment (
             Equipment.parse (context),
@@ -941,21 +941,21 @@ extends
 
 object DCConverterUnit
 extends
-    Parseable[DCConverterUnit]
+    CIMParseable[DCConverterUnit]
 {
     override val fields: Array[String] = Array[String] (
         "operationMode",
         "Substation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Substation", "Substation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Substation", "Substation", "0..1", "0..*")
     )
     val operationMode: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Substation: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): DCConverterUnit =
+    def parse (context: CIMContext): DCConverterUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCConverterUnit (
             DCEquipmentContainer.parse (context),
@@ -1020,10 +1020,10 @@ extends
 
 object DCDisconnector
 extends
-    Parseable[DCDisconnector]
+    CIMParseable[DCDisconnector]
 {
 
-    def parse (context: Context): DCDisconnector =
+    def parse (context: CIMContext): DCDisconnector =
     {
         val ret = DCDisconnector (
             DCSwitch.parse (context)
@@ -1096,22 +1096,22 @@ extends
 
 object DCEquipmentContainer
 extends
-    Parseable[DCEquipmentContainer]
+    CIMParseable[DCEquipmentContainer]
 {
     override val fields: Array[String] = Array[String] (
         "DCNodes",
         "DCTopologicalNode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCNodes", "DCNode", "0..*", "1"),
-        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCNodes", "DCNode", "0..*", "1"),
+        CIMRelationship ("DCTopologicalNode", "DCTopologicalNode", "0..*", "0..1")
     )
     val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val DCTopologicalNode: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): DCEquipmentContainer =
+    def parse (context: CIMContext): DCEquipmentContainer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCEquipmentContainer (
             EquipmentContainer.parse (context),
@@ -1185,7 +1185,7 @@ extends
 
 object DCGround
 extends
-    Parseable[DCGround]
+    CIMParseable[DCGround]
 {
     override val fields: Array[String] = Array[String] (
         "inductance",
@@ -1194,9 +1194,9 @@ extends
     val inductance: Fielder = parse_element (element (cls, fields(0)))
     val r: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DCGround =
+    def parse (context: CIMContext): DCGround =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCGround (
             DCConductingEquipment.parse (context),
@@ -1267,19 +1267,19 @@ extends
 
 object DCLine
 extends
-    Parseable[DCLine]
+    CIMParseable[DCLine]
 {
     override val fields: Array[String] = Array[String] (
         "Region"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Region", "SubGeographicalRegion", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Region", "SubGeographicalRegion", "0..1", "0..*")
     )
     val Region: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): DCLine =
+    def parse (context: CIMContext): DCLine =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCLine (
             DCEquipmentContainer.parse (context),
@@ -1364,7 +1364,7 @@ extends
 
 object DCLineSegment
 extends
-    Parseable[DCLineSegment]
+    CIMParseable[DCLineSegment]
 {
     override val fields: Array[String] = Array[String] (
         "capacitance",
@@ -1373,8 +1373,8 @@ extends
         "resistance",
         "PerLengthParameter"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("PerLengthParameter", "PerLengthDCLineParameter", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("PerLengthParameter", "PerLengthDCLineParameter", "0..1", "0..*")
     )
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
     val inductance: Fielder = parse_element (element (cls, fields(1)))
@@ -1382,9 +1382,9 @@ extends
     val resistance: Fielder = parse_element (element (cls, fields(3)))
     val PerLengthParameter: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): DCLineSegment =
+    def parse (context: CIMContext): DCLineSegment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCLineSegment (
             DCConductingEquipment.parse (context),
@@ -1466,25 +1466,25 @@ extends
 
 object DCNode
 extends
-    Parseable[DCNode]
+    CIMParseable[DCNode]
 {
     override val fields: Array[String] = Array[String] (
         "DCEquipmentContainer",
         "DCTerminals",
         "DCTopologicalNode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "1", "0..*"),
-        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
-        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCEquipmentContainer", "DCEquipmentContainer", "1", "0..*"),
+        CIMRelationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
+        CIMRelationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
     )
     val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val DCTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): DCNode =
+    def parse (context: CIMContext): DCNode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCNode (
             IdentifiedObject.parse (context),
@@ -1561,7 +1561,7 @@ extends
 
 object DCSeriesDevice
 extends
-    Parseable[DCSeriesDevice]
+    CIMParseable[DCSeriesDevice]
 {
     override val fields: Array[String] = Array[String] (
         "inductance",
@@ -1570,9 +1570,9 @@ extends
     val inductance: Fielder = parse_element (element (cls, fields(0)))
     val resistance: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DCSeriesDevice =
+    def parse (context: CIMContext): DCSeriesDevice =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCSeriesDevice (
             DCConductingEquipment.parse (context),
@@ -1648,7 +1648,7 @@ extends
 
 object DCShunt
 extends
-    Parseable[DCShunt]
+    CIMParseable[DCShunt]
 {
     override val fields: Array[String] = Array[String] (
         "capacitance",
@@ -1657,9 +1657,9 @@ extends
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
     val resistance: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DCShunt =
+    def parse (context: CIMContext): DCShunt =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCShunt (
             DCConductingEquipment.parse (context),
@@ -1724,10 +1724,10 @@ extends
 
 object DCSwitch
 extends
-    Parseable[DCSwitch]
+    CIMParseable[DCSwitch]
 {
 
-    def parse (context: Context): DCSwitch =
+    def parse (context: CIMContext): DCSwitch =
     {
         val ret = DCSwitch (
             DCConductingEquipment.parse (context)
@@ -1795,19 +1795,19 @@ extends
 
 object DCTerminal
 extends
-    Parseable[DCTerminal]
+    CIMParseable[DCTerminal]
 {
     override val fields: Array[String] = Array[String] (
         "DCConductingEquipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*")
     )
     val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): DCTerminal =
+    def parse (context: CIMContext): DCTerminal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCTerminal (
             DCBaseTerminal.parse (context),
@@ -1881,19 +1881,19 @@ extends
 
 object DCTopologicalIsland
 extends
-    Parseable[DCTopologicalIsland]
+    CIMParseable[DCTopologicalIsland]
 {
     override val fields: Array[String] = Array[String] (
         "DCTopologicalNodes"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCTopologicalNodes", "DCTopologicalNode", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCTopologicalNodes", "DCTopologicalNode", "1..*", "0..1")
     )
     val DCTopologicalNodes: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DCTopologicalIsland =
+    def parse (context: CIMContext): DCTopologicalIsland =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCTopologicalIsland (
             IdentifiedObject.parse (context),
@@ -1975,7 +1975,7 @@ extends
 
 object DCTopologicalNode
 extends
-    Parseable[DCTopologicalNode]
+    CIMParseable[DCTopologicalNode]
 {
     override val fields: Array[String] = Array[String] (
         "DCEquipmentContainer",
@@ -1983,20 +1983,20 @@ extends
         "DCTerminals",
         "DCTopologicalIsland"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"),
-        Relationship ("DCNodes", "DCNode", "0..*", "0..1"),
-        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
-        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"),
+        CIMRelationship ("DCNodes", "DCNode", "0..*", "0..1"),
+        CIMRelationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
+        CIMRelationship ("DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*")
     )
     val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): DCTopologicalNode =
+    def parse (context: CIMContext): DCTopologicalNode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCTopologicalNode (
             IdentifiedObject.parse (context),
@@ -2079,7 +2079,7 @@ extends
 
 object PerLengthDCLineParameter
 extends
-    Parseable[PerLengthDCLineParameter]
+    CIMParseable[PerLengthDCLineParameter]
 {
     override val fields: Array[String] = Array[String] (
         "capacitance",
@@ -2087,17 +2087,17 @@ extends
         "resistance",
         "DCLineSegments"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCLineSegments", "DCLineSegment", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DCLineSegments", "DCLineSegment", "0..*", "0..1")
     )
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
     val inductance: Fielder = parse_element (element (cls, fields(1)))
     val resistance: Fielder = parse_element (element (cls, fields(2)))
     val DCLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): PerLengthDCLineParameter =
+    def parse (context: CIMContext): PerLengthDCLineParameter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PerLengthDCLineParameter (
             PerLengthLineParameter.parse (context),
@@ -2170,19 +2170,19 @@ extends
 
 object VsCapabilityCurve
 extends
-    Parseable[VsCapabilityCurve]
+    CIMParseable[VsCapabilityCurve]
 {
     override val fields: Array[String] = Array[String] (
         "VsConverterDCSides"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("VsConverterDCSides", "VsConverter", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("VsConverterDCSides", "VsConverter", "0..*", "0..1")
     )
     val VsConverterDCSides: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): VsCapabilityCurve =
+    def parse (context: CIMContext): VsCapabilityCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VsCapabilityCurve (
             Curve.parse (context),
@@ -2295,7 +2295,7 @@ extends
 
 object VsConverter
 extends
-    Parseable[VsConverter]
+    CIMParseable[VsConverter]
 {
     override val fields: Array[String] = Array[String] (
         "delta",
@@ -2312,9 +2312,9 @@ extends
         "CapabilityCurve",
         "VSCDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*"),
-        Relationship ("VSCDynamics", "VSCDynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*"),
+        CIMRelationship ("VSCDynamics", "VSCDynamics", "0..1", "1")
     )
     val delta: Fielder = parse_element (element (cls, fields(0)))
     val droop: Fielder = parse_element (element (cls, fields(1)))
@@ -2330,9 +2330,9 @@ extends
     val CapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(11)))
     val VSCDynamics: Fielder = parse_attribute (attribute (cls, fields(12)))
 
-    def parse (context: Context): VsConverter =
+    def parse (context: CIMContext): VsConverter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VsConverter (
             ACDCConverter.parse (context),
@@ -2357,7 +2357,7 @@ extends
 
 private[ninecode] object _DC
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ACDCConverter.register,

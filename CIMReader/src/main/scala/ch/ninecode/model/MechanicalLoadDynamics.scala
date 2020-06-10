@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Mechanical load model type 1.
@@ -75,7 +75,7 @@ extends
 
 object MechLoad1
 extends
-    Parseable[MechLoad1]
+    CIMParseable[MechLoad1]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -88,9 +88,9 @@ extends
     val d: Fielder = parse_element (element (cls, fields(2)))
     val e: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): MechLoad1 =
+    def parse (context: CIMContext): MechLoad1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MechLoad1 (
             MechanicalLoadDynamics.parse (context),
@@ -168,22 +168,22 @@ extends
 
 object MechanicalLoadDynamics
 extends
-    Parseable[MechanicalLoadDynamics]
+    CIMParseable[MechanicalLoadDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "SynchronousMachineDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
+        CIMRelationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): MechanicalLoadDynamics =
+    def parse (context: CIMContext): MechanicalLoadDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MechanicalLoadDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -197,7 +197,7 @@ extends
 
 private[ninecode] object _MechanicalLoadDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             MechLoad1.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group InfDomain
@@ -63,7 +63,7 @@ extends
 
 object ADSInstructionTypeCommitment
 extends
-    Parseable[ADSInstructionTypeCommitment]
+    CIMParseable[ADSInstructionTypeCommitment]
 {
     override val fields: Array[String] = Array[String] (
         "SHUT_DOWN",
@@ -72,9 +72,9 @@ extends
     val SHUT_DOWN: Fielder = parse_attribute (attribute (cls, fields(0)))
     val START_UP: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ADSInstructionTypeCommitment =
+    def parse (context: CIMContext): ADSInstructionTypeCommitment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ADSInstructionTypeCommitment (
             BasicElement.parse (context),
@@ -153,7 +153,7 @@ extends
 
 object ADSInstructionTypeOOS
 extends
-    Parseable[ADSInstructionTypeOOS]
+    CIMParseable[ADSInstructionTypeOOS]
 {
     override val fields: Array[String] = Array[String] (
         "FIXED_CONSTRAINT",
@@ -164,9 +164,9 @@ extends
     val MAX_CONSTRAINT: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MIN_CONSTRAINT: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ADSInstructionTypeOOS =
+    def parse (context: CIMContext): ADSInstructionTypeOOS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ADSInstructionTypeOOS (
             BasicElement.parse (context),
@@ -242,7 +242,7 @@ extends
 
 object AdderType
 extends
-    Parseable[AdderType]
+    CIMParseable[AdderType]
 {
     override val fields: Array[String] = Array[String] (
         "BASELINE",
@@ -251,9 +251,9 @@ extends
     val BASELINE: Fielder = parse_attribute (attribute (cls, fields(0)))
     val NEGOTIATED: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): AdderType =
+    def parse (context: CIMContext): AdderType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AdderType (
             BasicElement.parse (context),
@@ -323,7 +323,7 @@ extends
 
 object AlarmDisplayType
 extends
-    Parseable[AlarmDisplayType]
+    CIMParseable[AlarmDisplayType]
 {
     override val fields: Array[String] = Array[String] (
         "Appear",
@@ -334,9 +334,9 @@ extends
     val Disappear: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Fleeting: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AlarmDisplayType =
+    def parse (context: CIMContext): AlarmDisplayType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AlarmDisplayType (
             BasicElement.parse (context),
@@ -473,7 +473,7 @@ extends
 
 object AllocationEnergyTypeCode
 extends
-    Parseable[AllocationEnergyTypeCode]
+    CIMParseable[AllocationEnergyTypeCode]
 {
     override val fields: Array[String] = Array[String] (
         "ACNG",
@@ -550,9 +550,9 @@ extends
     val TOR: Fielder = parse_attribute (attribute (cls, fields(34)))
     val VS: Fielder = parse_attribute (attribute (cls, fields(35)))
 
-    def parse (context: Context): AllocationEnergyTypeCode =
+    def parse (context: CIMContext): AllocationEnergyTypeCode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = AllocationEnergyTypeCode (
             BasicElement.parse (context),
@@ -665,7 +665,7 @@ extends
 
 object AncillaryCommodityType
 extends
-    Parseable[AncillaryCommodityType]
+    CIMParseable[AncillaryCommodityType]
 {
     override val fields: Array[String] = Array[String] (
         "NONSPIN",
@@ -678,9 +678,9 @@ extends
     val REGUP: Fielder = parse_attribute (attribute (cls, fields(2)))
     val SPIN: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): AncillaryCommodityType =
+    def parse (context: CIMContext): AncillaryCommodityType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AncillaryCommodityType (
             BasicElement.parse (context),
@@ -752,7 +752,7 @@ extends
 
 object BidPriceCapType
 extends
-    Parseable[BidPriceCapType]
+    CIMParseable[BidPriceCapType]
 {
     override val fields: Array[String] = Array[String] (
         "AS",
@@ -763,9 +763,9 @@ extends
     val ENERGY: Fielder = parse_attribute (attribute (cls, fields(1)))
     val RUC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): BidPriceCapType =
+    def parse (context: CIMContext): BidPriceCapType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BidPriceCapType (
             BasicElement.parse (context),
@@ -844,7 +844,7 @@ extends
 
 object CleanTradeProductType
 extends
-    Parseable[CleanTradeProductType]
+    CIMParseable[CleanTradeProductType]
 {
     override val fields: Array[String] = Array[String] (
         "APN",
@@ -863,9 +863,9 @@ extends
     val RUT: Fielder = parse_attribute (attribute (cls, fields(5)))
     val SRT: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): CleanTradeProductType =
+    def parse (context: CIMContext): CleanTradeProductType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CleanTradeProductType (
             BasicElement.parse (context),
@@ -945,7 +945,7 @@ extends
 
 object CurrentStatusSC
 extends
-    Parseable[CurrentStatusSC]
+    CIMParseable[CurrentStatusSC]
 {
     override val fields: Array[String] = Array[String] (
         "ACTIVE",
@@ -954,9 +954,9 @@ extends
     val ACTIVE: Fielder = parse_attribute (attribute (cls, fields(0)))
     val INACTIVE: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): CurrentStatusSC =
+    def parse (context: CIMContext): CurrentStatusSC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentStatusSC (
             BasicElement.parse (context),
@@ -1022,16 +1022,16 @@ extends
 
 object DAMMarketType
 extends
-    Parseable[DAMMarketType]
+    CIMParseable[DAMMarketType]
 {
     override val fields: Array[String] = Array[String] (
         "DAM"
     )
     val DAM: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): DAMMarketType =
+    def parse (context: CIMContext): DAMMarketType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DAMMarketType (
             BasicElement.parse (context),
@@ -1106,7 +1106,7 @@ extends
 
 object DispatchAcceptStatus
 extends
-    Parseable[DispatchAcceptStatus]
+    CIMParseable[DispatchAcceptStatus]
 {
     override val fields: Array[String] = Array[String] (
         "ACCEPT",
@@ -1123,9 +1123,9 @@ extends
     val OK: Fielder = parse_attribute (attribute (cls, fields(4)))
     val PARTIAL: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): DispatchAcceptStatus =
+    def parse (context: CIMContext): DispatchAcceptStatus =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DispatchAcceptStatus (
             BasicElement.parse (context),
@@ -1197,7 +1197,7 @@ extends
 
 object DispatchTransactionType
 extends
-    Parseable[DispatchTransactionType]
+    CIMParseable[DispatchTransactionType]
 {
     override val fields: Array[String] = Array[String] (
         "Purchase",
@@ -1206,9 +1206,9 @@ extends
     val Purchase: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Sale: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): DispatchTransactionType =
+    def parse (context: CIMContext): DispatchTransactionType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DispatchTransactionType (
             BasicElement.parse (context),
@@ -1348,7 +1348,7 @@ extends
 
 object EnergyTypeCode
 extends
-    Parseable[EnergyTypeCode]
+    CIMParseable[EnergyTypeCode]
 {
     override val fields: Array[String] = Array[String] (
         "DABE",
@@ -1389,9 +1389,9 @@ extends
     val SRE: Fielder = parse_attribute (attribute (cls, fields(16)))
     val TEE: Fielder = parse_attribute (attribute (cls, fields(17)))
 
-    def parse (context: Context): EnergyTypeCode =
+    def parse (context: CIMContext): EnergyTypeCode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyTypeCode (
             BasicElement.parse (context),
@@ -1477,7 +1477,7 @@ extends
 
 object JobFlagType
 extends
-    Parseable[JobFlagType]
+    CIMParseable[JobFlagType]
 {
     override val fields: Array[String] = Array[String] (
         "CREATED",
@@ -1488,9 +1488,9 @@ extends
     val DELETED: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MODIFIED: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): JobFlagType =
+    def parse (context: CIMContext): JobFlagType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = JobFlagType (
             BasicElement.parse (context),
@@ -1559,7 +1559,7 @@ extends
 
 object JobScheduleType
 extends
-    Parseable[JobScheduleType]
+    CIMParseable[JobScheduleType]
 {
     override val fields: Array[String] = Array[String] (
         "CRITICAL",
@@ -1568,9 +1568,9 @@ extends
     val CRITICAL: Fielder = parse_attribute (attribute (cls, fields(0)))
     val NONCRITICAL: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): JobScheduleType =
+    def parse (context: CIMContext): JobScheduleType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = JobScheduleType (
             BasicElement.parse (context),
@@ -1640,7 +1640,7 @@ extends
 
 object JobStartEndType
 extends
-    Parseable[JobStartEndType]
+    CIMParseable[JobStartEndType]
 {
     override val fields: Array[String] = Array[String] (
         "END",
@@ -1651,9 +1651,9 @@ extends
     val NA: Fielder = parse_attribute (attribute (cls, fields(1)))
     val START: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): JobStartEndType =
+    def parse (context: CIMContext): JobStartEndType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = JobStartEndType (
             BasicElement.parse (context),
@@ -1722,7 +1722,7 @@ extends
 
 object LFCResourceType
 extends
-    Parseable[LFCResourceType]
+    CIMParseable[LFCResourceType]
 {
     override val fields: Array[String] = Array[String] (
         "GEN",
@@ -1731,9 +1731,9 @@ extends
     val GEN: Fielder = parse_attribute (attribute (cls, fields(0)))
     val PUMP: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): LFCResourceType =
+    def parse (context: CIMContext): LFCResourceType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LFCResourceType (
             BasicElement.parse (context),
@@ -1801,7 +1801,7 @@ extends
 
 object LoadFollowingCapacityType
 extends
-    Parseable[LoadFollowingCapacityType]
+    CIMParseable[LoadFollowingCapacityType]
 {
     override val fields: Array[String] = Array[String] (
         "DOWN",
@@ -1810,9 +1810,9 @@ extends
     val DOWN: Fielder = parse_attribute (attribute (cls, fields(0)))
     val UP: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): LoadFollowingCapacityType =
+    def parse (context: CIMContext): LoadFollowingCapacityType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadFollowingCapacityType (
             BasicElement.parse (context),
@@ -1891,7 +1891,7 @@ extends
 
 object MQSDELType
 extends
-    Parseable[MQSDELType]
+    CIMParseable[MQSDELType]
 {
     override val fields: Array[String] = Array[String] (
         "ADD",
@@ -1902,9 +1902,9 @@ extends
     val CHG: Fielder = parse_attribute (attribute (cls, fields(1)))
     val DEL: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): MQSDELType =
+    def parse (context: CIMContext): MQSDELType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MQSDELType (
             BasicElement.parse (context),
@@ -1992,7 +1992,7 @@ extends
 
 object MarketProductTypeAsReq
 extends
-    Parseable[MarketProductTypeAsReq]
+    CIMParseable[MarketProductTypeAsReq]
 {
     override val fields: Array[String] = Array[String] (
         "AS",
@@ -2007,9 +2007,9 @@ extends
     val RU: Fielder = parse_attribute (attribute (cls, fields(3)))
     val SR: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): MarketProductTypeAsReq =
+    def parse (context: CIMContext): MarketProductTypeAsReq =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketProductTypeAsReq (
             BasicElement.parse (context),
@@ -2086,7 +2086,7 @@ extends
 
 object MarketScheduleServices
 extends
-    Parseable[MarketScheduleServices]
+    CIMParseable[MarketScheduleServices]
 {
     override val fields: Array[String] = Array[String] (
         "retrieveDefaultBidCurves",
@@ -2101,9 +2101,9 @@ extends
     val retrieveSchedulePrices: Fielder = parse_attribute (attribute (cls, fields(3)))
     val retrieveStartUpShutDownInstructions: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): MarketScheduleServices =
+    def parse (context: CIMContext): MarketScheduleServices =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketScheduleServices (
             BasicElement.parse (context),
@@ -2188,7 +2188,7 @@ extends
 
 object MarketStatementDescription
 extends
-    Parseable[MarketStatementDescription]
+    CIMParseable[MarketStatementDescription]
 {
     override val fields: Array[String] = Array[String] (
         "DAILY_INITIAL_CREDIT",
@@ -2203,9 +2203,9 @@ extends
     val MONTHLY_INITIAL_MARKET: Fielder = parse_attribute (attribute (cls, fields(3)))
     val MONTHLY_RECALC_MARKET: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): MarketStatementDescription =
+    def parse (context: CIMContext): MarketStatementDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatementDescription (
             BasicElement.parse (context),
@@ -2281,7 +2281,7 @@ extends
 
 object MarketStatementDocStatus
 extends
-    Parseable[MarketStatementDocStatus]
+    CIMParseable[MarketStatementDocStatus]
 {
     override val fields: Array[String] = Array[String] (
         "APPROVED",
@@ -2290,9 +2290,9 @@ extends
     val APPROVED: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CANCELLED: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): MarketStatementDocStatus =
+    def parse (context: CIMContext): MarketStatementDocStatus =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatementDocStatus (
             BasicElement.parse (context),
@@ -2368,7 +2368,7 @@ extends
 
 object MarketStatementDocType
 extends
-    Parseable[MarketStatementDocType]
+    CIMParseable[MarketStatementDocType]
 {
     override val fields: Array[String] = Array[String] (
         "CREDIT",
@@ -2379,9 +2379,9 @@ extends
     val MARKET_INITIAL: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MARKET_RECALC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): MarketStatementDocType =
+    def parse (context: CIMContext): MarketStatementDocType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatementDocType (
             BasicElement.parse (context),
@@ -2467,7 +2467,7 @@ extends
 
 object MarketStatementLineItemAliasName
 extends
-    Parseable[MarketStatementLineItemAliasName]
+    CIMParseable[MarketStatementLineItemAliasName]
 {
     override val fields: Array[String] = Array[String] (
         "CHARGE_CODE_INTERVAL_DETAIL",
@@ -2484,9 +2484,9 @@ extends
     val PARENT_CHARGE_GROUP: Fielder = parse_attribute (attribute (cls, fields(4)))
     val TRADE_DATE: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): MarketStatementLineItemAliasName =
+    def parse (context: CIMContext): MarketStatementLineItemAliasName =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatementLineItemAliasName (
             BasicElement.parse (context),
@@ -2621,7 +2621,7 @@ extends
 
 object MeasurementTypeEMS
 extends
-    Parseable[MeasurementTypeEMS]
+    CIMParseable[MeasurementTypeEMS]
 {
     override val fields: Array[String] = Array[String] (
         "ACE",
@@ -2658,9 +2658,9 @@ extends
     val PP: Fielder = parse_attribute (attribute (cls, fields(14)))
     val SL: Fielder = parse_attribute (attribute (cls, fields(15)))
 
-    def parse (context: Context): MeasurementTypeEMS =
+    def parse (context: CIMContext): MeasurementTypeEMS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MeasurementTypeEMS (
             BasicElement.parse (context),
@@ -2762,7 +2762,7 @@ extends
 
 object MktSubClassType
 extends
-    Parseable[MktSubClassType]
+    CIMParseable[MktSubClassType]
 {
     override val fields: Array[String] = Array[String] (
         "Branch_Group_Derates",
@@ -2791,9 +2791,9 @@ extends
     val TTC_ATC_Hourly_Forecast: Fielder = parse_attribute (attribute (cls, fields(10)))
     val Ten_Min_Expost_Market_Info: Fielder = parse_attribute (attribute (cls, fields(11)))
 
-    def parse (context: Context): MktSubClassType =
+    def parse (context: CIMContext): MktSubClassType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MktSubClassType (
             BasicElement.parse (context),
@@ -2869,16 +2869,16 @@ extends
 
 object OASISBidReportType
 extends
-    Parseable[OASISBidReportType]
+    CIMParseable[OASISBidReportType]
 {
     override val fields: Array[String] = Array[String] (
         "BIDS_PUBLIC"
     )
     val BIDS_PUBLIC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): OASISBidReportType =
+    def parse (context: CIMContext): OASISBidReportType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISBidReportType (
             BasicElement.parse (context),
@@ -3153,7 +3153,7 @@ extends
 
 object OASISDataItems
 extends
-    Parseable[OASISDataItems]
+    CIMParseable[OASISDataItems]
 {
     override val fields: Array[String] = Array[String] (
         "AS_CLEAR_ASMP_IFM",
@@ -3370,9 +3370,9 @@ extends
     val TRNS_TR_ENTMTS: Fielder = parse_attribute (attribute (cls, fields(104)))
     val TRNS_TR_USEAGE: Fielder = parse_attribute (attribute (cls, fields(105)))
 
-    def parse (context: Context): OASISDataItems =
+    def parse (context: CIMContext): OASISDataItems =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0,0,0)
         val ret = OASISDataItems (
             BasicElement.parse (context),
@@ -3562,7 +3562,7 @@ extends
 
 object OASISErrCode
 extends
-    Parseable[OASISErrCode]
+    CIMParseable[OASISErrCode]
 {
     override val fields: Array[String] = Array[String] (
         "1000",
@@ -3589,9 +3589,9 @@ extends
     val _1009: Fielder = parse_attribute (attribute (cls, fields(9)))
     val _1010: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): OASISErrCode =
+    def parse (context: CIMContext): OASISErrCode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISErrCode (
             BasicElement.parse (context),
@@ -3684,7 +3684,7 @@ extends
 
 object OASISErrDescription
 extends
-    Parseable[OASISErrDescription]
+    CIMParseable[OASISErrDescription]
 {
     override val fields: Array[String] = Array[String] (
         "Data can be requested for period of 31 days only",
@@ -3709,9 +3709,9 @@ extends
     val Timed_out_waiting_for_query_response: Fielder = parse_attribute (attribute (cls, fields(8)))
     val Validation_exception_during_transformation_of_XML: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): OASISErrDescription =
+    def parse (context: CIMContext): OASISErrDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISErrDescription (
             BasicElement.parse (context),
@@ -3787,7 +3787,7 @@ extends
 
 object OASISIntervalType
 extends
-    Parseable[OASISIntervalType]
+    CIMParseable[OASISIntervalType]
 {
     override val fields: Array[String] = Array[String] (
         "BEGINNING",
@@ -3796,9 +3796,9 @@ extends
     val BEGINNING: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ENDING: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): OASISIntervalType =
+    def parse (context: CIMContext): OASISIntervalType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISIntervalType (
             BasicElement.parse (context),
@@ -3874,7 +3874,7 @@ extends
 
 object OASISMarketType
 extends
-    Parseable[OASISMarketType]
+    CIMParseable[OASISMarketType]
 {
     override val fields: Array[String] = Array[String] (
         "All",
@@ -3891,9 +3891,9 @@ extends
     val RTM: Fielder = parse_attribute (attribute (cls, fields(4)))
     val RUC: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): OASISMarketType =
+    def parse (context: CIMContext): OASISMarketType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISMarketType (
             BasicElement.parse (context),
@@ -3999,7 +3999,7 @@ extends
 
 object OASISMasterType
 extends
-    Parseable[OASISMasterType]
+    CIMParseable[OASISMasterType]
 {
     override val fields: Array[String] = Array[String] (
         "ATL_APNODE",
@@ -4042,9 +4042,9 @@ extends
     val ATL_TIEPOINT: Fielder = parse_attribute (attribute (cls, fields(17)))
     val ATL_XREF: Fielder = parse_attribute (attribute (cls, fields(18)))
 
-    def parse (context: Context): OASISMasterType =
+    def parse (context: CIMContext): OASISMasterType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISMasterType (
             BasicElement.parse (context),
@@ -4143,7 +4143,7 @@ extends
 
 object OASISMeasType
 extends
-    Parseable[OASISMeasType]
+    CIMParseable[OASISMeasType]
 {
     override val fields: Array[String] = Array[String] (
         "%",
@@ -4166,9 +4166,9 @@ extends
     val US$_MW: Fielder = parse_attribute (attribute (cls, fields(7)))
     val US$_MWh: Fielder = parse_attribute (attribute (cls, fields(8)))
 
-    def parse (context: Context): OASISMeasType =
+    def parse (context: CIMContext): OASISMeasType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISMeasType (
             BasicElement.parse (context),
@@ -4295,7 +4295,7 @@ extends
 
 object OASISReportType
 extends
-    Parseable[OASISReportType]
+    CIMParseable[OASISReportType]
 {
     override val fields: Array[String] = Array[String] (
         "AS_DA_RESULT",
@@ -4356,9 +4356,9 @@ extends
     val TRNS_OUTAGE: Fielder = parse_attribute (attribute (cls, fields(26)))
     val TRNS_USAGE: Fielder = parse_attribute (attribute (cls, fields(27)))
 
-    def parse (context: Context): OASISReportType =
+    def parse (context: CIMContext): OASISReportType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISReportType (
             BasicElement.parse (context),
@@ -4460,7 +4460,7 @@ extends
 
 object OASISStatusType
 extends
-    Parseable[OASISStatusType]
+    CIMParseable[OASISStatusType]
 {
     override val fields: Array[String] = Array[String] (
         "Data_Transfer_Procedure_Initiated",
@@ -4477,9 +4477,9 @@ extends
     val Push_Failed: Fielder = parse_attribute (attribute (cls, fields(4)))
     val Valid: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): OASISStatusType =
+    def parse (context: CIMContext): OASISStatusType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OASISStatusType (
             BasicElement.parse (context),
@@ -4562,7 +4562,7 @@ extends
 
 object OrganisationCode
 extends
-    Parseable[OrganisationCode]
+    CIMParseable[OrganisationCode]
 {
     override val fields: Array[String] = Array[String] (
         "BILL_TO",
@@ -4575,9 +4575,9 @@ extends
     val PROVIDED_BY: Fielder = parse_attribute (attribute (cls, fields(2)))
     val SOLD_TO: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): OrganisationCode =
+    def parse (context: CIMContext): OrganisationCode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OrganisationCode (
             BasicElement.parse (context),
@@ -4652,7 +4652,7 @@ extends
 
 object OrganisationType
 extends
-    Parseable[OrganisationType]
+    CIMParseable[OrganisationType]
 {
     override val fields: Array[String] = Array[String] (
         "CUSTOMER",
@@ -4661,9 +4661,9 @@ extends
     val CUSTOMER: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RTO: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): OrganisationType =
+    def parse (context: CIMContext): OrganisationType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OrganisationType (
             BasicElement.parse (context),
@@ -4742,7 +4742,7 @@ extends
 
 object PriceSetFlag
 extends
-    Parseable[PriceSetFlag]
+    CIMParseable[PriceSetFlag]
 {
     override val fields: Array[String] = Array[String] (
         "N",
@@ -4753,9 +4753,9 @@ extends
     val S: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Y: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): PriceSetFlag =
+    def parse (context: CIMContext): PriceSetFlag =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PriceSetFlag (
             BasicElement.parse (context),
@@ -4831,7 +4831,7 @@ extends
 
 object RequestorRmrTest
 extends
-    Parseable[RequestorRmrTest]
+    CIMParseable[RequestorRmrTest]
 {
     override val fields: Array[String] = Array[String] (
         "ISO",
@@ -4840,9 +4840,9 @@ extends
     val ISO: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MP: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): RequestorRmrTest =
+    def parse (context: CIMContext): RequestorRmrTest =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RequestorRmrTest (
             BasicElement.parse (context),
@@ -4914,7 +4914,7 @@ extends
 
 object ResourceCertificationCategory
 extends
-    Parseable[ResourceCertificationCategory]
+    CIMParseable[ResourceCertificationCategory]
 {
     override val fields: Array[String] = Array[String] (
         "DAM",
@@ -4927,9 +4927,9 @@ extends
     val RC: Fielder = parse_attribute (attribute (cls, fields(2)))
     val RTM: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ResourceCertificationCategory =
+    def parse (context: CIMContext): ResourceCertificationCategory =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceCertificationCategory (
             BasicElement.parse (context),
@@ -5005,7 +5005,7 @@ extends
 
 object ResourceCertificationType
 extends
-    Parseable[ResourceCertificationType]
+    CIMParseable[ResourceCertificationType]
 {
     override val fields: Array[String] = Array[String] (
         "GT",
@@ -5020,9 +5020,9 @@ extends
     val RG: Fielder = parse_attribute (attribute (cls, fields(3)))
     val SR: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ResourceCertificationType =
+    def parse (context: CIMContext): ResourceCertificationType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceCertificationType (
             BasicElement.parse (context),
@@ -5095,7 +5095,7 @@ extends
 
 object SchedClassType
 extends
-    Parseable[SchedClassType]
+    CIMParseable[SchedClassType]
 {
     override val fields: Array[String] = Array[String] (
         "F",
@@ -5106,9 +5106,9 @@ extends
     val P: Fielder = parse_attribute (attribute (cls, fields(1)))
     val R: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SchedClassType =
+    def parse (context: CIMContext): SchedClassType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SchedClassType (
             BasicElement.parse (context),
@@ -5177,7 +5177,7 @@ extends
 
 object SegmentCurveType
 extends
-    Parseable[SegmentCurveType]
+    CIMParseable[SegmentCurveType]
 {
     override val fields: Array[String] = Array[String] (
         "CONSULTATIVE",
@@ -5186,9 +5186,9 @@ extends
     val CONSULTATIVE: Fielder = parse_attribute (attribute (cls, fields(0)))
     val COST: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): SegmentCurveType =
+    def parse (context: CIMContext): SegmentCurveType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SegmentCurveType (
             BasicElement.parse (context),
@@ -5274,7 +5274,7 @@ extends
 
 object SelfSchedTypeCleanBid
 extends
-    Parseable[SelfSchedTypeCleanBid]
+    CIMParseable[SelfSchedTypeCleanBid]
 {
     override val fields: Array[String] = Array[String] (
         "BAS",
@@ -5301,9 +5301,9 @@ extends
     val TOR: Fielder = parse_attribute (attribute (cls, fields(9)))
     val WHL: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): SelfSchedTypeCleanBid =
+    def parse (context: CIMContext): SelfSchedTypeCleanBid =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SelfSchedTypeCleanBid (
             BasicElement.parse (context),
@@ -5396,7 +5396,7 @@ extends
 
 object SelfSchedTypeRawBid
 extends
-    Parseable[SelfSchedTypeRawBid]
+    CIMParseable[SelfSchedTypeRawBid]
 {
     override val fields: Array[String] = Array[String] (
         "BAS",
@@ -5421,9 +5421,9 @@ extends
     val TOR: Fielder = parse_attribute (attribute (cls, fields(8)))
     val WHL: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): SelfSchedTypeRawBid =
+    def parse (context: CIMContext): SelfSchedTypeRawBid =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SelfSchedTypeRawBid (
             BasicElement.parse (context),
@@ -5556,7 +5556,7 @@ extends
 
 object SelfScheduleType
 extends
-    Parseable[SelfScheduleType]
+    CIMParseable[SelfScheduleType]
 {
     override val fields: Array[String] = Array[String] (
         "BAS",
@@ -5593,9 +5593,9 @@ extends
     val TOR: Fielder = parse_attribute (attribute (cls, fields(14)))
     val WHL: Fielder = parse_attribute (attribute (cls, fields(15)))
 
-    def parse (context: Context): SelfScheduleType =
+    def parse (context: CIMContext): SelfScheduleType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SelfScheduleType (
             BasicElement.parse (context),
@@ -5679,16 +5679,16 @@ extends
 
 object SelfScheduleTypeMB
 extends
-    Parseable[SelfScheduleTypeMB]
+    CIMParseable[SelfScheduleTypeMB]
 {
     override val fields: Array[String] = Array[String] (
         "RMR"
     )
     val RMR: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): SelfScheduleTypeMB =
+    def parse (context: CIMContext): SelfScheduleTypeMB =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SelfScheduleTypeMB (
             BasicElement.parse (context),
@@ -5755,7 +5755,7 @@ extends
 
 object SourceSinkFlag
 extends
-    Parseable[SourceSinkFlag]
+    CIMParseable[SourceSinkFlag]
 {
     override val fields: Array[String] = Array[String] (
         "CSNK",
@@ -5764,9 +5764,9 @@ extends
     val CSNK: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CSRC: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): SourceSinkFlag =
+    def parse (context: CIMContext): SourceSinkFlag =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SourceSinkFlag (
             BasicElement.parse (context),
@@ -5836,7 +5836,7 @@ extends
 
 object SourceSinkType
 extends
-    Parseable[SourceSinkType]
+    CIMParseable[SourceSinkType]
 {
     override val fields: Array[String] = Array[String] (
         "Neither",
@@ -5847,9 +5847,9 @@ extends
     val Sink: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Source: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SourceSinkType =
+    def parse (context: CIMContext): SourceSinkType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SourceSinkType (
             BasicElement.parse (context),
@@ -5922,7 +5922,7 @@ extends
 
 object SpinningEventNameType
 extends
-    Parseable[SpinningEventNameType]
+    CIMParseable[SpinningEventNameType]
 {
     override val fields: Array[String] = Array[String] (
         "EASTERN",
@@ -5935,9 +5935,9 @@ extends
     val RFC_SR: Fielder = parse_attribute (attribute (cls, fields(2)))
     val SOUTH_S: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): SpinningEventNameType =
+    def parse (context: CIMContext): SpinningEventNameType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SpinningEventNameType (
             BasicElement.parse (context),
@@ -6009,7 +6009,7 @@ extends
 
 object SpinningEventType
 extends
-    Parseable[SpinningEventType]
+    CIMParseable[SpinningEventType]
 {
     override val fields: Array[String] = Array[String] (
         "AA",
@@ -6020,9 +6020,9 @@ extends
     val CA: Fielder = parse_attribute (attribute (cls, fields(1)))
     val RZ: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SpinningEventType =
+    def parse (context: CIMContext): SpinningEventType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SpinningEventType (
             BasicElement.parse (context),
@@ -6089,16 +6089,16 @@ extends
 
 object SystemType
 extends
-    Parseable[SystemType]
+    CIMParseable[SystemType]
 {
     override val fields: Array[String] = Array[String] (
         "OASIS"
     )
     val OASIS: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): SystemType =
+    def parse (context: CIMContext): SystemType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SystemType (
             BasicElement.parse (context),
@@ -6163,16 +6163,16 @@ extends
 
 object TimeZoneType
 extends
-    Parseable[TimeZoneType]
+    CIMParseable[TimeZoneType]
 {
     override val fields: Array[String] = Array[String] (
         "PPT"
     )
     val PPT: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): TimeZoneType =
+    def parse (context: CIMContext): TimeZoneType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TimeZoneType (
             BasicElement.parse (context),
@@ -6249,7 +6249,7 @@ extends
 
 object TradeProductType
 extends
-    Parseable[TradeProductType]
+    CIMParseable[TradeProductType]
 {
     override val fields: Array[String] = Array[String] (
         "APN",
@@ -6268,9 +6268,9 @@ extends
     val RUT: Fielder = parse_attribute (attribute (cls, fields(5)))
     val SRT: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): TradeProductType =
+    def parse (context: CIMContext): TradeProductType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TradeProductType (
             BasicElement.parse (context),
@@ -6361,7 +6361,7 @@ extends
 
 object UOMType
 extends
-    Parseable[UOMType]
+    CIMParseable[UOMType]
 {
     override val fields: Array[String] = Array[String] (
         "%",
@@ -6388,9 +6388,9 @@ extends
     val US$_MW: Fielder = parse_attribute (attribute (cls, fields(9)))
     val US$_MWh: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): UOMType =
+    def parse (context: CIMContext): UOMType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UOMType (
             BasicElement.parse (context),
@@ -6474,7 +6474,7 @@ extends
 
 object UnitTypeEMS
 extends
-    Parseable[UnitTypeEMS]
+    CIMParseable[UnitTypeEMS]
 {
     override val fields: Array[String] = Array[String] (
         "FLAG",
@@ -6483,9 +6483,9 @@ extends
     val FLAG: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MW: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): UnitTypeEMS =
+    def parse (context: CIMContext): UnitTypeEMS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnitTypeEMS (
             BasicElement.parse (context),
@@ -6567,7 +6567,7 @@ extends
 
 object ZoneType
 extends
-    Parseable[ZoneType]
+    CIMParseable[ZoneType]
 {
     override val fields: Array[String] = Array[String] (
         "ASREGION",
@@ -6582,9 +6582,9 @@ extends
     val RUCZONE: Fielder = parse_attribute (attribute (cls, fields(3)))
     val TRADINGHUB: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ZoneType =
+    def parse (context: CIMContext): ZoneType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ZoneType (
             BasicElement.parse (context),
@@ -6662,7 +6662,7 @@ extends
 
 object runTypeCAISO
 extends
-    Parseable[runTypeCAISO]
+    CIMParseable[runTypeCAISO]
 {
     override val fields: Array[String] = Array[String] (
         "P",
@@ -6671,9 +6671,9 @@ extends
     val P: Fielder = parse_attribute (attribute (cls, fields(0)))
     val S: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): runTypeCAISO =
+    def parse (context: CIMContext): runTypeCAISO =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = runTypeCAISO (
             BasicElement.parse (context),
@@ -6687,7 +6687,7 @@ extends
 
 private[ninecode] object _InfDomain
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ADSInstructionTypeCommitment.register,

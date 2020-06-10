@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * This is the IEC 61970 CIM version number assigned to this UML model.
@@ -70,7 +70,7 @@ extends
 
 object IEC61970CIMVersion
 extends
-    Parseable[IEC61970CIMVersion]
+    CIMParseable[IEC61970CIMVersion]
 {
     override val fields: Array[String] = Array[String] (
         "date",
@@ -79,9 +79,9 @@ extends
     val date: Fielder = parse_element (element (cls, fields(0)))
     val version: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): IEC61970CIMVersion =
+    def parse (context: CIMContext): IEC61970CIMVersion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IEC61970CIMVersion (
             BasicElement.parse (context),
@@ -95,7 +95,7 @@ extends
 
 private[ninecode] object _IEC61970
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             IEC61970CIMVersion.register

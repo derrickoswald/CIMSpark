@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group VSC
@@ -63,22 +63,22 @@ extends
 
 object BlockingFunction
 extends
-    Parseable[BlockingFunction]
+    CIMParseable[BlockingFunction]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): BlockingFunction =
+    def parse (context: CIMContext): BlockingFunction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BlockingFunction (
             BasicElement.parse (context),
@@ -164,7 +164,7 @@ extends
 
 object DCvoltageControl
 extends
-    Parseable[DCvoltageControl]
+    CIMParseable[DCvoltageControl]
 {
     override val fields: Array[String] = Array[String] (
         "kivdc",
@@ -174,9 +174,9 @@ extends
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val kivdc: Fielder = parse_element (element (cls, fields(0)))
     val kpvdc: Fielder = parse_element (element (cls, fields(1)))
@@ -185,9 +185,9 @@ extends
     val Delay: Fielder = parse_attribute (attribute (cls, fields(4)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): DCvoltageControl =
+    def parse (context: CIMContext): DCvoltageControl =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DCvoltageControl (
             BasicElement.parse (context),
@@ -259,22 +259,22 @@ extends
 
 object PFmode
 extends
-    Parseable[PFmode]
+    CIMParseable[PFmode]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): PFmode =
+    def parse (context: CIMContext): PFmode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFmode (
             BasicElement.parse (context),
@@ -342,22 +342,22 @@ extends
 
 object Pcontrol
 extends
-    Parseable[Pcontrol]
+    CIMParseable[Pcontrol]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): Pcontrol =
+    def parse (context: CIMContext): Pcontrol =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pcontrol (
             BasicElement.parse (context),
@@ -425,22 +425,22 @@ extends
 
 object Qlimiter
 extends
-    Parseable[Qlimiter]
+    CIMParseable[Qlimiter]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): Qlimiter =
+    def parse (context: CIMContext): Qlimiter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Qlimiter (
             BasicElement.parse (context),
@@ -508,22 +508,22 @@ extends
 
 object Qmode
 extends
-    Parseable[Qmode]
+    CIMParseable[Qmode]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): Qmode =
+    def parse (context: CIMContext): Qmode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Qmode (
             BasicElement.parse (context),
@@ -594,25 +594,25 @@ extends
 
 object Qregulator
 extends
-    Parseable[Qregulator]
+    CIMParseable[Qregulator]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "HVDClookUpTable",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("HVDClookUpTable", "HVDCLookUpTable", "1..*", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("HVDClookUpTable", "HVDCLookUpTable", "1..*", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val HVDClookUpTable: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): Qregulator =
+    def parse (context: CIMContext): Qregulator =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Qregulator (
             BasicElement.parse (context),
@@ -681,22 +681,22 @@ extends
 
 object Umode
 extends
-    Parseable[Umode]
+    CIMParseable[Umode]
 {
     override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Delay", "Delay", "1", "0..1"),
-        Relationship ("VSCtype1", "VSCtype1", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Delay", "Delay", "1", "0..1"),
+        CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
     val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
     val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): Umode =
+    def parse (context: CIMContext): Umode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Umode (
             BasicElement.parse (context),
@@ -776,7 +776,7 @@ extends
 
 object VSCtype1
 extends
-    Parseable[VSCtype1]
+    CIMParseable[VSCtype1]
 {
     override val fields: Array[String] = Array[String] (
         "BlockingFunction",
@@ -788,15 +788,15 @@ extends
         "Qregulator",
         "Umode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BlockingFunction", "BlockingFunction", "1", "0..1"),
-        Relationship ("DCvoltageControl", "DCvoltageControl", "1", "0..1"),
-        Relationship ("PFmodel", "PFmode", "1", "0..1"),
-        Relationship ("Pcontrol", "Pcontrol", "1", "0..1"),
-        Relationship ("Qlimiter", "Qlimiter", "1", "0..1"),
-        Relationship ("Qmode", "Qmode", "1", "0..1"),
-        Relationship ("Qregulator", "Qregulator", "1", "0..1"),
-        Relationship ("Umode", "Umode", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BlockingFunction", "BlockingFunction", "1", "0..1"),
+        CIMRelationship ("DCvoltageControl", "DCvoltageControl", "1", "0..1"),
+        CIMRelationship ("PFmodel", "PFmode", "1", "0..1"),
+        CIMRelationship ("Pcontrol", "Pcontrol", "1", "0..1"),
+        CIMRelationship ("Qlimiter", "Qlimiter", "1", "0..1"),
+        CIMRelationship ("Qmode", "Qmode", "1", "0..1"),
+        CIMRelationship ("Qregulator", "Qregulator", "1", "0..1"),
+        CIMRelationship ("Umode", "Umode", "1", "0..1")
     )
     val BlockingFunction: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCvoltageControl: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -807,9 +807,9 @@ extends
     val Qregulator: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Umode: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): VSCtype1 =
+    def parse (context: CIMContext): VSCtype1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VSCtype1 (
             VSCDynamics.parse (context),
@@ -829,7 +829,7 @@ extends
 
 private[ninecode] object _VSC
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BlockingFunction.register,

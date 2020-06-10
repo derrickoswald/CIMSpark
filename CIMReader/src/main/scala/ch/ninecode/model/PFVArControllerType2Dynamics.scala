@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Power factor or VAr controller type 2 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -69,19 +69,19 @@ extends
 
 object PFVArControllerType2Dynamics
 extends
-    Parseable[PFVArControllerType2Dynamics]
+    CIMParseable[PFVArControllerType2Dynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): PFVArControllerType2Dynamics =
+    def parse (context: CIMContext): PFVArControllerType2Dynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType2Dynamics (
             DynamicsFunctionBlock.parse (context),
@@ -172,7 +172,7 @@ extends
 
 object PFVArType2Common1
 extends
-    Parseable[PFVArType2Common1]
+    CIMParseable[PFVArType2Common1]
 {
     override val fields: Array[String] = Array[String] (
         "j",
@@ -187,9 +187,9 @@ extends
     val max: Fielder = parse_element (element (cls, fields(3)))
     val ref: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): PFVArType2Common1 =
+    def parse (context: CIMContext): PFVArType2Common1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArType2Common1 (
             PFVArControllerType2Dynamics.parse (context),
@@ -292,7 +292,7 @@ extends
 
 object PFVArType2IEEEPFController
 extends
-    Parseable[PFVArType2IEEEPFController]
+    CIMParseable[PFVArType2IEEEPFController]
 {
     override val fields: Array[String] = Array[String] (
         "exlon",
@@ -311,9 +311,9 @@ extends
     val vref: Fielder = parse_element (element (cls, fields(5)))
     val vs: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): PFVArType2IEEEPFController =
+    def parse (context: CIMContext): PFVArType2IEEEPFController =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArType2IEEEPFController (
             PFVArControllerType2Dynamics.parse (context),
@@ -415,7 +415,7 @@ extends
 
 object PFVArType2IEEEVArController
 extends
-    Parseable[PFVArType2IEEEVArController]
+    CIMParseable[PFVArType2IEEEVArController]
 {
     override val fields: Array[String] = Array[String] (
         "exlon",
@@ -434,9 +434,9 @@ extends
     val vref: Fielder = parse_element (element (cls, fields(5)))
     val vs: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): PFVArType2IEEEVArController =
+    def parse (context: CIMContext): PFVArType2IEEEVArController =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArType2IEEEVArController (
             PFVArControllerType2Dynamics.parse (context),
@@ -455,7 +455,7 @@ extends
 
 private[ninecode] object _PFVArControllerType2Dynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             PFVArControllerType2Dynamics.register,

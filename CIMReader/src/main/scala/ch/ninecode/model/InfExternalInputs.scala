@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
@@ -71,25 +71,25 @@ extends
 
 object ReserveReq
 extends
-    Parseable[ReserveReq]
+    CIMParseable[ReserveReq]
 {
     override val fields: Array[String] = Array[String] (
         "MarketProduct",
         "ReserveReqCurve",
         "SensitivityPriceCurve"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MarketProduct", "MarketProduct", "1", "0..*"),
-        Relationship ("ReserveReqCurve", "ReserveReqCurve", "1", "1"),
-        Relationship ("SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MarketProduct", "MarketProduct", "1", "0..*"),
+        CIMRelationship ("ReserveReqCurve", "ReserveReqCurve", "1", "1"),
+        CIMRelationship ("SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1")
     )
     val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ReserveReqCurve: Fielder = parse_attribute (attribute (cls, fields(1)))
     val SensitivityPriceCurve: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ReserveReq =
+    def parse (context: CIMContext): ReserveReq =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ReserveReq (
             ResourceGroupReq.parse (context),
@@ -164,19 +164,19 @@ extends
 
 object ReserveReqCurve
 extends
-    Parseable[ReserveReqCurve]
+    CIMParseable[ReserveReqCurve]
 {
     override val fields: Array[String] = Array[String] (
         "ReserveReq"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ReserveReq", "ReserveReq", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ReserveReq", "ReserveReq", "1", "1")
     )
     val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ReserveReqCurve =
+    def parse (context: CIMContext): ReserveReqCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ReserveReqCurve (
             Curve.parse (context),
@@ -256,7 +256,7 @@ extends
 
 object ResourceGroup
 extends
-    Parseable[ResourceGroup]
+    CIMParseable[ResourceGroup]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -264,18 +264,18 @@ extends
         "RegisteredResources",
         "ResourceGroupReqs"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResources", "RegisteredResource", "1..*", "0..*"),
-        Relationship ("ResourceGroupReqs", "ResourceGroupReq", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResources", "RegisteredResource", "1..*", "0..*"),
+        CIMRelationship ("ResourceGroupReqs", "ResourceGroupReq", "0..*", "1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val `type`: Fielder = parse_element (element (cls, fields(1)))
     val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val ResourceGroupReqs: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): ResourceGroup =
+    def parse (context: CIMContext): ResourceGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceGroup (
             IdentifiedObject.parse (context),
@@ -351,22 +351,22 @@ extends
 
 object ResourceGroupReq
 extends
-    Parseable[ResourceGroupReq]
+    CIMParseable[ResourceGroupReq]
 {
     override val fields: Array[String] = Array[String] (
         "RTOs",
         "ResourceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RTOs", "RTO", "0..*", "0..*"),
-        Relationship ("ResourceGroup", "ResourceGroup", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RTOs", "RTO", "0..*", "0..*"),
+        CIMRelationship ("ResourceGroup", "ResourceGroup", "1", "0..*")
     )
     val RTOs: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ResourceGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ResourceGroupReq =
+    def parse (context: CIMContext): ResourceGroupReq =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceGroupReq (
             IdentifiedObject.parse (context),
@@ -440,19 +440,19 @@ extends
 
 object SensitivityPriceCurve
 extends
-    Parseable[SensitivityPriceCurve]
+    CIMParseable[SensitivityPriceCurve]
 {
     override val fields: Array[String] = Array[String] (
         "ReserveReq"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ReserveReq", "ReserveReq", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ReserveReq", "ReserveReq", "0..1", "0..1")
     )
     val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): SensitivityPriceCurve =
+    def parse (context: CIMContext): SensitivityPriceCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SensitivityPriceCurve (
             Curve.parse (context),
@@ -465,7 +465,7 @@ extends
 
 private[ninecode] object _InfExternalInputs
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ReserveReq.register,

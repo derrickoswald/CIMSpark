@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group Feeder
@@ -63,22 +63,22 @@ extends
 
 object Circuit
 extends
-    Parseable[Circuit]
+    CIMParseable[Circuit]
 {
     override val fields: Array[String] = Array[String] (
         "EndBay",
         "EndTerminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EndBay", "Bay", "0..*", "0..1"),
-        Relationship ("EndTerminal", "Terminal", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EndBay", "Bay", "0..*", "0..1"),
+        CIMRelationship ("EndTerminal", "Terminal", "0..*", "0..1")
     )
     val EndBay: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val EndTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): Circuit =
+    def parse (context: CIMContext): Circuit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Circuit (
             Line.parse (context),
@@ -92,7 +92,7 @@ extends
 
 private[ninecode] object _Feeder
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             Circuit.register

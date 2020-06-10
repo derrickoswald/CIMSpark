@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A unique identifier of a wheeling transaction.
@@ -69,16 +69,16 @@ extends
 
 object WheelingReferenceSchedule
 extends
-    Parseable[WheelingReferenceSchedule]
+    CIMParseable[WheelingReferenceSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): WheelingReferenceSchedule =
+    def parse (context: CIMContext): WheelingReferenceSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WheelingReferenceSchedule (
             BidHourlySchedule.parse (context),
@@ -91,7 +91,7 @@ extends
 
 private[ninecode] object _InfParticipantInterfaces
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             WheelingReferenceSchedule.register

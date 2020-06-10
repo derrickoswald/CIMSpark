@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -77,21 +77,21 @@ extends
 
 object AsynchronousMachineUserDefined
 extends
-    Parseable[AsynchronousMachineUserDefined]
+    CIMParseable[AsynchronousMachineUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): AsynchronousMachineUserDefined =
+    def parse (context: CIMContext): AsynchronousMachineUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineUserDefined (
             AsynchronousMachineDynamics.parse (context),
@@ -173,21 +173,21 @@ extends
 
 object CSCUserDefined
 extends
-    Parseable[CSCUserDefined]
+    CIMParseable[CSCUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): CSCUserDefined =
+    def parse (context: CIMContext): CSCUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CSCUserDefined (
             CSCDynamics.parse (context),
@@ -269,21 +269,21 @@ extends
 
 object DiscontinuousExcitationControlUserDefined
 extends
-    Parseable[DiscontinuousExcitationControlUserDefined]
+    CIMParseable[DiscontinuousExcitationControlUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): DiscontinuousExcitationControlUserDefined =
+    def parse (context: CIMContext): DiscontinuousExcitationControlUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscontinuousExcitationControlUserDefined (
             DiscontinuousExcitationControlDynamics.parse (context),
@@ -365,21 +365,21 @@ extends
 
 object ExcitationSystemUserDefined
 extends
-    Parseable[ExcitationSystemUserDefined]
+    CIMParseable[ExcitationSystemUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ExcitationSystemUserDefined =
+    def parse (context: CIMContext): ExcitationSystemUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcitationSystemUserDefined (
             ExcitationSystemDynamics.parse (context),
@@ -461,21 +461,21 @@ extends
 
 object LoadUserDefined
 extends
-    Parseable[LoadUserDefined]
+    CIMParseable[LoadUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): LoadUserDefined =
+    def parse (context: CIMContext): LoadUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadUserDefined (
             LoadDynamics.parse (context),
@@ -557,21 +557,21 @@ extends
 
 object MechanicalLoadUserDefined
 extends
-    Parseable[MechanicalLoadUserDefined]
+    CIMParseable[MechanicalLoadUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): MechanicalLoadUserDefined =
+    def parse (context: CIMContext): MechanicalLoadUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MechanicalLoadUserDefined (
             MechanicalLoadDynamics.parse (context),
@@ -653,21 +653,21 @@ extends
 
 object OverexcitationLimiterUserDefined
 extends
-    Parseable[OverexcitationLimiterUserDefined]
+    CIMParseable[OverexcitationLimiterUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): OverexcitationLimiterUserDefined =
+    def parse (context: CIMContext): OverexcitationLimiterUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcitationLimiterUserDefined (
             OverexcitationLimiterDynamics.parse (context),
@@ -749,21 +749,21 @@ extends
 
 object PFVArControllerType1UserDefined
 extends
-    Parseable[PFVArControllerType1UserDefined]
+    CIMParseable[PFVArControllerType1UserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PFVArControllerType1UserDefined =
+    def parse (context: CIMContext): PFVArControllerType1UserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType1UserDefined (
             PFVArControllerType1Dynamics.parse (context),
@@ -845,21 +845,21 @@ extends
 
 object PFVArControllerType2UserDefined
 extends
-    Parseable[PFVArControllerType2UserDefined]
+    CIMParseable[PFVArControllerType2UserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PFVArControllerType2UserDefined =
+    def parse (context: CIMContext): PFVArControllerType2UserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType2UserDefined (
             PFVArControllerType2Dynamics.parse (context),
@@ -941,21 +941,21 @@ extends
 
 object PowerSystemStabilizerUserDefined
 extends
-    Parseable[PowerSystemStabilizerUserDefined]
+    CIMParseable[PowerSystemStabilizerUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PowerSystemStabilizerUserDefined =
+    def parse (context: CIMContext): PowerSystemStabilizerUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerSystemStabilizerUserDefined (
             PowerSystemStabilizerDynamics.parse (context),
@@ -1109,7 +1109,7 @@ extends
 
 object ProprietaryParameterDynamics
 extends
-    Parseable[ProprietaryParameterDynamics]
+    CIMParseable[ProprietaryParameterDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "booleanParameterValue",
@@ -1138,28 +1138,28 @@ extends
         "WindType1or2UserDefined",
         "WindType3or4UserDefined"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", "0..1", "0..*"),
-        Relationship ("CSCUserDefined", "CSCUserDefined", "0..1", "0..*"),
-        Relationship ("DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", "0..1", "0..*"),
-        Relationship ("ExcitationSystemUserDefined", "ExcitationSystemUserDefined", "0..1", "0..*"),
-        Relationship ("LoadUserDefined", "LoadUserDefined", "0..1", "0..*"),
-        Relationship ("MechanicalLoadUserDefined", "MechanicalLoadUserDefined", "0..1", "0..*"),
-        Relationship ("OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", "0..1", "0..*"),
-        Relationship ("PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", "0..1", "0..*"),
-        Relationship ("PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", "0..1", "0..*"),
-        Relationship ("PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", "0..1", "0..*"),
-        Relationship ("SVCUserDefined", "SVCUserDefined", "0..1", "0..*"),
-        Relationship ("SynchronousMachineUserDefined", "SynchronousMachineUserDefined", "0..1", "0..*"),
-        Relationship ("TurbineGovernorUserDefined", "TurbineGovernorUserDefined", "0..1", "0..*"),
-        Relationship ("TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", "0..1", "0..*"),
-        Relationship ("UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", "0..1", "0..*"),
-        Relationship ("VSCUserDefined", "VSCUserDefined", "0..1", "0..*"),
-        Relationship ("VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", "0..1", "0..*"),
-        Relationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", "0..1", "0..*"),
-        Relationship ("WindPlantUserDefined", "WindPlantUserDefined", "0..1", "0..*"),
-        Relationship ("WindType1or2UserDefined", "WindType1or2UserDefined", "0..1", "0..*"),
-        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", "0..1", "0..*"),
+        CIMRelationship ("CSCUserDefined", "CSCUserDefined", "0..1", "0..*"),
+        CIMRelationship ("DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", "0..1", "0..*"),
+        CIMRelationship ("ExcitationSystemUserDefined", "ExcitationSystemUserDefined", "0..1", "0..*"),
+        CIMRelationship ("LoadUserDefined", "LoadUserDefined", "0..1", "0..*"),
+        CIMRelationship ("MechanicalLoadUserDefined", "MechanicalLoadUserDefined", "0..1", "0..*"),
+        CIMRelationship ("OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", "0..1", "0..*"),
+        CIMRelationship ("PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", "0..1", "0..*"),
+        CIMRelationship ("PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", "0..1", "0..*"),
+        CIMRelationship ("PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", "0..1", "0..*"),
+        CIMRelationship ("SVCUserDefined", "SVCUserDefined", "0..1", "0..*"),
+        CIMRelationship ("SynchronousMachineUserDefined", "SynchronousMachineUserDefined", "0..1", "0..*"),
+        CIMRelationship ("TurbineGovernorUserDefined", "TurbineGovernorUserDefined", "0..1", "0..*"),
+        CIMRelationship ("TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", "0..1", "0..*"),
+        CIMRelationship ("UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", "0..1", "0..*"),
+        CIMRelationship ("VSCUserDefined", "VSCUserDefined", "0..1", "0..*"),
+        CIMRelationship ("VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", "0..1", "0..*"),
+        CIMRelationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", "0..1", "0..*"),
+        CIMRelationship ("WindPlantUserDefined", "WindPlantUserDefined", "0..1", "0..*"),
+        CIMRelationship ("WindType1or2UserDefined", "WindType1or2UserDefined", "0..1", "0..*"),
+        CIMRelationship ("WindType3or4UserDefined", "WindType3or4UserDefined", "0..1", "0..*")
     )
     val booleanParameterValue: Fielder = parse_element (element (cls, fields(0)))
     val floatParameterValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1187,9 +1187,9 @@ extends
     val WindType1or2UserDefined: Fielder = parse_attribute (attribute (cls, fields(23)))
     val WindType3or4UserDefined: Fielder = parse_attribute (attribute (cls, fields(24)))
 
-    def parse (context: Context): ProprietaryParameterDynamics =
+    def parse (context: CIMContext): ProprietaryParameterDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProprietaryParameterDynamics (
             BasicElement.parse (context),
@@ -1294,21 +1294,21 @@ extends
 
 object SVCUserDefined
 extends
-    Parseable[SVCUserDefined]
+    CIMParseable[SVCUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): SVCUserDefined =
+    def parse (context: CIMContext): SVCUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SVCUserDefined (
             StaticVarCompensatorDynamics.parse (context),
@@ -1390,21 +1390,21 @@ extends
 
 object SynchronousMachineUserDefined
 extends
-    Parseable[SynchronousMachineUserDefined]
+    CIMParseable[SynchronousMachineUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): SynchronousMachineUserDefined =
+    def parse (context: CIMContext): SynchronousMachineUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineUserDefined (
             SynchronousMachineDynamics.parse (context),
@@ -1486,21 +1486,21 @@ extends
 
 object TurbineGovernorUserDefined
 extends
-    Parseable[TurbineGovernorUserDefined]
+    CIMParseable[TurbineGovernorUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): TurbineGovernorUserDefined =
+    def parse (context: CIMContext): TurbineGovernorUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbineGovernorUserDefined (
             TurbineGovernorDynamics.parse (context),
@@ -1582,21 +1582,21 @@ extends
 
 object TurbineLoadControllerUserDefined
 extends
-    Parseable[TurbineLoadControllerUserDefined]
+    CIMParseable[TurbineLoadControllerUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): TurbineLoadControllerUserDefined =
+    def parse (context: CIMContext): TurbineLoadControllerUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbineLoadControllerUserDefined (
             TurbineLoadControllerDynamics.parse (context),
@@ -1678,21 +1678,21 @@ extends
 
 object UnderexcitationLimiterUserDefined
 extends
-    Parseable[UnderexcitationLimiterUserDefined]
+    CIMParseable[UnderexcitationLimiterUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): UnderexcitationLimiterUserDefined =
+    def parse (context: CIMContext): UnderexcitationLimiterUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcitationLimiterUserDefined (
             UnderexcitationLimiterDynamics.parse (context),
@@ -1774,21 +1774,21 @@ extends
 
 object VSCUserDefined
 extends
-    Parseable[VSCUserDefined]
+    CIMParseable[VSCUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): VSCUserDefined =
+    def parse (context: CIMContext): VSCUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VSCUserDefined (
             VSCDynamics.parse (context),
@@ -1870,21 +1870,21 @@ extends
 
 object VoltageAdjusterUserDefined
 extends
-    Parseable[VoltageAdjusterUserDefined]
+    CIMParseable[VoltageAdjusterUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): VoltageAdjusterUserDefined =
+    def parse (context: CIMContext): VoltageAdjusterUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VoltageAdjusterUserDefined (
             VoltageAdjusterDynamics.parse (context),
@@ -1966,21 +1966,21 @@ extends
 
 object VoltageCompensatorUserDefined
 extends
-    Parseable[VoltageCompensatorUserDefined]
+    CIMParseable[VoltageCompensatorUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): VoltageCompensatorUserDefined =
+    def parse (context: CIMContext): VoltageCompensatorUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VoltageCompensatorUserDefined (
             VoltageCompensatorDynamics.parse (context),
@@ -2062,21 +2062,21 @@ extends
 
 object WindPlantUserDefined
 extends
-    Parseable[WindPlantUserDefined]
+    CIMParseable[WindPlantUserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindPlantUserDefined =
+    def parse (context: CIMContext): WindPlantUserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPlantUserDefined (
             WindPlantDynamics.parse (context),
@@ -2158,21 +2158,21 @@ extends
 
 object WindType1or2UserDefined
 extends
-    Parseable[WindType1or2UserDefined]
+    CIMParseable[WindType1or2UserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindType1or2UserDefined =
+    def parse (context: CIMContext): WindType1or2UserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindType1or2UserDefined (
             WindTurbineType1or2Dynamics.parse (context),
@@ -2254,21 +2254,21 @@ extends
 
 object WindType3or4UserDefined
 extends
-    Parseable[WindType3or4UserDefined]
+    CIMParseable[WindType3or4UserDefined]
 {
     override val fields: Array[String] = Array[String] (
         "proprietary",
         "ProprietaryParameterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
     val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindType3or4UserDefined =
+    def parse (context: CIMContext): WindType3or4UserDefined =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindType3or4UserDefined (
             WindTurbineType3or4Dynamics.parse (context),
@@ -2282,7 +2282,7 @@ extends
 
 private[ninecode] object _UserDefinedModels
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AsynchronousMachineUserDefined.register,

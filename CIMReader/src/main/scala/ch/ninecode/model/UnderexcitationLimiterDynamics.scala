@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Simplified type UEL2 underexcitation limiter.
@@ -93,7 +93,7 @@ extends
 
 object UnderexcLim2Simplified
 extends
-    Parseable[UnderexcLim2Simplified]
+    CIMParseable[UnderexcLim2Simplified]
 {
     override val fields: Array[String] = Array[String] (
         "kui",
@@ -112,9 +112,9 @@ extends
     val vuimax: Fielder = parse_element (element (cls, fields(5)))
     val vuimin: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): UnderexcLim2Simplified =
+    def parse (context: CIMContext): UnderexcLim2Simplified =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLim2Simplified (
             UnderexcitationLimiterDynamics.parse (context),
@@ -247,7 +247,7 @@ extends
 
 object UnderexcLimIEEE1
 extends
-    Parseable[UnderexcLimIEEE1]
+    CIMParseable[UnderexcLimIEEE1]
 {
     override val fields: Array[String] = Array[String] (
         "kuc",
@@ -282,9 +282,9 @@ extends
     val vulmin: Fielder = parse_element (element (cls, fields(13)))
     val vurmax: Fielder = parse_element (element (cls, fields(14)))
 
-    def parse (context: Context): UnderexcLimIEEE1 =
+    def parse (context: CIMContext): UnderexcLimIEEE1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimIEEE1 (
             UnderexcitationLimiterDynamics.parse (context),
@@ -515,7 +515,7 @@ extends
 
 object UnderexcLimIEEE2
 extends
-    Parseable[UnderexcLimIEEE2]
+    CIMParseable[UnderexcLimIEEE2]
 {
     override val fields: Array[String] = Array[String] (
         "k1",
@@ -600,9 +600,9 @@ extends
     val vulmax: Fielder = parse_element (element (cls, fields(38)))
     val vulmin: Fielder = parse_element (element (cls, fields(39)))
 
-    def parse (context: Context): UnderexcLimIEEE2 =
+    def parse (context: CIMContext): UnderexcLimIEEE2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = UnderexcLimIEEE2 (
             UnderexcitationLimiterDynamics.parse (context),
@@ -726,7 +726,7 @@ extends
 
 object UnderexcLimX1
 extends
-    Parseable[UnderexcLimX1]
+    CIMParseable[UnderexcLimX1]
 {
     override val fields: Array[String] = Array[String] (
         "k",
@@ -743,9 +743,9 @@ extends
     val tf2: Fielder = parse_element (element (cls, fields(4)))
     val tm: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): UnderexcLimX1 =
+    def parse (context: CIMContext): UnderexcLimX1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimX1 (
             UnderexcitationLimiterDynamics.parse (context),
@@ -838,7 +838,7 @@ extends
 
 object UnderexcLimX2
 extends
-    Parseable[UnderexcLimX2]
+    CIMParseable[UnderexcLimX2]
 {
     override val fields: Array[String] = Array[String] (
         "kf2",
@@ -857,9 +857,9 @@ extends
     val tf2: Fielder = parse_element (element (cls, fields(5)))
     val tm: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): UnderexcLimX2 =
+    def parse (context: CIMContext): UnderexcLimX2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcLimX2 (
             UnderexcitationLimiterDynamics.parse (context),
@@ -938,22 +938,22 @@ extends
 
 object UnderexcitationLimiterDynamics
 extends
-    Parseable[UnderexcitationLimiterDynamics]
+    CIMParseable[UnderexcitationLimiterDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): UnderexcitationLimiterDynamics =
+    def parse (context: CIMContext): UnderexcitationLimiterDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnderexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -967,7 +967,7 @@ extends
 
 private[ninecode] object _UnderexcitationLimiterDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             UnderexcLim2Simplified.register,

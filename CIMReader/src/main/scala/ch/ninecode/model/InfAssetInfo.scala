@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
@@ -71,21 +71,21 @@ extends
 
 object AssetModelCatalogue
 extends
-    Parseable[AssetModelCatalogue]
+    CIMParseable[AssetModelCatalogue]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "AssetModelCatalogueItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AssetModelCatalogueItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): AssetModelCatalogue =
+    def parse (context: CIMContext): AssetModelCatalogue =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetModelCatalogue (
             IdentifiedObject.parse (context),
@@ -172,7 +172,7 @@ extends
 
 object AssetModelCatalogueItem
 extends
-    Parseable[AssetModelCatalogueItem]
+    CIMParseable[AssetModelCatalogueItem]
 {
     override val fields: Array[String] = Array[String] (
         "unitCost",
@@ -181,11 +181,11 @@ extends
         "ErpPOLineItems",
         "ErpQuoteLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetModel", "ProductAssetModel", "0..1", "0..*"),
-        Relationship ("AssetModelCatalogue", "AssetModelCatalogue", "1", "0..*"),
-        Relationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "0..1"),
-        Relationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetModel", "ProductAssetModel", "0..1", "0..*"),
+        CIMRelationship ("AssetModelCatalogue", "AssetModelCatalogue", "1", "0..*"),
+        CIMRelationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "0..1"),
+        CIMRelationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "0..1")
     )
     val unitCost: Fielder = parse_element (element (cls, fields(0)))
     val AssetModel: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -193,9 +193,9 @@ extends
     val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
-    def parse (context: Context): AssetModelCatalogueItem =
+    def parse (context: CIMContext): AssetModelCatalogueItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetModelCatalogueItem (
             Document.parse (context),
@@ -268,16 +268,16 @@ extends
 
 object BreakerInfo
 extends
-    Parseable[BreakerInfo]
+    CIMParseable[BreakerInfo]
 {
     override val fields: Array[String] = Array[String] (
         "phaseTrip"
     )
     val phaseTrip: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): BreakerInfo =
+    def parse (context: CIMContext): BreakerInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BreakerInfo (
             OldSwitchInfo.parse (context),
@@ -371,7 +371,7 @@ extends
 
 object CompositeSwitchInfo
 extends
-    Parseable[CompositeSwitchInfo]
+    CIMParseable[CompositeSwitchInfo]
 {
     override val fields: Array[String] = Array[String] (
         "ganged",
@@ -394,9 +394,9 @@ extends
     val remote: Fielder = parse_element (element (cls, fields(7)))
     val switchStateCount: Fielder = parse_element (element (cls, fields(8)))
 
-    def parse (context: Context): CompositeSwitchInfo =
+    def parse (context: CIMContext): CompositeSwitchInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CompositeSwitchInfo (
             AssetInfo.parse (context),
@@ -519,7 +519,7 @@ extends
 
 object CurrentTransformerInfo
 extends
-    Parseable[CurrentTransformerInfo]
+    CIMParseable[CurrentTransformerInfo]
 {
     override val fields: Array[String] = Array[String] (
         "accuracyClass",
@@ -556,9 +556,9 @@ extends
     val tertiaryRatio: Fielder = parse_attribute (attribute (cls, fields(14)))
     val usage: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): CurrentTransformerInfo =
+    def parse (context: CIMContext): CurrentTransformerInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentTransformerInfo (
             AssetInfo.parse (context),
@@ -642,16 +642,16 @@ extends
 
 object FaultIndicatorInfo
 extends
-    Parseable[FaultIndicatorInfo]
+    CIMParseable[FaultIndicatorInfo]
 {
     override val fields: Array[String] = Array[String] (
         "resetKind"
     )
     val resetKind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): FaultIndicatorInfo =
+    def parse (context: CIMContext): FaultIndicatorInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FaultIndicatorInfo (
             AssetInfo.parse (context),
@@ -739,7 +739,7 @@ extends
 
 object OldSwitchInfo
 extends
-    Parseable[OldSwitchInfo]
+    CIMParseable[OldSwitchInfo]
 {
     override val fields: Array[String] = Array[String] (
         "dielectricStrength",
@@ -758,9 +758,9 @@ extends
     val remote: Fielder = parse_element (element (cls, fields(5)))
     val withstandCurrent: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): OldSwitchInfo =
+    def parse (context: CIMContext): OldSwitchInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OldSwitchInfo (
             SwitchInfo.parse (context),
@@ -838,7 +838,7 @@ extends
 
 object OldTransformerEndInfo
 extends
-    Parseable[OldTransformerEndInfo]
+    CIMParseable[OldTransformerEndInfo]
 {
     override val fields: Array[String] = Array[String] (
         "dayOverLoadRating",
@@ -851,9 +851,9 @@ extends
     val solidInsulationWeight: Fielder = parse_element (element (cls, fields(2)))
     val windingInsulationKind: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): OldTransformerEndInfo =
+    def parse (context: CIMContext): OldTransformerEndInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OldTransformerEndInfo (
             TransformerEndInfo.parse (context),
@@ -932,7 +932,7 @@ extends
 
 object OldTransformerTankInfo
 extends
-    Parseable[OldTransformerTankInfo]
+    CIMParseable[OldTransformerTankInfo]
 {
     override val fields: Array[String] = Array[String] (
         "constructionKind",
@@ -949,9 +949,9 @@ extends
     val neutralBIL: Fielder = parse_element (element (cls, fields(4)))
     val oilPreservationKind: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): OldTransformerTankInfo =
+    def parse (context: CIMContext): OldTransformerTankInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OldTransformerTankInfo (
             TransformerTankInfo.parse (context),
@@ -1044,7 +1044,7 @@ extends
 
 object PotentialTransformerInfo
 extends
-    Parseable[PotentialTransformerInfo]
+    CIMParseable[PotentialTransformerInfo]
 {
     override val fields: Array[String] = Array[String] (
         "accuracyClass",
@@ -1063,9 +1063,9 @@ extends
     val secondaryRatio: Fielder = parse_attribute (attribute (cls, fields(5)))
     val tertiaryRatio: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): PotentialTransformerInfo =
+    def parse (context: CIMContext): PotentialTransformerInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PotentialTransformerInfo (
             AssetInfo.parse (context),
@@ -1143,7 +1143,7 @@ extends
 
 object ProtectionEquipmentInfo
 extends
-    Parseable[ProtectionEquipmentInfo]
+    CIMParseable[ProtectionEquipmentInfo]
 {
     override val fields: Array[String] = Array[String] (
         "groundTrip",
@@ -1152,9 +1152,9 @@ extends
     val groundTrip: Fielder = parse_element (element (cls, fields(0)))
     val phaseTrip: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): ProtectionEquipmentInfo =
+    def parse (context: CIMContext): ProtectionEquipmentInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectionEquipmentInfo (
             AssetInfo.parse (context),
@@ -1236,7 +1236,7 @@ extends
 
 object RecloserInfo
 extends
-    Parseable[RecloserInfo]
+    CIMParseable[RecloserInfo]
 {
     override val fields: Array[String] = Array[String] (
         "groundTripCapable",
@@ -1251,9 +1251,9 @@ extends
     val phaseTripRating: Fielder = parse_element (element (cls, fields(3)))
     val recloseLockoutCount: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): RecloserInfo =
+    def parse (context: CIMContext): RecloserInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RecloserInfo (
             OldSwitchInfo.parse (context),
@@ -1353,7 +1353,7 @@ extends
 
 object SurgeArresterInfo
 extends
-    Parseable[SurgeArresterInfo]
+    CIMParseable[SurgeArresterInfo]
 {
     override val fields: Array[String] = Array[String] (
         "continuousOperatingVoltage",
@@ -1376,9 +1376,9 @@ extends
     val steepFrontDischargeVoltage: Fielder = parse_element (element (cls, fields(7)))
     val switchingImpulseDischargeVoltage: Fielder = parse_element (element (cls, fields(8)))
 
-    def parse (context: Context): SurgeArresterInfo =
+    def parse (context: CIMContext): SurgeArresterInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SurgeArresterInfo (
             AssetInfo.parse (context),
@@ -1399,7 +1399,7 @@ extends
 
 private[ninecode] object _InfAssetInfo
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AssetModelCatalogue.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A fault applied at the terminal, external to the equipment.
@@ -68,19 +68,19 @@ extends
 
 object EquipmentFault
 extends
-    Parseable[EquipmentFault]
+    CIMParseable[EquipmentFault]
 {
     override val fields: Array[String] = Array[String] (
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Terminal", "Terminal", "0..1", "0..*")
     )
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): EquipmentFault =
+    def parse (context: CIMContext): EquipmentFault =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EquipmentFault (
             Fault.parse (context),
@@ -175,7 +175,7 @@ extends
 
 object Fault
 extends
-    Parseable[Fault]
+    CIMParseable[Fault]
 {
     override val fields: Array[String] = Array[String] (
         "impedance",
@@ -187,12 +187,12 @@ extends
         "Location",
         "Outage"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("impedance", "FaultImpedance", "0..1", "0..*"),
-        Relationship ("FaultCauseTypes", "FaultCauseType", "0..*", "0..*"),
-        Relationship ("FaultyEquipment", "Equipment", "0..1", "0..*"),
-        Relationship ("Location", "Location", "0..1", "0..*"),
-        Relationship ("Outage", "Outage", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("impedance", "FaultImpedance", "0..1", "0..*"),
+        CIMRelationship ("FaultCauseTypes", "FaultCauseType", "0..*", "0..*"),
+        CIMRelationship ("FaultyEquipment", "Equipment", "0..1", "0..*"),
+        CIMRelationship ("Location", "Location", "0..1", "0..*"),
+        CIMRelationship ("Outage", "Outage", "0..1", "0..*")
     )
     val impedance: Fielder = parse_attribute (attribute (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -203,9 +203,9 @@ extends
     val Location: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Outage: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): Fault =
+    def parse (context: CIMContext): Fault =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Fault (
             IdentifiedObject.parse (context),
@@ -285,22 +285,22 @@ extends
 
 object FaultCauseType
 extends
-    Parseable[FaultCauseType]
+    CIMParseable[FaultCauseType]
 {
     override val fields: Array[String] = Array[String] (
         "ConfigurationEvent",
         "Faults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConfigurationEvent", "ConfigurationEvent", "0..*", "1"),
-        Relationship ("Faults", "Fault", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConfigurationEvent", "ConfigurationEvent", "0..*", "1"),
+        CIMRelationship ("Faults", "Fault", "0..*", "0..*")
     )
     val ConfigurationEvent: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): FaultCauseType =
+    def parse (context: CIMContext): FaultCauseType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FaultCauseType (
             IdentifiedObject.parse (context),
@@ -380,7 +380,7 @@ extends
 
 object FaultImpedance
 extends
-    Parseable[FaultImpedance]
+    CIMParseable[FaultImpedance]
 {
     override val fields: Array[String] = Array[String] (
         "rGround",
@@ -393,9 +393,9 @@ extends
     val xGround: Fielder = parse_element (element (cls, fields(2)))
     val xLineToLine: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): FaultImpedance =
+    def parse (context: CIMContext): FaultImpedance =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FaultImpedance (
             BasicElement.parse (context),
@@ -472,21 +472,21 @@ extends
 
 object LineFault
 extends
-    Parseable[LineFault]
+    CIMParseable[LineFault]
 {
     override val fields: Array[String] = Array[String] (
         "lengthFromTerminal1",
         "ACLineSegment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ACLineSegment", "ACLineSegment", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ACLineSegment", "ACLineSegment", "0..1", "0..*")
     )
     val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
     val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): LineFault =
+    def parse (context: CIMContext): LineFault =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LineFault (
             Fault.parse (context),
@@ -500,7 +500,7 @@ extends
 
 private[ninecode] object _Faults
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             EquipmentFault.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A named list of alert types.
@@ -75,24 +75,24 @@ extends
 
 object AlertTypeList
 extends
-    Parseable[AlertTypeList]
+    CIMParseable[AlertTypeList]
 {
     override val fields: Array[String] = Array[String] (
         "version",
         "EnvironmentalAlert",
         "EnvironmentalDataAuthority"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "1"),
-        Relationship ("EnvironmentalDataAuthority", "EnvironmentalDataAuthority", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "1"),
+        CIMRelationship ("EnvironmentalDataAuthority", "EnvironmentalDataAuthority", "0..1", "0..*")
     )
     val version: Fielder = parse_element (element (cls, fields(0)))
     val EnvironmentalAlert: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val EnvironmentalDataAuthority: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AlertTypeList =
+    def parse (context: CIMContext): AlertTypeList =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AlertTypeList (
             IdentifiedObject.parse (context),
@@ -163,16 +163,16 @@ extends
 
 object AtmosphericAnalog
 extends
-    Parseable[AtmosphericAnalog]
+    CIMParseable[AtmosphericAnalog]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): AtmosphericAnalog =
+    def parse (context: CIMContext): AtmosphericAnalog =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AtmosphericAnalog (
             EnvironmentalAnalog.parse (context),
@@ -257,7 +257,7 @@ extends
 
 object AtmosphericPhenomenon
 extends
-    Parseable[AtmosphericPhenomenon]
+    CIMParseable[AtmosphericPhenomenon]
 {
     override val fields: Array[String] = Array[String] (
         "altitude",
@@ -274,9 +274,9 @@ extends
     val minCoverage: Fielder = parse_element (element (cls, fields(4)))
     val speed: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): AtmosphericPhenomenon =
+    def parse (context: CIMContext): AtmosphericPhenomenon =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AtmosphericPhenomenon (
             EnvironmentalPhenomenon.parse (context),
@@ -364,7 +364,7 @@ extends
 
 object ClassificationCondition
 extends
-    Parseable[ClassificationCondition]
+    CIMParseable[ClassificationCondition]
 {
     override val fields: Array[String] = Array[String] (
         "duration",
@@ -373,10 +373,10 @@ extends
         "EnvironmentalStringMeasurement",
         "PhenomenonClassification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
-        Relationship ("EnvironmentalStringMeasurement", "EnvironmentalStringMeasurement", "0..*", "0..1"),
-        Relationship ("PhenomenonClassification", "PhenomenonClassification", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalStringMeasurement", "EnvironmentalStringMeasurement", "0..*", "0..1"),
+        CIMRelationship ("PhenomenonClassification", "PhenomenonClassification", "0..1", "0..*")
     )
     val duration: Fielder = parse_element (element (cls, fields(0)))
     val test: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -384,9 +384,9 @@ extends
     val EnvironmentalStringMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val PhenomenonClassification: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ClassificationCondition =
+    def parse (context: CIMContext): ClassificationCondition =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ClassificationCondition (
             IdentifiedObject.parse (context),
@@ -459,16 +459,16 @@ extends
 
 object CloudCondition
 extends
-    Parseable[CloudCondition]
+    CIMParseable[CloudCondition]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): CloudCondition =
+    def parse (context: CIMContext): CloudCondition =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CloudCondition (
             AtmosphericPhenomenon.parse (context),
@@ -543,7 +543,7 @@ extends
 
 object Cyclone
 extends
-    Parseable[Cyclone]
+    CIMParseable[Cyclone]
 {
     override val fields: Array[String] = Array[String] (
         "centralPressure",
@@ -554,9 +554,9 @@ extends
     val maxSurfaceWindSpeed: Fielder = parse_element (element (cls, fields(1)))
     val windForce: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): Cyclone =
+    def parse (context: CIMContext): Cyclone =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Cyclone (
             AtmosphericPhenomenon.parse (context),
@@ -636,7 +636,7 @@ extends
 
 object Earthquake
 extends
-    Parseable[Earthquake]
+    CIMParseable[Earthquake]
 {
     override val fields: Array[String] = Array[String] (
         "focalDepth",
@@ -647,9 +647,9 @@ extends
     val intensity: Fielder = parse_element (element (cls, fields(1)))
     val magnitude: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): Earthquake =
+    def parse (context: CIMContext): Earthquake =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Earthquake (
             GeosphericPhenomenon.parse (context),
@@ -742,7 +742,7 @@ extends
 
 object EnvironmentalAlert
 extends
-    Parseable[EnvironmentalAlert]
+    CIMParseable[EnvironmentalAlert]
 {
     override val fields: Array[String] = Array[String] (
         "alertType",
@@ -753,10 +753,10 @@ extends
         "EnvironmentalDataProvider",
         "EnvironmentalLocationKind"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AlertTypeList", "AlertTypeList", "1", "0..*"),
-        Relationship ("EnvironmentalDataProvider", "EnvironmentalDataProvider", "0..1", "0..*"),
-        Relationship ("EnvironmentalLocationKind", "EnvironmentalLocationType", "1..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AlertTypeList", "AlertTypeList", "1", "0..*"),
+        CIMRelationship ("EnvironmentalDataProvider", "EnvironmentalDataProvider", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalLocationKind", "EnvironmentalLocationType", "1..*", "0..*")
     )
     val alertType: Fielder = parse_element (element (cls, fields(0)))
     val cancelledDateTime: Fielder = parse_element (element (cls, fields(1)))
@@ -766,9 +766,9 @@ extends
     val EnvironmentalDataProvider: Fielder = parse_attribute (attribute (cls, fields(5)))
     val EnvironmentalLocationKind: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): EnvironmentalAlert =
+    def parse (context: CIMContext): EnvironmentalAlert =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalAlert (
             ActivityRecord.parse (context),
@@ -852,7 +852,7 @@ extends
 
 object EnvironmentalAnalog
 extends
-    Parseable[EnvironmentalAnalog]
+    CIMParseable[EnvironmentalAnalog]
 {
     override val fields: Array[String] = Array[String] (
         "ClassificationCondition",
@@ -860,20 +860,20 @@ extends
         "EnvironmentalMonitoringStation",
         "ReportingCapability"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ClassificationCondition", "ClassificationCondition", "0..1", "0..*"),
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*"),
-        Relationship ("EnvironmentalMonitoringStation", "EnvironmentalMonitoringStation", "0..1", "0..*"),
-        Relationship ("ReportingCapability", "ReportingCapability", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ClassificationCondition", "ClassificationCondition", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalMonitoringStation", "EnvironmentalMonitoringStation", "0..1", "0..*"),
+        CIMRelationship ("ReportingCapability", "ReportingCapability", "0..1", "0..*")
     )
     val ClassificationCondition: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnvironmentalInformation: Fielder = parse_attribute (attribute (cls, fields(1)))
     val EnvironmentalMonitoringStation: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ReportingCapability: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): EnvironmentalAnalog =
+    def parse (context: CIMContext): EnvironmentalAnalog =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalAnalog (
             Analog.parse (context),
@@ -958,7 +958,7 @@ extends
 
 object EnvironmentalCodedValue
 extends
-    Parseable[EnvironmentalCodedValue]
+    CIMParseable[EnvironmentalCodedValue]
 {
     override val fields: Array[String] = Array[String] (
         "coverageKind",
@@ -971,9 +971,9 @@ extends
     val probabilityPercent: Fielder = parse_element (element (cls, fields(2)))
     val weatherKind: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): EnvironmentalCodedValue =
+    def parse (context: CIMContext): EnvironmentalCodedValue =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalCodedValue (
             StringMeasurementValue.parse (context),
@@ -1048,22 +1048,22 @@ extends
 
 object EnvironmentalDataAuthority
 extends
-    Parseable[EnvironmentalDataAuthority]
+    CIMParseable[EnvironmentalDataAuthority]
 {
     override val fields: Array[String] = Array[String] (
         "AlertTypeList",
         "PhenomenonClassification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AlertTypeList", "AlertTypeList", "0..*", "0..1"),
-        Relationship ("PhenomenonClassification", "PhenomenonClassification", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AlertTypeList", "AlertTypeList", "0..*", "0..1"),
+        CIMRelationship ("PhenomenonClassification", "PhenomenonClassification", "0..*", "0..1")
     )
     val AlertTypeList: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val PhenomenonClassification: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): EnvironmentalDataAuthority =
+    def parse (context: CIMContext): EnvironmentalDataAuthority =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalDataAuthority (
             OrganisationRole.parse (context),
@@ -1138,22 +1138,22 @@ extends
 
 object EnvironmentalDataProvider
 extends
-    Parseable[EnvironmentalDataProvider]
+    CIMParseable[EnvironmentalDataProvider]
 {
     override val fields: Array[String] = Array[String] (
         "EnvironmentalAlert",
         "EnvironmentalInformation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "0..1"),
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..*", "0..1")
     )
     val EnvironmentalAlert: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val EnvironmentalInformation: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): EnvironmentalDataProvider =
+    def parse (context: CIMContext): EnvironmentalDataProvider =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalDataProvider (
             OrganisationRole.parse (context),
@@ -1226,21 +1226,21 @@ extends
 
 object EnvironmentalDiscrete
 extends
-    Parseable[EnvironmentalDiscrete]
+    CIMParseable[EnvironmentalDiscrete]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "EnvironmentalInformation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnvironmentalInformation: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): EnvironmentalDiscrete =
+    def parse (context: CIMContext): EnvironmentalDiscrete =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalDiscrete (
             Discrete.parse (context),
@@ -1316,19 +1316,19 @@ extends
 
 object EnvironmentalEvent
 extends
-    Parseable[EnvironmentalEvent]
+    CIMParseable[EnvironmentalEvent]
 {
     override val fields: Array[String] = Array[String] (
         "EnvironmentalInformation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..*", "0..*")
     )
     val EnvironmentalInformation: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): EnvironmentalEvent =
+    def parse (context: CIMContext): EnvironmentalEvent =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalEvent (
             ActivityRecord.parse (context),
@@ -1417,7 +1417,7 @@ extends
 
 object EnvironmentalInformation
 extends
-    Parseable[EnvironmentalInformation]
+    CIMParseable[EnvironmentalInformation]
 {
     override val fields: Array[String] = Array[String] (
         "created",
@@ -1428,13 +1428,13 @@ extends
         "EnvironmentalPhenomenon",
         "EnvironmentalStringMeasurement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
-        Relationship ("EnvironmentalDataProvider", "EnvironmentalDataProvider", "0..1", "0..*"),
-        Relationship ("EnvironmentalDiscrete", "EnvironmentalDiscrete", "0..*", "0..1"),
-        Relationship ("EnvironmentalEvent", "EnvironmentalEvent", "0..*", "0..*"),
-        Relationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..1"),
-        Relationship ("EnvironmentalStringMeasurement", "EnvironmentalStringMeasurement", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalDataProvider", "EnvironmentalDataProvider", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalDiscrete", "EnvironmentalDiscrete", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalEvent", "EnvironmentalEvent", "0..*", "0..*"),
+        CIMRelationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalStringMeasurement", "EnvironmentalStringMeasurement", "0..*", "0..1")
     )
     val created: Fielder = parse_element (element (cls, fields(0)))
     val EnvironmentalAnalog: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1444,9 +1444,9 @@ extends
     val EnvironmentalPhenomenon: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val EnvironmentalStringMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): EnvironmentalInformation =
+    def parse (context: CIMContext): EnvironmentalInformation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalInformation (
             IdentifiedObject.parse (context),
@@ -1534,7 +1534,7 @@ extends
 
 object EnvironmentalLocationType
 extends
-    Parseable[EnvironmentalLocationType]
+    CIMParseable[EnvironmentalLocationType]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
@@ -1542,19 +1542,19 @@ extends
         "EnvironmentalPhenomenon",
         "Location"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "1..*"),
-        Relationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..*"),
-        Relationship ("Location", "Location", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAlert", "EnvironmentalAlert", "0..*", "1..*"),
+        CIMRelationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..*"),
+        CIMRelationship ("Location", "Location", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnvironmentalAlert: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val EnvironmentalPhenomenon: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Location: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): EnvironmentalLocationType =
+    def parse (context: CIMContext): EnvironmentalLocationType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalLocationType (
             BasicElement.parse (context),
@@ -1636,7 +1636,7 @@ extends
 
 object EnvironmentalPhenomenon
 extends
-    Parseable[EnvironmentalPhenomenon]
+    CIMParseable[EnvironmentalPhenomenon]
 {
     override val fields: Array[String] = Array[String] (
         "timeInterval",
@@ -1644,19 +1644,19 @@ extends
         "EnvironmentalLocationKind",
         "PhenomenonClassification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*"),
-        Relationship ("EnvironmentalLocationKind", "EnvironmentalLocationType", "0..*", "0..*"),
-        Relationship ("PhenomenonClassification", "PhenomenonClassification", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalLocationKind", "EnvironmentalLocationType", "0..*", "0..*"),
+        CIMRelationship ("PhenomenonClassification", "PhenomenonClassification", "0..1", "0..*")
     )
     val timeInterval: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnvironmentalInformation: Fielder = parse_attribute (attribute (cls, fields(1)))
     val EnvironmentalLocationKind: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val PhenomenonClassification: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): EnvironmentalPhenomenon =
+    def parse (context: CIMContext): EnvironmentalPhenomenon =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalPhenomenon (
             BasicElement.parse (context),
@@ -1731,22 +1731,22 @@ extends
 
 object EnvironmentalStringMeasurement
 extends
-    Parseable[EnvironmentalStringMeasurement]
+    CIMParseable[EnvironmentalStringMeasurement]
 {
     override val fields: Array[String] = Array[String] (
         "ClassificationCondition",
         "EnvironmentalInformation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ClassificationCondition", "ClassificationCondition", "0..1", "0..*"),
-        Relationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ClassificationCondition", "ClassificationCondition", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalInformation", "EnvironmentalInformation", "0..1", "0..*")
     )
     val ClassificationCondition: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnvironmentalInformation: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): EnvironmentalStringMeasurement =
+    def parse (context: CIMContext): EnvironmentalStringMeasurement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalStringMeasurement (
             StringMeasurement.parse (context),
@@ -1812,10 +1812,10 @@ extends
 
 object Fire
 extends
-    Parseable[Fire]
+    CIMParseable[Fire]
 {
 
-    def parse (context: Context): Fire =
+    def parse (context: CIMContext): Fire =
     {
         val ret = Fire (
             GeosphericPhenomenon.parse (context)
@@ -1876,10 +1876,10 @@ extends
 
 object Flood
 extends
-    Parseable[Flood]
+    CIMParseable[Flood]
 {
 
-    def parse (context: Context): Flood =
+    def parse (context: CIMContext): Flood =
     {
         val ret = Flood (
             HydrosphericPhenomenon.parse (context)
@@ -1947,16 +1947,16 @@ extends
 
 object Forecast
 extends
-    Parseable[Forecast]
+    CIMParseable[Forecast]
 {
     override val fields: Array[String] = Array[String] (
         "validFor"
     )
     val validFor: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): Forecast =
+    def parse (context: CIMContext): Forecast =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Forecast (
             EnvironmentalInformation.parse (context),
@@ -2025,16 +2025,16 @@ extends
 
 object GeosphericAnalog
 extends
-    Parseable[GeosphericAnalog]
+    CIMParseable[GeosphericAnalog]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): GeosphericAnalog =
+    def parse (context: CIMContext): GeosphericAnalog =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GeosphericAnalog (
             EnvironmentalAnalog.parse (context),
@@ -2097,10 +2097,10 @@ extends
 
 object GeosphericPhenomenon
 extends
-    Parseable[GeosphericPhenomenon]
+    CIMParseable[GeosphericPhenomenon]
 {
 
-    def parse (context: Context): GeosphericPhenomenon =
+    def parse (context: CIMContext): GeosphericPhenomenon =
     {
         val ret = GeosphericPhenomenon (
             EnvironmentalPhenomenon.parse (context)
@@ -2167,16 +2167,16 @@ extends
 
 object Hurricane
 extends
-    Parseable[Hurricane]
+    CIMParseable[Hurricane]
 {
     override val fields: Array[String] = Array[String] (
         "category"
     )
     val category: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): Hurricane =
+    def parse (context: CIMContext): Hurricane =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Hurricane (
             Cyclone.parse (context),
@@ -2245,16 +2245,16 @@ extends
 
 object HydrosphericAnalog
 extends
-    Parseable[HydrosphericAnalog]
+    CIMParseable[HydrosphericAnalog]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): HydrosphericAnalog =
+    def parse (context: CIMContext): HydrosphericAnalog =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydrosphericAnalog (
             EnvironmentalAnalog.parse (context),
@@ -2317,10 +2317,10 @@ extends
 
 object HydrosphericPhenomenon
 extends
-    Parseable[HydrosphericPhenomenon]
+    CIMParseable[HydrosphericPhenomenon]
 {
 
-    def parse (context: Context): HydrosphericPhenomenon =
+    def parse (context: CIMContext): HydrosphericPhenomenon =
     {
         val ret = HydrosphericPhenomenon (
             EnvironmentalPhenomenon.parse (context)
@@ -2381,10 +2381,10 @@ extends
 
 object Landslide
 extends
-    Parseable[Landslide]
+    CIMParseable[Landslide]
 {
 
-    def parse (context: Context): Landslide =
+    def parse (context: CIMContext): Landslide =
     {
         val ret = Landslide (
             GeosphericPhenomenon.parse (context)
@@ -2467,7 +2467,7 @@ extends
 
 object LightningStrike
 extends
-    Parseable[LightningStrike]
+    CIMParseable[LightningStrike]
 {
     override val fields: Array[String] = Array[String] (
         "errorEllipseConfidence",
@@ -2484,9 +2484,9 @@ extends
     val negativePolarity: Fielder = parse_element (element (cls, fields(4)))
     val peakAmplitude: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): LightningStrike =
+    def parse (context: CIMContext): LightningStrike =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LightningStrike (
             GeosphericPhenomenon.parse (context),
@@ -2564,16 +2564,16 @@ extends
 
 object MagneticStorm
 extends
-    Parseable[MagneticStorm]
+    CIMParseable[MagneticStorm]
 {
     override val fields: Array[String] = Array[String] (
         "changeDst"
     )
     val changeDst: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): MagneticStorm =
+    def parse (context: CIMContext): MagneticStorm =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MagneticStorm (
             SpacePhenomenon.parse (context),
@@ -2636,10 +2636,10 @@ extends
 
 object Observation
 extends
-    Parseable[Observation]
+    CIMParseable[Observation]
 {
 
-    def parse (context: Context): Observation =
+    def parse (context: CIMContext): Observation =
     {
         val ret = Observation (
             EnvironmentalInformation.parse (context)
@@ -2713,25 +2713,25 @@ extends
 
 object PhenomenonClassification
 extends
-    Parseable[PhenomenonClassification]
+    CIMParseable[PhenomenonClassification]
 {
     override val fields: Array[String] = Array[String] (
         "ClassificationCondition",
         "EnvironmentalDataAuthority",
         "EnvironmentalPhenomenon"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ClassificationCondition", "ClassificationCondition", "0..*", "0..1"),
-        Relationship ("EnvironmentalDataAuthority", "EnvironmentalDataAuthority", "0..1", "0..*"),
-        Relationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ClassificationCondition", "ClassificationCondition", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalDataAuthority", "EnvironmentalDataAuthority", "0..1", "0..*"),
+        CIMRelationship ("EnvironmentalPhenomenon", "EnvironmentalPhenomenon", "0..*", "0..1")
     )
     val ClassificationCondition: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val EnvironmentalDataAuthority: Fielder = parse_attribute (attribute (cls, fields(1)))
     val EnvironmentalPhenomenon: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): PhenomenonClassification =
+    def parse (context: CIMContext): PhenomenonClassification =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PhenomenonClassification (
             IdentifiedObject.parse (context),
@@ -2818,7 +2818,7 @@ extends
 
 object ReportingCapability
 extends
-    Parseable[ReportingCapability]
+    CIMParseable[ReportingCapability]
 {
     override val fields: Array[String] = Array[String] (
         "reportingIntervalPeriod",
@@ -2827,9 +2827,9 @@ extends
         "EnvironmentalAnalog",
         "EnvironmentalMonitoringStation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
-        Relationship ("EnvironmentalMonitoringStation", "EnvironmentalMonitoringStation", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
+        CIMRelationship ("EnvironmentalMonitoringStation", "EnvironmentalMonitoringStation", "1", "0..*")
     )
     val reportingIntervalPeriod: Fielder = parse_element (element (cls, fields(0)))
     val reportingIntervalType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2837,9 +2837,9 @@ extends
     val EnvironmentalAnalog: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val EnvironmentalMonitoringStation: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ReportingCapability =
+    def parse (context: CIMContext): ReportingCapability =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ReportingCapability (
             BasicElement.parse (context),
@@ -2912,16 +2912,16 @@ extends
 
 object SpaceAnalog
 extends
-    Parseable[SpaceAnalog]
+    CIMParseable[SpaceAnalog]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): SpaceAnalog =
+    def parse (context: CIMContext): SpaceAnalog =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SpaceAnalog (
             EnvironmentalAnalog.parse (context),
@@ -2984,10 +2984,10 @@ extends
 
 object SpacePhenomenon
 extends
-    Parseable[SpacePhenomenon]
+    CIMParseable[SpacePhenomenon]
 {
 
-    def parse (context: Context): SpacePhenomenon =
+    def parse (context: CIMContext): SpacePhenomenon =
     {
         val ret = SpacePhenomenon (
             EnvironmentalPhenomenon.parse (context)
@@ -3058,7 +3058,7 @@ extends
 
 object Tornado
 extends
-    Parseable[Tornado]
+    CIMParseable[Tornado]
 {
     override val fields: Array[String] = Array[String] (
         "fScale",
@@ -3067,9 +3067,9 @@ extends
     val fScale: Fielder = parse_attribute (attribute (cls, fields(0)))
     val width: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): Tornado =
+    def parse (context: CIMContext): Tornado =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Tornado (
             AtmosphericPhenomenon.parse (context),
@@ -3144,16 +3144,16 @@ extends
 
 object TropicalCycloneAustralia
 extends
-    Parseable[TropicalCycloneAustralia]
+    CIMParseable[TropicalCycloneAustralia]
 {
     override val fields: Array[String] = Array[String] (
         "category"
     )
     val category: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): TropicalCycloneAustralia =
+    def parse (context: CIMContext): TropicalCycloneAustralia =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TropicalCycloneAustralia (
             Cyclone.parse (context),
@@ -3227,7 +3227,7 @@ extends
 
 object Tsunami
 extends
-    Parseable[Tsunami]
+    CIMParseable[Tsunami]
 {
     override val fields: Array[String] = Array[String] (
         "intensity",
@@ -3236,9 +3236,9 @@ extends
     val intensity: Fielder = parse_element (element (cls, fields(0)))
     val magnitude: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): Tsunami =
+    def parse (context: CIMContext): Tsunami =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Tsunami (
             HydrosphericPhenomenon.parse (context),
@@ -3311,7 +3311,7 @@ extends
 
 object VolcanicAshCloud
 extends
-    Parseable[VolcanicAshCloud]
+    CIMParseable[VolcanicAshCloud]
 {
     override val fields: Array[String] = Array[String] (
         "density",
@@ -3320,9 +3320,9 @@ extends
     val density: Fielder = parse_element (element (cls, fields(0)))
     val particleSize: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): VolcanicAshCloud =
+    def parse (context: CIMContext): VolcanicAshCloud =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VolcanicAshCloud (
             AtmosphericPhenomenon.parse (context),
@@ -3386,10 +3386,10 @@ extends
 
 object Whirlpool
 extends
-    Parseable[Whirlpool]
+    CIMParseable[Whirlpool]
 {
 
-    def parse (context: Context): Whirlpool =
+    def parse (context: CIMContext): Whirlpool =
     {
         val ret = Whirlpool (
             HydrosphericPhenomenon.parse (context)
@@ -3400,7 +3400,7 @@ extends
 
 private[ninecode] object _Environmental
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AlertTypeList.register,

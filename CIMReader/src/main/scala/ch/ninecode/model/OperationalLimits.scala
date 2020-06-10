@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Limit on active power flow.
@@ -69,7 +69,7 @@ extends
 
 object ActivePowerLimit
 extends
-    Parseable[ActivePowerLimit]
+    CIMParseable[ActivePowerLimit]
 {
     override val fields: Array[String] = Array[String] (
         "normalValue",
@@ -78,9 +78,9 @@ extends
     val normalValue: Fielder = parse_element (element (cls, fields(0)))
     val value: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): ActivePowerLimit =
+    def parse (context: CIMContext): ActivePowerLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ActivePowerLimit (
             OperationalLimit.parse (context),
@@ -154,7 +154,7 @@ extends
 
 object ApparentPowerLimit
 extends
-    Parseable[ApparentPowerLimit]
+    CIMParseable[ApparentPowerLimit]
 {
     override val fields: Array[String] = Array[String] (
         "normalValue",
@@ -163,9 +163,9 @@ extends
     val normalValue: Fielder = parse_element (element (cls, fields(0)))
     val value: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): ApparentPowerLimit =
+    def parse (context: CIMContext): ApparentPowerLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ApparentPowerLimit (
             OperationalLimit.parse (context),
@@ -260,7 +260,7 @@ extends
 
 object BranchGroup
 extends
-    Parseable[BranchGroup]
+    CIMParseable[BranchGroup]
 {
     override val fields: Array[String] = Array[String] (
         "maximumActivePower",
@@ -272,9 +272,9 @@ extends
         "BranchGroupTerminal",
         "PinBranchGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"),
-        Relationship ("PinBranchGroup", "PinBranchGroup", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"),
+        CIMRelationship ("PinBranchGroup", "PinBranchGroup", "0..*", "1")
     )
     val maximumActivePower: Fielder = parse_element (element (cls, fields(0)))
     val maximumReactivePower: Fielder = parse_element (element (cls, fields(1)))
@@ -285,9 +285,9 @@ extends
     val BranchGroupTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val PinBranchGroup: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): BranchGroup =
+    def parse (context: CIMContext): BranchGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BranchGroup (
             IdentifiedObject.parse (context),
@@ -372,24 +372,24 @@ extends
 
 object BranchGroupTerminal
 extends
-    Parseable[BranchGroupTerminal]
+    CIMParseable[BranchGroupTerminal]
 {
     override val fields: Array[String] = Array[String] (
         "positiveFlowIn",
         "BranchGroup",
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BranchGroup", "BranchGroup", "1", "0..*"),
-        Relationship ("Terminal", "Terminal", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BranchGroup", "BranchGroup", "1", "0..*"),
+        CIMRelationship ("Terminal", "Terminal", "1", "0..*")
     )
     val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
     val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): BranchGroupTerminal =
+    def parse (context: CIMContext): BranchGroupTerminal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BranchGroupTerminal (
             BasicElement.parse (context),
@@ -464,7 +464,7 @@ extends
 
 object CurrentLimit
 extends
-    Parseable[CurrentLimit]
+    CIMParseable[CurrentLimit]
 {
     override val fields: Array[String] = Array[String] (
         "normalValue",
@@ -473,9 +473,9 @@ extends
     val normalValue: Fielder = parse_element (element (cls, fields(0)))
     val value: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): CurrentLimit =
+    def parse (context: CIMContext): CurrentLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentLimit (
             OperationalLimit.parse (context),
@@ -563,7 +563,7 @@ extends
 
 object OperationalLimit
 extends
-    Parseable[OperationalLimit]
+    CIMParseable[OperationalLimit]
 {
     override val fields: Array[String] = Array[String] (
         "LimitDependencyModel",
@@ -571,20 +571,20 @@ extends
         "OperationalLimitSet",
         "OperationalLimitType"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LimitDependencyModel", "LimitDependency", "0..*", "0..*"),
-        Relationship ("LimitScalingLimit", "LimitScalingLimit", "0..*", "1"),
-        Relationship ("OperationalLimitSet", "OperationalLimitSet", "1", "0..*"),
-        Relationship ("OperationalLimitType", "OperationalLimitType", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LimitDependencyModel", "LimitDependency", "0..*", "0..*"),
+        CIMRelationship ("LimitScalingLimit", "LimitScalingLimit", "0..*", "1"),
+        CIMRelationship ("OperationalLimitSet", "OperationalLimitSet", "1", "0..*"),
+        CIMRelationship ("OperationalLimitType", "OperationalLimitType", "0..1", "0..*")
     )
     val LimitDependencyModel: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val LimitScalingLimit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val OperationalLimitSet: Fielder = parse_attribute (attribute (cls, fields(2)))
     val OperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): OperationalLimit =
+    def parse (context: CIMContext): OperationalLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OperationalLimit (
             IdentifiedObject.parse (context),
@@ -666,25 +666,25 @@ extends
 
 object OperationalLimitSet
 extends
-    Parseable[OperationalLimitSet]
+    CIMParseable[OperationalLimitSet]
 {
     override val fields: Array[String] = Array[String] (
         "Equipment",
         "OperationalLimitValue",
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", "0..1", "0..*"),
-        Relationship ("OperationalLimitValue", "OperationalLimit", "0..*", "1"),
-        Relationship ("Terminal", "ACDCTerminal", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Equipment", "Equipment", "0..1", "0..*"),
+        CIMRelationship ("OperationalLimitValue", "OperationalLimit", "0..*", "1"),
+        CIMRelationship ("Terminal", "ACDCTerminal", "0..1", "0..*")
     )
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OperationalLimitValue: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): OperationalLimitSet =
+    def parse (context: CIMContext): OperationalLimitSet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OperationalLimitSet (
             IdentifiedObject.parse (context),
@@ -771,7 +771,7 @@ extends
 
 object OperationalLimitType
 extends
-    Parseable[OperationalLimitType]
+    CIMParseable[OperationalLimitType]
 {
     override val fields: Array[String] = Array[String] (
         "acceptableDuration",
@@ -780,10 +780,10 @@ extends
         "SourceOperationalLimitTypeScaling",
         "TargetOperationalLimitmTypeScaling"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("OperationalLimit", "OperationalLimit", "0..*", "0..1"),
-        Relationship ("SourceOperationalLimitTypeScaling", "OperatonalLimitTypeScaling", "0..*", "0..1"),
-        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("OperationalLimit", "OperationalLimit", "0..*", "0..1"),
+        CIMRelationship ("SourceOperationalLimitTypeScaling", "OperatonalLimitTypeScaling", "0..*", "0..1"),
+        CIMRelationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", "0..1", "1")
     )
     val acceptableDuration: Fielder = parse_element (element (cls, fields(0)))
     val direction: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -791,9 +791,9 @@ extends
     val SourceOperationalLimitTypeScaling: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): OperationalLimitType =
+    def parse (context: CIMContext): OperationalLimitType =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OperationalLimitType (
             IdentifiedObject.parse (context),
@@ -872,7 +872,7 @@ extends
 
 object VoltageLimit
 extends
-    Parseable[VoltageLimit]
+    CIMParseable[VoltageLimit]
 {
     override val fields: Array[String] = Array[String] (
         "normalValue",
@@ -881,9 +881,9 @@ extends
     val normalValue: Fielder = parse_element (element (cls, fields(0)))
     val value: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): VoltageLimit =
+    def parse (context: CIMContext): VoltageLimit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VoltageLimit (
             OperationalLimit.parse (context),
@@ -897,7 +897,7 @@ extends
 
 private[ninecode] object _OperationalLimits
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ActivePowerLimit.register,

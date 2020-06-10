@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Turbine load controller model developed by WECC.
@@ -119,7 +119,7 @@ extends
 
 object TurbLCFB1
 extends
-    Parseable[TurbLCFB1]
+    CIMParseable[TurbLCFB1]
 {
     override val fields: Array[String] = Array[String] (
         "db",
@@ -148,9 +148,9 @@ extends
     val speedReferenceGovernor: Fielder = parse_element (element (cls, fields(10)))
     val tpelec: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): TurbLCFB1 =
+    def parse (context: CIMContext): TurbLCFB1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbLCFB1 (
             TurbineLoadControllerDynamics.parse (context),
@@ -231,19 +231,19 @@ extends
 
 object TurbineLoadControllerDynamics
 extends
-    Parseable[TurbineLoadControllerDynamics]
+    CIMParseable[TurbineLoadControllerDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "TurbineGovernorDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1")
     )
     val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): TurbineLoadControllerDynamics =
+    def parse (context: CIMContext): TurbineLoadControllerDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TurbineLoadControllerDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -256,7 +256,7 @@ extends
 
 private[ninecode] object _TurbineLoadControllerDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             TurbLCFB1.register,

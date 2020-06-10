@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
@@ -155,7 +155,7 @@ extends
 
 object ExcAC1A
 extends
-    Parseable[ExcAC1A]
+    CIMParseable[ExcAC1A]
 {
     override val fields: Array[String] = Array[String] (
         "hvlvgates",
@@ -204,9 +204,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(20)))
     val vrmin: Fielder = parse_element (element (cls, fields(21)))
 
-    def parse (context: Context): ExcAC1A =
+    def parse (context: CIMContext): ExcAC1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC1A (
             ExcitationSystemDynamics.parse (context),
@@ -412,7 +412,7 @@ extends
 
 object ExcAC2A
 extends
-    Parseable[ExcAC2A]
+    CIMParseable[ExcAC2A]
 {
     override val fields: Array[String] = Array[String] (
         "hvgate",
@@ -473,9 +473,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(26)))
     val vrmin: Fielder = parse_element (element (cls, fields(27)))
 
-    def parse (context: Context): ExcAC2A =
+    def parse (context: CIMContext): ExcAC2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC2A (
             ExcitationSystemDynamics.parse (context),
@@ -675,7 +675,7 @@ extends
 
 object ExcAC3A
 extends
-    Parseable[ExcAC3A]
+    CIMParseable[ExcAC3A]
 {
     override val fields: Array[String] = Array[String] (
         "efdn",
@@ -732,9 +732,9 @@ extends
     val vfemax: Fielder = parse_element (element (cls, fields(24)))
     val vlv: Fielder = parse_element (element (cls, fields(25)))
 
-    def parse (context: Context): ExcAC3A =
+    def parse (context: CIMContext): ExcAC3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC3A (
             ExcitationSystemDynamics.parse (context),
@@ -864,7 +864,7 @@ extends
 
 object ExcAC4A
 extends
-    Parseable[ExcAC4A]
+    CIMParseable[ExcAC4A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -887,9 +887,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(7)))
     val vrmin: Fielder = parse_element (element (cls, fields(8)))
 
-    def parse (context: Context): ExcAC4A =
+    def parse (context: CIMContext): ExcAC4A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC4A (
             ExcitationSystemDynamics.parse (context),
@@ -1038,7 +1038,7 @@ extends
 
 object ExcAC5A
 extends
-    Parseable[ExcAC5A]
+    CIMParseable[ExcAC5A]
 {
     override val fields: Array[String] = Array[String] (
         "a",
@@ -1079,9 +1079,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(16)))
     val vrmin: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcAC5A =
+    def parse (context: CIMContext): ExcAC5A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC5A (
             ExcitationSystemDynamics.parse (context),
@@ -1259,7 +1259,7 @@ extends
 
 object ExcAC6A
 extends
-    Parseable[ExcAC6A]
+    CIMParseable[ExcAC6A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -1310,9 +1310,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(21)))
     val vrmin: Fielder = parse_element (element (cls, fields(22)))
 
-    def parse (context: Context): ExcAC6A =
+    def parse (context: CIMContext): ExcAC6A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC6A (
             ExcitationSystemDynamics.parse (context),
@@ -1518,7 +1518,7 @@ extends
 
 object ExcAC8B
 extends
-    Parseable[ExcAC8B]
+    CIMParseable[ExcAC8B]
 {
     override val fields: Array[String] = Array[String] (
         "inlim",
@@ -1577,9 +1577,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(25)))
     val vtmult: Fielder = parse_element (element (cls, fields(26)))
 
-    def parse (context: Context): ExcAC8B =
+    def parse (context: CIMContext): ExcAC8B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAC8B (
             ExcitationSystemDynamics.parse (context),
@@ -1738,7 +1738,7 @@ extends
 
 object ExcANS
 extends
-    Parseable[ExcANS]
+    CIMParseable[ExcANS]
 {
     override val fields: Array[String] = Array[String] (
         "blint",
@@ -1771,9 +1771,9 @@ extends
     val vrmn: Fielder = parse_element (element (cls, fields(12)))
     val vrmx: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): ExcANS =
+    def parse (context: CIMContext): ExcANS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcANS (
             ExcitationSystemDynamics.parse (context),
@@ -1905,7 +1905,7 @@ extends
 
 object ExcAVR1
 extends
-    Parseable[ExcAVR1]
+    CIMParseable[ExcAVR1]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -1934,9 +1934,9 @@ extends
     val vrmn: Fielder = parse_element (element (cls, fields(10)))
     val vrmx: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): ExcAVR1 =
+    def parse (context: CIMContext): ExcAVR1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR1 (
             ExcitationSystemDynamics.parse (context),
@@ -2070,7 +2070,7 @@ extends
 
 object ExcAVR2
 extends
-    Parseable[ExcAVR2]
+    CIMParseable[ExcAVR2]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -2101,9 +2101,9 @@ extends
     val vrmn: Fielder = parse_element (element (cls, fields(11)))
     val vrmx: Fielder = parse_element (element (cls, fields(12)))
 
-    def parse (context: Context): ExcAVR2 =
+    def parse (context: CIMContext): ExcAVR2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR2 (
             ExcitationSystemDynamics.parse (context),
@@ -2234,7 +2234,7 @@ extends
 
 object ExcAVR3
 extends
-    Parseable[ExcAVR3]
+    CIMParseable[ExcAVR3]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -2263,9 +2263,9 @@ extends
     val vrmn: Fielder = parse_element (element (cls, fields(10)))
     val vrmx: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): ExcAVR3 =
+    def parse (context: CIMContext): ExcAVR3 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR3 (
             ExcitationSystemDynamics.parse (context),
@@ -2405,7 +2405,7 @@ extends
 
 object ExcAVR4
 extends
-    Parseable[ExcAVR4]
+    CIMParseable[ExcAVR4]
 {
     override val fields: Array[String] = Array[String] (
         "imul",
@@ -2438,9 +2438,9 @@ extends
     val vrmn: Fielder = parse_element (element (cls, fields(12)))
     val vrmx: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): ExcAVR4 =
+    def parse (context: CIMContext): ExcAVR4 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR4 (
             ExcitationSystemDynamics.parse (context),
@@ -2533,7 +2533,7 @@ extends
 
 object ExcAVR5
 extends
-    Parseable[ExcAVR5]
+    CIMParseable[ExcAVR5]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -2544,9 +2544,9 @@ extends
     val rex: Fielder = parse_element (element (cls, fields(1)))
     val ta: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): ExcAVR5 =
+    def parse (context: CIMContext): ExcAVR5 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR5 (
             ExcitationSystemDynamics.parse (context),
@@ -2701,7 +2701,7 @@ extends
 
 object ExcAVR7
 extends
-    Parseable[ExcAVR7]
+    CIMParseable[ExcAVR7]
 {
     override val fields: Array[String] = Array[String] (
         "a1",
@@ -2748,9 +2748,9 @@ extends
     val vmin3: Fielder = parse_element (element (cls, fields(19)))
     val vmin5: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): ExcAVR7 =
+    def parse (context: CIMContext): ExcAVR7 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcAVR7 (
             ExcitationSystemDynamics.parse (context),
@@ -2887,7 +2887,7 @@ extends
 
 object ExcBBC
 extends
-    Parseable[ExcBBC]
+    CIMParseable[ExcBBC]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -2914,9 +2914,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(9)))
     val xe: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): ExcBBC =
+    def parse (context: CIMContext): ExcBBC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcBBC (
             ExcitationSystemDynamics.parse (context),
@@ -3025,7 +3025,7 @@ extends
 
 object ExcCZ
 extends
-    Parseable[ExcCZ]
+    CIMParseable[ExcCZ]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -3050,9 +3050,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(8)))
     val vrmin: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): ExcCZ =
+    def parse (context: CIMContext): ExcCZ =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcCZ (
             ExcitationSystemDynamics.parse (context),
@@ -3205,7 +3205,7 @@ extends
 
 object ExcDC1A
 extends
-    Parseable[ExcDC1A]
+    CIMParseable[ExcDC1A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -3246,9 +3246,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(16)))
     val vrmin: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcDC1A =
+    def parse (context: CIMContext): ExcDC1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcDC1A (
             ExcitationSystemDynamics.parse (context),
@@ -3413,7 +3413,7 @@ extends
 
 object ExcDC2A
 extends
-    Parseable[ExcDC2A]
+    CIMParseable[ExcDC2A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -3454,9 +3454,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(16)))
     val vtlim: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcDC2A =
+    def parse (context: CIMContext): ExcDC2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcDC2A (
             ExcitationSystemDynamics.parse (context),
@@ -3613,7 +3613,7 @@ extends
 
 object ExcDC3A
 extends
-    Parseable[ExcDC3A]
+    CIMParseable[ExcDC3A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -3650,9 +3650,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(14)))
     val vrmin: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): ExcDC3A =
+    def parse (context: CIMContext): ExcDC3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcDC3A (
             ExcitationSystemDynamics.parse (context),
@@ -3796,7 +3796,7 @@ extends
 
 object ExcDC3A1
 extends
-    Parseable[ExcDC3A1]
+    CIMParseable[ExcDC3A1]
 {
     override val fields: Array[String] = Array[String] (
         "exclim",
@@ -3829,9 +3829,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(12)))
     val vrmin: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): ExcDC3A1 =
+    def parse (context: CIMContext): ExcDC3A1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcDC3A1 (
             ExcitationSystemDynamics.parse (context),
@@ -3975,7 +3975,7 @@ extends
 
 object ExcELIN1
 extends
-    Parseable[ExcELIN1]
+    CIMParseable[ExcELIN1]
 {
     override val fields: Array[String] = Array[String] (
         "dpnf",
@@ -4010,9 +4010,9 @@ extends
     val vpu: Fielder = parse_element (element (cls, fields(13)))
     val xe: Fielder = parse_element (element (cls, fields(14)))
 
-    def parse (context: Context): ExcELIN1 =
+    def parse (context: CIMContext): ExcELIN1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcELIN1 (
             ExcitationSystemDynamics.parse (context),
@@ -4205,7 +4205,7 @@ extends
 
 object ExcELIN2
 extends
-    Parseable[ExcELIN2]
+    CIMParseable[ExcELIN2]
 {
     override val fields: Array[String] = Array[String] (
         "efdbas",
@@ -4264,9 +4264,9 @@ extends
     val ve2: Fielder = parse_element (element (cls, fields(25)))
     val xp: Fielder = parse_element (element (cls, fields(26)))
 
-    def parse (context: Context): ExcELIN2 =
+    def parse (context: CIMContext): ExcELIN2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcELIN2 (
             ExcitationSystemDynamics.parse (context),
@@ -4409,7 +4409,7 @@ extends
 
 object ExcHU
 extends
-    Parseable[ExcHU]
+    CIMParseable[ExcHU]
 {
     override val fields: Array[String] = Array[String] (
         "ae",
@@ -4438,9 +4438,9 @@ extends
     val ti: Fielder = parse_element (element (cls, fields(10)))
     val tr: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): ExcHU =
+    def parse (context: CIMContext): ExcHU =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcHU (
             ExcitationSystemDynamics.parse (context),
@@ -4595,7 +4595,7 @@ extends
 
 object ExcIEEEAC1A
 extends
-    Parseable[ExcIEEEAC1A]
+    CIMParseable[ExcIEEEAC1A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -4636,9 +4636,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(16)))
     val vrmin: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcIEEEAC1A =
+    def parse (context: CIMContext): ExcIEEEAC1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC1A (
             ExcitationSystemDynamics.parse (context),
@@ -4811,7 +4811,7 @@ extends
 
 object ExcIEEEAC2A
 extends
-    Parseable[ExcIEEEAC2A]
+    CIMParseable[ExcIEEEAC2A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -4858,9 +4858,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(19)))
     val vrmin: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): ExcIEEEAC2A =
+    def parse (context: CIMContext): ExcIEEEAC2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC2A (
             ExcitationSystemDynamics.parse (context),
@@ -5036,7 +5036,7 @@ extends
 
 object ExcIEEEAC3A
 extends
-    Parseable[ExcIEEEAC3A]
+    CIMParseable[ExcIEEEAC3A]
 {
     override val fields: Array[String] = Array[String] (
         "efdn",
@@ -5083,9 +5083,9 @@ extends
     val vemin: Fielder = parse_element (element (cls, fields(19)))
     val vfemax: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): ExcIEEEAC3A =
+    def parse (context: CIMContext): ExcIEEEAC3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC3A (
             ExcitationSystemDynamics.parse (context),
@@ -5213,7 +5213,7 @@ extends
 
 object ExcIEEEAC4A
 extends
-    Parseable[ExcIEEEAC4A]
+    CIMParseable[ExcIEEEAC4A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -5236,9 +5236,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(7)))
     val vrmin: Fielder = parse_element (element (cls, fields(8)))
 
-    def parse (context: Context): ExcIEEEAC4A =
+    def parse (context: CIMContext): ExcIEEEAC4A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC4A (
             ExcitationSystemDynamics.parse (context),
@@ -5374,7 +5374,7 @@ extends
 
 object ExcIEEEAC5A
 extends
-    Parseable[ExcIEEEAC5A]
+    CIMParseable[ExcIEEEAC5A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -5407,9 +5407,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(12)))
     val vrmin: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): ExcIEEEAC5A =
+    def parse (context: CIMContext): ExcIEEEAC5A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC5A (
             ExcitationSystemDynamics.parse (context),
@@ -5582,7 +5582,7 @@ extends
 
 object ExcIEEEAC6A
 extends
-    Parseable[ExcIEEEAC6A]
+    CIMParseable[ExcIEEEAC6A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -5631,9 +5631,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(20)))
     val vrmin: Fielder = parse_element (element (cls, fields(21)))
 
-    def parse (context: Context): ExcIEEEAC6A =
+    def parse (context: CIMContext): ExcIEEEAC6A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC6A (
             ExcitationSystemDynamics.parse (context),
@@ -5830,7 +5830,7 @@ extends
 
 object ExcIEEEAC7B
 extends
-    Parseable[ExcIEEEAC7B]
+    CIMParseable[ExcIEEEAC7B]
 {
     override val fields: Array[String] = Array[String] (
         "kc",
@@ -5887,9 +5887,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(24)))
     val vrmin: Fielder = parse_element (element (cls, fields(25)))
 
-    def parse (context: Context): ExcIEEEAC7B =
+    def parse (context: CIMContext): ExcIEEEAC7B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC7B (
             ExcitationSystemDynamics.parse (context),
@@ -6058,7 +6058,7 @@ extends
 
 object ExcIEEEAC8B
 extends
-    Parseable[ExcIEEEAC8B]
+    CIMParseable[ExcIEEEAC8B]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -6099,9 +6099,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(16)))
     val vrmin: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcIEEEAC8B =
+    def parse (context: CIMContext): ExcIEEEAC8B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEAC8B (
             ExcitationSystemDynamics.parse (context),
@@ -6259,7 +6259,7 @@ extends
 
 object ExcIEEEDC1A
 extends
-    Parseable[ExcIEEEDC1A]
+    CIMParseable[ExcIEEEDC1A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -6296,9 +6296,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(14)))
     val vrmin: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): ExcIEEEDC1A =
+    def parse (context: CIMContext): ExcIEEEDC1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEDC1A (
             ExcitationSystemDynamics.parse (context),
@@ -6452,7 +6452,7 @@ extends
 
 object ExcIEEEDC2A
 extends
-    Parseable[ExcIEEEDC2A]
+    CIMParseable[ExcIEEEDC2A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -6489,9 +6489,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(14)))
     val vrmin: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): ExcIEEEDC2A =
+    def parse (context: CIMContext): ExcIEEEDC2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEDC2A (
             ExcitationSystemDynamics.parse (context),
@@ -6625,7 +6625,7 @@ extends
 
 object ExcIEEEDC3A
 extends
-    Parseable[ExcIEEEDC3A]
+    CIMParseable[ExcIEEEDC3A]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -6652,9 +6652,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(9)))
     val vrmin: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): ExcIEEEDC3A =
+    def parse (context: CIMContext): ExcIEEEDC3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEDC3A (
             ExcitationSystemDynamics.parse (context),
@@ -6816,7 +6816,7 @@ extends
 
 object ExcIEEEDC4B
 extends
-    Parseable[ExcIEEEDC4B]
+    CIMParseable[ExcIEEEDC4B]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -6859,9 +6859,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(17)))
     val vrmin: Fielder = parse_element (element (cls, fields(18)))
 
-    def parse (context: Context): ExcIEEEDC4B =
+    def parse (context: CIMContext): ExcIEEEDC4B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEDC4B (
             ExcitationSystemDynamics.parse (context),
@@ -7030,7 +7030,7 @@ extends
 
 object ExcIEEEST1A
 extends
-    Parseable[ExcIEEEST1A]
+    CIMParseable[ExcIEEEST1A]
 {
     override val fields: Array[String] = Array[String] (
         "ilr",
@@ -7073,9 +7073,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(17)))
     val vrmin: Fielder = parse_element (element (cls, fields(18)))
 
-    def parse (context: Context): ExcIEEEST1A =
+    def parse (context: CIMContext): ExcIEEEST1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST1A (
             ExcitationSystemDynamics.parse (context),
@@ -7219,7 +7219,7 @@ extends
 
 object ExcIEEEST2A
 extends
-    Parseable[ExcIEEEST2A]
+    CIMParseable[ExcIEEEST2A]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -7250,9 +7250,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(11)))
     val vrmin: Fielder = parse_element (element (cls, fields(12)))
 
-    def parse (context: Context): ExcIEEEST2A =
+    def parse (context: CIMContext): ExcIEEEST2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST2A (
             ExcitationSystemDynamics.parse (context),
@@ -7416,7 +7416,7 @@ extends
 
 object ExcIEEEST3A
 extends
-    Parseable[ExcIEEEST3A]
+    CIMParseable[ExcIEEEST3A]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
@@ -7461,9 +7461,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(18)))
     val xl: Fielder = parse_element (element (cls, fields(19)))
 
-    def parse (context: Context): ExcIEEEST3A =
+    def parse (context: CIMContext): ExcIEEEST3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST3A (
             ExcitationSystemDynamics.parse (context),
@@ -7618,7 +7618,7 @@ extends
 
 object ExcIEEEST4B
 extends
-    Parseable[ExcIEEEST4B]
+    CIMParseable[ExcIEEEST4B]
 {
     override val fields: Array[String] = Array[String] (
         "kc",
@@ -7655,9 +7655,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(14)))
     val xl: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): ExcIEEEST4B =
+    def parse (context: CIMContext): ExcIEEEST4B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST4B (
             ExcitationSystemDynamics.parse (context),
@@ -7813,7 +7813,7 @@ extends
 
 object ExcIEEEST5B
 extends
-    Parseable[ExcIEEEST5B]
+    CIMParseable[ExcIEEEST5B]
 {
     override val fields: Array[String] = Array[String] (
         "kc",
@@ -7852,9 +7852,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(15)))
     val vrmin: Fielder = parse_element (element (cls, fields(16)))
 
-    def parse (context: Context): ExcIEEEST5B =
+    def parse (context: CIMContext): ExcIEEEST5B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST5B (
             ExcitationSystemDynamics.parse (context),
@@ -7999,7 +7999,7 @@ extends
 
 object ExcIEEEST6B
 extends
-    Parseable[ExcIEEEST6B]
+    CIMParseable[ExcIEEEST6B]
 {
     override val fields: Array[String] = Array[String] (
         "ilr",
@@ -8032,9 +8032,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(12)))
     val vrmin: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): ExcIEEEST6B =
+    def parse (context: CIMContext): ExcIEEEST6B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST6B (
             ExcitationSystemDynamics.parse (context),
@@ -8180,7 +8180,7 @@ extends
 
 object ExcIEEEST7B
 extends
-    Parseable[ExcIEEEST7B]
+    CIMParseable[ExcIEEEST7B]
 {
     override val fields: Array[String] = Array[String] (
         "kh",
@@ -8215,9 +8215,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(13)))
     val vrmin: Fielder = parse_element (element (cls, fields(14)))
 
-    def parse (context: Context): ExcIEEEST7B =
+    def parse (context: CIMContext): ExcIEEEST7B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcIEEEST7B (
             ExcitationSystemDynamics.parse (context),
@@ -8344,7 +8344,7 @@ extends
 
 object ExcNI
 extends
-    Parseable[ExcNI]
+    CIMParseable[ExcNI]
 {
     override val fields: Array[String] = Array[String] (
         "busFedSelector",
@@ -8369,9 +8369,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(8)))
     val vrmin: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): ExcNI =
+    def parse (context: CIMContext): ExcNI =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcNI (
             ExcitationSystemDynamics.parse (context),
@@ -8506,7 +8506,7 @@ extends
 
 object ExcOEX3T
 extends
-    Parseable[ExcOEX3T]
+    CIMParseable[ExcOEX3T]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -8549,9 +8549,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(17)))
     val vrmin: Fielder = parse_element (element (cls, fields(18)))
 
-    def parse (context: Context): ExcOEX3T =
+    def parse (context: CIMContext): ExcOEX3T =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcOEX3T (
             ExcitationSystemDynamics.parse (context),
@@ -8732,7 +8732,7 @@ extends
 
 object ExcPIC
 extends
-    Parseable[ExcPIC]
+    CIMParseable[ExcPIC]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -8783,9 +8783,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(21)))
     val vrmin: Fielder = parse_element (element (cls, fields(22)))
 
-    def parse (context: Context): ExcPIC =
+    def parse (context: CIMContext): ExcPIC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcPIC (
             ExcitationSystemDynamics.parse (context),
@@ -9023,7 +9023,7 @@ extends
 
 object ExcREXS
 extends
-    Parseable[ExcREXS]
+    CIMParseable[ExcREXS]
 {
     override val fields: Array[String] = Array[String] (
         "e1",
@@ -9100,9 +9100,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(34)))
     val xc: Fielder = parse_element (element (cls, fields(35)))
 
-    def parse (context: Context): ExcREXS =
+    def parse (context: CIMContext): ExcREXS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = ExcREXS (
             ExcitationSystemDynamics.parse (context),
@@ -9260,7 +9260,7 @@ extends
 
 object ExcRQB
 extends
-    Parseable[ExcRQB]
+    CIMParseable[ExcRQB]
 {
     override val fields: Array[String] = Array[String] (
         "ki0",
@@ -9291,9 +9291,9 @@ extends
     val ucmax: Fielder = parse_element (element (cls, fields(11)))
     val ucmin: Fielder = parse_element (element (cls, fields(12)))
 
-    def parse (context: Context): ExcRQB =
+    def parse (context: CIMContext): ExcRQB =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcRQB (
             ExcitationSystemDynamics.parse (context),
@@ -9407,7 +9407,7 @@ extends
 
 object ExcSCRX
 extends
-    Parseable[ExcSCRX]
+    CIMParseable[ExcSCRX]
 {
     override val fields: Array[String] = Array[String] (
         "cswitch",
@@ -9428,9 +9428,9 @@ extends
     val tb: Fielder = parse_element (element (cls, fields(6)))
     val te: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): ExcSCRX =
+    def parse (context: CIMContext): ExcSCRX =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcSCRX (
             ExcitationSystemDynamics.parse (context),
@@ -9546,7 +9546,7 @@ extends
 
 object ExcSEXS
 extends
-    Parseable[ExcSEXS]
+    CIMParseable[ExcSEXS]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -9571,9 +9571,9 @@ extends
     val tc: Fielder = parse_element (element (cls, fields(8)))
     val te: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): ExcSEXS =
+    def parse (context: CIMContext): ExcSEXS =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcSEXS (
             ExcitationSystemDynamics.parse (context),
@@ -9781,7 +9781,7 @@ extends
 
 object ExcSK
 extends
-    Parseable[ExcSK]
+    CIMParseable[ExcSK]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -9850,9 +9850,9 @@ extends
     val vtmin: Fielder = parse_element (element (cls, fields(30)))
     val yp: Fielder = parse_element (element (cls, fields(31)))
 
-    def parse (context: Context): ExcSK =
+    def parse (context: CIMContext): ExcSK =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = ExcSK (
             ExcitationSystemDynamics.parse (context),
@@ -10024,7 +10024,7 @@ extends
 
 object ExcST1A
 extends
-    Parseable[ExcST1A]
+    CIMParseable[ExcST1A]
 {
     override val fields: Array[String] = Array[String] (
         "ilr",
@@ -10065,9 +10065,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(16)))
     val xe: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): ExcST1A =
+    def parse (context: CIMContext): ExcST1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST1A (
             ExcitationSystemDynamics.parse (context),
@@ -10215,7 +10215,7 @@ extends
 
 object ExcST2A
 extends
-    Parseable[ExcST2A]
+    CIMParseable[ExcST2A]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -10250,9 +10250,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(13)))
     val vrmin: Fielder = parse_element (element (cls, fields(14)))
 
-    def parse (context: Context): ExcST2A =
+    def parse (context: CIMContext): ExcST2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST2A (
             ExcitationSystemDynamics.parse (context),
@@ -10415,7 +10415,7 @@ extends
 
 object ExcST3A
 extends
-    Parseable[ExcST3A]
+    CIMParseable[ExcST3A]
 {
     override val fields: Array[String] = Array[String] (
         "efdmax",
@@ -10460,9 +10460,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(18)))
     val xl: Fielder = parse_element (element (cls, fields(19)))
 
-    def parse (context: Context): ExcST3A =
+    def parse (context: CIMContext): ExcST3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST3A (
             ExcitationSystemDynamics.parse (context),
@@ -10630,7 +10630,7 @@ extends
 
 object ExcST4B
 extends
-    Parseable[ExcST4B]
+    CIMParseable[ExcST4B]
 {
     override val fields: Array[String] = Array[String] (
         "kc",
@@ -10673,9 +10673,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(17)))
     val xl: Fielder = parse_element (element (cls, fields(18)))
 
-    def parse (context: Context): ExcST4B =
+    def parse (context: CIMContext): ExcST4B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST4B (
             ExcitationSystemDynamics.parse (context),
@@ -10861,7 +10861,7 @@ extends
 
 object ExcST6B
 extends
-    Parseable[ExcST6B]
+    CIMParseable[ExcST6B]
 {
     override val fields: Array[String] = Array[String] (
         "ilr",
@@ -10912,9 +10912,9 @@ extends
     val vrmin: Fielder = parse_element (element (cls, fields(21)))
     val xc: Fielder = parse_element (element (cls, fields(22)))
 
-    def parse (context: Context): ExcST6B =
+    def parse (context: CIMContext): ExcST6B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST6B (
             ExcitationSystemDynamics.parse (context),
@@ -11070,7 +11070,7 @@ extends
 
 object ExcST7B
 extends
-    Parseable[ExcST7B]
+    CIMParseable[ExcST7B]
 {
     override val fields: Array[String] = Array[String] (
         "kh",
@@ -11107,9 +11107,9 @@ extends
     val vrmax: Fielder = parse_element (element (cls, fields(14)))
     val vrmin: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): ExcST7B =
+    def parse (context: CIMContext): ExcST7B =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcST7B (
             ExcitationSystemDynamics.parse (context),
@@ -11217,7 +11217,7 @@ extends
 
 object ExcitationSystemDynamics
 extends
-    Parseable[ExcitationSystemDynamics]
+    CIMParseable[ExcitationSystemDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "DiscontinuousExcitationControlDynamics",
@@ -11229,15 +11229,15 @@ extends
         "UnderexcitationLimiterDynamics",
         "VoltageCompensatorDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "1"),
-        Relationship ("OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", "0..1", "1"),
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "1"),
-        Relationship ("PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", "0..1", "1"),
-        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
-        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "1"),
+        CIMRelationship ("OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", "0..1", "1"),
+        CIMRelationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "1"),
+        CIMRelationship ("PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", "0..1", "1"),
+        CIMRelationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"),
+        CIMRelationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
+        CIMRelationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"),
+        CIMRelationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "1", "1")
     )
     val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -11248,9 +11248,9 @@ extends
     val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
     val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): ExcitationSystemDynamics =
+    def parse (context: CIMContext): ExcitationSystemDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExcitationSystemDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -11270,7 +11270,7 @@ extends
 
 private[ninecode] object _ExcitationSystemDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ExcAC1A.register,

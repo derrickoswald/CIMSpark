@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * An Asset Property that is described through curves rather than as a data point.
@@ -89,22 +89,22 @@ extends
 
 object AssetPropertyCurve
 extends
-    Parseable[AssetPropertyCurve]
+    CIMParseable[AssetPropertyCurve]
 {
     override val fields: Array[String] = Array[String] (
         "Assets",
         "Specification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", "0..*", "0..*"),
-        Relationship ("Specification", "Specification", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Assets", "Asset", "0..*", "0..*"),
+        CIMRelationship ("Specification", "Specification", "0..1", "0..*")
     )
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val Specification: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): AssetPropertyCurve =
+    def parse (context: CIMContext): AssetPropertyCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AssetPropertyCurve (
             Curve.parse (context),
@@ -203,7 +203,7 @@ extends
 
 object BushingInsulationPF
 extends
-    Parseable[BushingInsulationPF]
+    CIMParseable[BushingInsulationPF]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -211,18 +211,18 @@ extends
         "Bushing",
         "TransformerObservation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bushing", "Bushing", "0..1", "0..*"),
-        Relationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bushing", "Bushing", "0..1", "0..*"),
+        CIMRelationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val testKind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Bushing: Fielder = parse_attribute (attribute (cls, fields(2)))
     val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): BushingInsulationPF =
+    def parse (context: CIMContext): BushingInsulationPF =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BushingInsulationPF (
             IdentifiedObject.parse (context),
@@ -326,7 +326,7 @@ extends
 
 object CoolingPowerRating
 extends
-    Parseable[CoolingPowerRating]
+    CIMParseable[CoolingPowerRating]
 {
     override val fields: Array[String] = Array[String] (
         "coolingKind",
@@ -334,17 +334,17 @@ extends
         "stage",
         "Reconditionings"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Reconditionings", "Reconditioning", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Reconditionings", "Reconditioning", "0..*", "0..*")
     )
     val coolingKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val powerRating: Fielder = parse_element (element (cls, fields(1)))
     val stage: Fielder = parse_element (element (cls, fields(2)))
     val Reconditionings: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): CoolingPowerRating =
+    def parse (context: CIMContext): CoolingPowerRating =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CoolingPowerRating (
             IdentifiedObject.parse (context),
@@ -453,7 +453,7 @@ extends
 
 object DimensionsInfo
 extends
-    Parseable[DimensionsInfo]
+    CIMParseable[DimensionsInfo]
 {
     override val fields: Array[String] = Array[String] (
         "orientation",
@@ -463,8 +463,8 @@ extends
         "sizeWidth",
         "Specifications"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Specifications", "Specification", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Specifications", "Specification", "0..*", "0..*")
     )
     val orientation: Fielder = parse_element (element (cls, fields(0)))
     val sizeDepth: Fielder = parse_element (element (cls, fields(1)))
@@ -473,9 +473,9 @@ extends
     val sizeWidth: Fielder = parse_element (element (cls, fields(4)))
     val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
-    def parse (context: Context): DimensionsInfo =
+    def parse (context: CIMContext): DimensionsInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DimensionsInfo (
             IdentifiedObject.parse (context),
@@ -604,7 +604,7 @@ extends
 
 object Pole
 extends
-    Parseable[Pole]
+    CIMParseable[Pole]
 {
     override val fields: Array[String] = Array[String] (
         "baseKind",
@@ -620,8 +620,8 @@ extends
         "treatmentKind",
         "Streetlights"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Streetlights", "Streetlight", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Streetlights", "Streetlight", "0..*", "0..1")
     )
     val baseKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val breastBlock: Fielder = parse_element (element (cls, fields(1)))
@@ -636,9 +636,9 @@ extends
     val treatmentKind: Fielder = parse_attribute (attribute (cls, fields(10)))
     val Streetlights: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
-    def parse (context: Context): Pole =
+    def parse (context: CIMContext): Pole =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Pole (
             Structure.parse (context),
@@ -747,7 +747,7 @@ extends
 
 object Reconditioning
 extends
-    Parseable[Reconditioning]
+    CIMParseable[Reconditioning]
 {
     override val fields: Array[String] = Array[String] (
         "dateTime",
@@ -755,19 +755,19 @@ extends
         "PowerRatings",
         "TransformerObservations"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", "0..1", "0..*"),
-        Relationship ("PowerRatings", "CoolingPowerRating", "0..*", "0..*"),
-        Relationship ("TransformerObservations", "TransformerObservation", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Asset", "Asset", "0..1", "0..*"),
+        CIMRelationship ("PowerRatings", "CoolingPowerRating", "0..*", "0..*"),
+        CIMRelationship ("TransformerObservations", "TransformerObservation", "0..*", "1")
     )
     val dateTime: Fielder = parse_element (element (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
     val PowerRatings: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): Reconditioning =
+    def parse (context: CIMContext): Reconditioning =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Reconditioning (
             IdentifiedObject.parse (context),
@@ -868,7 +868,7 @@ extends
 
 object ReliabilityInfo
 extends
-    Parseable[ReliabilityInfo]
+    CIMParseable[ReliabilityInfo]
 {
     override val fields: Array[String] = Array[String] (
         "mTTR",
@@ -876,18 +876,18 @@ extends
         "Assets",
         "Specification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", "0..*", "0..*"),
-        Relationship ("Specification", "Specification", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Assets", "Asset", "0..*", "0..*"),
+        CIMRelationship ("Specification", "Specification", "0..1", "0..*")
     )
     val mTTR: Fielder = parse_element (element (cls, fields(0)))
     val momFailureRate: Fielder = parse_element (element (cls, fields(1)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Specification: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ReliabilityInfo =
+    def parse (context: CIMContext): ReliabilityInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ReliabilityInfo (
             IdentifiedObject.parse (context),
@@ -999,7 +999,7 @@ extends
 
 object Specification
 extends
-    Parseable[Specification]
+    CIMParseable[Specification]
 {
     override val fields: Array[String] = Array[String] (
         "AssetProperites",
@@ -1010,14 +1010,14 @@ extends
         "Ratings",
         "ReliabilityInfos"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetProperites", "UserAttribute", "0..*", "0..1"),
-        Relationship ("AssetPropertyCurves", "AssetPropertyCurve", "0..*", "0..1"),
-        Relationship ("DimensionsInfos", "DimensionsInfo", "0..*", "0..*"),
-        Relationship ("Mediums", "Medium", "0..*", "0..1"),
-        Relationship ("QualificationRequirements", "QualificationRequirement", "0..*", "0..*"),
-        Relationship ("Ratings", "UserAttribute", "0..*", "0..1"),
-        Relationship ("ReliabilityInfos", "ReliabilityInfo", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetProperites", "UserAttribute", "0..*", "0..1"),
+        CIMRelationship ("AssetPropertyCurves", "AssetPropertyCurve", "0..*", "0..1"),
+        CIMRelationship ("DimensionsInfos", "DimensionsInfo", "0..*", "0..*"),
+        CIMRelationship ("Mediums", "Medium", "0..*", "0..1"),
+        CIMRelationship ("QualificationRequirements", "QualificationRequirement", "0..*", "0..*"),
+        CIMRelationship ("Ratings", "UserAttribute", "0..*", "0..1"),
+        CIMRelationship ("ReliabilityInfos", "ReliabilityInfo", "0..*", "0..1")
     )
     val AssetProperites: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val AssetPropertyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1027,9 +1027,9 @@ extends
     val Ratings: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val ReliabilityInfos: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): Specification =
+    def parse (context: CIMContext): Specification =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Specification (
             Document.parse (context),
@@ -1125,16 +1125,16 @@ extends
 
 object Tower
 extends
-    Parseable[Tower]
+    CIMParseable[Tower]
 {
     override val fields: Array[String] = Array[String] (
         "constructionKind"
     )
     val constructionKind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): Tower =
+    def parse (context: CIMContext): Tower =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Tower (
             Structure.parse (context),
@@ -1282,7 +1282,7 @@ extends
 
 object TransformerObservation
 extends
-    Parseable[TransformerObservation]
+    CIMParseable[TransformerObservation]
 {
     override val fields: Array[String] = Array[String] (
         "bushingTemp",
@@ -1305,12 +1305,12 @@ extends
         "Transformer",
         "WindingInsulationPFs"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BushingInsultationPFs", "BushingInsulationPF", "0..*", "0..1"),
-        Relationship ("ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"),
-        Relationship ("Reconditioning", "Reconditioning", "1", "0..*"),
-        Relationship ("Transformer", "TransformerTank", "0..1", "0..*"),
-        Relationship ("WindingInsulationPFs", "WindingInsulation", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BushingInsultationPFs", "BushingInsulationPF", "0..*", "0..1"),
+        CIMRelationship ("ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"),
+        CIMRelationship ("Reconditioning", "Reconditioning", "1", "0..*"),
+        CIMRelationship ("Transformer", "TransformerTank", "0..1", "0..*"),
+        CIMRelationship ("WindingInsulationPFs", "WindingInsulation", "0..*", "0..1")
     )
     val bushingTemp: Fielder = parse_element (element (cls, fields(0)))
     val dga: Fielder = parse_element (element (cls, fields(1)))
@@ -1332,9 +1332,9 @@ extends
     val Transformer: Fielder = parse_attribute (attribute (cls, fields(17)))
     val WindingInsulationPFs: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
 
-    def parse (context: Context): TransformerObservation =
+    def parse (context: CIMContext): TransformerObservation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerObservation (
             IdentifiedObject.parse (context),
@@ -1449,7 +1449,7 @@ extends
 
 object UndergroundStructure
 extends
-    Parseable[UndergroundStructure]
+    CIMParseable[UndergroundStructure]
 {
     override val fields: Array[String] = Array[String] (
         "hasVentilation",
@@ -1462,9 +1462,9 @@ extends
     val material: Fielder = parse_element (element (cls, fields(2)))
     val sealingWarrantyExpiresDate: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): UndergroundStructure =
+    def parse (context: CIMContext): UndergroundStructure =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UndergroundStructure (
             Structure.parse (context),
@@ -1574,7 +1574,7 @@ extends
 
 object WindingInsulation
 extends
-    Parseable[WindingInsulation]
+    CIMParseable[WindingInsulation]
 {
     override val fields: Array[String] = Array[String] (
         "insulationPFStatus",
@@ -1585,10 +1585,10 @@ extends
         "ToWinding",
         "TransformerObservation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("FromWinding", "TransformerEnd", "1", "0..*"),
-        Relationship ("ToWinding", "TransformerEnd", "1", "0..*"),
-        Relationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("FromWinding", "TransformerEnd", "1", "0..*"),
+        CIMRelationship ("ToWinding", "TransformerEnd", "1", "0..*"),
+        CIMRelationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
     )
     val insulationPFStatus: Fielder = parse_element (element (cls, fields(0)))
     val insulationResistance: Fielder = parse_element (element (cls, fields(1)))
@@ -1598,9 +1598,9 @@ extends
     val ToWinding: Fielder = parse_attribute (attribute (cls, fields(5)))
     val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): WindingInsulation =
+    def parse (context: CIMContext): WindingInsulation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindingInsulation (
             IdentifiedObject.parse (context),
@@ -1619,7 +1619,7 @@ extends
 
 private[ninecode] object _InfAssets
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AssetPropertyCurve.register,

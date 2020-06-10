@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group CSC
@@ -56,10 +56,10 @@ extends
 
 object CCAinverter
 extends
-    Parseable[CCAinverter]
+    CIMParseable[CCAinverter]
 {
 
-    def parse (context: Context): CCAinverter =
+    def parse (context: CIMContext): CCAinverter =
     {
         val ret = CCAinverter (
             BasicElement.parse (context)
@@ -117,10 +117,10 @@ extends
 
 object CCArectifierControl
 extends
-    Parseable[CCArectifierControl]
+    CIMParseable[CCArectifierControl]
 {
 
-    def parse (context: Context): CCArectifierControl =
+    def parse (context: CIMContext): CCArectifierControl =
     {
         val ret = CCArectifierControl (
             BasicElement.parse (context)
@@ -178,10 +178,10 @@ extends
 
 object CSCtype1
 extends
-    Parseable[CSCtype1]
+    CIMParseable[CSCtype1]
 {
 
-    def parse (context: Context): CSCtype1 =
+    def parse (context: CIMContext): CSCtype1 =
     {
         val ret = CSCtype1 (
             CSCDynamics.parse (context)
@@ -239,10 +239,10 @@ extends
 
 object IdcInverterControl
 extends
-    Parseable[IdcInverterControl]
+    CIMParseable[IdcInverterControl]
 {
 
-    def parse (context: Context): IdcInverterControl =
+    def parse (context: CIMContext): IdcInverterControl =
     {
         val ret = IdcInverterControl (
             BasicElement.parse (context)
@@ -300,10 +300,10 @@ extends
 
 object IgnAngleContInverter
 extends
-    Parseable[IgnAngleContInverter]
+    CIMParseable[IgnAngleContInverter]
 {
 
-    def parse (context: Context): IgnAngleContInverter =
+    def parse (context: CIMContext): IgnAngleContInverter =
     {
         val ret = IgnAngleContInverter (
             BasicElement.parse (context)
@@ -361,10 +361,10 @@ extends
 
 object VDCOL
 extends
-    Parseable[VDCOL]
+    CIMParseable[VDCOL]
 {
 
-    def parse (context: Context): VDCOL =
+    def parse (context: CIMContext): VDCOL =
     {
         val ret = VDCOL (
             BasicElement.parse (context)
@@ -375,7 +375,7 @@ extends
 
 private[ninecode] object _CSC
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CCAinverter.register,

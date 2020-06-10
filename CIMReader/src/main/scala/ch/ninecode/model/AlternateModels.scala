@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group AlternateModels
@@ -63,22 +63,22 @@ extends
 
 object AlternateModel
 extends
-    Parseable[AlternateModel]
+    CIMParseable[AlternateModel]
 {
     override val fields: Array[String] = Array[String] (
         "AlternateModelGroup",
         "Dataset"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AlternateModelGroup", "AlternateModelGroup", "1", "0..*"),
-        Relationship ("Dataset", "DataSet", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AlternateModelGroup", "AlternateModelGroup", "1", "0..*"),
+        CIMRelationship ("Dataset", "DataSet", "1", "0..1")
     )
     val AlternateModelGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Dataset: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): AlternateModel =
+    def parse (context: CIMContext): AlternateModel =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AlternateModel (
             IdentifiedObject.parse (context),
@@ -144,19 +144,19 @@ extends
 
 object AlternateModelGroup
 extends
-    Parseable[AlternateModelGroup]
+    CIMParseable[AlternateModelGroup]
 {
     override val fields: Array[String] = Array[String] (
         "AlternateModel"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AlternateModel", "AlternateModel", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AlternateModel", "AlternateModel", "0..*", "1")
     )
     val AlternateModel: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): AlternateModelGroup =
+    def parse (context: CIMContext): AlternateModelGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AlternateModelGroup (
             IdentifiedObject.parse (context),
@@ -169,7 +169,7 @@ extends
 
 private[ninecode] object _AlternateModels
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AlternateModel.register,

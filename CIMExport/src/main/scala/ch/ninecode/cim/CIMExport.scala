@@ -435,7 +435,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * @param element the element to check
      * @return the dependents as pairs of mRID ("if you include me, include him")
      */
-    def dependents (relations: Map[String, List[Relationship]], stop: Set[String]) (element: Element): List[(mRID, mRID)] =
+    def dependents (relations: Map[String, List[CIMRelationship]], stop: Set[String]) (element: Element): List[(mRID, mRID)] =
     {
         var e = element
         var list = List[(mRID, mRID)] ()

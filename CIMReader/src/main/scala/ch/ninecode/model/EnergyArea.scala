@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group EnergyArea
@@ -56,10 +56,10 @@ extends
 
 object BlockDispatchComponent
 extends
-    Parseable[BlockDispatchComponent]
+    CIMParseable[BlockDispatchComponent]
 {
 
-    def parse (context: Context): BlockDispatchComponent =
+    def parse (context: CIMContext): BlockDispatchComponent =
     {
         val ret = BlockDispatchComponent (
             EnergyComponent.parse (context)
@@ -117,10 +117,10 @@ extends
 
 object BlockDispatchInstruction
 extends
-    Parseable[BlockDispatchInstruction]
+    CIMParseable[BlockDispatchInstruction]
 {
 
-    def parse (context: Context): BlockDispatchInstruction =
+    def parse (context: CIMContext): BlockDispatchInstruction =
     {
         val ret = BlockDispatchInstruction (
             IdentifiedObject.parse (context)
@@ -185,7 +185,7 @@ extends
 
 object BlockDispatchOrder
 extends
-    Parseable[BlockDispatchOrder]
+    CIMParseable[BlockDispatchOrder]
 {
     override val fields: Array[String] = Array[String] (
         "p",
@@ -194,9 +194,9 @@ extends
     val p: Fielder = parse_element (element (cls, fields(0)))
     val sequence: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): BlockDispatchOrder =
+    def parse (context: CIMContext): BlockDispatchOrder =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BlockDispatchOrder (
             IdentifiedObject.parse (context),
@@ -257,10 +257,10 @@ extends
 
 object EnergyComponent
 extends
-    Parseable[EnergyComponent]
+    CIMParseable[EnergyComponent]
 {
 
-    def parse (context: Context): EnergyComponent =
+    def parse (context: CIMContext): EnergyComponent =
     {
         val ret = EnergyComponent (
             IdentifiedObject.parse (context)
@@ -325,7 +325,7 @@ extends
 
 object EnergyGroup
 extends
-    Parseable[EnergyGroup]
+    CIMParseable[EnergyGroup]
 {
     override val fields: Array[String] = Array[String] (
         "isSlack",
@@ -334,9 +334,9 @@ extends
     val isSlack: Fielder = parse_element (element (cls, fields(0)))
     val p: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): EnergyGroup =
+    def parse (context: CIMContext): EnergyGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyGroup (
             PowerSystemResource.parse (context),
@@ -402,16 +402,16 @@ extends
 
 object EnergyTypeReference
 extends
-    Parseable[EnergyTypeReference]
+    CIMParseable[EnergyTypeReference]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): EnergyTypeReference =
+    def parse (context: CIMContext): EnergyTypeReference =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyTypeReference (
             IdentifiedObject.parse (context),
@@ -476,16 +476,16 @@ extends
 
 object ProportionalDistributionComponent
 extends
-    Parseable[ProportionalDistributionComponent]
+    CIMParseable[ProportionalDistributionComponent]
 {
     override val fields: Array[String] = Array[String] (
         "distributionFactor"
     )
     val distributionFactor: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): ProportionalDistributionComponent =
+    def parse (context: CIMContext): ProportionalDistributionComponent =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProportionalDistributionComponent (
             EnergyComponent.parse (context),
@@ -498,7 +498,7 @@ extends
 
 private[ninecode] object _EnergyArea
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BlockDispatchComponent.register,

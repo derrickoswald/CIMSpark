@@ -5,11 +5,11 @@ import java.util.regex.Pattern
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Parser
-import ch.ninecode.cim.Parser.namespace
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMParser
+import ch.ninecode.cim.CIMParser.namespace
+import ch.ninecode.cim.CIMRelationship
 // NOTE: ElementUDT is actually in this artifact
 import org.apache.spark.sql.types.ElementUDT
 
@@ -273,7 +273,7 @@ extends
 }
 
 object BasicElement
-    extends Parser
+    extends CIMParser
 {
     // ToDo: this could probably be handled by an OR case in one regular expression:
 
@@ -290,9 +290,9 @@ object BasicElement
 
     override val fields: Array[String] = Array[String] ("mRID")
 
-    override def parse (context: Context): BasicElement =
+    override def parse (context: CIMContext): BasicElement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         val id = ID.apply ().orNull
         val ab = about.apply ()
         val mRID = ab match
@@ -349,7 +349,7 @@ extends
 
 object Unknown
 extends
-    Parseable[Unknown]
+    CIMParseable[Unknown]
 {
     /**
      * The current element name.
@@ -357,9 +357,9 @@ extends
      */
     var name: String = ""
 
-    def parse (context: Context): Unknown =
+    def parse (context: CIMContext): Unknown =
     {
-        if (Context.DEBUG && (context.errors.size < Context.MAXERRORS))
+        if (CIMContext.DEBUG && (context.errors.size < CIMContext.MAXERRORS))
         {
             val _ = context.errors += s"""Unknown element "$name" at line ${context.line_number()}"""
         }
@@ -370,5 +370,5 @@ extends
             context.start,
             context.end)
     }
-    override val relations: List[Relationship] = List ()
+    override val relations: List[CIMRelationship] = List ()
 }

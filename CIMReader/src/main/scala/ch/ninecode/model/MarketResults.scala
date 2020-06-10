@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Model of results of market clearing with respect to  Ancillary Service products.
@@ -70,22 +70,22 @@ extends
 
 object AncillaryServiceClearing
 extends
-    Parseable[AncillaryServiceClearing]
+    CIMParseable[AncillaryServiceClearing]
 {
     override val fields: Array[String] = Array[String] (
         "MarketCaseClearing",
         "MarketRegionResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MarketCaseClearing", "MarketCaseClearing", "0..1", "0..*"),
-        Relationship ("MarketRegionResults", "MarketRegionResults", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MarketCaseClearing", "MarketCaseClearing", "0..1", "0..*"),
+        CIMRelationship ("MarketRegionResults", "MarketRegionResults", "1..*", "0..1")
     )
     val MarketCaseClearing: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MarketRegionResults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): AncillaryServiceClearing =
+    def parse (context: CIMContext): AncillaryServiceClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AncillaryServiceClearing (
             MarketFactors.parse (context),
@@ -218,7 +218,7 @@ extends
 
 object BillDeterminant
 extends
-    Parseable[BillDeterminant]
+    CIMParseable[BillDeterminant]
 {
     override val fields: Array[String] = Array[String] (
         "calculationLevel",
@@ -243,11 +243,11 @@ extends
         "ChargeProfileData",
         "MktUserAttribute"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ChargeComponents", "ChargeComponent", "0..*", "0..*"),
-        Relationship ("ChargeProfile", "ChargeProfile", "0..1", "0..1"),
-        Relationship ("ChargeProfileData", "ChargeProfileData", "0..*", "0..1"),
-        Relationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ChargeComponents", "ChargeComponent", "0..*", "0..*"),
+        CIMRelationship ("ChargeProfile", "ChargeProfile", "0..1", "0..1"),
+        CIMRelationship ("ChargeProfileData", "ChargeProfileData", "0..*", "0..1"),
+        CIMRelationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
     )
     val calculationLevel: Fielder = parse_element (element (cls, fields(0)))
     val configVersion: Fielder = parse_element (element (cls, fields(1)))
@@ -271,9 +271,9 @@ extends
     val ChargeProfileData: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
     val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
 
-    def parse (context: Context): BillDeterminant =
+    def parse (context: CIMContext): BillDeterminant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BillDeterminant (
             Document.parse (context),
@@ -387,7 +387,7 @@ extends
 
 object ChargeProfile
 extends
-    Parseable[ChargeProfile]
+    CIMParseable[ChargeProfile]
 {
     override val fields: Array[String] = Array[String] (
         "frequency",
@@ -399,11 +399,11 @@ extends
         "ChargeProfileData",
         "PassTroughBill"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", "0..1", "0..*"),
-        Relationship ("BillDeterminant", "BillDeterminant", "0..1", "0..1"),
-        Relationship ("ChargeProfileData", "ChargeProfileData", "0..*", "0..1"),
-        Relationship ("PassTroughBill", "PassThroughBill", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bid", "Bid", "0..1", "0..*"),
+        CIMRelationship ("BillDeterminant", "BillDeterminant", "0..1", "0..1"),
+        CIMRelationship ("ChargeProfileData", "ChargeProfileData", "0..*", "0..1"),
+        CIMRelationship ("PassTroughBill", "PassThroughBill", "0..1", "0..*")
     )
     val frequency: Fielder = parse_element (element (cls, fields(0)))
     val numberInterval: Fielder = parse_element (element (cls, fields(1)))
@@ -414,9 +414,9 @@ extends
     val ChargeProfileData: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val PassTroughBill: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): ChargeProfile =
+    def parse (context: CIMContext): ChargeProfile =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ChargeProfile (
             Profile.parse (context),
@@ -506,7 +506,7 @@ extends
 
 object ChargeProfileData
 extends
-    Parseable[ChargeProfileData]
+    CIMParseable[ChargeProfileData]
 {
     override val fields: Array[String] = Array[String] (
         "sequence",
@@ -515,9 +515,9 @@ extends
         "BillDeterminant",
         "ChargeProfile"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BillDeterminant", "BillDeterminant", "0..1", "0..*"),
-        Relationship ("ChargeProfile", "ChargeProfile", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BillDeterminant", "BillDeterminant", "0..1", "0..*"),
+        CIMRelationship ("ChargeProfile", "ChargeProfile", "0..1", "0..*")
     )
     val sequence: Fielder = parse_element (element (cls, fields(0)))
     val timeStamp: Fielder = parse_element (element (cls, fields(1)))
@@ -525,9 +525,9 @@ extends
     val BillDeterminant: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ChargeProfile: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ChargeProfileData =
+    def parse (context: CIMContext): ChargeProfileData =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ChargeProfileData (
             BasicElement.parse (context),
@@ -601,19 +601,19 @@ extends
 
 object CommitmentClearing
 extends
-    Parseable[CommitmentClearing]
+    CIMParseable[CommitmentClearing]
 {
     override val fields: Array[String] = Array[String] (
         "Commitments"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Commitments", "Commitments", "1..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Commitments", "Commitments", "1..*", "1..*")
     )
     val Commitments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): CommitmentClearing =
+    def parse (context: CIMContext): CommitmentClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CommitmentClearing (
             MarketFactors.parse (context),
@@ -727,7 +727,7 @@ extends
 
 object Commitments
 extends
-    Parseable[Commitments]
+    CIMParseable[Commitments]
 {
     override val fields: Array[String] = Array[String] (
         "commitmentType",
@@ -743,9 +743,9 @@ extends
         "CommitmentClearing",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommitmentClearing", "CommitmentClearing", "1..*", "1..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommitmentClearing", "CommitmentClearing", "1..*", "1..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
     val commitmentType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val instructionCost: Fielder = parse_element (element (cls, fields(1)))
@@ -760,9 +760,9 @@ extends
     val CommitmentClearing: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(11)))
 
-    def parse (context: Context): Commitments =
+    def parse (context: CIMContext): Commitments =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Commitments (
             BasicElement.parse (context),
@@ -858,7 +858,7 @@ extends
 
 object CommodityPrice
 extends
-    Parseable[CommodityPrice]
+    CIMParseable[CommodityPrice]
 {
     override val fields: Array[String] = Array[String] (
         "timeIntervalPeriod",
@@ -867,10 +867,10 @@ extends
         "PnodeClearing",
         "PriceDescriptor"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommodityDefinition", "CommodityDefinition", "1", "1..*"),
-        Relationship ("PnodeClearing", "PnodeClearing", "0..1", "0..*"),
-        Relationship ("PriceDescriptor", "PriceDescriptor", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommodityDefinition", "CommodityDefinition", "1", "1..*"),
+        CIMRelationship ("PnodeClearing", "PnodeClearing", "0..1", "0..*"),
+        CIMRelationship ("PriceDescriptor", "PriceDescriptor", "1", "1..*")
     )
     val timeIntervalPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
     val value: Fielder = parse_element (element (cls, fields(1)))
@@ -878,9 +878,9 @@ extends
     val PnodeClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
     val PriceDescriptor: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): CommodityPrice =
+    def parse (context: CIMContext): CommodityPrice =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CommodityPrice (
             BasicElement.parse (context),
@@ -954,19 +954,19 @@ extends
 
 object ConstraintClearing
 extends
-    Parseable[ConstraintClearing]
+    CIMParseable[ConstraintClearing]
 {
     override val fields: Array[String] = Array[String] (
         "ConstraintResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConstraintResults", "ConstraintResults", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConstraintResults", "ConstraintResults", "0..*", "0..1")
     )
     val ConstraintResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ConstraintClearing =
+    def parse (context: CIMContext): ConstraintClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConstraintClearing (
             MarketFactors.parse (context),
@@ -1093,7 +1093,7 @@ extends
 
 object ConstraintResults
 extends
-    Parseable[ConstraintResults]
+    CIMParseable[ConstraintResults]
 {
     override val fields: Array[String] = Array[String] (
         "baseFlow",
@@ -1115,10 +1115,10 @@ extends
         "Flowgate",
         "MktContingency"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConstraintClearing", "ConstraintClearing", "0..1", "0..*"),
-        Relationship ("Flowgate", "Flowgate", "1", "1..*"),
-        Relationship ("MktContingency", "MktContingency", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConstraintClearing", "ConstraintClearing", "0..1", "0..*"),
+        CIMRelationship ("Flowgate", "Flowgate", "1", "1..*"),
+        CIMRelationship ("MktContingency", "MktContingency", "1", "0..*")
     )
     val baseFlow: Fielder = parse_element (element (cls, fields(0)))
     val bindingLimit: Fielder = parse_element (element (cls, fields(1)))
@@ -1139,9 +1139,9 @@ extends
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(16)))
     val MktContingency: Fielder = parse_attribute (attribute (cls, fields(17)))
 
-    def parse (context: Context): ConstraintResults =
+    def parse (context: CIMContext): ConstraintResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConstraintResults (
             IdentifiedObject.parse (context),
@@ -1260,7 +1260,7 @@ extends
 
 object DopInstruction
 extends
-    Parseable[DopInstruction]
+    CIMParseable[DopInstruction]
 {
     override val fields: Array[String] = Array[String] (
         "mwDOP",
@@ -1273,9 +1273,9 @@ extends
         "InstructionClearingDOP",
         "RegisteredResouce"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("InstructionClearingDOP", "InstructionClearingDOP", "1..*", "1..*"),
-        Relationship ("RegisteredResouce", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("InstructionClearingDOP", "InstructionClearingDOP", "1..*", "1..*"),
+        CIMRelationship ("RegisteredResouce", "RegisteredResource", "0..1", "0..*")
     )
     val mwDOP: Fielder = parse_element (element (cls, fields(0)))
     val plotPriority: Fielder = parse_element (element (cls, fields(1)))
@@ -1287,9 +1287,9 @@ extends
     val InstructionClearingDOP: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val RegisteredResouce: Fielder = parse_attribute (attribute (cls, fields(8)))
 
-    def parse (context: Context): DopInstruction =
+    def parse (context: CIMContext): DopInstruction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DopInstruction (
             BasicElement.parse (context),
@@ -1440,7 +1440,7 @@ extends
 
 object DotInstruction
 extends
-    Parseable[DotInstruction]
+    CIMParseable[DotInstruction]
 {
     override val fields: Array[String] = Array[String] (
         "actualRampRate",
@@ -1466,9 +1466,9 @@ extends
         "InstructionClearingDOT",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("InstructionClearingDOT", "InstructionClearingDOT", "1..*", "1..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("InstructionClearingDOT", "InstructionClearingDOT", "1..*", "1..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val actualRampRate: Fielder = parse_element (element (cls, fields(0)))
     val compliantIndicator: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1493,9 +1493,9 @@ extends
     val InstructionClearingDOT: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(21)))
 
-    def parse (context: Context): DotInstruction =
+    def parse (context: CIMContext): DotInstruction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DotInstruction (
             BasicElement.parse (context),
@@ -1586,19 +1586,19 @@ extends
 
 object ExPostLoss
 extends
-    Parseable[ExPostLoss]
+    CIMParseable[ExPostLoss]
 {
     override val fields: Array[String] = Array[String] (
         "ExPostLossResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostLossResults", "ExPostLossResults", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostLossResults", "ExPostLossResults", "0..*", "1")
     )
     val ExPostLossResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ExPostLoss =
+    def parse (context: CIMContext): ExPostLoss =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostLoss (
             MarketFactors.parse (context),
@@ -1682,7 +1682,7 @@ extends
 
 object ExPostLossResults
 extends
-    Parseable[ExPostLossResults]
+    CIMParseable[ExPostLossResults]
 {
     override val fields: Array[String] = Array[String] (
         "ehvLossMW",
@@ -1690,18 +1690,18 @@ extends
         "ExPostLoss",
         "SubControlArea"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostLoss", "ExPostLoss", "1", "0..*"),
-        Relationship ("SubControlArea", "SubControlArea", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostLoss", "ExPostLoss", "1", "0..*"),
+        CIMRelationship ("SubControlArea", "SubControlArea", "0..1", "0..*")
     )
     val ehvLossMW: Fielder = parse_element (element (cls, fields(0)))
     val totalLossMW: Fielder = parse_element (element (cls, fields(1)))
     val ExPostLoss: Fielder = parse_attribute (attribute (cls, fields(2)))
     val SubControlArea: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ExPostLossResults =
+    def parse (context: CIMContext): ExPostLossResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostLossResults (
             BasicElement.parse (context),
@@ -1774,19 +1774,19 @@ extends
 
 object ExPostMarketRegion
 extends
-    Parseable[ExPostMarketRegion]
+    CIMParseable[ExPostMarketRegion]
 {
     override val fields: Array[String] = Array[String] (
         "ExPostMarketRegionResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostMarketRegionResults", "ExPostMarketRegionResults", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostMarketRegionResults", "ExPostMarketRegionResults", "0..1", "1")
     )
     val ExPostMarketRegionResults: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ExPostMarketRegion =
+    def parse (context: CIMContext): ExPostMarketRegion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostMarketRegion (
             MarketFactors.parse (context),
@@ -1865,24 +1865,24 @@ extends
 
 object ExPostMarketRegionResults
 extends
-    Parseable[ExPostMarketRegionResults]
+    CIMParseable[ExPostMarketRegionResults]
 {
     override val fields: Array[String] = Array[String] (
         "exPostClearedPrice",
         "ExPostMarketRegion",
         "MarketRegion"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostMarketRegion", "ExPostMarketRegion", "1", "0..1"),
-        Relationship ("MarketRegion", "MarketRegion", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostMarketRegion", "ExPostMarketRegion", "1", "0..1"),
+        CIMRelationship ("MarketRegion", "MarketRegion", "1", "0..*")
     )
     val exPostClearedPrice: Fielder = parse_element (element (cls, fields(0)))
     val ExPostMarketRegion: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MarketRegion: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ExPostMarketRegionResults =
+    def parse (context: CIMContext): ExPostMarketRegionResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostMarketRegionResults (
             BasicElement.parse (context),
@@ -1958,21 +1958,21 @@ extends
 
 object ExPostPricing
 extends
-    Parseable[ExPostPricing]
+    CIMParseable[ExPostPricing]
 {
     override val fields: Array[String] = Array[String] (
         "energyPrice",
         "ExPostResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostResults", "ExPostPricingResults", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostResults", "ExPostPricingResults", "0..*", "1")
     )
     val energyPrice: Fielder = parse_element (element (cls, fields(0)))
     val ExPostResults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ExPostPricing =
+    def parse (context: CIMContext): ExPostPricing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostPricing (
             MarketFactors.parse (context),
@@ -2061,7 +2061,7 @@ extends
 
 object ExPostPricingResults
 extends
-    Parseable[ExPostPricingResults]
+    CIMParseable[ExPostPricingResults]
 {
     override val fields: Array[String] = Array[String] (
         "congestLMP",
@@ -2070,9 +2070,9 @@ extends
         "ExPostPricing",
         "Pnode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostPricing", "ExPostPricing", "1", "0..*"),
-        Relationship ("Pnode", "Pnode", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostPricing", "ExPostPricing", "1", "0..*"),
+        CIMRelationship ("Pnode", "Pnode", "1", "0..*")
     )
     val congestLMP: Fielder = parse_element (element (cls, fields(0)))
     val lmp: Fielder = parse_element (element (cls, fields(1)))
@@ -2080,9 +2080,9 @@ extends
     val ExPostPricing: Fielder = parse_attribute (attribute (cls, fields(3)))
     val Pnode: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ExPostPricingResults =
+    def parse (context: CIMContext): ExPostPricingResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostPricingResults (
             BasicElement.parse (context),
@@ -2156,19 +2156,19 @@ extends
 
 object ExPostResource
 extends
-    Parseable[ExPostResource]
+    CIMParseable[ExPostResource]
 {
     override val fields: Array[String] = Array[String] (
         "ExPostResourceResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostResourceResults", "ExPostResourceResults", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostResourceResults", "ExPostResourceResults", "0..*", "1")
     )
     val ExPostResourceResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ExPostResource =
+    def parse (context: CIMContext): ExPostResource =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostResource (
             MarketFactors.parse (context),
@@ -2272,7 +2272,7 @@ extends
 
 object ExPostResourceResults
 extends
-    Parseable[ExPostResourceResults]
+    CIMParseable[ExPostResourceResults]
 {
     override val fields: Array[String] = Array[String] (
         "congestionLMP",
@@ -2287,9 +2287,9 @@ extends
         "ExPostResource",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExPostResource", "ExPostResource", "1", "0..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExPostResource", "ExPostResource", "1", "0..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val congestionLMP: Fielder = parse_element (element (cls, fields(0)))
     val desiredMW: Fielder = parse_element (element (cls, fields(1)))
@@ -2303,9 +2303,9 @@ extends
     val ExPostResource: Fielder = parse_attribute (attribute (cls, fields(9)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): ExPostResourceResults =
+    def parse (context: CIMContext): ExPostResourceResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ExPostResourceResults (
             BasicElement.parse (context),
@@ -2387,19 +2387,19 @@ extends
 
 object GeneralClearing
 extends
-    Parseable[GeneralClearing]
+    CIMParseable[GeneralClearing]
 {
     override val fields: Array[String] = Array[String] (
         "GeneralClearingResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneralClearingResults", "GeneralClearingResults", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneralClearingResults", "GeneralClearingResults", "0..*", "0..1")
     )
     val GeneralClearingResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): GeneralClearing =
+    def parse (context: CIMContext): GeneralClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GeneralClearing (
             MarketFactors.parse (context),
@@ -2484,7 +2484,7 @@ extends
 
 object GeneralClearingResults
 extends
-    Parseable[GeneralClearingResults]
+    CIMParseable[GeneralClearingResults]
 {
     override val fields: Array[String] = Array[String] (
         "loadForecast",
@@ -2493,9 +2493,9 @@ extends
         "GeneralClearing",
         "SubControlArea"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneralClearing", "GeneralClearing", "0..1", "0..*"),
-        Relationship ("SubControlArea", "SubControlArea", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneralClearing", "GeneralClearing", "0..1", "0..*"),
+        CIMRelationship ("SubControlArea", "SubControlArea", "0..1", "0..*")
     )
     val loadForecast: Fielder = parse_element (element (cls, fields(0)))
     val totalLoad: Fielder = parse_element (element (cls, fields(1)))
@@ -2503,9 +2503,9 @@ extends
     val GeneralClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
     val SubControlArea: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): GeneralClearingResults =
+    def parse (context: CIMContext): GeneralClearingResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GeneralClearingResults (
             BasicElement.parse (context),
@@ -2589,25 +2589,25 @@ extends
 
 object InstructionClearing
 extends
-    Parseable[InstructionClearing]
+    CIMParseable[InstructionClearing]
 {
     override val fields: Array[String] = Array[String] (
         "ActualDemandResponseEvent",
         "Instructions",
         "ResourceDeploymentStatus"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ActualDemandResponseEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
-        Relationship ("Instructions", "Instructions", "1..*", "1..*"),
-        Relationship ("ResourceDeploymentStatus", "ResourceDeploymentStatus", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ActualDemandResponseEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
+        CIMRelationship ("Instructions", "Instructions", "1..*", "1..*"),
+        CIMRelationship ("ResourceDeploymentStatus", "ResourceDeploymentStatus", "0..*", "0..1")
     )
     val ActualDemandResponseEvent: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Instructions: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ResourceDeploymentStatus: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): InstructionClearing =
+    def parse (context: CIMContext): InstructionClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InstructionClearing (
             MarketFactors.parse (context),
@@ -2681,19 +2681,19 @@ extends
 
 object InstructionClearingDOP
 extends
-    Parseable[InstructionClearingDOP]
+    CIMParseable[InstructionClearingDOP]
 {
     override val fields: Array[String] = Array[String] (
         "DopInstruction"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DopInstruction", "DopInstruction", "1..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DopInstruction", "DopInstruction", "1..*", "1..*")
     )
     val DopInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): InstructionClearingDOP =
+    def parse (context: CIMContext): InstructionClearingDOP =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InstructionClearingDOP (
             MarketFactors.parse (context),
@@ -2775,7 +2775,7 @@ extends
 
 object InstructionClearingDOT
 extends
-    Parseable[InstructionClearingDOT]
+    CIMParseable[InstructionClearingDOT]
 {
     override val fields: Array[String] = Array[String] (
         "contingencyActive",
@@ -2783,18 +2783,18 @@ extends
         "DemandResponseActualEvent",
         "DotInstruction"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
-        Relationship ("DotInstruction", "DotInstruction", "1..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
+        CIMRelationship ("DotInstruction", "DotInstruction", "1..*", "1..*")
     )
     val contingencyActive: Fielder = parse_attribute (attribute (cls, fields(0)))
     val dispatchMode: Fielder = parse_attribute (attribute (cls, fields(1)))
     val DemandResponseActualEvent: Fielder = parse_attribute (attribute (cls, fields(2)))
     val DotInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): InstructionClearingDOT =
+    def parse (context: CIMContext): InstructionClearingDOT =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InstructionClearingDOT (
             MarketFactors.parse (context),
@@ -2921,7 +2921,7 @@ extends
 
 object Instructions
 extends
-    Parseable[Instructions]
+    CIMParseable[Instructions]
 {
     override val fields: Array[String] = Array[String] (
         "bindingDOD",
@@ -2940,10 +2940,10 @@ extends
         "InstructionClearing",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
-        Relationship ("InstructionClearing", "InstructionClearing", "1..*", "1..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
+        CIMRelationship ("InstructionClearing", "InstructionClearing", "1..*", "1..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
     val bindingDOD: Fielder = parse_element (element (cls, fields(0)))
     val bindingDOT: Fielder = parse_element (element (cls, fields(1)))
@@ -2961,9 +2961,9 @@ extends
     val InstructionClearing: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(14)))
 
-    def parse (context: Context): Instructions =
+    def parse (context: CIMContext): Instructions =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Instructions (
             BasicElement.parse (context),
@@ -3068,7 +3068,7 @@ extends
 
 object LoadFollowingOperatorInput
 extends
-    Parseable[LoadFollowingOperatorInput]
+    CIMParseable[LoadFollowingOperatorInput]
 {
     override val fields: Array[String] = Array[String] (
         "dataEntryTimeStamp",
@@ -3079,8 +3079,8 @@ extends
         "updateUser",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val dataEntryTimeStamp: Fielder = parse_element (element (cls, fields(0)))
     val tempLoadFollowingDownManualCap: Fielder = parse_element (element (cls, fields(1)))
@@ -3090,9 +3090,9 @@ extends
     val updateUser: Fielder = parse_element (element (cls, fields(5)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): LoadFollowingOperatorInput =
+    def parse (context: CIMContext): LoadFollowingOperatorInput =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadFollowingOperatorInput (
             BasicElement.parse (context),
@@ -3168,19 +3168,19 @@ extends
 
 object LossClearing
 extends
-    Parseable[LossClearing]
+    CIMParseable[LossClearing]
 {
     override val fields: Array[String] = Array[String] (
         "LossClearingResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LossClearingResults", "LossClearingResults", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LossClearingResults", "LossClearingResults", "0..*", "0..1")
     )
     val LossClearingResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): LossClearing =
+    def parse (context: CIMContext): LossClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LossClearing (
             MarketFactors.parse (context),
@@ -3263,7 +3263,7 @@ extends
 
 object LossClearingResults
 extends
-    Parseable[LossClearingResults]
+    CIMParseable[LossClearingResults]
 {
     override val fields: Array[String] = Array[String] (
         "lossMW",
@@ -3272,11 +3272,11 @@ extends
         "RUCZone",
         "SubControlArea"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HostControlArea", "HostControlArea", "0..1", "0..*"),
-        Relationship ("LossClearing", "LossClearing", "0..1", "0..*"),
-        Relationship ("RUCZone", "RUCZone", "0..1", "0..*"),
-        Relationship ("SubControlArea", "SubControlArea", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HostControlArea", "HostControlArea", "0..1", "0..*"),
+        CIMRelationship ("LossClearing", "LossClearing", "0..1", "0..*"),
+        CIMRelationship ("RUCZone", "RUCZone", "0..1", "0..*"),
+        CIMRelationship ("SubControlArea", "SubControlArea", "0..1", "1..*")
     )
     val lossMW: Fielder = parse_element (element (cls, fields(0)))
     val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3284,9 +3284,9 @@ extends
     val RUCZone: Fielder = parse_attribute (attribute (cls, fields(3)))
     val SubControlArea: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): LossClearingResults =
+    def parse (context: CIMContext): LossClearingResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LossClearingResults (
             BasicElement.parse (context),
@@ -3372,7 +3372,7 @@ extends
 
 object MPMClearing
 extends
-    Parseable[MPMClearing]
+    CIMParseable[MPMClearing]
 {
     override val fields: Array[String] = Array[String] (
         "mitigationOccuredFlag",
@@ -3380,17 +3380,17 @@ extends
         "MPMTestResults",
         "SMPMFinalFlag"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MPMTestResults", "MPMTestResults", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MPMTestResults", "MPMTestResults", "0..*", "0..1")
     )
     val mitigationOccuredFlag: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LMPMFinalFlag: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MPMTestResults: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val SMPMFinalFlag: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): MPMClearing =
+    def parse (context: CIMContext): MPMClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MPMClearing (
             MarketFactors.parse (context),
@@ -3475,7 +3475,7 @@ extends
 
 object MPMResourceStatus
 extends
-    Parseable[MPMResourceStatus]
+    CIMParseable[MPMResourceStatus]
 {
     override val fields: Array[String] = Array[String] (
         "resourceStatus",
@@ -3483,19 +3483,19 @@ extends
         "MitigatedBidClearing",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MPMTestCategory", "MPMTestCategory", "1", "0..*"),
-        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MPMTestCategory", "MPMTestCategory", "1", "0..*"),
+        CIMRelationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val resourceStatus: Fielder = parse_element (element (cls, fields(0)))
     val MPMTestCategory: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): MPMResourceStatus =
+    def parse (context: CIMContext): MPMResourceStatus =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MPMResourceStatus (
             BasicElement.parse (context),
@@ -3584,7 +3584,7 @@ extends
 
 object MPMTestResults
 extends
-    Parseable[MPMTestResults]
+    CIMParseable[MPMTestResults]
 {
     override val fields: Array[String] = Array[String] (
         "marginPercent",
@@ -3593,10 +3593,10 @@ extends
         "MPMClearing",
         "MPMTestCategory"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AggregatedPnode", "AggregatedPnode", "1", "1..*"),
-        Relationship ("MPMClearing", "MPMClearing", "0..1", "0..*"),
-        Relationship ("MPMTestCategory", "MPMTestCategory", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AggregatedPnode", "AggregatedPnode", "1", "1..*"),
+        CIMRelationship ("MPMClearing", "MPMClearing", "0..1", "0..*"),
+        CIMRelationship ("MPMTestCategory", "MPMTestCategory", "1", "0..*")
     )
     val marginPercent: Fielder = parse_element (element (cls, fields(0)))
     val outcome: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3604,9 +3604,9 @@ extends
     val MPMClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
     val MPMTestCategory: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): MPMTestResults =
+    def parse (context: CIMContext): MPMTestResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MPMTestResults (
             BasicElement.parse (context),
@@ -3733,7 +3733,7 @@ extends
 
 object MarketRegionResults
 extends
-    Parseable[MarketRegionResults]
+    CIMParseable[MarketRegionResults]
 {
     override val fields: Array[String] = Array[String] (
         "clearedMW",
@@ -3754,10 +3754,10 @@ extends
         "MarketProduct",
         "MarketRegion"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AncillaryServiceClearing", "AncillaryServiceClearing", "0..1", "1..*"),
-        Relationship ("MarketProduct", "MarketProduct", "0..1", "0..1"),
-        Relationship ("MarketRegion", "MarketRegion", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AncillaryServiceClearing", "AncillaryServiceClearing", "0..1", "1..*"),
+        CIMRelationship ("MarketProduct", "MarketProduct", "0..1", "0..1"),
+        CIMRelationship ("MarketRegion", "MarketRegion", "1", "1..*")
     )
     val clearedMW: Fielder = parse_element (element (cls, fields(0)))
     val clearedPrice: Fielder = parse_element (element (cls, fields(1)))
@@ -3777,9 +3777,9 @@ extends
     val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(15)))
     val MarketRegion: Fielder = parse_attribute (attribute (cls, fields(16)))
 
-    def parse (context: Context): MarketRegionResults =
+    def parse (context: CIMContext): MarketRegionResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketRegionResults (
             BasicElement.parse (context),
@@ -3889,7 +3889,7 @@ extends
 
 object MarketResults
 extends
-    Parseable[MarketResults]
+    CIMParseable[MarketResults]
 {
     override val fields: Array[String] = Array[String] (
         "ancillarySvcCost",
@@ -3901,8 +3901,8 @@ extends
         "totalRucCost",
         "EnergyMarket"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyMarket", "EnergyMarket", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyMarket", "EnergyMarket", "1", "0..1")
     )
     val ancillarySvcCost: Fielder = parse_element (element (cls, fields(0)))
     val contingentOperatingResAvail: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3913,9 +3913,9 @@ extends
     val totalRucCost: Fielder = parse_element (element (cls, fields(6)))
     val EnergyMarket: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): MarketResults =
+    def parse (context: CIMContext): MarketResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketResults (
             BasicElement.parse (context),
@@ -4010,7 +4010,7 @@ extends
 
 object MarketStatement
 extends
-    Parseable[MarketStatement]
+    CIMParseable[MarketStatement]
 {
     override val fields: Array[String] = Array[String] (
         "end",
@@ -4020,8 +4020,8 @@ extends
         "transactionDate",
         "MarketStatementLineItem"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MarketStatementLineItem", "MarketStatementLineItem", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MarketStatementLineItem", "MarketStatementLineItem", "0..*", "1")
     )
     val end: Fielder = parse_element (element (cls, fields(0)))
     val referenceNumber: Fielder = parse_element (element (cls, fields(1)))
@@ -4030,9 +4030,9 @@ extends
     val transactionDate: Fielder = parse_element (element (cls, fields(4)))
     val MarketStatementLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
-    def parse (context: Context): MarketStatement =
+    def parse (context: CIMContext): MarketStatement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatement (
             Document.parse (context),
@@ -4175,7 +4175,7 @@ extends
 
 object MarketStatementLineItem
 extends
-    Parseable[MarketStatementLineItem]
+    CIMParseable[MarketStatementLineItem]
 {
     override val fields: Array[String] = Array[String] (
         "currentAmount",
@@ -4202,12 +4202,12 @@ extends
         "MktUserAttribute",
         "PassThroughBill"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ComponentMarketStatementLineItem", "MarketStatementLineItem", "0..*", "0..1"),
-        Relationship ("ContainerMarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..*"),
-        Relationship ("MarketStatement", "MarketStatement", "1", "0..*"),
-        Relationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*"),
-        Relationship ("PassThroughBill", "PassThroughBill", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ComponentMarketStatementLineItem", "MarketStatementLineItem", "0..*", "0..1"),
+        CIMRelationship ("ContainerMarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..*"),
+        CIMRelationship ("MarketStatement", "MarketStatement", "1", "0..*"),
+        CIMRelationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*"),
+        CIMRelationship ("PassThroughBill", "PassThroughBill", "0..1", "0..1")
     )
     val currentAmount: Fielder = parse_element (element (cls, fields(0)))
     val currentISOAmount: Fielder = parse_element (element (cls, fields(1)))
@@ -4233,9 +4233,9 @@ extends
     val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
     val PassThroughBill: Fielder = parse_attribute (attribute (cls, fields(22)))
 
-    def parse (context: Context): MarketStatementLineItem =
+    def parse (context: CIMContext): MarketStatementLineItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketStatementLineItem (
             IdentifiedObject.parse (context),
@@ -4331,22 +4331,22 @@ extends
 
 object MitigatedBid
 extends
-    Parseable[MitigatedBid]
+    CIMParseable[MitigatedBid]
 {
     override val fields: Array[String] = Array[String] (
         "Bid",
         "MitigatedBidClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", "0..1", "0..*"),
-        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bid", "Bid", "0..1", "0..*"),
+        CIMRelationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*")
     )
     val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): MitigatedBid =
+    def parse (context: CIMContext): MitigatedBid =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MitigatedBid (
             IdentifiedObject.parse (context),
@@ -4425,25 +4425,25 @@ extends
 
 object MitigatedBidClearing
 extends
-    Parseable[MitigatedBidClearing]
+    CIMParseable[MitigatedBidClearing]
 {
     override val fields: Array[String] = Array[String] (
         "MPMResourceStatus",
         "MitigatedBid",
         "RMRDetermination"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MPMResourceStatus", "MPMResourceStatus", "0..*", "1..*"),
-        Relationship ("MitigatedBid", "MitigatedBid", "0..*", "1..*"),
-        Relationship ("RMRDetermination", "RMRDetermination", "0..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MPMResourceStatus", "MPMResourceStatus", "0..*", "1..*"),
+        CIMRelationship ("MitigatedBid", "MitigatedBid", "0..*", "1..*"),
+        CIMRelationship ("RMRDetermination", "RMRDetermination", "0..*", "1..*")
     )
     val MPMResourceStatus: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val MitigatedBid: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val RMRDetermination: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): MitigatedBidClearing =
+    def parse (context: CIMContext): MitigatedBidClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MitigatedBidClearing (
             MarketFactors.parse (context),
@@ -4530,7 +4530,7 @@ extends
 
 object MitigatedBidSegment
 extends
-    Parseable[MitigatedBidSegment]
+    CIMParseable[MitigatedBidSegment]
 {
     override val fields: Array[String] = Array[String] (
         "intervalStartTime",
@@ -4539,8 +4539,8 @@ extends
         "thresholdType",
         "Bid"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bid", "Bid", "1", "0..*")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val segmentMW: Fielder = parse_element (element (cls, fields(1)))
@@ -4548,9 +4548,9 @@ extends
     val thresholdType: Fielder = parse_element (element (cls, fields(3)))
     val Bid: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): MitigatedBidSegment =
+    def parse (context: CIMContext): MitigatedBidSegment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MitigatedBidSegment (
             BasicElement.parse (context),
@@ -4709,7 +4709,7 @@ extends
 
 object PassThroughBill
 extends
-    Parseable[PassThroughBill]
+    CIMParseable[PassThroughBill]
 {
     override val fields: Array[String] = Array[String] (
         "adjustedAmount",
@@ -4740,10 +4740,10 @@ extends
         "MarketStatementLineItem",
         "MktUserAttribute"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ChargeProfiles", "ChargeProfile", "0..*", "0..1"),
-        Relationship ("MarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..1"),
-        Relationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ChargeProfiles", "ChargeProfile", "0..*", "0..1"),
+        CIMRelationship ("MarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..1"),
+        CIMRelationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
     )
     val adjustedAmount: Fielder = parse_element (element (cls, fields(0)))
     val amount: Fielder = parse_element (element (cls, fields(1)))
@@ -4773,9 +4773,9 @@ extends
     val MarketStatementLineItem: Fielder = parse_attribute (attribute (cls, fields(25)))
     val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(26)))
 
-    def parse (context: Context): PassThroughBill =
+    def parse (context: CIMContext): PassThroughBill =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PassThroughBill (
             Document.parse (context),
@@ -4874,22 +4874,22 @@ extends
 
 object PnodeClearing
 extends
-    Parseable[PnodeClearing]
+    CIMParseable[PnodeClearing]
 {
     override val fields: Array[String] = Array[String] (
         "CommodityPrice",
         "PnodeResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommodityPrice", "CommodityPrice", "0..*", "0..1"),
-        Relationship ("PnodeResults", "PnodeResults", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommodityPrice", "CommodityPrice", "0..*", "0..1"),
+        CIMRelationship ("PnodeResults", "PnodeResults", "1..*", "0..1")
     )
     val CommodityPrice: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val PnodeResults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PnodeClearing =
+    def parse (context: CIMContext): PnodeClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PnodeClearing (
             MarketFactors.parse (context),
@@ -4990,7 +4990,7 @@ extends
 
 object PnodeResults
 extends
-    Parseable[PnodeResults]
+    CIMParseable[PnodeResults]
 {
     override val fields: Array[String] = Array[String] (
         "congestLMP",
@@ -5004,9 +5004,9 @@ extends
         "Pnode",
         "PnodeClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Pnode", "Pnode", "0..1", "1..*"),
-        Relationship ("PnodeClearing", "PnodeClearing", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Pnode", "Pnode", "0..1", "1..*"),
+        CIMRelationship ("PnodeClearing", "PnodeClearing", "0..1", "1..*")
     )
     val congestLMP: Fielder = parse_element (element (cls, fields(0)))
     val costLMP: Fielder = parse_element (element (cls, fields(1)))
@@ -5019,9 +5019,9 @@ extends
     val Pnode: Fielder = parse_attribute (attribute (cls, fields(8)))
     val PnodeClearing: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): PnodeResults =
+    def parse (context: CIMContext): PnodeResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PnodeResults (
             BasicElement.parse (context),
@@ -5110,23 +5110,23 @@ extends
 
 object PriceDescriptor
 extends
-    Parseable[PriceDescriptor]
+    CIMParseable[PriceDescriptor]
 {
     override val fields: Array[String] = Array[String] (
         "marketType",
         "priceType",
         "CommodityPrice"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommodityPrice", "CommodityPrice", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommodityPrice", "CommodityPrice", "1..*", "1")
     )
     val marketType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val priceType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CommodityPrice: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): PriceDescriptor =
+    def parse (context: CIMContext): PriceDescriptor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PriceDescriptor (
             BasicElement.parse (context),
@@ -5202,22 +5202,22 @@ extends
 
 object RMRDetermination
 extends
-    Parseable[RMRDetermination]
+    CIMParseable[RMRDetermination]
 {
     override val fields: Array[String] = Array[String] (
         "Bid",
         "MitigatedBidClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", "0..1", "0..*"),
-        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bid", "Bid", "0..1", "0..*"),
+        CIMRelationship ("MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*")
     )
     val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): RMRDetermination =
+    def parse (context: CIMContext): RMRDetermination =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RMRDetermination (
             BasicElement.parse (context),
@@ -5301,7 +5301,7 @@ extends
 
 object RMROperatorInput
 extends
-    Parseable[RMROperatorInput]
+    CIMParseable[RMROperatorInput]
 {
     override val fields: Array[String] = Array[String] (
         "manuallySchedRMRMw",
@@ -5310,8 +5310,8 @@ extends
         "updateUser",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val manuallySchedRMRMw: Fielder = parse_element (element (cls, fields(0)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(1)))
@@ -5319,9 +5319,9 @@ extends
     val updateUser: Fielder = parse_element (element (cls, fields(3)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): RMROperatorInput =
+    def parse (context: CIMContext): RMROperatorInput =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RMROperatorInput (
             MarketFactors.parse (context),
@@ -5433,7 +5433,7 @@ extends
 
 object RUCAwardInstruction
 extends
-    Parseable[RUCAwardInstruction]
+    CIMParseable[RUCAwardInstruction]
 {
     override val fields: Array[String] = Array[String] (
         "clearedPrice",
@@ -5447,9 +5447,9 @@ extends
         "RUCSchedule",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val clearedPrice: Fielder = parse_element (element (cls, fields(0)))
     val marketProductType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -5462,9 +5462,9 @@ extends
     val RUCSchedule: Fielder = parse_element (element (cls, fields(8)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): RUCAwardInstruction =
+    def parse (context: CIMContext): RUCAwardInstruction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RUCAwardInstruction (
             BasicElement.parse (context),
@@ -5555,7 +5555,7 @@ extends
 
 object ResourceAwardClearing
 extends
-    Parseable[ResourceAwardClearing]
+    CIMParseable[ResourceAwardClearing]
 {
     override val fields: Array[String] = Array[String] (
         "contingencyActive",
@@ -5563,18 +5563,18 @@ extends
         "RUCAwardInstruction",
         "ResourceAwardInstruction"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RUCAwardInstruction", "RUCAwardInstruction", "1..*", "1..*"),
-        Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "1..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RUCAwardInstruction", "RUCAwardInstruction", "1..*", "1..*"),
+        CIMRelationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "1..*", "1..*")
     )
     val contingencyActive: Fielder = parse_attribute (attribute (cls, fields(0)))
     val dispatchMode: Fielder = parse_attribute (attribute (cls, fields(1)))
     val RUCAwardInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val ResourceAwardInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): ResourceAwardClearing =
+    def parse (context: CIMContext): ResourceAwardClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceAwardClearing (
             MarketFactors.parse (context),
@@ -5760,7 +5760,7 @@ extends
 
 object ResourceAwardInstruction
 extends
-    Parseable[ResourceAwardInstruction]
+    CIMParseable[ResourceAwardInstruction]
 {
     override val fields: Array[String] = Array[String] (
         "awardMW",
@@ -5796,11 +5796,11 @@ extends
         "RegisteredResource",
         "SelfScheduleBreakdown"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"),
-        Relationship ("MarketProduct", "MarketProduct", "1", "0..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
-        Relationship ("SelfScheduleBreakdown", "SelfScheduleBreakdown", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"),
+        CIMRelationship ("MarketProduct", "MarketProduct", "1", "0..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
+        CIMRelationship ("SelfScheduleBreakdown", "SelfScheduleBreakdown", "0..*", "1")
     )
     val awardMW: Fielder = parse_element (element (cls, fields(0)))
     val clearedMW: Fielder = parse_element (element (cls, fields(1)))
@@ -5835,9 +5835,9 @@ extends
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(30)))
     val SelfScheduleBreakdown: FielderMultiple = parse_attributes (attribute (cls, fields(31)))
 
-    def parse (context: Context): ResourceAwardInstruction =
+    def parse (context: CIMContext): ResourceAwardInstruction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = ResourceAwardInstruction (
             BasicElement.parse (context),
@@ -5943,22 +5943,22 @@ extends
 
 object ResourceClearing
 extends
-    Parseable[ResourceClearing]
+    CIMParseable[ResourceClearing]
 {
     override val fields: Array[String] = Array[String] (
         "ResourceDispatchResults",
         "ResourceLoadFollowingInst"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ResourceDispatchResults", "ResourceDispatchResults", "1..*", "0..1"),
-        Relationship ("ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ResourceDispatchResults", "ResourceDispatchResults", "1..*", "0..1"),
+        CIMRelationship ("ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1")
     )
     val ResourceDispatchResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ResourceLoadFollowingInst: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ResourceClearing =
+    def parse (context: CIMContext): ResourceClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceClearing (
             MarketFactors.parse (context),
@@ -6032,7 +6032,7 @@ extends
 
 object ResourceDeploymentStatus
 extends
-    Parseable[ResourceDeploymentStatus]
+    CIMParseable[ResourceDeploymentStatus]
 {
     override val fields: Array[String] = Array[String] (
         "acceptComments",
@@ -6040,17 +6040,17 @@ extends
         "resourceResponseMW",
         "InstructionClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("InstructionClearing", "InstructionClearing", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("InstructionClearing", "InstructionClearing", "0..1", "0..*")
     )
     val acceptComments: Fielder = parse_element (element (cls, fields(0)))
     val acceptStatus: Fielder = parse_element (element (cls, fields(1)))
     val resourceResponseMW: Fielder = parse_element (element (cls, fields(2)))
     val InstructionClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ResourceDeploymentStatus =
+    def parse (context: CIMContext): ResourceDeploymentStatus =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceDeploymentStatus (
             BasicElement.parse (context),
@@ -6181,7 +6181,7 @@ extends
 
 object ResourceDispatchResults
 extends
-    Parseable[ResourceDispatchResults]
+    CIMParseable[ResourceDispatchResults]
 {
     override val fields: Array[String] = Array[String] (
         "blockedDispatch",
@@ -6204,9 +6204,9 @@ extends
         "RegisteredResource",
         "ResourceClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
-        Relationship ("ResourceClearing", "ResourceClearing", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
+        CIMRelationship ("ResourceClearing", "ResourceClearing", "0..1", "1..*")
     )
     val blockedDispatch: Fielder = parse_element (element (cls, fields(0)))
     val blockedPublishDOP: Fielder = parse_element (element (cls, fields(1)))
@@ -6228,9 +6228,9 @@ extends
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(17)))
     val ResourceClearing: Fielder = parse_attribute (attribute (cls, fields(18)))
 
-    def parse (context: Context): ResourceDispatchResults =
+    def parse (context: CIMContext): ResourceDispatchResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceDispatchResults (
             BasicElement.parse (context),
@@ -6338,7 +6338,7 @@ extends
 
 object ResourceLoadFollowingInst
 extends
-    Parseable[ResourceLoadFollowingInst]
+    CIMParseable[ResourceLoadFollowingInst]
 {
     override val fields: Array[String] = Array[String] (
         "calcLoadFollowingMW",
@@ -6349,9 +6349,9 @@ extends
         "RegisteredResource",
         "ResourceClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
-        Relationship ("ResourceClearing", "ResourceClearing", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*"),
+        CIMRelationship ("ResourceClearing", "ResourceClearing", "0..1", "0..*")
     )
     val calcLoadFollowingMW: Fielder = parse_element (element (cls, fields(0)))
     val dispWindowHighLimt: Fielder = parse_element (element (cls, fields(1)))
@@ -6361,9 +6361,9 @@ extends
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(5)))
     val ResourceClearing: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): ResourceLoadFollowingInst =
+    def parse (context: CIMContext): ResourceLoadFollowingInst =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceLoadFollowingInst (
             BasicElement.parse (context),
@@ -6462,7 +6462,7 @@ extends
 
 object ResourcePerformanceEvaluation
 extends
-    Parseable[ResourcePerformanceEvaluation]
+    CIMParseable[ResourcePerformanceEvaluation]
 {
     override val fields: Array[String] = Array[String] (
         "effectiveEndTime",
@@ -6473,10 +6473,10 @@ extends
         "ResorcePerformanceGlobalFactor",
         "ResourcePerformanceTimeSeriesFactors"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "1", "0..*"),
-        Relationship ("ResorcePerformanceGlobalFactor", "ResourcePerformanceGlobalFactor", "0..*", "0..*"),
-        Relationship ("ResourcePerformanceTimeSeriesFactors", "ResourcePerformanceTimeSeriesFactor", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "1", "0..*"),
+        CIMRelationship ("ResorcePerformanceGlobalFactor", "ResourcePerformanceGlobalFactor", "0..*", "0..*"),
+        CIMRelationship ("ResourcePerformanceTimeSeriesFactors", "ResourcePerformanceTimeSeriesFactor", "0..*", "1")
     )
     val effectiveEndTime: Fielder = parse_element (element (cls, fields(0)))
     val effectiveStartTime: Fielder = parse_element (element (cls, fields(1)))
@@ -6486,9 +6486,9 @@ extends
     val ResorcePerformanceGlobalFactor: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val ResourcePerformanceTimeSeriesFactors: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): ResourcePerformanceEvaluation =
+    def parse (context: CIMContext): ResourcePerformanceEvaluation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourcePerformanceEvaluation (
             IdentifiedObject.parse (context),
@@ -6573,23 +6573,23 @@ extends
 
 object ResourcePerformanceGlobalFactor
 extends
-    Parseable[ResourcePerformanceGlobalFactor]
+    CIMParseable[ResourcePerformanceGlobalFactor]
 {
     override val fields: Array[String] = Array[String] (
         "factorDescription",
         "factorValue",
         "ResourcePerformanceEvaluation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "0..*", "0..*")
     )
     val factorDescription: Fielder = parse_element (element (cls, fields(0)))
     val factorValue: Fielder = parse_element (element (cls, fields(1)))
     val ResourcePerformanceEvaluation: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): ResourcePerformanceGlobalFactor =
+    def parse (context: CIMContext): ResourcePerformanceGlobalFactor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourcePerformanceGlobalFactor (
             IdentifiedObject.parse (context),
@@ -6677,7 +6677,7 @@ extends
 
 object ResourcePerformanceRating
 extends
-    Parseable[ResourcePerformanceRating]
+    CIMParseable[ResourcePerformanceRating]
 {
     override val fields: Array[String] = Array[String] (
         "effectiveEndTime",
@@ -6687,8 +6687,8 @@ extends
         "ratingValue",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredDistributedResource", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredDistributedResource", "1", "0..*")
     )
     val effectiveEndTime: Fielder = parse_element (element (cls, fields(0)))
     val effectiveStartTime: Fielder = parse_element (element (cls, fields(1)))
@@ -6697,9 +6697,9 @@ extends
     val ratingValue: Fielder = parse_element (element (cls, fields(4)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): ResourcePerformanceRating =
+    def parse (context: CIMContext): ResourcePerformanceRating =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourcePerformanceRating (
             IdentifiedObject.parse (context),
@@ -6787,7 +6787,7 @@ extends
 
 object ResourcePerformanceTimeSeriesFactor
 extends
-    Parseable[ResourcePerformanceTimeSeriesFactor]
+    CIMParseable[ResourcePerformanceTimeSeriesFactor]
 {
     override val fields: Array[String] = Array[String] (
         "timeSeriesDataType",
@@ -6796,8 +6796,8 @@ extends
         "value2Description",
         "ResourcePerformanceEvaluation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "1", "0..*")
     )
     val timeSeriesDataType: Fielder = parse_element (element (cls, fields(0)))
     val timeSeriesDescription: Fielder = parse_element (element (cls, fields(1)))
@@ -6805,9 +6805,9 @@ extends
     val value2Description: Fielder = parse_element (element (cls, fields(3)))
     val ResourcePerformanceEvaluation: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): ResourcePerformanceTimeSeriesFactor =
+    def parse (context: CIMContext): ResourcePerformanceTimeSeriesFactor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourcePerformanceTimeSeriesFactor (
             RegularIntervalSchedule.parse (context),
@@ -6890,23 +6890,23 @@ extends
 
 object SelfScheduleBreakdown
 extends
-    Parseable[SelfScheduleBreakdown]
+    CIMParseable[SelfScheduleBreakdown]
 {
     override val fields: Array[String] = Array[String] (
         "selfSchedMW",
         "selfSchedType",
         "ResourceAwardInstruction"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "1", "0..*")
     )
     val selfSchedMW: Fielder = parse_element (element (cls, fields(0)))
     val selfSchedType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ResourceAwardInstruction: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SelfScheduleBreakdown =
+    def parse (context: CIMContext): SelfScheduleBreakdown =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SelfScheduleBreakdown (
             BasicElement.parse (context),
@@ -6992,7 +6992,7 @@ extends
 
 object Settlement
 extends
-    Parseable[Settlement]
+    CIMParseable[Settlement]
 {
     override val fields: Array[String] = Array[String] (
         "tradeDate",
@@ -7001,11 +7001,11 @@ extends
         "MarketInvoiceLineItem",
         "MarketLedgerEntry"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyMarket", "EnergyMarket", "0..1", "0..*"),
-        Relationship ("MajorChargeGroup", "MajorChargeGroup", "1..*", "0..*"),
-        Relationship ("MarketInvoiceLineItem", "MarketInvoiceLineItem", "0..*", "0..*"),
-        Relationship ("MarketLedgerEntry", "MarketLedgerEntry", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyMarket", "EnergyMarket", "0..1", "0..*"),
+        CIMRelationship ("MajorChargeGroup", "MajorChargeGroup", "1..*", "0..*"),
+        CIMRelationship ("MarketInvoiceLineItem", "MarketInvoiceLineItem", "0..*", "0..*"),
+        CIMRelationship ("MarketLedgerEntry", "MarketLedgerEntry", "0..*", "0..*")
     )
     val tradeDate: Fielder = parse_element (element (cls, fields(0)))
     val EnergyMarket: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -7013,9 +7013,9 @@ extends
     val MarketInvoiceLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val MarketLedgerEntry: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
-    def parse (context: Context): Settlement =
+    def parse (context: CIMContext): Settlement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Settlement (
             Document.parse (context),
@@ -7091,19 +7091,19 @@ extends
 
 object TransactionBidClearing
 extends
-    Parseable[TransactionBidClearing]
+    CIMParseable[TransactionBidClearing]
 {
     override val fields: Array[String] = Array[String] (
         "TransactionBidResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TransactionBidResults", "TransactionBidResults", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TransactionBidResults", "TransactionBidResults", "0..*", "1")
     )
     val TransactionBidResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): TransactionBidClearing =
+    def parse (context: CIMContext): TransactionBidClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TransactionBidClearing (
             MarketFactors.parse (context),
@@ -7183,7 +7183,7 @@ extends
 
 object TransactionBidResults
 extends
-    Parseable[TransactionBidResults]
+    CIMParseable[TransactionBidResults]
 {
     override val fields: Array[String] = Array[String] (
         "clearedMW",
@@ -7191,18 +7191,18 @@ extends
         "TransactionBid",
         "TransactionBidClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TransactionBid", "TransactionBid", "0..1", "0..*"),
-        Relationship ("TransactionBidClearing", "TransactionBidClearing", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TransactionBid", "TransactionBid", "0..1", "0..*"),
+        CIMRelationship ("TransactionBidClearing", "TransactionBidClearing", "1", "0..*")
     )
     val clearedMW: Fielder = parse_element (element (cls, fields(0)))
     val clearedPrice: Fielder = parse_element (element (cls, fields(1)))
     val TransactionBid: Fielder = parse_attribute (attribute (cls, fields(2)))
     val TransactionBidClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): TransactionBidResults =
+    def parse (context: CIMContext): TransactionBidResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TransactionBidResults (
             IdentifiedObject.parse (context),
@@ -7218,7 +7218,7 @@ extends
 
 private[ninecode] object _MarketResults
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AncillaryServiceClearing.register,

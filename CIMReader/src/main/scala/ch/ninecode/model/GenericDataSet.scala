@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Describes a set of changes that can be applied in different situations.
@@ -78,7 +78,7 @@ extends
 
 object ChangeSet
 extends
-    Parseable[ChangeSet]
+    CIMParseable[ChangeSet]
 {
     override val fields: Array[String] = Array[String] (
         "ChangeSetMember",
@@ -86,20 +86,20 @@ extends
         "NMProjectStage",
         "NetworkModelProjectChangeVersion"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ChangeSetMember", "ChangeSetMember", "0..*", "0..1"),
-        Relationship ("IncrementalDatasetArg", "IncrementalDatasetArg", "0..*", "1"),
-        Relationship ("NMProjectStage", "NetworkModelProjectStage", "0..1", "1..*"),
-        Relationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ChangeSetMember", "ChangeSetMember", "0..*", "0..1"),
+        CIMRelationship ("IncrementalDatasetArg", "IncrementalDatasetArg", "0..*", "1"),
+        CIMRelationship ("NMProjectStage", "NetworkModelProjectStage", "0..1", "1..*"),
+        CIMRelationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "0..*", "0..1")
     )
     val ChangeSetMember: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val IncrementalDatasetArg: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val NMProjectStage: Fielder = parse_attribute (attribute (cls, fields(2)))
     val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): ChangeSet =
+    def parse (context: CIMContext): ChangeSet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ChangeSet (
             DataSet.parse (context),
@@ -179,25 +179,25 @@ extends
 
 object ChangeSetMember
 extends
-    Parseable[ChangeSetMember]
+    CIMParseable[ChangeSetMember]
 {
     override val fields: Array[String] = Array[String] (
         "Changeset",
         "PropertiesObject",
         "TargetObject"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Changeset", "ChangeSet", "0..1", "0..*"),
-        Relationship ("PropertiesObject", "IdentifiedObject", "0..1", "0..1"),
-        Relationship ("TargetObject", "IdentifiedObject", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Changeset", "ChangeSet", "0..1", "0..*"),
+        CIMRelationship ("PropertiesObject", "IdentifiedObject", "0..1", "0..1"),
+        CIMRelationship ("TargetObject", "IdentifiedObject", "1", "0..*")
     )
     val Changeset: Fielder = parse_attribute (attribute (cls, fields(0)))
     val PropertiesObject: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TargetObject: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ChangeSetMember =
+    def parse (context: CIMContext): ChangeSetMember =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ChangeSetMember (
             BasicElement.parse (context),
@@ -289,7 +289,7 @@ extends
 
 object DataSet
 extends
-    Parseable[DataSet]
+    CIMParseable[DataSet]
 {
     override val fields: Array[String] = Array[String] (
         "description",
@@ -298,9 +298,9 @@ extends
         "AlternateModel",
         "Profile"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AlternateModel", "AlternateModel", "0..1", "1"),
-        Relationship ("Profile", "Profile2", "1..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AlternateModel", "AlternateModel", "0..1", "1"),
+        CIMRelationship ("Profile", "Profile2", "1..*", "0..*")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val mRID: Fielder = parse_element (element (cls, fields(1)))
@@ -308,9 +308,9 @@ extends
     val AlternateModel: Fielder = parse_attribute (attribute (cls, fields(3)))
     val Profile: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
-    def parse (context: Context): DataSet =
+    def parse (context: CIMContext): DataSet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DataSet (
             BasicElement.parse (context),
@@ -384,7 +384,7 @@ extends
 
 object GenericDataSetVersion
 extends
-    Parseable[GenericDataSetVersion]
+    CIMParseable[GenericDataSetVersion]
 {
     override val fields: Array[String] = Array[String] (
         "majorVersion",
@@ -395,9 +395,9 @@ extends
     val minorVersion: Fielder = parse_element (element (cls, fields(1)))
     val published: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): GenericDataSetVersion =
+    def parse (context: CIMContext): GenericDataSetVersion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GenericDataSetVersion (
             BasicElement.parse (context),
@@ -474,22 +474,22 @@ extends
 
 object InstanceSet
 extends
-    Parseable[InstanceSet]
+    CIMParseable[InstanceSet]
 {
     override val fields: Array[String] = Array[String] (
         "DatasetArg",
         "InstanceSetMember"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DatasetArg", "DatasetArg", "0..*", "1"),
-        Relationship ("InstanceSetMember", "IdentifiedObject", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DatasetArg", "DatasetArg", "0..*", "1"),
+        CIMRelationship ("InstanceSetMember", "IdentifiedObject", "0..*", "1")
     )
     val DatasetArg: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val InstanceSetMember: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): InstanceSet =
+    def parse (context: CIMContext): InstanceSet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InstanceSet (
             DataSet.parse (context),
@@ -554,10 +554,10 @@ extends
 
 object ObjectCreation
 extends
-    Parseable[ObjectCreation]
+    CIMParseable[ObjectCreation]
 {
 
-    def parse (context: Context): ObjectCreation =
+    def parse (context: CIMContext): ObjectCreation =
     {
         val ret = ObjectCreation (
             ChangeSetMember.parse (context)
@@ -619,10 +619,10 @@ extends
 
 object ObjectDeletion
 extends
-    Parseable[ObjectDeletion]
+    CIMParseable[ObjectDeletion]
 {
 
-    def parse (context: Context): ObjectDeletion =
+    def parse (context: CIMContext): ObjectDeletion =
     {
         val ret = ObjectDeletion (
             ChangeSetMember.parse (context)
@@ -690,19 +690,19 @@ extends
 
 object ObjectModification
 extends
-    Parseable[ObjectModification]
+    CIMParseable[ObjectModification]
 {
     override val fields: Array[String] = Array[String] (
         "ObjectReverseModification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ObjectReverseModification", "ObjectReverseModification", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ObjectReverseModification", "ObjectReverseModification", "0..1", "0..1")
     )
     val ObjectReverseModification: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ObjectModification =
+    def parse (context: CIMContext): ObjectModification =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ObjectModification (
             ChangeSetMember.parse (context),
@@ -773,19 +773,19 @@ extends
 
 object ObjectReverseModification
 extends
-    Parseable[ObjectReverseModification]
+    CIMParseable[ObjectReverseModification]
 {
     override val fields: Array[String] = Array[String] (
         "ObjectModification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ObjectModification", "ObjectModification", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ObjectModification", "ObjectModification", "0..1", "0..1")
     )
     val ObjectModification: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ObjectReverseModification =
+    def parse (context: CIMContext): ObjectReverseModification =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ObjectReverseModification (
             ChangeSetMember.parse (context),
@@ -857,19 +857,19 @@ extends
 
 object Profile2
 extends
-    Parseable[Profile2]
+    CIMParseable[Profile2]
 {
     override val fields: Array[String] = Array[String] (
         "DataSet"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DataSet", "DataSet", "0..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DataSet", "DataSet", "0..*", "1..*")
     )
     val DataSet: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): Profile2 =
+    def parse (context: CIMContext): Profile2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Profile2 (
             IdentifiedObject.parse (context),
@@ -882,7 +882,7 @@ extends
 
 private[ninecode] object _GenericDataSet
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ChangeSet.register,

@@ -13,9 +13,9 @@ import scala.collection.mutable.ArrayBuffer
  * @param end The ending character position at which to stop parsing.
  * @param first_byte The byte offset of the first character to be parsed.
  */
-class Context (var xml: String, val start: Long, var end: Long, var first_byte: Long)
+class CIMContext (var xml: String, val start: Long, var end: Long, var first_byte: Long)
 {
-    import Context._
+    import CIMContext._
 
     /**
      * The array of character positions of newlines in the xml string.
@@ -23,7 +23,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
     val newlines: ArrayBuffer[Long] = index_string (xml, start)
 
     /**
-     * An array of string start and end offsets that have been parsed. 
+     * An array of string start and end offsets that have been parsed.
      */
     val coverage: ArrayBuffer[(Int, Int)] = new ArrayBuffer[(Int, Int)]
 
@@ -138,7 +138,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
     }
 }
 
-object Context
+object CIMContext
 {
     /**
      * Add extra checks while parsing flag.

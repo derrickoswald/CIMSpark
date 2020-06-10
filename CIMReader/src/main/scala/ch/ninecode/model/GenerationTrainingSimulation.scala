@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
@@ -126,7 +126,7 @@ extends
 
 object BWRSteamSupply
 extends
-    Parseable[BWRSteamSupply]
+    CIMParseable[BWRSteamSupply]
 {
     override val fields: Array[String] = Array[String] (
         "highPowerLimit",
@@ -173,9 +173,9 @@ extends
     val rodPatternConstant: Fielder = parse_element (element (cls, fields(19)))
     val upperLimit: Fielder = parse_element (element (cls, fields(20)))
 
-    def parse (context: Context): BWRSteamSupply =
+    def parse (context: CIMContext): BWRSteamSupply =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BWRSteamSupply (
             SteamSupply.parse (context),
@@ -265,19 +265,19 @@ extends
 
 object CTTempActivePowerCurve
 extends
-    Parseable[CTTempActivePowerCurve]
+    CIMParseable[CTTempActivePowerCurve]
 {
     override val fields: Array[String] = Array[String] (
         "CombustionTurbine"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
     )
     val CombustionTurbine: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): CTTempActivePowerCurve =
+    def parse (context: CIMContext): CTTempActivePowerCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CTTempActivePowerCurve (
             Curve.parse (context),
@@ -381,7 +381,7 @@ extends
 
 object CombustionTurbine
 extends
-    Parseable[CombustionTurbine]
+    CIMParseable[CombustionTurbine]
 {
     override val fields: Array[String] = Array[String] (
         "ambientTemp",
@@ -396,10 +396,10 @@ extends
         "CTTempActivePowerCurve",
         "HeatRecoveryBoiler"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AirCompressor", "AirCompressor", "0..1", "1"),
-        Relationship ("CTTempActivePowerCurve", "CTTempActivePowerCurve", "0..1", "1"),
-        Relationship ("HeatRecoveryBoiler", "HeatRecoveryBoiler", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AirCompressor", "AirCompressor", "0..1", "1"),
+        CIMRelationship ("CTTempActivePowerCurve", "CTTempActivePowerCurve", "0..1", "1"),
+        CIMRelationship ("HeatRecoveryBoiler", "HeatRecoveryBoiler", "0..1", "0..*")
     )
     val ambientTemp: Fielder = parse_element (element (cls, fields(0)))
     val auxPowerVersusFrequency: Fielder = parse_element (element (cls, fields(1)))
@@ -413,9 +413,9 @@ extends
     val CTTempActivePowerCurve: Fielder = parse_attribute (attribute (cls, fields(9)))
     val HeatRecoveryBoiler: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): CombustionTurbine =
+    def parse (context: CIMContext): CombustionTurbine =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CombustionTurbine (
             PrimeMover.parse (context),
@@ -495,16 +495,16 @@ extends
 
 object DrumBoiler
 extends
-    Parseable[DrumBoiler]
+    CIMParseable[DrumBoiler]
 {
     override val fields: Array[String] = Array[String] (
         "drumBoilerRating"
     )
     val drumBoilerRating: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): DrumBoiler =
+    def parse (context: CIMContext): DrumBoiler =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DrumBoiler (
             FossilSteamSupply.parse (context),
@@ -652,7 +652,7 @@ extends
 
 object FossilSteamSupply
 extends
-    Parseable[FossilSteamSupply]
+    CIMParseable[FossilSteamSupply]
 {
     override val fields: Array[String] = Array[String] (
         "auxPowerVersusFrequency",
@@ -709,9 +709,9 @@ extends
     val superHeaterPipePD: Fielder = parse_element (element (cls, fields(24)))
     val throttlePressureSP: Fielder = parse_element (element (cls, fields(25)))
 
-    def parse (context: Context): FossilSteamSupply =
+    def parse (context: CIMContext): FossilSteamSupply =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FossilSteamSupply (
             SteamSupply.parse (context),
@@ -810,21 +810,21 @@ extends
 
 object HeatRecoveryBoiler
 extends
-    Parseable[HeatRecoveryBoiler]
+    CIMParseable[HeatRecoveryBoiler]
 {
     override val fields: Array[String] = Array[String] (
         "steamSupplyRating2",
         "CombustionTurbines"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CombustionTurbines", "CombustionTurbine", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CombustionTurbines", "CombustionTurbine", "0..*", "0..1")
     )
     val steamSupplyRating2: Fielder = parse_element (element (cls, fields(0)))
     val CombustionTurbines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): HeatRecoveryBoiler =
+    def parse (context: CIMContext): HeatRecoveryBoiler =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HeatRecoveryBoiler (
             FossilSteamSupply.parse (context),
@@ -928,7 +928,7 @@ extends
 
 object HydroTurbine
 extends
-    Parseable[HydroTurbine]
+    CIMParseable[HydroTurbine]
 {
     override val fields: Array[String] = Array[String] (
         "gateRateLimit",
@@ -955,9 +955,9 @@ extends
     val turbineType: Fielder = parse_attribute (attribute (cls, fields(9)))
     val waterStartingTime: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): HydroTurbine =
+    def parse (context: CIMContext): HydroTurbine =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HydroTurbine (
             PrimeMover.parse (context),
@@ -1094,7 +1094,7 @@ extends
 
 object PWRSteamSupply
 extends
-    Parseable[PWRSteamSupply]
+    CIMParseable[PWRSteamSupply]
 {
     override val fields: Array[String] = Array[String] (
         "coldLegFBLagTC",
@@ -1139,9 +1139,9 @@ extends
     val throttlePressureFactor: Fielder = parse_element (element (cls, fields(18)))
     val throttlePressureSP: Fielder = parse_element (element (cls, fields(19)))
 
-    def parse (context: Context): PWRSteamSupply =
+    def parse (context: CIMContext): PWRSteamSupply =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PWRSteamSupply (
             SteamSupply.parse (context),
@@ -1234,21 +1234,21 @@ extends
 
 object PrimeMover
 extends
-    Parseable[PrimeMover]
+    CIMParseable[PrimeMover]
 {
     override val fields: Array[String] = Array[String] (
         "primeMoverRating",
         "SynchronousMachines"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SynchronousMachines", "SynchronousMachine", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SynchronousMachines", "SynchronousMachine", "0..*", "0..*")
     )
     val primeMoverRating: Fielder = parse_element (element (cls, fields(0)))
     val SynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): PrimeMover =
+    def parse (context: CIMContext): PrimeMover =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PrimeMover (
             PowerSystemResource.parse (context),
@@ -1323,21 +1323,21 @@ extends
 
 object SteamSupply
 extends
-    Parseable[SteamSupply]
+    CIMParseable[SteamSupply]
 {
     override val fields: Array[String] = Array[String] (
         "steamSupplyRating",
         "SteamTurbines"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SteamTurbines", "SteamTurbine", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SteamTurbines", "SteamTurbine", "0..*", "0..*")
     )
     val steamSupplyRating: Fielder = parse_element (element (cls, fields(0)))
     val SteamTurbines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): SteamSupply =
+    def parse (context: CIMContext): SteamSupply =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SteamSupply (
             PowerSystemResource.parse (context),
@@ -1445,7 +1445,7 @@ extends
 
 object SteamTurbine
 extends
-    Parseable[SteamTurbine]
+    CIMParseable[SteamTurbine]
 {
     override val fields: Array[String] = Array[String] (
         "crossoverTC",
@@ -1462,8 +1462,8 @@ extends
         "steamChestTC",
         "SteamSupplys"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("SteamSupplys", "SteamSupply", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("SteamSupplys", "SteamSupply", "0..*", "0..*")
     )
     val crossoverTC: Fielder = parse_element (element (cls, fields(0)))
     val reheater1TC: Fielder = parse_element (element (cls, fields(1)))
@@ -1479,9 +1479,9 @@ extends
     val steamChestTC: Fielder = parse_element (element (cls, fields(11)))
     val SteamSupplys: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
-    def parse (context: Context): SteamTurbine =
+    def parse (context: CIMContext): SteamTurbine =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SteamTurbine (
             PrimeMover.parse (context),
@@ -1557,10 +1557,10 @@ extends
 
 object Subcritical
 extends
-    Parseable[Subcritical]
+    CIMParseable[Subcritical]
 {
 
-    def parse (context: Context): Subcritical =
+    def parse (context: CIMContext): Subcritical =
     {
         val ret = Subcritical (
             FossilSteamSupply.parse (context)
@@ -1622,10 +1622,10 @@ extends
 
 object Supercritical
 extends
-    Parseable[Supercritical]
+    CIMParseable[Supercritical]
 {
 
-    def parse (context: Context): Supercritical =
+    def parse (context: CIMContext): Supercritical =
     {
         val ret = Supercritical (
             FossilSteamSupply.parse (context)
@@ -1636,7 +1636,7 @@ extends
 
 private[ninecode] object _GenerationTrainingSimulation
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BWRSteamSupply.register,

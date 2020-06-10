@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 
 import scala.language.existentials
 
-class Worker[C <: Product, P <: Product] (relation: Relationship, child: String, childrdd: RDD[C], parent: String, parentrdd: RDD[P]) extends Serializable
+class Worker[C <: Product, P <: Product] (relation: CIMRelationship, child: String, childrdd: RDD[C], parent: String, parentrdd: RDD[P]) extends Serializable
 {
     def filter_predicate[X <: Product] (obj: X): Boolean =
     {
@@ -86,13 +86,13 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
     implicit val session: SparkSession = spark
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
-    def check (classes: List[ClassInfo], info: ClassInfo) (relation: Relationship): String =
+    def check (classes: List[CIMClassInfo], info: CIMClassInfo) (relation: CIMRelationship): String =
     {
         // val equipment: RDD[Equipment] = getOrElse[Equipment]
         // val equipment: RDD[Equipment] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "Equipment").head._2.asInstanceOf[RDD[Equipment]]
 
         type childrdd = info.subsetter.rddtype
-        val companion: ClassInfo = classes.find (_.name == relation.clazz).getOrElse (ch.ninecode.model.Unknown.register)
+        val companion: CIMClassInfo = classes.find (_.name == relation.clazz).getOrElse (ch.ninecode.model.Unknown.register)
         type parentrdd = companion.subsetter.rddtype
 
         if (log.isDebugEnabled)
@@ -115,7 +115,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
 
     }
 
-    def checkClass (classes: List[ClassInfo]) (info: ClassInfo): Option[String] =
+    def checkClass (classes: List[CIMClassInfo]) (info: CIMClassInfo): Option[String] =
     {
         if (info.relations.nonEmpty)
         {
@@ -131,7 +131,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
 
     def checkAll: Option[String] =
     {
-        val classes: List[ClassInfo] = new CHIM ("").classes
+        val classes: List[CIMClassInfo] = new CHIM ("").classes
         val errors: Seq[Option[String]] = classes.map (checkClass (classes))
         errors.fold (None) ((a, b) => a match { case None => b; case Some (string1) => b match { case Some (string2) => Some (s"$string1\n$string2"); case None => a }})
     }

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Logical gate than support logical operation based on the input.
@@ -94,7 +94,7 @@ extends
 
 object Gate
 extends
-    Parseable[Gate]
+    CIMParseable[Gate]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
@@ -108,16 +108,16 @@ extends
         "StageTriggerCom",
         "TriggerCondition"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateInputPin", "GateInputPin", "1..*", "1"),
-        Relationship ("PinGate", "PinGate", "0..*", "1"),
-        Relationship ("ProtectiveActionCom", "ProtectiveAction", "0..*", "0..1"),
-        Relationship ("ProtectiveActionEnabled", "ProtectiveAction", "0..*", "0..1"),
-        Relationship ("RemedialActionScheme", "RemedialActionScheme", "0..*", "0..1"),
-        Relationship ("StageTrigger", "StageTrigger", "0..*", "0..1"),
-        Relationship ("StageTriggerArmed", "StageTrigger", "0..*", "0..1"),
-        Relationship ("StageTriggerCom", "StageTrigger", "0..*", "0..1"),
-        Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateInputPin", "GateInputPin", "1..*", "1"),
+        CIMRelationship ("PinGate", "PinGate", "0..*", "1"),
+        CIMRelationship ("ProtectiveActionCom", "ProtectiveAction", "0..*", "0..1"),
+        CIMRelationship ("ProtectiveActionEnabled", "ProtectiveAction", "0..*", "0..1"),
+        CIMRelationship ("RemedialActionScheme", "RemedialActionScheme", "0..*", "0..1"),
+        CIMRelationship ("StageTrigger", "StageTrigger", "0..*", "0..1"),
+        CIMRelationship ("StageTriggerArmed", "StageTrigger", "0..*", "0..1"),
+        CIMRelationship ("StageTriggerCom", "StageTrigger", "0..*", "0..1"),
+        CIMRelationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val GateInputPin: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -130,9 +130,9 @@ extends
     val StageTriggerCom: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
     val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): Gate =
+    def parse (context: CIMContext): Gate =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Gate (
             IdentifiedObject.parse (context),
@@ -233,7 +233,7 @@ extends
 
 object GateInputPin
 extends
-    Parseable[GateInputPin]
+    CIMParseable[GateInputPin]
 {
     override val fields: Array[String] = Array[String] (
         "aDLogicKind",
@@ -244,8 +244,8 @@ extends
         "thresholdValue",
         "Gate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Gate", "Gate", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Gate", "Gate", "1", "1..*")
     )
     val aDLogicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val absoluteValue: Fielder = parse_element (element (cls, fields(1)))
@@ -255,9 +255,9 @@ extends
     val thresholdValue: Fielder = parse_element (element (cls, fields(5)))
     val Gate: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): GateInputPin =
+    def parse (context: CIMContext): GateInputPin =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GateInputPin (
             IdentifiedObject.parse (context),
@@ -340,24 +340,24 @@ extends
 
 object MeasurementCalculator
 extends
-    Parseable[MeasurementCalculator]
+    CIMParseable[MeasurementCalculator]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "MeasurementCalculatorInput",
         "PinMeasurement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"),
-        Relationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"),
+        CIMRelationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): MeasurementCalculator =
+    def parse (context: CIMContext): MeasurementCalculator =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MeasurementCalculator (
             IdentifiedObject.parse (context),
@@ -442,7 +442,7 @@ extends
 
 object MeasurementCalculatorInput
 extends
-    Parseable[MeasurementCalculatorInput]
+    CIMParseable[MeasurementCalculatorInput]
 {
     override val fields: Array[String] = Array[String] (
         "absoluteValue",
@@ -450,18 +450,18 @@ extends
         "Measurement",
         "MeasurementCalculator"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Measurement", "Measurement", "1", "0..*"),
-        Relationship ("MeasurementCalculator", "MeasurementCalculator", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Measurement", "Measurement", "1", "0..*"),
+        CIMRelationship ("MeasurementCalculator", "MeasurementCalculator", "1", "1..*")
     )
     val absoluteValue: Fielder = parse_element (element (cls, fields(0)))
     val order: Fielder = parse_element (element (cls, fields(1)))
     val Measurement: Fielder = parse_attribute (attribute (cls, fields(2)))
     val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): MeasurementCalculatorInput =
+    def parse (context: CIMContext): MeasurementCalculatorInput =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MeasurementCalculatorInput (
             IdentifiedObject.parse (context),
@@ -537,21 +537,21 @@ extends
 
 object PinBranchGroup
 extends
-    Parseable[PinBranchGroup]
+    CIMParseable[PinBranchGroup]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "BranchGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BranchGroup", "BranchGroup", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BranchGroup", "BranchGroup", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): PinBranchGroup =
+    def parse (context: CIMContext): PinBranchGroup =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PinBranchGroup (
             GateInputPin.parse (context),
@@ -625,21 +625,21 @@ extends
 
 object PinEquipment
 extends
-    Parseable[PinEquipment]
+    CIMParseable[PinEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "Equipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Equipment", "Equipment", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): PinEquipment =
+    def parse (context: CIMContext): PinEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PinEquipment (
             GateInputPin.parse (context),
@@ -710,19 +710,19 @@ extends
 
 object PinGate
 extends
-    Parseable[PinGate]
+    CIMParseable[PinGate]
 {
     override val fields: Array[String] = Array[String] (
         "GateOutput"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateOutput", "Gate", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateOutput", "Gate", "1", "0..*")
     )
     val GateOutput: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): PinGate =
+    def parse (context: CIMContext): PinGate =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PinGate (
             GateInputPin.parse (context),
@@ -795,22 +795,22 @@ extends
 
 object PinMeasurement
 extends
-    Parseable[PinMeasurement]
+    CIMParseable[PinMeasurement]
 {
     override val fields: Array[String] = Array[String] (
         "Measurement",
         "MeasurementCalculator"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Measurement", "Measurement", "0..1", "0..*"),
-        Relationship ("MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Measurement", "Measurement", "0..1", "0..*"),
+        CIMRelationship ("MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*")
     )
     val Measurement: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): PinMeasurement =
+    def parse (context: CIMContext): PinMeasurement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PinMeasurement (
             GateInputPin.parse (context),
@@ -884,21 +884,21 @@ extends
 
 object PinTerminal
 extends
-    Parseable[PinTerminal]
+    CIMParseable[PinTerminal]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Terminal", "Terminal", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): PinTerminal =
+    def parse (context: CIMContext): PinTerminal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PinTerminal (
             GateInputPin.parse (context),
@@ -986,7 +986,7 @@ extends
 
 object ProtectiveAction
 extends
-    Parseable[ProtectiveAction]
+    CIMParseable[ProtectiveAction]
 {
     override val fields: Array[String] = Array[String] (
         "enabled",
@@ -996,11 +996,11 @@ extends
         "ProtectionEquipment",
         "ProtectiveActionCollection"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateComCondition", "Gate", "0..1", "0..*"),
-        Relationship ("GateEnabledCondition", "Gate", "0..1", "0..*"),
-        Relationship ("ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"),
-        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateComCondition", "Gate", "0..1", "0..*"),
+        CIMRelationship ("GateEnabledCondition", "Gate", "0..1", "0..*"),
+        CIMRelationship ("ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"),
+        CIMRelationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*")
     )
     val enabled: Fielder = parse_element (element (cls, fields(0)))
     val normalEnabled: Fielder = parse_element (element (cls, fields(1)))
@@ -1009,9 +1009,9 @@ extends
     val ProtectionEquipment: Fielder = parse_attribute (attribute (cls, fields(4)))
     val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): ProtectiveAction =
+    def parse (context: CIMContext): ProtectiveAction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectiveAction (
             IdentifiedObject.parse (context),
@@ -1112,7 +1112,7 @@ extends
 
 object ProtectiveActionAdjustment
 extends
-    Parseable[ProtectiveActionAdjustment]
+    CIMParseable[ProtectiveActionAdjustment]
 {
     override val fields: Array[String] = Array[String] (
         "byPercentage",
@@ -1124,10 +1124,10 @@ extends
         "DCConductingEquipment",
         "Measurement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*"),
-        Relationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*"),
-        Relationship ("Measurement", "Measurement", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*"),
+        CIMRelationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*"),
+        CIMRelationship ("Measurement", "Measurement", "0..1", "0..*")
     )
     val byPercentage: Fielder = parse_element (element (cls, fields(0)))
     val byValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1138,9 +1138,9 @@ extends
     val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Measurement: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): ProtectiveActionAdjustment =
+    def parse (context: CIMContext): ProtectiveActionAdjustment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectiveActionAdjustment (
             ProtectiveAction.parse (context),
@@ -1220,22 +1220,22 @@ extends
 
 object ProtectiveActionCollection
 extends
-    Parseable[ProtectiveActionCollection]
+    CIMParseable[ProtectiveActionCollection]
 {
     override val fields: Array[String] = Array[String] (
         "ProtectiveAction",
         "StageTrigger"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProtectiveAction", "ProtectiveAction", "1..*", "1"),
-        Relationship ("StageTrigger", "StageTrigger", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProtectiveAction", "ProtectiveAction", "1..*", "1"),
+        CIMRelationship ("StageTrigger", "StageTrigger", "0..*", "1")
     )
     val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ProtectiveActionCollection =
+    def parse (context: CIMContext): ProtectiveActionCollection =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectiveActionCollection (
             IdentifiedObject.parse (context),
@@ -1310,21 +1310,21 @@ extends
 
 object ProtectiveActionEquipment
 extends
-    Parseable[ProtectiveActionEquipment]
+    CIMParseable[ProtectiveActionEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "inService",
         "Equipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Equipment", "Equipment", "1", "0..*")
     )
     val inService: Fielder = parse_element (element (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ProtectiveActionEquipment =
+    def parse (context: CIMContext): ProtectiveActionEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectiveActionEquipment (
             ProtectiveAction.parse (context),
@@ -1403,23 +1403,23 @@ extends
 
 object ProtectiveActionRegulation
 extends
-    Parseable[ProtectiveActionRegulation]
+    CIMParseable[ProtectiveActionRegulation]
 {
     override val fields: Array[String] = Array[String] (
         "isRegulating",
         "targetValue",
         "RegulatingControl"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegulatingControl", "RegulatingControl", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegulatingControl", "RegulatingControl", "1", "0..*")
     )
     val isRegulating: Fielder = parse_element (element (cls, fields(0)))
     val targetValue: Fielder = parse_element (element (cls, fields(1)))
     val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ProtectiveActionRegulation =
+    def parse (context: CIMContext): ProtectiveActionRegulation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectiveActionRegulation (
             ProtectiveAction.parse (context),
@@ -1509,7 +1509,7 @@ extends
 
 object RemedialActionScheme
 extends
-    Parseable[RemedialActionScheme]
+    CIMParseable[RemedialActionScheme]
 {
     override val fields: Array[String] = Array[String] (
         "armed",
@@ -1519,10 +1519,10 @@ extends
         "Stage",
         "TriggerCondition"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateArmed", "Gate", "0..1", "0..*"),
-        Relationship ("Stage", "Stage", "1..*", "1"),
-        Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateArmed", "Gate", "0..1", "0..*"),
+        CIMRelationship ("Stage", "Stage", "1..*", "1"),
+        CIMRelationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
     val armed: Fielder = parse_element (element (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1531,9 +1531,9 @@ extends
     val Stage: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
-    def parse (context: Context): RemedialActionScheme =
+    def parse (context: CIMContext): RemedialActionScheme =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemedialActionScheme (
             PowerSystemResource.parse (context),
@@ -1617,24 +1617,24 @@ extends
 
 object Stage
 extends
-    Parseable[Stage]
+    CIMParseable[Stage]
 {
     override val fields: Array[String] = Array[String] (
         "priority",
         "RemedialActionScheme",
         "StageTrigger"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "1..*"),
-        Relationship ("StageTrigger", "StageTrigger", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RemedialActionScheme", "RemedialActionScheme", "1", "1..*"),
+        CIMRelationship ("StageTrigger", "StageTrigger", "1..*", "1")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
     val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): Stage =
+    def parse (context: CIMContext): Stage =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Stage (
             IdentifiedObject.parse (context),
@@ -1730,7 +1730,7 @@ extends
 
 object StageTrigger
 extends
-    Parseable[StageTrigger]
+    CIMParseable[StageTrigger]
 {
     override val fields: Array[String] = Array[String] (
         "armed",
@@ -1742,12 +1742,12 @@ extends
         "ProtectiveActionCollection",
         "Stage"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateArmed", "Gate", "0..1", "0..*"),
-        Relationship ("GateComCondition", "Gate", "0..1", "0..*"),
-        Relationship ("GateTrigger", "Gate", "0..1", "0..*"),
-        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"),
-        Relationship ("Stage", "Stage", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateArmed", "Gate", "0..1", "0..*"),
+        CIMRelationship ("GateComCondition", "Gate", "0..1", "0..*"),
+        CIMRelationship ("GateTrigger", "Gate", "0..1", "0..*"),
+        CIMRelationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"),
+        CIMRelationship ("Stage", "Stage", "1", "1..*")
     )
     val armed: Fielder = parse_element (element (cls, fields(0)))
     val normalArmed: Fielder = parse_element (element (cls, fields(1)))
@@ -1758,9 +1758,9 @@ extends
     val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Stage: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): StageTrigger =
+    def parse (context: CIMContext): StageTrigger =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StageTrigger (
             IdentifiedObject.parse (context),
@@ -1840,22 +1840,22 @@ extends
 
 object TriggerCondition
 extends
-    Parseable[TriggerCondition]
+    CIMParseable[TriggerCondition]
 {
     override val fields: Array[String] = Array[String] (
         "GateTrigger",
         "RemedialActionScheme"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GateTrigger", "Gate", "1", "0..*"),
-        Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GateTrigger", "Gate", "1", "0..*"),
+        CIMRelationship ("RemedialActionScheme", "RemedialActionScheme", "1", "0..*")
     )
     val GateTrigger: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): TriggerCondition =
+    def parse (context: CIMContext): TriggerCondition =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TriggerCondition (
             IdentifiedObject.parse (context),
@@ -1869,7 +1869,7 @@ extends
 
 private[ninecode] object _InfSIPS
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             Gate.register,

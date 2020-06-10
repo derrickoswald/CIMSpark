@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Asynchronous machine whose behaviour is described by reference to a standard model expressed in either time constant reactance form or equivalent circuit form <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -83,7 +83,7 @@ extends
 
 object AsynchronousMachineDynamics
 extends
-    Parseable[AsynchronousMachineDynamics]
+    CIMParseable[AsynchronousMachineDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "AsynchronousMachine",
@@ -91,20 +91,20 @@ extends
         "TurbineGovernorDynamics",
         "WindTurbineType1or2Dynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachine", "AsynchronousMachine", "1", "0..1"),
-        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"),
-        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AsynchronousMachine", "AsynchronousMachine", "1", "0..1"),
+        CIMRelationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
+        CIMRelationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"),
+        CIMRelationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1")
     )
     val AsynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
     val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): AsynchronousMachineDynamics =
+    def parse (context: CIMContext): AsynchronousMachineDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
@@ -204,7 +204,7 @@ extends
 
 object AsynchronousMachineEquivalentCircuit
 extends
-    Parseable[AsynchronousMachineEquivalentCircuit]
+    CIMParseable[AsynchronousMachineEquivalentCircuit]
 {
     override val fields: Array[String] = Array[String] (
         "rr1",
@@ -219,9 +219,9 @@ extends
     val xlr2: Fielder = parse_element (element (cls, fields(3)))
     val xm: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): AsynchronousMachineEquivalentCircuit =
+    def parse (context: CIMContext): AsynchronousMachineEquivalentCircuit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineEquivalentCircuit (
             AsynchronousMachineDynamics.parse (context),
@@ -332,7 +332,7 @@ extends
 
 object AsynchronousMachineTimeConstantReactance
 extends
-    Parseable[AsynchronousMachineTimeConstantReactance]
+    CIMParseable[AsynchronousMachineTimeConstantReactance]
 {
     override val fields: Array[String] = Array[String] (
         "tpo",
@@ -347,9 +347,9 @@ extends
     val xpp: Fielder = parse_element (element (cls, fields(3)))
     val xs: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): AsynchronousMachineTimeConstantReactance =
+    def parse (context: CIMContext): AsynchronousMachineTimeConstantReactance =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineTimeConstantReactance (
             AsynchronousMachineDynamics.parse (context),
@@ -366,7 +366,7 @@ extends
 
 private[ninecode] object _AsynchronousMachineDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AsynchronousMachineDynamics.register,

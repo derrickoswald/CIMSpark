@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Vertical displacement relative to either sealevel, ground or the center of the earth.
@@ -69,7 +69,7 @@ extends
 
 object RelativeDisplacement
 extends
-    Parseable[RelativeDisplacement]
+    CIMParseable[RelativeDisplacement]
 {
     override val fields: Array[String] = Array[String] (
         "displacement",
@@ -78,9 +78,9 @@ extends
     val displacement: Fielder = parse_element (element (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): RelativeDisplacement =
+    def parse (context: CIMContext): RelativeDisplacement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RelativeDisplacement (
             BasicElement.parse (context),
@@ -94,7 +94,7 @@ extends
 
 private[ninecode] object _EnvDomain
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             RelativeDisplacement.register

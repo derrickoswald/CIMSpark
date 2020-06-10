@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
@@ -69,16 +69,16 @@ extends
 
 object ComplianceEvent
 extends
-    Parseable[ComplianceEvent]
+    CIMParseable[ComplianceEvent]
 {
     override val fields: Array[String] = Array[String] (
         "deadline"
     )
     val deadline: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): ComplianceEvent =
+    def parse (context: CIMContext): ComplianceEvent =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ComplianceEvent (
             ActivityRecord.parse (context),
@@ -185,7 +185,7 @@ extends
 
 object CustomerBillingInfo
 extends
-    Parseable[CustomerBillingInfo]
+    CIMParseable[CustomerBillingInfo]
 {
     override val fields: Array[String] = Array[String] (
         "billingDate",
@@ -199,9 +199,9 @@ extends
         "CustomerAccount",
         "ErpInvoiceLineItems"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        CIMRelationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*")
     )
     val billingDate: Fielder = parse_element (element (cls, fields(0)))
     val dueDate: Fielder = parse_element (element (cls, fields(1)))
@@ -214,9 +214,9 @@ extends
     val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(8)))
     val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): CustomerBillingInfo =
+    def parse (context: CIMContext): CustomerBillingInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CustomerBillingInfo (
             Document.parse (context),
@@ -291,10 +291,10 @@ extends
 
 object ExternalCustomerAgreement
 extends
-    Parseable[ExternalCustomerAgreement]
+    CIMParseable[ExternalCustomerAgreement]
 {
 
-    def parse (context: Context): ExternalCustomerAgreement =
+    def parse (context: CIMContext): ExternalCustomerAgreement =
     {
         val ret = ExternalCustomerAgreement (
             Agreement.parse (context)
@@ -386,7 +386,7 @@ extends
 
 object PowerQualityPricing
 extends
-    Parseable[PowerQualityPricing]
+    CIMParseable[PowerQualityPricing]
 {
     override val fields: Array[String] = Array[String] (
         "emergencyHighVoltLimit",
@@ -409,9 +409,9 @@ extends
     val voltImbalanceViolCost: Fielder = parse_element (element (cls, fields(7)))
     val voltLimitViolCost: Fielder = parse_element (element (cls, fields(8)))
 
-    def parse (context: Context): PowerQualityPricing =
+    def parse (context: CIMContext): PowerQualityPricing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerQualityPricing (
             Document.parse (context),
@@ -504,7 +504,7 @@ extends
 
 object ServiceGuarantee
 extends
-    Parseable[ServiceGuarantee]
+    CIMParseable[ServiceGuarantee]
 {
     override val fields: Array[String] = Array[String] (
         "applicationPeriod",
@@ -517,9 +517,9 @@ extends
     val payAmount: Fielder = parse_element (element (cls, fields(2)))
     val serviceRequirement: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): ServiceGuarantee =
+    def parse (context: CIMContext): ServiceGuarantee =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ServiceGuarantee (
             Document.parse (context),
@@ -599,21 +599,21 @@ extends
 
 object StandardIndustryCode
 extends
-    Parseable[StandardIndustryCode]
+    CIMParseable[StandardIndustryCode]
 {
     override val fields: Array[String] = Array[String] (
         "code",
         "CustomerAgreements"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CustomerAgreements", "CustomerAgreement", "0..*", "0..1")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
     val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): StandardIndustryCode =
+    def parse (context: CIMContext): StandardIndustryCode =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StandardIndustryCode (
             Document.parse (context),
@@ -678,10 +678,10 @@ extends
 
 object SubscribePowerCurve
 extends
-    Parseable[SubscribePowerCurve]
+    CIMParseable[SubscribePowerCurve]
 {
 
-    def parse (context: Context): SubscribePowerCurve =
+    def parse (context: CIMContext): SubscribePowerCurve =
     {
         val ret = SubscribePowerCurve (
             Curve.parse (context)
@@ -780,7 +780,7 @@ extends
 
 object WorkBillingInfo
 extends
-    Parseable[WorkBillingInfo]
+    CIMParseable[WorkBillingInfo]
 {
     override val fields: Array[String] = Array[String] (
         "costEstimate",
@@ -794,10 +794,10 @@ extends
         "ErpLineItems",
         "Works"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
-        Relationship ("ErpLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
-        Relationship ("Works", "Work", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        CIMRelationship ("ErpLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
+        CIMRelationship ("Works", "Work", "0..*", "0..1")
     )
     val costEstimate: Fielder = parse_element (element (cls, fields(0)))
     val deposit: Fielder = parse_element (element (cls, fields(1)))
@@ -810,9 +810,9 @@ extends
     val ErpLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
     val Works: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): WorkBillingInfo =
+    def parse (context: CIMContext): WorkBillingInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkBillingInfo (
             Document.parse (context),
@@ -834,7 +834,7 @@ extends
 
 private[ninecode] object _InfCustomers
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ComplianceEvent.register,

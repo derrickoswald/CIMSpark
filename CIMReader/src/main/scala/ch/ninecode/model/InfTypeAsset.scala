@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Generic generation equipment that may be used for various purposes such as work planning.
@@ -112,7 +112,7 @@ extends
 
 object GeneratorTypeAsset
 extends
-    Parseable[GeneratorTypeAsset]
+    CIMParseable[GeneratorTypeAsset]
 {
     override val fields: Array[String] = Array[String] (
         "maxP",
@@ -149,9 +149,9 @@ extends
     val xQuadSync: Fielder = parse_element (element (cls, fields(14)))
     val xQuadTrans: Fielder = parse_element (element (cls, fields(15)))
 
-    def parse (context: Context): GeneratorTypeAsset =
+    def parse (context: CIMContext): GeneratorTypeAsset =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GeneratorTypeAsset (
             CatalogAssetType.parse (context),
@@ -241,21 +241,21 @@ extends
 
 object TypeAssetCatalogue
 extends
-    Parseable[TypeAssetCatalogue]
+    CIMParseable[TypeAssetCatalogue]
 {
     override val fields: Array[String] = Array[String] (
         "status",
         "TypeAssets"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TypeAssets", "CatalogAssetType", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TypeAssets", "CatalogAssetType", "0..*", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeAssets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): TypeAssetCatalogue =
+    def parse (context: CIMContext): TypeAssetCatalogue =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TypeAssetCatalogue (
             IdentifiedObject.parse (context),
@@ -269,7 +269,7 @@ extends
 
 private[ninecode] object _InfTypeAsset
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             GeneratorTypeAsset.register,

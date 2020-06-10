@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * This is the cureve that describes the load reduction time.
@@ -68,16 +68,16 @@ extends
 
 object LoadReductionTimeCurve
 extends
-    Parseable[LoadReductionTimeCurve]
+    CIMParseable[LoadReductionTimeCurve]
 {
     override val fields: Array[String] = Array[String] (
         "loadReductionTimeCurveType"
     )
     val loadReductionTimeCurveType: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): LoadReductionTimeCurve =
+    def parse (context: CIMContext): LoadReductionTimeCurve =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LoadReductionTimeCurve (
             Curve.parse (context),
@@ -186,7 +186,7 @@ extends
 
 object RegisteredControllableLoad
 extends
-    Parseable[RegisteredControllableLoad]
+    CIMParseable[RegisteredControllableLoad]
 {
     override val fields: Array[String] = Array[String] (
         "maxBaseLoad",
@@ -215,9 +215,9 @@ extends
     val minTimeBetLoadRed: Fielder = parse_element (element (cls, fields(10)))
     val reqNoticeTime: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): RegisteredControllableLoad =
+    def parse (context: CIMContext): RegisteredControllableLoad =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RegisteredControllableLoad (
             BasicElement.parse (context),
@@ -241,7 +241,7 @@ extends
 
 private[ninecode] object _InfReferenceData
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             LoadReductionTimeCurve.register,

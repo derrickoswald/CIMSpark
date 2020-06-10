@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * CSC function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -66,19 +66,19 @@ extends
 
 object CSCDynamics
 extends
-    Parseable[CSCDynamics]
+    CIMParseable[CSCDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "CSConverter"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CSConverter", "CsConverter", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CSConverter", "CsConverter", "1", "0..1")
     )
     val CSConverter: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): CSCDynamics =
+    def parse (context: CIMContext): CSCDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CSCDynamics (
             HVDCDynamics.parse (context),
@@ -142,10 +142,10 @@ extends
 
 object HVDCDynamics
 extends
-    Parseable[HVDCDynamics]
+    CIMParseable[HVDCDynamics]
 {
 
-    def parse (context: Context): HVDCDynamics =
+    def parse (context: CIMContext): HVDCDynamics =
     {
         val ret = HVDCDynamics (
             DynamicsFunctionBlock.parse (context)
@@ -213,19 +213,19 @@ extends
 
 object VSCDynamics
 extends
-    Parseable[VSCDynamics]
+    CIMParseable[VSCDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "VsConverter"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("VsConverter", "VsConverter", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("VsConverter", "VsConverter", "1", "0..1")
     )
     val VsConverter: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): VSCDynamics =
+    def parse (context: CIMContext): VSCDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VSCDynamics (
             HVDCDynamics.parse (context),
@@ -238,7 +238,7 @@ extends
 
 private[ninecode] object _HVDCDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CSCDynamics.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Model of market clearing related to results at the inter-ties.
@@ -67,19 +67,19 @@ extends
 
 object InterTieClearing
 extends
-    Parseable[InterTieClearing]
+    CIMParseable[InterTieClearing]
 {
     override val fields: Array[String] = Array[String] (
         "InterTieResults"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("InterTieResults", "InterTieResults", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("InterTieResults", "InterTieResults", "0..*", "0..1")
     )
     val InterTieResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): InterTieClearing =
+    def parse (context: CIMContext): InterTieClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InterTieClearing (
             MarketFactors.parse (context),
@@ -160,7 +160,7 @@ extends
 
 object InterTieResults
 extends
-    Parseable[InterTieResults]
+    CIMParseable[InterTieResults]
 {
     override val fields: Array[String] = Array[String] (
         "baseMW",
@@ -168,18 +168,18 @@ extends
         "Flowgate",
         "InterTieClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", "1", "1..*"),
-        Relationship ("InterTieClearing", "InterTieClearing", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Flowgate", "Flowgate", "1", "1..*"),
+        CIMRelationship ("InterTieClearing", "InterTieClearing", "0..1", "0..*")
     )
     val baseMW: Fielder = parse_element (element (cls, fields(0)))
     val clearedValue: Fielder = parse_element (element (cls, fields(1)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(2)))
     val InterTieClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): InterTieResults =
+    def parse (context: CIMContext): InterTieResults =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InterTieResults (
             BasicElement.parse (context),
@@ -269,7 +269,7 @@ extends
 
 object MarketCaseClearing
 extends
-    Parseable[MarketCaseClearing]
+    CIMParseable[MarketCaseClearing]
 {
     override val fields: Array[String] = Array[String] (
         "caseType",
@@ -277,17 +277,17 @@ extends
         "postedDate",
         "MarketProductClearing"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MarketProductClearing", "AncillaryServiceClearing", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MarketProductClearing", "AncillaryServiceClearing", "0..*", "0..1")
     )
     val caseType: Fielder = parse_element (element (cls, fields(0)))
     val modifiedDate: Fielder = parse_element (element (cls, fields(1)))
     val postedDate: Fielder = parse_element (element (cls, fields(2)))
     val MarketProductClearing: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): MarketCaseClearing =
+    def parse (context: CIMContext): MarketCaseClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketCaseClearing (
             MarketFactors.parse (context),
@@ -365,7 +365,7 @@ extends
 
 object SecurityConstraintsClearing
 extends
-    Parseable[SecurityConstraintsClearing]
+    CIMParseable[SecurityConstraintsClearing]
 {
     override val fields: Array[String] = Array[String] (
         "mwFlow",
@@ -376,9 +376,9 @@ extends
     val mwLimit: Fielder = parse_element (element (cls, fields(1)))
     val shadowPrice: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): SecurityConstraintsClearing =
+    def parse (context: CIMContext): SecurityConstraintsClearing =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SecurityConstraintsClearing (
             MarketFactors.parse (context),
@@ -393,7 +393,7 @@ extends
 
 private[ninecode] object _InfMarketResults
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             InterTieClearing.register,

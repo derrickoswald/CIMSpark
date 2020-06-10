@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group DER
@@ -74,7 +74,7 @@ extends
 
 object DERCurveData
 extends
-    Parseable[DERCurveData]
+    CIMParseable[DERCurveData]
 {
     override val fields: Array[String] = Array[String] (
         "intervalNumber",
@@ -85,9 +85,9 @@ extends
         "DERMonitorableParameter",
         "DispatchSchedule"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..1"),
-        Relationship ("DispatchSchedule", "DispatchSchedule", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..1"),
+        CIMRelationship ("DispatchSchedule", "DispatchSchedule", "0..1", "0..*")
     )
     val intervalNumber: Fielder = parse_element (element (cls, fields(0)))
     val maxYValue: Fielder = parse_element (element (cls, fields(1)))
@@ -97,9 +97,9 @@ extends
     val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields(5)))
     val DispatchSchedule: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): DERCurveData =
+    def parse (context: CIMContext): DERCurveData =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DERCurveData (
             BasicElement.parse (context),
@@ -189,7 +189,7 @@ extends
 
 object DERFunction
 extends
-    Parseable[DERFunction]
+    CIMParseable[DERFunction]
 {
     override val fields: Array[String] = Array[String] (
         "connectDisconnect",
@@ -203,8 +203,8 @@ extends
         "voltageRegulation",
         "EndDeviceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..1")
     )
     val connectDisconnect: Fielder = parse_element (element (cls, fields(0)))
     val frequencyWattCurveFunction: Fielder = parse_element (element (cls, fields(1)))
@@ -217,9 +217,9 @@ extends
     val voltageRegulation: Fielder = parse_element (element (cls, fields(8)))
     val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): DERFunction =
+    def parse (context: CIMContext): DERFunction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DERFunction (
             BasicElement.parse (context),
@@ -293,19 +293,19 @@ extends
 
 object DERGroupDispatch
 extends
-    Parseable[DERGroupDispatch]
+    CIMParseable[DERGroupDispatch]
 {
     override val fields: Array[String] = Array[String] (
         "EndDeviceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
     )
     val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DERGroupDispatch =
+    def parse (context: CIMContext): DERGroupDispatch =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DERGroupDispatch (
             IdentifiedObject.parse (context),
@@ -373,21 +373,21 @@ extends
 
 object DERGroupForecast
 extends
-    Parseable[DERGroupForecast]
+    CIMParseable[DERGroupForecast]
 {
     override val fields: Array[String] = Array[String] (
         "predictionCreationDate",
         "EndDeviceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EndDeviceGroup", "EndDeviceGroup", "1..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "1..*", "1..*")
     )
     val predictionCreationDate: Fielder = parse_element (element (cls, fields(0)))
     val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): DERGroupForecast =
+    def parse (context: CIMContext): DERGroupForecast =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DERGroupForecast (
             IdentifiedObject.parse (context),
@@ -471,7 +471,7 @@ extends
 
 object DERMonitorableParameter
 extends
-    Parseable[DERMonitorableParameter]
+    CIMParseable[DERMonitorableParameter]
 {
     override val fields: Array[String] = Array[String] (
         "flowDirection",
@@ -484,10 +484,10 @@ extends
         "DispatchSchedule",
         "EndDeviceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DERCurveData", "DERCurveData", "0..1", "1"),
-        Relationship ("DispatchSchedule", "DispatchSchedule", "0..*", "1"),
-        Relationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DERCurveData", "DERCurveData", "0..1", "1"),
+        CIMRelationship ("DispatchSchedule", "DispatchSchedule", "0..*", "1"),
+        CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
     )
     val flowDirection: Fielder = parse_attribute (attribute (cls, fields(0)))
     val yMultiplier: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -499,9 +499,9 @@ extends
     val DispatchSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
-    def parse (context: Context): DERMonitorableParameter =
+    def parse (context: CIMContext): DERMonitorableParameter =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DERMonitorableParameter (
             BasicElement.parse (context),
@@ -590,7 +590,7 @@ extends
 
 object DispatchSchedule
 extends
-    Parseable[DispatchSchedule]
+    CIMParseable[DispatchSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "confidence",
@@ -602,9 +602,9 @@ extends
         "DERCurveData",
         "DERMonitorableParameter"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DERCurveData", "DERCurveData", "0..*", "0..1"),
-        Relationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DERCurveData", "DERCurveData", "0..*", "0..1"),
+        CIMRelationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..*")
     )
     val confidence: Fielder = parse_element (element (cls, fields(0)))
     val curveStyleKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -615,9 +615,9 @@ extends
     val DERCurveData: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): DispatchSchedule =
+    def parse (context: CIMContext): DispatchSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DispatchSchedule (
             BasicElement.parse (context),
@@ -710,7 +710,7 @@ extends
 
 object DispatchablePowerCapability
 extends
-    Parseable[DispatchablePowerCapability]
+    CIMParseable[DispatchablePowerCapability]
 {
     override val fields: Array[String] = Array[String] (
         "currentActivePower",
@@ -725,9 +725,9 @@ extends
         "EndDevice",
         "EndDeviceGroup"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EndDevice", "EndDevice", "0..1", "0..*"),
-        Relationship ("EndDeviceGroup", "EndDeviceGroup", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EndDevice", "EndDevice", "0..1", "0..*"),
+        CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..1", "0..1")
     )
     val currentActivePower: Fielder = parse_element (element (cls, fields(0)))
     val currentApparentPower: Fielder = parse_element (element (cls, fields(1)))
@@ -741,9 +741,9 @@ extends
     val EndDevice: Fielder = parse_attribute (attribute (cls, fields(9)))
     val EndDeviceGroup: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): DispatchablePowerCapability =
+    def parse (context: CIMContext): DispatchablePowerCapability =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DispatchablePowerCapability (
             BasicElement.parse (context),
@@ -766,7 +766,7 @@ extends
 
 private[ninecode] object _DER
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             DERCurveData.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Kind of market role an organisation can have.
@@ -280,7 +280,7 @@ extends
 
 object MarketRoleKind
 extends
-    Parseable[MarketRoleKind]
+    CIMParseable[MarketRoleKind]
 {
     override val fields: Array[String] = Array[String] (
         "balancingAuthority",
@@ -393,9 +393,9 @@ extends
     val TradeResponsibleParty: Fielder = parse_attribute (attribute (cls, fields(52)))
     val TransmissionCapacityAllocator: Fielder = parse_attribute (attribute (cls, fields(53)))
 
-    def parse (context: Context): MarketRoleKind =
+    def parse (context: CIMContext): MarketRoleKind =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0)
         val ret = MarketRoleKind (
             BasicElement.parse (context),
@@ -461,7 +461,7 @@ extends
 
 private[ninecode] object _InfMarketOpCommon
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             MarketRoleKind.register

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Constant aerodynamic torque model which assumes that the aerodynamic torque is constant.
@@ -73,19 +73,19 @@ extends
 
 object WindAeroConstIEC
 extends
-    Parseable[WindAeroConstIEC]
+    CIMParseable[WindAeroConstIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindGenTurbineType1aIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1")
     )
     val WindGenTurbineType1aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): WindAeroConstIEC =
+    def parse (context: CIMContext): WindAeroConstIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindAeroConstIEC (
             IdentifiedObject.parse (context),
@@ -171,23 +171,23 @@ extends
 
 object WindAeroOneDimIEC
 extends
-    Parseable[WindAeroOneDimIEC]
+    CIMParseable[WindAeroOneDimIEC]
 {
     override val fields: Array[String] = Array[String] (
         "ka",
         "thetaomega",
         "WindTurbineType3IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
     val ka: Fielder = parse_element (element (cls, fields(0)))
     val thetaomega: Fielder = parse_element (element (cls, fields(1)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WindAeroOneDimIEC =
+    def parse (context: CIMContext): WindAeroOneDimIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindAeroOneDimIEC (
             IdentifiedObject.parse (context),
@@ -295,7 +295,7 @@ extends
 
 object WindAeroTwoDimIEC
 extends
-    Parseable[WindAeroTwoDimIEC]
+    CIMParseable[WindAeroTwoDimIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dpomega",
@@ -307,8 +307,8 @@ extends
         "thetazero",
         "WindTurbineType3IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
     val dpomega: Fielder = parse_element (element (cls, fields(0)))
     val dptheta: Fielder = parse_element (element (cls, fields(1)))
@@ -319,9 +319,9 @@ extends
     val thetazero: Fielder = parse_element (element (cls, fields(6)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): WindAeroTwoDimIEC =
+    def parse (context: CIMContext): WindAeroTwoDimIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindAeroTwoDimIEC (
             IdentifiedObject.parse (context),
@@ -443,7 +443,7 @@ extends
 
 object WindContCurrLimIEC
 extends
-    Parseable[WindContCurrLimIEC]
+    CIMParseable[WindContCurrLimIEC]
 {
     override val fields: Array[String] = Array[String] (
         "imax",
@@ -456,9 +456,9 @@ extends
         "WindDynamicsLookupTable",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val imax: Fielder = parse_element (element (cls, fields(0)))
     val imaxdip: Fielder = parse_element (element (cls, fields(1)))
@@ -470,9 +470,9 @@ extends
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
 
-    def parse (context: Context): WindContCurrLimIEC =
+    def parse (context: CIMContext): WindContCurrLimIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContCurrLimIEC (
             IdentifiedObject.parse (context),
@@ -656,7 +656,7 @@ extends
 
 object WindContPType3IEC
 extends
-    Parseable[WindContPType3IEC]
+    CIMParseable[WindContPType3IEC]
 {
     override val fields: Array[String] = Array[String] (
         "dpmax",
@@ -685,9 +685,9 @@ extends
         "WindDynamicsLookupTable",
         "WindTurbineType3IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
     val dpmax: Fielder = parse_element (element (cls, fields(0)))
     val dprefmax: Fielder = parse_element (element (cls, fields(1)))
@@ -715,9 +715,9 @@ extends
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(24)))
 
-    def parse (context: Context): WindContPType3IEC =
+    def parse (context: CIMContext): WindContPType3IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContPType3IEC (
             IdentifiedObject.parse (context),
@@ -831,7 +831,7 @@ extends
 
 object WindContPType4aIEC
 extends
-    Parseable[WindContPType4aIEC]
+    CIMParseable[WindContPType4aIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dpmaxp4a",
@@ -839,17 +839,17 @@ extends
         "tufiltp4a",
         "WindTurbineType4aIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1")
     )
     val dpmaxp4a: Fielder = parse_element (element (cls, fields(0)))
     val tpordp4a: Fielder = parse_element (element (cls, fields(1)))
     val tufiltp4a: Fielder = parse_element (element (cls, fields(2)))
     val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): WindContPType4aIEC =
+    def parse (context: CIMContext): WindContPType4aIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContPType4aIEC (
             IdentifiedObject.parse (context),
@@ -946,7 +946,7 @@ extends
 
 object WindContPType4bIEC
 extends
-    Parseable[WindContPType4bIEC]
+    CIMParseable[WindContPType4bIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dpmaxp4b",
@@ -955,8 +955,8 @@ extends
         "tufiltp4b",
         "WindTurbineType4bIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1")
     )
     val dpmaxp4b: Fielder = parse_element (element (cls, fields(0)))
     val tpaero: Fielder = parse_element (element (cls, fields(1)))
@@ -964,9 +964,9 @@ extends
     val tufiltp4b: Fielder = parse_element (element (cls, fields(3)))
     val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): WindContPType4bIEC =
+    def parse (context: CIMContext): WindContPType4bIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContPType4bIEC (
             IdentifiedObject.parse (context),
@@ -1088,7 +1088,7 @@ extends
 
 object WindContPitchAngleIEC
 extends
-    Parseable[WindContPitchAngleIEC]
+    CIMParseable[WindContPitchAngleIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dthetamax",
@@ -1103,8 +1103,8 @@ extends
         "ttheta",
         "WindTurbineType3IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
     val dthetamax: Fielder = parse_element (element (cls, fields(0)))
     val dthetamin: Fielder = parse_element (element (cls, fields(1)))
@@ -1118,9 +1118,9 @@ extends
     val ttheta: Fielder = parse_element (element (cls, fields(9)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(10)))
 
-    def parse (context: Context): WindContPitchAngleIEC =
+    def parse (context: CIMContext): WindContPitchAngleIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContPitchAngleIEC (
             IdentifiedObject.parse (context),
@@ -1300,7 +1300,7 @@ extends
 
 object WindContQIEC
 extends
-    Parseable[WindContQIEC]
+    CIMParseable[WindContQIEC]
 {
     override val fields: Array[String] = Array[String] (
         "iqh1",
@@ -1328,8 +1328,8 @@ extends
         "xdroop",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val iqh1: Fielder = parse_element (element (cls, fields(0)))
     val iqmax: Fielder = parse_element (element (cls, fields(1)))
@@ -1356,9 +1356,9 @@ extends
     val xdroop: Fielder = parse_element (element (cls, fields(22)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(23)))
 
-    def parse (context: Context): WindContQIEC =
+    def parse (context: CIMContext): WindContQIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContQIEC (
             IdentifiedObject.parse (context),
@@ -1467,23 +1467,23 @@ extends
 
 object WindContQLimIEC
 extends
-    Parseable[WindContQLimIEC]
+    CIMParseable[WindContQLimIEC]
 {
     override val fields: Array[String] = Array[String] (
         "qmax",
         "qmin",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
     val qmax: Fielder = parse_element (element (cls, fields(0)))
     val qmin: Fielder = parse_element (element (cls, fields(1)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WindContQLimIEC =
+    def parse (context: CIMContext): WindContQLimIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContQLimIEC (
             IdentifiedObject.parse (context),
@@ -1575,7 +1575,7 @@ extends
 
 object WindContQPQULimIEC
 extends
-    Parseable[WindContQPQULimIEC]
+    CIMParseable[WindContQPQULimIEC]
 {
     override val fields: Array[String] = Array[String] (
         "tpfiltql",
@@ -1583,18 +1583,18 @@ extends
         "WindDynamicsLookupTable",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
     val tpfiltql: Fielder = parse_element (element (cls, fields(0)))
     val tufiltql: Fielder = parse_element (element (cls, fields(1)))
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): WindContQPQULimIEC =
+    def parse (context: CIMContext): WindContQPQULimIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContQPQULimIEC (
             IdentifiedObject.parse (context),
@@ -1711,7 +1711,7 @@ extends
 
 object WindContRotorRIEC
 extends
-    Parseable[WindContRotorRIEC]
+    CIMParseable[WindContRotorRIEC]
 {
     override val fields: Array[String] = Array[String] (
         "kirr",
@@ -1725,9 +1725,9 @@ extends
         "WindDynamicsLookupTable",
         "WindGenTurbineType2IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1")
     )
     val kirr: Fielder = parse_element (element (cls, fields(0)))
     val komegafilt: Fielder = parse_element (element (cls, fields(1)))
@@ -1740,9 +1740,9 @@ extends
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
     val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): WindContRotorRIEC =
+    def parse (context: CIMContext): WindContRotorRIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindContRotorRIEC (
             IdentifiedObject.parse (context),
@@ -1863,7 +1863,7 @@ extends
 
 object WindDynamicsLookupTable
 extends
-    Parseable[WindDynamicsLookupTable]
+    CIMParseable[WindDynamicsLookupTable]
 {
     override val fields: Array[String] = Array[String] (
         "input",
@@ -1880,16 +1880,16 @@ extends
         "WindPlantReactiveControlIEC",
         "WindProtectionIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "0..1", "1..*"),
-        Relationship ("WindContPType3IEC", "WindContPType3IEC", "0..1", "1..*"),
-        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "1..*"),
-        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", "0..1", "1..*"),
-        Relationship ("WindGenType3bIEC", "WindGenType3bIEC", "0..1", "1..*"),
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "0..1", "1..*"),
-        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "0..1", "1..*"),
-        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "0..1", "1..*"),
+        CIMRelationship ("WindContPType3IEC", "WindContPType3IEC", "0..1", "1..*"),
+        CIMRelationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "1..*"),
+        CIMRelationship ("WindContRotorRIEC", "WindContRotorRIEC", "0..1", "1..*"),
+        CIMRelationship ("WindGenType3bIEC", "WindGenType3bIEC", "0..1", "1..*"),
+        CIMRelationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "0..1", "1..*"),
+        CIMRelationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "0..1", "1..*"),
+        CIMRelationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"),
+        CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*")
     )
     val input: Fielder = parse_element (element (cls, fields(0)))
     val lookupTableFunctionType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1905,9 +1905,9 @@ extends
     val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(11)))
     val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(12)))
 
-    def parse (context: Context): WindDynamicsLookupTable =
+    def parse (context: CIMContext): WindDynamicsLookupTable =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindDynamicsLookupTable (
             IdentifiedObject.parse (context),
@@ -1996,19 +1996,19 @@ extends
 
 object WindGenTurbineType1aIEC
 extends
-    Parseable[WindGenTurbineType1aIEC]
+    CIMParseable[WindGenTurbineType1aIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindAeroConstIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindAeroConstIEC", "WindAeroConstIEC", "1", "1")
     )
     val WindAeroConstIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): WindGenTurbineType1aIEC =
+    def parse (context: CIMContext): WindGenTurbineType1aIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenTurbineType1aIEC (
             WindTurbineType1or2IEC.parse (context),
@@ -2085,19 +2085,19 @@ extends
 
 object WindGenTurbineType1bIEC
 extends
-    Parseable[WindGenTurbineType1bIEC]
+    CIMParseable[WindGenTurbineType1bIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindPitchContPowerIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
     val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): WindGenTurbineType1bIEC =
+    def parse (context: CIMContext): WindGenTurbineType1bIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenTurbineType1bIEC (
             WindTurbineType1or2IEC.parse (context),
@@ -2177,22 +2177,22 @@ extends
 
 object WindGenTurbineType2IEC
 extends
-    Parseable[WindGenTurbineType2IEC]
+    CIMParseable[WindGenTurbineType2IEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindContRotorRIEC",
         "WindPitchContPowerIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", "1", "1"),
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindContRotorRIEC", "WindContRotorRIEC", "1", "1"),
+        CIMRelationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
     val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindGenTurbineType2IEC =
+    def parse (context: CIMContext): WindGenTurbineType2IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenTurbineType2IEC (
             WindTurbineType1or2IEC.parse (context),
@@ -2281,7 +2281,7 @@ extends
 
 object WindGenType3IEC
 extends
-    Parseable[WindGenType3IEC]
+    CIMParseable[WindGenType3IEC]
 {
     override val fields: Array[String] = Array[String] (
         "dipmax",
@@ -2289,17 +2289,17 @@ extends
         "xs",
         "WindTurbineType3IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1")
     )
     val dipmax: Fielder = parse_element (element (cls, fields(0)))
     val diqmax: Fielder = parse_element (element (cls, fields(1)))
     val xs: Fielder = parse_element (element (cls, fields(2)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): WindGenType3IEC =
+    def parse (context: CIMContext): WindGenType3IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenType3IEC (
             IdentifiedObject.parse (context),
@@ -2388,23 +2388,23 @@ extends
 
 object WindGenType3aIEC
 extends
-    Parseable[WindGenType3aIEC]
+    CIMParseable[WindGenType3aIEC]
 {
     override val fields: Array[String] = Array[String] (
         "kpc",
         "tic",
         "WindTurbineType4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1")
     )
     val kpc: Fielder = parse_element (element (cls, fields(0)))
     val tic: Fielder = parse_element (element (cls, fields(1)))
     val WindTurbineType4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WindGenType3aIEC =
+    def parse (context: CIMContext): WindGenType3aIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenType3aIEC (
             WindGenType3IEC.parse (context),
@@ -2498,7 +2498,7 @@ extends
 
 object WindGenType3bIEC
 extends
-    Parseable[WindGenType3bIEC]
+    CIMParseable[WindGenType3bIEC]
 {
     override val fields: Array[String] = Array[String] (
         "mwtcwp",
@@ -2506,17 +2506,17 @@ extends
         "two",
         "WindDynamicsLookupTable"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1")
     )
     val mwtcwp: Fielder = parse_element (element (cls, fields(0)))
     val tg: Fielder = parse_element (element (cls, fields(1)))
     val two: Fielder = parse_element (element (cls, fields(2)))
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): WindGenType3bIEC =
+    def parse (context: CIMContext): WindGenType3bIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenType3bIEC (
             WindGenType3IEC.parse (context),
@@ -2616,7 +2616,7 @@ extends
 
 object WindGenType4IEC
 extends
-    Parseable[WindGenType4IEC]
+    CIMParseable[WindGenType4IEC]
 {
     override val fields: Array[String] = Array[String] (
         "dipmax",
@@ -2626,9 +2626,9 @@ extends
         "WindTurbineType4aIEC",
         "WindTurbineType4bIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"),
+        CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1")
     )
     val dipmax: Fielder = parse_element (element (cls, fields(0)))
     val diqmax: Fielder = parse_element (element (cls, fields(1)))
@@ -2637,9 +2637,9 @@ extends
     val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
     val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): WindGenType4IEC =
+    def parse (context: CIMContext): WindGenType4IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindGenType4IEC (
             IdentifiedObject.parse (context),
@@ -2744,7 +2744,7 @@ extends
 
 object WindMechIEC
 extends
-    Parseable[WindMechIEC]
+    CIMParseable[WindMechIEC]
 {
     override val fields: Array[String] = Array[String] (
         "cdrt",
@@ -2755,10 +2755,10 @@ extends
         "WindTurbineType3IEC",
         "WindTurbineType4bIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
+        CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"),
+        CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1")
     )
     val cdrt: Fielder = parse_element (element (cls, fields(0)))
     val hgen: Fielder = parse_element (element (cls, fields(1)))
@@ -2768,9 +2768,9 @@ extends
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(5)))
     val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): WindMechIEC =
+    def parse (context: CIMContext): WindMechIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindMechIEC (
             IdentifiedObject.parse (context),
@@ -2889,7 +2889,7 @@ extends
 
 object WindPitchContPowerIEC
 extends
-    Parseable[WindPitchContPowerIEC]
+    CIMParseable[WindPitchContPowerIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dpmax",
@@ -2903,10 +2903,10 @@ extends
         "WindGenTurbineType1bIEC",
         "WindGenTurbineType2IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"),
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"),
+        CIMRelationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1")
     )
     val dpmax: Fielder = parse_element (element (cls, fields(0)))
     val dpmin: Fielder = parse_element (element (cls, fields(1)))
@@ -2919,9 +2919,9 @@ extends
     val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields(8)))
     val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): WindPitchContPowerIEC =
+    def parse (context: CIMContext): WindPitchContPowerIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPitchContPowerIEC (
             IdentifiedObject.parse (context),
@@ -3009,22 +3009,22 @@ extends
 
 object WindPlantDynamics
 extends
-    Parseable[WindPlantDynamics]
+    CIMParseable[WindPlantDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "RemoteInputSignal",
         "WindTurbineType3or4Dynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
-        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        CIMRelationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1")
     )
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindTurbineType3or4Dynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindPlantDynamics =
+    def parse (context: CIMContext): WindPlantDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPlantDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -3167,7 +3167,7 @@ extends
 
 object WindPlantFreqPcontrolIEC
 extends
-    Parseable[WindPlantFreqPcontrolIEC]
+    CIMParseable[WindPlantFreqPcontrolIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dprefmax",
@@ -3188,9 +3188,9 @@ extends
         "WindDynamicsLookupTable",
         "WindPlantIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
     val dprefmax: Fielder = parse_element (element (cls, fields(0)))
     val dprefmin: Fielder = parse_element (element (cls, fields(1)))
@@ -3210,9 +3210,9 @@ extends
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
     val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(16)))
 
-    def parse (context: Context): WindPlantFreqPcontrolIEC =
+    def parse (context: CIMContext): WindPlantFreqPcontrolIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPlantFreqPcontrolIEC (
             IdentifiedObject.parse (context),
@@ -3308,22 +3308,22 @@ extends
 
 object WindPlantIEC
 extends
-    Parseable[WindPlantIEC]
+    CIMParseable[WindPlantIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindPlantFreqPcontrolIEC",
         "WindPlantReactiveControlIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"),
-        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"),
+        CIMRelationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1")
     )
     val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindPlantIEC =
+    def parse (context: CIMContext): WindPlantIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPlantIEC (
             WindPlantDynamics.parse (context),
@@ -3478,7 +3478,7 @@ extends
 
 object WindPlantReactiveControlIEC
 extends
-    Parseable[WindPlantReactiveControlIEC]
+    CIMParseable[WindPlantReactiveControlIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dxrefmax",
@@ -3502,9 +3502,9 @@ extends
         "WindDynamicsLookupTable",
         "WindPlantIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
     val dxrefmax: Fielder = parse_element (element (cls, fields(0)))
     val dxrefmin: Fielder = parse_element (element (cls, fields(1)))
@@ -3527,9 +3527,9 @@ extends
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
     val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(19)))
 
-    def parse (context: Context): WindPlantReactiveControlIEC =
+    def parse (context: CIMContext): WindPlantReactiveControlIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindPlantReactiveControlIEC (
             IdentifiedObject.parse (context),
@@ -3663,7 +3663,7 @@ extends
 
 object WindProtectionIEC
 extends
-    Parseable[WindProtectionIEC]
+    CIMParseable[WindProtectionIEC]
 {
     override val fields: Array[String] = Array[String] (
         "dfimax",
@@ -3677,10 +3677,10 @@ extends
         "WindTurbineType1or2IEC",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
-        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        CIMRelationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1")
     )
     val dfimax: Fielder = parse_element (element (cls, fields(0)))
     val fover: Fielder = parse_element (element (cls, fields(1)))
@@ -3693,9 +3693,9 @@ extends
     val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): WindProtectionIEC =
+    def parse (context: CIMContext): WindProtectionIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindProtectionIEC (
             IdentifiedObject.parse (context),
@@ -3794,7 +3794,7 @@ extends
 
 object WindRefFrameRotIEC
 extends
-    Parseable[WindRefFrameRotIEC]
+    CIMParseable[WindRefFrameRotIEC]
 {
     override val fields: Array[String] = Array[String] (
         "tpll",
@@ -3802,17 +3802,17 @@ extends
         "upll2",
         "WindTurbineType3or4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val tpll: Fielder = parse_element (element (cls, fields(0)))
     val upll1: Fielder = parse_element (element (cls, fields(1)))
     val upll2: Fielder = parse_element (element (cls, fields(2)))
     val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): WindRefFrameRotIEC =
+    def parse (context: CIMContext): WindRefFrameRotIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindRefFrameRotIEC (
             IdentifiedObject.parse (context),
@@ -3895,22 +3895,22 @@ extends
 
 object WindTurbineType1or2Dynamics
 extends
-    Parseable[WindTurbineType1or2Dynamics]
+    CIMParseable[WindTurbineType1or2Dynamics]
 {
     override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "RemoteInputSignal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindTurbineType1or2Dynamics =
+    def parse (context: CIMContext): WindTurbineType1or2Dynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType1or2Dynamics (
             DynamicsFunctionBlock.parse (context),
@@ -3992,22 +3992,22 @@ extends
 
 object WindTurbineType1or2IEC
 extends
-    Parseable[WindTurbineType1or2IEC]
+    CIMParseable[WindTurbineType1or2IEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindMechIEC",
         "WindProtectionIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1"),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1"),
+        CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1")
     )
     val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindTurbineType1or2IEC =
+    def parse (context: CIMContext): WindTurbineType1or2IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType1or2IEC (
             WindTurbineType1or2Dynamics.parse (context),
@@ -4098,7 +4098,7 @@ extends
 
 object WindTurbineType3IEC
 extends
-    Parseable[WindTurbineType3IEC]
+    CIMParseable[WindTurbineType3IEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindAeroOneDimIEC",
@@ -4108,13 +4108,13 @@ extends
         "WindGenType3IEC",
         "WindMechIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", "0..1", "1"),
-        Relationship ("WindAeroTwoDimIEC", "WindAeroTwoDimIEC", "0..1", "1"),
-        Relationship ("WindContPType3IEC", "WindContPType3IEC", "1", "1"),
-        Relationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", "1", "1"),
-        Relationship ("WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"),
-        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", "0..1", "1"),
+        CIMRelationship ("WindAeroTwoDimIEC", "WindAeroTwoDimIEC", "0..1", "1"),
+        CIMRelationship ("WindContPType3IEC", "WindContPType3IEC", "1", "1"),
+        CIMRelationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", "1", "1"),
+        CIMRelationship ("WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"),
+        CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
     val WindAeroOneDimIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindAeroTwoDimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4123,9 +4123,9 @@ extends
     val WindGenType3IEC: Fielder = parse_attribute (attribute (cls, fields(4)))
     val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): WindTurbineType3IEC =
+    def parse (context: CIMContext): WindTurbineType3IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType3IEC (
             WindTurbineType3or4IEC.parse (context),
@@ -4211,25 +4211,25 @@ extends
 
 object WindTurbineType3or4Dynamics
 extends
-    Parseable[WindTurbineType3or4Dynamics]
+    CIMParseable[WindTurbineType3or4Dynamics]
 {
     override val fields: Array[String] = Array[String] (
         "PowerElectronicsConnection",
         "RemoteInputSignal",
         "WindPlantDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
-        Relationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        CIMRelationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*")
     )
     val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
     val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WindTurbineType3or4Dynamics =
+    def parse (context: CIMContext): WindTurbineType3or4Dynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType3or4Dynamics (
             DynamicsFunctionBlock.parse (context),
@@ -4321,7 +4321,7 @@ extends
 
 object WindTurbineType3or4IEC
 extends
-    Parseable[WindTurbineType3or4IEC]
+    CIMParseable[WindTurbineType3or4IEC]
 {
     override val fields: Array[String] = Array[String] (
         "WIndContQIEC",
@@ -4331,13 +4331,13 @@ extends
         "WindProtectionIEC",
         "WindRefFrameRotIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WIndContQIEC", "WindContQIEC", "1", "1"),
-        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "1", "1"),
-        Relationship ("WindContQLimIEC", "WindContQLimIEC", "0..1", "0..1"),
-        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "0..1"),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1"),
-        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WIndContQIEC", "WindContQIEC", "1", "1"),
+        CIMRelationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "1", "1"),
+        CIMRelationship ("WindContQLimIEC", "WindContQLimIEC", "0..1", "0..1"),
+        CIMRelationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "0..1"),
+        CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1"),
+        CIMRelationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1")
     )
     val WIndContQIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4346,9 +4346,9 @@ extends
     val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
     val WindRefFrameRotIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): WindTurbineType3or4IEC =
+    def parse (context: CIMContext): WindTurbineType3or4IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType3or4IEC (
             WindTurbineType3or4Dynamics.parse (context),
@@ -4428,19 +4428,19 @@ extends
 
 object WindTurbineType4IEC
 extends
-    Parseable[WindTurbineType4IEC]
+    CIMParseable[WindTurbineType4IEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindGenType3aIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1")
     )
     val WindGenType3aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): WindTurbineType4IEC =
+    def parse (context: CIMContext): WindTurbineType4IEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType4IEC (
             WindTurbineType3or4IEC.parse (context),
@@ -4520,22 +4520,22 @@ extends
 
 object WindTurbineType4aIEC
 extends
-    Parseable[WindTurbineType4aIEC]
+    CIMParseable[WindTurbineType4aIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindContPType4aIEC",
         "WindGenType4IEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindContPType4aIEC", "WindContPType4aIEC", "1", "1"),
-        Relationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindContPType4aIEC", "WindContPType4aIEC", "1", "1"),
+        CIMRelationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1")
     )
     val WindContPType4aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WindTurbineType4aIEC =
+    def parse (context: CIMContext): WindTurbineType4aIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType4aIEC (
             WindTurbineType4IEC.parse (context),
@@ -4619,25 +4619,25 @@ extends
 
 object WindTurbineType4bIEC
 extends
-    Parseable[WindTurbineType4bIEC]
+    CIMParseable[WindTurbineType4bIEC]
 {
     override val fields: Array[String] = Array[String] (
         "WindContPType4bIEC",
         "WindGenType4IEC",
         "WindMechIEC"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("WindContPType4bIEC", "WindContPType4bIEC", "1", "1"),
-        Relationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"),
-        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WindContPType4bIEC", "WindContPType4bIEC", "1", "1"),
+        CIMRelationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"),
+        CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
     val WindContPType4bIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
     val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WindTurbineType4bIEC =
+    def parse (context: CIMContext): WindTurbineType4bIEC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType4bIEC (
             WindTurbineType4IEC.parse (context),
@@ -4652,7 +4652,7 @@ extends
 
 private[ninecode] object _WindDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             WindAeroConstIEC.register,

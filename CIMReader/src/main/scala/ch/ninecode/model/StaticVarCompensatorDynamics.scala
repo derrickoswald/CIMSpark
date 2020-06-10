@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Static var compensator whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -66,19 +66,19 @@ extends
 
 object StaticVarCompensatorDynamics
 extends
-    Parseable[StaticVarCompensatorDynamics]
+    CIMParseable[StaticVarCompensatorDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "StaticVarCompensator"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StaticVarCompensator", "StaticVarCompensator", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StaticVarCompensator", "StaticVarCompensator", "1", "0..1")
     )
     val StaticVarCompensator: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): StaticVarCompensatorDynamics =
+    def parse (context: CIMContext): StaticVarCompensatorDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StaticVarCompensatorDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -91,7 +91,7 @@ extends
 
 private[ninecode] object _StaticVarCompensatorDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             StaticVarCompensatorDynamics.register

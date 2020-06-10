@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * @group NetworkModelProjects
@@ -66,24 +66,24 @@ extends
 
 object AnnotatedProjectDependency
 extends
-    Parseable[AnnotatedProjectDependency]
+    CIMParseable[AnnotatedProjectDependency]
 {
     override val fields: Array[String] = Array[String] (
         "dependencyType",
         "DependentOnStage",
         "DependingStage"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DependentOnStage", "NetworkModelProjectStage", "1", "0..1"),
-        Relationship ("DependingStage", "NetworkModelProjectStage", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DependentOnStage", "NetworkModelProjectStage", "1", "0..1"),
+        CIMRelationship ("DependingStage", "NetworkModelProjectStage", "1", "0..*")
     )
     val dependencyType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DependentOnStage: Fielder = parse_attribute (attribute (cls, fields(1)))
     val DependingStage: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AnnotatedProjectDependency =
+    def parse (context: CIMContext): AnnotatedProjectDependency =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AnnotatedProjectDependency (
             IdentifiedObject.parse (context),
@@ -146,10 +146,10 @@ extends
 
 object CurrentState
 extends
-    Parseable[CurrentState]
+    CIMParseable[CurrentState]
 {
 
-    def parse (context: Context): CurrentState =
+    def parse (context: CIMContext): CurrentState =
     {
         val ret = CurrentState (
             IdentifiedObject.parse (context)
@@ -213,10 +213,10 @@ extends
 
 object DifferentialModel
 extends
-    Parseable[DifferentialModel]
+    CIMParseable[DifferentialModel]
 {
 
-    def parse (context: Context): DifferentialModel =
+    def parse (context: CIMContext): DifferentialModel =
     {
         val ret = DifferentialModel (
             BasicElement.parse (context)
@@ -286,19 +286,19 @@ extends
 
 object NetworkModelProject
 extends
-    Parseable[NetworkModelProject]
+    CIMParseable[NetworkModelProject]
 {
     override val fields: Array[String] = Array[String] (
         "ContainedProject"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ContainedProject", "NetworkModelProjectComponent", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ContainedProject", "NetworkModelProjectComponent", "0..*", "1")
     )
     val ContainedProject: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): NetworkModelProject =
+    def parse (context: CIMContext): NetworkModelProject =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProject (
             NetworkModelProjectComponent.parse (context),
@@ -364,19 +364,19 @@ extends
 
 object NetworkModelProject2
 extends
-    Parseable[NetworkModelProject2]
+    CIMParseable[NetworkModelProject2]
 {
     override val fields: Array[String] = Array[String] (
         "Child"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Child", "NetworkModelProjectComponent2", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Child", "NetworkModelProjectComponent2", "0..*", "0..1")
     )
     val Child: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): NetworkModelProject2 =
+    def parse (context: CIMContext): NetworkModelProject2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProject2 (
             NetworkModelProjectComponent2.parse (context),
@@ -448,19 +448,19 @@ extends
 
 object NetworkModelProjectChange
 extends
-    Parseable[NetworkModelProjectChange]
+    CIMParseable[NetworkModelProjectChange]
 {
     override val fields: Array[String] = Array[String] (
         "NetworkModelProjectChangeVersion"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "1..*", "1")
     )
     val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): NetworkModelProjectChange =
+    def parse (context: CIMContext): NetworkModelProjectChange =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectChange (
             NetworkModelProjectComponent.parse (context),
@@ -555,7 +555,7 @@ extends
 
 object NetworkModelProjectChangeVersion
 extends
-    Parseable[NetworkModelProjectChangeVersion]
+    CIMParseable[NetworkModelProjectChangeVersion]
 {
     override val fields: Array[String] = Array[String] (
         "comment",
@@ -567,12 +567,12 @@ extends
         "SupercededBy",
         "Supercedes"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ChangeSet", "ChangeSet", "0..1", "0..*"),
-        Relationship ("NetworkModelProjectChange", "NetworkModelProjectChange", "1", "1..*"),
-        Relationship ("NetworkModelProjectState", "NetworkModelProjectState", "0..1", "0..*"),
-        Relationship ("SupercededBy", "NetworkModelProjectChangeVersion", "0..1", "0..1"),
-        Relationship ("Supercedes", "NetworkModelProjectChangeVersion", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ChangeSet", "ChangeSet", "0..1", "0..*"),
+        CIMRelationship ("NetworkModelProjectChange", "NetworkModelProjectChange", "1", "1..*"),
+        CIMRelationship ("NetworkModelProjectState", "NetworkModelProjectState", "0..1", "0..*"),
+        CIMRelationship ("SupercededBy", "NetworkModelProjectChangeVersion", "0..1", "0..1"),
+        CIMRelationship ("Supercedes", "NetworkModelProjectChangeVersion", "0..1", "0..1")
     )
     val comment: Fielder = parse_element (element (cls, fields(0)))
     val effectiveDateTime: Fielder = parse_element (element (cls, fields(1)))
@@ -583,9 +583,9 @@ extends
     val SupercededBy: Fielder = parse_attribute (attribute (cls, fields(6)))
     val Supercedes: Fielder = parse_attribute (attribute (cls, fields(7)))
 
-    def parse (context: Context): NetworkModelProjectChangeVersion =
+    def parse (context: CIMContext): NetworkModelProjectChangeVersion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectChangeVersion (
             IdentifiedObject.parse (context),
@@ -653,10 +653,10 @@ extends
 
 object NetworkModelProjectCollection
 extends
-    Parseable[NetworkModelProjectCollection]
+    CIMParseable[NetworkModelProjectCollection]
 {
 
-    def parse (context: Context): NetworkModelProjectCollection =
+    def parse (context: CIMContext): NetworkModelProjectCollection =
     {
         val ret = NetworkModelProjectCollection (
             BasicElement.parse (context)
@@ -731,25 +731,25 @@ extends
 
 object NetworkModelProjectComponent
 extends
-    Parseable[NetworkModelProjectComponent]
+    CIMParseable[NetworkModelProjectComponent]
 {
     override val fields: Array[String] = Array[String] (
         "ContainingProject",
         "ProjectARelationships",
         "ProjectBRelationships"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ContainingProject", "NetworkModelProject", "1", "0..*"),
-        Relationship ("ProjectARelationships", "NetworkModelProjectRelationship", "0..*", "1"),
-        Relationship ("ProjectBRelationships", "NetworkModelProjectRelationship", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ContainingProject", "NetworkModelProject", "1", "0..*"),
+        CIMRelationship ("ProjectARelationships", "NetworkModelProjectRelationship", "0..*", "1"),
+        CIMRelationship ("ProjectBRelationships", "NetworkModelProjectRelationship", "0..*", "1")
     )
     val ContainingProject: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ProjectARelationships: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ProjectBRelationships: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): NetworkModelProjectComponent =
+    def parse (context: CIMContext): NetworkModelProjectComponent =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectComponent (
             IdentifiedObject.parse (context),
@@ -826,7 +826,7 @@ extends
 
 object NetworkModelProjectComponent2
 extends
-    Parseable[NetworkModelProjectComponent2]
+    CIMParseable[NetworkModelProjectComponent2]
 {
     override val fields: Array[String] = Array[String] (
         "closed",
@@ -835,8 +835,8 @@ extends
         "version",
         "Parent"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Parent", "NetworkModelProject2", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Parent", "NetworkModelProject2", "0..1", "0..*")
     )
     val closed: Fielder = parse_element (element (cls, fields(0)))
     val created: Fielder = parse_element (element (cls, fields(1)))
@@ -844,9 +844,9 @@ extends
     val version: Fielder = parse_element (element (cls, fields(3)))
     val Parent: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): NetworkModelProjectComponent2 =
+    def parse (context: CIMContext): NetworkModelProjectComponent2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectComponent2 (
             IdentifiedObject.parse (context),
@@ -911,10 +911,10 @@ extends
 
 object NetworkModelProjectDocument
 extends
-    Parseable[NetworkModelProjectDocument]
+    CIMParseable[NetworkModelProjectDocument]
 {
 
-    def parse (context: Context): NetworkModelProjectDocument =
+    def parse (context: CIMContext): NetworkModelProjectDocument =
     {
         val ret = NetworkModelProjectDocument (
             BasicElement.parse (context)
@@ -987,22 +987,22 @@ extends
 
 object NetworkModelProjectRelationship
 extends
-    Parseable[NetworkModelProjectRelationship]
+    CIMParseable[NetworkModelProjectRelationship]
 {
     override val fields: Array[String] = Array[String] (
         "ProjectA",
         "ProjectB"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProjectA", "NetworkModelProjectComponent", "1", "0..*"),
-        Relationship ("ProjectB", "NetworkModelProjectComponent", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProjectA", "NetworkModelProjectComponent", "1", "0..*"),
+        CIMRelationship ("ProjectB", "NetworkModelProjectComponent", "1", "0..*")
     )
     val ProjectA: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ProjectB: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): NetworkModelProjectRelationship =
+    def parse (context: CIMContext): NetworkModelProjectRelationship =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectRelationship (
             IdentifiedObject.parse (context),
@@ -1081,7 +1081,7 @@ extends
 
 object NetworkModelProjectStage
 extends
-    Parseable[NetworkModelProjectStage]
+    CIMParseable[NetworkModelProjectStage]
 {
     override val fields: Array[String] = Array[String] (
         "changesetVersion",
@@ -1091,10 +1091,10 @@ extends
         "DenpendecyDependingStage",
         "DependencyDependentOnStage"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ChangeSets", "ChangeSet", "1..*", "0..1"),
-        Relationship ("DenpendecyDependingStage", "AnnotatedProjectDependency", "0..*", "1"),
-        Relationship ("DependencyDependentOnStage", "AnnotatedProjectDependency", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ChangeSets", "ChangeSet", "1..*", "0..1"),
+        CIMRelationship ("DenpendecyDependingStage", "AnnotatedProjectDependency", "0..*", "1"),
+        CIMRelationship ("DependencyDependentOnStage", "AnnotatedProjectDependency", "0..1", "1")
     )
     val changesetVersion: Fielder = parse_element (element (cls, fields(0)))
     val commissionedDate: Fielder = parse_element (element (cls, fields(1)))
@@ -1103,9 +1103,9 @@ extends
     val DenpendecyDependingStage: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val DependencyDependentOnStage: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): NetworkModelProjectStage =
+    def parse (context: CIMContext): NetworkModelProjectStage =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectStage (
             NetworkModelProjectComponent2.parse (context),
@@ -1182,19 +1182,19 @@ extends
 
 object NetworkModelProjectState
 extends
-    Parseable[NetworkModelProjectState]
+    CIMParseable[NetworkModelProjectState]
 {
     override val fields: Array[String] = Array[String] (
         "NetworkModelProjectChangeVersion"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "0..*", "0..1")
     )
     val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): NetworkModelProjectState =
+    def parse (context: CIMContext): NetworkModelProjectState =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectState (
             IdentifiedObject.parse (context),
@@ -1273,7 +1273,7 @@ extends
 
 object PowerSystemProjectLifecycleToBeDeleted
 extends
-    Parseable[PowerSystemProjectLifecycleToBeDeleted]
+    CIMParseable[PowerSystemProjectLifecycleToBeDeleted]
 {
     override val fields: Array[String] = Array[String] (
         "cancelled",
@@ -1286,9 +1286,9 @@ extends
     val inBuild: Fielder = parse_element (element (cls, fields(2)))
     val inPlan: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): PowerSystemProjectLifecycleToBeDeleted =
+    def parse (context: CIMContext): PowerSystemProjectLifecycleToBeDeleted =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerSystemProjectLifecycleToBeDeleted (
             BasicElement.parse (context),
@@ -1358,10 +1358,10 @@ extends
 
 object ProjectAlternative
 extends
-    Parseable[ProjectAlternative]
+    CIMParseable[ProjectAlternative]
 {
 
-    def parse (context: Context): ProjectAlternative =
+    def parse (context: CIMContext): ProjectAlternative =
     {
         val ret = ProjectAlternative (
             NetworkModelProjectRelationship.parse (context)
@@ -1423,10 +1423,10 @@ extends
 
 object ProjectDependency
 extends
-    Parseable[ProjectDependency]
+    CIMParseable[ProjectDependency]
 {
 
-    def parse (context: Context): ProjectDependency =
+    def parse (context: CIMContext): ProjectDependency =
     {
         val ret = ProjectDependency (
             NetworkModelProjectRelationship.parse (context)
@@ -1437,7 +1437,7 @@ extends
 
 private[ninecode] object _NetworkModelProjects
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AnnotatedProjectDependency.register,

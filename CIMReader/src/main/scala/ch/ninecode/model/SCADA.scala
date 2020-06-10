@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * The connection to remote units is through one or more communication links.
@@ -73,22 +73,22 @@ extends
 
 object CommunicationLink
 extends
-    Parseable[CommunicationLink]
+    CIMParseable[CommunicationLink]
 {
     override val fields: Array[String] = Array[String] (
         "BilateralExchangeActor",
         "RemoteUnits"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BilateralExchangeActor", "BilateralExchangeActor", "0..1", "0..n"),
-        Relationship ("RemoteUnits", "RemoteUnit", "0..*", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BilateralExchangeActor", "BilateralExchangeActor", "0..1", "0..n"),
+        CIMRelationship ("RemoteUnits", "RemoteUnit", "0..*", "1..*")
     )
     val BilateralExchangeActor: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): CommunicationLink =
+    def parse (context: CIMContext): CommunicationLink =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CommunicationLink (
             PowerSystemResource.parse (context),
@@ -170,7 +170,7 @@ extends
 
 object RemoteControl
 extends
-    Parseable[RemoteControl]
+    CIMParseable[RemoteControl]
 {
     override val fields: Array[String] = Array[String] (
         "actuatorMaximum",
@@ -178,17 +178,17 @@ extends
         "remoteControlled",
         "Control"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Control", "Control", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Control", "Control", "1", "0..1")
     )
     val actuatorMaximum: Fielder = parse_element (element (cls, fields(0)))
     val actuatorMinimum: Fielder = parse_element (element (cls, fields(1)))
     val remoteControlled: Fielder = parse_element (element (cls, fields(2)))
     val Control: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): RemoteControl =
+    def parse (context: CIMContext): RemoteControl =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteControl (
             RemotePoint.parse (context),
@@ -264,19 +264,19 @@ extends
 
 object RemotePoint
 extends
-    Parseable[RemotePoint]
+    CIMParseable[RemotePoint]
 {
     override val fields: Array[String] = Array[String] (
         "RemoteUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RemoteUnit", "RemoteUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RemoteUnit", "RemoteUnit", "1", "0..*")
     )
     val RemoteUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): RemotePoint =
+    def parse (context: CIMContext): RemotePoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemotePoint (
             IdentifiedObject.parse (context),
@@ -360,7 +360,7 @@ extends
 
 object RemoteSource
 extends
-    Parseable[RemoteSource]
+    CIMParseable[RemoteSource]
 {
     override val fields: Array[String] = Array[String] (
         "deadband",
@@ -369,8 +369,8 @@ extends
         "sensorMinimum",
         "MeasurementValue"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MeasurementValue", "MeasurementValue", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MeasurementValue", "MeasurementValue", "1", "0..1")
     )
     val deadband: Fielder = parse_element (element (cls, fields(0)))
     val scanInterval: Fielder = parse_element (element (cls, fields(1)))
@@ -378,9 +378,9 @@ extends
     val sensorMinimum: Fielder = parse_element (element (cls, fields(3)))
     val MeasurementValue: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): RemoteSource =
+    def parse (context: CIMContext): RemoteSource =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteSource (
             RemotePoint.parse (context),
@@ -464,24 +464,24 @@ extends
 
 object RemoteUnit
 extends
-    Parseable[RemoteUnit]
+    CIMParseable[RemoteUnit]
 {
     override val fields: Array[String] = Array[String] (
         "remoteUnitType",
         "CommunicationLinks",
         "RemotePoints"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommunicationLinks", "CommunicationLink", "1..*", "0..*"),
-        Relationship ("RemotePoints", "RemotePoint", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommunicationLinks", "CommunicationLink", "1..*", "0..*"),
+        CIMRelationship ("RemotePoints", "RemotePoint", "0..*", "1")
     )
     val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CommunicationLinks: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val RemotePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): RemoteUnit =
+    def parse (context: CIMContext): RemoteUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteUnit (
             PowerSystemResource.parse (context),
@@ -496,7 +496,7 @@ extends
 
 private[ninecode] object _SCADA
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CommunicationLink.register,

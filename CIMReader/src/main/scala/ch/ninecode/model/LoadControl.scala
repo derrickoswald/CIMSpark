@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
@@ -97,7 +97,7 @@ extends
 
 object ConnectDisconnectFunction
 extends
-    Parseable[ConnectDisconnectFunction]
+    CIMParseable[ConnectDisconnectFunction]
 {
     override val fields: Array[String] = Array[String] (
         "eventCount",
@@ -110,9 +110,9 @@ extends
         "rcdInfo",
         "Switches"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("rcdInfo", "RemoteConnectDisconnectInfo", "0..1", "0..*"),
-        Relationship ("Switches", "Switch", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("rcdInfo", "RemoteConnectDisconnectInfo", "0..1", "0..*"),
+        CIMRelationship ("Switches", "Switch", "0..*", "0..*")
     )
     val eventCount: Fielder = parse_element (element (cls, fields(0)))
     val isConnected: Fielder = parse_element (element (cls, fields(1)))
@@ -124,9 +124,9 @@ extends
     val rcdInfo: Fielder = parse_attribute (attribute (cls, fields(7)))
     val Switches: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
-    def parse (context: Context): ConnectDisconnectFunction =
+    def parse (context: CIMContext): ConnectDisconnectFunction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ConnectDisconnectFunction (
             EndDeviceFunction.parse (context),
@@ -237,7 +237,7 @@ extends
 
 object RemoteConnectDisconnectInfo
 extends
-    Parseable[RemoteConnectDisconnectInfo]
+    CIMParseable[RemoteConnectDisconnectInfo]
 {
     override val fields: Array[String] = Array[String] (
         "armedTimeout",
@@ -266,9 +266,9 @@ extends
     val powerLimit: Fielder = parse_element (element (cls, fields(10)))
     val usePushbutton: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): RemoteConnectDisconnectInfo =
+    def parse (context: CIMContext): RemoteConnectDisconnectInfo =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteConnectDisconnectInfo (
             BasicElement.parse (context),
@@ -292,7 +292,7 @@ extends
 
 private[ninecode] object _LoadControl
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ConnectDisconnectFunction.register,

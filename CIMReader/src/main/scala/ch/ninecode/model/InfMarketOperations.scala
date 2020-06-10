@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Bilateral transaction
@@ -94,7 +94,7 @@ extends
 
 object BilateralTransaction
 extends
-    Parseable[BilateralTransaction]
+    CIMParseable[BilateralTransaction]
 {
     override val fields: Array[String] = Array[String] (
         "curtailTimeMax",
@@ -115,9 +115,9 @@ extends
     val totalTranChargeMax: Fielder = parse_element (element (cls, fields(6)))
     val transactionType: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): BilateralTransaction =
+    def parse (context: CIMContext): BilateralTransaction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BilateralTransaction (
             BasicElement.parse (context),
@@ -194,16 +194,16 @@ extends
 
 object Participation
 extends
-    Parseable[Participation]
+    CIMParseable[Participation]
 {
     override val fields: Array[String] = Array[String] (
         "factor"
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): Participation =
+    def parse (context: CIMContext): Participation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Participation (
             IdentifiedObject.parse (context),
@@ -315,7 +315,7 @@ extends
 
 object ResourceCertification2
 extends
-    Parseable[ResourceCertification2]
+    CIMParseable[ResourceCertification2]
 {
     override val fields: Array[String] = Array[String] (
         "certifiedDAM",
@@ -333,8 +333,8 @@ extends
         "certifiedSpinMw",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
     val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
     val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -351,9 +351,9 @@ extends
     val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
     val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
-    def parse (context: Context): ResourceCertification2 =
+    def parse (context: CIMContext): ResourceCertification2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceCertification2 (
             BasicElement.parse (context),
@@ -379,7 +379,7 @@ extends
 
 private[ninecode] object _InfMarketOperations
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BilateralTransaction.register,

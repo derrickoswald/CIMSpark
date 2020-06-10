@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
@@ -70,21 +70,21 @@ extends
 
 object Contingency
 extends
-    Parseable[Contingency]
+    CIMParseable[Contingency]
 {
     override val fields: Array[String] = Array[String] (
         "mustStudy",
         "ContingencyElement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ContingencyElement", "ContingencyElement", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ContingencyElement", "ContingencyElement", "0..*", "1")
     )
     val mustStudy: Fielder = parse_element (element (cls, fields(0)))
     val ContingencyElement: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): Contingency =
+    def parse (context: CIMContext): Contingency =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Contingency (
             IdentifiedObject.parse (context),
@@ -155,19 +155,19 @@ extends
 
 object ContingencyElement
 extends
-    Parseable[ContingencyElement]
+    CIMParseable[ContingencyElement]
 {
     override val fields: Array[String] = Array[String] (
         "Contingency"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Contingency", "Contingency", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Contingency", "Contingency", "1", "0..*")
     )
     val Contingency: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ContingencyElement =
+    def parse (context: CIMContext): ContingencyElement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ContingencyElement (
             IdentifiedObject.parse (context),
@@ -241,21 +241,21 @@ extends
 
 object ContingencyEquipment
 extends
-    Parseable[ContingencyEquipment]
+    CIMParseable[ContingencyEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "contingentStatus",
         "Equipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Equipment", "Equipment", "1", "0..*")
     )
     val contingentStatus: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ContingencyEquipment =
+    def parse (context: CIMContext): ContingencyEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ContingencyEquipment (
             ContingencyElement.parse (context),
@@ -269,7 +269,7 @@ extends
 
 private[ninecode] object _Contingency
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             Contingency.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
@@ -68,19 +68,19 @@ extends
 
 object AuxiliaryEquipment
 extends
-    Parseable[AuxiliaryEquipment]
+    CIMParseable[AuxiliaryEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Terminal", "Terminal", "1", "0..*")
     )
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): AuxiliaryEquipment =
+    def parse (context: CIMContext): AuxiliaryEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AuxiliaryEquipment (
             Equipment.parse (context),
@@ -164,7 +164,7 @@ extends
 
 object CurrentTransformer
 extends
-    Parseable[CurrentTransformer]
+    CIMParseable[CurrentTransformer]
 {
     override val fields: Array[String] = Array[String] (
         "accuracyClass",
@@ -179,9 +179,9 @@ extends
     val ctClass: Fielder = parse_element (element (cls, fields(3)))
     val usage: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): CurrentTransformer =
+    def parse (context: CIMContext): CurrentTransformer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentTransformer (
             Sensor.parse (context),
@@ -251,10 +251,10 @@ extends
 
 object FaultIndicator
 extends
-    Parseable[FaultIndicator]
+    CIMParseable[FaultIndicator]
 {
 
-    def parse (context: Context): FaultIndicator =
+    def parse (context: CIMContext): FaultIndicator =
     {
         val ret = FaultIndicator (
             AuxiliaryEquipment.parse (context)
@@ -316,10 +316,10 @@ extends
 
 object FlowSensor
 extends
-    Parseable[FlowSensor]
+    CIMParseable[FlowSensor]
 {
 
-    def parse (context: Context): FlowSensor =
+    def parse (context: CIMContext): FlowSensor =
     {
         val ret = FlowSensor (
             ConductingEquipment.parse (context)
@@ -381,10 +381,10 @@ extends
 
 object PostLineSensor
 extends
-    Parseable[PostLineSensor]
+    CIMParseable[PostLineSensor]
 {
 
-    def parse (context: Context): PostLineSensor =
+    def parse (context: CIMContext): PostLineSensor =
     {
         val ret = PostLineSensor (
             Sensor.parse (context)
@@ -464,7 +464,7 @@ extends
 
 object PotentialTransformer
 extends
-    Parseable[PotentialTransformer]
+    CIMParseable[PotentialTransformer]
 {
     override val fields: Array[String] = Array[String] (
         "accuracyClass",
@@ -477,9 +477,9 @@ extends
     val ptClass: Fielder = parse_element (element (cls, fields(2)))
     val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): PotentialTransformer =
+    def parse (context: CIMContext): PotentialTransformer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PotentialTransformer (
             Sensor.parse (context),
@@ -546,10 +546,10 @@ extends
 
 object Sensor
 extends
-    Parseable[Sensor]
+    CIMParseable[Sensor]
 {
 
-    def parse (context: Context): Sensor =
+    def parse (context: CIMContext): Sensor =
     {
         val ret = Sensor (
             AuxiliaryEquipment.parse (context)
@@ -611,10 +611,10 @@ extends
 
 object SurgeArrester
 extends
-    Parseable[SurgeArrester]
+    CIMParseable[SurgeArrester]
 {
 
-    def parse (context: Context): SurgeArrester =
+    def parse (context: CIMContext): SurgeArrester =
     {
         val ret = SurgeArrester (
             AuxiliaryEquipment.parse (context)
@@ -676,10 +676,10 @@ extends
 
 object WaveTrap
 extends
-    Parseable[WaveTrap]
+    CIMParseable[WaveTrap]
 {
 
-    def parse (context: Context): WaveTrap =
+    def parse (context: CIMContext): WaveTrap =
     {
         val ret = WaveTrap (
             AuxiliaryEquipment.parse (context)
@@ -690,7 +690,7 @@ extends
 
 private[ninecode] object _AuxiliaryEquipment
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AuxiliaryEquipment.register,

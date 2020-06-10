@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Operates the Control Area.
@@ -72,22 +72,22 @@ extends
 
 object ControlAreaOperator
 extends
-    Parseable[ControlAreaOperator]
+    CIMParseable[ControlAreaOperator]
 {
     override val fields: Array[String] = Array[String] (
         "CAChildOf",
         "ControlledBy"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CAChildOf", "TieLine", "0..*", "0..*"),
-        Relationship ("ControlledBy", "HostControlArea", "1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CAChildOf", "TieLine", "0..*", "0..*"),
+        CIMRelationship ("ControlledBy", "HostControlArea", "1", "1")
     )
     val CAChildOf: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ControlledBy: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ControlAreaOperator =
+    def parse (context: CIMContext): ControlAreaOperator =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ControlAreaOperator (
             Organisation.parse (context),
@@ -158,19 +158,19 @@ extends
 
 object CustomerConsumer
 extends
-    Parseable[CustomerConsumer]
+    CIMParseable[CustomerConsumer]
 {
     override val fields: Array[String] = Array[String] (
         "CustChildOf"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CustChildOf", "TieLine", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CustChildOf", "TieLine", "0..*", "0..1")
     )
     val CustChildOf: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): CustomerConsumer =
+    def parse (context: CIMContext): CustomerConsumer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CustomerConsumer (
             Organisation.parse (context),
@@ -240,19 +240,19 @@ extends
 
 object GenerationProvider
 extends
-    Parseable[GenerationProvider]
+    CIMParseable[GenerationProvider]
 {
     override val fields: Array[String] = Array[String] (
         "ProvidedBy"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProvidedBy", "EnergyProduct", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProvidedBy", "EnergyProduct", "1..*", "1")
     )
     val ProvidedBy: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): GenerationProvider =
+    def parse (context: CIMContext): GenerationProvider =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = GenerationProvider (
             Organisation.parse (context),
@@ -323,16 +323,16 @@ extends
 
 object IntSchedAgreement
 extends
-    Parseable[IntSchedAgreement]
+    CIMParseable[IntSchedAgreement]
 {
     override val fields: Array[String] = Array[String] (
         "defaultIntegrationMethod"
     )
     val defaultIntegrationMethod: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): IntSchedAgreement =
+    def parse (context: CIMContext): IntSchedAgreement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IntSchedAgreement (
             Agreement.parse (context),
@@ -405,22 +405,22 @@ extends
 
 object Marketer
 extends
-    Parseable[Marketer]
+    CIMParseable[Marketer]
 {
     override val fields: Array[String] = Array[String] (
         "HoldsTitleTo_EnergyProducts",
         "Resells_EnergyProduct"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("HoldsTitleTo_EnergyProducts", "EnergyProduct", "0..*", "0..1"),
-        Relationship ("Resells_EnergyProduct", "EnergyProduct", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("HoldsTitleTo_EnergyProducts", "EnergyProduct", "0..*", "0..1"),
+        CIMRelationship ("Resells_EnergyProduct", "EnergyProduct", "0..*", "0..*")
     )
     val HoldsTitleTo_EnergyProducts: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val Resells_EnergyProduct: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): Marketer =
+    def parse (context: CIMContext): Marketer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Marketer (
             Organisation.parse (context),
@@ -485,10 +485,10 @@ extends
 
 object OpenAccessProduct
 extends
-    Parseable[OpenAccessProduct]
+    CIMParseable[OpenAccessProduct]
 {
 
-    def parse (context: Context): OpenAccessProduct =
+    def parse (context: CIMContext): OpenAccessProduct =
     {
         val ret = OpenAccessProduct (
             Agreement.parse (context)
@@ -558,24 +558,24 @@ extends
 
 object TransmissionProduct
 extends
-    Parseable[TransmissionProduct]
+    CIMParseable[TransmissionProduct]
 {
     override val fields: Array[String] = Array[String] (
         "transmissionProductType",
         "LocationFor",
         "TransmissionProvider"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LocationFor", "TransmissionPath", "0..*", "0..*"),
-        Relationship ("TransmissionProvider", "TransmissionProvider", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LocationFor", "TransmissionPath", "0..*", "0..*"),
+        CIMRelationship ("TransmissionProvider", "TransmissionProvider", "1", "1..*")
     )
     val transmissionProductType: Fielder = parse_element (element (cls, fields(0)))
     val LocationFor: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val TransmissionProvider: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): TransmissionProduct =
+    def parse (context: CIMContext): TransmissionProduct =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TransmissionProduct (
             IdentifiedObject.parse (context),
@@ -653,22 +653,22 @@ extends
 
 object TransmissionProvider
 extends
-    Parseable[TransmissionProvider]
+    CIMParseable[TransmissionProvider]
 {
     override val fields: Array[String] = Array[String] (
         "For",
         "TransmissionProducts"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("For", "LossProfile", "0..*", "0..1"),
-        Relationship ("TransmissionProducts", "TransmissionProduct", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("For", "LossProfile", "0..*", "0..1"),
+        CIMRelationship ("TransmissionProducts", "TransmissionProduct", "1..*", "1")
     )
     val For: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val TransmissionProducts: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): TransmissionProvider =
+    def parse (context: CIMContext): TransmissionProvider =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TransmissionProvider (
             Organisation.parse (context),
@@ -682,7 +682,7 @@ extends
 
 private[ninecode] object _InfFinancial
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             ControlAreaOperator.register,

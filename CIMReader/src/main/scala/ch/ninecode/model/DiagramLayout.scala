@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * The diagram being exchanged.
@@ -88,7 +88,7 @@ extends
 
 object Diagram
 extends
-    Parseable[Diagram]
+    CIMParseable[Diagram]
 {
     override val fields: Array[String] = Array[String] (
         "orientation",
@@ -99,9 +99,9 @@ extends
         "DiagramElements",
         "DiagramStyle"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiagramElements", "DiagramObject", "0..*", "0..1"),
-        Relationship ("DiagramStyle", "DiagramStyle", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DiagramElements", "DiagramObject", "0..*", "0..1"),
+        CIMRelationship ("DiagramStyle", "DiagramStyle", "0..1", "0..*")
     )
     val orientation: Fielder = parse_attribute (attribute (cls, fields(0)))
     val x1InitialView: Fielder = parse_element (element (cls, fields(1)))
@@ -111,9 +111,9 @@ extends
     val DiagramElements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val DiagramStyle: Fielder = parse_attribute (attribute (cls, fields(6)))
 
-    def parse (context: Context): Diagram =
+    def parse (context: CIMContext): Diagram =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Diagram (
             IdentifiedObject.parse (context),
@@ -230,7 +230,7 @@ extends
 
 object DiagramObject
 extends
-    Parseable[DiagramObject]
+    CIMParseable[DiagramObject]
 {
     override val fields: Array[String] = Array[String] (
         "drawingOrder",
@@ -244,12 +244,12 @@ extends
         "IdentifiedObject",
         "VisibilityLayers"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Diagram", "Diagram", "0..1", "0..*"),
-        Relationship ("DiagramObjectPoints", "DiagramObjectPoint", "0..*", "1"),
-        Relationship ("DiagramObjectStyle", "DiagramObjectStyle", "0..1", "0..*"),
-        Relationship ("IdentifiedObject_attr", "IdentifiedObject", "0..1", "0..*"),
-        Relationship ("VisibilityLayers", "VisibilityLayer", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Diagram", "Diagram", "0..1", "0..*"),
+        CIMRelationship ("DiagramObjectPoints", "DiagramObjectPoint", "0..*", "1"),
+        CIMRelationship ("DiagramObjectStyle", "DiagramObjectStyle", "0..1", "0..*"),
+        CIMRelationship ("IdentifiedObject_attr", "IdentifiedObject", "0..1", "0..*"),
+        CIMRelationship ("VisibilityLayers", "VisibilityLayer", "0..*", "0..*")
     )
     val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
     val isPolygon: Fielder = parse_element (element (cls, fields(1)))
@@ -262,9 +262,9 @@ extends
     val IdentifiedObject_attr: Fielder = parse_attribute (attribute (cls, fields(8)))
     val VisibilityLayers: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
-    def parse (context: Context): DiagramObject =
+    def parse (context: CIMContext): DiagramObject =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiagramObject (
             IdentifiedObject.parse (context),
@@ -343,19 +343,19 @@ extends
 
 object DiagramObjectGluePoint
 extends
-    Parseable[DiagramObjectGluePoint]
+    CIMParseable[DiagramObjectGluePoint]
 {
     override val fields: Array[String] = Array[String] (
         "DiagramObjectPoints"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiagramObjectPoints", "DiagramObjectPoint", "2..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DiagramObjectPoints", "DiagramObjectPoint", "2..*", "0..1")
     )
     val DiagramObjectPoints: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DiagramObjectGluePoint =
+    def parse (context: CIMContext): DiagramObjectGluePoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiagramObjectGluePoint (
             BasicElement.parse (context),
@@ -443,7 +443,7 @@ extends
 
 object DiagramObjectPoint
 extends
-    Parseable[DiagramObjectPoint]
+    CIMParseable[DiagramObjectPoint]
 {
     override val fields: Array[String] = Array[String] (
         "sequenceNumber",
@@ -453,9 +453,9 @@ extends
         "DiagramObject",
         "DiagramObjectGluePoint"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiagramObject", "DiagramObject", "1", "0..*"),
-        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", "0..1", "2..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DiagramObject", "DiagramObject", "1", "0..*"),
+        CIMRelationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", "0..1", "2..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val xPosition: Fielder = parse_element (element (cls, fields(1)))
@@ -464,9 +464,9 @@ extends
     val DiagramObject: Fielder = parse_attribute (attribute (cls, fields(4)))
     val DiagramObjectGluePoint: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): DiagramObjectPoint =
+    def parse (context: CIMContext): DiagramObjectPoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiagramObjectPoint (
             BasicElement.parse (context),
@@ -543,19 +543,19 @@ extends
 
 object DiagramObjectStyle
 extends
-    Parseable[DiagramObjectStyle]
+    CIMParseable[DiagramObjectStyle]
 {
     override val fields: Array[String] = Array[String] (
         "StyledObjects"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("StyledObjects", "DiagramObject", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("StyledObjects", "DiagramObject", "0..*", "0..1")
     )
     val StyledObjects: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DiagramObjectStyle =
+    def parse (context: CIMContext): DiagramObjectStyle =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiagramObjectStyle (
             IdentifiedObject.parse (context),
@@ -627,19 +627,19 @@ extends
 
 object DiagramStyle
 extends
-    Parseable[DiagramStyle]
+    CIMParseable[DiagramStyle]
 {
     override val fields: Array[String] = Array[String] (
         "Diagram"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Diagram", "Diagram", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Diagram", "Diagram", "0..*", "0..1")
     )
     val Diagram: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DiagramStyle =
+    def parse (context: CIMContext): DiagramStyle =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiagramStyle (
             IdentifiedObject.parse (context),
@@ -709,16 +709,16 @@ extends
 
 object TextDiagramObject
 extends
-    Parseable[TextDiagramObject]
+    CIMParseable[TextDiagramObject]
 {
     override val fields: Array[String] = Array[String] (
         "text"
     )
     val text: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): TextDiagramObject =
+    def parse (context: CIMContext): TextDiagramObject =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TextDiagramObject (
             DiagramObject.parse (context),
@@ -797,21 +797,21 @@ extends
 
 object VisibilityLayer
 extends
-    Parseable[VisibilityLayer]
+    CIMParseable[VisibilityLayer]
 {
     override val fields: Array[String] = Array[String] (
         "drawingOrder",
         "VisibleObjects"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("VisibleObjects", "DiagramObject", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("VisibleObjects", "DiagramObject", "0..*", "0..*")
     )
     val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
     val VisibleObjects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): VisibilityLayer =
+    def parse (context: CIMContext): VisibilityLayer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VisibilityLayer (
             IdentifiedObject.parse (context),
@@ -825,7 +825,7 @@ extends
 
 private[ninecode] object _DiagramLayout
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             Diagram.register,

@@ -62,13 +62,13 @@ foo bar
 		</cim:PSRType>
 yadda yadda"""
 
-        Context.STOP_ON_ERROR = true
+        CIMContext.STOP_ON_ERROR = true
         val parser = new CHIM (xml)
         val result = CHIM.parse (parser)
         assert (result._1.size === 1)
         assert (result._2.length === 1)
         //markup (result._2(0))
-        Context.STOP_ON_ERROR = false
+        CIMContext.STOP_ON_ERROR = false
     }
 
     test ("Voltage")

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Information about a particular piece of (land) property such as its use.
@@ -100,7 +100,7 @@ extends
 
 object LandProperty
 extends
-    Parseable[LandProperty]
+    CIMParseable[LandProperty]
 {
     override val fields: Array[String] = Array[String] (
         "demographicKind",
@@ -115,14 +115,14 @@ extends
         "Locations",
         "RightOfWays"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetContainers", "AssetContainer", "0..*", "0..*"),
-        Relationship ("ErpOrganisationRoles", "PropertyOrganisationRole", "0..*", "1.."),
-        Relationship ("ErpPersonRoles", "PersonPropertyRole", "0..*", "1"),
-        Relationship ("ErpSiteLevelDatas", "ErpSiteLevelData", "0..*", "0..1"),
-        Relationship ("LocationGrants", "LocationGrant", "0..*", "0..1"),
-        Relationship ("Locations", "Location", "0..*", "0..*"),
-        Relationship ("RightOfWays", "RightOfWay", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssetContainers", "AssetContainer", "0..*", "0..*"),
+        CIMRelationship ("ErpOrganisationRoles", "PropertyOrganisationRole", "0..*", "1.."),
+        CIMRelationship ("ErpPersonRoles", "PersonPropertyRole", "0..*", "1"),
+        CIMRelationship ("ErpSiteLevelDatas", "ErpSiteLevelData", "0..*", "0..1"),
+        CIMRelationship ("LocationGrants", "LocationGrant", "0..*", "0..1"),
+        CIMRelationship ("Locations", "Location", "0..*", "0..*"),
+        CIMRelationship ("RightOfWays", "RightOfWay", "0..*", "0..*")
     )
     val demographicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val externalRecordReference: Fielder = parse_element (element (cls, fields(1)))
@@ -136,9 +136,9 @@ extends
     val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
     val RightOfWays: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
-    def parse (context: Context): LandProperty =
+    def parse (context: CIMContext): LandProperty =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LandProperty (
             IdentifiedObject.parse (context),
@@ -224,21 +224,21 @@ extends
 
 object LocationGrant
 extends
-    Parseable[LocationGrant]
+    CIMParseable[LocationGrant]
 {
     override val fields: Array[String] = Array[String] (
         "propertyData",
         "LandProperty"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LandProperty", "LandProperty", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LandProperty", "LandProperty", "0..1", "0..*")
     )
     val propertyData: Fielder = parse_element (element (cls, fields(0)))
     val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): LocationGrant =
+    def parse (context: CIMContext): LocationGrant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = LocationGrant (
             Agreement.parse (context),
@@ -310,16 +310,16 @@ extends
 
 object RedLine
 extends
-    Parseable[RedLine]
+    CIMParseable[RedLine]
 {
     override val fields: Array[String] = Array[String] (
         "status"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): RedLine =
+    def parse (context: CIMContext): RedLine =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RedLine (
             IdentifiedObject.parse (context),
@@ -395,21 +395,21 @@ extends
 
 object RightOfWay
 extends
-    Parseable[RightOfWay]
+    CIMParseable[RightOfWay]
 {
     override val fields: Array[String] = Array[String] (
         "propertyData",
         "LandProperties"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("LandProperties", "LandProperty", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("LandProperties", "LandProperty", "0..*", "0..*")
     )
     val propertyData: Fielder = parse_element (element (cls, fields(0)))
     val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): RightOfWay =
+    def parse (context: CIMContext): RightOfWay =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RightOfWay (
             Agreement.parse (context),
@@ -490,7 +490,7 @@ extends
 
 object Route
 extends
-    Parseable[Route]
+    CIMParseable[Route]
 {
     override val fields: Array[String] = Array[String] (
         "status",
@@ -498,18 +498,18 @@ extends
         "Crews",
         "Locations"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Crews", "OldCrew", "0..*", "0..1"),
-        Relationship ("Locations", "Location", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Crews", "OldCrew", "0..*", "0..1"),
+        CIMRelationship ("Locations", "Location", "0..*", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val `type`: Fielder = parse_element (element (cls, fields(1)))
     val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): Route =
+    def parse (context: CIMContext): Route =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Route (
             IdentifiedObject.parse (context),
@@ -583,16 +583,16 @@ extends
 
 object Zone
 extends
-    Parseable[Zone]
+    CIMParseable[Zone]
 {
     override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): Zone =
+    def parse (context: CIMContext): Zone =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Zone (
             Location.parse (context),
@@ -605,7 +605,7 @@ extends
 
 private[ninecode] object _InfLocations
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             LandProperty.register,

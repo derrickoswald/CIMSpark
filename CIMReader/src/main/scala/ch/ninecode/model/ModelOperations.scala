@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A model operation argument referencing a dataset instance.
@@ -69,22 +69,22 @@ extends
 
 object DatasetArg
 extends
-    Parseable[DatasetArg]
+    CIMParseable[DatasetArg]
 {
     override val fields: Array[String] = Array[String] (
         "Dataset",
         "OperationDatasetArgDescription"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Dataset", "InstanceSet", "1", "0..*"),
-        Relationship ("OperationDatasetArgDescription", "DatasetArgDescription", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Dataset", "InstanceSet", "1", "0..*"),
+        CIMRelationship ("OperationDatasetArgDescription", "DatasetArgDescription", "1", "0..*")
     )
     val Dataset: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OperationDatasetArgDescription: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): DatasetArg =
+    def parse (context: CIMContext): DatasetArg =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DatasetArg (
             ModelOperationArg.parse (context),
@@ -150,19 +150,19 @@ extends
 
 object DatasetArgDescription
 extends
-    Parseable[DatasetArgDescription]
+    CIMParseable[DatasetArgDescription]
 {
     override val fields: Array[String] = Array[String] (
         "OperationDatasetArg"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("OperationDatasetArg", "DatasetArg", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("OperationDatasetArg", "DatasetArg", "0..*", "1")
     )
     val OperationDatasetArg: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): DatasetArgDescription =
+    def parse (context: CIMContext): DatasetArgDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DatasetArgDescription (
             ModelOperationArgDescription.parse (context),
@@ -234,22 +234,22 @@ extends
 
 object IncrementalDatasetArg
 extends
-    Parseable[IncrementalDatasetArg]
+    CIMParseable[IncrementalDatasetArg]
 {
     override val fields: Array[String] = Array[String] (
         "IncrementalDataset",
         "IncrementalDatasetArgDescription"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("IncrementalDataset", "ChangeSet", "1", "0..*"),
-        Relationship ("IncrementalDatasetArgDescription", "IncrementalDatasetArgDescription", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("IncrementalDataset", "ChangeSet", "1", "0..*"),
+        CIMRelationship ("IncrementalDatasetArgDescription", "IncrementalDatasetArgDescription", "1", "0..*")
     )
     val IncrementalDataset: Fielder = parse_attribute (attribute (cls, fields(0)))
     val IncrementalDatasetArgDescription: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): IncrementalDatasetArg =
+    def parse (context: CIMContext): IncrementalDatasetArg =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IncrementalDatasetArg (
             ModelOperationArg.parse (context),
@@ -315,19 +315,19 @@ extends
 
 object IncrementalDatasetArgDescription
 extends
-    Parseable[IncrementalDatasetArgDescription]
+    CIMParseable[IncrementalDatasetArgDescription]
 {
     override val fields: Array[String] = Array[String] (
         "IncrementalDatasetArg"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("IncrementalDatasetArg", "IncrementalDatasetArg", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("IncrementalDatasetArg", "IncrementalDatasetArg", "0..*", "1")
     )
     val IncrementalDatasetArg: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): IncrementalDatasetArgDescription =
+    def parse (context: CIMContext): IncrementalDatasetArgDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IncrementalDatasetArgDescription (
             ModelOperationArgDescription.parse (context),
@@ -408,7 +408,7 @@ extends
 
 object ModelOperation
 extends
-    Parseable[ModelOperation]
+    CIMParseable[ModelOperation]
 {
     override val fields: Array[String] = Array[String] (
         "sequenceNumber",
@@ -416,19 +416,19 @@ extends
         "ModelOperationDescription",
         "OperationSequence"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelOperationArg", "ModelOperationArg", "0..*", "1"),
-        Relationship ("ModelOperationDescription", "ModelOperationDescription", "1", "0..*"),
-        Relationship ("OperationSequence", "ModelOperationSequence", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelOperationArg", "ModelOperationArg", "0..*", "1"),
+        CIMRelationship ("ModelOperationDescription", "ModelOperationDescription", "1", "0..*"),
+        CIMRelationship ("OperationSequence", "ModelOperationSequence", "1", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val ModelOperationArg: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ModelOperationDescription: Fielder = parse_attribute (attribute (cls, fields(2)))
     val OperationSequence: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ModelOperation =
+    def parse (context: CIMContext): ModelOperation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelOperation (
             IdentifiedObject.parse (context),
@@ -507,21 +507,21 @@ extends
 
 object ModelOperationArg
 extends
-    Parseable[ModelOperationArg]
+    CIMParseable[ModelOperationArg]
 {
     override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "ModelOperation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelOperation", "ModelOperation", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelOperation", "ModelOperation", "1", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val ModelOperation: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ModelOperationArg =
+    def parse (context: CIMContext): ModelOperationArg =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelOperationArg (
             IdentifiedObject.parse (context),
@@ -601,23 +601,23 @@ extends
 
 object ModelOperationArgDescription
 extends
-    Parseable[ModelOperationArgDescription]
+    CIMParseable[ModelOperationArgDescription]
 {
     override val fields: Array[String] = Array[String] (
         "multiplicityMaximum",
         "multiplicityMinimum",
         "ModelOperationDefinition"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelOperationDefinition", "ModelOperationDescription", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelOperationDefinition", "ModelOperationDescription", "1", "0..*")
     )
     val multiplicityMaximum: Fielder = parse_element (element (cls, fields(0)))
     val multiplicityMinimum: Fielder = parse_element (element (cls, fields(1)))
     val ModelOperationDefinition: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ModelOperationArgDescription =
+    def parse (context: CIMContext): ModelOperationArgDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelOperationArgDescription (
             IdentifiedObject.parse (context),
@@ -693,22 +693,22 @@ extends
 
 object ModelOperationDescription
 extends
-    Parseable[ModelOperationDescription]
+    CIMParseable[ModelOperationDescription]
 {
     override val fields: Array[String] = Array[String] (
         "ModelOperation",
         "OperationDatasetArgDescription"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelOperation", "ModelOperation", "0..*", "1"),
-        Relationship ("OperationDatasetArgDescription", "ModelOperationArgDescription", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelOperation", "ModelOperation", "0..*", "1"),
+        CIMRelationship ("OperationDatasetArgDescription", "ModelOperationArgDescription", "0..*", "1")
     )
     val ModelOperation: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val OperationDatasetArgDescription: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): ModelOperationDescription =
+    def parse (context: CIMContext): ModelOperationDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelOperationDescription (
             IdentifiedObject.parse (context),
@@ -780,19 +780,19 @@ extends
 
 object ModelOperationSequence
 extends
-    Parseable[ModelOperationSequence]
+    CIMParseable[ModelOperationSequence]
 {
     override val fields: Array[String] = Array[String] (
         "ModelOperation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelOperation", "ModelOperation", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelOperation", "ModelOperation", "0..*", "1")
     )
     val ModelOperation: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ModelOperationSequence =
+    def parse (context: CIMContext): ModelOperationSequence =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelOperationSequence (
             IdentifiedObject.parse (context),
@@ -805,7 +805,7 @@ extends
 
 private[ninecode] object _ModelOperations
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             DatasetArg.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * An abstract class for state variables.
@@ -60,10 +60,10 @@ extends
 
 object StateVariable
 extends
-    Parseable[StateVariable]
+    CIMParseable[StateVariable]
 {
 
-    def parse (context: Context): StateVariable =
+    def parse (context: CIMContext): StateVariable =
     {
         val ret = StateVariable (
             BasicElement.parse (context)
@@ -146,7 +146,7 @@ extends
 
 object SvInjection
 extends
-    Parseable[SvInjection]
+    CIMParseable[SvInjection]
 {
     override val fields: Array[String] = Array[String] (
         "pInjection",
@@ -154,17 +154,17 @@ extends
         "qInjection",
         "TopologicalNode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
     )
     val pInjection: Fielder = parse_element (element (cls, fields(0)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
     val qInjection: Fielder = parse_element (element (cls, fields(2)))
     val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): SvInjection =
+    def parse (context: CIMContext): SvInjection =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvInjection (
             StateVariable.parse (context),
@@ -252,7 +252,7 @@ extends
 
 object SvPowerFlow
 extends
-    Parseable[SvPowerFlow]
+    CIMParseable[SvPowerFlow]
 {
     override val fields: Array[String] = Array[String] (
         "p",
@@ -260,17 +260,17 @@ extends
         "q",
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Terminal", "Terminal", "1", "0..*")
     )
     val p: Fielder = parse_element (element (cls, fields(0)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
     val q: Fielder = parse_element (element (cls, fields(2)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): SvPowerFlow =
+    def parse (context: CIMContext): SvPowerFlow =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvPowerFlow (
             StateVariable.parse (context),
@@ -352,23 +352,23 @@ extends
 
 object SvShuntCompensatorSections
 extends
-    Parseable[SvShuntCompensatorSections]
+    CIMParseable[SvShuntCompensatorSections]
 {
     override val fields: Array[String] = Array[String] (
         "phase",
         "sections",
         "ShuntCompensator"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensator", "ShuntCompensator", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ShuntCompensator", "ShuntCompensator", "1", "0..*")
     )
     val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
     val sections: Fielder = parse_element (element (cls, fields(1)))
     val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SvShuntCompensatorSections =
+    def parse (context: CIMContext): SvShuntCompensatorSections =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvShuntCompensatorSections (
             StateVariable.parse (context),
@@ -449,23 +449,23 @@ extends
 
 object SvStatus
 extends
-    Parseable[SvStatus]
+    CIMParseable[SvStatus]
 {
     override val fields: Array[String] = Array[String] (
         "inService",
         "phase",
         "ConductingEquipment"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*")
     )
     val inService: Fielder = parse_element (element (cls, fields(0)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SvStatus =
+    def parse (context: CIMContext): SvStatus =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvStatus (
             StateVariable.parse (context),
@@ -545,23 +545,23 @@ extends
 
 object SvSwitch
 extends
-    Parseable[SvSwitch]
+    CIMParseable[SvSwitch]
 {
     override val fields: Array[String] = Array[String] (
         "open",
         "phase",
         "Switch"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Switch", "Switch", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Switch", "Switch", "1", "0..*")
     )
     val open: Fielder = parse_element (element (cls, fields(0)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Switch: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): SvSwitch =
+    def parse (context: CIMContext): SvSwitch =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvSwitch (
             StateVariable.parse (context),
@@ -638,21 +638,21 @@ extends
 
 object SvTapStep
 extends
-    Parseable[SvTapStep]
+    CIMParseable[SvTapStep]
 {
     override val fields: Array[String] = Array[String] (
         "position",
         "TapChanger"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TapChanger", "TapChanger", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TapChanger", "TapChanger", "1", "0..1")
     )
     val position: Fielder = parse_element (element (cls, fields(0)))
     val TapChanger: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): SvTapStep =
+    def parse (context: CIMContext): SvTapStep =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvTapStep (
             StateVariable.parse (context),
@@ -734,7 +734,7 @@ extends
 
 object SvVoltage
 extends
-    Parseable[SvVoltage]
+    CIMParseable[SvVoltage]
 {
     override val fields: Array[String] = Array[String] (
         "angle",
@@ -742,17 +742,17 @@ extends
         "v",
         "TopologicalNode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
     )
     val angle: Fielder = parse_element (element (cls, fields(0)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
     val v: Fielder = parse_element (element (cls, fields(2)))
     val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): SvVoltage =
+    def parse (context: CIMContext): SvVoltage =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SvVoltage (
             StateVariable.parse (context),
@@ -768,7 +768,7 @@ extends
 
 private[ninecode] object _StateVariables
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             StateVariable.register,

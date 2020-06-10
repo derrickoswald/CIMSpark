@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Common representation for work and work tasks.
@@ -82,7 +82,7 @@ extends
 
 object BaseWork
 extends
-    Parseable[BaseWork]
+    CIMParseable[BaseWork]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
@@ -92,10 +92,10 @@ extends
         "WorkActivityRecords",
         "WorkLocation"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"),
-        Relationship ("WorkActivityRecords", "WorkActivityRecord", "0..*", "0..1"),
-        Relationship ("WorkLocation", "WorkLocation", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"),
+        CIMRelationship ("WorkActivityRecords", "WorkActivityRecord", "0..*", "0..1"),
+        CIMRelationship ("WorkLocation", "WorkLocation", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val priority: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -104,9 +104,9 @@ extends
     val WorkActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): BaseWork =
+    def parse (context: CIMContext): BaseWork =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BaseWork (
             Document.parse (context),
@@ -190,7 +190,7 @@ extends
 
 object InternalLocation
 extends
-    Parseable[InternalLocation]
+    CIMParseable[InternalLocation]
 {
     override val fields: Array[String] = Array[String] (
         "buildingName",
@@ -203,9 +203,9 @@ extends
     val floor: Fielder = parse_element (element (cls, fields(2)))
     val roomNumber: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): InternalLocation =
+    def parse (context: CIMContext): InternalLocation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = InternalLocation (
             WorkLocation.parse (context),
@@ -287,7 +287,7 @@ extends
 
 object MaintenanceLocation
 extends
-    Parseable[MaintenanceLocation]
+    CIMParseable[MaintenanceLocation]
 {
     override val fields: Array[String] = Array[String] (
         "block",
@@ -300,9 +300,9 @@ extends
     val nearestIntersection: Fielder = parse_element (element (cls, fields(2)))
     val subdivision: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): MaintenanceLocation =
+    def parse (context: CIMContext): MaintenanceLocation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MaintenanceLocation (
             WorkLocation.parse (context),
@@ -380,7 +380,7 @@ extends
 
 object MaintenanceWorkTask
 extends
-    Parseable[MaintenanceWorkTask]
+    CIMParseable[MaintenanceWorkTask]
 {
     override val fields: Array[String] = Array[String] (
         "breakerMaintenanceKind",
@@ -389,9 +389,9 @@ extends
     val breakerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val transformerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): MaintenanceWorkTask =
+    def parse (context: CIMContext): MaintenanceWorkTask =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MaintenanceWorkTask (
             WorkTask.parse (context),
@@ -470,24 +470,24 @@ extends
 
 object MaterialItem
 extends
-    Parseable[MaterialItem]
+    CIMParseable[MaterialItem]
 {
     override val fields: Array[String] = Array[String] (
         "quantity",
         "TypeMaterial",
         "WorkTask"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*"),
-        Relationship ("WorkTask", "WorkTask", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*"),
+        CIMRelationship ("WorkTask", "WorkTask", "0..1", "0..*")
     )
     val quantity: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(1)))
     val WorkTask: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): MaterialItem =
+    def parse (context: CIMContext): MaterialItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MaterialItem (
             IdentifiedObject.parse (context),
@@ -566,23 +566,23 @@ extends
 
 object RepairItem
 extends
-    Parseable[RepairItem]
+    CIMParseable[RepairItem]
 {
     override val fields: Array[String] = Array[String] (
         "breakerRepairItem",
         "transformerRepairItem",
         "RepairWorkTask"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RepairWorkTask", "RepairWorkTask", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RepairWorkTask", "RepairWorkTask", "0..*", "0..*")
     )
     val breakerRepairItem: Fielder = parse_attribute (attribute (cls, fields(0)))
     val transformerRepairItem: Fielder = parse_attribute (attribute (cls, fields(1)))
     val RepairWorkTask: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): RepairItem =
+    def parse (context: CIMContext): RepairItem =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RepairItem (
             BasicElement.parse (context),
@@ -660,21 +660,21 @@ extends
 
 object RepairWorkTask
 extends
-    Parseable[RepairWorkTask]
+    CIMParseable[RepairWorkTask]
 {
     override val fields: Array[String] = Array[String] (
         "emergency",
         "BreakerRepairItem"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BreakerRepairItem", "RepairItem", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BreakerRepairItem", "RepairItem", "0..*", "0..*")
     )
     val emergency: Fielder = parse_element (element (cls, fields(0)))
     val BreakerRepairItem: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): RepairWorkTask =
+    def parse (context: CIMContext): RepairWorkTask =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RepairWorkTask (
             WorkTask.parse (context),
@@ -745,16 +745,16 @@ extends
 
 object Tool
 extends
-    Parseable[Tool]
+    CIMParseable[Tool]
 {
     override val fields: Array[String] = Array[String] (
         "lastCalibrationDate"
     )
     val lastCalibrationDate: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): Tool =
+    def parse (context: CIMContext): Tool =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Tool (
             WorkAsset.parse (context),
@@ -832,7 +832,7 @@ extends
 
 object Vehicle
 extends
-    Parseable[Vehicle]
+    CIMParseable[Vehicle]
 {
     override val fields: Array[String] = Array[String] (
         "odometerReadDateTime",
@@ -843,9 +843,9 @@ extends
     val odometerReading: Fielder = parse_element (element (cls, fields(1)))
     val usageKind: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): Vehicle =
+    def parse (context: CIMContext): Vehicle =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Vehicle (
             WorkAsset.parse (context),
@@ -955,7 +955,7 @@ extends
 
 object Work
 extends
-    Parseable[Work]
+    CIMParseable[Work]
 {
     override val fields: Array[String] = Array[String] (
         "requestDateTime",
@@ -972,18 +972,18 @@ extends
         "WorkFlowSteps",
         "WorkTasks"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Appointments", "Appointment", "0..*", "0..*"),
-        Relationship ("BusinessCase", "BusinessCase", "0..1", "0..*"),
-        Relationship ("Customers", "Customer", "0..*", "0..*"),
-        Relationship ("Designs", "Design", "0..*", "0..1"),
-        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
-        Relationship ("Incidents", "Incident", "0..*", "0..*"),
-        Relationship ("Project", "Project", "0..1", "0..*"),
-        Relationship ("WorkBillingInfo", "WorkBillingInfo", "0..1", "0..*"),
-        Relationship ("WorkCostDetails", "WorkCostDetail", "0..*", "0..*"),
-        Relationship ("WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"),
-        Relationship ("WorkTasks", "WorkTask", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Appointments", "Appointment", "0..*", "0..*"),
+        CIMRelationship ("BusinessCase", "BusinessCase", "0..1", "0..*"),
+        CIMRelationship ("Customers", "Customer", "0..*", "0..*"),
+        CIMRelationship ("Designs", "Design", "0..*", "0..1"),
+        CIMRelationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
+        CIMRelationship ("Incidents", "Incident", "0..*", "0..*"),
+        CIMRelationship ("Project", "Project", "0..1", "0..*"),
+        CIMRelationship ("WorkBillingInfo", "WorkBillingInfo", "0..1", "0..*"),
+        CIMRelationship ("WorkCostDetails", "WorkCostDetail", "0..*", "0..*"),
+        CIMRelationship ("WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"),
+        CIMRelationship ("WorkTasks", "WorkTask", "0..*", "1")
     )
     val requestDateTime: Fielder = parse_element (element (cls, fields(0)))
     val workOrderNumber: Fielder = parse_element (element (cls, fields(1)))
@@ -999,9 +999,9 @@ extends
     val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
     val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
-    def parse (context: Context): Work =
+    def parse (context: CIMContext): Work =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Work (
             BaseWork.parse (context),
@@ -1087,21 +1087,21 @@ extends
 
 object WorkActivityRecord
 extends
-    Parseable[WorkActivityRecord]
+    CIMParseable[WorkActivityRecord]
 {
     override val fields: Array[String] = Array[String] (
         "percentComplete",
         "BaseWork"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BaseWork", "BaseWork", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
     val percentComplete: Fielder = parse_element (element (cls, fields(0)))
     val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WorkActivityRecord =
+    def parse (context: CIMContext): WorkActivityRecord =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkActivityRecord (
             ActivityRecord.parse (context),
@@ -1175,22 +1175,22 @@ extends
 
 object WorkAsset
 extends
-    Parseable[WorkAsset]
+    CIMParseable[WorkAsset]
 {
     override val fields: Array[String] = Array[String] (
         "CUWorkEquipmentAsset",
         "Crew"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", "0..1", "0..1"),
-        Relationship ("Crew", "Crew", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", "0..1", "0..1"),
+        CIMRelationship ("Crew", "Crew", "0..1", "0..*")
     )
     val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Crew: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WorkAsset =
+    def parse (context: CIMContext): WorkAsset =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkAsset (
             Asset.parse (context),
@@ -1268,25 +1268,25 @@ extends
 
 object WorkLocation
 extends
-    Parseable[WorkLocation]
+    CIMParseable[WorkLocation]
 {
     override val fields: Array[String] = Array[String] (
         "BaseWorks",
         "DesignLocations",
         "OneCallRequest"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BaseWorks", "BaseWork", "0..*", "0..1"),
-        Relationship ("DesignLocations", "DesignLocation", "0..*", "1..*"),
-        Relationship ("OneCallRequest", "OneCallRequest", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BaseWorks", "BaseWork", "0..*", "0..1"),
+        CIMRelationship ("DesignLocations", "DesignLocation", "0..*", "1..*"),
+        CIMRelationship ("OneCallRequest", "OneCallRequest", "0..1", "0..*")
     )
     val BaseWorks: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val OneCallRequest: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): WorkLocation =
+    def parse (context: CIMContext): WorkLocation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkLocation (
             Location.parse (context),
@@ -1411,7 +1411,7 @@ extends
 
 object WorkTask
 extends
-    Parseable[WorkTask]
+    CIMParseable[WorkTask]
 {
     override val fields: Array[String] = Array[String] (
         "completedDateTime",
@@ -1433,14 +1433,14 @@ extends
         "SwitchingPlan",
         "Work"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", "0..*", "0..*"),
-        Relationship ("Crews", "Crew", "0..*", "0..*"),
-        Relationship ("MaterialItems", "MaterialItem", "0..*", "0..1"),
-        Relationship ("OldAsset", "Asset", "0..1", "0..*"),
-        Relationship ("ProcedureDataSet", "ProcedureDataSet", "0..*", "0..1"),
-        Relationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
-        Relationship ("Work", "Work", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Assets", "Asset", "0..*", "0..*"),
+        CIMRelationship ("Crews", "Crew", "0..*", "0..*"),
+        CIMRelationship ("MaterialItems", "MaterialItem", "0..*", "0..1"),
+        CIMRelationship ("OldAsset", "Asset", "0..1", "0..*"),
+        CIMRelationship ("ProcedureDataSet", "ProcedureDataSet", "0..*", "0..1"),
+        CIMRelationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
+        CIMRelationship ("Work", "Work", "1", "0..*")
     )
     val completedDateTime: Fielder = parse_element (element (cls, fields(0)))
     val contractorCost: Fielder = parse_element (element (cls, fields(1)))
@@ -1461,9 +1461,9 @@ extends
     val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(16)))
     val Work: Fielder = parse_attribute (attribute (cls, fields(17)))
 
-    def parse (context: Context): WorkTask =
+    def parse (context: CIMContext): WorkTask =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkTask (
             BaseWork.parse (context),
@@ -1553,22 +1553,22 @@ extends
 
 object WorkTimeSchedule
 extends
-    Parseable[WorkTimeSchedule]
+    CIMParseable[WorkTimeSchedule]
 {
     override val fields: Array[String] = Array[String] (
         "kind",
         "BaseWork"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("kind", "WorkTimeScheduleKind", "0..1", "0..*"),
-        Relationship ("BaseWork", "BaseWork", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("kind", "WorkTimeScheduleKind", "0..1", "0..*"),
+        CIMRelationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): WorkTimeSchedule =
+    def parse (context: CIMContext): WorkTimeSchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkTimeSchedule (
             TimeSchedule.parse (context),
@@ -1654,7 +1654,7 @@ extends
 
 object WorkTimeScheduleKind
 extends
-    Parseable[WorkTimeScheduleKind]
+    CIMParseable[WorkTimeScheduleKind]
 {
     override val fields: Array[String] = Array[String] (
         "actual",
@@ -1671,9 +1671,9 @@ extends
     val latest: Fielder = parse_attribute (attribute (cls, fields(4)))
     val request: Fielder = parse_attribute (attribute (cls, fields(5)))
 
-    def parse (context: Context): WorkTimeScheduleKind =
+    def parse (context: CIMContext): WorkTimeScheduleKind =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkTimeScheduleKind (
             BasicElement.parse (context),
@@ -1691,7 +1691,7 @@ extends
 
 private[ninecode] object _Work
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BaseWork.register,

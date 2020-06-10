@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * IEEE type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
@@ -137,7 +137,7 @@ extends
 
 object DiscExcContIEEEDEC1A
 extends
-    Parseable[DiscExcContIEEEDEC1A]
+    CIMParseable[DiscExcContIEEEDEC1A]
 {
     override val fields: Array[String] = Array[String] (
         "esc",
@@ -178,9 +178,9 @@ extends
     val vtm: Fielder = parse_element (element (cls, fields(16)))
     val vtn: Fielder = parse_element (element (cls, fields(17)))
 
-    def parse (context: Context): DiscExcContIEEEDEC1A =
+    def parse (context: CIMContext): DiscExcContIEEEDEC1A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC1A (
             DiscontinuousExcitationControlDynamics.parse (context),
@@ -283,7 +283,7 @@ extends
 
 object DiscExcContIEEEDEC2A
 extends
-    Parseable[DiscExcContIEEEDEC2A]
+    CIMParseable[DiscExcContIEEEDEC2A]
 {
     override val fields: Array[String] = Array[String] (
         "td1",
@@ -298,9 +298,9 @@ extends
     val vdmin: Fielder = parse_element (element (cls, fields(3)))
     val vk: Fielder = parse_element (element (cls, fields(4)))
 
-    def parse (context: Context): DiscExcContIEEEDEC2A =
+    def parse (context: CIMContext): DiscExcContIEEEDEC2A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC2A (
             DiscontinuousExcitationControlDynamics.parse (context),
@@ -381,7 +381,7 @@ extends
 
 object DiscExcContIEEEDEC3A
 extends
-    Parseable[DiscExcContIEEEDEC3A]
+    CIMParseable[DiscExcContIEEEDEC3A]
 {
     override val fields: Array[String] = Array[String] (
         "tdr",
@@ -390,9 +390,9 @@ extends
     val tdr: Fielder = parse_element (element (cls, fields(0)))
     val vtmin: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DiscExcContIEEEDEC3A =
+    def parse (context: CIMContext): DiscExcContIEEEDEC3A =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC3A (
             DiscontinuousExcitationControlDynamics.parse (context),
@@ -467,22 +467,22 @@ extends
 
 object DiscontinuousExcitationControlDynamics
 extends
-    Parseable[DiscontinuousExcitationControlDynamics]
+    CIMParseable[DiscontinuousExcitationControlDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): DiscontinuousExcitationControlDynamics =
+    def parse (context: CIMContext): DiscontinuousExcitationControlDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DiscontinuousExcitationControlDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -496,7 +496,7 @@ extends
 
 private[ninecode] object _DiscontinuousExcitationControlDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             DiscExcContIEEEDEC1A.register,

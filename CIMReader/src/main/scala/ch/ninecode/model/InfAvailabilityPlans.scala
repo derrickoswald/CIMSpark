@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * The collection of all the availability schedules for a given time range.
@@ -68,16 +68,16 @@ extends
 
 object AvailablityPlan
 extends
-    Parseable[AvailablityPlan]
+    CIMParseable[AvailablityPlan]
 {
     override val fields: Array[String] = Array[String] (
         "validPeriod"
     )
     val validPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): AvailablityPlan =
+    def parse (context: CIMContext): AvailablityPlan =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AvailablityPlan (
             IdentifiedObject.parse (context),
@@ -138,10 +138,10 @@ extends
 
 object EquipmentUnavailabilitySchedule
 extends
-    Parseable[EquipmentUnavailabilitySchedule]
+    CIMParseable[EquipmentUnavailabilitySchedule]
 {
 
-    def parse (context: Context): EquipmentUnavailabilitySchedule =
+    def parse (context: CIMContext): EquipmentUnavailabilitySchedule =
     {
         val ret = EquipmentUnavailabilitySchedule (
             IdentifiedObject.parse (context)
@@ -207,22 +207,22 @@ extends
 
 object UnavailabilityScheduleDependency
 extends
-    Parseable[UnavailabilityScheduleDependency]
+    CIMParseable[UnavailabilityScheduleDependency]
 {
     override val fields: Array[String] = Array[String] (
         "UnavailabilityScheduleDependsOn",
         "UnavailabilityScheduleImpacts"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("UnavailabilityScheduleDependsOn", "UnavailablitySchedule", "1", "0..*"),
-        Relationship ("UnavailabilityScheduleImpacts", "UnavailablitySchedule", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("UnavailabilityScheduleDependsOn", "UnavailablitySchedule", "1", "0..*"),
+        CIMRelationship ("UnavailabilityScheduleImpacts", "UnavailablitySchedule", "1", "0..*")
     )
     val UnavailabilityScheduleDependsOn: Fielder = parse_attribute (attribute (cls, fields(0)))
     val UnavailabilityScheduleImpacts: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): UnavailabilityScheduleDependency =
+    def parse (context: CIMContext): UnavailabilityScheduleDependency =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnavailabilityScheduleDependency (
             IdentifiedObject.parse (context),
@@ -295,16 +295,16 @@ extends
 
 object UnavailabilitySwitchAction
 extends
-    Parseable[UnavailabilitySwitchAction]
+    CIMParseable[UnavailabilitySwitchAction]
 {
     override val fields: Array[String] = Array[String] (
         "open"
     )
     val open: Fielder = parse_element (element (cls, fields(0)))
 
-    def parse (context: Context): UnavailabilitySwitchAction =
+    def parse (context: CIMContext): UnavailabilitySwitchAction =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnavailabilitySwitchAction (
             IdentifiedObject.parse (context),
@@ -377,22 +377,22 @@ extends
 
 object UnavailablitySchedule
 extends
-    Parseable[UnavailablitySchedule]
+    CIMParseable[UnavailablitySchedule]
 {
     override val fields: Array[String] = Array[String] (
         "DependsOn",
         "Impacts"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DependsOn", "UnavailabilityScheduleDependency", "0..*", "1"),
-        Relationship ("Impacts", "UnavailabilityScheduleDependency", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DependsOn", "UnavailabilityScheduleDependency", "0..*", "1"),
+        CIMRelationship ("Impacts", "UnavailabilityScheduleDependency", "0..*", "1")
     )
     val DependsOn: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val Impacts: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): UnavailablitySchedule =
+    def parse (context: CIMContext): UnavailablitySchedule =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = UnavailablitySchedule (
             IdentifiedObject.parse (context),
@@ -406,7 +406,7 @@ extends
 
 private[ninecode] object _InfAvailabilityPlans
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AvailablityPlan.register,

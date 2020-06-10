@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Interval between two dates.
@@ -74,7 +74,7 @@ extends
 
 object DateInterval
 extends
-    Parseable[DateInterval]
+    CIMParseable[DateInterval]
 {
     override val fields: Array[String] = Array[String] (
         "end",
@@ -83,9 +83,9 @@ extends
     val end: Fielder = parse_element (element (cls, fields(0)))
     val start: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DateInterval =
+    def parse (context: CIMContext): DateInterval =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DateInterval (
             BasicElement.parse (context),
@@ -166,7 +166,7 @@ extends
 
 object DateTimeInterval
 extends
-    Parseable[DateTimeInterval]
+    CIMParseable[DateTimeInterval]
 {
     override val fields: Array[String] = Array[String] (
         "end",
@@ -175,9 +175,9 @@ extends
     val end: Fielder = parse_element (element (cls, fields(0)))
     val start: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): DateTimeInterval =
+    def parse (context: CIMContext): DateTimeInterval =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DateTimeInterval (
             BasicElement.parse (context),
@@ -263,7 +263,7 @@ extends
 
 object DecimalQuantity
 extends
-    Parseable[DecimalQuantity]
+    CIMParseable[DecimalQuantity]
 {
     override val fields: Array[String] = Array[String] (
         "currency",
@@ -276,9 +276,9 @@ extends
     val unit: Fielder = parse_attribute (attribute (cls, fields(2)))
     val value: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): DecimalQuantity =
+    def parse (context: CIMContext): DecimalQuantity =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = DecimalQuantity (
             BasicElement.parse (context),
@@ -363,7 +363,7 @@ extends
 
 object FloatQuantity
 extends
-    Parseable[FloatQuantity]
+    CIMParseable[FloatQuantity]
 {
     override val fields: Array[String] = Array[String] (
         "multiplier",
@@ -374,9 +374,9 @@ extends
     val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
     val value: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): FloatQuantity =
+    def parse (context: CIMContext): FloatQuantity =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FloatQuantity (
             BasicElement.parse (context),
@@ -460,7 +460,7 @@ extends
 
 object IntegerQuantity
 extends
-    Parseable[IntegerQuantity]
+    CIMParseable[IntegerQuantity]
 {
     override val fields: Array[String] = Array[String] (
         "multiplier",
@@ -471,9 +471,9 @@ extends
     val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
     val value: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): IntegerQuantity =
+    def parse (context: CIMContext): IntegerQuantity =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IntegerQuantity (
             BasicElement.parse (context),
@@ -553,7 +553,7 @@ extends
 
 object MonthDayInterval
 extends
-    Parseable[MonthDayInterval]
+    CIMParseable[MonthDayInterval]
 {
     override val fields: Array[String] = Array[String] (
         "end",
@@ -562,9 +562,9 @@ extends
     val end: Fielder = parse_element (element (cls, fields(0)))
     val start: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): MonthDayInterval =
+    def parse (context: CIMContext): MonthDayInterval =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MonthDayInterval (
             BasicElement.parse (context),
@@ -647,7 +647,7 @@ extends
 
 object StringQuantity
 extends
-    Parseable[StringQuantity]
+    CIMParseable[StringQuantity]
 {
     override val fields: Array[String] = Array[String] (
         "multiplier",
@@ -658,9 +658,9 @@ extends
     val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
     val value: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): StringQuantity =
+    def parse (context: CIMContext): StringQuantity =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = StringQuantity (
             BasicElement.parse (context),
@@ -740,7 +740,7 @@ extends
 
 object TimeInterval
 extends
-    Parseable[TimeInterval]
+    CIMParseable[TimeInterval]
 {
     override val fields: Array[String] = Array[String] (
         "end",
@@ -749,9 +749,9 @@ extends
     val end: Fielder = parse_element (element (cls, fields(0)))
     val start: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): TimeInterval =
+    def parse (context: CIMContext): TimeInterval =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TimeInterval (
             BasicElement.parse (context),
@@ -765,7 +765,7 @@ extends
 
 private[ninecode] object _Domain
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             DateInterval.register,

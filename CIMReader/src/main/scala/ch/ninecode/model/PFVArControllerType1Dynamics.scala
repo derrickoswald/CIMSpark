@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Power factor or VAr controller type 1 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -73,25 +73,25 @@ extends
 
 object PFVArControllerType1Dynamics
 extends
-    Parseable[PFVArControllerType1Dynamics]
+    CIMParseable[PFVArControllerType1Dynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal",
         "VoltageAdjusterDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
-        Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        CIMRelationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
     val VoltageAdjusterDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): PFVArControllerType1Dynamics =
+    def parse (context: CIMContext): PFVArControllerType1Dynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType1Dynamics (
             DynamicsFunctionBlock.parse (context),
@@ -191,7 +191,7 @@ extends
 
 object PFVArType1IEEEPFController
 extends
-    Parseable[PFVArType1IEEEPFController]
+    CIMParseable[PFVArType1IEEEPFController]
 {
     override val fields: Array[String] = Array[String] (
         "ovex",
@@ -212,9 +212,9 @@ extends
     val vvtmax: Fielder = parse_element (element (cls, fields(6)))
     val vvtmin: Fielder = parse_element (element (cls, fields(7)))
 
-    def parse (context: Context): PFVArType1IEEEPFController =
+    def parse (context: CIMContext): PFVArType1IEEEPFController =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArType1IEEEPFController (
             PFVArControllerType1Dynamics.parse (context),
@@ -311,7 +311,7 @@ extends
 
 object PFVArType1IEEEVArController
 extends
-    Parseable[PFVArType1IEEEVArController]
+    CIMParseable[PFVArType1IEEEVArController]
 {
     override val fields: Array[String] = Array[String] (
         "tvarc",
@@ -328,9 +328,9 @@ extends
     val vvtmax: Fielder = parse_element (element (cls, fields(4)))
     val vvtmin: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): PFVArType1IEEEVArController =
+    def parse (context: CIMContext): PFVArType1IEEEVArController =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PFVArType1IEEEVArController (
             PFVArControllerType1Dynamics.parse (context),
@@ -348,7 +348,7 @@ extends
 
 private[ninecode] object _PFVArControllerType1Dynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             PFVArControllerType1Dynamics.register,

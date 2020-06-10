@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
@@ -95,7 +95,7 @@ extends
 
 object RemoteInputSignal
 extends
-    Parseable[RemoteInputSignal]
+    CIMParseable[RemoteInputSignal]
 {
     override val fields: Array[String] = Array[String] (
         "remoteSignalType",
@@ -109,16 +109,16 @@ extends
         "WindTurbineType1or2Dynamics",
         "WindTurbineType3or4Dynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "0..1"),
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "0..1"),
-        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "0..*"),
-        Relationship ("Terminal", "Terminal", "1", "0..*"),
-        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "0..1"),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "0..1"),
-        Relationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "0..1"),
-        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"),
-        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "0..1"),
+        CIMRelationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "0..1"),
+        CIMRelationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "0..*"),
+        CIMRelationship ("Terminal", "Terminal", "1", "0..*"),
+        CIMRelationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "0..1"),
+        CIMRelationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "0..1"),
+        CIMRelationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "0..1"),
+        CIMRelationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"),
+        CIMRelationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1")
     )
     val remoteSignalType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -131,9 +131,9 @@ extends
     val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields(8)))
     val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(9)))
 
-    def parse (context: Context): RemoteInputSignal =
+    def parse (context: CIMContext): RemoteInputSignal =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteInputSignal (
             IdentifiedObject.parse (context),
@@ -155,7 +155,7 @@ extends
 
 private[ninecode] object _StandardInterconnections
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             RemoteInputSignal.register

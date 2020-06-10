@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A description for how to assemble model parts for a specific purpose.
@@ -65,19 +65,19 @@ extends
 
 object AssemblyDescription
 extends
-    Parseable[AssemblyDescription]
+    CIMParseable[AssemblyDescription]
 {
     override val fields: Array[String] = Array[String] (
         "ModelSpecification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelSpecification", "ModelPartSpecification", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelSpecification", "ModelPartSpecification", "0..*", "0..*")
     )
     val ModelSpecification: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): AssemblyDescription =
+    def parse (context: CIMContext): AssemblyDescription =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AssemblyDescription (
             IdentifiedObject.parse (context),
@@ -140,10 +140,10 @@ extends
 
 object AssemblyManifest
 extends
-    Parseable[AssemblyManifest]
+    CIMParseable[AssemblyManifest]
 {
 
-    def parse (context: Context): AssemblyManifest =
+    def parse (context: CIMContext): AssemblyManifest =
     {
         val ret = AssemblyManifest (
             IdentifiedObject.parse (context)
@@ -204,10 +204,10 @@ extends
 
 object CompleteModelToBeDeleted
 extends
-    Parseable[CompleteModelToBeDeleted]
+    CIMParseable[CompleteModelToBeDeleted]
 {
 
-    def parse (context: Context): CompleteModelToBeDeleted =
+    def parse (context: CIMContext): CompleteModelToBeDeleted =
     {
         val ret = CompleteModelToBeDeleted (
             ModelToBeDeleted.parse (context)
@@ -279,22 +279,22 @@ extends
 
 object FrameworkPart
 extends
-    Parseable[FrameworkPart]
+    CIMParseable[FrameworkPart]
 {
     override val fields: Array[String] = Array[String] (
         "Frame",
         "ModelFrameType"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Frame", "NetworkFrame", "0..1", "0..*"),
-        Relationship ("ModelFrameType", "ModelFrameType", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Frame", "NetworkFrame", "0..1", "0..*"),
+        CIMRelationship ("ModelFrameType", "ModelFrameType", "1", "0..*")
     )
     val Frame: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ModelFrameType: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): FrameworkPart =
+    def parse (context: CIMContext): FrameworkPart =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = FrameworkPart (
             ModelAuthoritySet.parse (context),
@@ -358,10 +358,10 @@ extends
 
 object LoadModelPartVersion
 extends
-    Parseable[LoadModelPartVersion]
+    CIMParseable[LoadModelPartVersion]
 {
 
-    def parse (context: Context): LoadModelPartVersion =
+    def parse (context: CIMContext): LoadModelPartVersion =
     {
         val ret = LoadModelPartVersion (
             BasicElement.parse (context)
@@ -428,19 +428,19 @@ extends
 
 object ModelAuthority
 extends
-    Parseable[ModelAuthority]
+    CIMParseable[ModelAuthority]
 {
     override val fields: Array[String] = Array[String] (
         "ModelingAuthoritySets"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelingAuthoritySets", "ModelAuthoritySet", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelingAuthoritySets", "ModelAuthoritySet", "1..*", "1")
     )
     val ModelingAuthoritySets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): ModelAuthority =
+    def parse (context: CIMContext): ModelAuthority =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelAuthority (
             IdentifiedObject.parse (context),
@@ -515,22 +515,22 @@ extends
 
 object ModelAuthoritySet
 extends
-    Parseable[ModelAuthoritySet]
+    CIMParseable[ModelAuthoritySet]
 {
     override val fields: Array[String] = Array[String] (
         "ModelSpecification",
         "ModelingAuthority"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelSpecification", "ModelPartSpecification", "0..*", "0..1"),
-        Relationship ("ModelingAuthority", "ModelAuthority", "1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelSpecification", "ModelPartSpecification", "0..*", "0..1"),
+        CIMRelationship ("ModelingAuthority", "ModelAuthority", "1", "1..*")
     )
     val ModelSpecification: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ModelingAuthority: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ModelAuthoritySet =
+    def parse (context: CIMContext): ModelAuthoritySet =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelAuthoritySet (
             IdentifiedObject.parse (context),
@@ -609,25 +609,25 @@ extends
 
 object ModelPartSpecification
 extends
-    Parseable[ModelPartSpecification]
+    CIMParseable[ModelPartSpecification]
 {
     override val fields: Array[String] = Array[String] (
         "AssemblyDescription",
         "FrameworkPart",
         "Model"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssemblyDescription", "AssemblyDescription", "0..*", "0..*"),
-        Relationship ("FrameworkPart", "ModelAuthoritySet", "0..1", "0..*"),
-        Relationship ("Model", "ModelPartVersion", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AssemblyDescription", "AssemblyDescription", "0..*", "0..*"),
+        CIMRelationship ("FrameworkPart", "ModelAuthoritySet", "0..1", "0..*"),
+        CIMRelationship ("Model", "ModelPartVersion", "0..*", "1")
     )
     val AssemblyDescription: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val FrameworkPart: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Model: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): ModelPartSpecification =
+    def parse (context: CIMContext): ModelPartSpecification =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelPartSpecification (
             IdentifiedObject.parse (context),
@@ -700,19 +700,19 @@ extends
 
 object ModelPartVersion
 extends
-    Parseable[ModelPartVersion]
+    CIMParseable[ModelPartVersion]
 {
     override val fields: Array[String] = Array[String] (
         "ModelSpecification"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ModelSpecification", "ModelPartSpecification", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ModelSpecification", "ModelPartSpecification", "1", "0..*")
     )
     val ModelSpecification: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): ModelPartVersion =
+    def parse (context: CIMContext): ModelPartVersion =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ModelPartVersion (
             ModelToBeDeleted.parse (context),
@@ -775,10 +775,10 @@ extends
 
 object ModelToBeDeleted
 extends
-    Parseable[ModelToBeDeleted]
+    CIMParseable[ModelToBeDeleted]
 {
 
-    def parse (context: Context): ModelToBeDeleted =
+    def parse (context: CIMContext): ModelToBeDeleted =
     {
         val ret = ModelToBeDeleted (
             IdentifiedObject.parse (context)
@@ -839,10 +839,10 @@ extends
 
 object NetworkBoundary
 extends
-    Parseable[NetworkBoundary]
+    CIMParseable[NetworkBoundary]
 {
 
-    def parse (context: Context): NetworkBoundary =
+    def parse (context: CIMContext): NetworkBoundary =
     {
         val ret = NetworkBoundary (
             FrameworkPart.parse (context)
@@ -909,19 +909,19 @@ extends
 
 object NetworkFrame
 extends
-    Parseable[NetworkFrame]
+    CIMParseable[NetworkFrame]
 {
     override val fields: Array[String] = Array[String] (
         "FrameworkPart"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("FrameworkPart_attr", "FrameworkPart", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("FrameworkPart_attr", "FrameworkPart", "0..*", "0..1")
     )
     val FrameworkPart_attr: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): NetworkFrame =
+    def parse (context: CIMContext): NetworkFrame =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkFrame (
             FrameworkPart.parse (context),
@@ -984,10 +984,10 @@ extends
 
 object NetworkModelCaseDefinition
 extends
-    Parseable[NetworkModelCaseDefinition]
+    CIMParseable[NetworkModelCaseDefinition]
 {
 
-    def parse (context: Context): NetworkModelCaseDefinition =
+    def parse (context: CIMContext): NetworkModelCaseDefinition =
     {
         val ret = NetworkModelCaseDefinition (
             BasicElement.parse (context)
@@ -1045,10 +1045,10 @@ extends
 
 object Operation
 extends
-    Parseable[Operation]
+    CIMParseable[Operation]
 {
 
-    def parse (context: Context): Operation =
+    def parse (context: CIMContext): Operation =
     {
         val ret = Operation (
             BasicElement.parse (context)
@@ -1059,7 +1059,7 @@ extends
 
 private[ninecode] object _NetworkModelFrames
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AssemblyDescription.register,

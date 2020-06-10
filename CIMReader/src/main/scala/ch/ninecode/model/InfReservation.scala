@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Site of an interface between interchange areas.
@@ -74,24 +74,24 @@ extends
 
 object TiePoint
 extends
-    Parseable[TiePoint]
+    CIMParseable[TiePoint]
 {
     override val fields: Array[String] = Array[String] (
         "tiePointMWRating",
         "ByMktMeasurement",
         "ForMktMeasurement"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ByMktMeasurement", "MktMeasurement", "1..*", "1"),
-        Relationship ("ForMktMeasurement", "MktMeasurement", "1..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ByMktMeasurement", "MktMeasurement", "1..*", "1"),
+        CIMRelationship ("ForMktMeasurement", "MktMeasurement", "1..*", "1")
     )
     val tiePointMWRating: Fielder = parse_element (element (cls, fields(0)))
     val ByMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ForMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): TiePoint =
+    def parse (context: CIMContext): TiePoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TiePoint (
             IdentifiedObject.parse (context),
@@ -106,7 +106,7 @@ extends
 
 private[ninecode] object _InfReservation
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             TiePoint.register

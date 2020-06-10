@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
@@ -87,7 +87,7 @@ extends
 
 object SynchronousMachineDetailed
 extends
-    Parseable[SynchronousMachineDetailed]
+    CIMParseable[SynchronousMachineDetailed]
 {
     override val fields: Array[String] = Array[String] (
         "efdBaseRatio",
@@ -100,9 +100,9 @@ extends
     val saturationFactor120QAxis: Fielder = parse_element (element (cls, fields(2)))
     val saturationFactorQAxis: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): SynchronousMachineDetailed =
+    def parse (context: CIMContext): SynchronousMachineDetailed =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineDetailed (
             SynchronousMachineDynamics.parse (context),
@@ -207,7 +207,7 @@ extends
 
 object SynchronousMachineDynamics
 extends
-    Parseable[SynchronousMachineDynamics]
+    CIMParseable[SynchronousMachineDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "CrossCompoundTurbineGovernorDyanmics",
@@ -218,14 +218,14 @@ extends
         "SynchronousMachine",
         "TurbineGovernorDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CrossCompoundTurbineGovernorDyanmics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
-        Relationship ("CrossCompoundTurbineGovernorDynamics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"),
-        Relationship ("GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"),
-        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
-        Relationship ("SynchronousMachine", "SynchronousMachine", "1", "0..1"),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CrossCompoundTurbineGovernorDyanmics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
+        CIMRelationship ("CrossCompoundTurbineGovernorDynamics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"),
+        CIMRelationship ("GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"),
+        CIMRelationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
+        CIMRelationship ("SynchronousMachine", "SynchronousMachine", "1", "0..1"),
+        CIMRelationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..1")
     )
     val CrossCompoundTurbineGovernorDyanmics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CrossCompoundTurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -235,9 +235,9 @@ extends
     val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(5)))
     val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): SynchronousMachineDynamics =
+    def parse (context: CIMContext): SynchronousMachineDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
@@ -368,7 +368,7 @@ extends
 
 object SynchronousMachineEquivalentCircuit
 extends
-    Parseable[SynchronousMachineEquivalentCircuit]
+    CIMParseable[SynchronousMachineEquivalentCircuit]
 {
     override val fields: Array[String] = Array[String] (
         "r1d",
@@ -395,9 +395,9 @@ extends
     val xf1d: Fielder = parse_element (element (cls, fields(9)))
     val xfd: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): SynchronousMachineEquivalentCircuit =
+    def parse (context: CIMContext): SynchronousMachineEquivalentCircuit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineEquivalentCircuit (
             SynchronousMachineDetailed.parse (context),
@@ -480,10 +480,10 @@ extends
 
 object SynchronousMachineSimplified
 extends
-    Parseable[SynchronousMachineSimplified]
+    CIMParseable[SynchronousMachineSimplified]
 {
 
-    def parse (context: Context): SynchronousMachineSimplified =
+    def parse (context: CIMContext): SynchronousMachineSimplified =
     {
         val ret = SynchronousMachineSimplified (
             SynchronousMachineDynamics.parse (context)
@@ -633,7 +633,7 @@ extends
 
 object SynchronousMachineTimeConstantReactance
 extends
-    Parseable[SynchronousMachineTimeConstantReactance]
+    CIMParseable[SynchronousMachineTimeConstantReactance]
 {
     override val fields: Array[String] = Array[String] (
         "ks",
@@ -666,9 +666,9 @@ extends
     val xQuadSync: Fielder = parse_element (element (cls, fields(12)))
     val xQuadTrans: Fielder = parse_element (element (cls, fields(13)))
 
-    def parse (context: Context): SynchronousMachineTimeConstantReactance =
+    def parse (context: CIMContext): SynchronousMachineTimeConstantReactance =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineTimeConstantReactance (
             SynchronousMachineDetailed.parse (context),
@@ -694,7 +694,7 @@ extends
 
 private[ninecode] object _SynchronousMachineDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             SynchronousMachineDetailed.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * IEEE voltage adjuster which is used to represent the voltage adjuster in either a power factor or VAr control system.
@@ -89,7 +89,7 @@ extends
 
 object VAdjIEEE
 extends
-    Parseable[VAdjIEEE]
+    CIMParseable[VAdjIEEE]
 {
     override val fields: Array[String] = Array[String] (
         "adjslew",
@@ -106,9 +106,9 @@ extends
     val vadjmax: Fielder = parse_element (element (cls, fields(4)))
     val vadjmin: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): VAdjIEEE =
+    def parse (context: CIMContext): VAdjIEEE =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VAdjIEEE (
             VoltageAdjusterDynamics.parse (context),
@@ -184,19 +184,19 @@ extends
 
 object VoltageAdjusterDynamics
 extends
-    Parseable[VoltageAdjusterDynamics]
+    CIMParseable[VoltageAdjusterDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "PFVArControllerType1Dynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1")
     )
     val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): VoltageAdjusterDynamics =
+    def parse (context: CIMContext): VoltageAdjusterDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = VoltageAdjusterDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -209,7 +209,7 @@ extends
 
 private[ninecode] object _VoltageAdjusterDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             VAdjIEEE.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
@@ -68,7 +68,7 @@ extends
 
 object SVC
 extends
-    Parseable[SVC]
+    CIMParseable[SVC]
 {
     override val fields: Array[String] = Array[String] (
         "capacitiveRating",
@@ -77,9 +77,9 @@ extends
     val capacitiveRating: Fielder = parse_element (element (cls, fields(0)))
     val inductiveRating: Fielder = parse_element (element (cls, fields(1)))
 
-    def parse (context: Context): SVC =
+    def parse (context: CIMContext): SVC =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SVC (
             ShuntCompensator.parse (context),
@@ -204,7 +204,7 @@ extends
 
 object ShuntCompensatorControl
 extends
-    Parseable[ShuntCompensatorControl]
+    CIMParseable[ShuntCompensatorControl]
 {
     override val fields: Array[String] = Array[String] (
         "branchDirect",
@@ -226,8 +226,8 @@ extends
         "vRegLineLine",
         "ShuntCompensatorInfo"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", "0..1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", "0..1", "0..1")
     )
     val branchDirect: Fielder = parse_element (element (cls, fields(0)))
     val cellSize: Fielder = parse_element (element (cls, fields(1)))
@@ -248,9 +248,9 @@ extends
     val vRegLineLine: Fielder = parse_element (element (cls, fields(16)))
     val ShuntCompensatorInfo: Fielder = parse_attribute (attribute (cls, fields(17)))
 
-    def parse (context: Context): ShuntCompensatorControl =
+    def parse (context: CIMContext): ShuntCompensatorControl =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ShuntCompensatorControl (
             RegulatingControl.parse (context),
@@ -280,7 +280,7 @@ extends
 
 private[ninecode] object _InfWiresExt
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             SVC.register,

@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A prioritized measurement to be used for the generating unit in the control area specification.
@@ -74,24 +74,24 @@ extends
 
 object AltGeneratingUnitMeas
 extends
-    Parseable[AltGeneratingUnitMeas]
+    CIMParseable[AltGeneratingUnitMeas]
 {
     override val fields: Array[String] = Array[String] (
         "priority",
         "AnalogValue",
         "ControlAreaGeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AnalogValue", "AnalogValue", "1", "0..*"),
-        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AnalogValue", "AnalogValue", "1", "0..*"),
+        CIMRelationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "1", "0..*")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ControlAreaGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AltGeneratingUnitMeas =
+    def parse (context: CIMContext): AltGeneratingUnitMeas =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AltGeneratingUnitMeas (
             IdentifiedObject.parse (context),
@@ -171,24 +171,24 @@ extends
 
 object AltTieMeas
 extends
-    Parseable[AltTieMeas]
+    CIMParseable[AltTieMeas]
 {
     override val fields: Array[String] = Array[String] (
         "priority",
         "AnalogValue",
         "TieFlow"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AnalogValue", "AnalogValue", "1", "0..*"),
-        Relationship ("TieFlow", "TieFlow", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AnalogValue", "AnalogValue", "1", "0..*"),
+        CIMRelationship ("TieFlow", "TieFlow", "1", "0..*")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TieFlow: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): AltTieMeas =
+    def parse (context: CIMContext): AltTieMeas =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = AltTieMeas (
             IdentifiedObject.parse (context),
@@ -280,7 +280,7 @@ extends
 
 object ControlArea
 extends
-    Parseable[ControlArea]
+    CIMParseable[ControlArea]
 {
     override val fields: Array[String] = Array[String] (
         "netInterchange",
@@ -290,10 +290,10 @@ extends
         "EnergyArea",
         "TieFlow"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
-        Relationship ("EnergyArea", "EnergyArea", "0..1", "0..1"),
-        Relationship ("TieFlow", "TieFlow", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
+        CIMRelationship ("EnergyArea", "EnergyArea", "0..1", "0..1"),
+        CIMRelationship ("TieFlow", "TieFlow", "0..*", "1")
     )
     val netInterchange: Fielder = parse_element (element (cls, fields(0)))
     val pTolerance: Fielder = parse_element (element (cls, fields(1)))
@@ -302,9 +302,9 @@ extends
     val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(4)))
     val TieFlow: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
-    def parse (context: Context): ControlArea =
+    def parse (context: CIMContext): ControlArea =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ControlArea (
             PowerSystemResource.parse (context),
@@ -389,25 +389,25 @@ extends
 
 object ControlAreaGeneratingUnit
 extends
-    Parseable[ControlAreaGeneratingUnit]
+    CIMParseable[ControlAreaGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "AltGeneratingUnitMeas",
         "ControlArea",
         "GeneratingUnit"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AltGeneratingUnitMeas", "AltGeneratingUnitMeas", "0..*", "1"),
-        Relationship ("ControlArea", "ControlArea", "1", "0..*"),
-        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AltGeneratingUnitMeas", "AltGeneratingUnitMeas", "0..*", "1"),
+        CIMRelationship ("ControlArea", "ControlArea", "1", "0..*"),
+        CIMRelationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
     )
     val AltGeneratingUnitMeas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): ControlAreaGeneratingUnit =
+    def parse (context: CIMContext): ControlAreaGeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ControlAreaGeneratingUnit (
             IdentifiedObject.parse (context),
@@ -491,7 +491,7 @@ extends
 
 object TieFlow
 extends
-    Parseable[TieFlow]
+    CIMParseable[TieFlow]
 {
     override val fields: Array[String] = Array[String] (
         "positiveFlowIn",
@@ -499,19 +499,19 @@ extends
         "ControlArea",
         "Terminal"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AltTieMeas", "AltTieMeas", "0..*", "1"),
-        Relationship ("ControlArea", "ControlArea", "1", "0..*"),
-        Relationship ("Terminal", "Terminal", "1", "0..2")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AltTieMeas", "AltTieMeas", "0..*", "1"),
+        CIMRelationship ("ControlArea", "ControlArea", "1", "0..*"),
+        CIMRelationship ("Terminal", "Terminal", "1", "0..2")
     )
     val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
     val AltTieMeas: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ControlArea: Fielder = parse_attribute (attribute (cls, fields(2)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): TieFlow =
+    def parse (context: CIMContext): TieFlow =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TieFlow (
             IdentifiedObject.parse (context),
@@ -527,7 +527,7 @@ extends
 
 private[ninecode] object _ControlArea
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             AltGeneratingUnitMeas.register,

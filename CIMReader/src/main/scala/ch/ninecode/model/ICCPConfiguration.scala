@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * BilateralExchangeActor describes an actor that provides ICCP data, consumes ICCP data or both.
@@ -77,7 +77,7 @@ extends
 
 object BilateralExchangeActor
 extends
-    Parseable[BilateralExchangeActor]
+    CIMParseable[BilateralExchangeActor]
 {
     override val fields: Array[String] = Array[String] (
         "CommunicationLink",
@@ -85,20 +85,20 @@ extends
         "ProvidedBilateralIOPoint",
         "ProviderBilateralExchange"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("CommunicationLink", "CommunicationLink", "0..n", "0..1"),
-        Relationship ("ConsumerBilateralExchange", "BilateralExchangeAgreement", "0..*", "0..1"),
-        Relationship ("ProvidedBilateralIOPoint", "ProvidedBilateralPoint", "0..*", "1"),
-        Relationship ("ProviderBilateralExchange", "BilateralExchangeAgreement", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("CommunicationLink", "CommunicationLink", "0..n", "0..1"),
+        CIMRelationship ("ConsumerBilateralExchange", "BilateralExchangeAgreement", "0..*", "0..1"),
+        CIMRelationship ("ProvidedBilateralIOPoint", "ProvidedBilateralPoint", "0..*", "1"),
+        CIMRelationship ("ProviderBilateralExchange", "BilateralExchangeAgreement", "0..*", "1")
     )
     val CommunicationLink: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ConsumerBilateralExchange: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ProvidedBilateralIOPoint: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val ProviderBilateralExchange: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): BilateralExchangeActor =
+    def parse (context: CIMContext): BilateralExchangeActor =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BilateralExchangeActor (
             IdentifiedObject.parse (context),
@@ -174,22 +174,22 @@ extends
 
 object BilateralExchangeAgreement
 extends
-    Parseable[BilateralExchangeAgreement]
+    CIMParseable[BilateralExchangeAgreement]
 {
     override val fields: Array[String] = Array[String] (
         "Consumer",
         "Provider"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Consumer", "BilateralExchangeActor", "0..1", "0..*"),
-        Relationship ("Provider", "BilateralExchangeActor", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Consumer", "BilateralExchangeActor", "0..1", "0..*"),
+        CIMRelationship ("Provider", "BilateralExchangeActor", "1", "0..*")
     )
     val Consumer: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Provider: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): BilateralExchangeAgreement =
+    def parse (context: CIMContext): BilateralExchangeAgreement =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = BilateralExchangeAgreement (
             IdentifiedObject.parse (context),
@@ -272,23 +272,23 @@ extends
 
 object ICCPInformationMessage
 extends
-    Parseable[ICCPInformationMessage]
+    CIMParseable[ICCPInformationMessage]
 {
     override val fields: Array[String] = Array[String] (
         "localReference",
         "scope",
         "TASE2BilateralTable"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("TASE2BilateralTable", "TASE2BilateralTable", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("TASE2BilateralTable", "TASE2BilateralTable", "0..*", "0..*")
     )
     val localReference: Fielder = parse_element (element (cls, fields(0)))
     val scope: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TASE2BilateralTable: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): ICCPInformationMessage =
+    def parse (context: CIMContext): ICCPInformationMessage =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPInformationMessage (
             IdentifiedObject.parse (context),
@@ -376,7 +376,7 @@ extends
 
 object ICCPProvidedPoint
 extends
-    Parseable[ICCPProvidedPoint]
+    CIMParseable[ICCPProvidedPoint]
 {
     override val fields: Array[String] = Array[String] (
         "accessPriviledge",
@@ -389,9 +389,9 @@ extends
     val pointType: Fielder = parse_attribute (attribute (cls, fields(2)))
     val scope: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): ICCPProvidedPoint =
+    def parse (context: CIMContext): ICCPProvidedPoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPProvidedPoint (
             ProvidedBilateralPoint.parse (context),
@@ -458,10 +458,10 @@ extends
 
 object ICCPVCC
 extends
-    Parseable[ICCPVCC]
+    CIMParseable[ICCPVCC]
 {
 
-    def parse (context: Context): ICCPVCC =
+    def parse (context: CIMContext): ICCPVCC =
     {
         val ret = ICCPVCC (
             BilateralExchangeActor.parse (context)
@@ -569,7 +569,7 @@ extends
 
 object ICCPVirtualControlCentre
 extends
-    Parseable[ICCPVirtualControlCentre]
+    CIMParseable[ICCPVirtualControlCentre]
 {
     override val fields: Array[String] = Array[String] (
         "applicationSecurityRequirement",
@@ -598,9 +598,9 @@ extends
     val supportForDepriciatedBlock8: Fielder = parse_element (element (cls, fields(10)))
     val transportSecurityRequirement: Fielder = parse_element (element (cls, fields(11)))
 
-    def parse (context: Context): ICCPVirtualControlCentre =
+    def parse (context: CIMContext): ICCPVirtualControlCentre =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ICCPVirtualControlCentre (
             BilateralExchangeActor.parse (context),
@@ -681,19 +681,19 @@ extends
 
 object IOPointSource
 extends
-    Parseable[IOPointSource]
+    CIMParseable[IOPointSource]
 {
     override val fields: Array[String] = Array[String] (
         "IOPoint"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("IOPoint", "IOPoint", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("IOPoint", "IOPoint", "0..*", "0..1")
     )
     val IOPoint: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): IOPointSource =
+    def parse (context: CIMContext): IOPointSource =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IOPointSource (
             MeasurementValueSource.parse (context),
@@ -775,7 +775,7 @@ extends
 
 object IPAccessPoint
 extends
-    Parseable[IPAccessPoint]
+    CIMParseable[IPAccessPoint]
 {
     override val fields: Array[String] = Array[String] (
         "address",
@@ -788,9 +788,9 @@ extends
     val gateway: Fielder = parse_element (element (cls, fields(2)))
     val subnet: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): IPAccessPoint =
+    def parse (context: CIMContext): IPAccessPoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = IPAccessPoint (
             CommunicationLink.parse (context),
@@ -886,7 +886,7 @@ extends
 
 object ISOUpperLayer
 extends
-    Parseable[ISOUpperLayer]
+    CIMParseable[ISOUpperLayer]
 {
     override val fields: Array[String] = Array[String] (
         "aeInvoke",
@@ -898,8 +898,8 @@ extends
         "osiTsel",
         "UpperLayerPublicX509Certificate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("UpperLayerPublicX509Certificate", "PublicX509Certificate", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("UpperLayerPublicX509Certificate", "PublicX509Certificate", "0..*", "0..1")
     )
     val aeInvoke: Fielder = parse_element (element (cls, fields(0)))
     val aeQual: Fielder = parse_element (element (cls, fields(1)))
@@ -910,9 +910,9 @@ extends
     val osiTsel: Fielder = parse_element (element (cls, fields(6)))
     val UpperLayerPublicX509Certificate: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): ISOUpperLayer =
+    def parse (context: CIMContext): ISOUpperLayer =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ISOUpperLayer (
             TCPAccessPoint.parse (context),
@@ -992,22 +992,22 @@ extends
 
 object ProvidedBilateralPoint
 extends
-    Parseable[ProvidedBilateralPoint]
+    CIMParseable[ProvidedBilateralPoint]
 {
     override val fields: Array[String] = Array[String] (
         "BilateralExchangeActor",
         "IOPoint"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BilateralExchangeActor", "BilateralExchangeActor", "1", "0..*"),
-        Relationship ("IOPoint", "IOPoint", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BilateralExchangeActor", "BilateralExchangeActor", "1", "0..*"),
+        CIMRelationship ("IOPoint", "IOPoint", "0..1", "0..*")
     )
     val BilateralExchangeActor: Fielder = parse_attribute (attribute (cls, fields(0)))
     val IOPoint: Fielder = parse_attribute (attribute (cls, fields(1)))
 
-    def parse (context: Context): ProvidedBilateralPoint =
+    def parse (context: CIMContext): ProvidedBilateralPoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProvidedBilateralPoint (
             IdentifiedObject.parse (context),
@@ -1091,7 +1091,7 @@ extends
 
 object PublicX509Certificate
 extends
-    Parseable[PublicX509Certificate]
+    CIMParseable[PublicX509Certificate]
 {
     override val fields: Array[String] = Array[String] (
         "issuerName",
@@ -1099,18 +1099,18 @@ extends
         "ISOUpperLayer",
         "TCPAccessPoint"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ISOUpperLayer", "ISOUpperLayer", "0..1", "0..*"),
-        Relationship ("TCPAccessPoint", "TCPAccessPoint", "0..1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ISOUpperLayer", "ISOUpperLayer", "0..1", "0..*"),
+        CIMRelationship ("TCPAccessPoint", "TCPAccessPoint", "0..1", "0..*")
     )
     val issuerName: Fielder = parse_element (element (cls, fields(0)))
     val serialNumber: Fielder = parse_element (element (cls, fields(1)))
     val ISOUpperLayer: Fielder = parse_attribute (attribute (cls, fields(2)))
     val TCPAccessPoint: Fielder = parse_attribute (attribute (cls, fields(3)))
 
-    def parse (context: Context): PublicX509Certificate =
+    def parse (context: CIMContext): PublicX509Certificate =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = PublicX509Certificate (
             BasicElement.parse (context),
@@ -1197,7 +1197,7 @@ extends
 
 object TASE2BilateralTable
 extends
-    Parseable[TASE2BilateralTable]
+    CIMParseable[TASE2BilateralTable]
 {
     override val fields: Array[String] = Array[String] (
         "bilateralTableID",
@@ -1205,17 +1205,17 @@ extends
         "tase2version",
         "ICCPInformationMessage"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ICCPInformationMessage", "ICCPInformationMessage", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ICCPInformationMessage", "ICCPInformationMessage", "0..*", "0..*")
     )
     val bilateralTableID: Fielder = parse_element (element (cls, fields(0)))
     val bilateralTableVersion: Fielder = parse_element (element (cls, fields(1)))
     val tase2version: Fielder = parse_element (element (cls, fields(2)))
     val ICCPInformationMessage: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
-    def parse (context: Context): TASE2BilateralTable =
+    def parse (context: CIMContext): TASE2BilateralTable =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TASE2BilateralTable (
             BilateralExchangeAgreement.parse (context),
@@ -1301,23 +1301,23 @@ extends
 
 object TCPAccessPoint
 extends
-    Parseable[TCPAccessPoint]
+    CIMParseable[TCPAccessPoint]
 {
     override val fields: Array[String] = Array[String] (
         "keepAliveTime",
         "port",
         "PublicX509Certificate"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("PublicX509Certificate", "PublicX509Certificate", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("PublicX509Certificate", "PublicX509Certificate", "0..*", "0..1")
     )
     val keepAliveTime: Fielder = parse_element (element (cls, fields(0)))
     val port: Fielder = parse_element (element (cls, fields(1)))
     val PublicX509Certificate: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
-    def parse (context: Context): TCPAccessPoint =
+    def parse (context: CIMContext): TCPAccessPoint =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = TCPAccessPoint (
             IPAccessPoint.parse (context),
@@ -1332,7 +1332,7 @@ extends
 
 private[ninecode] object _ICCPConfiguration
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             BilateralExchangeActor.register,

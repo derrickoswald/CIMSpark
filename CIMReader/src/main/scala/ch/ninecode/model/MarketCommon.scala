@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * An environmental monitoring station, examples of which could be a weather station or a seismic monitoring station.
@@ -92,7 +92,7 @@ extends
 
 object EnvironmentalMonitoringStation
 extends
-    Parseable[EnvironmentalMonitoringStation]
+    CIMParseable[EnvironmentalMonitoringStation]
 {
     override val fields: Array[String] = Array[String] (
         "dstObserved",
@@ -104,12 +104,12 @@ extends
         "TimeSeries",
         "UsagePoint"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
-        Relationship ("Location", "Location", "0..1", "0..*"),
-        Relationship ("ReportingCapability", "ReportingCapability", "0..*", "1"),
-        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*"),
-        Relationship ("UsagePoint", "UsagePoint", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnvironmentalAnalog", "EnvironmentalAnalog", "0..*", "0..1"),
+        CIMRelationship ("Location", "Location", "0..1", "0..*"),
+        CIMRelationship ("ReportingCapability", "ReportingCapability", "0..*", "1"),
+        CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*"),
+        CIMRelationship ("UsagePoint", "UsagePoint", "0..*", "0..1")
     )
     val dstObserved: Fielder = parse_element (element (cls, fields(0)))
     val isNetworked: Fielder = parse_element (element (cls, fields(1)))
@@ -120,9 +120,9 @@ extends
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val UsagePoint: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: Context): EnvironmentalMonitoringStation =
+    def parse (context: CIMContext): EnvironmentalMonitoringStation =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = EnvironmentalMonitoringStation (
             IdentifiedObject.parse (context),
@@ -219,7 +219,7 @@ extends
 
 object MarketParticipant
 extends
-    Parseable[MarketParticipant]
+    CIMParseable[MarketParticipant]
 {
     override val fields: Array[String] = Array[String] (
         "Bid",
@@ -230,14 +230,14 @@ extends
         "SchedulingCoordinator",
         "TimeSeries"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", "0..*", "0..1"),
-        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
-        Relationship ("MarketPerson", "MarketPerson", "0..*", "0..*"),
-        Relationship ("MarketRole", "MarketRole", "0..*", "0..*"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..1"),
-        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", "0..*", "0..1"),
-        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Bid", "Bid", "0..*", "0..1"),
+        CIMRelationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        CIMRelationship ("MarketPerson", "MarketPerson", "0..*", "0..*"),
+        CIMRelationship ("MarketRole", "MarketRole", "0..*", "0..*"),
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..1"),
+        CIMRelationship ("SchedulingCoordinator", "SchedulingCoordinator", "0..*", "0..1"),
+        CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val Bid: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -247,9 +247,9 @@ extends
     val SchedulingCoordinator: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): MarketParticipant =
+    def parse (context: CIMContext): MarketParticipant =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketParticipant (
             Organisation.parse (context),
@@ -330,21 +330,21 @@ extends
 
 object MarketRole
 extends
-    Parseable[MarketRole]
+    CIMParseable[MarketRole]
 {
     override val fields: Array[String] = Array[String] (
         "type",
         "MarketParticipant"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("MarketParticipant", "MarketParticipant", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("MarketParticipant", "MarketParticipant", "0..*", "0..*")
     )
     val `type`: Fielder = parse_element (element (cls, fields(0)))
     val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
-    def parse (context: Context): MarketRole =
+    def parse (context: CIMContext): MarketRole =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketRole (
             OrganisationRole.parse (context),
@@ -415,19 +415,19 @@ extends
 
 object MktGeneratingUnit
 extends
-    Parseable[MktGeneratingUnit]
+    CIMParseable[MktGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
         "GeneratingUnitDynamicValues"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", "0..*", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", "0..*", "1")
     )
     val GeneratingUnitDynamicValues: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): MktGeneratingUnit =
+    def parse (context: CIMContext): MktGeneratingUnit =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = MktGeneratingUnit (
             GeneratingUnit.parse (context),
@@ -710,7 +710,7 @@ extends
 
 object RegisteredResource
 extends
-    Parseable[RegisteredResource]
+    CIMParseable[RegisteredResource]
 {
     override val fields: Array[String] = Array[String] (
         "commercialOpDate",
@@ -783,51 +783,51 @@ extends
         "SubstitutionResourceList",
         "TimeSeries"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("AdjacentCASet", "AdjacentCASet", "0..1", "0..*"),
-        Relationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
-        Relationship ("AllocationResultValues", "AllocationResultValues", "0..*", "0..1"),
-        Relationship ("Commitments", "Commitments", "0..*", "1"),
-        Relationship ("ContractDistributionFactor", "ContractDistributionFactor", "0..*", "0..1"),
-        Relationship ("ControlAreaDesignation", "ControlAreaDesignation", "0..*", "0..*"),
-        Relationship ("DefaultBid", "DefaultBid", "0..1", "1"),
-        Relationship ("DispatchInstReply", "DispatchInstReply", "0..*", "1"),
-        Relationship ("Domain", "Domain", "0..*", "0..*"),
-        Relationship ("DopInstruction", "DopInstruction", "0..*", "0..1"),
-        Relationship ("DotInstruction", "DotInstruction", "0..*", "0..1"),
-        Relationship ("EnergyMarkets", "EnergyMarket", "0..*", "0..*"),
-        Relationship ("ExPostResourceResults", "ExPostResourceResults", "0..*", "0..1"),
-        Relationship ("ExpectedEnergyValues", "ExpectedEnergyValues", "0..*", "0..1"),
-        Relationship ("ForbiddenRegion", "ForbiddenRegion", "0..*", "0..*"),
-        Relationship ("FormerReference", "FormerReference", "0..*", "1"),
-        Relationship ("HostControlArea", "HostControlArea", "0..1", "0..*"),
-        Relationship ("Instructions", "Instructions", "0..*", "1"),
-        Relationship ("InterTie", "SchedulingPoint", "0..*", "0..*"),
-        Relationship ("IntermittentResourceEligibility", "IntermittentResourceEligibility", "0..*", "1"),
-        Relationship ("LoadFollowingInst", "LoadFollowingInst", "0..*", "1"),
-        Relationship ("LoadFollowingOperatorInput", "LoadFollowingOperatorInput", "0..*", "0..1"),
-        Relationship ("MPMResourceStatus", "MPMResourceStatus", "0..*", "0..1"),
-        Relationship ("MPMTestThreshold", "MPMTestThreshold", "0..*", "0..*"),
-        Relationship ("MarketObjectStatus", "MarketObjectStatus", "0..*", "0..*"),
-        Relationship ("MarketParticipant", "MarketParticipant", "0..1", "0..*"),
-        Relationship ("MktConnectivityNode", "MktConnectivityNode", "0..1", "0..*"),
-        Relationship ("OrgResOwnership", "OrgResOwnership", "0..*", "1"),
-        Relationship ("Pnode", "Pnode", "0..1", "0..*"),
-        Relationship ("RMROperatorInput", "RMROperatorInput", "0..*", "0..1"),
-        Relationship ("RUCAwardInstruction", "RUCAwardInstruction", "0..*", "0..1"),
-        Relationship ("RampRateCurve", "RampRateCurve", "0..*", "0..*"),
-        Relationship ("Reason", "Reason", "0..*", "0..*"),
-        Relationship ("ResourceAncillaryServiceQualification", "ResourceCertification", "0..*", "1"),
-        Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "0..*", "0..1"),
-        Relationship ("ResourceCapacity", "ResourceCapacity", "0..*", "0..*"),
-        Relationship ("ResourceCertification", "ResourceCertification2", "0..*", "0..*"),
-        Relationship ("ResourceDispatchResults", "ResourceDispatchResults", "0..*", "0..1"),
-        Relationship ("ResourceGroups", "ResourceGroup", "0..*", "1..*"),
-        Relationship ("ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1"),
-        Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", "0..1", "1"),
-        Relationship ("SubControlArea", "SubControlArea", "0..*", "0..*"),
-        Relationship ("SubstitutionResourceList", "SubstitutionResourceList", "0..*", "0..1"),
-        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("AdjacentCASet", "AdjacentCASet", "0..1", "0..*"),
+        CIMRelationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
+        CIMRelationship ("AllocationResultValues", "AllocationResultValues", "0..*", "0..1"),
+        CIMRelationship ("Commitments", "Commitments", "0..*", "1"),
+        CIMRelationship ("ContractDistributionFactor", "ContractDistributionFactor", "0..*", "0..1"),
+        CIMRelationship ("ControlAreaDesignation", "ControlAreaDesignation", "0..*", "0..*"),
+        CIMRelationship ("DefaultBid", "DefaultBid", "0..1", "1"),
+        CIMRelationship ("DispatchInstReply", "DispatchInstReply", "0..*", "1"),
+        CIMRelationship ("Domain", "Domain", "0..*", "0..*"),
+        CIMRelationship ("DopInstruction", "DopInstruction", "0..*", "0..1"),
+        CIMRelationship ("DotInstruction", "DotInstruction", "0..*", "0..1"),
+        CIMRelationship ("EnergyMarkets", "EnergyMarket", "0..*", "0..*"),
+        CIMRelationship ("ExPostResourceResults", "ExPostResourceResults", "0..*", "0..1"),
+        CIMRelationship ("ExpectedEnergyValues", "ExpectedEnergyValues", "0..*", "0..1"),
+        CIMRelationship ("ForbiddenRegion", "ForbiddenRegion", "0..*", "0..*"),
+        CIMRelationship ("FormerReference", "FormerReference", "0..*", "1"),
+        CIMRelationship ("HostControlArea", "HostControlArea", "0..1", "0..*"),
+        CIMRelationship ("Instructions", "Instructions", "0..*", "1"),
+        CIMRelationship ("InterTie", "SchedulingPoint", "0..*", "0..*"),
+        CIMRelationship ("IntermittentResourceEligibility", "IntermittentResourceEligibility", "0..*", "1"),
+        CIMRelationship ("LoadFollowingInst", "LoadFollowingInst", "0..*", "1"),
+        CIMRelationship ("LoadFollowingOperatorInput", "LoadFollowingOperatorInput", "0..*", "0..1"),
+        CIMRelationship ("MPMResourceStatus", "MPMResourceStatus", "0..*", "0..1"),
+        CIMRelationship ("MPMTestThreshold", "MPMTestThreshold", "0..*", "0..*"),
+        CIMRelationship ("MarketObjectStatus", "MarketObjectStatus", "0..*", "0..*"),
+        CIMRelationship ("MarketParticipant", "MarketParticipant", "0..1", "0..*"),
+        CIMRelationship ("MktConnectivityNode", "MktConnectivityNode", "0..1", "0..*"),
+        CIMRelationship ("OrgResOwnership", "OrgResOwnership", "0..*", "1"),
+        CIMRelationship ("Pnode", "Pnode", "0..1", "0..*"),
+        CIMRelationship ("RMROperatorInput", "RMROperatorInput", "0..*", "0..1"),
+        CIMRelationship ("RUCAwardInstruction", "RUCAwardInstruction", "0..*", "0..1"),
+        CIMRelationship ("RampRateCurve", "RampRateCurve", "0..*", "0..*"),
+        CIMRelationship ("Reason", "Reason", "0..*", "0..*"),
+        CIMRelationship ("ResourceAncillaryServiceQualification", "ResourceCertification", "0..*", "1"),
+        CIMRelationship ("ResourceAwardInstruction", "ResourceAwardInstruction", "0..*", "0..1"),
+        CIMRelationship ("ResourceCapacity", "ResourceCapacity", "0..*", "0..*"),
+        CIMRelationship ("ResourceCertification", "ResourceCertification2", "0..*", "0..*"),
+        CIMRelationship ("ResourceDispatchResults", "ResourceDispatchResults", "0..*", "0..1"),
+        CIMRelationship ("ResourceGroups", "ResourceGroup", "0..*", "1..*"),
+        CIMRelationship ("ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1"),
+        CIMRelationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", "0..1", "1"),
+        CIMRelationship ("SubControlArea", "SubControlArea", "0..*", "0..*"),
+        CIMRelationship ("SubstitutionResourceList", "SubstitutionResourceList", "0..*", "0..1"),
+        CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val commercialOpDate: Fielder = parse_element (element (cls, fields(0)))
     val contingencyAvailFlag: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -899,9 +899,9 @@ extends
     val SubstitutionResourceList: FielderMultiple = parse_attributes (attribute (cls, fields(67)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(68)))
 
-    def parse (context: Context): RegisteredResource =
+    def parse (context: CIMContext): RegisteredResource =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0,0,0)
         val ret = RegisteredResource (
             PowerSystemResource.parse (context),
@@ -1067,7 +1067,7 @@ extends
 
 object ResourceCapacity
 extends
-    Parseable[ResourceCapacity]
+    CIMParseable[ResourceCapacity]
 {
     override val fields: Array[String] = Array[String] (
         "capacityType",
@@ -1077,8 +1077,8 @@ extends
         "unitSymbol",
         "RegisteredResource"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
     val capacityType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val defaultCapacity: Fielder = parse_element (element (cls, fields(1)))
@@ -1087,9 +1087,9 @@ extends
     val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(4)))
     val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
-    def parse (context: Context): ResourceCapacity =
+    def parse (context: CIMContext): ResourceCapacity =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ResourceCapacity (
             BasicElement.parse (context),
@@ -1107,7 +1107,7 @@ extends
 
 private[ninecode] object _MarketCommon
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             EnvironmentalMonitoringStation.register,

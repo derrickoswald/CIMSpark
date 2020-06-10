@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * All the measurements are filtered by a first lag element with a time constant TM.
@@ -90,7 +90,7 @@ extends
 
 object Delay
 extends
-    Parseable[Delay]
+    CIMParseable[Delay]
 {
     override val fields: Array[String] = Array[String] (
         "tm",
@@ -103,15 +103,15 @@ extends
         "Qregulator",
         "Umode"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("BlockingFunction", "BlockingFunction", "0..1", "1"),
-        Relationship ("DCvoltageControl", "DCvoltageControl", "0..1", "1"),
-        Relationship ("PFmode", "PFmode", "0..1", "1"),
-        Relationship ("Pcontrol", "Pcontrol", "0..1", "1"),
-        Relationship ("Qlimiter", "Qlimiter", "0..1", "1"),
-        Relationship ("Qmode", "Qmode", "0..1", "1"),
-        Relationship ("Qregulator", "Qregulator", "0..1", "1"),
-        Relationship ("Umode", "Umode", "0..1", "1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("BlockingFunction", "BlockingFunction", "0..1", "1"),
+        CIMRelationship ("DCvoltageControl", "DCvoltageControl", "0..1", "1"),
+        CIMRelationship ("PFmode", "PFmode", "0..1", "1"),
+        CIMRelationship ("Pcontrol", "Pcontrol", "0..1", "1"),
+        CIMRelationship ("Qlimiter", "Qlimiter", "0..1", "1"),
+        CIMRelationship ("Qmode", "Qmode", "0..1", "1"),
+        CIMRelationship ("Qregulator", "Qregulator", "0..1", "1"),
+        CIMRelationship ("Umode", "Umode", "0..1", "1")
     )
     val tm: Fielder = parse_element (element (cls, fields(0)))
     val BlockingFunction: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -123,9 +123,9 @@ extends
     val Qregulator: Fielder = parse_attribute (attribute (cls, fields(7)))
     val Umode: Fielder = parse_attribute (attribute (cls, fields(8)))
 
-    def parse (context: Context): Delay =
+    def parse (context: CIMContext): Delay =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Delay (
             BasicElement.parse (context),
@@ -207,7 +207,7 @@ extends
 
 object HVDCLookUpTable
 extends
-    Parseable[HVDCLookUpTable]
+    CIMParseable[HVDCLookUpTable]
 {
     override val fields: Array[String] = Array[String] (
         "functionKind",
@@ -216,8 +216,8 @@ extends
         "sequence",
         "Qregulator"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("Qregulator", "Qregulator", "0..1", "1..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Qregulator", "Qregulator", "0..1", "1..*")
     )
     val functionKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val input: Fielder = parse_element (element (cls, fields(1)))
@@ -225,9 +225,9 @@ extends
     val sequence: Fielder = parse_element (element (cls, fields(3)))
     val Qregulator: Fielder = parse_attribute (attribute (cls, fields(4)))
 
-    def parse (context: Context): HVDCLookUpTable =
+    def parse (context: CIMContext): HVDCLookUpTable =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = HVDCLookUpTable (
             BasicElement.parse (context),
@@ -244,7 +244,7 @@ extends
 
 private[ninecode] object _InfHVDCDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             Delay.register,

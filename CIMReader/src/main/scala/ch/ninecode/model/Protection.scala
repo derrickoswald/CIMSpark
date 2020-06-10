@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * A device that checks current flow values in any direction or designated direction.
@@ -84,7 +84,7 @@ extends
 
 object CurrentRelay
 extends
-    Parseable[CurrentRelay]
+    CIMParseable[CurrentRelay]
 {
     override val fields: Array[String] = Array[String] (
         "currentLimit1",
@@ -103,9 +103,9 @@ extends
     val timeDelay2: Fielder = parse_element (element (cls, fields(5)))
     val timeDelay3: Fielder = parse_element (element (cls, fields(6)))
 
-    def parse (context: Context): CurrentRelay =
+    def parse (context: CIMContext): CurrentRelay =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentRelay (
             ProtectionEquipment.parse (context),
@@ -210,7 +210,7 @@ extends
 
 object ProtectionEquipment
 extends
-    Parseable[ProtectionEquipment]
+    CIMParseable[ProtectionEquipment]
 {
     override val fields: Array[String] = Array[String] (
         "highLimit",
@@ -223,10 +223,10 @@ extends
         "ProtectedSwitches",
         "ProtectiveAction"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipments", "ConductingEquipment", "0..*", "0..*"),
-        Relationship ("ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"),
-        Relationship ("ProtectiveAction", "ProtectiveAction", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ConductingEquipments", "ConductingEquipment", "0..*", "0..*"),
+        CIMRelationship ("ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"),
+        CIMRelationship ("ProtectiveAction", "ProtectiveAction", "0..*", "0..1")
     )
     val highLimit: Fielder = parse_element (element (cls, fields(0)))
     val lowLimit: Fielder = parse_element (element (cls, fields(1)))
@@ -238,9 +238,9 @@ extends
     val ProtectedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
-    def parse (context: Context): ProtectionEquipment =
+    def parse (context: CIMContext): ProtectionEquipment =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectionEquipment (
             Equipment.parse (context),
@@ -325,23 +325,23 @@ extends
 
 object RecloseSequence
 extends
-    Parseable[RecloseSequence]
+    CIMParseable[RecloseSequence]
 {
     override val fields: Array[String] = Array[String] (
         "recloseDelay",
         "recloseStep",
         "ProtectedSwitch"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ProtectedSwitch", "ProtectedSwitch", "1", "0..*")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ProtectedSwitch", "ProtectedSwitch", "1", "0..*")
     )
     val recloseDelay: Fielder = parse_element (element (cls, fields(0)))
     val recloseStep: Fielder = parse_element (element (cls, fields(1)))
     val ProtectedSwitch: Fielder = parse_attribute (attribute (cls, fields(2)))
 
-    def parse (context: Context): RecloseSequence =
+    def parse (context: CIMContext): RecloseSequence =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = RecloseSequence (
             IdentifiedObject.parse (context),
@@ -421,7 +421,7 @@ extends
 
 object SynchrocheckRelay
 extends
-    Parseable[SynchrocheckRelay]
+    CIMParseable[SynchrocheckRelay]
 {
     override val fields: Array[String] = Array[String] (
         "maxAngleDiff",
@@ -432,9 +432,9 @@ extends
     val maxFreqDiff: Fielder = parse_element (element (cls, fields(1)))
     val maxVoltDiff: Fielder = parse_element (element (cls, fields(2)))
 
-    def parse (context: Context): SynchrocheckRelay =
+    def parse (context: CIMContext): SynchrocheckRelay =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SynchrocheckRelay (
             ProtectionEquipment.parse (context),
@@ -449,7 +449,7 @@ extends
 
 private[ninecode] object _Protection
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             CurrentRelay.register,

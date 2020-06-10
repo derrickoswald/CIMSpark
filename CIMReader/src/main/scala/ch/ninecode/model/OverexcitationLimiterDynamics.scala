@@ -2,10 +2,10 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.ClassInfo
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Parseable
-import ch.ninecode.cim.Relationship
+import ch.ninecode.cim.CIMClassInfo
+import ch.ninecode.cim.CIMContext
+import ch.ninecode.cim.CIMParseable
+import ch.ninecode.cim.CIMRelationship
 
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by means of a non-windup integral regulator.
@@ -81,7 +81,7 @@ extends
 
 object OverexcLim2
 extends
-    Parseable[OverexcLim2]
+    CIMParseable[OverexcLim2]
 {
     override val fields: Array[String] = Array[String] (
         "ifdlim",
@@ -94,9 +94,9 @@ extends
     val voimax: Fielder = parse_element (element (cls, fields(2)))
     val voimin: Fielder = parse_element (element (cls, fields(3)))
 
-    def parse (context: Context): OverexcLim2 =
+    def parse (context: CIMContext): OverexcLim2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcLim2 (
             OverexcitationLimiterDynamics.parse (context),
@@ -193,7 +193,7 @@ extends
 
 object OverexcLimIEEE
 extends
-    Parseable[OverexcLimIEEE]
+    CIMParseable[OverexcLimIEEE]
 {
     override val fields: Array[String] = Array[String] (
         "hyst",
@@ -210,9 +210,9 @@ extends
     val kcd: Fielder = parse_element (element (cls, fields(4)))
     val kramp: Fielder = parse_element (element (cls, fields(5)))
 
-    def parse (context: Context): OverexcLimIEEE =
+    def parse (context: CIMContext): OverexcLimIEEE =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcLimIEEE (
             OverexcitationLimiterDynamics.parse (context),
@@ -323,7 +323,7 @@ extends
 
 object OverexcLimX1
 extends
-    Parseable[OverexcLimX1]
+    CIMParseable[OverexcLimX1]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -348,9 +348,9 @@ extends
     val t3: Fielder = parse_element (element (cls, fields(8)))
     val vlow: Fielder = parse_element (element (cls, fields(9)))
 
-    def parse (context: Context): OverexcLimX1 =
+    def parse (context: CIMContext): OverexcLimX1 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcLimX1 (
             OverexcitationLimiterDynamics.parse (context),
@@ -470,7 +470,7 @@ extends
 
 object OverexcLimX2
 extends
-    Parseable[OverexcLimX2]
+    CIMParseable[OverexcLimX2]
 {
     override val fields: Array[String] = Array[String] (
         "efd1",
@@ -497,9 +497,9 @@ extends
     val t3: Fielder = parse_element (element (cls, fields(9)))
     val vlow: Fielder = parse_element (element (cls, fields(10)))
 
-    def parse (context: Context): OverexcLimX2 =
+    def parse (context: CIMContext): OverexcLimX2 =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcLimX2 (
             OverexcitationLimiterDynamics.parse (context),
@@ -579,19 +579,19 @@ extends
 
 object OverexcitationLimiterDynamics
 extends
-    Parseable[OverexcitationLimiterDynamics]
+    CIMParseable[OverexcitationLimiterDynamics]
 {
     override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics"
     )
-    override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
-    def parse (context: Context): OverexcitationLimiterDynamics =
+    def parse (context: CIMContext): OverexcitationLimiterDynamics =
     {
-        implicit val ctx: Context = context
+        implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
         val ret = OverexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
@@ -604,7 +604,7 @@ extends
 
 private[ninecode] object _OverexcitationLimiterDynamics
 {
-    def register: List[ClassInfo] =
+    def register: List[CIMClassInfo] =
     {
         List (
             OverexcLim2.register,
