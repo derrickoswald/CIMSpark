@@ -64,7 +64,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     def like (name: String): ((Int, RDD[_])) => Boolean =
     {
         val pattern = s"$name|"
-        (rdd: (Int, RDD[_])) => (rdd._2.name == name) || rdd._2.name.startsWith (pattern)
+        (rdd: (Int, RDD[_])) => (rdd._2.name != null) && ((rdd._2.name == name) || rdd._2.name.startsWith (pattern))
     }
 
     /**
