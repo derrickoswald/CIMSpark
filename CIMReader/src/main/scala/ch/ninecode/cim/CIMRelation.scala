@@ -202,7 +202,7 @@ class CIMRelation (
             if (fs.exists (path))
             {
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
-                put (rdd, "Elements")
+                put (rdd, "Elements", true)
                 make_tables (rdd)
                 ret = rdd.asInstanceOf[RDD[Row]]
             }
@@ -223,7 +223,7 @@ class CIMRelation (
                 classOf[String],
                 classOf[Element]).values
 
-            put (rdd, "Elements")
+            put (rdd, "Elements", true)
             ret = rdd.asInstanceOf[RDD[Row]]
 
             // about processing if requested

@@ -299,7 +299,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                 )
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements")
+        put (new_elements, "Elements", false)
 
         new_elements
     }

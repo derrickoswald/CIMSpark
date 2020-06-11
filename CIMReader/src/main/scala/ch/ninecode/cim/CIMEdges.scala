@@ -419,14 +419,14 @@ with Serializable
             val edges = topo2.map (topo_edge_op)
 
             // persist and expose it
-            put (edges, "Edges")
+            put (edges, "Edges", true)
         }
         else
         {
             val edges = asseted_edges.map (edge_op)
 
             // persist and expose it
-            put (edges, "Edges")
+            put (edges, "Edges", true)
         }
 
         elements

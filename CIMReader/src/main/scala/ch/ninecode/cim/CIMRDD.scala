@@ -119,60 +119,94 @@ trait CIMRDD
     }
 
     /**
-     * Alter the schema so sup has the correct superclass name.
+     * Match names with pattern "name|xxx".
      *
-     * @param rtc The runtime class for Typeclass A.
-     * @param schema The SQL schema for Typeclass A, e.g.
-     *   org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...
+     * @param name the name to match
+     * @return <code>true</code> if the RDD name matches the pattern
      */
-    def modify_schema (rtc: Class[_], schema: StructType): StructType =
+    def like (name: String): ((Int, RDD[_])) => Boolean =
     {
-        val sup = schema.fields (0)
-        val supcls = rtc.getMethod ("sup").getReturnType
-        val clsname = supcls.getName.substring (supcls.getName.lastIndexOf (".") + 1)
-        val suptyp = sup.dataType
-        val dataType = if (suptyp.typeName == "struct")
-            modify_schema (supcls, suptyp.asInstanceOf[StructType])
-        else
-            suptyp
-        val supersup = StructField (clsname, dataType, sup.nullable, sup.metadata)
-        schema.fields.update (0, supersup)
-        StructType (schema.fields)
+        val pattern = s"$name|"
+        (rdd: (Int, RDD[_])) => (rdd._2.name == name) || rdd._2.name.startsWith (pattern)
+    }
+
+    def toInt (s: String): Option[Int] =
+    {
+        try
+        {
+            Some (s.toInt)
+        }
+        catch
+        {
+            case _: Exception => None
+        }
+    }
+
+    /**
+     * Find the largest integer after the name| pattern in a foldLeft operation.
+     *
+     * @param name the name to check
+     * @return
+     */
+    def biggest (name: String): (Int, (Int, RDD[_])) => Int =
+    {
+        val pattern = s"$name|"
+        (current: Int, rdd: (Int, RDD[_])) =>
+        {
+            val rdd_name = rdd._2.name
+            if (rdd_name.startsWith (pattern))
+                toInt (rdd_name.substring (pattern.length)) match
+                {
+                    case Some (i) => if (i > current) i else current
+                    case _ => current
+                }
+            else
+                current
+        }
     }
 
     /**
      * Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.
      *
-     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
+     * Since the use of RDD persistence can be problematic for memory reuse, the <code>keep</code> parameter
+     * has special processing. When <code>keep</code> is <code>true</code> any existing RDD of the same name is renamed to
+     * <code>name|n</code>
+     * where n is sequentially increasing to the next available integer. When <code>keep</code> is <code>false</code>
+     * all existing RDD of the above form are unpersisted.
+     *
+     * This facilitates the use-case where the new RDD depends on the existing one. For example, the <code>Elements</code>
+     * RDD is rewritten by about, dedup, join, normalize and topological processing, where the new RDD is derived from
+     * the original. But when a completely new CIM RDF file is read in, <code>keep=false</code> will unpersist all
+     * the derived RDD.
      *
      * @param rdd The RDD to persist
      * @param name The name under which to persist it.
+     * @param keep If <code>true</code> then don't unpersist the existing RDD with the given name.
      * @param spark The Spark session.
      * @param storage The storage level for persistence.
      * @return The named, viewed and possibly checkpointed original RDD.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): Unit =
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String, keep: Boolean)(implicit spark: SparkSession, storage: StorageLevel): Unit =
     {
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == name).foreach (
+        val matched = spark.sparkContext.getPersistentRDDs.filter (like (name))
+        val next = matched.foldLeft (0) (biggest (name)) + 1
+        matched.foreach (
             x =>
             {
                 val (_, old) = x
-                old.setName (null).unpersist (true)
+                if (keep)
+                    old.setName (s"$name|$next")
+                else
+                {
+                    old.setName (null)
+                    old.unpersist (true)
+                }
             }
         )
         val _ = rdd.setName (name).persist (storage)
         if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
-        val tag: universe.TypeTag[T] = typeTag[T]
-        val runtime_class: Class[_] = classTag[T].runtimeClass
-        val df = spark.createDataFrame (rdd)(tag)
-        if (df.schema.fields (0).name == "sup")
-        {
-            val altered_schema = modify_schema (runtime_class, df.schema)
-            spark.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema).createOrReplaceTempView (name)
-        }
-        else
-            spark.createDataFrame (rdd).createOrReplaceTempView (name)
+        spark.createDataFrame (rdd).createOrReplaceTempView (name)
     }
 
     /**
@@ -228,11 +262,13 @@ trait CIMRDD
      * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
      *
      * @param rdd The RDD to persist
+     * @param keep If <code>true</code> then don't unpersist any existing RDD with the given name.
      * @param spark The Spark session.
      * @param storage The storage level for persistence.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): Unit = put (rdd, nameOf[T])
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], keep: Boolean = false)(implicit spark: SparkSession, storage: StorageLevel): Unit =
+        put (rdd, nameOf[T], keep)
 
     /**
      * Get a typed DataSet for the given class.

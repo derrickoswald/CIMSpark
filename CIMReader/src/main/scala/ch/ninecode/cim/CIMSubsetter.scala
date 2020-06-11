@@ -56,6 +56,18 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     }
 
     /**
+     * Match names with pattern "name|xxx".
+     *
+     * @param name the name to match
+     * @return <code>true</code> if the RDD name matches the pattern
+     */
+    def like (name: String): ((Int, RDD[_])) => Boolean =
+    {
+        val pattern = s"$name|"
+        (rdd: (Int, RDD[_])) => (rdd._2.name == name) || rdd._2.name.startsWith (pattern)
+    }
+
+    /**
      * Create the Dataframe for Typeclass A.
      *
      * @param context The SQL context for creating the views.
@@ -64,6 +76,10 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
      */
     def save (context: SQLContext, rdd: rddtype, storage: StorageLevel): Unit =
     {
+        // remove any previously named RDD
+        val matched = context.sparkContext.getPersistentRDDs.filter (like (cls))
+        matched.foreach (_._2.setName (null).unpersist (true))
+
         rdd.name = cls
         val _ = rdd.persist (storage)
         if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()

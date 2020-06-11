@@ -197,7 +197,7 @@ with
         val new_elements: RDD[Element] = cleaned.subtractByKey (fixed2).union (fixed2).values
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements")
+        put (new_elements, "Elements", true)
 
         new_elements
     }

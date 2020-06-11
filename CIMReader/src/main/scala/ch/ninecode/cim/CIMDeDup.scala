@@ -106,7 +106,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements")
+        put (new_elements, "Elements", false)
 
         new_elements
     }

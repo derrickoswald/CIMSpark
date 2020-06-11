@@ -8,11 +8,10 @@ import java.io.IOException
 import java.util.Properties
 import java.util.zip.ZipInputStream
 
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.asScalaBufferConverter
 
 import com.datastax.driver.core.Cluster
 import com.datastax.driver.core.Session
-
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test

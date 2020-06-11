@@ -843,7 +843,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // swap the old ConnectivityNode RDD for the new one
         if (options.debug && log.isDebugEnabled)
             log.debug (s"RDD[ConnectivityNode]")
-        put (new_cn)
+        put (new_cn, true)
 
         // assign every Terminal with a connectivity node to a TopologicalNode
         // note: keep the original enclosed ACDCTerminal objects
@@ -856,7 +856,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // swap the old Terminal RDD for the new one
         if (options.debug && log.isDebugEnabled)
             log.debug (s"RDD[Terminal]")
-        put (new_terminals)
+        put (new_terminals, true)
 
         // make a union of all old RDD as IdentifiedObject
         val oldobj =
@@ -879,7 +879,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // swap the old IdentifiedObject RDD for the new one
         if (options.debug && log.isDebugEnabled)
             log.debug (s"RDD[IdentifiedObject]")
-        put (new_idobj)
+        put (new_idobj, true)
 
         // make a union of all old RDD as Element
         val oldelem =
@@ -901,7 +901,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // swap the old Elements RDD for the new one
         if (options.debug && log.isDebugEnabled)
             log.debug (s"RDD[Element]")
-        put (new_elements, "Elements")
+        put (new_elements, "Elements", true)
 
         log.info ("finished Network Topology Processing")
         new_elements
