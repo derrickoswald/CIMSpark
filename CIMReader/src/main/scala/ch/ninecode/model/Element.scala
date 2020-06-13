@@ -273,7 +273,7 @@ extends
 }
 
 object BasicElement
-    extends CIMParser
+    extends CIMParser // ToDo: why isn't this CIMParseable[BasicElement]
 {
     // ToDo: this could probably be handled by an OR case in one regular expression:
 
