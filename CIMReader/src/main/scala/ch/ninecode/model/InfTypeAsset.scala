@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -179,6 +180,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GeneratorTypeAsset] = GeneratorTypeAssetSerializer
 }
 
 object GeneratorTypeAssetSerializer extends CIMSerializer[GeneratorTypeAsset]
@@ -325,6 +328,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TypeAssetCatalogue] = TypeAssetCatalogueSerializer
 }
 
 object TypeAssetCatalogueSerializer extends CIMSerializer[TypeAssetCatalogue]

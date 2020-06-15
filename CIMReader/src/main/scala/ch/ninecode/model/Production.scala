@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -105,6 +106,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AirCompressor] = AirCompressorSerializer
 }
 
 object AirCompressorSerializer extends CIMSerializer[AirCompressor]
@@ -227,6 +230,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BatteryUnit] = BatteryUnitSerializer
 }
 
 object BatteryUnitSerializer extends CIMSerializer[BatteryUnit]
@@ -359,6 +364,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CAESPlant] = CAESPlantSerializer
 }
 
 object CAESPlantSerializer extends CIMSerializer[CAESPlant]
@@ -514,6 +521,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CogenerationPlant] = CogenerationPlantSerializer
 }
 
 object CogenerationPlantSerializer extends CIMSerializer[CogenerationPlant]
@@ -641,6 +650,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombinedCyclePlant] = CombinedCyclePlantSerializer
 }
 
 object CombinedCyclePlantSerializer extends CIMSerializer[CombinedCyclePlant]
@@ -766,6 +777,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EmissionAccount] = EmissionAccountSerializer
 }
 
 object EmissionAccountSerializer extends CIMSerializer[EmissionAccount]
@@ -900,6 +913,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EmissionCurve] = EmissionCurveSerializer
 }
 
 object EmissionCurveSerializer extends CIMSerializer[EmissionCurve]
@@ -1087,6 +1102,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FossilFuel] = FossilFuelSerializer
 }
 
 object FossilFuelSerializer extends CIMSerializer[FossilFuel]
@@ -1255,6 +1272,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FuelAllocationSchedule] = FuelAllocationScheduleSerializer
 }
 
 object FuelAllocationScheduleSerializer extends CIMSerializer[FuelAllocationSchedule]
@@ -1384,6 +1403,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenUnitOpCostCurve] = GenUnitOpCostCurveSerializer
 }
 
 object GenUnitOpCostCurveSerializer extends CIMSerializer[GenUnitOpCostCurve]
@@ -1496,6 +1517,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenUnitOpSchedule] = GenUnitOpScheduleSerializer
 }
 
 object GenUnitOpScheduleSerializer extends CIMSerializer[GenUnitOpSchedule]
@@ -1867,6 +1890,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GeneratingUnit] = GeneratingUnitSerializer
 }
 
 object GeneratingUnitSerializer extends CIMSerializer[GeneratingUnit]
@@ -2059,6 +2084,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GrossToNetActivePowerCurve] = GrossToNetActivePowerCurveSerializer
 }
 
 object GrossToNetActivePowerCurveSerializer extends CIMSerializer[GrossToNetActivePowerCurve]
@@ -2200,6 +2227,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HeatInputCurve] = HeatInputCurveSerializer
 }
 
 object HeatInputCurveSerializer extends CIMSerializer[HeatInputCurve]
@@ -2327,6 +2356,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HeatRateCurve] = HeatRateCurveSerializer
 }
 
 object HeatRateCurveSerializer extends CIMSerializer[HeatRateCurve]
@@ -2441,6 +2472,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroGeneratingEfficiencyCurve] = HydroGeneratingEfficiencyCurveSerializer
 }
 
 object HydroGeneratingEfficiencyCurveSerializer extends CIMSerializer[HydroGeneratingEfficiencyCurve]
@@ -2596,6 +2629,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroGeneratingUnit] = HydroGeneratingUnitSerializer
 }
 
 object HydroGeneratingUnitSerializer extends CIMSerializer[HydroGeneratingUnit]
@@ -2797,6 +2832,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroPowerPlant] = HydroPowerPlantSerializer
 }
 
 object HydroPowerPlantSerializer extends CIMSerializer[HydroPowerPlant]
@@ -2969,6 +3006,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroPump] = HydroPumpSerializer
 }
 
 object HydroPumpSerializer extends CIMSerializer[HydroPump]
@@ -3091,6 +3130,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroPumpOpSchedule] = HydroPumpOpScheduleSerializer
 }
 
 object HydroPumpOpScheduleSerializer extends CIMSerializer[HydroPumpOpSchedule]
@@ -3208,6 +3249,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IncrementalHeatRateCurve] = IncrementalHeatRateCurveSerializer
 }
 
 object IncrementalHeatRateCurveSerializer extends CIMSerializer[IncrementalHeatRateCurve]
@@ -3320,6 +3363,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InflowForecast] = InflowForecastSerializer
 }
 
 object InflowForecastSerializer extends CIMSerializer[InflowForecast]
@@ -3430,6 +3475,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LevelVsVolumeCurve] = LevelVsVolumeCurveSerializer
 }
 
 object LevelVsVolumeCurveSerializer extends CIMSerializer[LevelVsVolumeCurve]
@@ -3521,6 +3568,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[NuclearGeneratingUnit] = NuclearGeneratingUnitSerializer
 }
 
 object NuclearGeneratingUnitSerializer extends CIMSerializer[NuclearGeneratingUnit]
@@ -3630,6 +3679,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PenstockLossCurve] = PenstockLossCurveSerializer
 }
 
 object PenstockLossCurveSerializer extends CIMSerializer[PenstockLossCurve]
@@ -3721,6 +3772,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[PhotoVoltaicUnit] = PhotoVoltaicUnitSerializer
 }
 
 object PhotoVoltaicUnitSerializer extends CIMSerializer[PhotoVoltaicUnit]
@@ -3843,6 +3896,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerElectronicsUnit] = PowerElectronicsUnitSerializer
 }
 
 object PowerElectronicsUnitSerializer extends CIMSerializer[PowerElectronicsUnit]
@@ -3938,6 +3993,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[PowerElectronicsWindUnit] = PowerElectronicsWindUnitSerializer
 }
 
 object PowerElectronicsWindUnitSerializer extends CIMSerializer[PowerElectronicsWindUnit]
@@ -4158,6 +4215,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Reservoir] = ReservoirSerializer
 }
 
 object ReservoirSerializer extends CIMSerializer[Reservoir]
@@ -4313,6 +4372,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShutdownCurve] = ShutdownCurveSerializer
 }
 
 object ShutdownCurveSerializer extends CIMSerializer[ShutdownCurve]
@@ -4410,6 +4471,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[SolarGeneratingUnit] = SolarGeneratingUnitSerializer
 }
 
 object SolarGeneratingUnitSerializer extends CIMSerializer[SolarGeneratingUnit]
@@ -4523,6 +4586,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartIgnFuelCurve] = StartIgnFuelCurveSerializer
 }
 
 object StartIgnFuelCurveSerializer extends CIMSerializer[StartIgnFuelCurve]
@@ -4639,6 +4704,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartMainFuelCurve] = StartMainFuelCurveSerializer
 }
 
 object StartMainFuelCurveSerializer extends CIMSerializer[StartMainFuelCurve]
@@ -4756,6 +4823,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartRampCurve] = StartRampCurveSerializer
 }
 
 object StartRampCurveSerializer extends CIMSerializer[StartRampCurve]
@@ -4950,6 +5019,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartupModel] = StartupModelSerializer
 }
 
 object StartupModelSerializer extends CIMSerializer[StartupModel]
@@ -5084,6 +5155,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SteamSendoutSchedule] = SteamSendoutScheduleSerializer
 }
 
 object SteamSendoutScheduleSerializer extends CIMSerializer[SteamSendoutSchedule]
@@ -5194,6 +5267,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TailbayLossCurve] = TailbayLossCurveSerializer
 }
 
 object TailbayLossCurveSerializer extends CIMSerializer[TailbayLossCurve]
@@ -5317,6 +5392,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TargetLevelSchedule] = TargetLevelScheduleSerializer
 }
 
 object TargetLevelScheduleSerializer extends CIMSerializer[TargetLevelSchedule]
@@ -5514,6 +5591,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ThermalGeneratingUnit] = ThermalGeneratingUnitSerializer
 }
 
 object ThermalGeneratingUnitSerializer extends CIMSerializer[ThermalGeneratingUnit]
@@ -5645,6 +5724,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGeneratingUnit] = WindGeneratingUnitSerializer
 }
 
 object WindGeneratingUnitSerializer extends CIMSerializer[WindGeneratingUnit]

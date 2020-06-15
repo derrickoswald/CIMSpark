@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -98,6 +99,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindAeroConstIEC] = WindAeroConstIECSerializer
 }
 
 object WindAeroConstIECSerializer extends CIMSerializer[WindAeroConstIEC]
@@ -228,6 +231,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindAeroOneDimIEC] = WindAeroOneDimIECSerializer
 }
 
 object WindAeroOneDimIECSerializer extends CIMSerializer[WindAeroOneDimIEC]
@@ -397,6 +402,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindAeroTwoDimIEC] = WindAeroTwoDimIECSerializer
 }
 
 object WindAeroTwoDimIECSerializer extends CIMSerializer[WindAeroTwoDimIEC]
@@ -589,6 +596,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContCurrLimIEC] = WindContCurrLimIECSerializer
 }
 
 object WindContCurrLimIECSerializer extends CIMSerializer[WindContCurrLimIEC]
@@ -892,6 +901,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContPType3IEC] = WindContPType3IECSerializer
 }
 
 object WindContPType3IECSerializer extends CIMSerializer[WindContPType3IEC]
@@ -1077,6 +1088,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContPType4aIEC] = WindContPType4aIECSerializer
 }
 
 object WindContPType4aIECSerializer extends CIMSerializer[WindContPType4aIEC]
@@ -1227,6 +1240,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContPType4bIEC] = WindContPType4bIECSerializer
 }
 
 object WindContPType4bIECSerializer extends CIMSerializer[WindContPType4bIEC]
@@ -1421,6 +1436,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContPitchAngleIEC] = WindContPitchAngleIECSerializer
 }
 
 object WindContPitchAngleIECSerializer extends CIMSerializer[WindContPitchAngleIEC]
@@ -1718,6 +1735,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContQIEC] = WindContQIECSerializer
 }
 
 object WindContQIECSerializer extends CIMSerializer[WindContQIEC]
@@ -1894,6 +1913,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContQLimIEC] = WindContQLimIECSerializer
 }
 
 object WindContQLimIECSerializer extends CIMSerializer[WindContQLimIEC]
@@ -2036,6 +2057,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContQPQULimIEC] = WindContQPQULimIECSerializer
 }
 
 object WindContQPQULimIECSerializer extends CIMSerializer[WindContQPQULimIEC]
@@ -2222,6 +2245,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindContRotorRIEC] = WindContRotorRIECSerializer
 }
 
 object WindContRotorRIECSerializer extends CIMSerializer[WindContRotorRIEC]
@@ -2434,6 +2459,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindDynamicsLookupTable] = WindDynamicsLookupTableSerializer
 }
 
 object WindDynamicsLookupTableSerializer extends CIMSerializer[WindDynamicsLookupTable]
@@ -2573,6 +2600,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenTurbineType1aIEC] = WindGenTurbineType1aIECSerializer
 }
 
 object WindGenTurbineType1aIECSerializer extends CIMSerializer[WindGenTurbineType1aIEC]
@@ -2688,6 +2717,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenTurbineType1bIEC] = WindGenTurbineType1bIECSerializer
 }
 
 object WindGenTurbineType1bIECSerializer extends CIMSerializer[WindGenTurbineType1bIEC]
@@ -2810,6 +2841,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenTurbineType2IEC] = WindGenTurbineType2IECSerializer
 }
 
 object WindGenTurbineType2IECSerializer extends CIMSerializer[WindGenTurbineType2IEC]
@@ -2947,6 +2980,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenType3IEC] = WindGenType3IECSerializer
 }
 
 object WindGenType3IECSerializer extends CIMSerializer[WindGenType3IEC]
@@ -3083,6 +3118,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenType3aIEC] = WindGenType3aIECSerializer
 }
 
 object WindGenType3aIECSerializer extends CIMSerializer[WindGenType3aIEC]
@@ -3226,6 +3263,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenType3bIEC] = WindGenType3bIECSerializer
 }
 
 object WindGenType3bIECSerializer extends CIMSerializer[WindGenType3bIEC]
@@ -3383,6 +3422,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindGenType4IEC] = WindGenType4IECSerializer
 }
 
 object WindGenType4IECSerializer extends CIMSerializer[WindGenType4IEC]
@@ -3551,6 +3592,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindMechIEC] = WindMechIECSerializer
 }
 
 object WindMechIECSerializer extends CIMSerializer[WindMechIEC]
@@ -3743,6 +3786,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPitchContPowerIEC] = WindPitchContPowerIECSerializer
 }
 
 object WindPitchContPowerIECSerializer extends CIMSerializer[WindPitchContPowerIEC]
@@ -3882,6 +3927,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPlantDynamics] = WindPlantDynamicsSerializer
 }
 
 object WindPlantDynamicsSerializer extends CIMSerializer[WindPlantDynamics]
@@ -4113,6 +4160,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPlantFreqPcontrolIEC] = WindPlantFreqPcontrolIECSerializer
 }
 
 object WindPlantFreqPcontrolIECSerializer extends CIMSerializer[WindPlantFreqPcontrolIEC]
@@ -4267,6 +4316,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPlantIEC] = WindPlantIECSerializer
 }
 
 object WindPlantIECSerializer extends CIMSerializer[WindPlantIEC]
@@ -4519,6 +4570,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPlantReactiveControlIEC] = WindPlantReactiveControlIECSerializer
 }
 
 object WindPlantReactiveControlIECSerializer extends CIMSerializer[WindPlantReactiveControlIEC]
@@ -4739,6 +4792,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindProtectionIEC] = WindProtectionIECSerializer
 }
 
 object WindProtectionIECSerializer extends CIMSerializer[WindProtectionIEC]
@@ -4894,6 +4949,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindRefFrameRotIEC] = WindRefFrameRotIECSerializer
 }
 
 object WindRefFrameRotIECSerializer extends CIMSerializer[WindRefFrameRotIEC]
@@ -5022,6 +5079,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType1or2Dynamics] = WindTurbineType1or2DynamicsSerializer
 }
 
 object WindTurbineType1or2DynamicsSerializer extends CIMSerializer[WindTurbineType1or2Dynamics]
@@ -5147,6 +5206,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType1or2IEC] = WindTurbineType1or2IECSerializer
 }
 
 object WindTurbineType1or2IECSerializer extends CIMSerializer[WindTurbineType1or2IEC]
@@ -5297,6 +5358,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType3IEC] = WindTurbineType3IECSerializer
 }
 
 object WindTurbineType3IECSerializer extends CIMSerializer[WindTurbineType3IEC]
@@ -5434,6 +5497,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType3or4Dynamics] = WindTurbineType3or4DynamicsSerializer
 }
 
 object WindTurbineType3or4DynamicsSerializer extends CIMSerializer[WindTurbineType3or4Dynamics]
@@ -5586,6 +5651,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType3or4IEC] = WindTurbineType3or4IECSerializer
 }
 
 object WindTurbineType3or4IECSerializer extends CIMSerializer[WindTurbineType3or4IEC]
@@ -5709,6 +5776,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType4IEC] = WindTurbineType4IECSerializer
 }
 
 object WindTurbineType4IECSerializer extends CIMSerializer[WindTurbineType4IEC]
@@ -5831,6 +5900,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType4aIEC] = WindTurbineType4aIECSerializer
 }
 
 object WindTurbineType4aIECSerializer extends CIMSerializer[WindTurbineType4aIEC]
@@ -5962,6 +6033,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindTurbineType4bIEC] = WindTurbineType4bIECSerializer
 }
 
 object WindTurbineType4bIECSerializer extends CIMSerializer[WindTurbineType4bIEC]

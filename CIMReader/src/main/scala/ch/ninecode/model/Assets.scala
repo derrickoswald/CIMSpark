@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -94,6 +95,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ASTMStandard] = ASTMStandardSerializer
 }
 
 object ASTMStandardSerializer extends CIMSerializer[ASTMStandard]
@@ -214,6 +217,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AcceptanceTest] = AcceptanceTestSerializer
 }
 
 object AcceptanceTestSerializer extends CIMSerializer[AcceptanceTest]
@@ -326,6 +331,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AggregateScore] = AggregateScoreSerializer
 }
 
 object AggregateScoreSerializer extends CIMSerializer[AggregateScore]
@@ -481,6 +488,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Analytic] = AnalyticSerializer
 }
 
 object AnalyticSerializer extends CIMSerializer[Analytic]
@@ -645,6 +654,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnalyticScore] = AnalyticScoreSerializer
 }
 
 object AnalyticScoreSerializer extends CIMSerializer[AnalyticScore]
@@ -1091,6 +1102,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Asset] = AssetSerializer
 }
 
 object AssetSerializer extends CIMSerializer[Asset]
@@ -1307,6 +1320,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetContainer] = AssetContainerSerializer
 }
 
 object AssetContainerSerializer extends CIMSerializer[AssetContainer]
@@ -1464,6 +1479,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetDeployment] = AssetDeploymentSerializer
 }
 
 object AssetDeploymentSerializer extends CIMSerializer[AssetDeployment]
@@ -1617,6 +1634,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetFunction] = AssetFunctionSerializer
 }
 
 object AssetFunctionSerializer extends CIMSerializer[AssetFunction]
@@ -1756,6 +1775,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetGroup] = AssetGroupSerializer
 }
 
 object AssetGroupSerializer extends CIMSerializer[AssetGroup]
@@ -1891,6 +1912,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetHealthEvent] = AssetHealthEventSerializer
 }
 
 object AssetHealthEventSerializer extends CIMSerializer[AssetHealthEvent]
@@ -2031,6 +2054,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetInfo] = AssetInfoSerializer
 }
 
 object AssetInfoSerializer extends CIMSerializer[AssetInfo]
@@ -2154,6 +2179,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetLocationHazard] = AssetLocationHazardSerializer
 }
 
 object AssetLocationHazardSerializer extends CIMSerializer[AssetLocationHazard]
@@ -2264,6 +2291,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetOrganisationRole] = AssetOrganisationRoleSerializer
 }
 
 object AssetOrganisationRoleSerializer extends CIMSerializer[AssetOrganisationRole]
@@ -2372,6 +2401,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetOwner] = AssetOwnerSerializer
 }
 
 object AssetOwnerSerializer extends CIMSerializer[AssetOwner]
@@ -2480,6 +2511,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetTestLab] = AssetTestLabSerializer
 }
 
 object AssetTestLabSerializer extends CIMSerializer[AssetTestLab]
@@ -2588,6 +2621,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetTestSampleTaker] = AssetTestSampleTakerSerializer
 }
 
 object AssetTestSampleTakerSerializer extends CIMSerializer[AssetTestSampleTaker]
@@ -2679,6 +2714,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[AssetUser] = AssetUserSerializer
 }
 
 object AssetUserSerializer extends CIMSerializer[AssetUser]
@@ -2808,6 +2845,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Bushing] = BushingSerializer
 }
 
 object BushingSerializer extends CIMSerializer[Bushing]
@@ -2925,6 +2964,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CIGREStandard] = CIGREStandardSerializer
 }
 
 object CIGREStandardSerializer extends CIMSerializer[CIGREStandard]
@@ -3018,6 +3059,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Cabinet] = CabinetSerializer
 }
 
 object CabinetSerializer extends CIMSerializer[Cabinet]
@@ -3200,6 +3243,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CatalogAssetType] = CatalogAssetTypeSerializer
 }
 
 object CatalogAssetTypeSerializer extends CIMSerializer[CatalogAssetType]
@@ -3313,6 +3358,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ComMedia] = ComMediaSerializer
 }
 
 object ComMediaSerializer extends CIMSerializer[ComMedia]
@@ -3423,6 +3470,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DINStandard] = DINStandardSerializer
 }
 
 object DINStandardSerializer extends CIMSerializer[DINStandard]
@@ -3556,6 +3605,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DeploymentDate] = DeploymentDateSerializer
 }
 
 object DeploymentDateSerializer extends CIMSerializer[DeploymentDate]
@@ -3744,6 +3795,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagnosisDataSet] = DiagnosisDataSetSerializer
 }
 
 object DiagnosisDataSetSerializer extends CIMSerializer[DiagnosisDataSet]
@@ -3879,6 +3932,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DobleStandard] = DobleStandardSerializer
 }
 
 object DobleStandardSerializer extends CIMSerializer[DobleStandard]
@@ -3997,6 +4052,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DuctBank] = DuctBankSerializer
 }
 
 object DuctBankSerializer extends CIMSerializer[DuctBank]
@@ -4110,6 +4167,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EPAStandard] = EPAStandardSerializer
 }
 
 object EPAStandardSerializer extends CIMSerializer[EPAStandard]
@@ -4217,6 +4276,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FACTSDevice] = FACTSDeviceSerializer
 }
 
 object FACTSDeviceSerializer extends CIMSerializer[FACTSDevice]
@@ -4322,6 +4383,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Facility] = FacilitySerializer
 }
 
 object FacilitySerializer extends CIMSerializer[Facility]
@@ -4485,6 +4548,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FailureEvent] = FailureEventSerializer
 }
 
 object FailureEventSerializer extends CIMSerializer[FailureEvent]
@@ -4681,6 +4746,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FinancialInfo] = FinancialInfoSerializer
 }
 
 object FinancialInfoSerializer extends CIMSerializer[FinancialInfo]
@@ -4811,6 +4878,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HealthScore] = HealthScoreSerializer
 }
 
 object HealthScoreSerializer extends CIMSerializer[HealthScore]
@@ -4922,6 +4991,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IECStandard] = IECStandardSerializer
 }
 
 object IECStandardSerializer extends CIMSerializer[IECStandard]
@@ -5035,6 +5106,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IEEEStandard] = IEEEStandardSerializer
 }
 
 object IEEEStandardSerializer extends CIMSerializer[IEEEStandard]
@@ -5148,6 +5221,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ISOStandard] = ISOStandardSerializer
 }
 
 object ISOStandardSerializer extends CIMSerializer[ISOStandard]
@@ -5269,6 +5344,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InUseDate] = InUseDateSerializer
 }
 
 object InUseDateSerializer extends CIMSerializer[InUseDate]
@@ -5388,6 +5465,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InspectionDataSet] = InspectionDataSetSerializer
 }
 
 object InspectionDataSetSerializer extends CIMSerializer[InspectionDataSet]
@@ -5509,6 +5588,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterrupterUnit] = InterrupterUnitSerializer
 }
 
 object InterrupterUnitSerializer extends CIMSerializer[InterrupterUnit]
@@ -5631,6 +5712,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Joint] = JointSerializer
 }
 
 object JointSerializer extends CIMSerializer[Joint]
@@ -5775,6 +5858,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LabTestDataSet] = LabTestDataSetSerializer
 }
 
 object LabTestDataSetSerializer extends CIMSerializer[LabTestDataSet]
@@ -5896,6 +5981,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LaborelecStandard] = LaborelecStandardSerializer
 }
 
 object LaborelecStandardSerializer extends CIMSerializer[LaborelecStandard]
@@ -6039,6 +6126,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LifecycleDate] = LifecycleDateSerializer
 }
 
 object LifecycleDateSerializer extends CIMSerializer[LifecycleDate]
@@ -6140,6 +6229,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Maintainer] = MaintainerSerializer
 }
 
 object MaintainerSerializer extends CIMSerializer[Maintainer]
@@ -6256,6 +6347,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MaintenanceDataSet] = MaintenanceDataSetSerializer
 }
 
 object MaintenanceDataSetSerializer extends CIMSerializer[MaintenanceDataSet]
@@ -6368,6 +6461,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Manufacturer] = ManufacturerSerializer
 }
 
 object ManufacturerSerializer extends CIMSerializer[Manufacturer]
@@ -6498,6 +6593,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Medium] = MediumSerializer
 }
 
 object MediumSerializer extends CIMSerializer[Medium]
@@ -6621,6 +6718,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilSpecimen] = OilSpecimenSerializer
 }
 
 object OilSpecimenSerializer extends CIMSerializer[OilSpecimen]
@@ -6735,6 +6834,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperatingMechanism] = OperatingMechanismSerializer
 }
 
 object OperatingMechanismSerializer extends CIMSerializer[OperatingMechanism]
@@ -6891,6 +6992,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Procedure] = ProcedureSerializer
 }
 
 object ProcedureSerializer extends CIMSerializer[Procedure]
@@ -7059,6 +7162,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProcedureDataSet] = ProcedureDataSetSerializer
 }
 
 object ProcedureDataSetSerializer extends CIMSerializer[ProcedureDataSet]
@@ -7276,6 +7381,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProductAssetModel] = ProductAssetModelSerializer
 }
 
 object ProductAssetModelSerializer extends CIMSerializer[ProductAssetModel]
@@ -7421,6 +7528,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RiskScore] = RiskScoreSerializer
 }
 
 object RiskScoreSerializer extends CIMSerializer[RiskScore]
@@ -7556,6 +7665,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Seal] = SealSerializer
 }
 
 object SealSerializer extends CIMSerializer[Seal]
@@ -7711,6 +7822,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Specimen] = SpecimenSerializer
 }
 
 object SpecimenSerializer extends CIMSerializer[Specimen]
@@ -7851,6 +7964,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Streetlight] = StreetlightSerializer
 }
 
 object StreetlightSerializer extends CIMSerializer[Streetlight]
@@ -8019,6 +8134,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Structure] = StructureSerializer
 }
 
 object StructureSerializer extends CIMSerializer[Structure]
@@ -8186,6 +8303,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StructureSupport] = StructureSupportSerializer
 }
 
 object StructureSupportSerializer extends CIMSerializer[StructureSupport]
@@ -8345,6 +8464,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchOperationSummary] = SwitchOperationSummarySerializer
 }
 
 object SwitchOperationSummarySerializer extends CIMSerializer[SwitchOperationSummary]
@@ -8468,6 +8589,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TAPPIStandard] = TAPPIStandardSerializer
 }
 
 object TAPPIStandardSerializer extends CIMSerializer[TAPPIStandard]
@@ -8587,6 +8710,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TestDataSet] = TestDataSetSerializer
 }
 
 object TestDataSetSerializer extends CIMSerializer[TestDataSet]
@@ -8822,6 +8947,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TestStandard] = TestStandardSerializer
 }
 
 object TestStandardSerializer extends CIMSerializer[TestStandard]
@@ -8965,6 +9092,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UKMinistryOfDefenceStandard] = UKMinistryOfDefenceStandardSerializer
 }
 
 object UKMinistryOfDefenceStandardSerializer extends CIMSerializer[UKMinistryOfDefenceStandard]
@@ -9078,6 +9207,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WEPStandard] = WEPStandardSerializer
 }
 
 object WEPStandardSerializer extends CIMSerializer[WEPStandard]

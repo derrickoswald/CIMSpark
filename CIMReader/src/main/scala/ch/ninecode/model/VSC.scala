@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -92,6 +93,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BlockingFunction] = BlockingFunctionSerializer
 }
 
 object BlockingFunctionSerializer extends CIMSerializer[BlockingFunction]
@@ -233,6 +236,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCvoltageControl] = DCvoltageControlSerializer
 }
 
 object DCvoltageControlSerializer extends CIMSerializer[DCvoltageControl]
@@ -352,6 +357,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFmode] = PFmodeSerializer
 }
 
 object PFmodeSerializer extends CIMSerializer[PFmode]
@@ -463,6 +470,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pcontrol] = PcontrolSerializer
 }
 
 object PcontrolSerializer extends CIMSerializer[Pcontrol]
@@ -574,6 +583,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Qlimiter] = QlimiterSerializer
 }
 
 object QlimiterSerializer extends CIMSerializer[Qlimiter]
@@ -685,6 +696,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Qmode] = QmodeSerializer
 }
 
 object QmodeSerializer extends CIMSerializer[Qmode]
@@ -803,6 +816,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Qregulator] = QregulatorSerializer
 }
 
 object QregulatorSerializer extends CIMSerializer[Qregulator]
@@ -916,6 +931,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Umode] = UmodeSerializer
 }
 
 object UmodeSerializer extends CIMSerializer[Umode]
@@ -1063,6 +1080,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VSCtype1] = VSCtype1Serializer
 }
 
 object VSCtype1Serializer extends CIMSerializer[VSCtype1]

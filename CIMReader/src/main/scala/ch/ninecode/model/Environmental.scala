@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -107,6 +108,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AlertTypeList] = AlertTypeListSerializer
 }
 
 object AlertTypeListSerializer extends CIMSerializer[AlertTypeList]
@@ -215,6 +218,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AtmosphericAnalog] = AtmosphericAnalogSerializer
 }
 
 object AtmosphericAnalogSerializer extends CIMSerializer[AtmosphericAnalog]
@@ -350,6 +355,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AtmosphericPhenomenon] = AtmosphericPhenomenonSerializer
 }
 
 object AtmosphericPhenomenonSerializer extends CIMSerializer[AtmosphericPhenomenon]
@@ -495,6 +502,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ClassificationCondition] = ClassificationConditionSerializer
 }
 
 object ClassificationConditionSerializer extends CIMSerializer[ClassificationCondition]
@@ -607,6 +616,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CloudCondition] = CloudConditionSerializer
 }
 
 object CloudConditionSerializer extends CIMSerializer[CloudCondition]
@@ -723,6 +734,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Cyclone] = CycloneSerializer
 }
 
 object CycloneSerializer extends CIMSerializer[Cyclone]
@@ -846,6 +859,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Earthquake] = EarthquakeSerializer
 }
 
 object EarthquakeSerializer extends CIMSerializer[Earthquake]
@@ -999,6 +1014,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalAlert] = EnvironmentalAlertSerializer
 }
 
 object EnvironmentalAlertSerializer extends CIMSerializer[EnvironmentalAlert]
@@ -1139,6 +1156,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalAnalog] = EnvironmentalAnalogSerializer
 }
 
 object EnvironmentalAnalogSerializer extends CIMSerializer[EnvironmentalAnalog]
@@ -1271,6 +1290,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalCodedValue] = EnvironmentalCodedValueSerializer
 }
 
 object EnvironmentalCodedValueSerializer extends CIMSerializer[EnvironmentalCodedValue]
@@ -1391,6 +1412,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalDataAuthority] = EnvironmentalDataAuthoritySerializer
 }
 
 object EnvironmentalDataAuthoritySerializer extends CIMSerializer[EnvironmentalDataAuthority]
@@ -1509,6 +1532,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalDataProvider] = EnvironmentalDataProviderSerializer
 }
 
 object EnvironmentalDataProviderSerializer extends CIMSerializer[EnvironmentalDataProvider]
@@ -1624,6 +1649,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalDiscrete] = EnvironmentalDiscreteSerializer
 }
 
 object EnvironmentalDiscreteSerializer extends CIMSerializer[EnvironmentalDiscrete]
@@ -1739,6 +1766,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalEvent] = EnvironmentalEventSerializer
 }
 
 object EnvironmentalEventSerializer extends CIMSerializer[EnvironmentalEvent]
@@ -1889,6 +1918,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalInformation] = EnvironmentalInformationSerializer
 }
 
 object EnvironmentalInformationSerializer extends CIMSerializer[EnvironmentalInformation]
@@ -2032,6 +2063,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalLocationType] = EnvironmentalLocationTypeSerializer
 }
 
 object EnvironmentalLocationTypeSerializer extends CIMSerializer[EnvironmentalLocationType]
@@ -2166,6 +2199,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalPhenomenon] = EnvironmentalPhenomenonSerializer
 }
 
 object EnvironmentalPhenomenonSerializer extends CIMSerializer[EnvironmentalPhenomenon]
@@ -2286,6 +2321,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalStringMeasurement] = EnvironmentalStringMeasurementSerializer
 }
 
 object EnvironmentalStringMeasurementSerializer extends CIMSerializer[EnvironmentalStringMeasurement]
@@ -2380,6 +2417,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Fire] = FireSerializer
 }
 
 object FireSerializer extends CIMSerializer[Fire]
@@ -2469,6 +2508,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Flood] = FloodSerializer
 }
 
 object FloodSerializer extends CIMSerializer[Flood]
@@ -2573,6 +2614,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Forecast] = ForecastSerializer
 }
 
 object ForecastSerializer extends CIMSerializer[Forecast]
@@ -2677,6 +2720,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GeosphericAnalog] = GeosphericAnalogSerializer
 }
 
 object GeosphericAnalogSerializer extends CIMSerializer[GeosphericAnalog]
@@ -2767,6 +2812,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[GeosphericPhenomenon] = GeosphericPhenomenonSerializer
 }
 
 object GeosphericPhenomenonSerializer extends CIMSerializer[GeosphericPhenomenon]
@@ -2870,6 +2917,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Hurricane] = HurricaneSerializer
 }
 
 object HurricaneSerializer extends CIMSerializer[Hurricane]
@@ -2974,6 +3023,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydrosphericAnalog] = HydrosphericAnalogSerializer
 }
 
 object HydrosphericAnalogSerializer extends CIMSerializer[HydrosphericAnalog]
@@ -3064,6 +3115,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[HydrosphericPhenomenon] = HydrosphericPhenomenonSerializer
 }
 
 object HydrosphericPhenomenonSerializer extends CIMSerializer[HydrosphericPhenomenon]
@@ -3153,6 +3206,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Landslide] = LandslideSerializer
 }
 
 object LandslideSerializer extends CIMSerializer[Landslide]
@@ -3287,6 +3342,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LightningStrike] = LightningStrikeSerializer
 }
 
 object LightningStrikeSerializer extends CIMSerializer[LightningStrike]
@@ -3405,6 +3462,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MagneticStorm] = MagneticStormSerializer
 }
 
 object MagneticStormSerializer extends CIMSerializer[MagneticStorm]
@@ -3495,6 +3554,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Observation] = ObservationSerializer
 }
 
 object ObservationSerializer extends CIMSerializer[Observation]
@@ -3616,6 +3677,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhenomenonClassification] = PhenomenonClassificationSerializer
 }
 
 object PhenomenonClassificationSerializer extends CIMSerializer[PhenomenonClassification]
@@ -3756,6 +3819,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReportingCapability] = ReportingCapabilitySerializer
 }
 
 object ReportingCapabilitySerializer extends CIMSerializer[ReportingCapability]
@@ -3868,6 +3933,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SpaceAnalog] = SpaceAnalogSerializer
 }
 
 object SpaceAnalogSerializer extends CIMSerializer[SpaceAnalog]
@@ -3958,6 +4025,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[SpacePhenomenon] = SpacePhenomenonSerializer
 }
 
 object SpacePhenomenonSerializer extends CIMSerializer[SpacePhenomenon]
@@ -4068,6 +4137,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tornado] = TornadoSerializer
 }
 
 object TornadoSerializer extends CIMSerializer[Tornado]
@@ -4179,6 +4250,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TropicalCycloneAustralia] = TropicalCycloneAustraliaSerializer
 }
 
 object TropicalCycloneAustraliaSerializer extends CIMSerializer[TropicalCycloneAustralia]
@@ -4291,6 +4364,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tsunami] = TsunamiSerializer
 }
 
 object TsunamiSerializer extends CIMSerializer[Tsunami]
@@ -4403,6 +4478,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VolcanicAshCloud] = VolcanicAshCloudSerializer
 }
 
 object VolcanicAshCloudSerializer extends CIMSerializer[VolcanicAshCloud]
@@ -4495,6 +4572,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Whirlpool] = WhirlpoolSerializer
 }
 
 object WhirlpoolSerializer extends CIMSerializer[Whirlpool]

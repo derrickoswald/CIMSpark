@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -90,6 +91,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AvailablityPlan] = AvailablityPlanSerializer
 }
 
 object AvailablityPlanSerializer extends CIMSerializer[AvailablityPlan]
@@ -178,6 +181,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[EquipmentUnavailabilitySchedule] = EquipmentUnavailabilityScheduleSerializer
 }
 
 object EquipmentUnavailabilityScheduleSerializer extends CIMSerializer[EquipmentUnavailabilitySchedule]
@@ -287,6 +292,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnavailabilityScheduleDependency] = UnavailabilityScheduleDependencySerializer
 }
 
 object UnavailabilityScheduleDependencySerializer extends CIMSerializer[UnavailabilityScheduleDependency]
@@ -396,6 +403,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnavailabilitySwitchAction] = UnavailabilitySwitchActionSerializer
 }
 
 object UnavailabilitySwitchActionSerializer extends CIMSerializer[UnavailabilitySwitchAction]
@@ -511,6 +520,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnavailablitySchedule] = UnavailablityScheduleSerializer
 }
 
 object UnavailablityScheduleSerializer extends CIMSerializer[UnavailablitySchedule]

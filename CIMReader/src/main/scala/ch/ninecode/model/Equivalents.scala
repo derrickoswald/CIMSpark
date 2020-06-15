@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -206,6 +207,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquivalentBranch] = EquivalentBranchSerializer
 }
 
 object EquivalentBranchSerializer extends CIMSerializer[EquivalentBranch]
@@ -346,6 +349,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquivalentEquipment] = EquivalentEquipmentSerializer
 }
 
 object EquivalentEquipmentSerializer extends CIMSerializer[EquivalentEquipment]
@@ -566,6 +571,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquivalentInjection] = EquivalentInjectionSerializer
 }
 
 object EquivalentInjectionSerializer extends CIMSerializer[EquivalentInjection]
@@ -706,6 +713,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquivalentNetwork] = EquivalentNetworkSerializer
 }
 
 object EquivalentNetworkSerializer extends CIMSerializer[EquivalentNetwork]
@@ -817,6 +826,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquivalentShunt] = EquivalentShuntSerializer
 }
 
 object EquivalentShuntSerializer extends CIMSerializer[EquivalentShunt]

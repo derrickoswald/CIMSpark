@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -100,6 +101,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CrossCompoundTurbineGovernorDynamics] = CrossCompoundTurbineGovernorDynamicsSerializer
 }
 
 object CrossCompoundTurbineGovernorDynamicsSerializer extends CIMSerializer[CrossCompoundTurbineGovernorDynamics]
@@ -464,6 +467,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovCT1] = GovCT1Serializer
 }
 
 object GovCT1Serializer extends CIMSerializer[GovCT1]
@@ -1030,6 +1035,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovCT2] = GovCT2Serializer
 }
 
 object GovCT2Serializer extends CIMSerializer[GovCT2]
@@ -1311,6 +1318,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGAST] = GovGASTSerializer
 }
 
 object GovGASTSerializer extends CIMSerializer[GovGAST]
@@ -1668,6 +1677,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGAST1] = GovGAST1Serializer
 }
 
 object GovGAST1Serializer extends CIMSerializer[GovGAST1]
@@ -2036,6 +2047,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGAST2] = GovGAST2Serializer
 }
 
 object GovGAST2Serializer extends CIMSerializer[GovGAST2]
@@ -2346,6 +2359,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGAST3] = GovGAST3Serializer
 }
 
 object GovGAST3Serializer extends CIMSerializer[GovGAST3]
@@ -2564,6 +2579,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGAST4] = GovGAST4Serializer
 }
 
 object GovGAST4Serializer extends CIMSerializer[GovGAST4]
@@ -2889,6 +2906,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovGASTWD] = GovGASTWDSerializer
 }
 
 object GovGASTWDSerializer extends CIMSerializer[GovGASTWD]
@@ -3152,6 +3171,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydro1] = GovHydro1Serializer
 }
 
 object GovHydro1Serializer extends CIMSerializer[GovHydro1]
@@ -3482,6 +3503,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydro2] = GovHydro2Serializer
 }
 
 object GovHydro2Serializer extends CIMSerializer[GovHydro2]
@@ -3895,6 +3918,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydro3] = GovHydro3Serializer
 }
 
 object GovHydro3Serializer extends CIMSerializer[GovHydro3]
@@ -4341,6 +4366,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydro4] = GovHydro4Serializer
 }
 
 object GovHydro4Serializer extends CIMSerializer[GovHydro4]
@@ -4767,6 +4794,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroDD] = GovHydroDDSerializer
 }
 
 object GovHydroDDSerializer extends CIMSerializer[GovHydroDD]
@@ -5131,6 +5160,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroFrancis] = GovHydroFrancisSerializer
 }
 
 object GovHydroFrancisSerializer extends CIMSerializer[GovHydroFrancis]
@@ -5339,6 +5370,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroIEEE0] = GovHydroIEEE0Serializer
 }
 
 object GovHydroIEEE0Serializer extends CIMSerializer[GovHydroIEEE0]
@@ -5638,6 +5671,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroIEEE2] = GovHydroIEEE2Serializer
 }
 
 object GovHydroIEEE2Serializer extends CIMSerializer[GovHydroIEEE2]
@@ -6024,6 +6059,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroPID] = GovHydroPIDSerializer
 }
 
 object GovHydroPIDSerializer extends CIMSerializer[GovHydroPID]
@@ -6346,6 +6383,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroPID2] = GovHydroPID2Serializer
 }
 
 object GovHydroPID2Serializer extends CIMSerializer[GovHydroPID2]
@@ -6695,6 +6734,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroPelton] = GovHydroPeltonSerializer
 }
 
 object GovHydroPeltonSerializer extends CIMSerializer[GovHydroPelton]
@@ -7148,6 +7189,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroR] = GovHydroRSerializer
 }
 
 object GovHydroRSerializer extends CIMSerializer[GovHydroR]
@@ -7677,6 +7720,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroWEH] = GovHydroWEHSerializer
 }
 
 object GovHydroWEHSerializer extends CIMSerializer[GovHydroWEH]
@@ -8023,6 +8068,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovHydroWPID] = GovHydroWPIDSerializer
 }
 
 object GovHydroWPIDSerializer extends CIMSerializer[GovHydroWPID]
@@ -8222,6 +8269,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteam0] = GovSteam0Serializer
 }
 
 object GovSteam0Serializer extends CIMSerializer[GovSteam0]
@@ -8616,6 +8665,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteam1] = GovSteam1Serializer
 }
 
 object GovSteam1Serializer extends CIMSerializer[GovSteam1]
@@ -8849,6 +8900,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteam2] = GovSteam2Serializer
 }
 
 object GovSteam2Serializer extends CIMSerializer[GovSteam2]
@@ -9085,6 +9138,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamBB] = GovSteamBBSerializer
 }
 
 object GovSteamBBSerializer extends CIMSerializer[GovSteamBB]
@@ -9339,6 +9394,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamCC] = GovSteamCCSerializer
 }
 
 object GovSteamCCSerializer extends CIMSerializer[GovSteamCC]
@@ -9717,6 +9774,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamEU] = GovSteamEUSerializer
 }
 
 object GovSteamEUSerializer extends CIMSerializer[GovSteamEU]
@@ -9959,6 +10018,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamFV2] = GovSteamFV2Serializer
 }
 
 object GovSteamFV2Serializer extends CIMSerializer[GovSteamFV2]
@@ -10299,6 +10360,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamFV3] = GovSteamFV3Serializer
 }
 
 object GovSteamFV3Serializer extends CIMSerializer[GovSteamFV3]
@@ -10817,6 +10880,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamFV4] = GovSteamFV4Serializer
 }
 
 object GovSteamFV4Serializer extends CIMSerializer[GovSteamFV4]
@@ -11166,6 +11231,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamIEEE1] = GovSteamIEEE1Serializer
 }
 
 object GovSteamIEEE1Serializer extends CIMSerializer[GovSteamIEEE1]
@@ -11380,6 +11447,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GovSteamSGO] = GovSteamSGOSerializer
 }
 
 object GovSteamSGOSerializer extends CIMSerializer[GovSteamSGO]
@@ -11528,6 +11597,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TurbineGovernorDynamics] = TurbineGovernorDynamicsSerializer
 }
 
 object TurbineGovernorDynamicsSerializer extends CIMSerializer[TurbineGovernorDynamics]

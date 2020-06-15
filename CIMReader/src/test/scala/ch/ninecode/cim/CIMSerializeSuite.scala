@@ -15,14 +15,6 @@ import ch.ninecode.model._
 import org.scalatest.Outcome
 import org.scalatest.funsuite.FixtureAnyFunSuite
 
-class CIMRegistrator extends KryoRegistrator
-{
-    override def registerClasses (kryo: Kryo)
-    {
-        kryo.register (classOf[IdentifiedObject], IdentifiedObjectSerializer)
-    }
-}
-
 class CIMSerializeSuite extends FixtureAnyFunSuite with Unzip
 {
     override type FixtureParam = SerializerInstance
@@ -49,9 +41,8 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with Unzip
     {
         val configuration = new SparkConf (false)
             .set (KRYO_REGISTRATION_REQUIRED, "true")
-//            .registerKryoClasses (CIMClasses.list)
+            .registerKryoClasses (CIMClasses.list)
             .set (KRYO_RESISTRATOR, "ch.ninecode.cim.CIMRegistrator")
-            .registerKryoClasses (Array (classOf[ch.ninecode.model.IdentifiedObject]))
 
         val serializer = new KryoSerializer (configuration).newInstance ()
         withFixture (test.toNoArgTest (serializer))

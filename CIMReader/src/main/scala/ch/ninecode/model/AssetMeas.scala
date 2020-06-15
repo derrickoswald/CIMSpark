@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -112,6 +113,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetAnalog] = AssetAnalogSerializer
 }
 
 object AssetAnalogSerializer extends CIMSerializer[AssetAnalog]
@@ -225,6 +228,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetDiscrete] = AssetDiscreteSerializer
 }
 
 object AssetDiscreteSerializer extends CIMSerializer[AssetDiscrete]
@@ -338,6 +343,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetStringMeasurement] = AssetStringMeasurementSerializer
 }
 
 object AssetStringMeasurementSerializer extends CIMSerializer[AssetStringMeasurement]
@@ -444,6 +451,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetTemperaturePressureAnalog] = AssetTemperaturePressureAnalogSerializer
 }
 
 object AssetTemperaturePressureAnalogSerializer extends CIMSerializer[AssetTemperaturePressureAnalog]
@@ -566,6 +575,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CalculationMethodHierarchy] = CalculationMethodHierarchySerializer
 }
 
 object CalculationMethodHierarchySerializer extends CIMSerializer[CalculationMethodHierarchy]
@@ -691,6 +702,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CalculationMethodOrder] = CalculationMethodOrderSerializer
 }
 
 object CalculationMethodOrderSerializer extends CIMSerializer[CalculationMethodOrder]
@@ -799,6 +812,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InspectionAnalog] = InspectionAnalogSerializer
 }
 
 object InspectionAnalogSerializer extends CIMSerializer[InspectionAnalog]
@@ -903,6 +918,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InspectionDiscrete] = InspectionDiscreteSerializer
 }
 
 object InspectionDiscreteSerializer extends CIMSerializer[InspectionDiscrete]
@@ -1007,6 +1024,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisFluidAnalog] = OilAnalysisFluidAnalogSerializer
 }
 
 object OilAnalysisFluidAnalogSerializer extends CIMSerializer[OilAnalysisFluidAnalog]
@@ -1111,6 +1130,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisFluidDiscrete] = OilAnalysisFluidDiscreteSerializer
 }
 
 object OilAnalysisFluidDiscreteSerializer extends CIMSerializer[OilAnalysisFluidDiscrete]
@@ -1215,6 +1236,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisGasAnalog] = OilAnalysisGasAnalogSerializer
 }
 
 object OilAnalysisGasAnalogSerializer extends CIMSerializer[OilAnalysisGasAnalog]
@@ -1319,6 +1342,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisMetalsAnalog] = OilAnalysisMetalsAnalogSerializer
 }
 
 object OilAnalysisMetalsAnalogSerializer extends CIMSerializer[OilAnalysisMetalsAnalog]
@@ -1423,6 +1448,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisMoistureAnalog] = OilAnalysisMoistureAnalogSerializer
 }
 
 object OilAnalysisMoistureAnalogSerializer extends CIMSerializer[OilAnalysisMoistureAnalog]
@@ -1527,6 +1554,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisPCBAnalog] = OilAnalysisPCBAnalogSerializer
 }
 
 object OilAnalysisPCBAnalogSerializer extends CIMSerializer[OilAnalysisPCBAnalog]
@@ -1631,6 +1660,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisPCBDiscrete] = OilAnalysisPCBDiscreteSerializer
 }
 
 object OilAnalysisPCBDiscreteSerializer extends CIMSerializer[OilAnalysisPCBDiscrete]
@@ -1735,6 +1766,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisPaperAnalog] = OilAnalysisPaperAnalogSerializer
 }
 
 object OilAnalysisPaperAnalogSerializer extends CIMSerializer[OilAnalysisPaperAnalog]
@@ -1839,6 +1872,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisParticleAnalog] = OilAnalysisParticleAnalogSerializer
 }
 
 object OilAnalysisParticleAnalogSerializer extends CIMSerializer[OilAnalysisParticleAnalog]
@@ -1943,6 +1978,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilAnalysisParticleDiscrete] = OilAnalysisParticleDiscreteSerializer
 }
 
 object OilAnalysisParticleDiscreteSerializer extends CIMSerializer[OilAnalysisParticleDiscrete]
@@ -2058,6 +2095,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PeriodicStatisticalCalculation] = PeriodicStatisticalCalculationSerializer
 }
 
 object PeriodicStatisticalCalculationSerializer extends CIMSerializer[PeriodicStatisticalCalculation]
@@ -2180,6 +2219,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StatisticalCalculation] = StatisticalCalculationSerializer
 }
 
 object StatisticalCalculationSerializer extends CIMSerializer[StatisticalCalculation]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -94,6 +95,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ActivePowerLimit] = ActivePowerLimitSerializer
 }
 
 object ActivePowerLimitSerializer extends CIMSerializer[ActivePowerLimit]
@@ -207,6 +210,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ApparentPowerLimit] = ApparentPowerLimitSerializer
 }
 
 object ApparentPowerLimitSerializer extends CIMSerializer[ApparentPowerLimit]
@@ -363,6 +368,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BranchGroup] = BranchGroupSerializer
 }
 
 object BranchGroupSerializer extends CIMSerializer[BranchGroup]
@@ -500,6 +507,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BranchGroupTerminal] = BranchGroupTerminalSerializer
 }
 
 object BranchGroupTerminalSerializer extends CIMSerializer[BranchGroupTerminal]
@@ -615,6 +624,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentLimit] = CurrentLimitSerializer
 }
 
 object CurrentLimitSerializer extends CIMSerializer[CurrentLimit]
@@ -754,6 +765,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalLimit] = OperationalLimitSerializer
 }
 
 object OperationalLimitSerializer extends CIMSerializer[OperationalLimit]
@@ -885,6 +898,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalLimitSet] = OperationalLimitSetSerializer
 }
 
 object OperationalLimitSetSerializer extends CIMSerializer[OperationalLimitSet]
@@ -1026,6 +1041,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalLimitType] = OperationalLimitTypeSerializer
 }
 
 object OperationalLimitTypeSerializer extends CIMSerializer[OperationalLimitType]
@@ -1147,6 +1164,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageLimit] = VoltageLimitSerializer
 }
 
 object VoltageLimitSerializer extends CIMSerializer[VoltageLimit]

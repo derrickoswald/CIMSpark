@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -132,6 +133,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Diagram] = DiagramSerializer
 }
 
 object DiagramSerializer extends CIMSerializer[Diagram]
@@ -324,6 +327,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagramObject] = DiagramObjectSerializer
 }
 
 object DiagramObjectSerializer extends CIMSerializer[DiagramObject]
@@ -450,6 +455,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagramObjectGluePoint] = DiagramObjectGluePointSerializer
 }
 
 object DiagramObjectGluePointSerializer extends CIMSerializer[DiagramObjectGluePoint]
@@ -592,6 +599,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagramObjectPoint] = DiagramObjectPointSerializer
 }
 
 object DiagramObjectPointSerializer extends CIMSerializer[DiagramObjectPoint]
@@ -712,6 +721,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagramObjectStyle] = DiagramObjectStyleSerializer
 }
 
 object DiagramObjectStyleSerializer extends CIMSerializer[DiagramObjectStyle]
@@ -822,6 +833,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiagramStyle] = DiagramStyleSerializer
 }
 
 object DiagramStyleSerializer extends CIMSerializer[DiagramStyle]
@@ -927,6 +940,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TextDiagramObject] = TextDiagramObjectSerializer
 }
 
 object TextDiagramObjectSerializer extends CIMSerializer[TextDiagramObject]
@@ -1047,6 +1062,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VisibilityLayer] = VisibilityLayerSerializer
 }
 
 object VisibilityLayerSerializer extends CIMSerializer[VisibilityLayer]

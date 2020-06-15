@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -102,6 +103,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccountMovement] = AccountMovementSerializer
 }
 
 object AccountMovementSerializer extends CIMSerializer[AccountMovement]
@@ -230,6 +233,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccountingUnit] = AccountingUnitSerializer
 }
 
 object AccountingUnitSerializer extends CIMSerializer[AccountingUnit]
@@ -394,6 +399,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryAccount] = AuxiliaryAccountSerializer
 }
 
 object AuxiliaryAccountSerializer extends CIMSerializer[AuxiliaryAccount]
@@ -587,6 +594,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryAgreement] = AuxiliaryAgreementSerializer
 }
 
 object AuxiliaryAgreementSerializer extends CIMSerializer[AuxiliaryAgreement]
@@ -736,6 +745,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BankAccountDetail] = BankAccountDetailSerializer
 }
 
 object BankAccountDetailSerializer extends CIMSerializer[BankAccountDetail]
@@ -877,6 +888,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Card] = CardSerializer
 }
 
 object CardSerializer extends CIMSerializer[Card]
@@ -1002,6 +1015,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Cashier] = CashierSerializer
 }
 
 object CashierSerializer extends CIMSerializer[Cashier]
@@ -1141,6 +1156,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CashierShift] = CashierShiftSerializer
 }
 
 object CashierShiftSerializer extends CIMSerializer[CashierShift]
@@ -1308,6 +1325,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Charge] = ChargeSerializer
 }
 
 object ChargeSerializer extends CIMSerializer[Charge]
@@ -1462,6 +1481,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Cheque] = ChequeSerializer
 }
 
 object ChequeSerializer extends CIMSerializer[Cheque]
@@ -1618,6 +1639,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConsumptionTariffInterval] = ConsumptionTariffIntervalSerializer
 }
 
 object ConsumptionTariffIntervalSerializer extends CIMSerializer[ConsumptionTariffInterval]
@@ -1758,6 +1781,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Due] = DueSerializer
 }
 
 object DueSerializer extends CIMSerializer[Due]
@@ -1889,6 +1914,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LineDetail] = LineDetailSerializer
 }
 
 object LineDetailSerializer extends CIMSerializer[LineDetail]
@@ -2033,6 +2060,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MerchantAccount] = MerchantAccountSerializer
 }
 
 object MerchantAccountSerializer extends CIMSerializer[MerchantAccount]
@@ -2151,6 +2180,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MerchantAgreement] = MerchantAgreementSerializer
 }
 
 object MerchantAgreementSerializer extends CIMSerializer[MerchantAgreement]
@@ -2266,6 +2297,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PointOfSale] = PointOfSaleSerializer
 }
 
 object PointOfSaleSerializer extends CIMSerializer[PointOfSale]
@@ -2412,6 +2445,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Receipt] = ReceiptSerializer
 }
 
 object ReceiptSerializer extends CIMSerializer[Receipt]
@@ -2558,6 +2593,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServiceSupplier] = ServiceSupplierSerializer
 }
 
 object ServiceSupplierSerializer extends CIMSerializer[ServiceSupplier]
@@ -2722,6 +2759,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Shift] = ShiftSerializer
 }
 
 object ShiftSerializer extends CIMSerializer[Shift]
@@ -2864,6 +2903,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TariffProfile] = TariffProfileSerializer
 }
 
 object TariffProfileSerializer extends CIMSerializer[TariffProfile]
@@ -3014,6 +3055,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tender] = TenderSerializer
 }
 
 object TenderSerializer extends CIMSerializer[Tender]
@@ -3162,6 +3205,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimeTariffInterval] = TimeTariffIntervalSerializer
 }
 
 object TimeTariffIntervalSerializer extends CIMSerializer[TimeTariffInterval]
@@ -3379,6 +3424,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Transaction] = TransactionSerializer
 }
 
 object TransactionSerializer extends CIMSerializer[Transaction]
@@ -3517,6 +3564,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Transactor] = TransactorSerializer
 }
 
 object TransactorSerializer extends CIMSerializer[Transactor]
@@ -3627,6 +3676,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Vendor] = VendorSerializer
 }
 
 object VendorSerializer extends CIMSerializer[Vendor]
@@ -3773,6 +3824,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VendorShift] = VendorShiftSerializer
 }
 
 object VendorShiftSerializer extends CIMSerializer[VendorShift]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -157,6 +158,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketInvoice] = MarketInvoiceSerializer
 }
 
 object MarketInvoiceSerializer extends CIMSerializer[MarketInvoice]
@@ -362,6 +365,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketInvoiceLineItem] = MarketInvoiceLineItemSerializer
 }
 
 object MarketInvoiceLineItemSerializer extends CIMSerializer[MarketInvoiceLineItem]
@@ -496,6 +501,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketLedger] = MarketLedgerSerializer
 }
 
 object MarketLedgerSerializer extends CIMSerializer[MarketLedger]
@@ -649,6 +656,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketLedgerEntry] = MarketLedgerEntrySerializer
 }
 
 object MarketLedgerEntrySerializer extends CIMSerializer[MarketLedgerEntry]
@@ -771,6 +780,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktActivityRecord] = MktActivityRecordSerializer
 }
 
 object MktActivityRecordSerializer extends CIMSerializer[MktActivityRecord]
@@ -922,6 +933,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktConnectivityNode] = MktConnectivityNodeSerializer
 }
 
 object MktConnectivityNodeSerializer extends CIMSerializer[MktConnectivityNode]
@@ -1050,6 +1063,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktLine] = MktLineSerializer
 }
 
 object MktLineSerializer extends CIMSerializer[MktLine]
@@ -1189,6 +1204,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktMeasurement] = MktMeasurementSerializer
 }
 
 object MktMeasurementSerializer extends CIMSerializer[MktMeasurement]
@@ -1320,6 +1337,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktPowerTransformer] = MktPowerTransformerSerializer
 }
 
 object MktPowerTransformerSerializer extends CIMSerializer[MktPowerTransformer]
@@ -1440,6 +1459,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktTerminal] = MktTerminalSerializer
 }
 
 object MktTerminalSerializer extends CIMSerializer[MktTerminal]
@@ -1585,6 +1606,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktUserAttribute] = MktUserAttributeSerializer
 }
 
 object MktUserAttributeSerializer extends CIMSerializer[MktUserAttribute]

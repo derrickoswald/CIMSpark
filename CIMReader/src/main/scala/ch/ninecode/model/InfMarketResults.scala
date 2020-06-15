@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -92,6 +93,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterTieClearing] = InterTieClearingSerializer
 }
 
 object InterTieClearingSerializer extends CIMSerializer[InterTieClearing]
@@ -221,6 +224,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterTieResults] = InterTieResultsSerializer
 }
 
 object InterTieResultsSerializer extends CIMSerializer[InterTieResults]
@@ -361,6 +366,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketCaseClearing] = MarketCaseClearingSerializer
 }
 
 object MarketCaseClearingSerializer extends CIMSerializer[MarketCaseClearing]
@@ -483,6 +490,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SecurityConstraintsClearing] = SecurityConstraintsClearingSerializer
 }
 
 object SecurityConstraintsClearingSerializer extends CIMSerializer[SecurityConstraintsClearing]

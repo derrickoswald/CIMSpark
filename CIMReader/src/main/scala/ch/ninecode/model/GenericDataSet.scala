@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -115,6 +116,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ChangeSet] = ChangeSetSerializer
 }
 
 object ChangeSetSerializer extends CIMSerializer[ChangeSet]
@@ -244,6 +247,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ChangeSetMember] = ChangeSetMemberSerializer
 }
 
 object ChangeSetMemberSerializer extends CIMSerializer[ChangeSetMember]
@@ -389,6 +394,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DataSet] = DataSetSerializer
 }
 
 object DataSetSerializer extends CIMSerializer[DataSet]
@@ -508,6 +515,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenericDataSetVersion] = GenericDataSetVersionSerializer
 }
 
 object GenericDataSetVersionSerializer extends CIMSerializer[GenericDataSetVersion]
@@ -629,6 +638,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InstanceSet] = InstanceSetSerializer
 }
 
 object InstanceSetSerializer extends CIMSerializer[InstanceSet]
@@ -722,6 +733,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ObjectCreation] = ObjectCreationSerializer
 }
 
 object ObjectCreationSerializer extends CIMSerializer[ObjectCreation]
@@ -812,6 +825,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ObjectDeletion] = ObjectDeletionSerializer
 }
 
 object ObjectDeletionSerializer extends CIMSerializer[ObjectDeletion]
@@ -919,6 +934,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ObjectModification] = ObjectModificationSerializer
 }
 
 object ObjectModificationSerializer extends CIMSerializer[ObjectModification]
@@ -1028,6 +1045,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ObjectReverseModification] = ObjectReverseModificationSerializer
 }
 
 object ObjectReverseModificationSerializer extends CIMSerializer[ObjectReverseModification]
@@ -1138,6 +1157,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Profile2] = Profile2Serializer
 }
 
 object Profile2Serializer extends CIMSerializer[Profile2]

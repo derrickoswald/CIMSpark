@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -194,6 +195,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ACLineSegment] = ACLineSegmentSerializer
 }
 
 object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
@@ -346,6 +349,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ACLineSegmentPhase] = ACLineSegmentPhaseSerializer
 }
 
 object ACLineSegmentPhaseSerializer extends CIMSerializer[ACLineSegmentPhase]
@@ -589,6 +594,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AsynchronousMachine] = AsynchronousMachineSerializer
 }
 
 object AsynchronousMachineSerializer extends CIMSerializer[AsynchronousMachine]
@@ -734,6 +741,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Breaker] = BreakerSerializer
 }
 
 object BreakerSerializer extends CIMSerializer[Breaker]
@@ -852,6 +861,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BusbarSection] = BusbarSectionSerializer
 }
 
 object BusbarSectionSerializer extends CIMSerializer[BusbarSection]
@@ -972,6 +983,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Clamp] = ClampSerializer
 }
 
 object ClampSerializer extends CIMSerializer[Clamp]
@@ -1092,6 +1105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CompositeSwitch] = CompositeSwitchSerializer
 }
 
 object CompositeSwitchSerializer extends CIMSerializer[CompositeSwitch]
@@ -1199,6 +1214,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Conductor] = ConductorSerializer
 }
 
 object ConductorSerializer extends CIMSerializer[Conductor]
@@ -1290,6 +1307,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Connector] = ConnectorSerializer
 }
 
 object ConnectorSerializer extends CIMSerializer[Connector]
@@ -1415,6 +1434,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Cut] = CutSerializer
 }
 
 object CutSerializer extends CIMSerializer[Cut]
@@ -1512,6 +1533,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Disconnector] = DisconnectorSerializer
 }
 
 object DisconnectorSerializer extends CIMSerializer[Disconnector]
@@ -1618,6 +1641,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EarthFaultCompensator] = EarthFaultCompensatorSerializer
 }
 
 object EarthFaultCompensatorSerializer extends CIMSerializer[EarthFaultCompensator]
@@ -1709,6 +1734,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[EnergyConnection] = EnergyConnectionSerializer
 }
 
 object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
@@ -1905,6 +1932,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyConsumer] = EnergyConsumerSerializer
 }
 
 object EnergyConsumerSerializer extends CIMSerializer[EnergyConsumer]
@@ -2091,6 +2120,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyConsumerPhase] = EnergyConsumerPhaseSerializer
 }
 
 object EnergyConsumerPhaseSerializer extends CIMSerializer[EnergyConsumerPhase]
@@ -2213,6 +2244,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergySchedulingType] = EnergySchedulingTypeSerializer
 }
 
 object EnergySchedulingTypeSerializer extends CIMSerializer[EnergySchedulingType]
@@ -2421,6 +2454,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergySource] = EnergySourceSerializer
 }
 
 object EnergySourceSerializer extends CIMSerializer[EnergySource]
@@ -2566,6 +2601,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergySourcePhase] = EnergySourcePhaseSerializer
 }
 
 object EnergySourcePhaseSerializer extends CIMSerializer[EnergySourcePhase]
@@ -2792,6 +2829,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExternalNetworkInjection] = ExternalNetworkInjectionSerializer
 }
 
 object ExternalNetworkInjectionSerializer extends CIMSerializer[ExternalNetworkInjection]
@@ -2957,6 +2996,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FrequencyConverter] = FrequencyConverterSerializer
 }
 
 object FrequencyConverterSerializer extends CIMSerializer[FrequencyConverter]
@@ -3058,6 +3099,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Fuse] = FuseSerializer
 }
 
 object FuseSerializer extends CIMSerializer[Fuse]
@@ -3167,6 +3210,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Ground] = GroundSerializer
 }
 
 object GroundSerializer extends CIMSerializer[Ground]
@@ -3258,6 +3303,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[GroundDisconnector] = GroundDisconnectorSerializer
 }
 
 object GroundDisconnectorSerializer extends CIMSerializer[GroundDisconnector]
@@ -3362,6 +3409,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GroundingImpedance] = GroundingImpedanceSerializer
 }
 
 object GroundingImpedanceSerializer extends CIMSerializer[GroundingImpedance]
@@ -3472,6 +3521,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Jumper] = JumperSerializer
 }
 
 object JumperSerializer extends CIMSerializer[Jumper]
@@ -3563,6 +3614,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Junction] = JunctionSerializer
 }
 
 object JunctionSerializer extends CIMSerializer[Junction]
@@ -3670,6 +3723,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Line] = LineSerializer
 }
 
 object LineSerializer extends CIMSerializer[Line]
@@ -3793,6 +3848,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LinearShuntCompensator] = LinearShuntCompensatorSerializer
 }
 
 object LinearShuntCompensatorSerializer extends CIMSerializer[LinearShuntCompensator]
@@ -3912,6 +3969,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LinearShuntCompensatorPhase] = LinearShuntCompensatorPhaseSerializer
 }
 
 object LinearShuntCompensatorPhaseSerializer extends CIMSerializer[LinearShuntCompensatorPhase]
@@ -4005,6 +4064,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[LoadBreakSwitch] = LoadBreakSwitchSerializer
 }
 
 object LoadBreakSwitchSerializer extends CIMSerializer[LoadBreakSwitch]
@@ -4169,6 +4230,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MutualCoupling] = MutualCouplingSerializer
 }
 
 object MutualCouplingSerializer extends CIMSerializer[MutualCoupling]
@@ -4295,6 +4358,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonlinearShuntCompensator] = NonlinearShuntCompensatorSerializer
 }
 
 object NonlinearShuntCompensatorSerializer extends CIMSerializer[NonlinearShuntCompensator]
@@ -4403,6 +4468,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonlinearShuntCompensatorPhase] = NonlinearShuntCompensatorPhaseSerializer
 }
 
 object NonlinearShuntCompensatorPhaseSerializer extends CIMSerializer[NonlinearShuntCompensatorPhase]
@@ -4530,6 +4597,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonlinearShuntCompensatorPhasePoint] = NonlinearShuntCompensatorPhasePointSerializer
 }
 
 object NonlinearShuntCompensatorPhasePointSerializer extends CIMSerializer[NonlinearShuntCompensatorPhasePoint]
@@ -4675,6 +4744,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonlinearShuntCompensatorPoint] = NonlinearShuntCompensatorPointSerializer
 }
 
 object NonlinearShuntCompensatorPointSerializer extends CIMSerializer[NonlinearShuntCompensatorPoint]
@@ -4793,6 +4864,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PerLengthImpedance] = PerLengthImpedanceSerializer
 }
 
 object PerLengthImpedanceSerializer extends CIMSerializer[PerLengthImpedance]
@@ -4901,6 +4974,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PerLengthLineParameter] = PerLengthLineParameterSerializer
 }
 
 object PerLengthLineParameterSerializer extends CIMSerializer[PerLengthLineParameter]
@@ -5017,6 +5092,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PerLengthPhaseImpedance] = PerLengthPhaseImpedanceSerializer
 }
 
 object PerLengthPhaseImpedanceSerializer extends CIMSerializer[PerLengthPhaseImpedance]
@@ -5168,6 +5245,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PerLengthSequenceImpedance] = PerLengthSequenceImpedanceSerializer
 }
 
 object PerLengthSequenceImpedanceSerializer extends CIMSerializer[PerLengthSequenceImpedance]
@@ -5327,6 +5406,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PetersenCoil] = PetersenCoilSerializer
 }
 
 object PetersenCoilSerializer extends CIMSerializer[PetersenCoil]
@@ -5500,6 +5581,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseImpedanceData] = PhaseImpedanceDataSerializer
 }
 
 object PhaseImpedanceDataSerializer extends CIMSerializer[PhaseImpedanceData]
@@ -5626,6 +5709,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChanger] = PhaseTapChangerSerializer
 }
 
 object PhaseTapChangerSerializer extends CIMSerializer[PhaseTapChanger]
@@ -5734,6 +5819,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerAsymmetrical] = PhaseTapChangerAsymmetricalSerializer
 }
 
 object PhaseTapChangerAsymmetricalSerializer extends CIMSerializer[PhaseTapChangerAsymmetrical]
@@ -5859,6 +5946,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerLinear] = PhaseTapChangerLinearSerializer
 }
 
 object PhaseTapChangerLinearSerializer extends CIMSerializer[PhaseTapChangerLinear]
@@ -5985,6 +6074,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerNonLinear] = PhaseTapChangerNonLinearSerializer
 }
 
 object PhaseTapChangerNonLinearSerializer extends CIMSerializer[PhaseTapChangerNonLinear]
@@ -6082,6 +6173,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerSymmetrical] = PhaseTapChangerSymmetricalSerializer
 }
 
 object PhaseTapChangerSymmetricalSerializer extends CIMSerializer[PhaseTapChangerSymmetrical]
@@ -6196,6 +6289,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerTable] = PhaseTapChangerTableSerializer
 }
 
 object PhaseTapChangerTableSerializer extends CIMSerializer[PhaseTapChangerTable]
@@ -6314,6 +6409,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerTablePoint] = PhaseTapChangerTablePointSerializer
 }
 
 object PhaseTapChangerTablePointSerializer extends CIMSerializer[PhaseTapChangerTablePoint]
@@ -6424,6 +6521,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PhaseTapChangerTabular] = PhaseTapChangerTabularSerializer
 }
 
 object PhaseTapChangerTabularSerializer extends CIMSerializer[PhaseTapChangerTabular]
@@ -6515,6 +6614,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Plant] = PlantSerializer
 }
 
 object PlantSerializer extends CIMSerializer[Plant]
@@ -6725,6 +6826,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerElectronicsConnection] = PowerElectronicsConnectionSerializer
 }
 
 object PowerElectronicsConnectionSerializer extends CIMSerializer[PowerElectronicsConnection]
@@ -6885,6 +6988,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerElectronicsConnectionPhase] = PowerElectronicsConnectionPhaseSerializer
 }
 
 object PowerElectronicsConnectionPhaseSerializer extends CIMSerializer[PowerElectronicsConnectionPhase]
@@ -7066,6 +7171,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerTransformer] = PowerTransformerSerializer
 }
 
 object PowerTransformerSerializer extends CIMSerializer[PowerTransformer]
@@ -7275,6 +7382,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerTransformerEnd] = PowerTransformerEndSerializer
 }
 
 object PowerTransformerEndSerializer extends CIMSerializer[PowerTransformerEnd]
@@ -7421,6 +7530,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectedSwitch] = ProtectedSwitchSerializer
 }
 
 object ProtectedSwitchSerializer extends CIMSerializer[ProtectedSwitch]
@@ -7556,6 +7667,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RatioTapChanger] = RatioTapChangerSerializer
 }
 
 object RatioTapChangerSerializer extends CIMSerializer[RatioTapChanger]
@@ -7677,6 +7790,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RatioTapChangerTable] = RatioTapChangerTableSerializer
 }
 
 object RatioTapChangerTableSerializer extends CIMSerializer[RatioTapChangerTable]
@@ -7787,6 +7902,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RatioTapChangerTablePoint] = RatioTapChangerTablePointSerializer
 }
 
 object RatioTapChangerTablePointSerializer extends CIMSerializer[RatioTapChangerTablePoint]
@@ -7924,6 +8041,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReactiveCapabilityCurve] = ReactiveCapabilityCurveSerializer
 }
 
 object ReactiveCapabilityCurveSerializer extends CIMSerializer[ReactiveCapabilityCurve]
@@ -8023,6 +8142,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Recloser] = RecloserSerializer
 }
 
 object RecloserSerializer extends CIMSerializer[Recloser]
@@ -8138,6 +8259,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegulatingCondEq] = RegulatingCondEqSerializer
 }
 
 object RegulatingCondEqSerializer extends CIMSerializer[RegulatingCondEq]
@@ -8323,6 +8446,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegulatingControl] = RegulatingControlSerializer
 }
 
 object RegulatingControlSerializer extends CIMSerializer[RegulatingControl]
@@ -8459,6 +8584,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegulationSchedule] = RegulationScheduleSerializer
 }
 
 object RegulationScheduleSerializer extends CIMSerializer[RegulationSchedule]
@@ -8615,6 +8742,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RotatingMachine] = RotatingMachineSerializer
 }
 
 object RotatingMachineSerializer extends CIMSerializer[RotatingMachine]
@@ -8720,6 +8849,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Sectionaliser] = SectionaliserSerializer
 }
 
 object SectionaliserSerializer extends CIMSerializer[Sectionaliser]
@@ -8862,6 +8993,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SeriesCompensator] = SeriesCompensatorSerializer
 }
 
 object SeriesCompensatorSerializer extends CIMSerializer[SeriesCompensator]
@@ -9056,6 +9189,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShuntCompensator] = ShuntCompensatorSerializer
 }
 
 object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
@@ -9206,6 +9341,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShuntCompensatorPhase] = ShuntCompensatorPhaseSerializer
 }
 
 object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPhase]
@@ -9366,6 +9503,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StaticVarCompensator] = StaticVarCompensatorSerializer
 }
 
 object StaticVarCompensatorSerializer extends CIMSerializer[StaticVarCompensator]
@@ -9570,6 +9709,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Switch] = SwitchSerializer
 }
 
 object SwitchSerializer extends CIMSerializer[Switch]
@@ -9736,6 +9877,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchPhase] = SwitchPhaseSerializer
 }
 
 object SwitchPhaseSerializer extends CIMSerializer[SwitchPhase]
@@ -9856,6 +9999,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchSchedule] = SwitchScheduleSerializer
 }
 
 object SwitchScheduleSerializer extends CIMSerializer[SwitchSchedule]
@@ -10186,6 +10331,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachine] = SynchronousMachineSerializer
 }
 
 object SynchronousMachineSerializer extends CIMSerializer[SynchronousMachine]
@@ -10446,6 +10593,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapChanger] = TapChangerSerializer
 }
 
 object TapChangerSerializer extends CIMSerializer[TapChanger]
@@ -10616,6 +10765,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapChangerControl] = TapChangerControlSerializer
 }
 
 object TapChangerControlSerializer extends CIMSerializer[TapChangerControl]
@@ -10773,6 +10924,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapChangerTablePoint] = TapChangerTablePointSerializer
 }
 
 object TapChangerTablePointSerializer extends CIMSerializer[TapChangerTablePoint]
@@ -10891,6 +11044,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapSchedule] = TapScheduleSerializer
 }
 
 object TapScheduleSerializer extends CIMSerializer[TapSchedule]
@@ -11035,6 +11190,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerCoreAdmittance] = TransformerCoreAdmittanceSerializer
 }
 
 object TransformerCoreAdmittanceSerializer extends CIMSerializer[TransformerCoreAdmittance]
@@ -11266,6 +11423,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerEnd] = TransformerEndSerializer
 }
 
 object TransformerEndSerializer extends CIMSerializer[TransformerEnd]
@@ -11457,6 +11616,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerMeshImpedance] = TransformerMeshImpedanceSerializer
 }
 
 object TransformerMeshImpedanceSerializer extends CIMSerializer[TransformerMeshImpedance]
@@ -11615,6 +11776,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerStarImpedance] = TransformerStarImpedanceSerializer
 }
 
 object TransformerStarImpedanceSerializer extends CIMSerializer[TransformerStarImpedance]
@@ -11750,6 +11913,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerTank] = TransformerTankSerializer
 }
 
 object TransformerTankSerializer extends CIMSerializer[TransformerTank]
@@ -11868,6 +12033,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerTankEnd] = TransformerTankEndSerializer
 }
 
 object TransformerTankEndSerializer extends CIMSerializer[TransformerTankEnd]
@@ -11987,6 +12154,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageControlZone] = VoltageControlZoneSerializer
 }
 
 object VoltageControlZoneSerializer extends CIMSerializer[VoltageControlZone]

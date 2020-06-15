@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -106,6 +107,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Accumulator] = AccumulatorSerializer
 }
 
 object AccumulatorSerializer extends CIMSerializer[Accumulator]
@@ -226,6 +229,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccumulatorLimit] = AccumulatorLimitSerializer
 }
 
 object AccumulatorLimitSerializer extends CIMSerializer[AccumulatorLimit]
@@ -343,6 +348,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccumulatorLimitSet] = AccumulatorLimitSetSerializer
 }
 
 object AccumulatorLimitSetSerializer extends CIMSerializer[AccumulatorLimitSet]
@@ -453,6 +460,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccumulatorReset] = AccumulatorResetSerializer
 }
 
 object AccumulatorResetSerializer extends CIMSerializer[AccumulatorReset]
@@ -576,6 +585,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccumulatorValue] = AccumulatorValueSerializer
 }
 
 object AccumulatorValueSerializer extends CIMSerializer[AccumulatorValue]
@@ -722,6 +733,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Analog] = AnalogSerializer
 }
 
 object AnalogSerializer extends CIMSerializer[Analog]
@@ -855,6 +868,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnalogControl] = AnalogControlSerializer
 }
 
 object AnalogControlSerializer extends CIMSerializer[AnalogControl]
@@ -974,6 +989,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnalogLimit] = AnalogLimitSerializer
 }
 
 object AnalogLimitSerializer extends CIMSerializer[AnalogLimit]
@@ -1091,6 +1108,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnalogLimitSet] = AnalogLimitSetSerializer
 }
 
 object AnalogLimitSetSerializer extends CIMSerializer[AnalogLimitSet]
@@ -1230,6 +1249,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnalogValue] = AnalogValueSerializer
 }
 
 object AnalogValueSerializer extends CIMSerializer[AnalogValue]
@@ -1366,6 +1387,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Command] = CommandSerializer
 }
 
 object CommandSerializer extends CIMSerializer[Command]
@@ -1528,6 +1551,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Control] = ControlSerializer
 }
 
 object ControlSerializer extends CIMSerializer[Control]
@@ -1679,6 +1704,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Discrete] = DiscreteSerializer
 }
 
 object DiscreteSerializer extends CIMSerializer[Discrete]
@@ -1809,6 +1836,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscreteValue] = DiscreteValueSerializer
 }
 
 object DiscreteValueSerializer extends CIMSerializer[DiscreteValue]
@@ -1931,6 +1960,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IOPoint] = IOPointSerializer
 }
 
 object IOPointSerializer extends CIMSerializer[IOPoint]
@@ -2043,6 +2074,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Limit] = LimitSerializer
 }
 
 object LimitSerializer extends CIMSerializer[Limit]
@@ -2150,6 +2183,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LimitSet] = LimitSetSerializer
 }
 
 object LimitSetSerializer extends CIMSerializer[LimitSet]
@@ -2364,6 +2399,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Measurement] = MeasurementSerializer
 }
 
 object MeasurementSerializer extends CIMSerializer[Measurement]
@@ -2552,6 +2589,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementValue] = MeasurementValueSerializer
 }
 
 object MeasurementValueSerializer extends CIMSerializer[MeasurementValue]
@@ -2676,6 +2715,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementValueQuality] = MeasurementValueQualitySerializer
 }
 
 object MeasurementValueQualitySerializer extends CIMSerializer[MeasurementValueQuality]
@@ -2786,6 +2827,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementValueSource] = MeasurementValueSourceSerializer
 }
 
 object MeasurementValueSourceSerializer extends CIMSerializer[MeasurementValueSource]
@@ -2962,6 +3005,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Quality61850] = Quality61850Serializer
 }
 
 object Quality61850Serializer extends CIMSerializer[Quality61850]
@@ -3094,6 +3139,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RaiseLowerCommand] = RaiseLowerCommandSerializer
 }
 
 object RaiseLowerCommandSerializer extends CIMSerializer[RaiseLowerCommand]
@@ -3205,6 +3252,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SetPoint] = SetPointSerializer
 }
 
 object SetPointSerializer extends CIMSerializer[SetPoint]
@@ -3315,6 +3364,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StringMeasurement] = StringMeasurementSerializer
 }
 
 object StringMeasurementSerializer extends CIMSerializer[StringMeasurement]
@@ -3430,6 +3481,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StringMeasurementValue] = StringMeasurementValueSerializer
 }
 
 object StringMeasurementValueSerializer extends CIMSerializer[StringMeasurementValue]
@@ -3563,6 +3616,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ValueAliasSet] = ValueAliasSetSerializer
 }
 
 object ValueAliasSetSerializer extends CIMSerializer[ValueAliasSet]
@@ -3684,6 +3739,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ValueToAlias] = ValueToAliasSerializer
 }
 
 object ValueToAliasSerializer extends CIMSerializer[ValueToAlias]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -131,6 +132,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ActivityRecord] = ActivityRecordSerializer
 }
 
 object ActivityRecordSerializer extends CIMSerializer[ActivityRecord]
@@ -257,6 +260,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Agreement] = AgreementSerializer
 }
 
 object AgreementSerializer extends CIMSerializer[Agreement]
@@ -388,6 +393,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Appointment] = AppointmentSerializer
 }
 
 object AppointmentSerializer extends CIMSerializer[Appointment]
@@ -502,6 +509,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Approver] = ApproverSerializer
 }
 
 object ApproverSerializer extends CIMSerializer[Approver]
@@ -617,6 +626,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Author] = AuthorSerializer
 }
 
 object AuthorSerializer extends CIMSerializer[Author]
@@ -802,6 +813,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConfigurationEvent] = ConfigurationEventSerializer
 }
 
 object ConfigurationEventSerializer extends CIMSerializer[ConfigurationEvent]
@@ -942,6 +955,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CoordinateSystem] = CoordinateSystemSerializer
 }
 
 object CoordinateSystemSerializer extends CIMSerializer[CoordinateSystem]
@@ -1109,6 +1124,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Crew] = CrewSerializer
 }
 
 object CrewSerializer extends CIMSerializer[Crew]
@@ -1233,6 +1250,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CrewMember] = CrewMemberSerializer
 }
 
 object CrewMemberSerializer extends CIMSerializer[CrewMember]
@@ -1343,6 +1362,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CrewType] = CrewTypeSerializer
 }
 
 object CrewTypeSerializer extends CIMSerializer[CrewType]
@@ -1556,6 +1577,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Document] = DocumentSerializer
 }
 
 object DocumentSerializer extends CIMSerializer[Document]
@@ -1677,6 +1700,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DocumentPersonRole] = DocumentPersonRoleSerializer
 }
 
 object DocumentPersonRoleSerializer extends CIMSerializer[DocumentPersonRole]
@@ -1784,6 +1809,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Editor] = EditorSerializer
 }
 
 object EditorSerializer extends CIMSerializer[Editor]
@@ -1931,6 +1958,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ElectronicAddress] = ElectronicAddressSerializer
 }
 
 object ElectronicAddressSerializer extends CIMSerializer[ElectronicAddress]
@@ -2056,6 +2085,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExtensionItem] = ExtensionItemSerializer
 }
 
 object ExtensionItemSerializer extends CIMSerializer[ExtensionItem]
@@ -2164,6 +2195,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExtensionsList] = ExtensionsListSerializer
 }
 
 object ExtensionsListSerializer extends CIMSerializer[ExtensionsList]
@@ -2294,6 +2327,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FieldDispatchHistory] = FieldDispatchHistorySerializer
 }
 
 object FieldDispatchHistorySerializer extends CIMSerializer[FieldDispatchHistory]
@@ -2434,6 +2469,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FieldDispatchStep] = FieldDispatchStepSerializer
 }
 
 object FieldDispatchStepSerializer extends CIMSerializer[FieldDispatchStep]
@@ -2557,6 +2594,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Hazard] = HazardSerializer
 }
 
 object HazardSerializer extends CIMSerializer[Hazard]
@@ -2667,6 +2706,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Issuer] = IssuerSerializer
 }
 
 object IssuerSerializer extends CIMSerializer[Issuer]
@@ -2961,6 +3002,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Location] = LocationSerializer
 }
 
 object LocationSerializer extends CIMSerializer[Location]
@@ -3104,6 +3147,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[OperationPersonRole] = OperationPersonRoleSerializer
 }
 
 object OperationPersonRoleSerializer extends CIMSerializer[OperationPersonRole]
@@ -3218,6 +3263,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Operator] = OperatorSerializer
 }
 
 object OperatorSerializer extends CIMSerializer[Operator]
@@ -3378,6 +3425,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Organisation] = OrganisationSerializer
 }
 
 object OrganisationSerializer extends CIMSerializer[Organisation]
@@ -3508,6 +3557,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrganisationRole] = OrganisationRoleSerializer
 }
 
 object OrganisationRoleSerializer extends CIMSerializer[OrganisationRole]
@@ -3632,6 +3683,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Ownership] = OwnershipSerializer
 }
 
 object OwnershipSerializer extends CIMSerializer[Ownership]
@@ -3740,6 +3793,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ParentOrganization] = ParentOrganizationSerializer
 }
 
 object ParentOrganizationSerializer extends CIMSerializer[ParentOrganization]
@@ -3907,6 +3962,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Person] = PersonSerializer
 }
 
 object PersonSerializer extends CIMSerializer[Person]
@@ -4042,6 +4099,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PersonRole] = PersonRoleSerializer
 }
 
 object PersonRoleSerializer extends CIMSerializer[PersonRole]
@@ -4187,6 +4246,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PositionPoint] = PositionPointSerializer
 }
 
 object PositionPointSerializer extends CIMSerializer[PositionPoint]
@@ -4314,6 +4375,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Priority] = PrioritySerializer
 }
 
 object PrioritySerializer extends CIMSerializer[Priority]
@@ -4454,6 +4517,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledEvent] = ScheduledEventSerializer
 }
 
 object ScheduledEventSerializer extends CIMSerializer[ScheduledEvent]
@@ -4597,6 +4662,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledEventData] = ScheduledEventDataSerializer
 }
 
 object ScheduledEventDataSerializer extends CIMSerializer[ScheduledEventData]
@@ -4728,6 +4795,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Status] = StatusSerializer
 }
 
 object StatusSerializer extends CIMSerializer[Status]
@@ -4875,6 +4944,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StreetAddress] = StreetAddressSerializer
 }
 
 object StreetAddressSerializer extends CIMSerializer[StreetAddress]
@@ -5065,6 +5136,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StreetDetail] = StreetDetailSerializer
 }
 
 object StreetDetailSerializer extends CIMSerializer[StreetDetail]
@@ -5236,6 +5309,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TelephoneNumber] = TelephoneNumberSerializer
 }
 
 object TelephoneNumberSerializer extends CIMSerializer[TelephoneNumber]
@@ -5391,6 +5466,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimePoint] = TimePointSerializer
 }
 
 object TimePointSerializer extends CIMSerializer[TimePoint]
@@ -5545,6 +5622,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimeSchedule] = TimeScheduleSerializer
 }
 
 object TimeScheduleSerializer extends CIMSerializer[TimeSchedule]
@@ -5685,6 +5764,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TownDetail] = TownDetailSerializer
 }
 
 object TownDetailSerializer extends CIMSerializer[TownDetail]
@@ -5856,6 +5937,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UserAttribute] = UserAttributeSerializer
 }
 
 object UserAttributeSerializer extends CIMSerializer[UserAttribute]
@@ -5997,6 +6080,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Version] = VersionSerializer
 }
 
 object VersionSerializer extends CIMSerializer[Version]

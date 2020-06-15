@@ -4,8 +4,6 @@ import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 
-import ch.ninecode.model.Element
-
 abstract class CIMSerializer[T] extends Serializer[T]
 {
     val INTSIZE = 0

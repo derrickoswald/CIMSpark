@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -142,6 +143,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnvironmentalMonitoringStation] = EnvironmentalMonitoringStationSerializer
 }
 
 object EnvironmentalMonitoringStationSerializer extends CIMSerializer[EnvironmentalMonitoringStation]
@@ -308,6 +311,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketParticipant] = MarketParticipantSerializer
 }
 
 object MarketParticipantSerializer extends CIMSerializer[MarketParticipant]
@@ -436,6 +441,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketRole] = MarketRoleSerializer
 }
 
 object MarketRoleSerializer extends CIMSerializer[MarketRole]
@@ -546,6 +553,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktGeneratingUnit] = MktGeneratingUnitSerializer
 }
 
 object MktGeneratingUnitSerializer extends CIMSerializer[MktGeneratingUnit]
@@ -1114,6 +1123,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegisteredResource] = RegisteredResourceSerializer
 }
 
 object RegisteredResourceSerializer extends CIMSerializer[RegisteredResource]
@@ -1401,6 +1412,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceCapacity] = ResourceCapacitySerializer
 }
 
 object ResourceCapacitySerializer extends CIMSerializer[ResourceCapacity]

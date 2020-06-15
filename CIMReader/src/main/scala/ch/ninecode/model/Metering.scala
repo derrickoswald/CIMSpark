@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -119,6 +120,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BaseReading] = BaseReadingSerializer
 }
 
 object BaseReadingSerializer extends CIMSerializer[BaseReading]
@@ -251,6 +254,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Channel] = ChannelSerializer
 }
 
 object ChannelSerializer extends CIMSerializer[Channel]
@@ -388,6 +393,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ComFunction] = ComFunctionSerializer
 }
 
 object ComFunctionSerializer extends CIMSerializer[ComFunction]
@@ -525,6 +532,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ComModule] = ComModuleSerializer
 }
 
 object ComModuleSerializer extends CIMSerializer[ComModule]
@@ -702,6 +711,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlledAppliance] = ControlledApplianceSerializer
 }
 
 object ControlledApplianceSerializer extends CIMSerializer[ControlledAppliance]
@@ -861,6 +872,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DemandResponseProgram] = DemandResponseProgramSerializer
 }
 
 object DemandResponseProgramSerializer extends CIMSerializer[DemandResponseProgram]
@@ -1076,6 +1089,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDevice] = EndDeviceSerializer
 }
 
 object EndDeviceSerializer extends CIMSerializer[EndDevice]
@@ -1237,6 +1252,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceAction] = EndDeviceActionSerializer
 }
 
 object EndDeviceActionSerializer extends CIMSerializer[EndDeviceAction]
@@ -1452,6 +1469,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceCapability] = EndDeviceCapabilitySerializer
 }
 
 object EndDeviceCapabilitySerializer extends CIMSerializer[EndDeviceCapability]
@@ -1692,6 +1711,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceControl] = EndDeviceControlSerializer
 }
 
 object EndDeviceControlSerializer extends CIMSerializer[EndDeviceControl]
@@ -1857,6 +1878,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceControlType] = EndDeviceControlTypeSerializer
 }
 
 object EndDeviceControlTypeSerializer extends CIMSerializer[EndDeviceControlType]
@@ -2022,6 +2045,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceEvent] = EndDeviceEventSerializer
 }
 
 object EndDeviceEventSerializer extends CIMSerializer[EndDeviceEvent]
@@ -2157,6 +2182,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceEventDetail] = EndDeviceEventDetailSerializer
 }
 
 object EndDeviceEventDetailSerializer extends CIMSerializer[EndDeviceEventDetail]
@@ -2299,6 +2326,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceEventType] = EndDeviceEventTypeSerializer
 }
 
 object EndDeviceEventTypeSerializer extends CIMSerializer[EndDeviceEventType]
@@ -2430,6 +2459,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceFunction] = EndDeviceFunctionSerializer
 }
 
 object EndDeviceFunctionSerializer extends CIMSerializer[EndDeviceFunction]
@@ -2613,6 +2644,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceGroup] = EndDeviceGroupSerializer
 }
 
 object EndDeviceGroupSerializer extends CIMSerializer[EndDeviceGroup]
@@ -2774,6 +2807,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceInfo] = EndDeviceInfoSerializer
 }
 
 object EndDeviceInfoSerializer extends CIMSerializer[EndDeviceInfo]
@@ -2908,6 +2943,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EndDeviceTiming] = EndDeviceTimingSerializer
 }
 
 object EndDeviceTimingSerializer extends CIMSerializer[EndDeviceTiming]
@@ -3082,6 +3119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IntervalBlock] = IntervalBlockSerializer
 }
 
 object IntervalBlockSerializer extends CIMSerializer[IntervalBlock]
@@ -3199,6 +3238,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IntervalReading] = IntervalReadingSerializer
 }
 
 object IntervalReadingSerializer extends CIMSerializer[IntervalReading]
@@ -3351,6 +3392,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Meter] = MeterSerializer
 }
 
 object MeterSerializer extends CIMSerializer[Meter]
@@ -3484,6 +3527,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeterMultiplier] = MeterMultiplierSerializer
 }
 
 object MeterMultiplierSerializer extends CIMSerializer[MeterMultiplier]
@@ -3645,6 +3690,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeterReading] = MeterReadingSerializer
 }
 
 object MeterReadingSerializer extends CIMSerializer[MeterReading]
@@ -3781,6 +3828,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeterWorkTask] = MeterWorkTaskSerializer
 }
 
 object MeterWorkTaskSerializer extends CIMSerializer[MeterWorkTask]
@@ -3907,6 +3956,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MetrologyRequirement] = MetrologyRequirementSerializer
 }
 
 object MetrologyRequirementSerializer extends CIMSerializer[MetrologyRequirement]
@@ -4095,6 +4146,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PanDemandResponse] = PanDemandResponseSerializer
 }
 
 object PanDemandResponseSerializer extends CIMSerializer[PanDemandResponse]
@@ -4241,6 +4294,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PanDisplay] = PanDisplaySerializer
 }
 
 object PanDisplaySerializer extends CIMSerializer[PanDisplay]
@@ -4362,6 +4417,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PanPricing] = PanPricingSerializer
 }
 
 object PanPricingSerializer extends CIMSerializer[PanPricing]
@@ -4553,6 +4610,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PanPricingDetail] = PanPricingDetailSerializer
 }
 
 object PanPricingDetailSerializer extends CIMSerializer[PanPricingDetail]
@@ -4729,6 +4788,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PendingCalculation] = PendingCalculationSerializer
 }
 
 object PendingCalculationSerializer extends CIMSerializer[PendingCalculation]
@@ -4853,6 +4914,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RationalNumber] = RationalNumberSerializer
 }
 
 object RationalNumberSerializer extends CIMSerializer[RationalNumber]
@@ -4992,6 +5055,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Reading] = ReadingSerializer
 }
 
 object ReadingSerializer extends CIMSerializer[Reading]
@@ -5113,6 +5178,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReadingInterharmonic] = ReadingInterharmonicSerializer
 }
 
 object ReadingInterharmonicSerializer extends CIMSerializer[ReadingInterharmonic]
@@ -5251,6 +5318,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReadingQuality] = ReadingQualitySerializer
 }
 
 object ReadingQualitySerializer extends CIMSerializer[ReadingQuality]
@@ -5388,6 +5457,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReadingQualityType] = ReadingQualityTypeSerializer
 }
 
 object ReadingQualityTypeSerializer extends CIMSerializer[ReadingQualityType]
@@ -5650,6 +5721,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReadingType] = ReadingTypeSerializer
 }
 
 object ReadingTypeSerializer extends CIMSerializer[ReadingType]
@@ -5848,6 +5921,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Register] = RegisterSerializer
 }
 
 object RegisterSerializer extends CIMSerializer[Register]
@@ -5983,6 +6058,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServiceMultiplier] = ServiceMultiplierSerializer
 }
 
 object ServiceMultiplierSerializer extends CIMSerializer[ServiceMultiplier]
@@ -6094,6 +6171,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SimpleEndDeviceFunction] = SimpleEndDeviceFunctionSerializer
 }
 
 object SimpleEndDeviceFunctionSerializer extends CIMSerializer[SimpleEndDeviceFunction]
@@ -6459,6 +6538,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UsagePoint] = UsagePointSerializer
 }
 
 object UsagePointSerializer extends CIMSerializer[UsagePoint]
@@ -6666,6 +6747,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UsagePointGroup] = UsagePointGroupSerializer
 }
 
 object UsagePointGroupSerializer extends CIMSerializer[UsagePointGroup]
@@ -6801,6 +6884,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UsagePointLocation] = UsagePointLocationSerializer
 }
 
 object UsagePointLocationSerializer extends CIMSerializer[UsagePointLocation]

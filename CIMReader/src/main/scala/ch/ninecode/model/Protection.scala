@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -124,6 +125,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentRelay] = CurrentRelaySerializer
 }
 
 object CurrentRelaySerializer extends CIMSerializer[CurrentRelay]
@@ -299,6 +302,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectionEquipment] = ProtectionEquipmentSerializer
 }
 
 object ProtectionEquipmentSerializer extends CIMSerializer[ProtectionEquipment]
@@ -436,6 +441,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RecloseSequence] = RecloseSequenceSerializer
 }
 
 object RecloseSequenceSerializer extends CIMSerializer[RecloseSequence]
@@ -559,6 +566,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchrocheckRelay] = SynchrocheckRelaySerializer
 }
 
 object SynchrocheckRelaySerializer extends CIMSerializer[SynchrocheckRelay]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -97,6 +98,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ClearanceAction] = ClearanceActionSerializer
 }
 
 object ClearanceActionSerializer extends CIMSerializer[ClearanceAction]
@@ -230,6 +233,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ClearanceDocument] = ClearanceDocumentSerializer
 }
 
 object ClearanceDocumentSerializer extends CIMSerializer[ClearanceDocument]
@@ -357,6 +362,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlAction] = ControlActionSerializer
 }
 
 object ControlActionSerializer extends CIMSerializer[ControlAction]
@@ -475,6 +482,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CutAction] = CutActionSerializer
 }
 
 object CutActionSerializer extends CIMSerializer[CutAction]
@@ -591,6 +600,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergySourceAction] = EnergySourceActionSerializer
 }
 
 object EnergySourceActionSerializer extends CIMSerializer[EnergySourceAction]
@@ -722,6 +733,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EstimatedRestorationTime] = EstimatedRestorationTimeSerializer
 }
 
 object EstimatedRestorationTimeSerializer extends CIMSerializer[EstimatedRestorationTime]
@@ -843,6 +856,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FieldSafetySupervisor] = FieldSafetySupervisorSerializer
 }
 
 object FieldSafetySupervisorSerializer extends CIMSerializer[FieldSafetySupervisor]
@@ -953,6 +968,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenericAction] = GenericActionSerializer
 }
 
 object GenericActionSerializer extends CIMSerializer[GenericAction]
@@ -1083,6 +1100,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GroundAction] = GroundActionSerializer
 }
 
 object GroundActionSerializer extends CIMSerializer[GroundAction]
@@ -1256,6 +1275,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Incident] = IncidentSerializer
 }
 
 object IncidentSerializer extends CIMSerializer[Incident]
@@ -1403,6 +1424,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[JumperAction] = JumperActionSerializer
 }
 
 object JumperActionSerializer extends CIMSerializer[JumperAction]
@@ -1517,6 +1540,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementAction] = MeasurementActionSerializer
 }
 
 object MeasurementActionSerializer extends CIMSerializer[MeasurementAction]
@@ -1647,6 +1672,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalRestriction] = OperationalRestrictionSerializer
 }
 
 object OperationalRestrictionSerializer extends CIMSerializer[OperationalRestriction]
@@ -1775,6 +1802,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalTag] = OperationalTagSerializer
 }
 
 object OperationalTagSerializer extends CIMSerializer[OperationalTag]
@@ -1894,6 +1923,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationalUpdatedRating] = OperationalUpdatedRatingSerializer
 }
 
 object OperationalUpdatedRatingSerializer extends CIMSerializer[OperationalUpdatedRating]
@@ -2011,6 +2042,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperationsSafetySupervisor] = OperationsSafetySupervisorSerializer
 }
 
 object OperationsSafetySupervisorSerializer extends CIMSerializer[OperationsSafetySupervisor]
@@ -2278,6 +2311,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Outage] = OutageSerializer
 }
 
 object OutageSerializer extends CIMSerializer[Outage]
@@ -2448,6 +2483,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OutageArea] = OutageAreaSerializer
 }
 
 object OutageAreaSerializer extends CIMSerializer[OutageArea]
@@ -2577,6 +2614,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OutageOrder] = OutageOrderSerializer
 }
 
 object OutageOrderSerializer extends CIMSerializer[OutageOrder]
@@ -2738,6 +2777,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OutagePlan] = OutagePlanSerializer
 }
 
 object OutagePlanSerializer extends CIMSerializer[OutagePlan]
@@ -2866,6 +2907,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PSREvent] = PSREventSerializer
 }
 
 object PSREventSerializer extends CIMSerializer[PSREvent]
@@ -2991,6 +3034,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PlannedOutage] = PlannedOutageSerializer
 }
 
 object PlannedOutageSerializer extends CIMSerializer[PlannedOutage]
@@ -3146,6 +3191,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SafetyDocument] = SafetyDocumentSerializer
 }
 
 object SafetyDocumentSerializer extends CIMSerializer[SafetyDocument]
@@ -3271,6 +3318,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServicePointOutageSummary] = ServicePointOutageSummarySerializer
 }
 
 object ServicePointOutageSummarySerializer extends CIMSerializer[ServicePointOutageSummary]
@@ -3394,6 +3443,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchAction] = SwitchActionSerializer
 }
 
 object SwitchActionSerializer extends CIMSerializer[SwitchAction]
@@ -3559,6 +3610,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingAction] = SwitchingActionSerializer
 }
 
 object SwitchingActionSerializer extends CIMSerializer[SwitchingAction]
@@ -3685,6 +3738,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingEvent] = SwitchingEventSerializer
 }
 
 object SwitchingEventSerializer extends CIMSerializer[SwitchingEvent]
@@ -3814,6 +3869,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingOrder] = SwitchingOrderSerializer
 }
 
 object SwitchingOrderSerializer extends CIMSerializer[SwitchingOrder]
@@ -4005,6 +4062,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingPlan] = SwitchingPlanSerializer
 }
 
 object SwitchingPlanSerializer extends CIMSerializer[SwitchingPlan]
@@ -4204,6 +4263,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingPlanRequest] = SwitchingPlanRequestSerializer
 }
 
 object SwitchingPlanRequestSerializer extends CIMSerializer[SwitchingPlanRequest]
@@ -4348,6 +4409,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingStep] = SwitchingStepSerializer
 }
 
 object SwitchingStepSerializer extends CIMSerializer[SwitchingStep]
@@ -4493,6 +4556,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchingStepGroup] = SwitchingStepGroupSerializer
 }
 
 object SwitchingStepGroupSerializer extends CIMSerializer[SwitchingStepGroup]
@@ -4617,6 +4682,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TagAction] = TagActionSerializer
 }
 
 object TagActionSerializer extends CIMSerializer[TagAction]
@@ -4747,6 +4814,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TroubleOrder] = TroubleOrderSerializer
 }
 
 object TroubleOrderSerializer extends CIMSerializer[TroubleOrder]
@@ -4901,6 +4970,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnplannedOutage] = UnplannedOutageSerializer
 }
 
 object UnplannedOutageSerializer extends CIMSerializer[UnplannedOutage]
@@ -5024,6 +5095,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VerificationAction] = VerificationActionSerializer
 }
 
 object VerificationActionSerializer extends CIMSerializer[VerificationAction]

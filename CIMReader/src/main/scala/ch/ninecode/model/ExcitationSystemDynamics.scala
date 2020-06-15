@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -240,6 +241,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC1A] = ExcAC1ASerializer
 }
 
 object ExcAC1ASerializer extends CIMSerializer[ExcAC1A]
@@ -583,6 +586,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC2A] = ExcAC2ASerializer
 }
 
 object ExcAC2ASerializer extends CIMSerializer[ExcAC2A]
@@ -920,6 +925,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC3A] = ExcAC3ASerializer
 }
 
 object ExcAC3ASerializer extends CIMSerializer[ExcAC3A]
@@ -1134,6 +1141,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC4A] = ExcAC4ASerializer
 }
 
 object ExcAC4ASerializer extends CIMSerializer[ExcAC4A]
@@ -1377,6 +1386,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC5A] = ExcAC5ASerializer
 }
 
 object ExcAC5ASerializer extends CIMSerializer[ExcAC5A]
@@ -1673,6 +1684,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC6A] = ExcAC6ASerializer
 }
 
 object ExcAC6ASerializer extends CIMSerializer[ExcAC6A]
@@ -2014,6 +2027,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAC8B] = ExcAC8BSerializer
 }
 
 object ExcAC8BSerializer extends CIMSerializer[ExcAC8B]
@@ -2273,6 +2288,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcANS] = ExcANSSerializer
 }
 
 object ExcANSSerializer extends CIMSerializer[ExcANS]
@@ -2486,6 +2503,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR1] = ExcAVR1Serializer
 }
 
 object ExcAVR1Serializer extends CIMSerializer[ExcAVR1]
@@ -2702,6 +2721,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR2] = ExcAVR2Serializer
 }
 
 object ExcAVR2Serializer extends CIMSerializer[ExcAVR2]
@@ -2913,6 +2934,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR3] = ExcAVR3Serializer
 }
 
 object ExcAVR3Serializer extends CIMSerializer[ExcAVR3]
@@ -3138,6 +3161,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR4] = ExcAVR4Serializer
 }
 
 object ExcAVR4Serializer extends CIMSerializer[ExcAVR4]
@@ -3285,6 +3310,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR5] = ExcAVR5Serializer
 }
 
 object ExcAVR5Serializer extends CIMSerializer[ExcAVR5]
@@ -3537,6 +3564,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcAVR7] = ExcAVR7Serializer
 }
 
 object ExcAVR7Serializer extends CIMSerializer[ExcAVR7]
@@ -3759,6 +3788,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcBBC] = ExcBBCSerializer
 }
 
 object ExcBBCSerializer extends CIMSerializer[ExcBBC]
@@ -3940,6 +3971,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcCZ] = ExcCZSerializer
 }
 
 object ExcCZSerializer extends CIMSerializer[ExcCZ]
@@ -4188,6 +4221,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcDC1A] = ExcDC1ASerializer
 }
 
 object ExcDC1ASerializer extends CIMSerializer[ExcDC1A]
@@ -4456,6 +4491,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcDC2A] = ExcDC2ASerializer
 }
 
 object ExcDC2ASerializer extends CIMSerializer[ExcDC2A]
@@ -4710,6 +4747,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcDC3A] = ExcDC3ASerializer
 }
 
 object ExcDC3ASerializer extends CIMSerializer[ExcDC3A]
@@ -4943,6 +4982,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcDC3A1] = ExcDC3A1Serializer
 }
 
 object ExcDC3A1Serializer extends CIMSerializer[ExcDC3A1]
@@ -5177,6 +5218,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcELIN1] = ExcELIN1Serializer
 }
 
 object ExcELIN1Serializer extends CIMSerializer[ExcELIN1]
@@ -5497,6 +5540,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcELIN2] = ExcELIN2Serializer
 }
 
 object ExcELIN2Serializer extends CIMSerializer[ExcELIN2]
@@ -5734,6 +5779,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcHU] = ExcHUSerializer
 }
 
 object ExcHUSerializer extends CIMSerializer[ExcHU]
@@ -5986,6 +6033,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC1A] = ExcIEEEAC1ASerializer
 }
 
 object ExcIEEEAC1ASerializer extends CIMSerializer[ExcIEEEAC1A]
@@ -6271,6 +6320,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC2A] = ExcIEEEAC2ASerializer
 }
 
 object ExcIEEEAC2ASerializer extends CIMSerializer[ExcIEEEAC2A]
@@ -6562,6 +6613,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC3A] = ExcIEEEAC3ASerializer
 }
 
 object ExcIEEEAC3ASerializer extends CIMSerializer[ExcIEEEAC3A]
@@ -6769,6 +6822,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC4A] = ExcIEEEAC4ASerializer
 }
 
 object ExcIEEEAC4ASerializer extends CIMSerializer[ExcIEEEAC4A]
@@ -6987,6 +7042,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC5A] = ExcIEEEAC5ASerializer
 }
 
 object ExcIEEEAC5ASerializer extends CIMSerializer[ExcIEEEAC5A]
@@ -7271,6 +7328,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC6A] = ExcIEEEAC6ASerializer
 }
 
 object ExcIEEEAC6ASerializer extends CIMSerializer[ExcIEEEAC6A]
@@ -7599,6 +7658,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC7B] = ExcIEEEAC7BSerializer
 }
 
 object ExcIEEEAC7BSerializer extends CIMSerializer[ExcIEEEAC7B]
@@ -7879,6 +7940,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEAC8B] = ExcIEEEAC8BSerializer
 }
 
 object ExcIEEEAC8BSerializer extends CIMSerializer[ExcIEEEAC8B]
@@ -8134,6 +8197,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEDC1A] = ExcIEEEDC1ASerializer
 }
 
 object ExcIEEEDC1ASerializer extends CIMSerializer[ExcIEEEDC1A]
@@ -8383,6 +8448,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEDC2A] = ExcIEEEDC2ASerializer
 }
 
 object ExcIEEEDC2ASerializer extends CIMSerializer[ExcIEEEDC2A]
@@ -8597,6 +8664,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEDC3A] = ExcIEEEDC3ASerializer
 }
 
 object ExcIEEEDC3ASerializer extends CIMSerializer[ExcIEEEDC3A]
@@ -8858,6 +8927,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEDC4B] = ExcIEEEDC4BSerializer
 }
 
 object ExcIEEEDC4BSerializer extends CIMSerializer[ExcIEEEDC4B]
@@ -9134,6 +9205,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST1A] = ExcIEEEST1ASerializer
 }
 
 object ExcIEEEST1ASerializer extends CIMSerializer[ExcIEEEST1A]
@@ -9367,6 +9440,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST2A] = ExcIEEEST2ASerializer
 }
 
 object ExcIEEEST2ASerializer extends CIMSerializer[ExcIEEEST2A]
@@ -9635,6 +9710,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST3A] = ExcIEEEST3ASerializer
 }
 
 object ExcIEEEST3ASerializer extends CIMSerializer[ExcIEEEST3A]
@@ -9889,6 +9966,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST4B] = ExcIEEEST4BSerializer
 }
 
 object ExcIEEEST4BSerializer extends CIMSerializer[ExcIEEEST4B]
@@ -10143,6 +10222,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST5B] = ExcIEEEST5BSerializer
 }
 
 object ExcIEEEST5BSerializer extends CIMSerializer[ExcIEEEST5B]
@@ -10378,6 +10459,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST6B] = ExcIEEEST6BSerializer
 }
 
 object ExcIEEEST6BSerializer extends CIMSerializer[ExcIEEEST6B]
@@ -10614,6 +10697,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcIEEEST7B] = ExcIEEEST7BSerializer
 }
 
 object ExcIEEEST7BSerializer extends CIMSerializer[ExcIEEEST7B]
@@ -10817,6 +10902,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcNI] = ExcNISerializer
 }
 
 object ExcNISerializer extends CIMSerializer[ExcNI]
@@ -11050,6 +11137,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcOEX3T] = ExcOEX3TSerializer
 }
 
 object ExcOEX3TSerializer extends CIMSerializer[ExcOEX3T]
@@ -11350,6 +11439,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcPIC] = ExcPICSerializer
 }
 
 object ExcPICSerializer extends CIMSerializer[ExcPIC]
@@ -11750,6 +11841,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcREXS] = ExcREXSSerializer
 }
 
 object ExcREXSSerializer extends CIMSerializer[ExcREXS]
@@ -12014,6 +12107,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcRQB] = ExcRQBSerializer
 }
 
 object ExcRQBSerializer extends CIMSerializer[ExcRQB]
@@ -12196,6 +12291,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcSCRX] = ExcSCRXSerializer
 }
 
 object ExcSCRXSerializer extends CIMSerializer[ExcSCRX]
@@ -12381,6 +12478,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcSEXS] = ExcSEXSSerializer
 }
 
 object ExcSEXSSerializer extends CIMSerializer[ExcSEXS]
@@ -12726,6 +12825,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcSK] = ExcSKSerializer
 }
 
 object ExcSKSerializer extends CIMSerializer[ExcSK]
@@ -13015,6 +13116,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST1A] = ExcST1ASerializer
 }
 
 object ExcST1ASerializer extends CIMSerializer[ExcST1A]
@@ -13257,6 +13360,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST2A] = ExcST2ASerializer
 }
 
 object ExcST2ASerializer extends CIMSerializer[ExcST2A]
@@ -13526,6 +13631,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST3A] = ExcST3ASerializer
 }
 
 object ExcST3ASerializer extends CIMSerializer[ExcST3A]
@@ -13802,6 +13909,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST4B] = ExcST4BSerializer
 }
 
 object ExcST4BSerializer extends CIMSerializer[ExcST4B]
@@ -14107,6 +14216,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST6B] = ExcST6BSerializer
 }
 
 object ExcST6BSerializer extends CIMSerializer[ExcST6B]
@@ -14365,6 +14476,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcST7B] = ExcST7BSerializer
 }
 
 object ExcST7BSerializer extends CIMSerializer[ExcST7B]
@@ -14554,6 +14667,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcitationSystemDynamics] = ExcitationSystemDynamicsSerializer
 }
 
 object ExcitationSystemDynamicsSerializer extends CIMSerializer[ExcitationSystemDynamics]

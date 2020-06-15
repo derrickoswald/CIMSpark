@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -116,6 +117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccountNotification] = AccountNotificationSerializer
 }
 
 object AccountNotificationSerializer extends CIMSerializer[AccountNotification]
@@ -333,6 +336,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Customer] = CustomerSerializer
 }
 
 object CustomerSerializer extends CIMSerializer[Customer]
@@ -535,6 +540,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CustomerAccount] = CustomerAccountSerializer
 }
 
 object CustomerAccountSerializer extends CIMSerializer[CustomerAccount]
@@ -753,6 +760,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CustomerAgreement] = CustomerAgreementSerializer
 }
 
 object CustomerAgreementSerializer extends CIMSerializer[CustomerAgreement]
@@ -933,6 +942,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CustomerNotification] = CustomerNotificationSerializer
 }
 
 object CustomerNotificationSerializer extends CIMSerializer[CustomerNotification]
@@ -1064,6 +1075,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IncidentHazard] = IncidentHazardSerializer
 }
 
 object IncidentHazardSerializer extends CIMSerializer[IncidentHazard]
@@ -1243,6 +1256,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PricingStructure] = PricingStructureSerializer
 }
 
 object PricingStructureSerializer extends CIMSerializer[PricingStructure]
@@ -1399,6 +1414,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServiceCategory] = ServiceCategorySerializer
 }
 
 object ServiceCategorySerializer extends CIMSerializer[ServiceCategory]
@@ -1558,6 +1575,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServiceLocation] = ServiceLocationSerializer
 }
 
 object ServiceLocationSerializer extends CIMSerializer[ServiceLocation]
@@ -1700,6 +1719,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tariff] = TariffSerializer
 }
 
 object TariffSerializer extends CIMSerializer[Tariff]
@@ -1877,6 +1898,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TroubleTicket] = TroubleTicketSerializer
 }
 
 object TroubleTicketSerializer extends CIMSerializer[TroubleTicket]

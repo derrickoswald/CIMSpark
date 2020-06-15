@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -208,6 +209,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BWRSteamSupply] = BWRSteamSupplySerializer
 }
 
 object BWRSteamSupplySerializer extends CIMSerializer[BWRSteamSupply]
@@ -356,6 +359,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CTTempActivePowerCurve] = CTTempActivePowerCurveSerializer
 }
 
 object CTTempActivePowerCurveSerializer extends CIMSerializer[CTTempActivePowerCurve]
@@ -530,6 +535,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombustionTurbine] = CombustionTurbineSerializer
 }
 
 object CombustionTurbineSerializer extends CIMSerializer[CombustionTurbine]
@@ -655,6 +662,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DrumBoiler] = DrumBoilerSerializer
 }
 
 object DrumBoilerSerializer extends CIMSerializer[DrumBoiler]
@@ -913,6 +922,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FossilSteamSupply] = FossilSteamSupplySerializer
 }
 
 object FossilSteamSupplySerializer extends CIMSerializer[FossilSteamSupply]
@@ -1078,6 +1089,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HeatRecoveryBoiler] = HeatRecoveryBoilerSerializer
 }
 
 object HeatRecoveryBoilerSerializer extends CIMSerializer[HeatRecoveryBoiler]
@@ -1248,6 +1261,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HydroTurbine] = HydroTurbineSerializer
 }
 
 object HydroTurbineSerializer extends CIMSerializer[HydroTurbine]
@@ -1487,6 +1502,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PWRSteamSupply] = PWRSteamSupplySerializer
 }
 
 object PWRSteamSupplySerializer extends CIMSerializer[PWRSteamSupply]
@@ -1640,6 +1657,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PrimeMover] = PrimeMoverSerializer
 }
 
 object PrimeMoverSerializer extends CIMSerializer[PrimeMover]
@@ -1757,6 +1776,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SteamSupply] = SteamSupplySerializer
 }
 
 object SteamSupplySerializer extends CIMSerializer[SteamSupply]
@@ -1940,6 +1961,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SteamTurbine] = SteamTurbineSerializer
 }
 
 object SteamTurbineSerializer extends CIMSerializer[SteamTurbine]
@@ -2055,6 +2078,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Subcritical] = SubcriticalSerializer
 }
 
 object SubcriticalSerializer extends CIMSerializer[Subcritical]
@@ -2145,6 +2170,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Supercritical] = SupercriticalSerializer
 }
 
 object SupercriticalSerializer extends CIMSerializer[Supercritical]

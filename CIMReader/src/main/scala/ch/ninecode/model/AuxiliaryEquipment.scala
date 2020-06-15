@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -93,6 +94,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryEquipment] = AuxiliaryEquipmentSerializer
 }
 
 object AuxiliaryEquipmentSerializer extends CIMSerializer[AuxiliaryEquipment]
@@ -224,6 +227,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentTransformer] = CurrentTransformerSerializer
 }
 
 object CurrentTransformerSerializer extends CIMSerializer[CurrentTransformer]
@@ -325,6 +330,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[FaultIndicator] = FaultIndicatorSerializer
 }
 
 object FaultIndicatorSerializer extends CIMSerializer[FaultIndicator]
@@ -415,6 +422,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[FlowSensor] = FlowSensorSerializer
 }
 
 object FlowSensorSerializer extends CIMSerializer[FlowSensor]
@@ -505,6 +514,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[PostLineSensor] = PostLineSensorSerializer
 }
 
 object PostLineSensorSerializer extends CIMSerializer[PostLineSensor]
@@ -630,6 +641,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PotentialTransformer] = PotentialTransformerSerializer
 }
 
 object PotentialTransformerSerializer extends CIMSerializer[PotentialTransformer]
@@ -727,6 +740,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Sensor] = SensorSerializer
 }
 
 object SensorSerializer extends CIMSerializer[Sensor]
@@ -817,6 +832,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[SurgeArrester] = SurgeArresterSerializer
 }
 
 object SurgeArresterSerializer extends CIMSerializer[SurgeArrester]
@@ -907,6 +924,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[WaveTrap] = WaveTrapSerializer
 }
 
 object WaveTrapSerializer extends CIMSerializer[WaveTrap]

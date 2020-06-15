@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -98,6 +99,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AnnotatedProjectDependency] = AnnotatedProjectDependencySerializer
 }
 
 object AnnotatedProjectDependencySerializer extends CIMSerializer[AnnotatedProjectDependency]
@@ -190,6 +193,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[CurrentState] = CurrentStateSerializer
 }
 
 object CurrentStateSerializer extends CIMSerializer[CurrentState]
@@ -282,6 +287,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DifferentialModel] = DifferentialModelSerializer
 }
 
 object DifferentialModelSerializer extends CIMSerializer[DifferentialModel]
@@ -391,6 +398,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProject] = NetworkModelProjectSerializer
 }
 
 object NetworkModelProjectSerializer extends CIMSerializer[NetworkModelProject]
@@ -495,6 +504,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProject2] = NetworkModelProject2Serializer
 }
 
 object NetworkModelProject2Serializer extends CIMSerializer[NetworkModelProject2]
@@ -605,6 +616,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectChange] = NetworkModelProjectChangeSerializer
 }
 
 object NetworkModelProjectChangeSerializer extends CIMSerializer[NetworkModelProjectChange]
@@ -763,6 +776,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectChangeVersion] = NetworkModelProjectChangeVersionSerializer
 }
 
 object NetworkModelProjectChangeVersionSerializer extends CIMSerializer[NetworkModelProjectChangeVersion]
@@ -865,6 +880,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectCollection] = NetworkModelProjectCollectionSerializer
 }
 
 object NetworkModelProjectCollectionSerializer extends CIMSerializer[NetworkModelProjectCollection]
@@ -987,6 +1004,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectComponent] = NetworkModelProjectComponentSerializer
 }
 
 object NetworkModelProjectComponentSerializer extends CIMSerializer[NetworkModelProjectComponent]
@@ -1116,6 +1135,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectComponent2] = NetworkModelProjectComponent2Serializer
 }
 
 object NetworkModelProjectComponent2Serializer extends CIMSerializer[NetworkModelProjectComponent2]
@@ -1212,6 +1233,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectDocument] = NetworkModelProjectDocumentSerializer
 }
 
 object NetworkModelProjectDocumentSerializer extends CIMSerializer[NetworkModelProjectDocument]
@@ -1328,6 +1351,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectRelationship] = NetworkModelProjectRelationshipSerializer
 }
 
 object NetworkModelProjectRelationshipSerializer extends CIMSerializer[NetworkModelProjectRelationship]
@@ -1463,6 +1488,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectStage] = NetworkModelProjectStageSerializer
 }
 
 object NetworkModelProjectStageSerializer extends CIMSerializer[NetworkModelProjectStage]
@@ -1583,6 +1610,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkModelProjectState] = NetworkModelProjectStateSerializer
 }
 
 object NetworkModelProjectStateSerializer extends CIMSerializer[NetworkModelProjectState]
@@ -1706,6 +1735,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerSystemProjectLifecycleToBeDeleted] = PowerSystemProjectLifecycleToBeDeletedSerializer
 }
 
 object PowerSystemProjectLifecycleToBeDeletedSerializer extends CIMSerializer[PowerSystemProjectLifecycleToBeDeleted]
@@ -1806,6 +1837,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ProjectAlternative] = ProjectAlternativeSerializer
 }
 
 object ProjectAlternativeSerializer extends CIMSerializer[ProjectAlternative]
@@ -1896,6 +1929,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ProjectDependency] = ProjectDependencySerializer
 }
 
 object ProjectDependencySerializer extends CIMSerializer[ProjectDependency]

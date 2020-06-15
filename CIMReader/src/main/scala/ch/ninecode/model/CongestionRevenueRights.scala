@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -103,6 +104,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CRROrgRole] = CRROrgRoleSerializer
 }
 
 object CRROrgRoleSerializer extends CIMSerializer[CRROrgRole]
@@ -263,6 +266,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CRRSegment] = CRRSegmentSerializer
 }
 
 object CRRSegmentSerializer extends CIMSerializer[CRRSegment]
@@ -444,6 +449,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CongestionRevenueRight] = CongestionRevenueRightSerializer
 }
 
 object CongestionRevenueRightSerializer extends CIMSerializer[CongestionRevenueRight]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -105,6 +106,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AsynchronousMachineUserDefined] = AsynchronousMachineUserDefinedSerializer
 }
 
 object AsynchronousMachineUserDefinedSerializer extends CIMSerializer[AsynchronousMachineUserDefined]
@@ -229,6 +232,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CSCUserDefined] = CSCUserDefinedSerializer
 }
 
 object CSCUserDefinedSerializer extends CIMSerializer[CSCUserDefined]
@@ -353,6 +358,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscontinuousExcitationControlUserDefined] = DiscontinuousExcitationControlUserDefinedSerializer
 }
 
 object DiscontinuousExcitationControlUserDefinedSerializer extends CIMSerializer[DiscontinuousExcitationControlUserDefined]
@@ -477,6 +484,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExcitationSystemUserDefined] = ExcitationSystemUserDefinedSerializer
 }
 
 object ExcitationSystemUserDefinedSerializer extends CIMSerializer[ExcitationSystemUserDefined]
@@ -601,6 +610,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadUserDefined] = LoadUserDefinedSerializer
 }
 
 object LoadUserDefinedSerializer extends CIMSerializer[LoadUserDefined]
@@ -725,6 +736,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MechanicalLoadUserDefined] = MechanicalLoadUserDefinedSerializer
 }
 
 object MechanicalLoadUserDefinedSerializer extends CIMSerializer[MechanicalLoadUserDefined]
@@ -849,6 +862,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcitationLimiterUserDefined] = OverexcitationLimiterUserDefinedSerializer
 }
 
 object OverexcitationLimiterUserDefinedSerializer extends CIMSerializer[OverexcitationLimiterUserDefined]
@@ -973,6 +988,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFVArControllerType1UserDefined] = PFVArControllerType1UserDefinedSerializer
 }
 
 object PFVArControllerType1UserDefinedSerializer extends CIMSerializer[PFVArControllerType1UserDefined]
@@ -1097,6 +1114,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFVArControllerType2UserDefined] = PFVArControllerType2UserDefinedSerializer
 }
 
 object PFVArControllerType2UserDefinedSerializer extends CIMSerializer[PFVArControllerType2UserDefined]
@@ -1221,6 +1240,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerSystemStabilizerUserDefined] = PowerSystemStabilizerUserDefinedSerializer
 }
 
 object PowerSystemStabilizerUserDefinedSerializer extends CIMSerializer[PowerSystemStabilizerUserDefined]
@@ -1506,6 +1527,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProprietaryParameterDynamics] = ProprietaryParameterDynamicsSerializer
 }
 
 object ProprietaryParameterDynamicsSerializer extends CIMSerializer[ProprietaryParameterDynamics]
@@ -1676,6 +1699,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SVCUserDefined] = SVCUserDefinedSerializer
 }
 
 object SVCUserDefinedSerializer extends CIMSerializer[SVCUserDefined]
@@ -1800,6 +1825,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineUserDefined] = SynchronousMachineUserDefinedSerializer
 }
 
 object SynchronousMachineUserDefinedSerializer extends CIMSerializer[SynchronousMachineUserDefined]
@@ -1924,6 +1951,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TurbineGovernorUserDefined] = TurbineGovernorUserDefinedSerializer
 }
 
 object TurbineGovernorUserDefinedSerializer extends CIMSerializer[TurbineGovernorUserDefined]
@@ -2048,6 +2077,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TurbineLoadControllerUserDefined] = TurbineLoadControllerUserDefinedSerializer
 }
 
 object TurbineLoadControllerUserDefinedSerializer extends CIMSerializer[TurbineLoadControllerUserDefined]
@@ -2172,6 +2203,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnderexcitationLimiterUserDefined] = UnderexcitationLimiterUserDefinedSerializer
 }
 
 object UnderexcitationLimiterUserDefinedSerializer extends CIMSerializer[UnderexcitationLimiterUserDefined]
@@ -2296,6 +2329,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VSCUserDefined] = VSCUserDefinedSerializer
 }
 
 object VSCUserDefinedSerializer extends CIMSerializer[VSCUserDefined]
@@ -2420,6 +2455,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageAdjusterUserDefined] = VoltageAdjusterUserDefinedSerializer
 }
 
 object VoltageAdjusterUserDefinedSerializer extends CIMSerializer[VoltageAdjusterUserDefined]
@@ -2544,6 +2581,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageCompensatorUserDefined] = VoltageCompensatorUserDefinedSerializer
 }
 
 object VoltageCompensatorUserDefinedSerializer extends CIMSerializer[VoltageCompensatorUserDefined]
@@ -2668,6 +2707,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindPlantUserDefined] = WindPlantUserDefinedSerializer
 }
 
 object WindPlantUserDefinedSerializer extends CIMSerializer[WindPlantUserDefined]
@@ -2792,6 +2833,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindType1or2UserDefined] = WindType1or2UserDefinedSerializer
 }
 
 object WindType1or2UserDefinedSerializer extends CIMSerializer[WindType1or2UserDefined]
@@ -2916,6 +2959,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindType3or4UserDefined] = WindType3or4UserDefinedSerializer
 }
 
 object WindType3or4UserDefinedSerializer extends CIMSerializer[WindType3or4UserDefined]

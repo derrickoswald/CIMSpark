@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -114,6 +115,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BilateralExchangeActor] = BilateralExchangeActorSerializer
 }
 
 object BilateralExchangeActorSerializer extends CIMSerializer[BilateralExchangeActor]
@@ -235,6 +238,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BilateralExchangeAgreement] = BilateralExchangeAgreementSerializer
 }
 
 object BilateralExchangeAgreementSerializer extends CIMSerializer[BilateralExchangeAgreement]
@@ -363,6 +368,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ICCPInformationMessage] = ICCPInformationMessageSerializer
 }
 
 object ICCPInformationMessageSerializer extends CIMSerializer[ICCPInformationMessage]
@@ -497,6 +504,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ICCPProvidedPoint] = ICCPProvidedPointSerializer
 }
 
 object ICCPProvidedPointSerializer extends CIMSerializer[ICCPProvidedPoint]
@@ -594,6 +603,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ICCPVCC] = ICCPVCCSerializer
 }
 
 object ICCPVCCSerializer extends CIMSerializer[ICCPVCC]
@@ -771,6 +782,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ICCPVirtualControlCentre] = ICCPVirtualControlCentreSerializer
 }
 
 object ICCPVirtualControlCentreSerializer extends CIMSerializer[ICCPVirtualControlCentre]
@@ -901,6 +914,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IOPointSource] = IOPointSourceSerializer
 }
 
 object IOPointSourceSerializer extends CIMSerializer[IOPointSource]
@@ -1027,6 +1042,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IPAccessPoint] = IPAccessPointSerializer
 }
 
 object IPAccessPointSerializer extends CIMSerializer[IPAccessPoint]
@@ -1185,6 +1202,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ISOUpperLayer] = ISOUpperLayerSerializer
 }
 
 object ISOUpperLayerSerializer extends CIMSerializer[ISOUpperLayer]
@@ -1314,6 +1333,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProvidedBilateralPoint] = ProvidedBilateralPointSerializer
 }
 
 object ProvidedBilateralPointSerializer extends CIMSerializer[ProvidedBilateralPoint]
@@ -1447,6 +1468,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PublicX509Certificate] = PublicX509CertificateSerializer
 }
 
 object PublicX509CertificateSerializer extends CIMSerializer[PublicX509Certificate]
@@ -1584,6 +1607,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TASE2BilateralTable] = TASE2BilateralTableSerializer
 }
 
 object TASE2BilateralTableSerializer extends CIMSerializer[TASE2BilateralTable]
@@ -1717,6 +1742,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TCPAccessPoint] = TCPAccessPointSerializer
 }
 
 object TCPAccessPointSerializer extends CIMSerializer[TCPAccessPoint]

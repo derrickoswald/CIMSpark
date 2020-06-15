@@ -2,6 +2,8 @@ package ch.ninecode.cim
 
 import java.util.regex.Pattern
 
+import com.esotericsoftware.kryo.Serializer
+
 import ch.ninecode.model.Element
 
 /**
@@ -31,6 +33,7 @@ trait CIMParser
 
     val fields: Array[String] = Array ()
     val relations: List[CIMRelationship] = List ()
+    def serializer: Serializer[_ <: Product]
 
     /**
      * Create the integer array of bitfields from field names.

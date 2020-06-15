@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -124,6 +125,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BaseWork] = BaseWorkSerializer
 }
 
 object BaseWorkSerializer extends CIMSerializer[BaseWork]
@@ -257,6 +260,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InternalLocation] = InternalLocationSerializer
 }
 
 object InternalLocationSerializer extends CIMSerializer[InternalLocation]
@@ -386,6 +391,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MaintenanceLocation] = MaintenanceLocationSerializer
 }
 
 object MaintenanceLocationSerializer extends CIMSerializer[MaintenanceLocation]
@@ -505,6 +512,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MaintenanceWorkTask] = MaintenanceWorkTaskSerializer
 }
 
 object MaintenanceWorkTaskSerializer extends CIMSerializer[MaintenanceWorkTask]
@@ -630,6 +639,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MaterialItem] = MaterialItemSerializer
 }
 
 object MaterialItemSerializer extends CIMSerializer[MaterialItem]
@@ -755,6 +766,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RepairItem] = RepairItemSerializer
 }
 
 object RepairItemSerializer extends CIMSerializer[RepairItem]
@@ -876,6 +889,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RepairWorkTask] = RepairWorkTaskSerializer
 }
 
 object RepairWorkTaskSerializer extends CIMSerializer[RepairWorkTask]
@@ -983,6 +998,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tool] = ToolSerializer
 }
 
 object ToolSerializer extends CIMSerializer[Tool]
@@ -1102,6 +1119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Vehicle] = VehicleSerializer
 }
 
 object VehicleSerializer extends CIMSerializer[Vehicle]
@@ -1298,6 +1317,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Work] = WorkSerializer
 }
 
 object WorkSerializer extends CIMSerializer[Work]
@@ -1437,6 +1458,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkActivityRecord] = WorkActivityRecordSerializer
 }
 
 object WorkActivityRecordSerializer extends CIMSerializer[WorkActivityRecord]
@@ -1554,6 +1577,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkAsset] = WorkAssetSerializer
 }
 
 object WorkAssetSerializer extends CIMSerializer[WorkAsset]
@@ -1679,6 +1704,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkLocation] = WorkLocationSerializer
 }
 
 object WorkLocationSerializer extends CIMSerializer[WorkLocation]
@@ -1901,6 +1928,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkTask] = WorkTaskSerializer
 }
 
 object WorkTaskSerializer extends CIMSerializer[WorkTask]
@@ -2050,6 +2079,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkTimeSchedule] = WorkTimeScheduleSerializer
 }
 
 object WorkTimeScheduleSerializer extends CIMSerializer[WorkTimeSchedule]
@@ -2187,6 +2218,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkTimeScheduleKind] = WorkTimeScheduleKindSerializer
 }
 
 object WorkTimeScheduleKindSerializer extends CIMSerializer[WorkTimeScheduleKind]

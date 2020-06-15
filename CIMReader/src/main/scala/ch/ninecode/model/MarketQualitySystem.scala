@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -112,6 +113,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AllocationResult] = AllocationResultSerializer
 }
 
 object AllocationResultSerializer extends CIMSerializer[AllocationResult]
@@ -271,6 +274,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AllocationResultValues] = AllocationResultValuesSerializer
 }
 
 object AllocationResultValuesSerializer extends CIMSerializer[AllocationResultValues]
@@ -417,6 +422,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryCost] = AuxiliaryCostSerializer
 }
 
 object AuxiliaryCostSerializer extends CIMSerializer[AuxiliaryCost]
@@ -540,6 +547,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryObject] = AuxiliaryObjectSerializer
 }
 
 object AuxiliaryObjectSerializer extends CIMSerializer[AuxiliaryObject]
@@ -713,6 +722,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AuxiliaryValues] = AuxiliaryValuesSerializer
 }
 
 object AuxiliaryValuesSerializer extends CIMSerializer[AuxiliaryValues]
@@ -860,6 +871,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExpectedEnergy] = ExpectedEnergySerializer
 }
 
 object ExpectedEnergySerializer extends CIMSerializer[ExpectedEnergy]
@@ -994,6 +1007,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ExpectedEnergyValues] = ExpectedEnergyValuesSerializer
 }
 
 object ExpectedEnergyValuesSerializer extends CIMSerializer[ExpectedEnergyValues]
@@ -1127,6 +1142,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FiveMinAuxiliaryData] = FiveMinAuxiliaryDataSerializer
 }
 
 object FiveMinAuxiliaryDataSerializer extends CIMSerializer[FiveMinAuxiliaryData]
@@ -1260,6 +1277,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TenMinAuxiliaryData] = TenMinAuxiliaryDataSerializer
 }
 
 object TenMinAuxiliaryDataSerializer extends CIMSerializer[TenMinAuxiliaryData]
@@ -1400,6 +1419,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TradingHubPrice] = TradingHubPriceSerializer
 }
 
 object TradingHubPriceSerializer extends CIMSerializer[TradingHubPrice]
@@ -1531,6 +1552,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TradingHubValues] = TradingHubValuesSerializer
 }
 
 object TradingHubValuesSerializer extends CIMSerializer[TradingHubValues]

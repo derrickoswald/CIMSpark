@@ -370,6 +370,13 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
            |""".stripMargin
     }
 
+    def serializer (name: String): String =
+    {
+        s"""
+           |    def serializer: Serializer[${name}] = ${name}Serializer
+           |""".stripMargin
+    }
+
     def write (arg: (Member, Int)) (implicit identified_object: Boolean): String =
     {
         val (member, _) = arg
@@ -483,6 +490,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append ("\n{\n")
                 .append (parseRelationships (fields))
                 .append (parse (cls, name, members))
+                .append (serializer (name))
                 .append ("}\n")
                 .append (serialize (cls, name, members))
                 .append ("\n")
@@ -497,6 +505,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append ("""package ch.ninecode.model
                     |
                     |import com.esotericsoftware.kryo.Kryo
+                    |import com.esotericsoftware.kryo.Serializer
                     |import com.esotericsoftware.kryo.io.Input
                     |import com.esotericsoftware.kryo.io.Output
                     |import org.apache.spark.sql.Row

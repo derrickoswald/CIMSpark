@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -94,6 +95,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BusbarSectionInfo] = BusbarSectionInfoSerializer
 }
 
 object BusbarSectionInfoSerializer extends CIMSerializer[BusbarSectionInfo]
@@ -252,6 +255,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BushingInfo] = BushingInfoSerializer
 }
 
 object BushingInfoSerializer extends CIMSerializer[BushingInfo]
@@ -428,6 +433,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CableInfo] = CableInfoSerializer
 }
 
 object CableInfoSerializer extends CIMSerializer[CableInfo]
@@ -575,6 +582,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConcentricNeutralCableInfo] = ConcentricNeutralCableInfoSerializer
 }
 
 object ConcentricNeutralCableInfoSerializer extends CIMSerializer[ConcentricNeutralCableInfo]
@@ -688,6 +697,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterrupterUnitInfo] = InterrupterUnitInfoSerializer
 }
 
 object InterrupterUnitInfoSerializer extends CIMSerializer[InterrupterUnitInfo]
@@ -829,6 +840,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NoLoadTest] = NoLoadTestSerializer
 }
 
 object NoLoadTestSerializer extends CIMSerializer[NoLoadTest]
@@ -987,6 +1000,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OpenCircuitTest] = OpenCircuitTestSerializer
 }
 
 object OpenCircuitTestSerializer extends CIMSerializer[OpenCircuitTest]
@@ -1147,6 +1162,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperatingMechanismInfo] = OperatingMechanismInfoSerializer
 }
 
 object OperatingMechanismInfoSerializer extends CIMSerializer[OperatingMechanismInfo]
@@ -1252,6 +1269,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[OverheadWireInfo] = OverheadWireInfoSerializer
 }
 
 object OverheadWireInfoSerializer extends CIMSerializer[OverheadWireInfo]
@@ -1359,6 +1378,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerTransformerInfo] = PowerTransformerInfoSerializer
 }
 
 object PowerTransformerInfoSerializer extends CIMSerializer[PowerTransformerInfo]
@@ -1533,6 +1554,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShortCircuitTest] = ShortCircuitTestSerializer
 }
 
 object ShortCircuitTestSerializer extends CIMSerializer[ShortCircuitTest]
@@ -1686,6 +1709,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShuntCompensatorInfo] = ShuntCompensatorInfoSerializer
 }
 
 object ShuntCompensatorInfoSerializer extends CIMSerializer[ShuntCompensatorInfo]
@@ -1867,6 +1892,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SwitchInfo] = SwitchInfoSerializer
 }
 
 object SwitchInfoSerializer extends CIMSerializer[SwitchInfo]
@@ -2079,6 +2106,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapChangerInfo] = TapChangerInfoSerializer
 }
 
 object TapChangerInfoSerializer extends CIMSerializer[TapChangerInfo]
@@ -2218,6 +2247,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TapeShieldCableInfo] = TapeShieldCableInfoSerializer
 }
 
 object TapeShieldCableInfoSerializer extends CIMSerializer[TapeShieldCableInfo]
@@ -2450,6 +2481,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerEndInfo] = TransformerEndInfoSerializer
 }
 
 object TransformerEndInfoSerializer extends CIMSerializer[TransformerEndInfo]
@@ -2602,6 +2635,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerTankInfo] = TransformerTankInfoSerializer
 }
 
 object TransformerTankInfoSerializer extends CIMSerializer[TransformerTankInfo]
@@ -2715,6 +2750,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerTest] = TransformerTestSerializer
 }
 
 object TransformerTestSerializer extends CIMSerializer[TransformerTest]
@@ -2832,6 +2869,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WireAssemblyInfo] = WireAssemblyInfoSerializer
 }
 
 object WireAssemblyInfoSerializer extends CIMSerializer[WireAssemblyInfo]
@@ -3035,6 +3074,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WireInfo] = WireInfoSerializer
 }
 
 object WireInfoSerializer extends CIMSerializer[WireInfo]
@@ -3193,6 +3234,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WirePhaseInfo] = WirePhaseInfoSerializer
 }
 
 object WirePhaseInfoSerializer extends CIMSerializer[WirePhaseInfo]
@@ -3328,6 +3371,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WirePosition] = WirePositionSerializer
 }
 
 object WirePositionSerializer extends CIMSerializer[WirePosition]
@@ -3484,6 +3529,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WireSpacing] = WireSpacingSerializer
 }
 
 object WireSpacingSerializer extends CIMSerializer[WireSpacing]

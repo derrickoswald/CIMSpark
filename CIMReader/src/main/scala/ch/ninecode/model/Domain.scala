@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -99,6 +100,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DateInterval] = DateIntervalSerializer
 }
 
 object DateIntervalSerializer extends CIMSerializer[DateInterval]
@@ -219,6 +222,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DateTimeInterval] = DateTimeIntervalSerializer
 }
 
 object DateTimeIntervalSerializer extends CIMSerializer[DateTimeInterval]
@@ -350,6 +355,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DecimalQuantity] = DecimalQuantitySerializer
 }
 
 object DecimalQuantitySerializer extends CIMSerializer[DecimalQuantity]
@@ -479,6 +486,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FloatQuantity] = FloatQuantitySerializer
 }
 
 object FloatQuantitySerializer extends CIMSerializer[FloatQuantity]
@@ -606,6 +615,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IntegerQuantity] = IntegerQuantitySerializer
 }
 
 object IntegerQuantitySerializer extends CIMSerializer[IntegerQuantity]
@@ -726,6 +737,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MonthDayInterval] = MonthDayIntervalSerializer
 }
 
 object MonthDayIntervalSerializer extends CIMSerializer[MonthDayInterval]
@@ -851,6 +864,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StringQuantity] = StringQuantitySerializer
 }
 
 object StringQuantitySerializer extends CIMSerializer[StringQuantity]
@@ -971,6 +986,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimeInterval] = TimeIntervalSerializer
 }
 
 object TimeIntervalSerializer extends CIMSerializer[TimeInterval]

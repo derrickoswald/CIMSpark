@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -105,6 +106,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ActionRequest] = ActionRequestSerializer
 }
 
 object ActionRequestSerializer extends CIMSerializer[ActionRequest]
@@ -227,6 +230,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AreaLoadBid] = AreaLoadBidSerializer
 }
 
 object AreaLoadBidSerializer extends CIMSerializer[AreaLoadBid]
@@ -356,6 +361,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AttributeProperty] = AttributePropertySerializer
 }
 
 object AttributePropertySerializer extends CIMSerializer[AttributeProperty]
@@ -546,6 +553,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Bid] = BidSerializer
 }
 
 object BidSerializer extends CIMSerializer[Bid]
@@ -697,6 +706,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidDistributionFactor] = BidDistributionFactorSerializer
 }
 
 object BidDistributionFactorSerializer extends CIMSerializer[BidDistributionFactor]
@@ -868,6 +879,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidError] = BidErrorSerializer
 }
 
 object BidErrorSerializer extends CIMSerializer[BidError]
@@ -994,6 +1007,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidHourlyProductSchedule] = BidHourlyProductScheduleSerializer
 }
 
 object BidHourlyProductScheduleSerializer extends CIMSerializer[BidHourlyProductSchedule]
@@ -1102,6 +1117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidHourlySchedule] = BidHourlyScheduleSerializer
 }
 
 object BidHourlyScheduleSerializer extends CIMSerializer[BidHourlySchedule]
@@ -1210,6 +1227,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidPriceCurve] = BidPriceCurveSerializer
 }
 
 object BidPriceCurveSerializer extends CIMSerializer[BidPriceCurve]
@@ -1347,6 +1366,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidPriceSchedule] = BidPriceScheduleSerializer
 }
 
 object BidPriceScheduleSerializer extends CIMSerializer[BidPriceSchedule]
@@ -1567,6 +1588,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidSelfSched] = BidSelfSchedSerializer
 }
 
 object BidSelfSchedSerializer extends CIMSerializer[BidSelfSched]
@@ -1705,6 +1728,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidSet] = BidSetSerializer
 }
 
 object BidSetSerializer extends CIMSerializer[BidSet]
@@ -1869,6 +1894,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ChargeComponent] = ChargeComponentSerializer
 }
 
 object ChargeComponentSerializer extends CIMSerializer[ChargeComponent]
@@ -2039,6 +2066,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ChargeGroup] = ChargeGroupSerializer
 }
 
 object ChargeGroupSerializer extends CIMSerializer[ChargeGroup]
@@ -2227,6 +2256,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ChargeType] = ChargeTypeSerializer
 }
 
 object ChargeTypeSerializer extends CIMSerializer[ChargeType]
@@ -2418,6 +2449,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DispatchInstReply] = DispatchInstReplySerializer
 }
 
 object DispatchInstReplySerializer extends CIMSerializer[DispatchInstReply]
@@ -2551,6 +2584,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyPriceCurve] = EnergyPriceCurveSerializer
 }
 
 object EnergyPriceCurveSerializer extends CIMSerializer[EnergyPriceCurve]
@@ -2813,6 +2848,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GeneratingBid] = GeneratingBidSerializer
 }
 
 object GeneratingBidSerializer extends CIMSerializer[GeneratingBid]
@@ -2968,6 +3005,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HourlyPreDispatchSchedule] = HourlyPreDispatchScheduleSerializer
 }
 
 object HourlyPreDispatchScheduleSerializer extends CIMSerializer[HourlyPreDispatchSchedule]
@@ -3091,6 +3130,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterTieBid] = InterTieBidSerializer
 }
 
 object InterTieBidSerializer extends CIMSerializer[InterTieBid]
@@ -3236,6 +3277,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InterTieDispatchResponse] = InterTieDispatchResponseSerializer
 }
 
 object InterTieDispatchResponseSerializer extends CIMSerializer[InterTieDispatchResponse]
@@ -3464,6 +3507,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadBid] = LoadBidSerializer
 }
 
 object LoadBidSerializer extends CIMSerializer[LoadBid]
@@ -3632,6 +3677,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadFollowingInst] = LoadFollowingInstSerializer
 }
 
 object LoadFollowingInstSerializer extends CIMSerializer[LoadFollowingInst]
@@ -3750,6 +3797,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadReductionPriceCurve] = LoadReductionPriceCurveSerializer
 }
 
 object LoadReductionPriceCurveSerializer extends CIMSerializer[LoadReductionPriceCurve]
@@ -3931,6 +3980,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MajorChargeGroup] = MajorChargeGroupSerializer
 }
 
 object MajorChargeGroupSerializer extends CIMSerializer[MajorChargeGroup]
@@ -4080,6 +4131,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketScheduledEvent] = MarketScheduledEventSerializer
 }
 
 object MarketScheduledEventSerializer extends CIMSerializer[MarketScheduledEvent]
@@ -4196,6 +4249,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NotificationTimeCurve] = NotificationTimeCurveSerializer
 }
 
 object NotificationTimeCurveSerializer extends CIMSerializer[NotificationTimeCurve]
@@ -4303,6 +4358,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OpenTieSchedule] = OpenTieScheduleSerializer
 }
 
 object OpenTieScheduleSerializer extends CIMSerializer[OpenTieSchedule]
@@ -4447,6 +4504,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProductBid] = ProductBidSerializer
 }
 
 object ProductBidSerializer extends CIMSerializer[ProductBid]
@@ -4564,6 +4623,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PumpingCostSchedule] = PumpingCostScheduleSerializer
 }
 
 object PumpingCostScheduleSerializer extends CIMSerializer[PumpingCostSchedule]
@@ -4673,6 +4734,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PumpingLevelSchedule] = PumpingLevelScheduleSerializer
 }
 
 object PumpingLevelScheduleSerializer extends CIMSerializer[PumpingLevelSchedule]
@@ -4780,6 +4843,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PumpingShutDownCostSchedule] = PumpingShutDownCostScheduleSerializer
 }
 
 object PumpingShutDownCostScheduleSerializer extends CIMSerializer[PumpingShutDownCostSchedule]
@@ -4929,6 +4994,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RampRateCurve] = RampRateCurveSerializer
 }
 
 object RampRateCurveSerializer extends CIMSerializer[RampRateCurve]
@@ -5158,6 +5225,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceBid] = ResourceBidSerializer
 }
 
 object ResourceBidSerializer extends CIMSerializer[ResourceBid]
@@ -5305,6 +5374,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartUpCostCurve] = StartUpCostCurveSerializer
 }
 
 object StartUpCostCurveSerializer extends CIMSerializer[StartUpCostCurve]
@@ -5425,6 +5496,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartUpTimeCurve] = StartUpTimeCurveSerializer
 }
 
 object StartUpTimeCurveSerializer extends CIMSerializer[StartUpTimeCurve]
@@ -5686,6 +5759,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Trade] = TradeSerializer
 }
 
 object TradeSerializer extends CIMSerializer[Trade]
@@ -5877,6 +5952,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TradeError] = TradeErrorSerializer
 }
 
 object TradeErrorSerializer extends CIMSerializer[TradeError]
@@ -6028,6 +6105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TradeProduct] = TradeProductSerializer
 }
 
 object TradeProductSerializer extends CIMSerializer[TradeProduct]
@@ -6189,6 +6268,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransactionBid] = TransactionBidSerializer
 }
 
 object TransactionBidSerializer extends CIMSerializer[TransactionBid]

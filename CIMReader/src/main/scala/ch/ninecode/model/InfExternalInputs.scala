@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -104,6 +105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReserveReq] = ReserveReqSerializer
 }
 
 object ReserveReqSerializer extends CIMSerializer[ReserveReq]
@@ -219,6 +222,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReserveReqCurve] = ReserveReqCurveSerializer
 }
 
 object ReserveReqCurveSerializer extends CIMSerializer[ReserveReqCurve]
@@ -347,6 +352,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceGroup] = ResourceGroupSerializer
 }
 
 object ResourceGroupSerializer extends CIMSerializer[ResourceGroup]
@@ -468,6 +475,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceGroupReq] = ResourceGroupReqSerializer
 }
 
 object ResourceGroupReqSerializer extends CIMSerializer[ResourceGroupReq]
@@ -581,6 +590,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SensitivityPriceCurve] = SensitivityPriceCurveSerializer
 }
 
 object SensitivityPriceCurveSerializer extends CIMSerializer[SensitivityPriceCurve]

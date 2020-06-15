@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -118,6 +119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenICompensationForGenJ] = GenICompensationForGenJSerializer
 }
 
 object GenICompensationForGenJSerializer extends CIMSerializer[GenICompensationForGenJ]
@@ -258,6 +261,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VCompIEEEType1] = VCompIEEEType1Serializer
 }
 
 object VCompIEEEType1Serializer extends CIMSerializer[VCompIEEEType1]
@@ -392,6 +397,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VCompIEEEType2] = VCompIEEEType2Serializer
 }
 
 object VCompIEEEType2Serializer extends CIMSerializer[VCompIEEEType2]
@@ -516,6 +523,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageCompensatorDynamics] = VoltageCompensatorDynamicsSerializer
 }
 
 object VoltageCompensatorDynamicsSerializer extends CIMSerializer[VoltageCompensatorDynamics]

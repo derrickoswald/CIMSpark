@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -117,6 +118,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BusNameMarker] = BusNameMarkerSerializer
 }
 
 object BusNameMarkerSerializer extends CIMSerializer[BusNameMarker]
@@ -244,6 +247,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TopologicalIsland] = TopologicalIslandSerializer
 }
 
 object TopologicalIslandSerializer extends CIMSerializer[TopologicalIsland]
@@ -441,6 +446,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TopologicalNode] = TopologicalNodeSerializer
 }
 
 object TopologicalNodeSerializer extends CIMSerializer[TopologicalNode]

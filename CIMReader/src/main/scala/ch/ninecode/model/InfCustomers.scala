@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -91,6 +92,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ComplianceEvent] = ComplianceEventSerializer
 }
 
 object ComplianceEventSerializer extends CIMSerializer[ComplianceEvent]
@@ -264,6 +267,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CustomerBillingInfo] = CustomerBillingInfoSerializer
 }
 
 object CustomerBillingInfoSerializer extends CIMSerializer[CustomerBillingInfo]
@@ -375,6 +380,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ExternalCustomerAgreement] = ExternalCustomerAgreementSerializer
 }
 
 object ExternalCustomerAgreementSerializer extends CIMSerializer[ExternalCustomerAgreement]
@@ -527,6 +534,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerQualityPricing] = PowerQualityPricingSerializer
 }
 
 object PowerQualityPricingSerializer extends CIMSerializer[PowerQualityPricing]
@@ -672,6 +681,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ServiceGuarantee] = ServiceGuaranteeSerializer
 }
 
 object ServiceGuaranteeSerializer extends CIMSerializer[ServiceGuarantee]
@@ -796,6 +807,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StandardIndustryCode] = StandardIndustryCodeSerializer
 }
 
 object StandardIndustryCodeSerializer extends CIMSerializer[StandardIndustryCode]
@@ -889,6 +902,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[SubscribePowerCurve] = SubscribePowerCurveSerializer
 }
 
 object SubscribePowerCurveSerializer extends CIMSerializer[SubscribePowerCurve]
@@ -1056,6 +1071,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkBillingInfo] = WorkBillingInfoSerializer
 }
 
 object WorkBillingInfoSerializer extends CIMSerializer[WorkBillingInfo]

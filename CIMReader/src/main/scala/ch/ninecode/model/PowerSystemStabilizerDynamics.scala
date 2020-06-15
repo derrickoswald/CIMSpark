@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -99,6 +100,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerSystemStabilizerDynamics] = PowerSystemStabilizerDynamicsSerializer
 }
 
 object PowerSystemStabilizerDynamicsSerializer extends CIMSerializer[PowerSystemStabilizerDynamics]
@@ -307,6 +310,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pss1] = Pss1Serializer
 }
 
 object Pss1Serializer extends CIMSerializer[Pss1]
@@ -571,6 +576,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pss1A] = Pss1ASerializer
 }
 
 object Pss1ASerializer extends CIMSerializer[Pss1A]
@@ -917,6 +924,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pss2B] = Pss2BSerializer
 }
 
 object Pss2BSerializer extends CIMSerializer[Pss2B]
@@ -1183,6 +1192,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pss2ST] = Pss2STSerializer
 }
 
 object Pss2STSerializer extends CIMSerializer[Pss2ST]
@@ -1441,6 +1452,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pss5] = Pss5Serializer
 }
 
 object Pss5Serializer extends CIMSerializer[Pss5]
@@ -1649,6 +1662,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssELIN2] = PssELIN2Serializer
 }
 
 object PssELIN2Serializer extends CIMSerializer[PssELIN2]
@@ -1856,6 +1871,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssIEEE1A] = PssIEEE1ASerializer
 }
 
 object PssIEEE1ASerializer extends CIMSerializer[PssIEEE1A]
@@ -2170,6 +2187,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssIEEE2B] = PssIEEE2BSerializer
 }
 
 object PssIEEE2BSerializer extends CIMSerializer[PssIEEE2B]
@@ -2444,6 +2463,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssIEEE3B] = PssIEEE3BSerializer
 }
 
 object PssIEEE3BSerializer extends CIMSerializer[PssIEEE3B]
@@ -3042,6 +3063,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssIEEE4B] = PssIEEE4BSerializer
 }
 
 object PssIEEE4BSerializer extends CIMSerializer[PssIEEE4B]
@@ -3350,6 +3373,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssPTIST1] = PssPTIST1Serializer
 }
 
 object PssPTIST1Serializer extends CIMSerializer[PssPTIST1]
@@ -3688,6 +3713,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssPTIST3] = PssPTIST3Serializer
 }
 
 object PssPTIST3Serializer extends CIMSerializer[PssPTIST3]
@@ -3925,6 +3952,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssRQB] = PssRQBSerializer
 }
 
 object PssRQBSerializer extends CIMSerializer[PssRQB]
@@ -4119,6 +4148,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssSB4] = PssSB4Serializer
 }
 
 object PssSB4Serializer extends CIMSerializer[PssSB4]
@@ -4332,6 +4363,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssSH] = PssSHSerializer
 }
 
 object PssSHSerializer extends CIMSerializer[PssSH]
@@ -4532,6 +4565,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssSK] = PssSKSerializer
 }
 
 object PssSKSerializer extends CIMSerializer[PssSK]
@@ -4710,6 +4745,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssSTAB2A] = PssSTAB2ASerializer
 }
 
 object PssSTAB2ASerializer extends CIMSerializer[PssSTAB2A]
@@ -4950,6 +4987,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PssWECC] = PssWECCSerializer
 }
 
 object PssWECCSerializer extends CIMSerializer[PssWECC]

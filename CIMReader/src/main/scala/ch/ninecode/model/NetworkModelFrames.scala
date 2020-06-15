@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -90,6 +91,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssemblyDescription] = AssemblyDescriptionSerializer
 }
 
 object AssemblyDescriptionSerializer extends CIMSerializer[AssemblyDescription]
@@ -180,6 +183,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[AssemblyManifest] = AssemblyManifestSerializer
 }
 
 object AssemblyManifestSerializer extends CIMSerializer[AssemblyManifest]
@@ -269,6 +274,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[CompleteModelToBeDeleted] = CompleteModelToBeDeletedSerializer
 }
 
 object CompleteModelToBeDeletedSerializer extends CIMSerializer[CompleteModelToBeDeleted]
@@ -384,6 +391,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FrameworkPart] = FrameworkPartSerializer
 }
 
 object FrameworkPartSerializer extends CIMSerializer[FrameworkPart]
@@ -476,6 +485,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[LoadModelPartVersion] = LoadModelPartVersionSerializer
 }
 
 object LoadModelPartVersionSerializer extends CIMSerializer[LoadModelPartVersion]
@@ -582,6 +593,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelAuthority] = ModelAuthoritySerializer
 }
 
 object ModelAuthoritySerializer extends CIMSerializer[ModelAuthority]
@@ -699,6 +712,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelAuthoritySet] = ModelAuthoritySetSerializer
 }
 
 object ModelAuthoritySetSerializer extends CIMSerializer[ModelAuthoritySet]
@@ -825,6 +840,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelPartSpecification] = ModelPartSpecificationSerializer
 }
 
 object ModelPartSpecificationSerializer extends CIMSerializer[ModelPartSpecification]
@@ -938,6 +955,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelPartVersion] = ModelPartVersionSerializer
 }
 
 object ModelPartVersionSerializer extends CIMSerializer[ModelPartVersion]
@@ -1028,6 +1047,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ModelToBeDeleted] = ModelToBeDeletedSerializer
 }
 
 object ModelToBeDeletedSerializer extends CIMSerializer[ModelToBeDeleted]
@@ -1117,6 +1138,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[NetworkBoundary] = NetworkBoundarySerializer
 }
 
 object NetworkBoundarySerializer extends CIMSerializer[NetworkBoundary]
@@ -1223,6 +1246,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NetworkFrame] = NetworkFrameSerializer
 }
 
 object NetworkFrameSerializer extends CIMSerializer[NetworkFrame]
@@ -1313,6 +1338,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[NetworkModelCaseDefinition] = NetworkModelCaseDefinitionSerializer
 }
 
 object NetworkModelCaseDefinitionSerializer extends CIMSerializer[NetworkModelCaseDefinition]
@@ -1399,6 +1426,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[Operation] = OperationSerializer
 }
 
 object OperationSerializer extends CIMSerializer[Operation]

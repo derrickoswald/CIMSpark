@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -95,6 +96,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IEC61970CIMVersion] = IEC61970CIMVersionSerializer
 }
 
 object IEC61970CIMVersionSerializer extends CIMSerializer[IEC61970CIMVersion]

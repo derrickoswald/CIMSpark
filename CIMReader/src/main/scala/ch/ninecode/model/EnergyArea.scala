@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -70,6 +71,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[BlockDispatchComponent] = BlockDispatchComponentSerializer
 }
 
 object BlockDispatchComponentSerializer extends CIMSerializer[BlockDispatchComponent]
@@ -156,6 +159,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[BlockDispatchInstruction] = BlockDispatchInstructionSerializer
 }
 
 object BlockDispatchInstructionSerializer extends CIMSerializer[BlockDispatchInstruction]
@@ -260,6 +265,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BlockDispatchOrder] = BlockDispatchOrderSerializer
 }
 
 object BlockDispatchOrderSerializer extends CIMSerializer[BlockDispatchOrder]
@@ -349,6 +356,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[EnergyComponent] = EnergyComponentSerializer
 }
 
 object EnergyComponentSerializer extends CIMSerializer[EnergyComponent]
@@ -453,6 +462,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyGroup] = EnergyGroupSerializer
 }
 
 object EnergyGroupSerializer extends CIMSerializer[EnergyGroup]
@@ -555,6 +566,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyTypeReference] = EnergyTypeReferenceSerializer
 }
 
 object EnergyTypeReferenceSerializer extends CIMSerializer[EnergyTypeReference]
@@ -655,6 +668,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProportionalDistributionComponent] = ProportionalDistributionComponentSerializer
 }
 
 object ProportionalDistributionComponentSerializer extends CIMSerializer[ProportionalDistributionComponent]

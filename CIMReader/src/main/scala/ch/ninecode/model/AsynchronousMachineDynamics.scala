@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -120,6 +121,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AsynchronousMachineDynamics] = AsynchronousMachineDynamicsSerializer
 }
 
 object AsynchronousMachineDynamicsSerializer extends CIMSerializer[AsynchronousMachineDynamics]
@@ -270,6 +273,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AsynchronousMachineEquivalentCircuit] = AsynchronousMachineEquivalentCircuitSerializer
 }
 
 object AsynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[AsynchronousMachineEquivalentCircuit]
@@ -432,6 +437,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AsynchronousMachineTimeConstantReactance] = AsynchronousMachineTimeConstantReactanceSerializer
 }
 
 object AsynchronousMachineTimeConstantReactanceSerializer extends CIMSerializer[AsynchronousMachineTimeConstantReactance]

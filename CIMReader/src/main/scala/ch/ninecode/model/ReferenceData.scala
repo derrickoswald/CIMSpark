@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -127,6 +128,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AdjacentCASet] = AdjacentCASetSerializer
 }
 
 object AdjacentCASetSerializer extends CIMSerializer[AdjacentCASet]
@@ -304,6 +307,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AggregateNode] = AggregateNodeSerializer
 }
 
 object AggregateNodeSerializer extends CIMSerializer[AggregateNode]
@@ -495,6 +500,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AggregatedPnode] = AggregatedPnodeSerializer
 }
 
 object AggregatedPnodeSerializer extends CIMSerializer[AggregatedPnode]
@@ -658,6 +665,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidPriceCap] = BidPriceCapSerializer
 }
 
 object BidPriceCapSerializer extends CIMSerializer[BidPriceCap]
@@ -814,6 +823,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CnodeDistributionFactor] = CnodeDistributionFactorSerializer
 }
 
 object CnodeDistributionFactorSerializer extends CIMSerializer[CnodeDistributionFactor]
@@ -975,6 +986,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombinedCycleConfiguration] = CombinedCycleConfigurationSerializer
 }
 
 object CombinedCycleConfigurationSerializer extends CIMSerializer[CombinedCycleConfiguration]
@@ -1115,6 +1128,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombinedCycleConfigurationMember] = CombinedCycleConfigurationMemberSerializer
 }
 
 object CombinedCycleConfigurationMemberSerializer extends CIMSerializer[CombinedCycleConfigurationMember]
@@ -1241,6 +1256,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombinedCycleLogicalConfiguration] = CombinedCycleLogicalConfigurationSerializer
 }
 
 object CombinedCycleLogicalConfigurationSerializer extends CIMSerializer[CombinedCycleLogicalConfiguration]
@@ -1366,6 +1383,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CombinedCycleTransitionState] = CombinedCycleTransitionStateSerializer
 }
 
 object CombinedCycleTransitionStateSerializer extends CIMSerializer[CombinedCycleTransitionState]
@@ -1478,6 +1497,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CongestionArea] = CongestionAreaSerializer
 }
 
 object CongestionAreaSerializer extends CIMSerializer[CongestionArea]
@@ -1619,6 +1640,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ContractDistributionFactor] = ContractDistributionFactorSerializer
 }
 
 object ContractDistributionFactorSerializer extends CIMSerializer[ContractDistributionFactor]
@@ -1936,6 +1959,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ContractRight] = ContractRightSerializer
 }
 
 object ContractRightSerializer extends CIMSerializer[ContractRight]
@@ -2124,6 +2149,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlAreaDesignation] = ControlAreaDesignationSerializer
 }
 
 object ControlAreaDesignationSerializer extends CIMSerializer[ControlAreaDesignation]
@@ -2398,6 +2425,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Flowgate] = FlowgateSerializer
 }
 
 object FlowgateSerializer extends CIMSerializer[Flowgate]
@@ -2552,6 +2581,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FlowgatePartner] = FlowgatePartnerSerializer
 }
 
 object FlowgatePartnerSerializer extends CIMSerializer[FlowgatePartner]
@@ -2682,6 +2713,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FlowgateRelief] = FlowgateReliefSerializer
 }
 
 object FlowgateReliefSerializer extends CIMSerializer[FlowgateRelief]
@@ -2842,6 +2875,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FlowgateValue] = FlowgateValueSerializer
 }
 
 object FlowgateValueSerializer extends CIMSerializer[FlowgateValue]
@@ -2991,6 +3026,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ForbiddenRegion] = ForbiddenRegionSerializer
 }
 
 object ForbiddenRegionSerializer extends CIMSerializer[ForbiddenRegion]
@@ -3109,6 +3146,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FormerReference] = FormerReferenceSerializer
 }
 
 object FormerReferenceSerializer extends CIMSerializer[FormerReference]
@@ -3217,6 +3256,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FuelCostCurve] = FuelCostCurveSerializer
 }
 
 object FuelCostCurveSerializer extends CIMSerializer[FuelCostCurve]
@@ -3360,6 +3401,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FuelRegion] = FuelRegionSerializer
 }
 
 object FuelRegionSerializer extends CIMSerializer[FuelRegion]
@@ -3485,6 +3528,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GasPrice] = GasPriceSerializer
 }
 
 object GasPriceSerializer extends CIMSerializer[GasPrice]
@@ -3687,6 +3732,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[HostControlArea] = HostControlAreaSerializer
 }
 
 object HostControlAreaSerializer extends CIMSerializer[HostControlArea]
@@ -3850,6 +3897,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IndividualPnode] = IndividualPnodeSerializer
 }
 
 object IndividualPnodeSerializer extends CIMSerializer[IndividualPnode]
@@ -3951,6 +4000,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[LoadAggregationPoint] = LoadAggregationPointSerializer
 }
 
 object LoadAggregationPointSerializer extends CIMSerializer[LoadAggregationPoint]
@@ -4077,6 +4128,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadRatio] = LoadRatioSerializer
 }
 
 object LoadRatioSerializer extends CIMSerializer[LoadRatio]
@@ -4199,6 +4252,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LocalReliabilityArea] = LocalReliabilityAreaSerializer
 }
 
 object LocalReliabilityAreaSerializer extends CIMSerializer[LocalReliabilityArea]
@@ -4352,6 +4407,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MPMTestCategory] = MPMTestCategorySerializer
 }
 
 object MPMTestCategorySerializer extends CIMSerializer[MPMTestCategory]
@@ -4504,6 +4561,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MPMTestThreshold] = MPMTestThresholdSerializer
 }
 
 object MPMTestThresholdSerializer extends CIMSerializer[MPMTestThreshold]
@@ -4668,6 +4727,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MSSAggregation] = MSSAggregationSerializer
 }
 
 object MSSAggregationSerializer extends CIMSerializer[MSSAggregation]
@@ -4811,6 +4872,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MSSZone] = MSSZoneSerializer
 }
 
 object MSSZoneSerializer extends CIMSerializer[MSSZone]
@@ -5020,6 +5083,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketPerson] = MarketPersonSerializer
 }
 
 object MarketPersonSerializer extends CIMSerializer[MarketPerson]
@@ -5193,6 +5258,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketQualificationRequirement] = MarketQualificationRequirementSerializer
 }
 
 object MarketQualificationRequirementSerializer extends CIMSerializer[MarketQualificationRequirement]
@@ -5327,6 +5394,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketRegion] = MarketRegionSerializer
 }
 
 object MarketRegionSerializer extends CIMSerializer[MarketRegion]
@@ -5466,6 +5535,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketSkill] = MarketSkillSerializer
 }
 
 object MarketSkillSerializer extends CIMSerializer[MarketSkill]
@@ -5567,6 +5638,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[MaxStartUpCostCurve] = MaxStartUpCostCurveSerializer
 }
 
 object MaxStartUpCostCurveSerializer extends CIMSerializer[MaxStartUpCostCurve]
@@ -5682,6 +5755,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeteredSubSystem] = MeteredSubSystemSerializer
 }
 
 object MeteredSubSystemSerializer extends CIMSerializer[MeteredSubSystem]
@@ -5802,6 +5877,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktCombinedCyclePlant] = MktCombinedCyclePlantSerializer
 }
 
 object MktCombinedCyclePlantSerializer extends CIMSerializer[MktCombinedCyclePlant]
@@ -5895,6 +5972,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[MktConductingEquipment] = MktConductingEquipmentSerializer
 }
 
 object MktConductingEquipmentSerializer extends CIMSerializer[MktConductingEquipment]
@@ -6053,6 +6132,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktContingency] = MktContingencySerializer
 }
 
 object MktContingencySerializer extends CIMSerializer[MktContingency]
@@ -6182,6 +6263,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktHeatRateCurve] = MktHeatRateCurveSerializer
 }
 
 object MktHeatRateCurveSerializer extends CIMSerializer[MktHeatRateCurve]
@@ -6292,6 +6375,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktThermalGeneratingUnit] = MktThermalGeneratingUnitSerializer
 }
 
 object MktThermalGeneratingUnitSerializer extends CIMSerializer[MktThermalGeneratingUnit]
@@ -6407,6 +6492,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OilPrice] = OilPriceSerializer
 }
 
 object OilPriceSerializer extends CIMSerializer[OilPrice]
@@ -6524,6 +6611,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrgPnodeAllocation] = OrgPnodeAllocationSerializer
 }
 
 object OrgPnodeAllocationSerializer extends CIMSerializer[OrgPnodeAllocation]
@@ -6653,6 +6742,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrgResOwnership] = OrgResOwnershipSerializer
 }
 
 object OrgResOwnershipSerializer extends CIMSerializer[OrgResOwnership]
@@ -6875,6 +6966,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pnode] = PnodeSerializer
 }
 
 object PnodeSerializer extends CIMSerializer[Pnode]
@@ -7053,6 +7146,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PnodeDistributionFactor] = PnodeDistributionFactorSerializer
 }
 
 object PnodeDistributionFactorSerializer extends CIMSerializer[PnodeDistributionFactor]
@@ -7173,6 +7268,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RMRHeatRateCurve] = RMRHeatRateCurveSerializer
 }
 
 object RMRHeatRateCurveSerializer extends CIMSerializer[RMRHeatRateCurve]
@@ -7281,6 +7378,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RMRStartUpCostCurve] = RMRStartUpCostCurveSerializer
 }
 
 object RMRStartUpCostCurveSerializer extends CIMSerializer[RMRStartUpCostCurve]
@@ -7389,6 +7488,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RMRStartUpEnergyCurve] = RMRStartUpEnergyCurveSerializer
 }
 
 object RMRStartUpEnergyCurveSerializer extends CIMSerializer[RMRStartUpEnergyCurve]
@@ -7497,6 +7598,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RMRStartUpFuelCurve] = RMRStartUpFuelCurveSerializer
 }
 
 object RMRStartUpFuelCurveSerializer extends CIMSerializer[RMRStartUpFuelCurve]
@@ -7605,6 +7708,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RMRStartUpTimeCurve] = RMRStartUpTimeCurveSerializer
 }
 
 object RMRStartUpTimeCurveSerializer extends CIMSerializer[RMRStartUpTimeCurve]
@@ -7818,6 +7923,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RTO] = RTOSerializer
 }
 
 object RTOSerializer extends CIMSerializer[RTO]
@@ -7958,6 +8065,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RUCZone] = RUCZoneSerializer
 }
 
 object RUCZoneSerializer extends CIMSerializer[RUCZone]
@@ -8081,6 +8190,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegisteredDistributedResource] = RegisteredDistributedResourceSerializer
 }
 
 object RegisteredDistributedResourceSerializer extends CIMSerializer[RegisteredDistributedResource]
@@ -8670,6 +8781,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegisteredGenerator] = RegisteredGeneratorSerializer
 }
 
 object RegisteredGeneratorSerializer extends CIMSerializer[RegisteredGenerator]
@@ -8986,6 +9099,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegisteredInterTie] = RegisteredInterTieSerializer
 }
 
 object RegisteredInterTieSerializer extends CIMSerializer[RegisteredInterTie]
@@ -9142,6 +9257,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegisteredLoad] = RegisteredLoadSerializer
 }
 
 object RegisteredLoadSerializer extends CIMSerializer[RegisteredLoad]
@@ -9271,6 +9388,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegulatingLimit] = RegulatingLimitSerializer
 }
 
 object RegulatingLimitSerializer extends CIMSerializer[RegulatingLimit]
@@ -9401,6 +9520,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceCertification] = ResourceCertificationSerializer
 }
 
 object ResourceCertificationSerializer extends CIMSerializer[ResourceCertification]
@@ -9558,6 +9679,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceOperationMaintenanceCost] = ResourceOperationMaintenanceCostSerializer
 }
 
 object ResourceOperationMaintenanceCostSerializer extends CIMSerializer[ResourceOperationMaintenanceCost]
@@ -9777,6 +9900,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceStartupCost] = ResourceStartupCostSerializer
 }
 
 object ResourceStartupCostSerializer extends CIMSerializer[ResourceStartupCost]
@@ -9939,6 +10064,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceVerifiableCosts] = ResourceVerifiableCostsSerializer
 }
 
 object ResourceVerifiableCostsSerializer extends CIMSerializer[ResourceVerifiableCosts]
@@ -10080,6 +10207,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResponseMethod] = ResponseMethodSerializer
 }
 
 object ResponseMethodSerializer extends CIMSerializer[ResponseMethod]
@@ -10272,6 +10401,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SchedulingCoordinator] = SchedulingCoordinatorSerializer
 }
 
 object SchedulingCoordinatorSerializer extends CIMSerializer[SchedulingCoordinator]
@@ -10405,6 +10536,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SchedulingCoordinatorUser] = SchedulingCoordinatorUserSerializer
 }
 
 object SchedulingCoordinatorUserSerializer extends CIMSerializer[SchedulingCoordinatorUser]
@@ -10530,6 +10663,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SchedulingPoint] = SchedulingPointSerializer
 }
 
 object SchedulingPointSerializer extends CIMSerializer[SchedulingPoint]
@@ -10644,6 +10779,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartUpEnergyCurve] = StartUpEnergyCurveSerializer
 }
 
 object StartUpEnergyCurveSerializer extends CIMSerializer[StartUpEnergyCurve]
@@ -10752,6 +10889,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StartUpFuelCurve] = StartUpFuelCurveSerializer
 }
 
 object StartUpFuelCurveSerializer extends CIMSerializer[StartUpFuelCurve]
@@ -11065,6 +11204,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SubControlArea] = SubControlAreaSerializer
 }
 
 object SubControlAreaSerializer extends CIMSerializer[SubControlArea]
@@ -11250,6 +11391,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SubstitutionResourceList] = SubstitutionResourceListSerializer
 }
 
 object SubstitutionResourceListSerializer extends CIMSerializer[SubstitutionResourceList]
@@ -11371,6 +11514,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TACArea] = TACAreaSerializer
 }
 
 object TACAreaSerializer extends CIMSerializer[TACArea]
@@ -11498,6 +11643,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransmissionRightChain] = TransmissionRightChainSerializer
 }
 
 object TransmissionRightChainSerializer extends CIMSerializer[TransmissionRightChain]
@@ -11610,6 +11757,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WheelingCounterParty] = WheelingCounterPartySerializer
 }
 
 object WheelingCounterPartySerializer extends CIMSerializer[WheelingCounterParty]

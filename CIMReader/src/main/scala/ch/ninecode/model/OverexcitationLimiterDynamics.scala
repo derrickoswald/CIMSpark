@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -112,6 +113,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcLim2] = OverexcLim2Serializer
 }
 
 object OverexcLim2Serializer extends CIMSerializer[OverexcLim2]
@@ -262,6 +265,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcLimIEEE] = OverexcLimIEEESerializer
 }
 
 object OverexcLimIEEESerializer extends CIMSerializer[OverexcLimIEEE]
@@ -440,6 +445,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcLimX1] = OverexcLimX1Serializer
 }
 
 object OverexcLimX1Serializer extends CIMSerializer[OverexcLimX1]
@@ -634,6 +641,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcLimX2] = OverexcLimX2Serializer
 }
 
 object OverexcLimX2Serializer extends CIMSerializer[OverexcLimX2]
@@ -762,6 +771,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverexcitationLimiterDynamics] = OverexcitationLimiterDynamicsSerializer
 }
 
 object OverexcitationLimiterDynamicsSerializer extends CIMSerializer[OverexcitationLimiterDynamics]

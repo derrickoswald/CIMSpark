@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -93,6 +94,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquipmentFault] = EquipmentFaultSerializer
 }
 
 object EquipmentFaultSerializer extends CIMSerializer[EquipmentFault]
@@ -251,6 +254,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Fault] = FaultSerializer
 }
 
 object FaultSerializer extends CIMSerializer[Fault]
@@ -380,6 +385,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FaultCauseType] = FaultCauseTypeSerializer
 }
 
 object FaultCauseTypeSerializer extends CIMSerializer[FaultCauseType]
@@ -505,6 +512,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FaultImpedance] = FaultImpedanceSerializer
 }
 
 object FaultImpedanceSerializer extends CIMSerializer[FaultImpedance]
@@ -626,6 +635,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LineFault] = LineFaultSerializer
 }
 
 object LineFaultSerializer extends CIMSerializer[LineFault]

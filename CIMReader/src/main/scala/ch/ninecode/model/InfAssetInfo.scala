@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -99,6 +100,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetModelCatalogue] = AssetModelCatalogueSerializer
 }
 
 object AssetModelCatalogueSerializer extends CIMSerializer[AssetModelCatalogue]
@@ -240,6 +243,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetModelCatalogueItem] = AssetModelCatalogueItemSerializer
 }
 
 object AssetModelCatalogueItemSerializer extends CIMSerializer[AssetModelCatalogueItem]
@@ -352,6 +357,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BreakerInfo] = BreakerInfoSerializer
 }
 
 object BreakerInfoSerializer extends CIMSerializer[BreakerInfo]
@@ -505,6 +512,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CompositeSwitchInfo] = CompositeSwitchInfoSerializer
 }
 
 object CompositeSwitchInfoSerializer extends CIMSerializer[CompositeSwitchInfo]
@@ -716,6 +725,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentTransformerInfo] = CurrentTransformerInfoSerializer
 }
 
 object CurrentTransformerInfoSerializer extends CIMSerializer[CurrentTransformerInfo]
@@ -850,6 +861,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FaultIndicatorInfo] = FaultIndicatorInfoSerializer
 }
 
 object FaultIndicatorInfoSerializer extends CIMSerializer[FaultIndicatorInfo]
@@ -991,6 +1004,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldSwitchInfo] = OldSwitchInfoSerializer
 }
 
 object OldSwitchInfoSerializer extends CIMSerializer[OldSwitchInfo]
@@ -1119,6 +1134,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldTransformerEndInfo] = OldTransformerEndInfoSerializer
 }
 
 object OldTransformerEndInfoSerializer extends CIMSerializer[OldTransformerEndInfo]
@@ -1251,6 +1268,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldTransformerTankInfo] = OldTransformerTankInfoSerializer
 }
 
 object OldTransformerTankInfoSerializer extends CIMSerializer[OldTransformerTankInfo]
@@ -1402,6 +1421,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PotentialTransformerInfo] = PotentialTransformerInfoSerializer
 }
 
 object PotentialTransformerInfoSerializer extends CIMSerializer[PotentialTransformerInfo]
@@ -1524,6 +1545,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectionEquipmentInfo] = ProtectionEquipmentInfoSerializer
 }
 
 object ProtectionEquipmentInfoSerializer extends CIMSerializer[ProtectionEquipmentInfo]
@@ -1654,6 +1677,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RecloserInfo] = RecloserInfoSerializer
 }
 
 object RecloserInfoSerializer extends CIMSerializer[RecloserInfo]
@@ -1817,6 +1842,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SurgeArresterInfo] = SurgeArresterInfoSerializer
 }
 
 object SurgeArresterInfoSerializer extends CIMSerializer[SurgeArresterInfo]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -103,6 +104,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadAggregate] = LoadAggregateSerializer
 }
 
 object LoadAggregateSerializer extends CIMSerializer[LoadAggregate]
@@ -285,6 +288,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadComposite] = LoadCompositeSerializer
 }
 
 object LoadCompositeSerializer extends CIMSerializer[LoadComposite]
@@ -418,6 +423,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadDynamics] = LoadDynamicsSerializer
 }
 
 object LoadDynamicsSerializer extends CIMSerializer[LoadDynamics]
@@ -564,6 +571,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadGenericNonLinear] = LoadGenericNonLinearSerializer
 }
 
 object LoadGenericNonLinearSerializer extends CIMSerializer[LoadGenericNonLinear]
@@ -784,6 +793,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadMotor] = LoadMotorSerializer
 }
 
 object LoadMotorSerializer extends CIMSerializer[LoadMotor]
@@ -1042,6 +1053,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadStatic] = LoadStaticSerializer
 }
 
 object LoadStaticSerializer extends CIMSerializer[LoadStatic]

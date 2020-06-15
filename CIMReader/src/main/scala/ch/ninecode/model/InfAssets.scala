@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -118,6 +119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AssetPropertyCurve] = AssetPropertyCurveSerializer
 }
 
 object AssetPropertyCurveSerializer extends CIMSerializer[AssetPropertyCurve]
@@ -266,6 +269,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BushingInsulationPF] = BushingInsulationPFSerializer
 }
 
 object BushingInsulationPFSerializer extends CIMSerializer[BushingInsulationPF]
@@ -420,6 +425,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CoolingPowerRating] = CoolingPowerRatingSerializer
 }
 
 object CoolingPowerRatingSerializer extends CIMSerializer[CoolingPowerRating]
@@ -585,6 +592,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DimensionsInfo] = DimensionsInfoSerializer
 }
 
 object DimensionsInfoSerializer extends CIMSerializer[DimensionsInfo]
@@ -790,6 +799,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Pole] = PoleSerializer
 }
 
 object PoleSerializer extends CIMSerializer[Pole]
@@ -959,6 +970,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Reconditioning] = ReconditioningSerializer
 }
 
 object ReconditioningSerializer extends CIMSerializer[Reconditioning]
@@ -1111,6 +1124,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReliabilityInfo] = ReliabilityInfoSerializer
 }
 
 object ReliabilityInfoSerializer extends CIMSerializer[ReliabilityInfo]
@@ -1288,6 +1303,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Specification] = SpecificationSerializer
 }
 
 object SpecificationSerializer extends CIMSerializer[Specification]
@@ -1425,6 +1442,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Tower] = TowerSerializer
 }
 
 object TowerSerializer extends CIMSerializer[Tower]
@@ -1669,6 +1688,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransformerObservation] = TransformerObservationSerializer
 }
 
 object TransformerObservationSerializer extends CIMSerializer[TransformerObservation]
@@ -1846,6 +1867,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UndergroundStructure] = UndergroundStructureSerializer
 }
 
 object UndergroundStructureSerializer extends CIMSerializer[UndergroundStructure]
@@ -2017,6 +2040,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WindingInsulation] = WindingInsulationSerializer
 }
 
 object WindingInsulationSerializer extends CIMSerializer[WindingInsulation]

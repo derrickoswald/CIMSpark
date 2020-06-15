@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -210,6 +211,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscExcContIEEEDEC1A] = DiscExcContIEEEDEC1ASerializer
 }
 
 object DiscExcContIEEEDEC1ASerializer extends CIMSerializer[DiscExcContIEEEDEC1A]
@@ -377,6 +380,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscExcContIEEEDEC2A] = DiscExcContIEEEDEC2ASerializer
 }
 
 object DiscExcContIEEEDEC2ASerializer extends CIMSerializer[DiscExcContIEEEDEC2A]
@@ -500,6 +505,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscExcContIEEEDEC3A] = DiscExcContIEEEDEC3ASerializer
 }
 
 object DiscExcContIEEEDEC3ASerializer extends CIMSerializer[DiscExcContIEEEDEC3A]
@@ -618,6 +625,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DiscontinuousExcitationControlDynamics] = DiscontinuousExcitationControlDynamicsSerializer
 }
 
 object DiscontinuousExcitationControlDynamicsSerializer extends CIMSerializer[DiscontinuousExcitationControlDynamics]

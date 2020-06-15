@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -118,6 +119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DERCurveData] = DERCurveDataSerializer
 }
 
 object DERCurveDataSerializer extends CIMSerializer[DERCurveData]
@@ -279,6 +282,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DERFunction] = DERFunctionSerializer
 }
 
 object DERFunctionSerializer extends CIMSerializer[DERFunction]
@@ -400,6 +405,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DERGroupDispatch] = DERGroupDispatchSerializer
 }
 
 object DERGroupDispatchSerializer extends CIMSerializer[DERGroupDispatch]
@@ -509,6 +516,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DERGroupForecast] = DERGroupForecastSerializer
 }
 
 object DERGroupForecastSerializer extends CIMSerializer[DERGroupForecast]
@@ -658,6 +667,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DERMonitorableParameter] = DERMonitorableParameterSerializer
 }
 
 object DERMonitorableParameterSerializer extends CIMSerializer[DERMonitorableParameter]
@@ -815,6 +826,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DispatchSchedule] = DispatchScheduleSerializer
 }
 
 object DispatchScheduleSerializer extends CIMSerializer[DispatchSchedule]
@@ -984,6 +997,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DispatchablePowerCapability] = DispatchablePowerCapabilitySerializer
 }
 
 object DispatchablePowerCapabilitySerializer extends CIMSerializer[DispatchablePowerCapability]

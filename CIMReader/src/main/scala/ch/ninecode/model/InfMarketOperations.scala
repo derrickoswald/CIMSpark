@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -137,6 +138,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BilateralTransaction] = BilateralTransactionSerializer
 }
 
 object BilateralTransactionSerializer extends CIMSerializer[BilateralTransaction]
@@ -256,6 +259,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Participation] = ParticipationSerializer
 }
 
 object ParticipationSerializer extends CIMSerializer[Participation]
@@ -445,6 +450,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceCertification2] = ResourceCertification2Serializer
 }
 
 object ResourceCertification2Serializer extends CIMSerializer[ResourceCertification2]

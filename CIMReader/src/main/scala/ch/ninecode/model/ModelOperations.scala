@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -98,6 +99,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DatasetArg] = DatasetArgSerializer
 }
 
 object DatasetArgSerializer extends CIMSerializer[DatasetArg]
@@ -203,6 +206,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DatasetArgDescription] = DatasetArgDescriptionSerializer
 }
 
 object DatasetArgDescriptionSerializer extends CIMSerializer[DatasetArgDescription]
@@ -317,6 +322,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IncrementalDatasetArg] = IncrementalDatasetArgSerializer
 }
 
 object IncrementalDatasetArgSerializer extends CIMSerializer[IncrementalDatasetArg]
@@ -422,6 +429,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IncrementalDatasetArgDescription] = IncrementalDatasetArgDescriptionSerializer
 }
 
 object IncrementalDatasetArgDescriptionSerializer extends CIMSerializer[IncrementalDatasetArgDescription]
@@ -552,6 +561,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelOperation] = ModelOperationSerializer
 }
 
 object ModelOperationSerializer extends CIMSerializer[ModelOperation]
@@ -675,6 +686,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelOperationArg] = ModelOperationArgSerializer
 }
 
 object ModelOperationArgSerializer extends CIMSerializer[ModelOperationArg]
@@ -800,6 +813,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelOperationArgDescription] = ModelOperationArgDescriptionSerializer
 }
 
 object ModelOperationArgDescriptionSerializer extends CIMSerializer[ModelOperationArgDescription]
@@ -920,6 +935,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelOperationDescription] = ModelOperationDescriptionSerializer
 }
 
 object ModelOperationDescriptionSerializer extends CIMSerializer[ModelOperationDescription]
@@ -1031,6 +1048,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ModelOperationSequence] = ModelOperationSequenceSerializer
 }
 
 object ModelOperationSequenceSerializer extends CIMSerializer[ModelOperationSequence]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -88,6 +89,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ADSInstructionTypeCommitment] = ADSInstructionTypeCommitmentSerializer
 }
 
 object ADSInstructionTypeCommitmentSerializer extends CIMSerializer[ADSInstructionTypeCommitment]
@@ -209,6 +212,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ADSInstructionTypeOOS] = ADSInstructionTypeOOSSerializer
 }
 
 object ADSInstructionTypeOOSSerializer extends CIMSerializer[ADSInstructionTypeOOS]
@@ -325,6 +330,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AdderType] = AdderTypeSerializer
 }
 
 object AdderTypeSerializer extends CIMSerializer[AdderType]
@@ -437,6 +444,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AlarmDisplayType] = AlarmDisplayTypeSerializer
 }
 
 object AlarmDisplayTypeSerializer extends CIMSerializer[AlarmDisplayType]
@@ -716,6 +725,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AllocationEnergyTypeCode] = AllocationEnergyTypeCodeSerializer
 }
 
 object AllocationEnergyTypeCodeSerializer extends CIMSerializer[AllocationEnergyTypeCode]
@@ -908,6 +919,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AncillaryCommodityType] = AncillaryCommodityTypeSerializer
 }
 
 object AncillaryCommodityTypeSerializer extends CIMSerializer[AncillaryCommodityType]
@@ -1024,6 +1037,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidPriceCapType] = BidPriceCapTypeSerializer
 }
 
 object BidPriceCapTypeSerializer extends CIMSerializer[BidPriceCapType]
@@ -1158,6 +1173,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CleanTradeProductType] = CleanTradeProductTypeSerializer
 }
 
 object CleanTradeProductTypeSerializer extends CIMSerializer[CleanTradeProductType]
@@ -1282,6 +1299,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentStatusSC] = CurrentStatusSCSerializer
 }
 
 object CurrentStatusSCSerializer extends CIMSerializer[CurrentStatusSC]
@@ -1384,6 +1403,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DAMMarketType] = DAMMarketTypeSerializer
 }
 
 object DAMMarketTypeSerializer extends CIMSerializer[DAMMarketType]
@@ -1509,6 +1530,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DispatchAcceptStatus] = DispatchAcceptStatusSerializer
 }
 
 object DispatchAcceptStatusSerializer extends CIMSerializer[DispatchAcceptStatus]
@@ -1624,6 +1647,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DispatchTransactionType] = DispatchTransactionTypeSerializer
 }
 
 object DispatchTransactionTypeSerializer extends CIMSerializer[DispatchTransactionType]
@@ -1851,6 +1876,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyTypeCode] = EnergyTypeCodeSerializer
 }
 
 object EnergyTypeCodeSerializer extends CIMSerializer[EnergyTypeCode]
@@ -1995,6 +2022,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[JobFlagType] = JobFlagTypeSerializer
 }
 
 object JobFlagTypeSerializer extends CIMSerializer[JobFlagType]
@@ -2104,6 +2133,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[JobScheduleType] = JobScheduleTypeSerializer
 }
 
 object JobScheduleTypeSerializer extends CIMSerializer[JobScheduleType]
@@ -2216,6 +2247,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[JobStartEndType] = JobStartEndTypeSerializer
 }
 
 object JobStartEndTypeSerializer extends CIMSerializer[JobStartEndType]
@@ -2325,6 +2358,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LFCResourceType] = LFCResourceTypeSerializer
 }
 
 object LFCResourceTypeSerializer extends CIMSerializer[LFCResourceType]
@@ -2432,6 +2467,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadFollowingCapacityType] = LoadFollowingCapacityTypeSerializer
 }
 
 object LoadFollowingCapacityTypeSerializer extends CIMSerializer[LoadFollowingCapacityType]
@@ -2553,6 +2590,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MQSDELType] = MQSDELTypeSerializer
 }
 
 object MQSDELTypeSerializer extends CIMSerializer[MQSDELType]
@@ -2690,6 +2729,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketProductTypeAsReq] = MarketProductTypeAsReqSerializer
 }
 
 object MarketProductTypeAsReqSerializer extends CIMSerializer[MarketProductTypeAsReq]
@@ -2818,6 +2859,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketScheduleServices] = MarketScheduleServicesSerializer
 }
 
 object MarketScheduleServicesSerializer extends CIMSerializer[MarketScheduleServices]
@@ -2954,6 +2997,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketStatementDescription] = MarketStatementDescriptionSerializer
 }
 
 object MarketStatementDescriptionSerializer extends CIMSerializer[MarketStatementDescription]
@@ -3072,6 +3117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketStatementDocStatus] = MarketStatementDocStatusSerializer
 }
 
 object MarketStatementDocStatusSerializer extends CIMSerializer[MarketStatementDocStatus]
@@ -3190,6 +3237,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketStatementDocType] = MarketStatementDocTypeSerializer
 }
 
 object MarketStatementDocTypeSerializer extends CIMSerializer[MarketStatementDocType]
@@ -3328,6 +3377,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketStatementLineItemAliasName] = MarketStatementLineItemAliasNameSerializer
 }
 
 object MarketStatementLineItemAliasNameSerializer extends CIMSerializer[MarketStatementLineItemAliasName]
@@ -3548,6 +3599,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementTypeEMS] = MeasurementTypeEMSSerializer
 }
 
 object MeasurementTypeEMSSerializer extends CIMSerializer[MeasurementTypeEMS]
@@ -3733,6 +3786,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktSubClassType] = MktSubClassTypeSerializer
 }
 
 object MktSubClassTypeSerializer extends CIMSerializer[MktSubClassType]
@@ -3855,6 +3910,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISBidReportType] = OASISBidReportTypeSerializer
 }
 
 object OASISBidReportTypeSerializer extends CIMSerializer[OASISBidReportType]
@@ -4480,6 +4537,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISDataItems] = OASISDataItemsSerializer
 }
 
 object OASISDataItemsSerializer extends CIMSerializer[OASISDataItems]
@@ -4840,6 +4899,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISErrCode] = OASISErrCodeSerializer
 }
 
 object OASISErrCodeSerializer extends CIMSerializer[OASISErrCode]
@@ -5005,6 +5066,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISErrDescription] = OASISErrDescriptionSerializer
 }
 
 object OASISErrDescriptionSerializer extends CIMSerializer[OASISErrDescription]
@@ -5128,6 +5191,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISIntervalType] = OASISIntervalTypeSerializer
 }
 
 object OASISIntervalTypeSerializer extends CIMSerializer[OASISIntervalType]
@@ -5255,6 +5320,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISMarketType] = OASISMarketTypeSerializer
 }
 
 object OASISMarketTypeSerializer extends CIMSerializer[OASISMarketType]
@@ -5455,6 +5522,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISMasterType] = OASISMasterTypeSerializer
 }
 
 object OASISMasterTypeSerializer extends CIMSerializer[OASISMasterType]
@@ -5631,6 +5700,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISMeasType] = OASISMeasTypeSerializer
 }
 
 object OASISMeasTypeSerializer extends CIMSerializer[OASISMeasType]
@@ -5882,6 +5953,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISReportType] = OASISReportTypeSerializer
 }
 
 object OASISReportTypeSerializer extends CIMSerializer[OASISReportType]
@@ -6061,6 +6134,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OASISStatusType] = OASISStatusTypeSerializer
 }
 
 object OASISStatusTypeSerializer extends CIMSerializer[OASISStatusType]
@@ -6193,6 +6268,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrganisationCode] = OrganisationCodeSerializer
 }
 
 object OrganisationCodeSerializer extends CIMSerializer[OrganisationCode]
@@ -6309,6 +6386,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrganisationType] = OrganisationTypeSerializer
 }
 
 object OrganisationTypeSerializer extends CIMSerializer[OrganisationType]
@@ -6430,6 +6509,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PriceSetFlag] = PriceSetFlagSerializer
 }
 
 object PriceSetFlagSerializer extends CIMSerializer[PriceSetFlag]
@@ -6546,6 +6627,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RequestorRmrTest] = RequestorRmrTestSerializer
 }
 
 object RequestorRmrTestSerializer extends CIMSerializer[RequestorRmrTest]
@@ -6663,6 +6746,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceCertificationCategory] = ResourceCertificationCategorySerializer
 }
 
 object ResourceCertificationCategorySerializer extends CIMSerializer[ResourceCertificationCategory]
@@ -6789,6 +6874,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ResourceCertificationType] = ResourceCertificationTypeSerializer
 }
 
 object ResourceCertificationTypeSerializer extends CIMSerializer[ResourceCertificationType]
@@ -6907,6 +6994,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SchedClassType] = SchedClassTypeSerializer
 }
 
 object SchedClassTypeSerializer extends CIMSerializer[SchedClassType]
@@ -7016,6 +7105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SegmentCurveType] = SegmentCurveTypeSerializer
 }
 
 object SegmentCurveTypeSerializer extends CIMSerializer[SegmentCurveType]
@@ -7168,6 +7259,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SelfSchedTypeCleanBid] = SelfSchedTypeCleanBidSerializer
 }
 
 object SelfSchedTypeCleanBidSerializer extends CIMSerializer[SelfSchedTypeCleanBid]
@@ -7333,6 +7426,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SelfSchedTypeRawBid] = SelfSchedTypeRawBidSerializer
 }
 
 object SelfSchedTypeRawBidSerializer extends CIMSerializer[SelfSchedTypeRawBid]
@@ -7555,6 +7650,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SelfScheduleType] = SelfScheduleTypeSerializer
 }
 
 object SelfScheduleTypeSerializer extends CIMSerializer[SelfScheduleType]
@@ -7689,6 +7786,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SelfScheduleTypeMB] = SelfScheduleTypeMBSerializer
 }
 
 object SelfScheduleTypeMBSerializer extends CIMSerializer[SelfScheduleTypeMB]
@@ -7794,6 +7893,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SourceSinkFlag] = SourceSinkFlagSerializer
 }
 
 object SourceSinkFlagSerializer extends CIMSerializer[SourceSinkFlag]
@@ -7906,6 +8007,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SourceSinkType] = SourceSinkTypeSerializer
 }
 
 object SourceSinkTypeSerializer extends CIMSerializer[SourceSinkType]
@@ -8025,6 +8128,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SpinningEventNameType] = SpinningEventNameTypeSerializer
 }
 
 object SpinningEventNameTypeSerializer extends CIMSerializer[SpinningEventNameType]
@@ -8141,6 +8246,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SpinningEventType] = SpinningEventTypeSerializer
 }
 
 object SpinningEventTypeSerializer extends CIMSerializer[SpinningEventType]
@@ -8245,6 +8352,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SystemType] = SystemTypeSerializer
 }
 
 object SystemTypeSerializer extends CIMSerializer[SystemType]
@@ -8345,6 +8454,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimeZoneType] = TimeZoneTypeSerializer
 }
 
 object TimeZoneTypeSerializer extends CIMSerializer[TimeZoneType]
@@ -8475,6 +8586,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TradeProductType] = TradeProductTypeSerializer
 }
 
 object TradeProductTypeSerializer extends CIMSerializer[TradeProductType]
@@ -8637,6 +8750,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UOMType] = UOMTypeSerializer
 }
 
 object UOMTypeSerializer extends CIMSerializer[UOMType]
@@ -8769,6 +8884,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[UnitTypeEMS] = UnitTypeEMSSerializer
 }
 
 object UnitTypeEMSSerializer extends CIMSerializer[UnitTypeEMS]
@@ -8899,6 +9016,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ZoneType] = ZoneTypeSerializer
 }
 
 object ZoneTypeSerializer extends CIMSerializer[ZoneType]
@@ -9019,6 +9138,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[runTypeCAISO] = runTypeCAISOSerializer
 }
 
 object runTypeCAISOSerializer extends CIMSerializer[runTypeCAISO]

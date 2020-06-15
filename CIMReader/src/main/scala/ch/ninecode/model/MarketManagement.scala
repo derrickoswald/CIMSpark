@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -112,6 +113,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AceTariffType] = AceTariffTypeSerializer
 }
 
 object AceTariffTypeSerializer extends CIMSerializer[AceTariffType]
@@ -252,6 +255,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AttributeInstanceComponent] = AttributeInstanceComponentSerializer
 }
 
 object AttributeInstanceComponentSerializer extends CIMSerializer[AttributeInstanceComponent]
@@ -405,6 +410,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Auction] = AuctionSerializer
 }
 
 object AuctionSerializer extends CIMSerializer[Auction]
@@ -574,6 +581,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BidTimeSeries] = BidTimeSeriesSerializer
 }
 
 object BidTimeSeriesSerializer extends CIMSerializer[BidTimeSeries]
@@ -711,6 +720,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConstraintDuration] = ConstraintDurationSerializer
 }
 
 object ConstraintDurationSerializer extends CIMSerializer[ConstraintDuration]
@@ -843,6 +854,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DateAndOrTime] = DateAndOrTimeSerializer
 }
 
 object DateAndOrTimeSerializer extends CIMSerializer[DateAndOrTime]
@@ -985,6 +998,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Domain] = DomainSerializer
 }
 
 object DomainSerializer extends CIMSerializer[Domain]
@@ -1115,6 +1130,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[FlowDirection] = FlowDirectionSerializer
 }
 
 object FlowDirectionSerializer extends CIMSerializer[FlowDirection]
@@ -1210,6 +1227,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[MarketAgreement] = MarketAgreementSerializer
 }
 
 object MarketAgreementSerializer extends CIMSerializer[MarketAgreement]
@@ -1387,6 +1406,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketDocument] = MarketDocumentSerializer
 }
 
 object MarketDocumentSerializer extends CIMSerializer[MarketDocument]
@@ -1515,6 +1536,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketEvaluationPoint] = MarketEvaluationPointSerializer
 }
 
 object MarketEvaluationPointSerializer extends CIMSerializer[MarketEvaluationPoint]
@@ -1637,6 +1660,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketObjectStatus] = MarketObjectStatusSerializer
 }
 
 object MarketObjectStatusSerializer extends CIMSerializer[MarketObjectStatus]
@@ -1756,6 +1781,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MktPSRType] = MktPSRTypeSerializer
 }
 
 object MktPSRTypeSerializer extends CIMSerializer[MktPSRType]
@@ -1901,6 +1928,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Period] = PeriodSerializer
 }
 
 object PeriodSerializer extends CIMSerializer[Period]
@@ -2088,6 +2117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Point] = PointSerializer
 }
 
 object PointSerializer extends CIMSerializer[Point]
@@ -2251,6 +2282,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Price] = PriceSerializer
 }
 
 object PriceSerializer extends CIMSerializer[Price]
@@ -2383,6 +2416,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Process] = ProcessSerializer
 }
 
 object ProcessSerializer extends CIMSerializer[Process]
@@ -2541,6 +2576,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Quantity] = QuantitySerializer
 }
 
 object QuantitySerializer extends CIMSerializer[Quantity]
@@ -2702,6 +2739,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Reason] = ReasonSerializer
 }
 
 object ReasonSerializer extends CIMSerializer[Reason]
@@ -2848,6 +2887,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Series] = SeriesSerializer
 }
 
 object SeriesSerializer extends CIMSerializer[Series]
@@ -3127,6 +3168,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TimeSeries] = TimeSeriesSerializer
 }
 
 object TimeSeriesSerializer extends CIMSerializer[TimeSeries]
@@ -3297,6 +3340,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Unit_] = Unit_Serializer
 }
 
 object Unit_Serializer extends CIMSerializer[Unit_]

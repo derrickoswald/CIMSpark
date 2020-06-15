@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -225,6 +226,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ACDCConverter] = ACDCConverterSerializer
 }
 
 object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
@@ -377,6 +380,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ACDCConverterDCTerminal] = ACDCConverterDCTerminalSerializer
 }
 
 object ACDCConverterDCTerminalSerializer extends CIMSerializer[ACDCConverterDCTerminal]
@@ -585,6 +590,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CsConverter] = CsConverterSerializer
 }
 
 object CsConverterSerializer extends CIMSerializer[CsConverter]
@@ -731,6 +738,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCBaseTerminal] = DCBaseTerminalSerializer
 }
 
 object DCBaseTerminalSerializer extends CIMSerializer[DCBaseTerminal]
@@ -824,6 +833,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DCBreaker] = DCBreakerSerializer
 }
 
 object DCBreakerSerializer extends CIMSerializer[DCBreaker]
@@ -914,6 +925,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DCBusbar] = DCBusbarSerializer
 }
 
 object DCBusbarSerializer extends CIMSerializer[DCBusbar]
@@ -1006,6 +1019,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DCChopper] = DCChopperSerializer
 }
 
 object DCChopperSerializer extends CIMSerializer[DCChopper]
@@ -1128,6 +1143,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCConductingEquipment] = DCConductingEquipmentSerializer
 }
 
 object DCConductingEquipmentSerializer extends CIMSerializer[DCConductingEquipment]
@@ -1246,6 +1263,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCConverterUnit] = DCConverterUnitSerializer
 }
 
 object DCConverterUnitSerializer extends CIMSerializer[DCConverterUnit]
@@ -1339,6 +1358,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DCDisconnector] = DCDisconnectorSerializer
 }
 
 object DCDisconnectorSerializer extends CIMSerializer[DCDisconnector]
@@ -1455,6 +1476,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCEquipmentContainer] = DCEquipmentContainerSerializer
 }
 
 object DCEquipmentContainerSerializer extends CIMSerializer[DCEquipmentContainer]
@@ -1568,6 +1591,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCGround] = DCGroundSerializer
 }
 
 object DCGroundSerializer extends CIMSerializer[DCGround]
@@ -1678,6 +1703,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCLine] = DCLineSerializer
 }
 
 object DCLineSerializer extends CIMSerializer[DCLine]
@@ -1813,6 +1840,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCLineSegment] = DCLineSegmentSerializer
 }
 
 object DCLineSegmentSerializer extends CIMSerializer[DCLineSegment]
@@ -1945,6 +1974,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCNode] = DCNodeSerializer
 }
 
 object DCNodeSerializer extends CIMSerializer[DCNode]
@@ -2062,6 +2093,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCSeriesDevice] = DCSeriesDeviceSerializer
 }
 
 object DCSeriesDeviceSerializer extends CIMSerializer[DCSeriesDevice]
@@ -2177,6 +2210,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCShunt] = DCShuntSerializer
 }
 
 object DCShuntSerializer extends CIMSerializer[DCShunt]
@@ -2270,6 +2305,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DCSwitch] = DCSwitchSerializer
 }
 
 object DCSwitchSerializer extends CIMSerializer[DCSwitch]
@@ -2377,6 +2414,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCTerminal] = DCTerminalSerializer
 }
 
 object DCTerminalSerializer extends CIMSerializer[DCTerminal]
@@ -2489,6 +2528,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCTopologicalIsland] = DCTopologicalIslandSerializer
 }
 
 object DCTopologicalIslandSerializer extends CIMSerializer[DCTopologicalIsland]
@@ -2621,6 +2662,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DCTopologicalNode] = DCTopologicalNodeSerializer
 }
 
 object DCTopologicalNodeSerializer extends CIMSerializer[DCTopologicalNode]
@@ -2754,6 +2797,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PerLengthDCLineParameter] = PerLengthDCLineParameterSerializer
 }
 
 object PerLengthDCLineParameterSerializer extends CIMSerializer[PerLengthDCLineParameter]
@@ -2868,6 +2913,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VsCapabilityCurve] = VsCapabilityCurveSerializer
 }
 
 object VsCapabilityCurveSerializer extends CIMSerializer[VsCapabilityCurve]
@@ -3056,6 +3103,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VsConverter] = VsConverterSerializer
 }
 
 object VsConverterSerializer extends CIMSerializer[VsConverter]

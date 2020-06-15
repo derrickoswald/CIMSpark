@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -98,6 +99,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CRRMarket] = CRRMarketSerializer
 }
 
 object CRRMarketSerializer extends CIMSerializer[CRRMarket]
@@ -250,6 +253,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CommodityDefinition] = CommodityDefinitionSerializer
 }
 
 object CommodityDefinitionSerializer extends CIMSerializer[CommodityDefinition]
@@ -394,6 +399,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DistributedResourceActualEvent] = DistributedResourceActualEventSerializer
 }
 
 object DistributedResourceActualEventSerializer extends CIMSerializer[DistributedResourceActualEvent]
@@ -539,6 +546,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyMarket] = EnergyMarketSerializer
 }
 
 object EnergyMarketSerializer extends CIMSerializer[EnergyMarket]
@@ -740,6 +749,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Market] = MarketSerializer
 }
 
 object MarketSerializer extends CIMSerializer[Market]
@@ -911,6 +922,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketActualEvent] = MarketActualEventSerializer
 }
 
 object MarketActualEventSerializer extends CIMSerializer[MarketActualEvent]
@@ -1052,6 +1065,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketFactors] = MarketFactorsSerializer
 }
 
 object MarketFactorsSerializer extends CIMSerializer[MarketFactors]
@@ -1173,6 +1188,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketPlan] = MarketPlanSerializer
 }
 
 object MarketPlanSerializer extends CIMSerializer[MarketPlan]
@@ -1356,6 +1373,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketProduct] = MarketProductSerializer
 }
 
 object MarketProductSerializer extends CIMSerializer[MarketProduct]
@@ -1551,6 +1570,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MarketRun] = MarketRunSerializer
 }
 
 object MarketRunSerializer extends CIMSerializer[MarketRun]
@@ -1715,6 +1736,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PlannedMarket] = PlannedMarketSerializer
 }
 
 object PlannedMarketSerializer extends CIMSerializer[PlannedMarket]
@@ -1856,6 +1879,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PlannedMarketEvent] = PlannedMarketEventSerializer
 }
 
 object PlannedMarketEventSerializer extends CIMSerializer[PlannedMarketEvent]

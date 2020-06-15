@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -93,6 +94,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConformLoad] = ConformLoadSerializer
 }
 
 object ConformLoadSerializer extends CIMSerializer[ConformLoad]
@@ -210,6 +213,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConformLoadGroup] = ConformLoadGroupSerializer
 }
 
 object ConformLoadGroupSerializer extends CIMSerializer[ConformLoadGroup]
@@ -324,6 +329,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConformLoadSchedule] = ConformLoadScheduleSerializer
 }
 
 object ConformLoadScheduleSerializer extends CIMSerializer[ConformLoadSchedule]
@@ -436,6 +443,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DayType] = DayTypeSerializer
 }
 
 object DayTypeSerializer extends CIMSerializer[DayType]
@@ -548,6 +557,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyArea] = EnergyAreaSerializer
 }
 
 object EnergyAreaSerializer extends CIMSerializer[EnergyArea]
@@ -658,6 +669,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadArea] = LoadAreaSerializer
 }
 
 object LoadAreaSerializer extends CIMSerializer[LoadArea]
@@ -768,6 +781,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadGroup] = LoadGroupSerializer
 }
 
 object LoadGroupSerializer extends CIMSerializer[LoadGroup]
@@ -968,6 +983,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LoadResponseCharacteristic] = LoadResponseCharacteristicSerializer
 }
 
 object LoadResponseCharacteristicSerializer extends CIMSerializer[LoadResponseCharacteristic]
@@ -1100,6 +1117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonConformLoad] = NonConformLoadSerializer
 }
 
 object NonConformLoadSerializer extends CIMSerializer[NonConformLoad]
@@ -1217,6 +1236,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonConformLoadGroup] = NonConformLoadGroupSerializer
 }
 
 object NonConformLoadGroupSerializer extends CIMSerializer[NonConformLoadGroup]
@@ -1329,6 +1350,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonConformLoadSchedule] = NonConformLoadScheduleSerializer
 }
 
 object NonConformLoadScheduleSerializer extends CIMSerializer[NonConformLoadSchedule]
@@ -1452,6 +1475,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerCutZone] = PowerCutZoneSerializer
 }
 
 object PowerCutZoneSerializer extends CIMSerializer[PowerCutZone]
@@ -1586,6 +1611,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Season] = SeasonSerializer
 }
 
 object SeasonSerializer extends CIMSerializer[Season]
@@ -1709,6 +1736,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SeasonDayTypeSchedule] = SeasonDayTypeScheduleSerializer
 }
 
 object SeasonDayTypeScheduleSerializer extends CIMSerializer[SeasonDayTypeSchedule]
@@ -1804,6 +1833,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[StationSupply] = StationSupplySerializer
 }
 
 object StationSupplySerializer extends CIMSerializer[StationSupply]
@@ -1921,6 +1952,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SubLoadArea] = SubLoadAreaSerializer
 }
 
 object SubLoadAreaSerializer extends CIMSerializer[SubLoadArea]

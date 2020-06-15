@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -154,6 +155,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Gate] = GateSerializer
 }
 
 object GateSerializer extends CIMSerializer[Gate]
@@ -320,6 +323,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GateInputPin] = GateInputPinSerializer
 }
 
 object GateInputPinSerializer extends CIMSerializer[GateInputPin]
@@ -454,6 +459,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementCalculator] = MeasurementCalculatorSerializer
 }
 
 object MeasurementCalculatorSerializer extends CIMSerializer[MeasurementCalculator]
@@ -589,6 +596,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MeasurementCalculatorInput] = MeasurementCalculatorInputSerializer
 }
 
 object MeasurementCalculatorInputSerializer extends CIMSerializer[MeasurementCalculatorInput]
@@ -709,6 +718,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PinBranchGroup] = PinBranchGroupSerializer
 }
 
 object PinBranchGroupSerializer extends CIMSerializer[PinBranchGroup]
@@ -825,6 +836,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PinEquipment] = PinEquipmentSerializer
 }
 
 object PinEquipmentSerializer extends CIMSerializer[PinEquipment]
@@ -935,6 +948,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PinGate] = PinGateSerializer
 }
 
 object PinGateSerializer extends CIMSerializer[PinGate]
@@ -1050,6 +1065,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PinMeasurement] = PinMeasurementSerializer
 }
 
 object PinMeasurementSerializer extends CIMSerializer[PinMeasurement]
@@ -1166,6 +1183,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PinTerminal] = PinTerminalSerializer
 }
 
 object PinTerminalSerializer extends CIMSerializer[PinTerminal]
@@ -1311,6 +1330,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectiveAction] = ProtectiveActionSerializer
 }
 
 object ProtectiveActionSerializer extends CIMSerializer[ProtectiveAction]
@@ -1478,6 +1499,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectiveActionAdjustment] = ProtectiveActionAdjustmentSerializer
 }
 
 object ProtectiveActionAdjustmentSerializer extends CIMSerializer[ProtectiveActionAdjustment]
@@ -1607,6 +1630,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectiveActionCollection] = ProtectiveActionCollectionSerializer
 }
 
 object ProtectiveActionCollectionSerializer extends CIMSerializer[ProtectiveActionCollection]
@@ -1724,6 +1749,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectiveActionEquipment] = ProtectiveActionEquipmentSerializer
 }
 
 object ProtectiveActionEquipmentSerializer extends CIMSerializer[ProtectiveActionEquipment]
@@ -1848,6 +1875,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ProtectiveActionRegulation] = ProtectiveActionRegulationSerializer
 }
 
 object ProtectiveActionRegulationSerializer extends CIMSerializer[ProtectiveActionRegulation]
@@ -1995,6 +2024,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RemedialActionScheme] = RemedialActionSchemeSerializer
 }
 
 object RemedialActionSchemeSerializer extends CIMSerializer[RemedialActionScheme]
@@ -2129,6 +2160,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Stage] = StageSerializer
 }
 
 object StageSerializer extends CIMSerializer[Stage]
@@ -2290,6 +2323,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[StageTrigger] = StageTriggerSerializer
 }
 
 object StageTriggerSerializer extends CIMSerializer[StageTrigger]
@@ -2419,6 +2454,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TriggerCondition] = TriggerConditionSerializer
 }
 
 object TriggerConditionSerializer extends CIMSerializer[TriggerCondition]

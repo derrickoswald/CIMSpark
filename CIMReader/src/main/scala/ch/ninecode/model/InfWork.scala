@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -124,6 +125,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AccessPermit] = AccessPermitSerializer
 }
 
 object AccessPermitSerializer extends CIMSerializer[AccessPermit]
@@ -259,6 +262,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Assignment] = AssignmentSerializer
 }
 
 object AssignmentSerializer extends CIMSerializer[Assignment]
@@ -393,6 +398,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BusinessCase] = BusinessCaseSerializer
 }
 
 object BusinessCaseSerializer extends CIMSerializer[BusinessCase]
@@ -522,6 +529,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CUAllowableAction] = CUAllowableActionSerializer
 }
 
 object CUAllowableActionSerializer extends CIMSerializer[CUAllowableAction]
@@ -662,6 +671,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CUContractorItem] = CUContractorItemSerializer
 }
 
 object CUContractorItemSerializer extends CIMSerializer[CUContractorItem]
@@ -814,6 +825,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CUGroup] = CUGroupSerializer
 }
 
 object CUGroupSerializer extends CIMSerializer[CUGroup]
@@ -954,6 +967,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CULaborCode] = CULaborCodeSerializer
 }
 
 object CULaborCodeSerializer extends CIMSerializer[CULaborCode]
@@ -1116,6 +1131,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CULaborItem] = CULaborItemSerializer
 }
 
 object CULaborItemSerializer extends CIMSerializer[CULaborItem]
@@ -1282,6 +1299,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CUMaterialItem] = CUMaterialItemSerializer
 }
 
 object CUMaterialItemSerializer extends CIMSerializer[CUMaterialItem]
@@ -1437,6 +1456,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CUWorkEquipmentItem] = CUWorkEquipmentItemSerializer
 }
 
 object CUWorkEquipmentItemSerializer extends CIMSerializer[CUWorkEquipmentItem]
@@ -1603,6 +1624,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Capability] = CapabilitySerializer
 }
 
 object CapabilitySerializer extends CIMSerializer[Capability]
@@ -1817,6 +1840,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CompatibleUnit] = CompatibleUnitSerializer
 }
 
 object CompatibleUnitSerializer extends CIMSerializer[CompatibleUnit]
@@ -1993,6 +2018,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConditionFactor] = ConditionFactorSerializer
 }
 
 object ConditionFactorSerializer extends CIMSerializer[ConditionFactor]
@@ -2161,6 +2188,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ContractorItem] = ContractorItemSerializer
 }
 
 object ContractorItemSerializer extends CIMSerializer[ContractorItem]
@@ -2353,6 +2382,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CostType] = CostTypeSerializer
 }
 
 object CostTypeSerializer extends CIMSerializer[CostType]
@@ -2560,6 +2591,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Design] = DesignSerializer
 }
 
 object DesignSerializer extends CIMSerializer[Design]
@@ -2749,6 +2782,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DesignLocation] = DesignLocationSerializer
 }
 
 object DesignLocationSerializer extends CIMSerializer[DesignLocation]
@@ -2961,6 +2996,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DesignLocationCU] = DesignLocationCUSerializer
 }
 
 object DesignLocationCUSerializer extends CIMSerializer[DesignLocationCU]
@@ -3139,6 +3176,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InfoQuestion] = InfoQuestionSerializer
 }
 
 object InfoQuestionSerializer extends CIMSerializer[InfoQuestion]
@@ -3316,6 +3355,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LaborItem] = LaborItemSerializer
 }
 
 object LaborItemSerializer extends CIMSerializer[LaborItem]
@@ -3501,6 +3542,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[MiscCostItem] = MiscCostItemSerializer
 }
 
 object MiscCostItemSerializer extends CIMSerializer[MiscCostItem]
@@ -3632,6 +3675,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NonStandardItem] = NonStandardItemSerializer
 }
 
 object NonStandardItemSerializer extends CIMSerializer[NonStandardItem]
@@ -3821,6 +3866,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldWorkTask] = OldWorkTaskSerializer
 }
 
 object OldWorkTaskSerializer extends CIMSerializer[OldWorkTask]
@@ -3978,6 +4025,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OneCallRequest] = OneCallRequestSerializer
 }
 
 object OneCallRequestSerializer extends CIMSerializer[OneCallRequest]
@@ -4129,6 +4178,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OverheadCost] = OverheadCostSerializer
 }
 
 object OverheadCostSerializer extends CIMSerializer[OverheadCost]
@@ -4293,6 +4344,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Project] = ProjectSerializer
 }
 
 object ProjectSerializer extends CIMSerializer[Project]
@@ -4462,6 +4515,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PropertyUnit] = PropertyUnitSerializer
 }
 
 object PropertyUnitSerializer extends CIMSerializer[PropertyUnit]
@@ -4620,6 +4675,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[QualificationRequirement] = QualificationRequirementSerializer
 }
 
 object QualificationRequirementSerializer extends CIMSerializer[QualificationRequirement]
@@ -4745,6 +4802,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Regulation] = RegulationSerializer
 }
 
 object RegulationSerializer extends CIMSerializer[Regulation]
@@ -4889,6 +4948,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ShiftPattern] = ShiftPatternSerializer
 }
 
 object ShiftPatternSerializer extends CIMSerializer[ShiftPattern]
@@ -5065,6 +5126,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TypeMaterial] = TypeMaterialSerializer
 }
 
 object TypeMaterialSerializer extends CIMSerializer[TypeMaterial]
@@ -5205,6 +5268,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Usage] = UsageSerializer
 }
 
 object UsageSerializer extends CIMSerializer[Usage]
@@ -5416,6 +5481,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkCostDetail] = WorkCostDetailSerializer
 }
 
 object WorkCostDetailSerializer extends CIMSerializer[WorkCostDetail]
@@ -5562,6 +5629,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkCostSummary] = WorkCostSummarySerializer
 }
 
 object WorkCostSummarySerializer extends CIMSerializer[WorkCostSummary]
@@ -5665,6 +5734,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[WorkDocument] = WorkDocumentSerializer
 }
 
 object WorkDocumentSerializer extends CIMSerializer[WorkDocument]
@@ -5803,6 +5874,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WorkFlowStep] = WorkFlowStepSerializer
 }
 
 object WorkFlowStepSerializer extends CIMSerializer[WorkFlowStep]
@@ -5912,6 +5985,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[WorkIdentifiedObject] = WorkIdentifiedObjectSerializer
 }
 
 object WorkIdentifiedObjectSerializer extends CIMSerializer[WorkIdentifiedObject]

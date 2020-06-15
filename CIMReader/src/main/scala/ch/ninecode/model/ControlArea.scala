@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -106,6 +107,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AltGeneratingUnitMeas] = AltGeneratingUnitMeasSerializer
 }
 
 object AltGeneratingUnitMeasSerializer extends CIMSerializer[AltGeneratingUnitMeas]
@@ -233,6 +236,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AltTieMeas] = AltTieMeasSerializer
 }
 
 object AltTieMeasSerializer extends CIMSerializer[AltTieMeas]
@@ -382,6 +387,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlArea] = ControlAreaSerializer
 }
 
 object ControlAreaSerializer extends CIMSerializer[ControlArea]
@@ -518,6 +525,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlAreaGeneratingUnit] = ControlAreaGeneratingUnitSerializer
 }
 
 object ControlAreaGeneratingUnitSerializer extends CIMSerializer[ControlAreaGeneratingUnit]
@@ -653,6 +662,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TieFlow] = TieFlowSerializer
 }
 
 object TieFlowSerializer extends CIMSerializer[TieFlow]

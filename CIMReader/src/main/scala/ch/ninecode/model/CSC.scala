@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -70,6 +71,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[CCAinverter] = CCAinverterSerializer
 }
 
 object CCAinverterSerializer extends CIMSerializer[CCAinverter]
@@ -156,6 +159,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[CCArectifierControl] = CCArectifierControlSerializer
 }
 
 object CCArectifierControlSerializer extends CIMSerializer[CCArectifierControl]
@@ -242,6 +247,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[CSCtype1] = CSCtype1Serializer
 }
 
 object CSCtype1Serializer extends CIMSerializer[CSCtype1]
@@ -328,6 +335,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[IdcInverterControl] = IdcInverterControlSerializer
 }
 
 object IdcInverterControlSerializer extends CIMSerializer[IdcInverterControl]
@@ -414,6 +423,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[IgnAngleContInverter] = IgnAngleContInverterSerializer
 }
 
 object IgnAngleContInverterSerializer extends CIMSerializer[IgnAngleContInverter]
@@ -500,6 +511,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[VDCOL] = VDCOLSerializer
 }
 
 object VDCOLSerializer extends CIMSerializer[VDCOL]

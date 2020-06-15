@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -101,6 +102,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ControlAreaOperator] = ControlAreaOperatorSerializer
 }
 
 object ControlAreaOperatorSerializer extends CIMSerializer[ControlAreaOperator]
@@ -211,6 +214,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CustomerConsumer] = CustomerConsumerSerializer
 }
 
 object CustomerConsumerSerializer extends CIMSerializer[CustomerConsumer]
@@ -319,6 +324,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GenerationProvider] = GenerationProviderSerializer
 }
 
 object GenerationProviderSerializer extends CIMSerializer[GenerationProvider]
@@ -425,6 +432,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IntSchedAgreement] = IntSchedAgreementSerializer
 }
 
 object IntSchedAgreementSerializer extends CIMSerializer[IntSchedAgreement]
@@ -540,6 +549,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Marketer] = MarketerSerializer
 }
 
 object MarketerSerializer extends CIMSerializer[Marketer]
@@ -633,6 +644,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[OpenAccessProduct] = OpenAccessProductSerializer
 }
 
 object OpenAccessProductSerializer extends CIMSerializer[OpenAccessProduct]
@@ -749,6 +762,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransmissionProduct] = TransmissionProductSerializer
 }
 
 object TransmissionProductSerializer extends CIMSerializer[TransmissionProduct]
@@ -871,6 +886,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransmissionProvider] = TransmissionProviderSerializer
 }
 
 object TransmissionProviderSerializer extends CIMSerializer[TransmissionProvider]

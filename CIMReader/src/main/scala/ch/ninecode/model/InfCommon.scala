@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -104,6 +105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Bank] = BankSerializer
 }
 
 object BankSerializer extends CIMSerializer[Bank]
@@ -230,6 +233,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BankAccount] = BankAccountSerializer
 }
 
 object BankAccountSerializer extends CIMSerializer[BankAccount]
@@ -327,6 +332,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[BusinessPlan] = BusinessPlanSerializer
 }
 
 object BusinessPlanSerializer extends CIMSerializer[BusinessPlan]
@@ -440,6 +447,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BusinessRole] = BusinessRoleSerializer
 }
 
 object BusinessRoleSerializer extends CIMSerializer[BusinessRole]
@@ -580,6 +589,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Craft] = CraftSerializer
 }
 
 object CraftSerializer extends CIMSerializer[Craft]
@@ -679,6 +690,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[DocumentOrganisationRole] = DocumentOrganisationRoleSerializer
 }
 
 object DocumentOrganisationRoleSerializer extends CIMSerializer[DocumentOrganisationRole]
@@ -822,6 +835,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldCrew] = OldCrewSerializer
 }
 
 object OldCrewSerializer extends CIMSerializer[OldCrew]
@@ -1012,6 +1027,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OldPerson] = OldPersonSerializer
 }
 
 object OldPersonSerializer extends CIMSerializer[OldPerson]
@@ -1140,6 +1157,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OrgOrgRole] = OrgOrgRoleSerializer
 }
 
 object OrgOrgRoleSerializer extends CIMSerializer[OrgOrgRole]
@@ -1255,6 +1274,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PersonOrganisationRole] = PersonOrganisationRoleSerializer
 }
 
 object PersonOrganisationRoleSerializer extends CIMSerializer[PersonOrganisationRole]
@@ -1374,6 +1395,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PersonPropertyRole] = PersonPropertyRoleSerializer
 }
 
 object PersonPropertyRoleSerializer extends CIMSerializer[PersonPropertyRole]
@@ -1484,6 +1507,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PropertyOrganisationRole] = PropertyOrganisationRoleSerializer
 }
 
 object PropertyOrganisationRoleSerializer extends CIMSerializer[PropertyOrganisationRole]
@@ -1595,6 +1620,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Ratio] = RatioSerializer
 }
 
 object RatioSerializer extends CIMSerializer[Ratio]
@@ -1709,6 +1736,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Role] = RoleSerializer
 }
 
 object RoleSerializer extends CIMSerializer[Role]
@@ -1853,6 +1882,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Skill] = SkillSerializer
 }
 
 object SkillSerializer extends CIMSerializer[Skill]

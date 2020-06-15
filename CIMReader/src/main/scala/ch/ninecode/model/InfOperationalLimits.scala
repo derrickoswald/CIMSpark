@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -75,6 +76,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[EnvironmentalDependentLimit] = EnvironmentalDependentLimitSerializer
 }
 
 object EnvironmentalDependentLimitSerializer extends CIMSerializer[EnvironmentalDependentLimit]
@@ -191,6 +194,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquipmentLimitSeriesComponent] = EquipmentLimitSeriesComponentSerializer
 }
 
 object EquipmentLimitSeriesComponentSerializer extends CIMSerializer[EquipmentLimitSeriesComponent]
@@ -312,6 +317,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LimitDependency] = LimitDependencySerializer
 }
 
 object LimitDependencySerializer extends CIMSerializer[LimitDependency]
@@ -430,6 +437,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LimitScalingLimit] = LimitScalingLimitSerializer
 }
 
 object LimitScalingLimitSerializer extends CIMSerializer[LimitScalingLimit]
@@ -558,6 +567,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperatonalLimitTypeScaling] = OperatonalLimitTypeScalingSerializer
 }
 
 object OperatonalLimitTypeScalingSerializer extends CIMSerializer[OperatonalLimitTypeScaling]
@@ -664,6 +675,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledActivePowerLimitValue] = ScheduledActivePowerLimitValueSerializer
 }
 
 object ScheduledActivePowerLimitValueSerializer extends CIMSerializer[ScheduledActivePowerLimitValue]
@@ -770,6 +783,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledApparentPowerLimitValue] = ScheduledApparentPowerLimitValueSerializer
 }
 
 object ScheduledApparentPowerLimitValueSerializer extends CIMSerializer[ScheduledApparentPowerLimitValue]
@@ -876,6 +891,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledCurrentLimitValue] = ScheduledCurrentLimitValueSerializer
 }
 
 object ScheduledCurrentLimitValueSerializer extends CIMSerializer[ScheduledCurrentLimitValue]
@@ -981,6 +998,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledLimitDependency] = ScheduledLimitDependencySerializer
 }
 
 object ScheduledLimitDependencySerializer extends CIMSerializer[ScheduledLimitDependency]
@@ -1098,6 +1117,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledLimitValue] = ScheduledLimitValueSerializer
 }
 
 object ScheduledLimitValueSerializer extends CIMSerializer[ScheduledLimitValue]
@@ -1206,6 +1227,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ScheduledVoltageLimitValue] = ScheduledVoltageLimitValueSerializer
 }
 
 object ScheduledVoltageLimitValueSerializer extends CIMSerializer[ScheduledVoltageLimitValue]
@@ -1317,6 +1340,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SeriesEquipmentDependentLimit] = SeriesEquipmentDependentLimitSerializer
 }
 
 object SeriesEquipmentDependentLimitSerializer extends CIMSerializer[SeriesEquipmentDependentLimit]
@@ -1439,6 +1464,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TemperatureDependentLimitPoint] = TemperatureDependentLimitPointSerializer
 }
 
 object TemperatureDependentLimitPointSerializer extends CIMSerializer[TemperatureDependentLimitPoint]
@@ -1552,6 +1579,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TemperatureDependentLimitTable] = TemperatureDependentLimitTableSerializer
 }
 
 object TemperatureDependentLimitTableSerializer extends CIMSerializer[TemperatureDependentLimitTable]
@@ -1682,6 +1711,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TemperaturePolynomialLimit] = TemperaturePolynomialLimitSerializer
 }
 
 object TemperaturePolynomialLimitSerializer extends CIMSerializer[TemperaturePolynomialLimit]
@@ -1799,6 +1830,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[WeatherStation] = WeatherStationSerializer
 }
 
 object WeatherStationSerializer extends CIMSerializer[WeatherStation]

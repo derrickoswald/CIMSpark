@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -74,6 +75,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[StateVariable] = StateVariableSerializer
 }
 
 object StateVariableSerializer extends CIMSerializer[StateVariable]
@@ -205,6 +208,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvInjection] = SvInjectionSerializer
 }
 
 object SvInjectionSerializer extends CIMSerializer[SvInjection]
@@ -343,6 +348,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvPowerFlow] = SvPowerFlowSerializer
 }
 
 object SvPowerFlowSerializer extends CIMSerializer[SvPowerFlow]
@@ -472,6 +479,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvShuntCompensatorSections] = SvShuntCompensatorSectionsSerializer
 }
 
 object SvShuntCompensatorSectionsSerializer extends CIMSerializer[SvShuntCompensatorSections]
@@ -599,6 +608,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvStatus] = SvStatusSerializer
 }
 
 object SvStatusSerializer extends CIMSerializer[SvStatus]
@@ -725,6 +736,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvSwitch] = SvSwitchSerializer
 }
 
 object SvSwitchSerializer extends CIMSerializer[SvSwitch]
@@ -845,6 +858,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvTapStep] = SvTapStepSerializer
 }
 
 object SvTapStepSerializer extends CIMSerializer[SvTapStep]
@@ -975,6 +990,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SvVoltage] = SvVoltageSerializer
 }
 
 object SvVoltageSerializer extends CIMSerializer[SvVoltage]

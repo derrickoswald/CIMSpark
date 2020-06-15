@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -106,6 +107,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpBOM] = ErpBOMSerializer
 }
 
 object ErpBOMSerializer extends CIMSerializer[ErpBOM]
@@ -222,6 +225,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpBankAccount] = ErpBankAccountSerializer
 }
 
 object ErpBankAccountSerializer extends CIMSerializer[ErpBankAccount]
@@ -349,6 +354,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpBomItemData] = ErpBomItemDataSerializer
 }
 
 object ErpBomItemDataSerializer extends CIMSerializer[ErpBomItemData]
@@ -451,6 +458,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ErpChartOfAccounts] = ErpChartOfAccountsSerializer
 }
 
 object ErpChartOfAccountsSerializer extends CIMSerializer[ErpChartOfAccounts]
@@ -565,6 +574,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpCompetency] = ErpCompetencySerializer
 }
 
 object ErpCompetencySerializer extends CIMSerializer[ErpCompetency]
@@ -663,6 +674,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ErpDocument] = ErpDocumentSerializer
 }
 
 object ErpDocumentSerializer extends CIMSerializer[ErpDocument]
@@ -758,6 +771,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ErpEngChangeOrder] = ErpEngChangeOrderSerializer
 }
 
 object ErpEngChangeOrderSerializer extends CIMSerializer[ErpEngChangeOrder]
@@ -855,6 +870,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ErpIdentifiedObject] = ErpIdentifiedObjectSerializer
 }
 
 object ErpIdentifiedObjectSerializer extends CIMSerializer[ErpIdentifiedObject]
@@ -975,6 +992,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpInventory] = ErpInventorySerializer
 }
 
 object ErpInventorySerializer extends CIMSerializer[ErpInventory]
@@ -1090,6 +1109,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpInventoryCount] = ErpInventoryCountSerializer
 }
 
 object ErpInventoryCountSerializer extends CIMSerializer[ErpInventoryCount]
@@ -1269,6 +1290,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpInvoice] = ErpInvoiceSerializer
 }
 
 object ErpInvoiceSerializer extends CIMSerializer[ErpInvoice]
@@ -1535,6 +1558,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpInvoiceLineItem] = ErpInvoiceLineItemSerializer
 }
 
 object ErpInvoiceLineItemSerializer extends CIMSerializer[ErpInvoiceLineItem]
@@ -1701,6 +1726,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpIssueInventory] = ErpIssueInventorySerializer
 }
 
 object ErpIssueInventorySerializer extends CIMSerializer[ErpIssueInventory]
@@ -1826,6 +1853,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpItemMaster] = ErpItemMasterSerializer
 }
 
 object ErpItemMasterSerializer extends CIMSerializer[ErpItemMaster]
@@ -1944,6 +1973,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpJournal] = ErpJournalSerializer
 }
 
 object ErpJournalSerializer extends CIMSerializer[ErpJournal]
@@ -2130,6 +2161,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpJournalEntry] = ErpJournalEntrySerializer
 }
 
 object ErpJournalEntrySerializer extends CIMSerializer[ErpJournalEntry]
@@ -2278,6 +2311,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpLedBudLineItem] = ErpLedBudLineItemSerializer
 }
 
 object ErpLedBudLineItemSerializer extends CIMSerializer[ErpLedBudLineItem]
@@ -2397,6 +2432,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpLedger] = ErpLedgerSerializer
 }
 
 object ErpLedgerSerializer extends CIMSerializer[ErpLedger]
@@ -2512,6 +2549,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpLedgerBudget] = ErpLedgerBudgetSerializer
 }
 
 object ErpLedgerBudgetSerializer extends CIMSerializer[ErpLedgerBudget]
@@ -2684,6 +2723,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpLedgerEntry] = ErpLedgerEntrySerializer
 }
 
 object ErpLedgerEntrySerializer extends CIMSerializer[ErpLedgerEntry]
@@ -2836,6 +2877,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPOLineItem] = ErpPOLineItemSerializer
 }
 
 object ErpPOLineItemSerializer extends CIMSerializer[ErpPOLineItem]
@@ -2964,6 +3007,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPayable] = ErpPayableSerializer
 }
 
 object ErpPayableSerializer extends CIMSerializer[ErpPayable]
@@ -3107,6 +3152,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPayableLineItem] = ErpPayableLineItemSerializer
 }
 
 object ErpPayableLineItemSerializer extends CIMSerializer[ErpPayableLineItem]
@@ -3251,6 +3298,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPayment] = ErpPaymentSerializer
 }
 
 object ErpPaymentSerializer extends CIMSerializer[ErpPayment]
@@ -3377,6 +3426,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPersonnel] = ErpPersonnelSerializer
 }
 
 object ErpPersonnelSerializer extends CIMSerializer[ErpPersonnel]
@@ -3515,6 +3566,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpProjectAccounting] = ErpProjectAccountingSerializer
 }
 
 object ErpProjectAccountingSerializer extends CIMSerializer[ErpProjectAccounting]
@@ -3636,6 +3689,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpPurchaseOrder] = ErpPurchaseOrderSerializer
 }
 
 object ErpPurchaseOrderSerializer extends CIMSerializer[ErpPurchaseOrder]
@@ -3751,6 +3806,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpQuote] = ErpQuoteSerializer
 }
 
 object ErpQuoteSerializer extends CIMSerializer[ErpQuote]
@@ -3899,6 +3956,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpQuoteLineItem] = ErpQuoteLineItemSerializer
 }
 
 object ErpQuoteLineItemSerializer extends CIMSerializer[ErpQuoteLineItem]
@@ -4052,6 +4111,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpRecDelvLineItem] = ErpRecDelvLineItemSerializer
 }
 
 object ErpRecDelvLineItemSerializer extends CIMSerializer[ErpRecDelvLineItem]
@@ -4201,6 +4262,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpRecLineItem] = ErpRecLineItemSerializer
 }
 
 object ErpRecLineItemSerializer extends CIMSerializer[ErpRecLineItem]
@@ -4324,6 +4387,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpReceivable] = ErpReceivableSerializer
 }
 
 object ErpReceivableSerializer extends CIMSerializer[ErpReceivable]
@@ -4439,6 +4504,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpReceiveDelivery] = ErpReceiveDeliverySerializer
 }
 
 object ErpReceiveDeliverySerializer extends CIMSerializer[ErpReceiveDelivery]
@@ -4611,6 +4678,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpReqLineItem] = ErpReqLineItemSerializer
 }
 
 object ErpReqLineItemSerializer extends CIMSerializer[ErpReqLineItem]
@@ -4744,6 +4813,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpRequisition] = ErpRequisitionSerializer
 }
 
 object ErpRequisitionSerializer extends CIMSerializer[ErpRequisition]
@@ -4842,6 +4913,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[ErpSalesOrder] = ErpSalesOrderSerializer
 }
 
 object ErpSalesOrderSerializer extends CIMSerializer[ErpSalesOrder]
@@ -4962,6 +5035,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpSiteLevelData] = ErpSiteLevelDataSerializer
 }
 
 object ErpSiteLevelDataSerializer extends CIMSerializer[ErpSiteLevelData]
@@ -5090,6 +5165,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpTimeEntry] = ErpTimeEntrySerializer
 }
 
 object ErpTimeEntrySerializer extends CIMSerializer[ErpTimeEntry]
@@ -5209,6 +5286,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ErpTimeSheet] = ErpTimeSheetSerializer
 }
 
 object ErpTimeSheetSerializer extends CIMSerializer[ErpTimeSheet]

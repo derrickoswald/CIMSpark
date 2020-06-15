@@ -26,7 +26,7 @@ abstract class CIMParseable[+A <: Product : ClassTag : TypeTag] extends CIMParse
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
     val subsetter: CIMSubsetter[_ <: Product] = new CIMSubsetter[A]()
     def register: CIMClassInfo =
-        CIMClassInfo (cls, this, subsetter, relations)
+        CIMClassInfo (cls, this, subsetter, relations, serializer)
     def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
     {
         field match

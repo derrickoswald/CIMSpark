@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -130,6 +131,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[AreaReserveSpec] = AreaReserveSpecSerializer
 }
 
 object AreaReserveSpecSerializer extends CIMSerializer[AreaReserveSpec]
@@ -272,6 +275,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentEmergencyScheduledInterchange] = CurrentEmergencyScheduledInterchangeSerializer
 }
 
 object CurrentEmergencyScheduledInterchangeSerializer extends CIMSerializer[CurrentEmergencyScheduledInterchange]
@@ -400,6 +405,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurrentScheduledInterchange] = CurrentScheduledInterchangeSerializer
 }
 
 object CurrentScheduledInterchangeSerializer extends CIMSerializer[CurrentScheduledInterchange]
@@ -514,6 +521,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurtailmentProfile] = CurtailmentProfileSerializer
 }
 
 object CurtailmentProfileSerializer extends CIMSerializer[CurtailmentProfile]
@@ -651,6 +660,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[DynamicSchedule] = DynamicScheduleSerializer
 }
 
 object DynamicScheduleSerializer extends CIMSerializer[DynamicSchedule]
@@ -790,6 +801,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EnergyProduct] = EnergyProductSerializer
 }
 
 object EnergyProductSerializer extends CIMSerializer[EnergyProduct]
@@ -906,6 +919,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InadvertentAccount] = InadvertentAccountSerializer
 }
 
 object InadvertentAccountSerializer extends CIMSerializer[InadvertentAccount]
@@ -1024,6 +1039,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[InternalControlArea] = InternalControlAreaSerializer
 }
 
 object InternalControlAreaSerializer extends CIMSerializer[InternalControlArea]
@@ -1142,6 +1159,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[LossProfile] = LossProfileSerializer
 }
 
 object LossProfileSerializer extends CIMSerializer[LossProfile]
@@ -1273,6 +1292,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TieLine] = TieLineSerializer
 }
 
 object TieLineSerializer extends CIMSerializer[TieLine]
@@ -1396,6 +1417,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransmissionCorridor] = TransmissionCorridorSerializer
 }
 
 object TransmissionCorridorSerializer extends CIMSerializer[TransmissionCorridor]
@@ -1514,6 +1537,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TransmissionRightOfWay] = TransmissionRightOfWaySerializer
 }
 
 object TransmissionRightOfWaySerializer extends CIMSerializer[TransmissionRightOfWay]

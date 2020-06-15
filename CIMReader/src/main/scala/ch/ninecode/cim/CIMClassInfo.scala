@@ -2,6 +2,8 @@ package ch.ninecode.cim
 
 import scala.language.existentials
 
+import com.esotericsoftware.kryo.Serializer
+
 /**
  * Container for CIM class information.
  *
@@ -9,10 +11,12 @@ import scala.language.existentials
  * @param parseable the registration and subsetting object for this concrete class
  * @param subsetter the subsetter for this concrete class
  * @param relations the relationships of this concrete class
+ * @param serializer the Kryo serializer for this concrete class
  */
 case class CIMClassInfo (
     name: String,
     parseable: CIMParseable[Product],
     subsetter: CIMSubsetter[_ <: Product],
-    relations: List[CIMRelationship])
+    relations: List[CIMRelationship],
+    serializer: Serializer[_ <: Product])
 

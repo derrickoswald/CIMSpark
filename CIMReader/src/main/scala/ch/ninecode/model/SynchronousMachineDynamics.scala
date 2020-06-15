@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -118,6 +119,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineDetailed] = SynchronousMachineDetailedSerializer
 }
 
 object SynchronousMachineDetailedSerializer extends CIMSerializer[SynchronousMachineDetailed]
@@ -288,6 +291,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineDynamics] = SynchronousMachineDynamicsSerializer
 }
 
 object SynchronousMachineDynamicsSerializer extends CIMSerializer[SynchronousMachineDynamics]
@@ -490,6 +495,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineEquivalentCircuit] = SynchronousMachineEquivalentCircuitSerializer
 }
 
 object SynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[SynchronousMachineEquivalentCircuit]
@@ -610,6 +617,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineSimplified] = SynchronousMachineSimplifiedSerializer
 }
 
 object SynchronousMachineSimplifiedSerializer extends CIMSerializer[SynchronousMachineSimplified]
@@ -835,6 +844,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SynchronousMachineTimeConstantReactance] = SynchronousMachineTimeConstantReactanceSerializer
 }
 
 object SynchronousMachineTimeConstantReactanceSerializer extends CIMSerializer[SynchronousMachineTimeConstantReactance]

@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -125,6 +126,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ACDCTerminal] = ACDCTerminalSerializer
 }
 
 object ACDCTerminalSerializer extends CIMSerializer[ACDCTerminal]
@@ -240,6 +243,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BaseFrequency] = BaseFrequencySerializer
 }
 
 object BaseFrequencySerializer extends CIMSerializer[BaseFrequency]
@@ -345,6 +350,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BasePower] = BasePowerSerializer
 }
 
 object BasePowerSerializer extends CIMSerializer[BasePower]
@@ -491,6 +498,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BaseVoltage] = BaseVoltageSerializer
 }
 
 object BaseVoltageSerializer extends CIMSerializer[BaseVoltage]
@@ -632,6 +641,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[BasicIntervalSchedule] = BasicIntervalScheduleSerializer
 }
 
 object BasicIntervalScheduleSerializer extends CIMSerializer[BasicIntervalSchedule]
@@ -789,6 +800,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Bay] = BaySerializer
 }
 
 object BaySerializer extends CIMSerializer[Bay]
@@ -954,6 +967,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConductingEquipment] = ConductingEquipmentSerializer
 }
 
 object ConductingEquipmentSerializer extends CIMSerializer[ConductingEquipment]
@@ -1090,6 +1105,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConnectivityNode] = ConnectivityNodeSerializer
 }
 
 object ConnectivityNodeSerializer extends CIMSerializer[ConnectivityNode]
@@ -1209,6 +1226,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ConnectivityNodeContainer] = ConnectivityNodeContainerSerializer
 }
 
 object ConnectivityNodeContainerSerializer extends CIMSerializer[ConnectivityNodeContainer]
@@ -1374,6 +1393,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Curve] = CurveSerializer
 }
 
 object CurveSerializer extends CIMSerializer[Curve]
@@ -1527,6 +1548,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CurveData] = CurveDataSerializer
 }
 
 object CurveDataSerializer extends CIMSerializer[CurveData]
@@ -1757,6 +1780,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Equipment] = EquipmentSerializer
 }
 
 object EquipmentSerializer extends CIMSerializer[Equipment]
@@ -1905,6 +1930,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[EquipmentContainer] = EquipmentContainerSerializer
 }
 
 object EquipmentContainerSerializer extends CIMSerializer[EquipmentContainer]
@@ -2041,6 +2068,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Feeder] = FeederSerializer
 }
 
 object FeederSerializer extends CIMSerializer[Feeder]
@@ -2155,6 +2184,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[GeographicalRegion] = GeographicalRegionSerializer
 }
 
 object GeographicalRegionSerializer extends CIMSerializer[GeographicalRegion]
@@ -2323,6 +2354,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IdentifiedObject] = IdentifiedObjectSerializer
 }
 
 object IdentifiedObjectSerializer extends CIMSerializer[IdentifiedObject]
@@ -2447,6 +2480,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IrregularIntervalSchedule] = IrregularIntervalScheduleSerializer
 }
 
 object IrregularIntervalScheduleSerializer extends CIMSerializer[IrregularIntervalSchedule]
@@ -2576,6 +2611,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[IrregularTimePoint] = IrregularTimePointSerializer
 }
 
 object IrregularTimePointSerializer extends CIMSerializer[IrregularTimePoint]
@@ -2706,6 +2743,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Name] = NameSerializer
 }
 
 object NameSerializer extends CIMSerializer[Name]
@@ -2842,6 +2881,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NameType] = NameTypeSerializer
 }
 
 object NameTypeSerializer extends CIMSerializer[NameType]
@@ -2969,6 +3010,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[NameTypeAuthority] = NameTypeAuthoritySerializer
 }
 
 object NameTypeAuthoritySerializer extends CIMSerializer[NameTypeAuthority]
@@ -3084,6 +3127,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperatingParticipant] = OperatingParticipantSerializer
 }
 
 object OperatingParticipantSerializer extends CIMSerializer[OperatingParticipant]
@@ -3207,6 +3252,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[OperatingShare] = OperatingShareSerializer
 }
 
 object OperatingShareSerializer extends CIMSerializer[OperatingShare]
@@ -3321,6 +3368,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PSRType] = PSRTypeSerializer
 }
 
 object PSRTypeSerializer extends CIMSerializer[PSRType]
@@ -3524,6 +3573,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PowerSystemResource] = PowerSystemResourceSerializer
 }
 
 object PowerSystemResourceSerializer extends CIMSerializer[PowerSystemResource]
@@ -3672,6 +3723,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegularIntervalSchedule] = RegularIntervalScheduleSerializer
 }
 
 object RegularIntervalScheduleSerializer extends CIMSerializer[RegularIntervalSchedule]
@@ -3806,6 +3859,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[RegularTimePoint] = RegularTimePointSerializer
 }
 
 object RegularTimePointSerializer extends CIMSerializer[RegularTimePoint]
@@ -3942,6 +3997,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReportingGroup] = ReportingGroupSerializer
 }
 
 object ReportingGroupSerializer extends CIMSerializer[ReportingGroup]
@@ -4056,6 +4113,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[ReportingSuperGroup] = ReportingSuperGroupSerializer
 }
 
 object ReportingSuperGroupSerializer extends CIMSerializer[ReportingSuperGroup]
@@ -4186,6 +4245,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[SubGeographicalRegion] = SubGeographicalRegionSerializer
 }
 
 object SubGeographicalRegionSerializer extends CIMSerializer[SubGeographicalRegion]
@@ -4346,6 +4407,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Substation] = SubstationSerializer
 }
 
 object SubstationSerializer extends CIMSerializer[Substation]
@@ -4598,6 +4661,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[Terminal] = TerminalSerializer
 }
 
 object TerminalSerializer extends CIMSerializer[Terminal]
@@ -4772,6 +4837,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VoltageLevel] = VoltageLevelSerializer
 }
 
 object VoltageLevelSerializer extends CIMSerializer[VoltageLevel]

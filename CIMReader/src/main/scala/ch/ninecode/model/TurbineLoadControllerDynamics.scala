@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -174,6 +175,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TurbLCFB1] = TurbLCFB1Serializer
 }
 
 object TurbLCFB1Serializer extends CIMSerializer[TurbLCFB1]
@@ -304,6 +307,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[TurbineLoadControllerDynamics] = TurbineLoadControllerDynamicsSerializer
 }
 
 object TurbineLoadControllerDynamicsSerializer extends CIMSerializer[TurbineLoadControllerDynamics]

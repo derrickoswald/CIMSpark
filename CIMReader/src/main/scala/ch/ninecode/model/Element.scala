@@ -3,6 +3,7 @@ package ch.ninecode.model
 import java.util.regex.Pattern
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -310,6 +311,8 @@ object BasicElement
         basic._about = ab.isDefined
         basic
     }
+
+    def serializer: Serializer[BasicElement] = BasicElementSerializer
 }
 
 object BasicElementSerializer extends CIMSerializer[BasicElement]
@@ -388,7 +391,8 @@ extends
             context.start,
             context.end)
     }
-    override val relations: List[CIMRelationship] = List ()
+
+    def serializer: Serializer[Unknown] = UnknownSerializer
 }
 
 object UnknownSerializer extends CIMSerializer[Unknown]

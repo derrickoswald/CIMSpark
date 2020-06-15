@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -91,6 +92,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[CSCDynamics] = CSCDynamicsSerializer
 }
 
 object CSCDynamicsSerializer extends CIMSerializer[CSCDynamics]
@@ -182,6 +185,8 @@ extends
         )
         ret
     }
+
+    def serializer: Serializer[HVDCDynamics] = HVDCDynamicsSerializer
 }
 
 object HVDCDynamicsSerializer extends CIMSerializer[HVDCDynamics]
@@ -289,6 +294,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[VSCDynamics] = VSCDynamicsSerializer
 }
 
 object VSCDynamicsSerializer extends CIMSerializer[VSCDynamics]

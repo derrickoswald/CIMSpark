@@ -1,6 +1,7 @@
 package ch.ninecode.model
 
 import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
@@ -106,6 +107,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFVArControllerType1Dynamics] = PFVArControllerType1DynamicsSerializer
 }
 
 object PFVArControllerType1DynamicsSerializer extends CIMSerializer[PFVArControllerType1Dynamics]
@@ -264,6 +267,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFVArType1IEEEPFController] = PFVArType1IEEEPFControllerSerializer
 }
 
 object PFVArType1IEEEPFControllerSerializer extends CIMSerializer[PFVArType1IEEEPFController]
@@ -418,6 +423,8 @@ extends
         ret.bitfields = bitfields
         ret
     }
+
+    def serializer: Serializer[PFVArType1IEEEVArController] = PFVArType1IEEEVArControllerSerializer
 }
 
 object PFVArType1IEEEVArControllerSerializer extends CIMSerializer[PFVArType1IEEEVArController]
