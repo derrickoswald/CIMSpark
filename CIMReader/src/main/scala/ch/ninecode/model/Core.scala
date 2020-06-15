@@ -2387,7 +2387,7 @@ object IdentifiedObjectSerializer extends CIMSerializer[IdentifiedObject]
             parent,
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readString else null,
-            if (isSet (2)) parent.mRID else null,
+            parent.mRID,
             if (isSet (3)) input.readString else null,
             if (isSet (4)) readList (input) else null,
             if (isSet (5)) input.readString else null,

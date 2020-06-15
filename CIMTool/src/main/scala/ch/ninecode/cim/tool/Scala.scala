@@ -398,10 +398,11 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def read (arg: (Member, Int)) (implicit identified_object: Boolean): String =
     {
         val (member, index) = arg
-        val reader = if (identified_object && member.name == "mRID")
+        if (identified_object && member.name == "mRID")
             "parent.mRID"
         else
-            member.datatype match
+        {
+            val kernel = member.datatype match
             {
                 case "String" => "input.readString"
                 case "Int" => "input.readInt"
@@ -411,8 +412,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 case _ =>
                     throw new Exception (s"unhandled type ${member.datatype}")
             }
-        // adding "${member.variable} =" to use named parameters causes the compiler to run out of memory
-        s"if (isSet ($index)) $reader else ${member.initializer}"
+            // adding "${member.variable} =" to use named parameters causes the compiler to run out of memory
+            s"if (isSet ($index)) $kernel else ${member.initializer}"
+        }
     }
 
     def serialize (cls: Class, name: String, members: SortedSet[Member]): String =

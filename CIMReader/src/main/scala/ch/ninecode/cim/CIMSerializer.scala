@@ -16,10 +16,10 @@ abstract class CIMSerializer[T] extends Serializer[T]
         val size = if (bitfields.forall (x => x == (x & 0xff))) // all fit in a byte
         BYTESIZE
             else
-            if (bitfields.forall (x => x == (x & 0xffff))) // all fit in a short
-            SHORTSIZE
+                if (bitfields.forall (x => x == (x & 0xffff))) // all fit in a short
+                    SHORTSIZE
                 else
-                INTSIZE
+                    INTSIZE
         val coded = length | (size << 4)
 
         // generate the serialized bytes
@@ -40,8 +40,8 @@ abstract class CIMSerializer[T] extends Serializer[T]
         size match
         {
             case INTSIZE => input.readInts (length)
-            case SHORTSIZE => input.readShorts (length).map (_.asInstanceOf[Int])
-            case BYTESIZE => input.readBytes (length).map (_.asInstanceOf[Int])
+            case SHORTSIZE => input.readShorts (length).map (_.asInstanceOf[Int]).map (_ & 0xffff)
+            case BYTESIZE => input.readBytes (length).map (_.asInstanceOf[Int]).map (_ & 0xff)
         }
     }
 

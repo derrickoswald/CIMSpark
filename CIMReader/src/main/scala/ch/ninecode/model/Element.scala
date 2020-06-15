@@ -320,12 +320,16 @@ object BasicElementSerializer extends CIMSerializer[BasicElement]
     def write (kryo: Kryo, output: Output, obj: BasicElement): Unit =
     {
         output.writeString (obj.id)
+        output.writeBoolean (obj.about)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[BasicElement]): BasicElement =
     {
         val mrid = input.readString
-        BasicElement (null, mrid)
+        val about = input.readBoolean
+        val basic = BasicElement (null, mrid)
+        basic._about = about
+        basic
     }
 }
 

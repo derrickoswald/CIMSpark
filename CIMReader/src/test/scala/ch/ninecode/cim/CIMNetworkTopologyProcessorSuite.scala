@@ -37,7 +37,8 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
-            assert (elements.count == 1738, "# elements before")
+            // grep "rdf:ID" DemoData.rdf | wc  =>  1742
+            assert (elements.count == 1742, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -53,7 +54,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (new_elements.count == 1893, "# elements after")
+            assert (new_elements.count == 1897, "# elements after")
             val nodes = get[TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 151, "# nodes")
@@ -102,7 +103,8 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
-            assert (elements.count == 1738, "# elements before")
+            // grep "rdf:ID" DemoData.rdf | wc  =>  1742
+            assert (elements.count == 1742, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -118,7 +120,8 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (new_elements.count == 1893, "# elements after")
+            // 1742 + 4 + 151 = 1897
+            assert (new_elements.count == 1897, "# elements after")
             val islands = get[TopologicalIsland]
             assert (islands != null, "no TopologicalIsland RDD")
             assert (islands.count == 4, "# islands")
@@ -179,7 +182,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements= readFileAuto (filename)
-            assert (elements.count == 1802, "# elements")
+            assert (elements.count == 1806, "# elements")
 
             val read = System.nanoTime ()
             val islands = get[TopologicalIsland]

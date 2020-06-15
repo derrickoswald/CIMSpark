@@ -44,6 +44,10 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
             .set ("spark.ui.port", "4041")
             .set ("spark.ui.showConsoleProgress", "false")
             .registerKryoClasses (CIMClasses.list)
+            .set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
+            // can't turn on "required" because many Spark internal classes are not registered:
+            // IllegalArgumentException: Class is not registered: org.apache.spark.sql.Row
+            // .set ("spark.kryo.registrationRequired", "true")
 
         val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
         session.sparkContext.setLogLevel ("ERROR") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN

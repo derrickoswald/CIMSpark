@@ -28,7 +28,8 @@ class CIMIntegrityCheckSuite extends ch.ninecode.SparkSuite
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
             val elements = readFile (filename)
-            assert (1738 == elements.count, "# elements")
+            // grep "rdf:ID" DemoData.rdf | wc  =>  1742
+            assert (1742 == elements.count, "# elements")
             val check = new CIMIntegrityChecker (spark)
             val errors = check.checkAll match
             {
