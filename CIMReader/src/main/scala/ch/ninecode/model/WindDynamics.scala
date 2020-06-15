@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Constant aerodynamic torque model which assumes that the aerodynamic torque is constant.
@@ -93,6 +97,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindAeroConstIECSerializer extends CIMSerializer[WindAeroConstIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindAeroConstIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindGenTurbineType1aIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindAeroConstIEC]): WindAeroConstIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindAeroConstIEC (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -197,6 +227,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindAeroOneDimIECSerializer extends CIMSerializer[WindAeroOneDimIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindAeroOneDimIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.thetaomega),
+            () => output.writeString (obj.WindTurbineType3IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindAeroOneDimIEC]): WindAeroOneDimIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindAeroOneDimIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -336,6 +396,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindAeroTwoDimIECSerializer extends CIMSerializer[WindAeroTwoDimIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindAeroTwoDimIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpomega),
+            () => output.writeDouble (obj.dptheta),
+            () => output.writeDouble (obj.dpv1),
+            () => output.writeDouble (obj.omegazero),
+            () => output.writeDouble (obj.pavail),
+            () => output.writeDouble (obj.thetav2),
+            () => output.writeDouble (obj.thetazero),
+            () => output.writeString (obj.WindTurbineType3IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindAeroTwoDimIEC]): WindAeroTwoDimIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindAeroTwoDimIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -488,6 +588,48 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContCurrLimIECSerializer extends CIMSerializer[WindContCurrLimIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContCurrLimIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.imax),
+            () => output.writeDouble (obj.imaxdip),
+            () => output.writeDouble (obj.kpqu),
+            () => output.writeBoolean (obj.mdfslim),
+            () => output.writeBoolean (obj.mqpri),
+            () => output.writeDouble (obj.tufiltcl),
+            () => output.writeDouble (obj.upqumax),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContCurrLimIEC]): WindContCurrLimIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContCurrLimIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -752,6 +894,80 @@ extends
     }
 }
 
+object WindContPType3IECSerializer extends CIMSerializer[WindContPType3IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContPType3IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpmax),
+            () => output.writeDouble (obj.dprefmax),
+            () => output.writeDouble (obj.dprefmin),
+            () => output.writeDouble (obj.dthetamax),
+            () => output.writeDouble (obj.dthetamaxuvrt),
+            () => output.writeDouble (obj.kdtd),
+            () => output.writeDouble (obj.kip),
+            () => output.writeDouble (obj.kpp),
+            () => output.writeBoolean (obj.mpuvrt),
+            () => output.writeDouble (obj.omegadtd),
+            () => output.writeDouble (obj.omegaoffset),
+            () => output.writeDouble (obj.pdtdmax),
+            () => output.writeDouble (obj.tdvs),
+            () => output.writeDouble (obj.thetaemin),
+            () => output.writeDouble (obj.thetauscale),
+            () => output.writeDouble (obj.tomegafiltp3),
+            () => output.writeDouble (obj.tomegaref),
+            () => output.writeDouble (obj.tpfiltp3),
+            () => output.writeDouble (obj.tpord),
+            () => output.writeDouble (obj.tufiltp3),
+            () => output.writeDouble (obj.udvs),
+            () => output.writeDouble (obj.updip),
+            () => output.writeDouble (obj.zeta),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindTurbineType3IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContPType3IEC]): WindContPType3IEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContPType3IEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) readList (input) else null,
+            if (isSet (24)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * P control model type 4A.
  *
@@ -860,6 +1076,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContPType4aIECSerializer extends CIMSerializer[WindContPType4aIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContPType4aIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpmaxp4a),
+            () => output.writeDouble (obj.tpordp4a),
+            () => output.writeDouble (obj.tufiltp4a),
+            () => output.writeString (obj.WindTurbineType4aIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContPType4aIEC]): WindContPType4aIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContPType4aIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -978,6 +1226,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContPType4bIECSerializer extends CIMSerializer[WindContPType4bIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContPType4bIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpmaxp4b),
+            () => output.writeDouble (obj.tpaero),
+            () => output.writeDouble (obj.tpordp4b),
+            () => output.writeDouble (obj.tufiltp4b),
+            () => output.writeString (obj.WindTurbineType4bIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContPType4bIEC]): WindContPType4bIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContPType4bIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1138,6 +1420,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContPitchAngleIECSerializer extends CIMSerializer[WindContPitchAngleIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContPitchAngleIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dthetamax),
+            () => output.writeDouble (obj.dthetamin),
+            () => output.writeDouble (obj.kic),
+            () => output.writeDouble (obj.kiomega),
+            () => output.writeDouble (obj.kpc),
+            () => output.writeDouble (obj.kpomega),
+            () => output.writeDouble (obj.kpx),
+            () => output.writeDouble (obj.thetamax),
+            () => output.writeDouble (obj.thetamin),
+            () => output.writeDouble (obj.ttheta),
+            () => output.writeString (obj.WindTurbineType3IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContPitchAngleIEC]): WindContPitchAngleIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContPitchAngleIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1392,6 +1720,78 @@ extends
     }
 }
 
+object WindContQIECSerializer extends CIMSerializer[WindContQIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContQIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.iqh1),
+            () => output.writeDouble (obj.iqmax),
+            () => output.writeDouble (obj.iqmin),
+            () => output.writeDouble (obj.iqpost),
+            () => output.writeDouble (obj.kiq),
+            () => output.writeDouble (obj.kiu),
+            () => output.writeDouble (obj.kpq),
+            () => output.writeDouble (obj.kpu),
+            () => output.writeDouble (obj.kqv),
+            () => output.writeDouble (obj.rdroop),
+            () => output.writeDouble (obj.tpfiltq),
+            () => output.writeDouble (obj.tpost),
+            () => output.writeDouble (obj.tqord),
+            () => output.writeDouble (obj.tufiltq),
+            () => output.writeDouble (obj.udb1),
+            () => output.writeDouble (obj.udb2),
+            () => output.writeDouble (obj.umax),
+            () => output.writeDouble (obj.umin),
+            () => output.writeDouble (obj.uqdip),
+            () => output.writeDouble (obj.uref0),
+            () => output.writeString (obj.windQcontrolModesType),
+            () => output.writeString (obj.windUVRTQcontrolModesType),
+            () => output.writeDouble (obj.xdroop),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContQIEC]): WindContQIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContQIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readString else null,
+            if (isSet (21)) input.readString else null,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Constant Q limitation model.
  *
@@ -1493,6 +1893,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContQLimIECSerializer extends CIMSerializer[WindContQLimIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContQLimIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.qmax),
+            () => output.writeDouble (obj.qmin),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContQLimIEC]): WindContQLimIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContQLimIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1605,6 +2035,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContQPQULimIECSerializer extends CIMSerializer[WindContQPQULimIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContQPQULimIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tpfiltql),
+            () => output.writeDouble (obj.tufiltql),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContQPQULimIEC]): WindContQPQULimIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContQPQULimIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1759,6 +2221,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindContRotorRIECSerializer extends CIMSerializer[WindContRotorRIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindContRotorRIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kirr),
+            () => output.writeDouble (obj.komegafilt),
+            () => output.writeDouble (obj.kpfilt),
+            () => output.writeDouble (obj.kprr),
+            () => output.writeDouble (obj.rmax),
+            () => output.writeDouble (obj.rmin),
+            () => output.writeDouble (obj.tomegafiltrr),
+            () => output.writeDouble (obj.tpfiltrr),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindGenTurbineType2IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindContRotorRIEC]): WindContRotorRIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindContRotorRIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1930,6 +2436,56 @@ extends
     }
 }
 
+object WindDynamicsLookupTableSerializer extends CIMSerializer[WindDynamicsLookupTable]
+{
+    def write (kryo: Kryo, output: Output, obj: WindDynamicsLookupTable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.input),
+            () => output.writeString (obj.lookupTableFunctionType),
+            () => output.writeDouble (obj.output),
+            () => output.writeInt (obj.sequence),
+            () => output.writeString (obj.WindContCurrLimIEC),
+            () => output.writeString (obj.WindContPType3IEC),
+            () => output.writeString (obj.WindContQPQULimIEC),
+            () => output.writeString (obj.WindContRotorRIEC),
+            () => output.writeString (obj.WindGenType3bIEC),
+            () => output.writeString (obj.WindPitchContPowerIEC),
+            () => output.writeString (obj.WindPlantFreqPcontrolIEC),
+            () => output.writeString (obj.WindPlantReactiveControlIEC),
+            () => output.writeString (obj.WindProtectionIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindDynamicsLookupTable]): WindDynamicsLookupTable =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindDynamicsLookupTable (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Wind turbine IEC type 1A.
  *
@@ -2019,6 +2575,32 @@ extends
     }
 }
 
+object WindGenTurbineType1aIECSerializer extends CIMSerializer[WindGenTurbineType1aIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenTurbineType1aIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindAeroConstIEC)
+        )
+        WindTurbineType1or2IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType1aIEC]): WindGenTurbineType1aIEC =
+    {
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenTurbineType1aIEC (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Wind turbine IEC type 1B.
  *
@@ -2105,6 +2687,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGenTurbineType1bIECSerializer extends CIMSerializer[WindGenTurbineType1bIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenTurbineType1bIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindPitchContPowerIEC)
+        )
+        WindTurbineType1or2IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType1bIEC]): WindGenTurbineType1bIEC =
+    {
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenTurbineType1bIEC (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2201,6 +2809,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGenTurbineType2IECSerializer extends CIMSerializer[WindGenTurbineType2IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenTurbineType2IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindContRotorRIEC),
+            () => output.writeString (obj.WindPitchContPowerIEC)
+        )
+        WindTurbineType1or2IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType2IEC]): WindGenTurbineType2IEC =
+    {
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenTurbineType2IEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2313,6 +2949,38 @@ extends
     }
 }
 
+object WindGenType3IECSerializer extends CIMSerializer[WindGenType3IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenType3IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dipmax),
+            () => output.writeDouble (obj.diqmax),
+            () => output.writeDouble (obj.xs),
+            () => output.writeString (obj.WindTurbineType3IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenType3IEC]): WindGenType3IEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenType3IEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEC type 3A generator set model.
  *
@@ -2414,6 +3082,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGenType3aIECSerializer extends CIMSerializer[WindGenType3aIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenType3aIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kpc),
+            () => output.writeDouble (obj.tic),
+            () => output.writeString (obj.WindTurbineType4IEC)
+        )
+        WindGenType3IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenType3aIEC]): WindGenType3aIEC =
+    {
+        val parent = WindGenType3IECSerializer.read (kryo, input, classOf[WindGenType3IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenType3aIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2527,6 +3225,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGenType3bIECSerializer extends CIMSerializer[WindGenType3bIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenType3bIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.mwtcwp),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.two),
+            () => writeList (obj.WindDynamicsLookupTable, output)
+        )
+        WindGenType3IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenType3bIEC]): WindGenType3bIEC =
+    {
+        val parent = WindGenType3IECSerializer.read (kryo, input, classOf[WindGenType3IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenType3bIEC (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2652,6 +3382,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGenType4IECSerializer extends CIMSerializer[WindGenType4IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGenType4IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dipmax),
+            () => output.writeDouble (obj.diqmax),
+            () => output.writeDouble (obj.diqmin),
+            () => output.writeDouble (obj.tg),
+            () => output.writeString (obj.WindTurbineType4aIEC),
+            () => output.writeString (obj.WindTurbineType4bIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGenType4IEC]): WindGenType4IEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGenType4IEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2784,6 +3550,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindMechIECSerializer extends CIMSerializer[WindMechIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindMechIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.cdrt),
+            () => output.writeDouble (obj.hgen),
+            () => output.writeDouble (obj.hwtr),
+            () => output.writeDouble (obj.kdrt),
+            () => output.writeString (obj.WindTurbineType1or2IEC),
+            () => output.writeString (obj.WindTurbineType3IEC),
+            () => output.writeString (obj.WindTurbineType4bIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindMechIEC]): WindMechIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindMechIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2941,6 +3745,50 @@ extends
     }
 }
 
+object WindPitchContPowerIECSerializer extends CIMSerializer[WindPitchContPowerIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPitchContPowerIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpmax),
+            () => output.writeDouble (obj.dpmin),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.pset),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.uuvrt),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindGenTurbineType1bIEC),
+            () => output.writeString (obj.WindGenTurbineType2IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPitchContPowerIEC]): WindPitchContPowerIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPitchContPowerIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant IEC and user-defined wind plants including their control models.
  *
@@ -3033,6 +3881,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindPlantDynamicsSerializer extends CIMSerializer[WindPlantDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPlantDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.RemoteInputSignal),
+            () => writeList (obj.WindTurbineType3or4Dynamics, output)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPlantDynamics]): WindPlantDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPlantDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3239,6 +4115,64 @@ extends
     }
 }
 
+object WindPlantFreqPcontrolIECSerializer extends CIMSerializer[WindPlantFreqPcontrolIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPlantFreqPcontrolIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dprefmax),
+            () => output.writeDouble (obj.dprefmin),
+            () => output.writeDouble (obj.dpwprefmax),
+            () => output.writeDouble (obj.dpwprefmin),
+            () => output.writeDouble (obj.kiwpp),
+            () => output.writeDouble (obj.kiwppmax),
+            () => output.writeDouble (obj.kiwppmin),
+            () => output.writeDouble (obj.kpwpp),
+            () => output.writeDouble (obj.kwppref),
+            () => output.writeDouble (obj.prefmax),
+            () => output.writeDouble (obj.prefmin),
+            () => output.writeDouble (obj.tpft),
+            () => output.writeDouble (obj.tpfv),
+            () => output.writeDouble (obj.twpffiltp),
+            () => output.writeDouble (obj.twppfiltp),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindPlantIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPlantFreqPcontrolIEC]): WindPlantFreqPcontrolIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPlantFreqPcontrolIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Simplified IEC type plant level model.
  *
@@ -3332,6 +4266,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindPlantIECSerializer extends CIMSerializer[WindPlantIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPlantIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindPlantFreqPcontrolIEC),
+            () => output.writeString (obj.WindPlantReactiveControlIEC)
+        )
+        WindPlantDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPlantIEC]): WindPlantIEC =
+    {
+        val parent = WindPlantDynamicsSerializer.read (kryo, input, classOf[WindPlantDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPlantIEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3559,6 +4521,70 @@ extends
     }
 }
 
+object WindPlantReactiveControlIECSerializer extends CIMSerializer[WindPlantReactiveControlIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPlantReactiveControlIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dxrefmax),
+            () => output.writeDouble (obj.dxrefmin),
+            () => output.writeDouble (obj.kiwpx),
+            () => output.writeDouble (obj.kiwpxmax),
+            () => output.writeDouble (obj.kiwpxmin),
+            () => output.writeDouble (obj.kpwpx),
+            () => output.writeDouble (obj.kwpqref),
+            () => output.writeDouble (obj.kwpqu),
+            () => output.writeDouble (obj.tuqfilt),
+            () => output.writeDouble (obj.twppfiltq),
+            () => output.writeDouble (obj.twpqfiltq),
+            () => output.writeDouble (obj.twpufiltq),
+            () => output.writeDouble (obj.txft),
+            () => output.writeDouble (obj.txfv),
+            () => output.writeDouble (obj.uwpqdip),
+            () => output.writeString (obj.windPlantQcontrolModesType),
+            () => output.writeDouble (obj.xrefmax),
+            () => output.writeDouble (obj.xrefmin),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindPlantIEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPlantReactiveControlIEC]): WindPlantReactiveControlIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPlantReactiveControlIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readString else null,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) readList (input) else null,
+            if (isSet (19)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The grid protection model includes protection against over- and under-voltage, and against over- and under-frequency.
  *
@@ -3715,6 +4741,50 @@ extends
     }
 }
 
+object WindProtectionIECSerializer extends CIMSerializer[WindProtectionIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindProtectionIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dfimax),
+            () => output.writeDouble (obj.fover),
+            () => output.writeDouble (obj.funder),
+            () => output.writeBoolean (obj.mzc),
+            () => output.writeDouble (obj.tfma),
+            () => output.writeDouble (obj.uover),
+            () => output.writeDouble (obj.uunder),
+            () => writeList (obj.WindDynamicsLookupTable, output),
+            () => output.writeString (obj.WindTurbineType1or2IEC),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindProtectionIEC]): WindProtectionIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindProtectionIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Reference frame rotation model.
  *
@@ -3826,6 +4896,38 @@ extends
     }
 }
 
+object WindRefFrameRotIECSerializer extends CIMSerializer[WindRefFrameRotIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindRefFrameRotIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tpll),
+            () => output.writeDouble (obj.upll1),
+            () => output.writeDouble (obj.upll2),
+            () => output.writeString (obj.WindTurbineType3or4IEC)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindRefFrameRotIEC]): WindRefFrameRotIEC =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindRefFrameRotIEC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Parent class supporting relationships to wind turbines type 1 and type 2 and their control models.
  *
@@ -3919,6 +5021,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType1or2DynamicsSerializer extends CIMSerializer[WindTurbineType1or2Dynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType1or2Dynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AsynchronousMachineDynamics),
+            () => output.writeString (obj.RemoteInputSignal)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType1or2Dynamics]): WindTurbineType1or2Dynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType1or2Dynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4016,6 +5146,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType1or2IECSerializer extends CIMSerializer[WindTurbineType1or2IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType1or2IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindMechIEC),
+            () => output.writeString (obj.WindProtectionIEC)
+        )
+        WindTurbineType1or2DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType1or2IEC]): WindTurbineType1or2IEC =
+    {
+        val parent = WindTurbineType1or2DynamicsSerializer.read (kryo, input, classOf[WindTurbineType1or2Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType1or2IEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4141,6 +5299,42 @@ extends
     }
 }
 
+object WindTurbineType3IECSerializer extends CIMSerializer[WindTurbineType3IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType3IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindAeroOneDimIEC),
+            () => output.writeString (obj.WindAeroTwoDimIEC),
+            () => output.writeString (obj.WindContPType3IEC),
+            () => output.writeString (obj.WindContPitchAngleIEC),
+            () => output.writeString (obj.WindGenType3IEC),
+            () => output.writeString (obj.WindMechIEC)
+        )
+        WindTurbineType3or4IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3IEC]): WindTurbineType3IEC =
+    {
+        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf[WindTurbineType3or4IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType3IEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant including their control models.
  *
@@ -4239,6 +5433,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType3or4DynamicsSerializer extends CIMSerializer[WindTurbineType3or4Dynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType3or4Dynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.PowerElectronicsConnection),
+            () => output.writeString (obj.RemoteInputSignal),
+            () => output.writeString (obj.WindPlantDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3or4Dynamics]): WindTurbineType3or4Dynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType3or4Dynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4364,6 +5588,42 @@ extends
     }
 }
 
+object WindTurbineType3or4IECSerializer extends CIMSerializer[WindTurbineType3or4IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType3or4IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WIndContQIEC),
+            () => output.writeString (obj.WindContCurrLimIEC),
+            () => output.writeString (obj.WindContQLimIEC),
+            () => output.writeString (obj.WindContQPQULimIEC),
+            () => output.writeString (obj.WindProtectionIEC),
+            () => output.writeString (obj.WindRefFrameRotIEC)
+        )
+        WindTurbineType3or4DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3or4IEC]): WindTurbineType3or4IEC =
+    {
+        val parent = WindTurbineType3or4DynamicsSerializer.read (kryo, input, classOf[WindTurbineType3or4Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType3or4IEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Parent class supporting relationships to IEC wind turbines type 4 including their control models.
  *
@@ -4448,6 +5708,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType4IECSerializer extends CIMSerializer[WindTurbineType4IEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType4IEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindGenType3aIEC)
+        )
+        WindTurbineType3or4IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4IEC]): WindTurbineType4IEC =
+    {
+        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf[WindTurbineType3or4IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType4IEC (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4544,6 +5830,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType4aIECSerializer extends CIMSerializer[WindTurbineType4aIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType4aIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindContPType4aIEC),
+            () => output.writeString (obj.WindGenType4IEC)
+        )
+        WindTurbineType4IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4aIEC]): WindTurbineType4aIEC =
+    {
+        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf[WindTurbineType4IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType4aIEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4647,6 +5961,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindTurbineType4bIECSerializer extends CIMSerializer[WindTurbineType4bIEC]
+{
+    def write (kryo: Kryo, output: Output, obj: WindTurbineType4bIEC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.WindContPType4bIEC),
+            () => output.writeString (obj.WindGenType4IEC),
+            () => output.writeString (obj.WindMechIEC)
+        )
+        WindTurbineType4IECSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4bIEC]): WindTurbineType4bIEC =
+    {
+        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf[WindTurbineType4IEC])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindTurbineType4bIEC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

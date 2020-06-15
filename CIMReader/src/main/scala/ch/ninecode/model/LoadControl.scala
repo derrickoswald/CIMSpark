@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
@@ -142,6 +146,48 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ConnectDisconnectFunctionSerializer extends CIMSerializer[ConnectDisconnectFunction]
+{
+    def write (kryo: Kryo, output: Output, obj: ConnectDisconnectFunction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.eventCount),
+            () => output.writeBoolean (obj.isConnected),
+            () => output.writeBoolean (obj.isDelayedDiscon),
+            () => output.writeBoolean (obj.isLocalAutoDisconOp),
+            () => output.writeBoolean (obj.isLocalAutoReconOp),
+            () => output.writeBoolean (obj.isRemoteAutoDisconOp),
+            () => output.writeBoolean (obj.isRemoteAutoReconOp),
+            () => output.writeString (obj.rcdInfo),
+            () => writeList (obj.Switches, output)
+        )
+        EndDeviceFunctionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ConnectDisconnectFunction]): ConnectDisconnectFunction =
+    {
+        val parent = EndDeviceFunctionSerializer.read (kryo, input, classOf[EndDeviceFunction])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ConnectDisconnectFunction (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -287,6 +333,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RemoteConnectDisconnectInfoSerializer extends CIMSerializer[RemoteConnectDisconnectInfo]
+{
+    def write (kryo: Kryo, output: Output, obj: RemoteConnectDisconnectInfo): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.armedTimeout),
+            () => output.writeDouble (obj.customerVoltageLimit),
+            () => output.writeDouble (obj.energyLimit),
+            () => output.writeString (obj.energyUsageStartDateTime),
+            () => output.writeDouble (obj.energyUsageWarning),
+            () => output.writeBoolean (obj.isArmConnect),
+            () => output.writeBoolean (obj.isArmDisconnect),
+            () => output.writeBoolean (obj.isEnergyLimiting),
+            () => output.writeBoolean (obj.needsPowerLimitCheck),
+            () => output.writeBoolean (obj.needsVoltageLimitCheck),
+            () => output.writeDouble (obj.powerLimit),
+            () => output.writeBoolean (obj.usePushbutton)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemoteConnectDisconnectInfo]): RemoteConnectDisconnectInfo =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemoteConnectDisconnectInfo (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readBoolean else false,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

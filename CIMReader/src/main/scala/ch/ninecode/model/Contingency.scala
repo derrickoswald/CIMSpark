@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
@@ -96,6 +100,34 @@ extends
     }
 }
 
+object ContingencySerializer extends CIMSerializer[Contingency]
+{
+    def write (kryo: Kryo, output: Output, obj: Contingency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.mustStudy),
+            () => writeList (obj.ContingencyElement, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Contingency]): Contingency =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Contingency (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
  *
@@ -175,6 +207,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ContingencyElementSerializer extends CIMSerializer[ContingencyElement]
+{
+    def write (kryo: Kryo, output: Output, obj: ContingencyElement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Contingency)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ContingencyElement]): ContingencyElement =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ContingencyElement (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -264,6 +322,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ContingencyEquipmentSerializer extends CIMSerializer[ContingencyEquipment]
+{
+    def write (kryo: Kryo, output: Output, obj: ContingencyEquipment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.contingentStatus),
+            () => output.writeString (obj.Equipment)
+        )
+        ContingencyElementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ContingencyEquipment]): ContingencyEquipment =
+    {
+        val parent = ContingencyElementSerializer.read (kryo, input, classOf[ContingencyElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ContingencyEquipment (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

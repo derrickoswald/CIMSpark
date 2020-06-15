@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group NetworkModelProjects
@@ -96,6 +100,36 @@ extends
     }
 }
 
+object AnnotatedProjectDependencySerializer extends CIMSerializer[AnnotatedProjectDependency]
+{
+    def write (kryo: Kryo, output: Output, obj: AnnotatedProjectDependency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.dependencyType),
+            () => output.writeString (obj.DependentOnStage),
+            () => output.writeString (obj.DependingStage)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AnnotatedProjectDependency]): AnnotatedProjectDependency =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AnnotatedProjectDependency (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -155,6 +189,31 @@ extends
             IdentifiedObject.parse (context)
         )
         ret
+    }
+}
+
+object CurrentStateSerializer extends CIMSerializer[CurrentState]
+{
+    def write (kryo: Kryo, output: Output, obj: CurrentState): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CurrentState]): CurrentState =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CurrentState (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -222,6 +281,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object DifferentialModelSerializer extends CIMSerializer[DifferentialModel]
+{
+    def write (kryo: Kryo, output: Output, obj: DifferentialModel): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DifferentialModel]): DifferentialModel =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DifferentialModel (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -309,6 +393,32 @@ extends
     }
 }
 
+object NetworkModelProjectSerializer extends CIMSerializer[NetworkModelProject]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProject): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ContainedProject, output)
+        )
+        NetworkModelProjectComponentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProject]): NetworkModelProject =
+    {
+        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf[NetworkModelProjectComponent])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProject (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -384,6 +494,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NetworkModelProject2Serializer extends CIMSerializer[NetworkModelProject2]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProject2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Child, output)
+        )
+        NetworkModelProjectComponent2Serializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProject2]): NetworkModelProject2 =
+    {
+        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf[NetworkModelProjectComponent2])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProject2 (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -468,6 +604,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NetworkModelProjectChangeSerializer extends CIMSerializer[NetworkModelProjectChange]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectChange): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.NetworkModelProjectChangeVersion, output)
+        )
+        NetworkModelProjectComponentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectChange]): NetworkModelProjectChange =
+    {
+        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf[NetworkModelProjectComponent])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectChange (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -603,6 +765,46 @@ extends
     }
 }
 
+object NetworkModelProjectChangeVersionSerializer extends CIMSerializer[NetworkModelProjectChangeVersion]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectChangeVersion): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.comment),
+            () => output.writeString (obj.effectiveDateTime),
+            () => output.writeString (obj.timeStamp),
+            () => output.writeString (obj.ChangeSet),
+            () => output.writeString (obj.NetworkModelProjectChange),
+            () => output.writeString (obj.NetworkModelProjectState),
+            () => output.writeString (obj.SupercededBy),
+            () => output.writeString (obj.Supercedes)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectChangeVersion]): NetworkModelProjectChangeVersion =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectChangeVersion (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -662,6 +864,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object NetworkModelProjectCollectionSerializer extends CIMSerializer[NetworkModelProjectCollection]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectCollection): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectCollection]): NetworkModelProjectCollection =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectCollection (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -759,6 +986,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NetworkModelProjectComponentSerializer extends CIMSerializer[NetworkModelProjectComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ContainingProject),
+            () => writeList (obj.ProjectARelationships, output),
+            () => writeList (obj.ProjectBRelationships, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectComponent]): NetworkModelProjectComponent =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectComponent (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -861,6 +1118,40 @@ extends
     }
 }
 
+object NetworkModelProjectComponent2Serializer extends CIMSerializer[NetworkModelProjectComponent2]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectComponent2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.closed),
+            () => output.writeString (obj.created),
+            () => output.writeString (obj.updated),
+            () => output.writeInt (obj.version),
+            () => output.writeString (obj.Parent)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectComponent2]): NetworkModelProjectComponent2 =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectComponent2 (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -920,6 +1211,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object NetworkModelProjectDocumentSerializer extends CIMSerializer[NetworkModelProjectDocument]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectDocument): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectDocument]): NetworkModelProjectDocument =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectDocument (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1011,6 +1327,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NetworkModelProjectRelationshipSerializer extends CIMSerializer[NetworkModelProjectRelationship]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectRelationship): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ProjectA),
+            () => output.writeString (obj.ProjectB)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectRelationship]): NetworkModelProjectRelationship =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectRelationship (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1121,6 +1465,42 @@ extends
     }
 }
 
+object NetworkModelProjectStageSerializer extends CIMSerializer[NetworkModelProjectStage]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectStage): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.changesetVersion),
+            () => output.writeString (obj.commissionedDate),
+            () => output.writeString (obj.plannedCommissionedDate),
+            () => writeList (obj.ChangeSets, output),
+            () => writeList (obj.DenpendecyDependingStage, output),
+            () => output.writeString (obj.DependencyDependentOnStage)
+        )
+        NetworkModelProjectComponent2Serializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectStage]): NetworkModelProjectStage =
+    {
+        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf[NetworkModelProjectComponent2])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectStage (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A network model project version state.
  *
@@ -1202,6 +1582,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NetworkModelProjectStateSerializer extends CIMSerializer[NetworkModelProjectState]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelProjectState): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.NetworkModelProjectChangeVersion, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectState]): NetworkModelProjectState =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelProjectState (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1302,6 +1708,38 @@ extends
     }
 }
 
+object PowerSystemProjectLifecycleToBeDeletedSerializer extends CIMSerializer[PowerSystemProjectLifecycleToBeDeleted]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerSystemProjectLifecycleToBeDeleted): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.cancelled),
+            () => output.writeString (obj.committed),
+            () => output.writeString (obj.inBuild),
+            () => output.writeString (obj.inPlan)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerSystemProjectLifecycleToBeDeleted]): PowerSystemProjectLifecycleToBeDeleted =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerSystemProjectLifecycleToBeDeleted (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Project B is an alternative to project A.
  *
@@ -1370,6 +1808,31 @@ extends
     }
 }
 
+object ProjectAlternativeSerializer extends CIMSerializer[ProjectAlternative]
+{
+    def write (kryo: Kryo, output: Output, obj: ProjectAlternative): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        NetworkModelProjectRelationshipSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProjectAlternative]): ProjectAlternative =
+    {
+        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf[NetworkModelProjectRelationship])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProjectAlternative (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Project A change sets should be applied before Project B during case creation.
  *
@@ -1432,6 +1895,31 @@ extends
             NetworkModelProjectRelationship.parse (context)
         )
         ret
+    }
+}
+
+object ProjectDependencySerializer extends CIMSerializer[ProjectDependency]
+{
+    def write (kryo: Kryo, output: Output, obj: ProjectDependency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        NetworkModelProjectRelationshipSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProjectDependency]): ProjectDependency =
+    {
+        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf[NetworkModelProjectRelationship])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProjectDependency (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

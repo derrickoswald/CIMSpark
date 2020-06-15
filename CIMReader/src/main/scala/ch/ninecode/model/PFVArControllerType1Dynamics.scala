@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Power factor or VAr controller type 1 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -101,6 +105,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PFVArControllerType1DynamicsSerializer extends CIMSerializer[PFVArControllerType1Dynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: PFVArControllerType1Dynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => output.writeString (obj.RemoteInputSignal),
+            () => output.writeString (obj.VoltageAdjusterDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFVArControllerType1Dynamics]): PFVArControllerType1Dynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFVArControllerType1Dynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -232,6 +266,46 @@ extends
     }
 }
 
+object PFVArType1IEEEPFControllerSerializer extends CIMSerializer[PFVArType1IEEEPFController]
+{
+    def write (kryo: Kryo, output: Output, obj: PFVArType1IEEEPFController): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.ovex),
+            () => output.writeDouble (obj.tpfc),
+            () => output.writeDouble (obj.vitmin),
+            () => output.writeDouble (obj.vpf),
+            () => output.writeDouble (obj.vpfcbw),
+            () => output.writeDouble (obj.vpfref),
+            () => output.writeDouble (obj.vvtmax),
+            () => output.writeDouble (obj.vvtmin)
+        )
+        PFVArControllerType1DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFVArType1IEEEPFController]): PFVArType1IEEEPFController =
+    {
+        val parent = PFVArControllerType1DynamicsSerializer.read (kryo, input, classOf[PFVArControllerType1Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFVArType1IEEEPFController (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE VAR controller type 1 which operates by moving the voltage reference directly.
  *
@@ -343,6 +417,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PFVArType1IEEEVArControllerSerializer extends CIMSerializer[PFVArType1IEEEVArController]
+{
+    def write (kryo: Kryo, output: Output, obj: PFVArType1IEEEVArController): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tvarc),
+            () => output.writeDouble (obj.vvar),
+            () => output.writeDouble (obj.vvarcbw),
+            () => output.writeDouble (obj.vvarref),
+            () => output.writeDouble (obj.vvtmax),
+            () => output.writeDouble (obj.vvtmin)
+        )
+        PFVArControllerType1DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFVArType1IEEEVArController]): PFVArType1IEEEVArController =
+    {
+        val parent = PFVArControllerType1DynamicsSerializer.read (kryo, input, classOf[PFVArControllerType1Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFVArType1IEEEVArController (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

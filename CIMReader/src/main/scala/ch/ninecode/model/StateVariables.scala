@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * An abstract class for state variables.
@@ -69,6 +73,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object StateVariableSerializer extends CIMSerializer[StateVariable]
+{
+    def write (kryo: Kryo, output: Output, obj: StateVariable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StateVariable]): StateVariable =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StateVariable (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -178,6 +207,38 @@ extends
     }
 }
 
+object SvInjectionSerializer extends CIMSerializer[SvInjection]
+{
+    def write (kryo: Kryo, output: Output, obj: SvInjection): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.pInjection),
+            () => output.writeString (obj.phase),
+            () => output.writeDouble (obj.qInjection),
+            () => output.writeString (obj.TopologicalNode)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvInjection]): SvInjection =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvInjection (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * State variable for power flow.
  *
@@ -284,6 +345,38 @@ extends
     }
 }
 
+object SvPowerFlowSerializer extends CIMSerializer[SvPowerFlow]
+{
+    def write (kryo: Kryo, output: Output, obj: SvPowerFlow): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.p),
+            () => output.writeString (obj.phase),
+            () => output.writeDouble (obj.q),
+            () => output.writeString (obj.Terminal)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvPowerFlow]): SvPowerFlow =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvPowerFlow (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * State variable for the number of sections in service for a shunt compensator.
  *
@@ -378,6 +471,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SvShuntCompensatorSectionsSerializer extends CIMSerializer[SvShuntCompensatorSections]
+{
+    def write (kryo: Kryo, output: Output, obj: SvShuntCompensatorSections): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.phase),
+            () => output.writeDouble (obj.sections),
+            () => output.writeString (obj.ShuntCompensator)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvShuntCompensatorSections]): SvShuntCompensatorSections =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvShuntCompensatorSections (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -478,6 +601,36 @@ extends
     }
 }
 
+object SvStatusSerializer extends CIMSerializer[SvStatus]
+{
+    def write (kryo: Kryo, output: Output, obj: SvStatus): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.inService),
+            () => output.writeString (obj.phase),
+            () => output.writeString (obj.ConductingEquipment)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvStatus]): SvStatus =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvStatus (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * State variable for switch.
  *
@@ -574,6 +727,36 @@ extends
     }
 }
 
+object SvSwitchSerializer extends CIMSerializer[SvSwitch]
+{
+    def write (kryo: Kryo, output: Output, obj: SvSwitch): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.open),
+            () => output.writeString (obj.phase),
+            () => output.writeString (obj.Switch)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvSwitch]): SvSwitch =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvSwitch (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * State variable for transformer tap step.
  *
@@ -661,6 +844,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SvTapStepSerializer extends CIMSerializer[SvTapStep]
+{
+    def write (kryo: Kryo, output: Output, obj: SvTapStep): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.position),
+            () => output.writeString (obj.TapChanger)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvTapStep]): SvTapStep =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvTapStep (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -763,6 +974,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SvVoltageSerializer extends CIMSerializer[SvVoltage]
+{
+    def write (kryo: Kryo, output: Output, obj: SvVoltage): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.angle),
+            () => output.writeString (obj.phase),
+            () => output.writeDouble (obj.v),
+            () => output.writeString (obj.TopologicalNode)
+        )
+        StateVariableSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SvVoltage]): SvVoltage =
+    {
+        val parent = StateVariableSerializer.read (kryo, input, classOf[StateVariable])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SvVoltage (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

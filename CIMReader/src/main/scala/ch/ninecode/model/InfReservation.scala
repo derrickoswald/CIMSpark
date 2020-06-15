@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Site of an interface between interchange areas.
@@ -101,6 +105,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TiePointSerializer extends CIMSerializer[TiePoint]
+{
+    def write (kryo: Kryo, output: Output, obj: TiePoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tiePointMWRating),
+            () => writeList (obj.ByMktMeasurement, output),
+            () => writeList (obj.ForMktMeasurement, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TiePoint]): TiePoint =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TiePoint (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * This is the cureve that describes the load reduction time.
@@ -85,6 +89,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadReductionTimeCurveSerializer extends CIMSerializer[LoadReductionTimeCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadReductionTimeCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.loadReductionTimeCurveType)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadReductionTimeCurve]): LoadReductionTimeCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadReductionTimeCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -236,6 +266,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RegisteredControllableLoadSerializer extends CIMSerializer[RegisteredControllableLoad]
+{
+    def write (kryo: Kryo, output: Output, obj: RegisteredControllableLoad): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxBaseLoad),
+            () => output.writeDouble (obj.maxDeploymentTime),
+            () => output.writeInt (obj.maxLoadRedTimesPerDay),
+            () => output.writeDouble (obj.maxLoadReduction),
+            () => output.writeDouble (obj.maxReductionTime),
+            () => output.writeInt (obj.maxWeeklyDeployment),
+            () => output.writeDouble (obj.minLoadReduction),
+            () => output.writeDouble (obj.minLoadReductionCost),
+            () => output.writeDouble (obj.minLoadReductionInterval),
+            () => output.writeDouble (obj.minReductionTime),
+            () => output.writeDouble (obj.minTimeBetLoadRed),
+            () => output.writeDouble (obj.reqNoticeTime)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RegisteredControllableLoad]): RegisteredControllableLoad =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RegisteredControllableLoad (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readInt else 0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

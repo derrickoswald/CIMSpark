@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * The class represents equivalent branches.
@@ -204,6 +208,62 @@ extends
     }
 }
 
+object EquivalentBranchSerializer extends CIMSerializer[EquivalentBranch]
+{
+    def write (kryo: Kryo, output: Output, obj: EquivalentBranch): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.negativeR12),
+            () => output.writeDouble (obj.negativeR21),
+            () => output.writeDouble (obj.negativeX12),
+            () => output.writeDouble (obj.negativeX21),
+            () => output.writeDouble (obj.positiveR12),
+            () => output.writeDouble (obj.positiveR21),
+            () => output.writeDouble (obj.positiveX12),
+            () => output.writeDouble (obj.positiveX21),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.r21),
+            () => output.writeDouble (obj.x),
+            () => output.writeDouble (obj.x21),
+            () => output.writeDouble (obj.zeroR12),
+            () => output.writeDouble (obj.zeroR21),
+            () => output.writeDouble (obj.zeroX12),
+            () => output.writeDouble (obj.zeroX21)
+        )
+        EquivalentEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquivalentBranch]): EquivalentBranch =
+    {
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquivalentBranch (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The class represents equivalent objects that are the result of a network reduction.
  *
@@ -285,6 +345,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EquivalentEquipmentSerializer extends CIMSerializer[EquivalentEquipment]
+{
+    def write (kryo: Kryo, output: Output, obj: EquivalentEquipment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.EquivalentNetwork)
+        )
+        ConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquivalentEquipment]): EquivalentEquipment =
+    {
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquivalentEquipment (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -482,6 +568,62 @@ extends
     }
 }
 
+object EquivalentInjectionSerializer extends CIMSerializer[EquivalentInjection]
+{
+    def write (kryo: Kryo, output: Output, obj: EquivalentInjection): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxP),
+            () => output.writeDouble (obj.maxQ),
+            () => output.writeDouble (obj.minP),
+            () => output.writeDouble (obj.minQ),
+            () => output.writeDouble (obj.p),
+            () => output.writeDouble (obj.q),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.r0),
+            () => output.writeDouble (obj.r2),
+            () => output.writeBoolean (obj.regulationCapability),
+            () => output.writeBoolean (obj.regulationStatus),
+            () => output.writeDouble (obj.regulationTarget),
+            () => output.writeDouble (obj.x),
+            () => output.writeDouble (obj.x0),
+            () => output.writeDouble (obj.x2),
+            () => output.writeString (obj.ReactiveCapabilityCurve)
+        )
+        EquivalentEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquivalentInjection]): EquivalentInjection =
+    {
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquivalentInjection (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
  *
@@ -563,6 +705,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EquivalentNetworkSerializer extends CIMSerializer[EquivalentNetwork]
+{
+    def write (kryo: Kryo, output: Output, obj: EquivalentNetwork): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EquivalentEquipments, output)
+        )
+        ConnectivityNodeContainerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquivalentNetwork]): EquivalentNetwork =
+    {
+        val parent = ConnectivityNodeContainerSerializer.read (kryo, input, classOf[ConnectivityNodeContainer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquivalentNetwork (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -648,6 +816,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EquivalentShuntSerializer extends CIMSerializer[EquivalentShunt]
+{
+    def write (kryo: Kryo, output: Output, obj: EquivalentShunt): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.b),
+            () => output.writeDouble (obj.g)
+        )
+        EquivalentEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquivalentShunt]): EquivalentShunt =
+    {
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquivalentShunt (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

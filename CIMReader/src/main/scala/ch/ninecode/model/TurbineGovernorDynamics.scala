@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Turbine-governor cross-compound function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -95,6 +99,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CrossCompoundTurbineGovernorDynamicsSerializer extends CIMSerializer[CrossCompoundTurbineGovernorDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: CrossCompoundTurbineGovernorDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.HighPressureSynchronousMachineDynamics),
+            () => output.writeString (obj.LowPressureSynchronousMachineDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CrossCompoundTurbineGovernorDynamics]): CrossCompoundTurbineGovernorDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CrossCompoundTurbineGovernorDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -431,6 +463,100 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovCT1Serializer extends CIMSerializer[GovCT1]
+{
+    def write (kryo: Kryo, output: Output, obj: GovCT1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aset),
+            () => output.writeDouble (obj.db),
+            () => output.writeDouble (obj.dm),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kdgov),
+            () => output.writeDouble (obj.kigov),
+            () => output.writeDouble (obj.kiload),
+            () => output.writeDouble (obj.kimw),
+            () => output.writeDouble (obj.kpgov),
+            () => output.writeDouble (obj.kpload),
+            () => output.writeDouble (obj.kturb),
+            () => output.writeDouble (obj.ldref),
+            () => output.writeDouble (obj.maxerr),
+            () => output.writeDouble (obj.minerr),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.rclose),
+            () => output.writeDouble (obj.rdown),
+            () => output.writeDouble (obj.ropen),
+            () => output.writeString (obj.rselect),
+            () => output.writeDouble (obj.rup),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tact),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tdgov),
+            () => output.writeDouble (obj.teng),
+            () => output.writeDouble (obj.tfload),
+            () => output.writeDouble (obj.tpelec),
+            () => output.writeDouble (obj.tsa),
+            () => output.writeDouble (obj.tsb),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin),
+            () => output.writeDouble (obj.wfnl),
+            () => output.writeBoolean (obj.wfspd)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovCT1]): GovCT1 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovCT1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readString else null,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -906,6 +1032,142 @@ extends
     }
 }
 
+object GovCT2Serializer extends CIMSerializer[GovCT2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovCT2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aset),
+            () => output.writeDouble (obj.db),
+            () => output.writeDouble (obj.dm),
+            () => output.writeDouble (obj.flim1),
+            () => output.writeDouble (obj.flim10),
+            () => output.writeDouble (obj.flim2),
+            () => output.writeDouble (obj.flim3),
+            () => output.writeDouble (obj.flim4),
+            () => output.writeDouble (obj.flim5),
+            () => output.writeDouble (obj.flim6),
+            () => output.writeDouble (obj.flim7),
+            () => output.writeDouble (obj.flim8),
+            () => output.writeDouble (obj.flim9),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kdgov),
+            () => output.writeDouble (obj.kigov),
+            () => output.writeDouble (obj.kiload),
+            () => output.writeDouble (obj.kimw),
+            () => output.writeDouble (obj.kpgov),
+            () => output.writeDouble (obj.kpload),
+            () => output.writeDouble (obj.kturb),
+            () => output.writeDouble (obj.ldref),
+            () => output.writeDouble (obj.maxerr),
+            () => output.writeDouble (obj.minerr),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.plim1),
+            () => output.writeDouble (obj.plim10),
+            () => output.writeDouble (obj.plim2),
+            () => output.writeDouble (obj.plim3),
+            () => output.writeDouble (obj.plim4),
+            () => output.writeDouble (obj.plim5),
+            () => output.writeDouble (obj.plim6),
+            () => output.writeDouble (obj.plim7),
+            () => output.writeDouble (obj.plim8),
+            () => output.writeDouble (obj.plim9),
+            () => output.writeDouble (obj.prate),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.rclose),
+            () => output.writeDouble (obj.rdown),
+            () => output.writeDouble (obj.ropen),
+            () => output.writeString (obj.rselect),
+            () => output.writeDouble (obj.rup),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tact),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tdgov),
+            () => output.writeDouble (obj.teng),
+            () => output.writeDouble (obj.tfload),
+            () => output.writeDouble (obj.tpelec),
+            () => output.writeDouble (obj.tsa),
+            () => output.writeDouble (obj.tsb),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin),
+            () => output.writeDouble (obj.wfnl),
+            () => output.writeBoolean (obj.wfspd)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovCT2]): GovCT2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovCT2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0,
+            if (isSet (40)) input.readString else null,
+            if (isSet (41)) input.readDouble else 0.0,
+            if (isSet (42)) input.readDouble else 0.0,
+            if (isSet (43)) input.readDouble else 0.0,
+            if (isSet (44)) input.readDouble else 0.0,
+            if (isSet (45)) input.readDouble else 0.0,
+            if (isSet (46)) input.readDouble else 0.0,
+            if (isSet (47)) input.readDouble else 0.0,
+            if (isSet (48)) input.readDouble else 0.0,
+            if (isSet (49)) input.readDouble else 0.0,
+            if (isSet (50)) input.readDouble else 0.0,
+            if (isSet (51)) input.readDouble else 0.0,
+            if (isSet (52)) input.readDouble else 0.0,
+            if (isSet (53)) input.readDouble else 0.0,
+            if (isSet (54)) input.readDouble else 0.0,
+            if (isSet (55)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Single shaft gas turbine.
  *
@@ -1048,6 +1310,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovGASTSerializer extends CIMSerializer[GovGAST]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGAST): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.at),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeDouble (obj.kt),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGAST]): GovGAST =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGAST (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1364,6 +1670,98 @@ extends
     }
 }
 
+object GovGAST1Serializer extends CIMSerializer[GovGAST1]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGAST1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.b),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.fidle),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kt),
+            () => output.writeDouble (obj.lmax),
+            () => output.writeDouble (obj.loadinc),
+            () => output.writeDouble (obj.ltrate),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.rmax),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.tltr),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGAST1]): GovGAST1 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGAST1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Gas turbine.
  *
@@ -1640,6 +2038,94 @@ extends
     }
 }
 
+object GovGAST2Serializer extends CIMSerializer[GovGAST2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGAST2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.af1),
+            () => output.writeDouble (obj.af2),
+            () => output.writeDouble (obj.b),
+            () => output.writeDouble (obj.bf1),
+            () => output.writeDouble (obj.bf2),
+            () => output.writeDouble (obj.c),
+            () => output.writeDouble (obj.cf2),
+            () => output.writeDouble (obj.ecr),
+            () => output.writeDouble (obj.etd),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.k6),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.t),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tcd),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tmax),
+            () => output.writeDouble (obj.tmin),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.trate),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.w),
+            () => output.writeDouble (obj.x),
+            () => output.writeDouble (obj.y),
+            () => output.writeInt (obj.z)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGAST2]): GovGAST2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGAST2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Generic turbogas with acceleration and temperature controller.
  *
@@ -1862,6 +2348,72 @@ extends
     }
 }
 
+object GovGAST3Serializer extends CIMSerializer[GovGAST3]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGAST3): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.bca),
+            () => output.writeDouble (obj.bp),
+            () => output.writeDouble (obj.dtc),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kac),
+            () => output.writeDouble (obj.kca),
+            () => output.writeDouble (obj.ksi),
+            () => output.writeDouble (obj.ky),
+            () => output.writeDouble (obj.mnef),
+            () => output.writeDouble (obj.mxef),
+            () => output.writeDouble (obj.rcmn),
+            () => output.writeDouble (obj.rcmx),
+            () => output.writeDouble (obj.tac),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tfen),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tsi),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.ttc),
+            () => output.writeDouble (obj.ty)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGAST3]): GovGAST3 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGAST3 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Generic turbogas.
  *
@@ -2011,6 +2563,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovGAST4Serializer extends CIMSerializer[GovGAST4]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGAST4): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.bp),
+            () => output.writeDouble (obj.ktm),
+            () => output.writeDouble (obj.mnef),
+            () => output.writeDouble (obj.mxef),
+            () => output.writeDouble (obj.rymn),
+            () => output.writeDouble (obj.rymx),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tcm),
+            () => output.writeDouble (obj.tm),
+            () => output.writeDouble (obj.ty)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGAST4]): GovGAST4 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGAST4 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2293,6 +2891,96 @@ extends
     }
 }
 
+object GovGASTWDSerializer extends CIMSerializer[GovGASTWD]
+{
+    def write (kryo: Kryo, output: Output, obj: GovGASTWD): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.af1),
+            () => output.writeDouble (obj.af2),
+            () => output.writeDouble (obj.b),
+            () => output.writeDouble (obj.bf1),
+            () => output.writeDouble (obj.bf2),
+            () => output.writeDouble (obj.c),
+            () => output.writeDouble (obj.cf2),
+            () => output.writeDouble (obj.ecr),
+            () => output.writeDouble (obj.etd),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.k6),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kdroop),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.t),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tcd),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tmax),
+            () => output.writeDouble (obj.tmin),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.trate),
+            () => output.writeDouble (obj.tt)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovGASTWD]): GovGASTWD =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovGASTWD (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Basic hydro turbine governor.
  *
@@ -2463,6 +3151,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydro1Serializer extends CIMSerializer[GovHydro1]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydro1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.at),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.hdam),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.qnl),
+            () => output.writeDouble (obj.rperm),
+            () => output.writeDouble (obj.rtemp),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.velm)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydro1]): GovHydro1 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydro1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2741,6 +3481,88 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydro2Serializer extends CIMSerializer[GovHydro2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydro2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aturb),
+            () => output.writeDouble (obj.bturb),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.kturb),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.rperm),
+            () => output.writeDouble (obj.rtemp),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydro2]): GovHydro2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydro2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3072,6 +3894,102 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydro3Serializer extends CIMSerializer[GovHydro3]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydro3): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.at),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeDouble (obj.eps),
+            () => output.writeBoolean (obj.governorControl),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.h0),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.qnl),
+            () => output.writeDouble (obj.relec),
+            () => output.writeDouble (obj.rgate),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.velcl),
+            () => output.writeDouble (obj.velop)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydro3]): GovHydro3 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydro3 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3425,6 +4343,108 @@ extends
     }
 }
 
+object GovHydro4Serializer extends CIMSerializer[GovHydro4]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydro4): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.at),
+            () => output.writeDouble (obj.bgv0),
+            () => output.writeDouble (obj.bgv1),
+            () => output.writeDouble (obj.bgv2),
+            () => output.writeDouble (obj.bgv3),
+            () => output.writeDouble (obj.bgv4),
+            () => output.writeDouble (obj.bgv5),
+            () => output.writeDouble (obj.bmax),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.gv0),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.hdam),
+            () => output.writeString (obj.model),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv0),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.qnl),
+            () => output.writeDouble (obj.rperm),
+            () => output.writeDouble (obj.rtemp),
+            () => output.writeDouble (obj.tblade),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydro4]): GovHydro4 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydro4 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readString else null,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Double derivative hydro governor and turbine.
  *
@@ -3749,6 +4769,100 @@ extends
     }
 }
 
+object GovHydroDDSerializer extends CIMSerializer[GovHydroDD]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroDD): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aturb),
+            () => output.writeDouble (obj.bturb),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeBoolean (obj.inputSignal),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.tturb),
+            () => output.writeDouble (obj.velcl),
+            () => output.writeDouble (obj.velop)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroDD]): GovHydroDD =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroDD (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readBoolean else false,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Detailed hydro unit - Francis model.
  *
@@ -4019,6 +5133,84 @@ extends
     }
 }
 
+object GovHydroFrancisSerializer extends CIMSerializer[GovHydroFrancis]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroFrancis): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.am),
+            () => output.writeDouble (obj.av0),
+            () => output.writeDouble (obj.av1),
+            () => output.writeDouble (obj.bp),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.etamax),
+            () => output.writeString (obj.governorControl),
+            () => output.writeDouble (obj.h1),
+            () => output.writeDouble (obj.h2),
+            () => output.writeDouble (obj.hn),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.kt),
+            () => output.writeDouble (obj.qc0),
+            () => output.writeDouble (obj.qn),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.ts),
+            () => output.writeDouble (obj.twnc),
+            () => output.writeDouble (obj.twng),
+            () => output.writeDouble (obj.tx),
+            () => output.writeDouble (obj.va),
+            () => output.writeDouble (obj.valvmax),
+            () => output.writeDouble (obj.valvmin),
+            () => output.writeDouble (obj.vc),
+            () => output.writeBoolean (obj.waterTunnelSurgeChamberSimulation),
+            () => output.writeDouble (obj.zsfc)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroFrancis]): GovHydroFrancis =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroFrancis (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readBoolean else false,
+            if (isSet (26)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE simplified hydro governor-turbine model.
  *
@@ -4146,6 +5338,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydroIEEE0Serializer extends CIMSerializer[GovHydroIEEE0]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroIEEE0): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroIEEE0]): GovHydroIEEE0 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroIEEE0 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4405,6 +5637,82 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydroIEEE2Serializer extends CIMSerializer[GovHydroIEEE2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroIEEE2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aturb),
+            () => output.writeDouble (obj.bturb),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.kturb),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.rperm),
+            () => output.writeDouble (obj.rtemp),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroIEEE2]): GovHydroIEEE2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroIEEE2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4718,6 +6026,96 @@ extends
     }
 }
 
+object GovHydroPIDSerializer extends CIMSerializer[GovHydroPID]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroPID): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.aturb),
+            () => output.writeDouble (obj.bturb),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeBoolean (obj.inputSignal),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.tturb),
+            () => output.writeDouble (obj.velcl),
+            () => output.writeDouble (obj.velop)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroPID]): GovHydroPID =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroPID (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readBoolean else false,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Hydro turbine and governor.
  *
@@ -4947,6 +6345,74 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydroPID2Serializer extends CIMSerializer[GovHydroPID2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroPID2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.atw),
+            () => output.writeDouble (obj.d),
+            () => output.writeBoolean (obj.feedbackSignal),
+            () => output.writeDouble (obj.g0),
+            () => output.writeDouble (obj.g1),
+            () => output.writeDouble (obj.g2),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.p1),
+            () => output.writeDouble (obj.p2),
+            () => output.writeDouble (obj.p3),
+            () => output.writeDouble (obj.rperm),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.treg),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.velmax),
+            () => output.writeDouble (obj.velmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroPID2]): GovHydroPID2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroPID2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -5228,6 +6694,86 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydroPeltonSerializer extends CIMSerializer[GovHydroPelton]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroPelton): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.av0),
+            () => output.writeDouble (obj.av1),
+            () => output.writeDouble (obj.bp),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.h1),
+            () => output.writeDouble (obj.h2),
+            () => output.writeDouble (obj.hn),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.qc0),
+            () => output.writeDouble (obj.qn),
+            () => output.writeBoolean (obj.simplifiedPelton),
+            () => output.writeBoolean (obj.staticCompensating),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.ts),
+            () => output.writeDouble (obj.tv),
+            () => output.writeDouble (obj.twnc),
+            () => output.writeDouble (obj.twng),
+            () => output.writeDouble (obj.tx),
+            () => output.writeDouble (obj.va),
+            () => output.writeDouble (obj.valvmax),
+            () => output.writeDouble (obj.valvmin),
+            () => output.writeDouble (obj.vav),
+            () => output.writeDouble (obj.vc),
+            () => output.writeDouble (obj.vcv),
+            () => output.writeBoolean (obj.waterTunnelSurgeChamberSimulation),
+            () => output.writeDouble (obj.zsfc)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroPelton]): GovHydroPelton =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroPelton (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readBoolean else false,
+            if (isSet (13)) input.readBoolean else false,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readBoolean else false,
+            if (isSet (27)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -5601,6 +7147,114 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovHydroRSerializer extends CIMSerializer[GovHydroR]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroR): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.at),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.h0),
+            () => output.writeBoolean (obj.inputSignal),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.qnl),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.velcl),
+            () => output.writeDouble (obj.velop)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroR]): GovHydroR =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroR (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readBoolean else false,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0,
+            if (isSet (40)) input.readDouble else 0.0,
+            if (isSet (41)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -6025,6 +7679,132 @@ extends
     }
 }
 
+object GovHydroWEHSerializer extends CIMSerializer[GovHydroWEH]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroWEH): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.db),
+            () => output.writeDouble (obj.dicn),
+            () => output.writeDouble (obj.dpv),
+            () => output.writeDouble (obj.dturb),
+            () => output.writeBoolean (obj.feedbackSignal),
+            () => output.writeDouble (obj.fl1),
+            () => output.writeDouble (obj.fl2),
+            () => output.writeDouble (obj.fl3),
+            () => output.writeDouble (obj.fl4),
+            () => output.writeDouble (obj.fl5),
+            () => output.writeDouble (obj.fp1),
+            () => output.writeDouble (obj.fp10),
+            () => output.writeDouble (obj.fp2),
+            () => output.writeDouble (obj.fp3),
+            () => output.writeDouble (obj.fp4),
+            () => output.writeDouble (obj.fp5),
+            () => output.writeDouble (obj.fp6),
+            () => output.writeDouble (obj.fp7),
+            () => output.writeDouble (obj.fp8),
+            () => output.writeDouble (obj.fp9),
+            () => output.writeDouble (obj.gmax),
+            () => output.writeDouble (obj.gmin),
+            () => output.writeDouble (obj.gtmxcl),
+            () => output.writeDouble (obj.gtmxop),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmss1),
+            () => output.writeDouble (obj.pmss10),
+            () => output.writeDouble (obj.pmss2),
+            () => output.writeDouble (obj.pmss3),
+            () => output.writeDouble (obj.pmss4),
+            () => output.writeDouble (obj.pmss5),
+            () => output.writeDouble (obj.pmss6),
+            () => output.writeDouble (obj.pmss7),
+            () => output.writeDouble (obj.pmss8),
+            () => output.writeDouble (obj.pmss9),
+            () => output.writeDouble (obj.rpg),
+            () => output.writeDouble (obj.rpp),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tdv),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tpe),
+            () => output.writeDouble (obj.tw)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroWEH]): GovHydroWEH =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroWEH (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0,
+            if (isSet (40)) input.readDouble else 0.0,
+            if (isSet (41)) input.readDouble else 0.0,
+            if (isSet (42)) input.readDouble else 0.0,
+            if (isSet (43)) input.readDouble else 0.0,
+            if (isSet (44)) input.readDouble else 0.0,
+            if (isSet (45)) input.readDouble else 0.0,
+            if (isSet (46)) input.readDouble else 0.0,
+            if (isSet (47)) input.readDouble else 0.0,
+            if (isSet (48)) input.readDouble else 0.0,
+            if (isSet (49)) input.readDouble else 0.0,
+            if (isSet (50)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Woodward<sup>TM</sup> PID hydro governor.
  * [Footnote: Woodward PID hydro governors are an example of suitable products available commercially.
@@ -6245,6 +8025,74 @@ extends
     }
 }
 
+object GovHydroWPIDSerializer extends CIMSerializer[GovHydroWPID]
+{
+    def write (kryo: Kryo, output: Output, obj: GovHydroWPID): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.d),
+            () => output.writeDouble (obj.gatmax),
+            () => output.writeDouble (obj.gatmin),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.reg),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.treg),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.velmax),
+            () => output.writeDouble (obj.velmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovHydroWPID]): GovHydroWPID =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovHydroWPID (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A simplified steam turbine governor.
  *
@@ -6373,6 +8221,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovSteam0Serializer extends CIMSerializer[GovSteam0]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteam0): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dt),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteam0]): GovSteam0 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteam0 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -6730,6 +8618,108 @@ extends
     }
 }
 
+object GovSteam1Serializer extends CIMSerializer[GovSteam1]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteam1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.eps),
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.k6),
+            () => output.writeDouble (obj.k7),
+            () => output.writeDouble (obj.k8),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeBoolean (obj.sdb1),
+            () => output.writeBoolean (obj.sdb2),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo),
+            () => output.writeBoolean (obj.valve)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteam1]): GovSteam1 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteam1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readBoolean else false,
+            if (isSet (28)) input.readBoolean else false,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Simplified governor.
  *
@@ -6858,6 +8848,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovSteam2Serializer extends CIMSerializer[GovSteam2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteam2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dbf),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.mnef),
+            () => output.writeDouble (obj.mxef),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteam2]): GovSteam2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteam2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -7057,6 +9087,64 @@ extends
     }
 }
 
+object GovSteamBBSerializer extends CIMSerializer[GovSteamBB]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamBB): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.fcut),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.kls),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ks),
+            () => output.writeBoolean (obj.peflag),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tn)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamBB]): GovSteamBB =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamBB (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Cross compound turbine governor.
  *
@@ -7250,6 +9338,64 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovSteamCCSerializer extends CIMSerializer[GovSteamCC]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamCC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dhp),
+            () => output.writeDouble (obj.dlp),
+            () => output.writeDouble (obj.fhp),
+            () => output.writeDouble (obj.flp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmaxhp),
+            () => output.writeDouble (obj.pmaxlp),
+            () => output.writeDouble (obj.rhp),
+            () => output.writeDouble (obj.rlp),
+            () => output.writeDouble (obj.t1hp),
+            () => output.writeDouble (obj.t1lp),
+            () => output.writeDouble (obj.t3hp),
+            () => output.writeDouble (obj.t3lp),
+            () => output.writeDouble (obj.t4hp),
+            () => output.writeDouble (obj.t4lp),
+            () => output.writeDouble (obj.t5hp),
+            () => output.writeDouble (obj.t5lp)
+        )
+        CrossCompoundTurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamCC]): GovSteamCC =
+    {
+        val parent = CrossCompoundTurbineGovernorDynamicsSerializer.read (kryo, input, classOf[CrossCompoundTurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamCC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -7573,6 +9719,100 @@ extends
     }
 }
 
+object GovSteamEUSerializer extends CIMSerializer[GovSteamEU]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamEU): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.chc),
+            () => output.writeDouble (obj.cho),
+            () => output.writeDouble (obj.cic),
+            () => output.writeDouble (obj.cio),
+            () => output.writeDouble (obj.db1),
+            () => output.writeDouble (obj.db2),
+            () => output.writeDouble (obj.hhpmax),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kfcor),
+            () => output.writeDouble (obj.khp),
+            () => output.writeDouble (obj.klp),
+            () => output.writeDouble (obj.komegacor),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.prhmax),
+            () => output.writeDouble (obj.simx),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tdp),
+            () => output.writeDouble (obj.ten),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tfp),
+            () => output.writeDouble (obj.thp),
+            () => output.writeDouble (obj.tip),
+            () => output.writeDouble (obj.tlp),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.trh),
+            () => output.writeDouble (obj.tvhp),
+            () => output.writeDouble (obj.tvip),
+            () => output.writeDouble (obj.tw),
+            () => output.writeDouble (obj.wfmax),
+            () => output.writeDouble (obj.wfmin),
+            () => output.writeDouble (obj.wmax1),
+            () => output.writeDouble (obj.wmax2),
+            () => output.writeDouble (obj.wwmax),
+            () => output.writeDouble (obj.wwmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamEU]): GovSteamEU =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamEU (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Steam turbine governor with reheat time constants and modelling of the effects of fast valve closing to reduce mechanical power.
  *
@@ -7718,6 +9958,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovSteamFV2Serializer extends CIMSerializer[GovSteamFV2]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamFV2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dt),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV2]): GovSteamFV2 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamFV2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -8010,6 +10298,92 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GovSteamFV3Serializer extends CIMSerializer[GovSteamFV3]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamFV3): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.gv1),
+            () => output.writeDouble (obj.gv2),
+            () => output.writeDouble (obj.gv3),
+            () => output.writeDouble (obj.gv4),
+            () => output.writeDouble (obj.gv5),
+            () => output.writeDouble (obj.gv6),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pgv1),
+            () => output.writeDouble (obj.pgv2),
+            () => output.writeDouble (obj.pgv3),
+            () => output.writeDouble (obj.pgv4),
+            () => output.writeDouble (obj.pgv5),
+            () => output.writeDouble (obj.pgv6),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.prmax),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV3]): GovSteamFV3 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamFV3 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -8445,6 +10819,132 @@ extends
     }
 }
 
+object GovSteamFV4Serializer extends CIMSerializer[GovSteamFV4]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamFV4): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.cpsmn),
+            () => output.writeDouble (obj.cpsmx),
+            () => output.writeDouble (obj.crmn),
+            () => output.writeDouble (obj.crmx),
+            () => output.writeDouble (obj.kdc),
+            () => output.writeDouble (obj.kf1),
+            () => output.writeDouble (obj.kf3),
+            () => output.writeDouble (obj.khp),
+            () => output.writeDouble (obj.kic),
+            () => output.writeDouble (obj.kip),
+            () => output.writeDouble (obj.kit),
+            () => output.writeDouble (obj.kmp1),
+            () => output.writeDouble (obj.kmp2),
+            () => output.writeDouble (obj.kpc),
+            () => output.writeDouble (obj.kpp),
+            () => output.writeDouble (obj.kpt),
+            () => output.writeDouble (obj.krc),
+            () => output.writeDouble (obj.ksh),
+            () => output.writeDouble (obj.lpi),
+            () => output.writeDouble (obj.lps),
+            () => output.writeDouble (obj.mnef),
+            () => output.writeDouble (obj.mxef),
+            () => output.writeDouble (obj.pr1),
+            () => output.writeDouble (obj.pr2),
+            () => output.writeDouble (obj.psmn),
+            () => output.writeDouble (obj.rsmimn),
+            () => output.writeDouble (obj.rsmimx),
+            () => output.writeDouble (obj.rvgmn),
+            () => output.writeDouble (obj.rvgmx),
+            () => output.writeDouble (obj.srmn),
+            () => output.writeDouble (obj.srmx),
+            () => output.writeDouble (obj.srsmp),
+            () => output.writeDouble (obj.svmn),
+            () => output.writeDouble (obj.svmx),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tam),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tcm),
+            () => output.writeDouble (obj.tdc),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.thp),
+            () => output.writeDouble (obj.tmp),
+            () => output.writeDouble (obj.trh),
+            () => output.writeDouble (obj.tv),
+            () => output.writeDouble (obj.ty),
+            () => output.writeDouble (obj.y),
+            () => output.writeDouble (obj.yhpmn),
+            () => output.writeDouble (obj.yhpmx),
+            () => output.writeDouble (obj.ympmn),
+            () => output.writeDouble (obj.ympmx)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV4]): GovSteamFV4 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamFV4 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0,
+            if (isSet (40)) input.readDouble else 0.0,
+            if (isSet (41)) input.readDouble else 0.0,
+            if (isSet (42)) input.readDouble else 0.0,
+            if (isSet (43)) input.readDouble else 0.0,
+            if (isSet (44)) input.readDouble else 0.0,
+            if (isSet (45)) input.readDouble else 0.0,
+            if (isSet (46)) input.readDouble else 0.0,
+            if (isSet (47)) input.readDouble else 0.0,
+            if (isSet (48)) input.readDouble else 0.0,
+            if (isSet (49)) input.readDouble else 0.0,
+            if (isSet (50)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE steam turbine governor model.
  *
@@ -8668,6 +11168,72 @@ extends
     }
 }
 
+object GovSteamIEEE1Serializer extends CIMSerializer[GovSteamIEEE1]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamIEEE1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.k6),
+            () => output.writeDouble (obj.k7),
+            () => output.writeDouble (obj.k8),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.uo)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamIEEE1]): GovSteamIEEE1 =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamIEEE1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Simplified steam turbine governor.
  *
@@ -8816,6 +11382,54 @@ extends
     }
 }
 
+object GovSteamSGOSerializer extends CIMSerializer[GovSteamSGO]
+{
+    def write (kryo: Kryo, output: Output, obj: GovSteamSGO): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeDouble (obj.pmax),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GovSteamSGO]): GovSteamSGO =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GovSteamSGO (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Turbine-governor function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -8913,6 +11527,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TurbineGovernorDynamicsSerializer extends CIMSerializer[TurbineGovernorDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: TurbineGovernorDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AsynchronousMachineDynamics),
+            () => output.writeString (obj.SynchronousMachineDynamics),
+            () => output.writeString (obj.TurbineLoadControllerDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TurbineGovernorDynamics]): TurbineGovernorDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TurbineGovernorDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

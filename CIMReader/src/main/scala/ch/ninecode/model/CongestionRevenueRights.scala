@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
@@ -98,6 +102,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CRROrgRoleSerializer extends CIMSerializer[CRROrgRole]
+{
+    def write (kryo: Kryo, output: Output, obj: CRROrgRole): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.CongestionRevenueRight)
+        )
+        OrganisationRoleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CRROrgRole]): CRROrgRole =
+    {
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CRROrgRole (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -228,6 +262,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CRRSegmentSerializer extends CIMSerializer[CRRSegment]
+{
+    def write (kryo: Kryo, output: Output, obj: CRRSegment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.amount),
+            () => output.writeDouble (obj.clearingPrice),
+            () => output.writeString (obj.endDateTime),
+            () => output.writeDouble (obj.quantity),
+            () => output.writeString (obj.startDateTime),
+            () => output.writeString (obj.CongestionRevenueRight),
+            () => writeList (obj.Sink, output),
+            () => writeList (obj.Source, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CRRSegment]): CRRSegment =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CRRSegment (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -369,6 +443,48 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CongestionRevenueRightSerializer extends CIMSerializer[CongestionRevenueRight]
+{
+    def write (kryo: Kryo, output: Output, obj: CongestionRevenueRight): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.cRRcategory),
+            () => output.writeString (obj.cRRtype),
+            () => output.writeString (obj.hedgeType),
+            () => output.writeString (obj.timeOfUse),
+            () => output.writeString (obj.tradeSliceID),
+            () => output.writeString (obj.CRRMarket),
+            () => writeList (obj.CRROrgRole, output),
+            () => writeList (obj.CRRSegment, output),
+            () => output.writeString (obj.Flowgate)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CongestionRevenueRight]): CongestionRevenueRight =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CongestionRevenueRight (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

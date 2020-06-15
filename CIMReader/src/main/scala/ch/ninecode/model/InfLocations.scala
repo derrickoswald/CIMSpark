@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Information about a particular piece of (land) property such as its use.
@@ -159,6 +163,52 @@ extends
     }
 }
 
+object LandPropertySerializer extends CIMSerializer[LandProperty]
+{
+    def write (kryo: Kryo, output: Output, obj: LandProperty): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.demographicKind),
+            () => output.writeString (obj.externalRecordReference),
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.status),
+            () => writeList (obj.AssetContainers, output),
+            () => writeList (obj.ErpOrganisationRoles, output),
+            () => writeList (obj.ErpPersonRoles, output),
+            () => writeList (obj.ErpSiteLevelDatas, output),
+            () => writeList (obj.LocationGrants, output),
+            () => writeList (obj.Locations, output),
+            () => writeList (obj.RightOfWays, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LandProperty]): LandProperty =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LandProperty (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A grant provides a right, as defined by type, for a parcel of land.
  *
@@ -250,6 +300,34 @@ extends
     }
 }
 
+object LocationGrantSerializer extends CIMSerializer[LocationGrant]
+{
+    def write (kryo: Kryo, output: Output, obj: LocationGrant): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.propertyData),
+            () => output.writeString (obj.LandProperty)
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LocationGrant]): LocationGrant =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LocationGrant (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This class is used for handling the accompanying annotations, time stamp, author, etc. of designs, drawings and maps.
  *
@@ -327,6 +405,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RedLineSerializer extends CIMSerializer[RedLine]
+{
+    def write (kryo: Kryo, output: Output, obj: RedLine): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RedLine]): RedLine =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RedLine (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -418,6 +522,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RightOfWaySerializer extends CIMSerializer[RightOfWay]
+{
+    def write (kryo: Kryo, output: Output, obj: RightOfWay): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.propertyData),
+            () => writeList (obj.LandProperties, output)
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RightOfWay]): RightOfWay =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RightOfWay (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -523,6 +655,38 @@ extends
     }
 }
 
+object RouteSerializer extends CIMSerializer[Route]
+{
+    def write (kryo: Kryo, output: Output, obj: Route): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.Crews, output),
+            () => writeList (obj.Locations, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Route]): Route =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Route (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Area divided off from other areas.
  *
@@ -600,6 +764,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ZoneSerializer extends CIMSerializer[Zone]
+{
+    def write (kryo: Kryo, output: Output, obj: Zone): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        LocationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Zone]): Zone =
+    {
+        val parent = LocationSerializer.read (kryo, input, classOf[Location])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Zone (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

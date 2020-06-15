@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A unique identifier of a wheeling transaction.
@@ -86,6 +90,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WheelingReferenceScheduleSerializer extends CIMSerializer[WheelingReferenceSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: WheelingReferenceSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.value)
+        )
+        BidHourlyScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WheelingReferenceSchedule]): WheelingReferenceSchedule =
+    {
+        val parent = BidHourlyScheduleSerializer.read (kryo, input, classOf[BidHourlySchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WheelingReferenceSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A description for how to assemble model parts for a specific purpose.
@@ -88,6 +92,32 @@ extends
     }
 }
 
+object AssemblyDescriptionSerializer extends CIMSerializer[AssemblyDescription]
+{
+    def write (kryo: Kryo, output: Output, obj: AssemblyDescription): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ModelSpecification, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssemblyDescription]): AssemblyDescription =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssemblyDescription (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A collection of model parts when combined form a case or part of a case.
  *
@@ -152,6 +182,31 @@ extends
     }
 }
 
+object AssemblyManifestSerializer extends CIMSerializer[AssemblyManifest]
+{
+    def write (kryo: Kryo, output: Output, obj: AssemblyManifest): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssemblyManifest]): AssemblyManifest =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssemblyManifest (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A complete model can be used in applications to perform meaningful calculations, e.g. a study case in offline tools or a real time model in a SCADA/EMS.
  *
@@ -213,6 +268,31 @@ extends
             ModelToBeDeleted.parse (context)
         )
         ret
+    }
+}
+
+object CompleteModelToBeDeletedSerializer extends CIMSerializer[CompleteModelToBeDeleted]
+{
+    def write (kryo: Kryo, output: Output, obj: CompleteModelToBeDeleted): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ModelToBeDeletedSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CompleteModelToBeDeleted]): CompleteModelToBeDeleted =
+    {
+        val parent = ModelToBeDeletedSerializer.read (kryo, input, classOf[ModelToBeDeleted])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CompleteModelToBeDeleted (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -306,6 +386,34 @@ extends
     }
 }
 
+object FrameworkPartSerializer extends CIMSerializer[FrameworkPart]
+{
+    def write (kryo: Kryo, output: Output, obj: FrameworkPart): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Frame),
+            () => output.writeString (obj.ModelFrameType)
+        )
+        ModelAuthoritySetSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FrameworkPart]): FrameworkPart =
+    {
+        val parent = ModelAuthoritySetSerializer.read (kryo, input, classOf[ModelAuthoritySet])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FrameworkPart (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Load a model part version.
  *
@@ -367,6 +475,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object LoadModelPartVersionSerializer extends CIMSerializer[LoadModelPartVersion]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadModelPartVersion): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadModelPartVersion]): LoadModelPartVersion =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadModelPartVersion (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -448,6 +581,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ModelAuthoritySerializer extends CIMSerializer[ModelAuthority]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelAuthority): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ModelingAuthoritySets, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelAuthority]): ModelAuthority =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelAuthority (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -539,6 +698,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ModelAuthoritySetSerializer extends CIMSerializer[ModelAuthoritySet]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelAuthoritySet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ModelSpecification, output),
+            () => output.writeString (obj.ModelingAuthority)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelAuthoritySet]): ModelAuthoritySet =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelAuthoritySet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -640,6 +827,36 @@ extends
     }
 }
 
+object ModelPartSpecificationSerializer extends CIMSerializer[ModelPartSpecification]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelPartSpecification): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.AssemblyDescription, output),
+            () => output.writeString (obj.FrameworkPart),
+            () => writeList (obj.Model, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelPartSpecification]): ModelPartSpecification =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelPartSpecification (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This is a version of a part of a model.
  *
@@ -723,6 +940,32 @@ extends
     }
 }
 
+object ModelPartVersionSerializer extends CIMSerializer[ModelPartVersion]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelPartVersion): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ModelSpecification)
+        )
+        ModelToBeDeletedSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelPartVersion]): ModelPartVersion =
+    {
+        val parent = ModelToBeDeletedSerializer.read (kryo, input, classOf[ModelToBeDeleted])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelPartVersion (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A Model is a collection of Datasets.
  *
@@ -787,6 +1030,31 @@ extends
     }
 }
 
+object ModelToBeDeletedSerializer extends CIMSerializer[ModelToBeDeleted]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelToBeDeleted): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelToBeDeleted]): ModelToBeDeleted =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelToBeDeleted (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A framework part that is a boundary between 2 frames.
  *
@@ -848,6 +1116,31 @@ extends
             FrameworkPart.parse (context)
         )
         ret
+    }
+}
+
+object NetworkBoundarySerializer extends CIMSerializer[NetworkBoundary]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkBoundary): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        FrameworkPartSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkBoundary]): NetworkBoundary =
+    {
+        val parent = FrameworkPartSerializer.read (kryo, input, classOf[FrameworkPart])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkBoundary (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -932,6 +1225,32 @@ extends
     }
 }
 
+object NetworkFrameSerializer extends CIMSerializer[NetworkFrame]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkFrame): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.FrameworkPart_attr, output)
+        )
+        FrameworkPartSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkFrame]): NetworkFrame =
+    {
+        val parent = FrameworkPartSerializer.read (kryo, input, classOf[FrameworkPart])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkFrame (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Instructions to build a network model case, including when appropriate the results.
  *
@@ -996,6 +1315,31 @@ extends
     }
 }
 
+object NetworkModelCaseDefinitionSerializer extends CIMSerializer[NetworkModelCaseDefinition]
+{
+    def write (kryo: Kryo, output: Output, obj: NetworkModelCaseDefinition): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NetworkModelCaseDefinition]): NetworkModelCaseDefinition =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NetworkModelCaseDefinition (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group NetworkModelFrames
  * @groupname NetworkModelFrames Package NetworkModelFrames
@@ -1054,6 +1398,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object OperationSerializer extends CIMSerializer[Operation]
+{
+    def write (kryo: Kryo, output: Output, obj: Operation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Operation]): Operation =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Operation (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

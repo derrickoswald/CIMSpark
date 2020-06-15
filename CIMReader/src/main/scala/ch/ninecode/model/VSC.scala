@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group VSC
@@ -87,6 +91,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object BlockingFunctionSerializer extends CIMSerializer[BlockingFunction]
+{
+    def write (kryo: Kryo, output: Output, obj: BlockingFunction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BlockingFunction]): BlockingFunction =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BlockingFunction (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -203,6 +235,42 @@ extends
     }
 }
 
+object DCvoltageControlSerializer extends CIMSerializer[DCvoltageControl]
+{
+    def write (kryo: Kryo, output: Output, obj: DCvoltageControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kivdc),
+            () => output.writeDouble (obj.kpvdc),
+            () => output.writeDouble (obj.vdcmax),
+            () => output.writeDouble (obj.vdcmin),
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCvoltageControl]): DCvoltageControl =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCvoltageControl (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group VSC
  * @groupname VSC Package VSC
@@ -283,6 +351,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PFmodeSerializer extends CIMSerializer[PFmode]
+{
+    def write (kryo: Kryo, output: Output, obj: PFmode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFmode]): PFmode =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFmode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -369,6 +465,34 @@ extends
     }
 }
 
+object PcontrolSerializer extends CIMSerializer[Pcontrol]
+{
+    def write (kryo: Kryo, output: Output, obj: Pcontrol): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pcontrol]): Pcontrol =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pcontrol (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group VSC
  * @groupname VSC Package VSC
@@ -452,6 +576,34 @@ extends
     }
 }
 
+object QlimiterSerializer extends CIMSerializer[Qlimiter]
+{
+    def write (kryo: Kryo, output: Output, obj: Qlimiter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Qlimiter]): Qlimiter =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Qlimiter (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group VSC
  * @groupname VSC Package VSC
@@ -532,6 +684,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object QmodeSerializer extends CIMSerializer[Qmode]
+{
+    def write (kryo: Kryo, output: Output, obj: Qmode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Qmode]): Qmode =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Qmode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -625,6 +805,36 @@ extends
     }
 }
 
+object QregulatorSerializer extends CIMSerializer[Qregulator]
+{
+    def write (kryo: Kryo, output: Output, obj: Qregulator): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => writeList (obj.HVDClookUpTable, output),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Qregulator]): Qregulator =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Qregulator (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group VSC
  * @groupname VSC Package VSC
@@ -705,6 +915,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UmodeSerializer extends CIMSerializer[Umode]
+{
+    def write (kryo: Kryo, output: Output, obj: Umode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Delay),
+            () => output.writeString (obj.VSCtype1)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Umode]): Umode =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Umode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -824,6 +1062,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VSCtype1Serializer extends CIMSerializer[VSCtype1]
+{
+    def write (kryo: Kryo, output: Output, obj: VSCtype1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.BlockingFunction),
+            () => output.writeString (obj.DCvoltageControl),
+            () => output.writeString (obj.PFmodel),
+            () => output.writeString (obj.Pcontrol),
+            () => output.writeString (obj.Qlimiter),
+            () => output.writeString (obj.Qmode),
+            () => output.writeString (obj.Qregulator),
+            () => output.writeString (obj.Umode)
+        )
+        VSCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VSCtype1]): VSCtype1 =
+    {
+        val parent = VSCDynamicsSerializer.read (kryo, input, classOf[VSCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VSCtype1 (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

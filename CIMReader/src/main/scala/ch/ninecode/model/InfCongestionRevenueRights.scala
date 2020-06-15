@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
@@ -134,6 +138,46 @@ extends
     }
 }
 
+object FTRSerializer extends CIMSerializer[FTR]
+{
+    def write (kryo: Kryo, output: Output, obj: FTR): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.action),
+            () => output.writeDouble (obj.baseEnergy),
+            () => output.writeString (obj.`class`),
+            () => output.writeString (obj.ftrType),
+            () => output.writeString (obj.optimized),
+            () => output.writeString (obj.EnergyPriceCurve),
+            () => output.writeString (obj.Flowgate),
+            () => writeList (obj.Pnodes, output)
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FTR]): FTR =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FTR (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
  *
@@ -226,6 +270,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ViolationLimitSerializer extends CIMSerializer[ViolationLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: ViolationLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.enforced),
+            () => output.writeString (obj.Flowgate),
+            () => output.writeString (obj.MktMeasurement)
+        )
+        LimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ViolationLimit]): ViolationLimit =
+    {
+        val parent = LimitSerializer.read (kryo, input, classOf[Limit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ViolationLimit (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

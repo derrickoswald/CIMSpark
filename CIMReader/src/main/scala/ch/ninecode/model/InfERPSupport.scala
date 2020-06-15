@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
@@ -104,6 +108,34 @@ extends
     }
 }
 
+object ErpBOMSerializer extends CIMSerializer[ErpBOM]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpBOM): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Design),
+            () => writeList (obj.ErpBomItemDatas, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpBOM]): ErpBOM =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpBOM (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
  *
@@ -189,6 +221,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpBankAccountSerializer extends CIMSerializer[ErpBankAccount]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpBankAccount): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.bankABA)
+        )
+        BankAccountSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpBankAccount]): ErpBankAccount =
+    {
+        val parent = BankAccountSerializer.read (kryo, input, classOf[BankAccount])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpBankAccount (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -293,6 +351,36 @@ extends
     }
 }
 
+object ErpBomItemDataSerializer extends CIMSerializer[ErpBomItemData]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpBomItemData): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DesignLocation),
+            () => output.writeString (obj.ErpBOM),
+            () => output.writeString (obj.TypeAsset)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpBomItemData]): ErpBomItemData =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpBomItemData (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Accounting structure of a business.
  *
@@ -362,6 +450,31 @@ extends
             ErpDocument.parse (context)
         )
         ret
+    }
+}
+
+object ErpChartOfAccountsSerializer extends CIMSerializer[ErpChartOfAccounts]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpChartOfAccounts): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpChartOfAccounts]): ErpChartOfAccounts =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpChartOfAccounts (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -454,6 +567,32 @@ extends
     }
 }
 
+object ErpCompetencySerializer extends CIMSerializer[ErpCompetency]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpCompetency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpPersons, output)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpCompetency]): ErpCompetency =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpCompetency (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Shadow class for Document, to isolate subclassing from this package.
  *
@@ -523,6 +662,31 @@ extends
             Document.parse (context)
         )
         ret
+    }
+}
+
+object ErpDocumentSerializer extends CIMSerializer[ErpDocument]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpDocument): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpDocument]): ErpDocument =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpDocument (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -596,6 +760,31 @@ extends
     }
 }
 
+object ErpEngChangeOrderSerializer extends CIMSerializer[ErpEngChangeOrder]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpEngChangeOrder): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpEngChangeOrder]): ErpEngChangeOrder =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpEngChangeOrder (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  *
@@ -665,6 +854,31 @@ extends
             IdentifiedObject.parse (context)
         )
         ret
+    }
+}
+
+object ErpIdentifiedObjectSerializer extends CIMSerializer[ErpIdentifiedObject]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpIdentifiedObject): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpIdentifiedObject]): ErpIdentifiedObject =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpIdentifiedObject (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -763,6 +977,34 @@ extends
     }
 }
 
+object ErpInventorySerializer extends CIMSerializer[ErpInventory]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpInventory): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.Asset)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpInventory]): ErpInventory =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpInventory (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This is related to Inventory physical counts organized by AssetModel.
  *
@@ -847,6 +1089,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpInventoryCountSerializer extends CIMSerializer[ErpInventoryCount]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpInventoryCount): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpInventoryCount]): ErpInventoryCount =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpInventoryCount (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1000,6 +1268,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpInvoiceSerializer extends CIMSerializer[ErpInvoice]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpInvoice): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.amount),
+            () => output.writeString (obj.billMediaKind),
+            () => output.writeString (obj.dueDate),
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.mailedDate),
+            () => output.writeBoolean (obj.proForma),
+            () => output.writeString (obj.referenceNumber),
+            () => output.writeString (obj.transactionDateTime),
+            () => output.writeString (obj.transferType),
+            () => output.writeString (obj.CustomerAccount),
+            () => writeList (obj.ErpInvoiceLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpInvoice]): ErpInvoice =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpInvoice (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1223,6 +1537,72 @@ extends
     }
 }
 
+object ErpInvoiceLineItemSerializer extends CIMSerializer[ErpInvoiceLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpInvoiceLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.billPeriod),
+            () => output.writeString (obj.glAccount),
+            () => output.writeString (obj.glDateTime),
+            () => output.writeString (obj.kind),
+            () => output.writeDouble (obj.lineAmount),
+            () => output.writeString (obj.lineNumber),
+            () => output.writeString (obj.lineVersion),
+            () => output.writeDouble (obj.netAmount),
+            () => output.writeDouble (obj.previousAmount),
+            () => writeList (obj.ComponentErpInvoiceLineItems, output),
+            () => output.writeString (obj.ContainerErpInvoiceLineItem),
+            () => writeList (obj.CustomerBillingInfos, output),
+            () => output.writeString (obj.ErpInvoice),
+            () => writeList (obj.ErpJournalEntries, output),
+            () => output.writeString (obj.ErpPayableLineItem),
+            () => writeList (obj.ErpPayments, output),
+            () => output.writeString (obj.ErpQuoteLineItem),
+            () => output.writeString (obj.ErpRecDelvLineItem),
+            () => output.writeString (obj.ErpRecLineItem),
+            () => writeList (obj.UserAttributes, output),
+            () => writeList (obj.WorkBillingInfos, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpInvoiceLineItem]): ErpInvoiceLineItem =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpInvoiceLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) readList (input) else null,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) input.readString else null,
+            if (isSet (17)) input.readString else null,
+            if (isSet (18)) input.readString else null,
+            if (isSet (19)) readList (input) else null,
+            if (isSet (20)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Can be used to request an application to process an issue or request information about an issue.
  *
@@ -1323,6 +1703,36 @@ extends
     }
 }
 
+object ErpIssueInventorySerializer extends CIMSerializer[ErpIssueInventory]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpIssueInventory): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.TypeAsset),
+            () => output.writeString (obj.TypeMaterial)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpIssueInventory]): ErpIssueInventory =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpIssueInventory (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Any unique purchased part for manufactured product tracked by ERP systems for a utility.
  *
@@ -1418,6 +1828,34 @@ extends
     }
 }
 
+object ErpItemMasterSerializer extends CIMSerializer[ErpItemMaster]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpItemMaster): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.Asset)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpItemMaster]): ErpItemMaster =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpItemMaster (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Book for recording accounting transactions as they occur.
  *
@@ -1505,6 +1943,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpJournalSerializer extends CIMSerializer[ErpJournal]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpJournal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpJournalEntries, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpJournal]): ErpJournal =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpJournal (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1668,6 +2132,54 @@ extends
     }
 }
 
+object ErpJournalEntrySerializer extends CIMSerializer[ErpJournalEntry]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpJournalEntry): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.accountID),
+            () => output.writeDouble (obj.amount),
+            () => output.writeString (obj.postingDateTime),
+            () => output.writeString (obj.sourceID),
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.transactionDateTime),
+            () => writeList (obj.CostTypes, output),
+            () => output.writeString (obj.ErpInvoiceLineItem),
+            () => output.writeString (obj.ErpJournal),
+            () => output.writeString (obj.ErpLedgerEntry),
+            () => writeList (obj.ErpPayableLineItems, output),
+            () => writeList (obj.ErpRecLineItems, output)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpJournalEntry]): ErpJournalEntry =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpJournalEntry (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
  *
@@ -1768,6 +2280,36 @@ extends
     }
 }
 
+object ErpLedBudLineItemSerializer extends CIMSerializer[ErpLedBudLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpLedBudLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.ErpLedBudLineItem_attr),
+            () => output.writeString (obj.ErpLedgerBudget)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpLedBudLineItem]): ErpLedBudLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpLedBudLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  *
@@ -1857,6 +2399,32 @@ extends
     }
 }
 
+object ErpLedgerSerializer extends CIMSerializer[ErpLedger]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpLedger): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpLedgerEntries, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpLedger]): ErpLedger =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpLedger (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Information for utility Ledger Budgets.
  *
@@ -1943,6 +2511,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpLedgerBudgetSerializer extends CIMSerializer[ErpLedgerBudget]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpLedgerBudget): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpLedBudLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpLedgerBudget]): ErpLedgerBudget =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpLedgerBudget (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2092,6 +2686,50 @@ extends
     }
 }
 
+object ErpLedgerEntrySerializer extends CIMSerializer[ErpLedgerEntry]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpLedgerEntry): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.accountID),
+            () => output.writeString (obj.accountKind),
+            () => output.writeDouble (obj.amount),
+            () => output.writeString (obj.postedDateTime),
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.transactionDateTime),
+            () => output.writeString (obj.ErpJounalEntry),
+            () => output.writeString (obj.ErpLedger),
+            () => output.writeString (obj.ErpLedgerEntry_attr),
+            () => writeList (obj.UserAttributes, output)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpLedgerEntry]): ErpLedgerEntry =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpLedgerEntry (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
  *
@@ -2200,6 +2838,38 @@ extends
     }
 }
 
+object ErpPOLineItemSerializer extends CIMSerializer[ErpPOLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPOLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AssetModelCatalogueItem),
+            () => output.writeString (obj.ErpPurchaseOrder),
+            () => output.writeString (obj.ErpRecDelLineItem),
+            () => output.writeString (obj.ErpReqLineItem)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPOLineItem]): ErpPOLineItem =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPOLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A transaction that represents an invoice from a supplier.
  *
@@ -2293,6 +2963,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpPayableSerializer extends CIMSerializer[ErpPayable]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPayable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ContractorItems, output),
+            () => writeList (obj.ErpPayableLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPayable]): ErpPayable =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPayable (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2411,6 +3109,40 @@ extends
     }
 }
 
+object ErpPayableLineItemSerializer extends CIMSerializer[ErpPayableLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPayableLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.ErpInvoiceLineItem),
+            () => writeList (obj.ErpJournalEntries, output),
+            () => output.writeString (obj.ErpPayable),
+            () => writeList (obj.ErpPayments, output)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPayableLineItem]): ErpPayableLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPayableLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Payment infromation and status for any individual line item of an ErpInvoice (e.g., when payment is from a customer).
  *
@@ -2521,6 +3253,38 @@ extends
     }
 }
 
+object ErpPaymentSerializer extends CIMSerializer[ErpPayment]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPayment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.termsPayment),
+            () => writeList (obj.ErpInvoiceLineItems, output),
+            () => writeList (obj.ErpPayableLineItems, output),
+            () => writeList (obj.ErpRecLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPayment]): ErpPayment =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPayment (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
  *
@@ -2612,6 +3376,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpPersonnelSerializer extends CIMSerializer[ErpPersonnel]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPersonnel): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => writeList (obj.ErpPersons, output)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPersonnel]): ErpPersonnel =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPersonnel (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2725,6 +3517,38 @@ extends
     }
 }
 
+object ErpProjectAccountingSerializer extends CIMSerializer[ErpProjectAccounting]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpProjectAccounting): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpTimeEntries, output),
+            () => writeList (obj.Projects, output),
+            () => writeList (obj.WorkCostDetails, output),
+            () => writeList (obj.Works, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpProjectAccounting]): ErpProjectAccounting =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpProjectAccounting (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A document that communicates an order to purchase goods from a buyer to a supplier.
  *
@@ -2814,6 +3638,32 @@ extends
     }
 }
 
+object ErpPurchaseOrderSerializer extends CIMSerializer[ErpPurchaseOrder]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpPurchaseOrder): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpPOLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpPurchaseOrder]): ErpPurchaseOrder =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpPurchaseOrder (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Document describing the prices of goods or services provided by a supplier.
  *
@@ -2900,6 +3750,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpQuoteSerializer extends CIMSerializer[ErpQuote]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpQuote): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpQuoteLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpQuote]): ErpQuote =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpQuote (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3025,6 +3901,42 @@ extends
     }
 }
 
+object ErpQuoteLineItemSerializer extends CIMSerializer[ErpQuoteLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpQuoteLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.AssetModelCatalogueItem),
+            () => output.writeString (obj.Design),
+            () => output.writeString (obj.ErpInvoiceLineItem),
+            () => output.writeString (obj.ErpQuote),
+            () => output.writeString (obj.ErpReqLineItem)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpQuoteLineItem]): ErpQuoteLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpQuoteLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Of an ErpReceiveDelivery, this is an individually received good or service by the Organisation receiving goods or services.
  *
@@ -3139,6 +4051,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpRecDelvLineItemSerializer extends CIMSerializer[ErpRecDelvLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpRecDelvLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => writeList (obj.Assets, output),
+            () => output.writeString (obj.ErpInvoiceLineItem),
+            () => output.writeString (obj.ErpPOLineItem),
+            () => output.writeString (obj.ErpReceiveDelivery)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpRecDelvLineItem]): ErpRecDelvLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpRecDelvLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3257,6 +4203,40 @@ extends
     }
 }
 
+object ErpRecLineItemSerializer extends CIMSerializer[ErpRecLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpRecLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.ErpInvoiceLineItem),
+            () => writeList (obj.ErpJournalEntries, output),
+            () => writeList (obj.ErpPayments, output),
+            () => output.writeString (obj.ErpReceivable)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpRecLineItem]): ErpRecLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpRecLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Transaction representing an invoice, credit memo or debit memo to a customer.
  *
@@ -3346,6 +4326,32 @@ extends
     }
 }
 
+object ErpReceivableSerializer extends CIMSerializer[ErpReceivable]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpReceivable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpRecLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpReceivable]): ErpReceivable =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpReceivable (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
  *
@@ -3432,6 +4438,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpReceiveDeliverySerializer extends CIMSerializer[ErpReceiveDelivery]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpReceiveDelivery): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpRecDelvLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpReceiveDelivery]): ErpReceiveDelivery =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpReceiveDelivery (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3581,6 +4613,50 @@ extends
     }
 }
 
+object ErpReqLineItemSerializer extends CIMSerializer[ErpReqLineItem]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpReqLineItem): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.code),
+            () => output.writeDouble (obj.cost),
+            () => output.writeString (obj.deliveryDate),
+            () => output.writeInt (obj.quantity),
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.ErpPOLineItem),
+            () => output.writeString (obj.ErpQuoteLineItem),
+            () => output.writeString (obj.ErpRequisition),
+            () => output.writeString (obj.TypeAsset),
+            () => output.writeString (obj.TypeMaterial)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpReqLineItem]): ErpReqLineItem =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpReqLineItem (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * General information that applies to a utility requisition that is a request for the purchase of goods or services.
  *
@@ -3670,6 +4746,32 @@ extends
     }
 }
 
+object ErpRequisitionSerializer extends CIMSerializer[ErpRequisition]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpRequisition): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpReqLineItems, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpRequisition]): ErpRequisition =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpRequisition (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * General purpose Sales Order is used for utility service orders, etc.
  *
@@ -3739,6 +4841,31 @@ extends
             ErpDocument.parse (context)
         )
         ret
+    }
+}
+
+object ErpSalesOrderSerializer extends CIMSerializer[ErpSalesOrder]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpSalesOrder): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpSalesOrder]): ErpSalesOrder =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpSalesOrder (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3834,6 +4961,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpSiteLevelDataSerializer extends CIMSerializer[ErpSiteLevelData]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpSiteLevelData): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.LandProperty)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpSiteLevelData]): ErpSiteLevelData =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpSiteLevelData (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3937,6 +5092,36 @@ extends
     }
 }
 
+object ErpTimeEntrySerializer extends CIMSerializer[ErpTimeEntry]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpTimeEntry): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.ErpProjectAccounting),
+            () => output.writeString (obj.ErpTimeSheet)
+        )
+        ErpIdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpTimeEntry]): ErpTimeEntry =
+    {
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpTimeEntry (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Time sheet for employees and contractors.
  *
@@ -4023,6 +5208,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ErpTimeSheetSerializer extends CIMSerializer[ErpTimeSheet]
+{
+    def write (kryo: Kryo, output: Output, obj: ErpTimeSheet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ErpTimeEntries, output)
+        )
+        ErpDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ErpTimeSheet]): ErpTimeSheet =
+    {
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ErpTimeSheet (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

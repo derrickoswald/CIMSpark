@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by means of a non-windup integral regulator.
@@ -107,6 +111,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OverexcLim2Serializer extends CIMSerializer[OverexcLim2]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcLim2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ifdlim),
+            () => output.writeDouble (obj.koi),
+            () => output.writeDouble (obj.voimax),
+            () => output.writeDouble (obj.voimin)
+        )
+        OverexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcLim2]): OverexcLim2 =
+    {
+        val parent = OverexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[OverexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcLim2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -225,6 +261,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OverexcLimIEEESerializer extends CIMSerializer[OverexcLimIEEE]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcLimIEEE): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.hyst),
+            () => output.writeDouble (obj.ifdlim),
+            () => output.writeDouble (obj.ifdmax),
+            () => output.writeDouble (obj.itfpu),
+            () => output.writeDouble (obj.kcd),
+            () => output.writeDouble (obj.kramp)
+        )
+        OverexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcLimIEEE]): OverexcLimIEEE =
+    {
+        val parent = OverexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[OverexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcLimIEEE (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -367,6 +439,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OverexcLimX1Serializer extends CIMSerializer[OverexcLimX1]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcLimX1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.efd3),
+            () => output.writeDouble (obj.efddes),
+            () => output.writeDouble (obj.efdrated),
+            () => output.writeDouble (obj.kmx),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.vlow)
+        )
+        OverexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcLimX1]): OverexcLimX1 =
+    {
+        val parent = OverexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[OverexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcLimX1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -520,6 +636,52 @@ extends
     }
 }
 
+object OverexcLimX2Serializer extends CIMSerializer[OverexcLimX2]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcLimX2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.efd3),
+            () => output.writeDouble (obj.efddes),
+            () => output.writeDouble (obj.efdrated),
+            () => output.writeDouble (obj.kmx),
+            () => output.writeBoolean (obj.m),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.vlow)
+        )
+        OverexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcLimX2]): OverexcLimX2 =
+    {
+        val parent = OverexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[OverexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcLimX2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -599,6 +761,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OverexcitationLimiterDynamicsSerializer extends CIMSerializer[OverexcitationLimiterDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcitationLimiterDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcitationLimiterDynamics]): OverexcitationLimiterDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcitationLimiterDynamics (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

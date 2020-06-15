@@ -2,6 +2,9 @@ package ch.ninecode.model
 
 import java.util.regex.Pattern
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 
@@ -10,6 +13,7 @@ import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMParser
 import ch.ninecode.cim.CIMParser.namespace
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 // NOTE: ElementUDT is actually in this artifact
 import org.apache.spark.sql.types.ElementUDT
 
@@ -308,6 +312,20 @@ object BasicElement
     }
 }
 
+object BasicElementSerializer extends CIMSerializer[BasicElement]
+{
+    def write (kryo: Kryo, output: Output, obj: BasicElement): Unit =
+    {
+        output.writeString (obj.id)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BasicElement]): BasicElement =
+    {
+        val mrid = input.readString
+        BasicElement (null, mrid)
+    }
+}
+
 /**
  * Unknown element.
  *
@@ -372,3 +390,26 @@ extends
     }
     override val relations: List[CIMRelationship] = List ()
 }
+
+object UnknownSerializer extends CIMSerializer[Unknown]
+{
+    def write (kryo: Kryo, output: Output, obj: Unknown): Unit =
+    {
+        BasicElementSerializer.write (kryo, output, obj.Element.asInstanceOf[BasicElement])
+        output.writeString (obj.guts)
+        output.writeInt (obj.line)
+        output.writeLong (obj.start)
+        output.writeLong (obj.end)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Unknown]): Unknown =
+    {
+        Unknown (
+            BasicElementSerializer.read (kryo, input, classOf[BasicElement]),
+            input.readString,
+            input.readInt,
+            input.readLong,
+            input.readLong)
+    }
+}
+

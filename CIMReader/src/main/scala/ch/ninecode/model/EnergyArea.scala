@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group EnergyArea
@@ -68,6 +72,31 @@ extends
     }
 }
 
+object BlockDispatchComponentSerializer extends CIMSerializer[BlockDispatchComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: BlockDispatchComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnergyComponentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchComponent]): BlockDispatchComponent =
+    {
+        val parent = EnergyComponentSerializer.read (kryo, input, classOf[EnergyComponent])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BlockDispatchComponent (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
@@ -126,6 +155,31 @@ extends
             IdentifiedObject.parse (context)
         )
         ret
+    }
+}
+
+object BlockDispatchInstructionSerializer extends CIMSerializer[BlockDispatchInstruction]
+{
+    def write (kryo: Kryo, output: Output, obj: BlockDispatchInstruction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchInstruction]): BlockDispatchInstruction =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BlockDispatchInstruction (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -208,6 +262,34 @@ extends
     }
 }
 
+object BlockDispatchOrderSerializer extends CIMSerializer[BlockDispatchOrder]
+{
+    def write (kryo: Kryo, output: Output, obj: BlockDispatchOrder): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.p),
+            () => output.writeInt (obj.sequence)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchOrder]): BlockDispatchOrder =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BlockDispatchOrder (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
@@ -266,6 +348,31 @@ extends
             IdentifiedObject.parse (context)
         )
         ret
+    }
+}
+
+object EnergyComponentSerializer extends CIMSerializer[EnergyComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: EnergyComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnergyComponent]): EnergyComponent =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnergyComponent (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -348,6 +455,34 @@ extends
     }
 }
 
+object EnergyGroupSerializer extends CIMSerializer[EnergyGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: EnergyGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isSlack),
+            () => output.writeDouble (obj.p)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnergyGroup]): EnergyGroup =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnergyGroup (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
@@ -422,6 +557,32 @@ extends
     }
 }
 
+object EnergyTypeReferenceSerializer extends CIMSerializer[EnergyTypeReference]
+{
+    def write (kryo: Kryo, output: Output, obj: EnergyTypeReference): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnergyTypeReference]): EnergyTypeReference =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnergyTypeReference (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group EnergyArea
  * @groupname EnergyArea Package EnergyArea
@@ -493,6 +654,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ProportionalDistributionComponentSerializer extends CIMSerializer[ProportionalDistributionComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: ProportionalDistributionComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.distributionFactor)
+        )
+        EnergyComponentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProportionalDistributionComponent]): ProportionalDistributionComponent =
+    {
+        val parent = EnergyComponentSerializer.read (kryo, input, classOf[EnergyComponent])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProportionalDistributionComponent (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

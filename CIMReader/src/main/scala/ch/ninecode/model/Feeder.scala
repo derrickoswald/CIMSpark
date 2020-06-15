@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group Feeder
@@ -87,6 +91,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CircuitSerializer extends CIMSerializer[Circuit]
+{
+    def write (kryo: Kryo, output: Output, obj: Circuit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EndBay, output),
+            () => writeList (obj.EndTerminal, output)
+        )
+        LineSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Circuit]): Circuit =
+    {
+        val parent = LineSerializer.read (kryo, input, classOf[Line])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Circuit (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

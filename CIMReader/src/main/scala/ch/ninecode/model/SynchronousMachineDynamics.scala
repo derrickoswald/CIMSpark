@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
@@ -113,6 +117,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SynchronousMachineDetailedSerializer extends CIMSerializer[SynchronousMachineDetailed]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineDetailed): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdBaseRatio),
+            () => output.writeString (obj.ifdBaseType),
+            () => output.writeDouble (obj.saturationFactor120QAxis),
+            () => output.writeDouble (obj.saturationFactorQAxis)
+        )
+        SynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineDetailed]): SynchronousMachineDetailed =
+    {
+        val parent = SynchronousMachineDynamicsSerializer.read (kryo, input, classOf[SynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineDetailed (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -251,6 +287,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SynchronousMachineDynamicsSerializer extends CIMSerializer[SynchronousMachineDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.CrossCompoundTurbineGovernorDyanmics),
+            () => output.writeString (obj.CrossCompoundTurbineGovernorDynamics),
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => writeList (obj.GenICompensationForGenJ, output),
+            () => output.writeString (obj.MechanicalLoadDynamics),
+            () => output.writeString (obj.SynchronousMachine),
+            () => writeList (obj.TurbineGovernorDynamics, output)
+        )
+        RotatingMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineDynamics]): SynchronousMachineDynamics =
+    {
+        val parent = RotatingMachineDynamicsSerializer.read (kryo, input, classOf[RotatingMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -418,6 +492,52 @@ extends
     }
 }
 
+object SynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[SynchronousMachineEquivalentCircuit]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineEquivalentCircuit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.r1d),
+            () => output.writeDouble (obj.r1q),
+            () => output.writeDouble (obj.r2q),
+            () => output.writeDouble (obj.rfd),
+            () => output.writeDouble (obj.x1d),
+            () => output.writeDouble (obj.x1q),
+            () => output.writeDouble (obj.x2q),
+            () => output.writeDouble (obj.xad),
+            () => output.writeDouble (obj.xaq),
+            () => output.writeDouble (obj.xf1d),
+            () => output.writeDouble (obj.xfd)
+        )
+        SynchronousMachineDetailedSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineEquivalentCircuit]): SynchronousMachineEquivalentCircuit =
+    {
+        val parent = SynchronousMachineDetailedSerializer.read (kryo, input, classOf[SynchronousMachineDetailed])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineEquivalentCircuit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance<i> </i>(<i>Rs + jXp</i>) as shown in the Simplified diagram.
  *
@@ -489,6 +609,31 @@ extends
             SynchronousMachineDynamics.parse (context)
         )
         ret
+    }
+}
+
+object SynchronousMachineSimplifiedSerializer extends CIMSerializer[SynchronousMachineSimplified]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineSimplified): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        SynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineSimplified]): SynchronousMachineSimplified =
+    {
+        val parent = SynchronousMachineDynamicsSerializer.read (kryo, input, classOf[SynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineSimplified (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -689,6 +834,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SynchronousMachineTimeConstantReactanceSerializer extends CIMSerializer[SynchronousMachineTimeConstantReactance]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineTimeConstantReactance): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ks),
+            () => output.writeString (obj.modelType),
+            () => output.writeString (obj.rotorType),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tpdo),
+            () => output.writeDouble (obj.tppdo),
+            () => output.writeDouble (obj.tppqo),
+            () => output.writeDouble (obj.tpqo),
+            () => output.writeDouble (obj.xDirectSubtrans),
+            () => output.writeDouble (obj.xDirectSync),
+            () => output.writeDouble (obj.xDirectTrans),
+            () => output.writeDouble (obj.xQuadSubtrans),
+            () => output.writeDouble (obj.xQuadSync),
+            () => output.writeDouble (obj.xQuadTrans)
+        )
+        SynchronousMachineDetailedSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineTimeConstantReactance]): SynchronousMachineTimeConstantReactance =
+    {
+        val parent = SynchronousMachineDetailedSerializer.read (kryo, input, classOf[SynchronousMachineDetailed])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineTimeConstantReactance (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

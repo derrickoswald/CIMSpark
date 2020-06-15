@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * IEEE type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
@@ -208,6 +212,66 @@ extends
     }
 }
 
+object DiscExcContIEEEDEC1ASerializer extends CIMSerializer[DiscExcContIEEEDEC1A]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscExcContIEEEDEC1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.esc),
+            () => output.writeDouble (obj.kan),
+            () => output.writeDouble (obj.ketl),
+            () => output.writeDouble (obj.tan),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.tl1),
+            () => output.writeDouble (obj.tl2),
+            () => output.writeDouble (obj.tw5),
+            () => output.writeDouble (obj.`val`),
+            () => output.writeDouble (obj.vanmax),
+            () => output.writeDouble (obj.vomax),
+            () => output.writeDouble (obj.vomin),
+            () => output.writeDouble (obj.vsmax),
+            () => output.writeDouble (obj.vsmin),
+            () => output.writeDouble (obj.vtc),
+            () => output.writeDouble (obj.vtlmt),
+            () => output.writeDouble (obj.vtm),
+            () => output.writeDouble (obj.vtn)
+        )
+        DiscontinuousExcitationControlDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC1A]): DiscExcContIEEEDEC1A =
+    {
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscExcContIEEEDEC1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE type DEC2A model for discontinuous excitation control.
  *
@@ -315,6 +379,40 @@ extends
     }
 }
 
+object DiscExcContIEEEDEC2ASerializer extends CIMSerializer[DiscExcContIEEEDEC2A]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscExcContIEEEDEC2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.td1),
+            () => output.writeDouble (obj.td2),
+            () => output.writeDouble (obj.vdmax),
+            () => output.writeDouble (obj.vdmin),
+            () => output.writeDouble (obj.vk)
+        )
+        DiscontinuousExcitationControlDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC2A]): DiscExcContIEEEDEC2A =
+    {
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscExcContIEEEDEC2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE type DEC3A model.
  *
@@ -401,6 +499,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiscExcContIEEEDEC3ASerializer extends CIMSerializer[DiscExcContIEEEDEC3A]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscExcContIEEEDEC3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tdr),
+            () => output.writeDouble (obj.vtmin)
+        )
+        DiscontinuousExcitationControlDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC3A]): DiscExcContIEEEDEC3A =
+    {
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscExcContIEEEDEC3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -491,6 +617,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiscontinuousExcitationControlDynamicsSerializer extends CIMSerializer[DiscontinuousExcitationControlDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscontinuousExcitationControlDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => output.writeString (obj.RemoteInputSignal)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscontinuousExcitationControlDynamics]): DiscontinuousExcitationControlDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscontinuousExcitationControlDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

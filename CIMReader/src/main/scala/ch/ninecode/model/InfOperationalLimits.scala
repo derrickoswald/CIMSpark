@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * This is a environmental based limit dependency model for calculating operational limits.
@@ -70,6 +74,31 @@ extends
             LimitDependency.parse (context)
         )
         ret
+    }
+}
+
+object EnvironmentalDependentLimitSerializer extends CIMSerializer[EnvironmentalDependentLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalDependentLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        LimitDependencySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalDependentLimit]): EnvironmentalDependentLimit =
+    {
+        val parent = LimitDependencySerializer.read (kryo, input, classOf[LimitDependency])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalDependentLimit (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -161,6 +190,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EquipmentLimitSeriesComponentSerializer extends CIMSerializer[EquipmentLimitSeriesComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: EquipmentLimitSeriesComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Equipment),
+            () => output.writeString (obj.SeriesEquipmentDependentLimit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquipmentLimitSeriesComponent]): EquipmentLimitSeriesComponent =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquipmentLimitSeriesComponent (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -257,6 +314,34 @@ extends
     }
 }
 
+object LimitDependencySerializer extends CIMSerializer[LimitDependency]
+{
+    def write (kryo: Kryo, output: Output, obj: LimitDependency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Equipment),
+            () => writeList (obj.OperationalLimit, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LimitDependency]): LimitDependency =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LimitDependency (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Specifies an operational  limit is calculated by scaling another operational limit.
  *
@@ -344,6 +429,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LimitScalingLimitSerializer extends CIMSerializer[LimitScalingLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: LimitScalingLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.limitScalingPercent),
+            () => output.writeString (obj.SourceOperationalLimit)
+        )
+        LimitDependencySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LimitScalingLimit]): LimitScalingLimit =
+    {
+        val parent = LimitDependencySerializer.read (kryo, input, classOf[LimitDependency])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LimitScalingLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -447,6 +560,36 @@ extends
     }
 }
 
+object OperatonalLimitTypeScalingSerializer extends CIMSerializer[OperatonalLimitTypeScaling]
+{
+    def write (kryo: Kryo, output: Output, obj: OperatonalLimitTypeScaling): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.scalingPercent),
+            () => output.writeString (obj.SourceOperationalLimitType),
+            () => output.writeString (obj.TargetOperationalLimit)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OperatonalLimitTypeScaling]): OperatonalLimitTypeScaling =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OperatonalLimitTypeScaling (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -520,6 +663,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ScheduledActivePowerLimitValueSerializer extends CIMSerializer[ScheduledActivePowerLimitValue]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledActivePowerLimitValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value)
+        )
+        ScheduledLimitValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledActivePowerLimitValue]): ScheduledActivePowerLimitValue =
+    {
+        val parent = ScheduledLimitValueSerializer.read (kryo, input, classOf[ScheduledLimitValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledActivePowerLimitValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -603,6 +772,32 @@ extends
     }
 }
 
+object ScheduledApparentPowerLimitValueSerializer extends CIMSerializer[ScheduledApparentPowerLimitValue]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledApparentPowerLimitValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value)
+        )
+        ScheduledLimitValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledApparentPowerLimitValue]): ScheduledApparentPowerLimitValue =
+    {
+        val parent = ScheduledLimitValueSerializer.read (kryo, input, classOf[ScheduledLimitValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledApparentPowerLimitValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A current limit that is scheduled.
  *
@@ -683,6 +878,32 @@ extends
     }
 }
 
+object ScheduledCurrentLimitValueSerializer extends CIMSerializer[ScheduledCurrentLimitValue]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledCurrentLimitValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value)
+        )
+        ScheduledLimitValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledCurrentLimitValue]): ScheduledCurrentLimitValue =
+    {
+        val parent = ScheduledLimitValueSerializer.read (kryo, input, classOf[ScheduledLimitValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledCurrentLimitValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -759,6 +980,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ScheduledLimitDependencySerializer extends CIMSerializer[ScheduledLimitDependency]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledLimitDependency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ScheduledLimitValues, output)
+        )
+        LimitDependencySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledLimitDependency]): ScheduledLimitDependency =
+    {
+        val parent = LimitDependencySerializer.read (kryo, input, classOf[LimitDependency])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledLimitDependency (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -853,6 +1100,34 @@ extends
     }
 }
 
+object ScheduledLimitValueSerializer extends CIMSerializer[ScheduledLimitValue]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledLimitValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ScheduledLimitDependency),
+            () => output.writeString (obj.Season)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledLimitValue]): ScheduledLimitValue =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledLimitValue (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A voltage limit value for a scheduled time.
  *
@@ -930,6 +1205,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ScheduledVoltageLimitValueSerializer extends CIMSerializer[ScheduledVoltageLimitValue]
+{
+    def write (kryo: Kryo, output: Output, obj: ScheduledVoltageLimitValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value)
+        )
+        ScheduledLimitValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ScheduledVoltageLimitValue]): ScheduledVoltageLimitValue =
+    {
+        val parent = ScheduledLimitValueSerializer.read (kryo, input, classOf[ScheduledLimitValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ScheduledVoltageLimitValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1015,6 +1316,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SeriesEquipmentDependentLimitSerializer extends CIMSerializer[SeriesEquipmentDependentLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: SeriesEquipmentDependentLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EquipmentLimitSeriesComponent, output)
+        )
+        LimitDependencySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SeriesEquipmentDependentLimit]): SeriesEquipmentDependentLimit =
+    {
+        val parent = LimitDependencySerializer.read (kryo, input, classOf[LimitDependency])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SeriesEquipmentDependentLimit (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1114,6 +1441,36 @@ extends
     }
 }
 
+object TemperatureDependentLimitPointSerializer extends CIMSerializer[TemperatureDependentLimitPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: TemperatureDependentLimitPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.limitPercent),
+            () => output.writeDouble (obj.temperature),
+            () => output.writeString (obj.TemperatureDependentLimitTable)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TemperatureDependentLimitPoint]): TemperatureDependentLimitPoint =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TemperatureDependentLimitPoint (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This is a table lookup that provides limit values corresponding to a temperature input.
  *
@@ -1194,6 +1551,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TemperatureDependentLimitTableSerializer extends CIMSerializer[TemperatureDependentLimitTable]
+{
+    def write (kryo: Kryo, output: Output, obj: TemperatureDependentLimitTable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.TemperatureLimitTablePoint, output)
+        )
+        EnvironmentalDependentLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TemperatureDependentLimitTable]): TemperatureDependentLimitTable =
+    {
+        val parent = EnvironmentalDependentLimitSerializer.read (kryo, input, classOf[EnvironmentalDependentLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TemperatureDependentLimitTable (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1301,6 +1684,40 @@ extends
     }
 }
 
+object TemperaturePolynomialLimitSerializer extends CIMSerializer[TemperaturePolynomialLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: TemperaturePolynomialLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.coefficient0),
+            () => output.writeDouble (obj.coefficient1),
+            () => output.writeDouble (obj.coefficient2),
+            () => output.writeDouble (obj.coefficient3),
+            () => output.writeDouble (obj.coefficient4)
+        )
+        EnvironmentalDependentLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TemperaturePolynomialLimit]): TemperaturePolynomialLimit =
+    {
+        val parent = EnvironmentalDependentLimitSerializer.read (kryo, input, classOf[EnvironmentalDependentLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TemperaturePolynomialLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This represents a source of ambient temperature.
  *
@@ -1381,6 +1798,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WeatherStationSerializer extends CIMSerializer[WeatherStation]
+{
+    def write (kryo: Kryo, output: Output, obj: WeatherStation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Equipment, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WeatherStation]): WeatherStation =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WeatherStation (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

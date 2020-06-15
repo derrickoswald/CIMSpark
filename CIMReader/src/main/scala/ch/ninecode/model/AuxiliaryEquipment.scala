@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
@@ -88,6 +92,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AuxiliaryEquipmentSerializer extends CIMSerializer[AuxiliaryEquipment]
+{
+    def write (kryo: Kryo, output: Output, obj: AuxiliaryEquipment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Terminal)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AuxiliaryEquipment]): AuxiliaryEquipment =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AuxiliaryEquipment (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -196,6 +226,40 @@ extends
     }
 }
 
+object CurrentTransformerSerializer extends CIMSerializer[CurrentTransformer]
+{
+    def write (kryo: Kryo, output: Output, obj: CurrentTransformer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.accuracyClass),
+            () => output.writeDouble (obj.accuracyLimit),
+            () => output.writeDouble (obj.coreBurden),
+            () => output.writeString (obj.ctClass),
+            () => output.writeString (obj.usage)
+        )
+        SensorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CurrentTransformer]): CurrentTransformer =
+    {
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CurrentTransformer (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
  *
@@ -260,6 +324,31 @@ extends
             AuxiliaryEquipment.parse (context)
         )
         ret
+    }
+}
+
+object FaultIndicatorSerializer extends CIMSerializer[FaultIndicator]
+{
+    def write (kryo: Kryo, output: Output, obj: FaultIndicator): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AuxiliaryEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FaultIndicator]): FaultIndicator =
+    {
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FaultIndicator (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -328,6 +417,31 @@ extends
     }
 }
 
+object FlowSensorSerializer extends CIMSerializer[FlowSensor]
+{
+    def write (kryo: Kryo, output: Output, obj: FlowSensor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FlowSensor]): FlowSensor =
+    {
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FlowSensor (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
  *
@@ -390,6 +504,31 @@ extends
             Sensor.parse (context)
         )
         ret
+    }
+}
+
+object PostLineSensorSerializer extends CIMSerializer[PostLineSensor]
+{
+    def write (kryo: Kryo, output: Output, obj: PostLineSensor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        SensorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PostLineSensor]): PostLineSensor =
+    {
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PostLineSensor (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -493,6 +632,38 @@ extends
     }
 }
 
+object PotentialTransformerSerializer extends CIMSerializer[PotentialTransformer]
+{
+    def write (kryo: Kryo, output: Output, obj: PotentialTransformer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.accuracyClass),
+            () => output.writeDouble (obj.nominalRatio),
+            () => output.writeString (obj.ptClass),
+            () => output.writeString (obj.`type`)
+        )
+        SensorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PotentialTransformer]): PotentialTransformer =
+    {
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PotentialTransformer (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
  *
@@ -555,6 +726,31 @@ extends
             AuxiliaryEquipment.parse (context)
         )
         ret
+    }
+}
+
+object SensorSerializer extends CIMSerializer[Sensor]
+{
+    def write (kryo: Kryo, output: Output, obj: Sensor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AuxiliaryEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Sensor]): Sensor =
+    {
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Sensor (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -623,6 +819,31 @@ extends
     }
 }
 
+object SurgeArresterSerializer extends CIMSerializer[SurgeArrester]
+{
+    def write (kryo: Kryo, output: Output, obj: SurgeArrester): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AuxiliaryEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SurgeArrester]): SurgeArrester =
+    {
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SurgeArrester (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
  *
@@ -685,6 +906,31 @@ extends
             AuxiliaryEquipment.parse (context)
         )
         ret
+    }
+}
+
+object WaveTrapSerializer extends CIMSerializer[WaveTrap]
+{
+    def write (kryo: Kryo, output: Output, obj: WaveTrap): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AuxiliaryEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WaveTrap]): WaveTrap =
+    {
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WaveTrap (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

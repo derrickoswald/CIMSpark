@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A named list of alert types.
@@ -105,6 +109,36 @@ extends
     }
 }
 
+object AlertTypeListSerializer extends CIMSerializer[AlertTypeList]
+{
+    def write (kryo: Kryo, output: Output, obj: AlertTypeList): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.version),
+            () => writeList (obj.EnvironmentalAlert, output),
+            () => output.writeString (obj.EnvironmentalDataAuthority)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AlertTypeList]): AlertTypeList =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AlertTypeList (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Analog (float) measuring an atmospheric condition.
  *
@@ -180,6 +214,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AtmosphericAnalogSerializer extends CIMSerializer[AtmosphericAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: AtmosphericAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        EnvironmentalAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AtmosphericAnalog]): AtmosphericAnalog =
+    {
+        val parent = EnvironmentalAnalogSerializer.read (kryo, input, classOf[EnvironmentalAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AtmosphericAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -292,6 +352,42 @@ extends
     }
 }
 
+object AtmosphericPhenomenonSerializer extends CIMSerializer[AtmosphericPhenomenon]
+{
+    def write (kryo: Kryo, output: Output, obj: AtmosphericPhenomenon): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.altitude),
+            () => output.writeString (obj.base),
+            () => output.writeDouble (obj.direction),
+            () => output.writeDouble (obj.maxCoverage),
+            () => output.writeDouble (obj.minCoverage),
+            () => output.writeDouble (obj.speed)
+        )
+        EnvironmentalPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AtmosphericPhenomenon]): AtmosphericPhenomenon =
+    {
+        val parent = EnvironmentalPhenomenonSerializer.read (kryo, input, classOf[EnvironmentalPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AtmosphericPhenomenon (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A classification condition used to define preconditions that must be met by a phenomena classification.
  *
@@ -401,6 +497,40 @@ extends
     }
 }
 
+object ClassificationConditionSerializer extends CIMSerializer[ClassificationCondition]
+{
+    def write (kryo: Kryo, output: Output, obj: ClassificationCondition): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.duration),
+            () => output.writeString (obj.test),
+            () => writeList (obj.EnvironmentalAnalog, output),
+            () => writeList (obj.EnvironmentalStringMeasurement, output),
+            () => output.writeString (obj.PhenomenonClassification)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ClassificationCondition]): ClassificationCondition =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ClassificationCondition (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A classified cloud phenomenon with a type.
  *
@@ -476,6 +606,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CloudConditionSerializer extends CIMSerializer[CloudCondition]
+{
+    def write (kryo: Kryo, output: Output, obj: CloudCondition): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AtmosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CloudCondition]): CloudCondition =
+    {
+        val parent = AtmosphericPhenomenonSerializer.read (kryo, input, classOf[AtmosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CloudCondition (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -569,6 +725,36 @@ extends
     }
 }
 
+object CycloneSerializer extends CIMSerializer[Cyclone]
+{
+    def write (kryo: Kryo, output: Output, obj: Cyclone): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.centralPressure),
+            () => output.writeDouble (obj.maxSurfaceWindSpeed),
+            () => output.writeInt (obj.windForce)
+        )
+        AtmosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Cyclone]): Cyclone =
+    {
+        val parent = AtmosphericPhenomenonSerializer.read (kryo, input, classOf[AtmosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Cyclone (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An earthquake.
  *
@@ -659,6 +845,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EarthquakeSerializer extends CIMSerializer[Earthquake]
+{
+    def write (kryo: Kryo, output: Output, obj: Earthquake): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.focalDepth),
+            () => output.writeInt (obj.intensity),
+            () => output.writeDouble (obj.magnitude)
+        )
+        GeosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Earthquake]): Earthquake =
+    {
+        val parent = GeosphericPhenomenonSerializer.read (kryo, input, classOf[GeosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Earthquake (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -785,6 +1001,44 @@ extends
     }
 }
 
+object EnvironmentalAlertSerializer extends CIMSerializer[EnvironmentalAlert]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalAlert): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.alertType),
+            () => output.writeString (obj.cancelledDateTime),
+            () => output.writeString (obj.headline),
+            () => output.writeString (obj.inEffect),
+            () => output.writeString (obj.AlertTypeList),
+            () => output.writeString (obj.EnvironmentalDataProvider),
+            () => writeList (obj.EnvironmentalLocationKind, output)
+        )
+        ActivityRecordSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalAlert]): EnvironmentalAlert =
+    {
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalAlert (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Analog (float) measurement of relevance in the environmental domain.
  *
@@ -884,6 +1138,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EnvironmentalAnalogSerializer extends CIMSerializer[EnvironmentalAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ClassificationCondition),
+            () => output.writeString (obj.EnvironmentalInformation),
+            () => output.writeString (obj.EnvironmentalMonitoringStation),
+            () => output.writeString (obj.ReportingCapability)
+        )
+        AnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalAnalog]): EnvironmentalAnalog =
+    {
+        val parent = AnalogSerializer.read (kryo, input, classOf[Analog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalAnalog (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -987,6 +1273,38 @@ extends
     }
 }
 
+object EnvironmentalCodedValueSerializer extends CIMSerializer[EnvironmentalCodedValue]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalCodedValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.coverageKind),
+            () => output.writeString (obj.intensityKind),
+            () => output.writeDouble (obj.probabilityPercent),
+            () => output.writeString (obj.weatherKind)
+        )
+        StringMeasurementValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalCodedValue]): EnvironmentalCodedValue =
+    {
+        val parent = StringMeasurementValueSerializer.read (kryo, input, classOf[StringMeasurementValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalCodedValue (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An entity defining classifications or categories of environmental information, like phenomena or alerts.
  *
@@ -1072,6 +1390,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EnvironmentalDataAuthoritySerializer extends CIMSerializer[EnvironmentalDataAuthority]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalDataAuthority): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.AlertTypeList, output),
+            () => writeList (obj.PhenomenonClassification, output)
+        )
+        OrganisationRoleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalDataAuthority]): EnvironmentalDataAuthority =
+    {
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalDataAuthority (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1165,6 +1511,34 @@ extends
     }
 }
 
+object EnvironmentalDataProviderSerializer extends CIMSerializer[EnvironmentalDataProvider]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalDataProvider): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EnvironmentalAlert, output),
+            () => writeList (obj.EnvironmentalInformation, output)
+        )
+        OrganisationRoleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalDataProvider]): EnvironmentalDataProvider =
+    {
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalDataProvider (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Discrete (integer) measurement of relevance in the environmental domain.
  *
@@ -1252,6 +1626,34 @@ extends
     }
 }
 
+object EnvironmentalDiscreteSerializer extends CIMSerializer[EnvironmentalDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.EnvironmentalInformation)
+        )
+        DiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalDiscrete]): EnvironmentalDiscrete =
+    {
+        val parent = DiscreteSerializer.read (kryo, input, classOf[Discrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An environmental event to which one or more forecasts or observations may be tied and which may relate to or affect one or more assets.
  *
@@ -1336,6 +1738,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EnvironmentalEventSerializer extends CIMSerializer[EnvironmentalEvent]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalEvent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EnvironmentalInformation, output)
+        )
+        ActivityRecordSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalEvent]): EnvironmentalEvent =
+    {
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalEvent (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1463,6 +1891,44 @@ extends
     }
 }
 
+object EnvironmentalInformationSerializer extends CIMSerializer[EnvironmentalInformation]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalInformation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.created),
+            () => writeList (obj.EnvironmentalAnalog, output),
+            () => output.writeString (obj.EnvironmentalDataProvider),
+            () => writeList (obj.EnvironmentalDiscrete, output),
+            () => writeList (obj.EnvironmentalEvent, output),
+            () => writeList (obj.EnvironmentalPhenomenon, output),
+            () => writeList (obj.EnvironmentalStringMeasurement, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalInformation]): EnvironmentalInformation =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalInformation (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Type of environmental location.
  *
@@ -1568,6 +2034,38 @@ extends
     }
 }
 
+object EnvironmentalLocationTypeSerializer extends CIMSerializer[EnvironmentalLocationType]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalLocationType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => writeList (obj.EnvironmentalAlert, output),
+            () => writeList (obj.EnvironmentalPhenomenon, output),
+            () => output.writeString (obj.Location)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalLocationType]): EnvironmentalLocationType =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalLocationType (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The actual or forecast characteristics of an environmental phenomenon at a specific point in time (or during a specific time interval) that may have both a center and area/line location.
  *
@@ -1670,6 +2168,38 @@ extends
     }
 }
 
+object EnvironmentalPhenomenonSerializer extends CIMSerializer[EnvironmentalPhenomenon]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalPhenomenon): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.timeInterval),
+            () => output.writeString (obj.EnvironmentalInformation),
+            () => writeList (obj.EnvironmentalLocationKind, output),
+            () => output.writeString (obj.PhenomenonClassification)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalPhenomenon]): EnvironmentalPhenomenon =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalPhenomenon (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * String measurement of relevance in the environmental domain.
  *
@@ -1758,6 +2288,34 @@ extends
     }
 }
 
+object EnvironmentalStringMeasurementSerializer extends CIMSerializer[EnvironmentalStringMeasurement]
+{
+    def write (kryo: Kryo, output: Output, obj: EnvironmentalStringMeasurement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ClassificationCondition),
+            () => output.writeString (obj.EnvironmentalInformation)
+        )
+        StringMeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnvironmentalStringMeasurement]): EnvironmentalStringMeasurement =
+    {
+        val parent = StringMeasurementSerializer.read (kryo, input, classOf[StringMeasurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnvironmentalStringMeasurement (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A fire, often uncontrolled, covering an area of land which typically contains combustible vegetation.
  *
@@ -1824,6 +2382,31 @@ extends
     }
 }
 
+object FireSerializer extends CIMSerializer[Fire]
+{
+    def write (kryo: Kryo, output: Output, obj: Fire): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        GeosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Fire]): Fire =
+    {
+        val parent = GeosphericPhenomenonSerializer.read (kryo, input, classOf[GeosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Fire (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A flood, an overflowing of a large amount of water beyond its normal confines, esp. over what is normally dry land.
  *
@@ -1885,6 +2468,31 @@ extends
             HydrosphericPhenomenon.parse (context)
         )
         ret
+    }
+}
+
+object FloodSerializer extends CIMSerializer[Flood]
+{
+    def write (kryo: Kryo, output: Output, obj: Flood): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        HydrosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Flood]): Flood =
+    {
+        val parent = HydrosphericPhenomenonSerializer.read (kryo, input, classOf[HydrosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Flood (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1967,6 +2575,32 @@ extends
     }
 }
 
+object ForecastSerializer extends CIMSerializer[Forecast]
+{
+    def write (kryo: Kryo, output: Output, obj: Forecast): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.validFor)
+        )
+        EnvironmentalInformationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Forecast]): Forecast =
+    {
+        val parent = EnvironmentalInformationSerializer.read (kryo, input, classOf[EnvironmentalInformation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Forecast (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Analog (float) measuring a geospheric condition.
  *
@@ -2045,6 +2679,32 @@ extends
     }
 }
 
+object GeosphericAnalogSerializer extends CIMSerializer[GeosphericAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: GeosphericAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        EnvironmentalAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GeosphericAnalog]): GeosphericAnalog =
+    {
+        val parent = EnvironmentalAnalogSerializer.read (kryo, input, classOf[EnvironmentalAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GeosphericAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A geospheric phenomenon.
  *
@@ -2106,6 +2766,31 @@ extends
             EnvironmentalPhenomenon.parse (context)
         )
         ret
+    }
+}
+
+object GeosphericPhenomenonSerializer extends CIMSerializer[GeosphericPhenomenon]
+{
+    def write (kryo: Kryo, output: Output, obj: GeosphericPhenomenon): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnvironmentalPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GeosphericPhenomenon]): GeosphericPhenomenon =
+    {
+        val parent = EnvironmentalPhenomenonSerializer.read (kryo, input, classOf[EnvironmentalPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GeosphericPhenomenon (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2187,6 +2872,32 @@ extends
     }
 }
 
+object HurricaneSerializer extends CIMSerializer[Hurricane]
+{
+    def write (kryo: Kryo, output: Output, obj: Hurricane): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.category)
+        )
+        CycloneSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Hurricane]): Hurricane =
+    {
+        val parent = CycloneSerializer.read (kryo, input, classOf[Cyclone])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Hurricane (
+            parent,
+            if (isSet (0)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Analog (float) measuring a hydrospheric condition.
  *
@@ -2265,6 +2976,32 @@ extends
     }
 }
 
+object HydrosphericAnalogSerializer extends CIMSerializer[HydrosphericAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: HydrosphericAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        EnvironmentalAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydrosphericAnalog]): HydrosphericAnalog =
+    {
+        val parent = EnvironmentalAnalogSerializer.read (kryo, input, classOf[EnvironmentalAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydrosphericAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A hydrospheric phenomenon.
  *
@@ -2329,6 +3066,31 @@ extends
     }
 }
 
+object HydrosphericPhenomenonSerializer extends CIMSerializer[HydrosphericPhenomenon]
+{
+    def write (kryo: Kryo, output: Output, obj: HydrosphericPhenomenon): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnvironmentalPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydrosphericPhenomenon]): HydrosphericPhenomenon =
+    {
+        val parent = EnvironmentalPhenomenonSerializer.read (kryo, input, classOf[EnvironmentalPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydrosphericPhenomenon (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A landslide, a large mass of rocks and earth that suddenly and quickly moves down the side of a mountain or hill.
  *
@@ -2390,6 +3152,31 @@ extends
             GeosphericPhenomenon.parse (context)
         )
         ret
+    }
+}
+
+object LandslideSerializer extends CIMSerializer[Landslide]
+{
+    def write (kryo: Kryo, output: Output, obj: Landslide): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        GeosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Landslide]): Landslide =
+    {
+        val parent = GeosphericPhenomenonSerializer.read (kryo, input, classOf[GeosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Landslide (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2502,6 +3289,42 @@ extends
     }
 }
 
+object LightningStrikeSerializer extends CIMSerializer[LightningStrike]
+{
+    def write (kryo: Kryo, output: Output, obj: LightningStrike): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.errorEllipseConfidence),
+            () => output.writeDouble (obj.errorEllipseMajorSemiAxis),
+            () => output.writeDouble (obj.errorEllipseMinorSemiAxis),
+            () => output.writeDouble (obj.errorEllipseOrientation),
+            () => output.writeBoolean (obj.negativePolarity),
+            () => output.writeDouble (obj.peakAmplitude)
+        )
+        GeosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LightningStrike]): LightningStrike =
+    {
+        val parent = GeosphericPhenomenonSerializer.read (kryo, input, classOf[GeosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LightningStrike (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A magnetic storm, a temporary disturbance of the earth's magnetic field, induced by radiation and streams of charged particles from the sun.
  *
@@ -2584,6 +3407,32 @@ extends
     }
 }
 
+object MagneticStormSerializer extends CIMSerializer[MagneticStorm]
+{
+    def write (kryo: Kryo, output: Output, obj: MagneticStorm): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.changeDst)
+        )
+        SpacePhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MagneticStorm]): MagneticStorm =
+    {
+        val parent = SpacePhenomenonSerializer.read (kryo, input, classOf[SpacePhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MagneticStorm (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Observed (actual non-forecast) values sets and/or phenomena characteristics.
  *
@@ -2645,6 +3494,31 @@ extends
             EnvironmentalInformation.parse (context)
         )
         ret
+    }
+}
+
+object ObservationSerializer extends CIMSerializer[Observation]
+{
+    def write (kryo: Kryo, output: Output, obj: Observation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnvironmentalInformationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Observation]): Observation =
+    {
+        val parent = EnvironmentalInformationSerializer.read (kryo, input, classOf[EnvironmentalInformation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Observation (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2741,6 +3615,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PhenomenonClassificationSerializer extends CIMSerializer[PhenomenonClassification]
+{
+    def write (kryo: Kryo, output: Output, obj: PhenomenonClassification): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ClassificationCondition, output),
+            () => output.writeString (obj.EnvironmentalDataAuthority),
+            () => writeList (obj.EnvironmentalPhenomenon, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PhenomenonClassification]): PhenomenonClassification =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PhenomenonClassification (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2854,6 +3758,40 @@ extends
     }
 }
 
+object ReportingCapabilitySerializer extends CIMSerializer[ReportingCapability]
+{
+    def write (kryo: Kryo, output: Output, obj: ReportingCapability): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.reportingIntervalPeriod),
+            () => output.writeString (obj.reportingIntervalType),
+            () => output.writeString (obj.reportingMethod),
+            () => writeList (obj.EnvironmentalAnalog, output),
+            () => output.writeString (obj.EnvironmentalMonitoringStation)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ReportingCapability]): ReportingCapability =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ReportingCapability (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Analog (float) measuring a space (extra-terrestrial) condition.
  *
@@ -2932,6 +3870,32 @@ extends
     }
 }
 
+object SpaceAnalogSerializer extends CIMSerializer[SpaceAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: SpaceAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        EnvironmentalAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SpaceAnalog]): SpaceAnalog =
+    {
+        val parent = EnvironmentalAnalogSerializer.read (kryo, input, classOf[EnvironmentalAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SpaceAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An extra-terrestrial phenomenon.
  *
@@ -2993,6 +3957,31 @@ extends
             EnvironmentalPhenomenon.parse (context)
         )
         ret
+    }
+}
+
+object SpacePhenomenonSerializer extends CIMSerializer[SpacePhenomenon]
+{
+    def write (kryo: Kryo, output: Output, obj: SpacePhenomenon): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnvironmentalPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SpacePhenomenon]): SpacePhenomenon =
+    {
+        val parent = EnvironmentalPhenomenonSerializer.read (kryo, input, classOf[EnvironmentalPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SpacePhenomenon (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3081,6 +4070,34 @@ extends
     }
 }
 
+object TornadoSerializer extends CIMSerializer[Tornado]
+{
+    def write (kryo: Kryo, output: Output, obj: Tornado): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.fScale),
+            () => output.writeDouble (obj.width)
+        )
+        AtmosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Tornado]): Tornado =
+    {
+        val parent = AtmosphericPhenomenonSerializer.read (kryo, input, classOf[AtmosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Tornado (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A tropical cyclone, a subtype of cyclone that forms to the east of 90°E in the Southern Hemisphere whose intensity is measured by the Australian tropical cyclone intensity scale.
  *
@@ -3161,6 +4178,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TropicalCycloneAustraliaSerializer extends CIMSerializer[TropicalCycloneAustralia]
+{
+    def write (kryo: Kryo, output: Output, obj: TropicalCycloneAustralia): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.category)
+        )
+        CycloneSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TropicalCycloneAustralia]): TropicalCycloneAustralia =
+    {
+        val parent = CycloneSerializer.read (kryo, input, classOf[Cyclone])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TropicalCycloneAustralia (
+            parent,
+            if (isSet (0)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3250,6 +4293,34 @@ extends
     }
 }
 
+object TsunamiSerializer extends CIMSerializer[Tsunami]
+{
+    def write (kryo: Kryo, output: Output, obj: Tsunami): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.intensity),
+            () => output.writeDouble (obj.magnitude)
+        )
+        HydrosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Tsunami]): Tsunami =
+    {
+        val parent = HydrosphericPhenomenonSerializer.read (kryo, input, classOf[HydrosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Tsunami (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An ash cloud formed as a result of a volcanic eruption.
  *
@@ -3334,6 +4405,34 @@ extends
     }
 }
 
+object VolcanicAshCloudSerializer extends CIMSerializer[VolcanicAshCloud]
+{
+    def write (kryo: Kryo, output: Output, obj: VolcanicAshCloud): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.density),
+            () => output.writeDouble (obj.particleSize)
+        )
+        AtmosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VolcanicAshCloud]): VolcanicAshCloud =
+    {
+        val parent = AtmosphericPhenomenonSerializer.read (kryo, input, classOf[AtmosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VolcanicAshCloud (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A whirlpool, a rapidly rotating mass of water in a river or sea into which objects may be drawn, typically caused by the meeting of conflicting currents.
  *
@@ -3395,6 +4494,31 @@ extends
             HydrosphericPhenomenon.parse (context)
         )
         ret
+    }
+}
+
+object WhirlpoolSerializer extends CIMSerializer[Whirlpool]
+{
+    def write (kryo: Kryo, output: Output, obj: Whirlpool): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        HydrosphericPhenomenonSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Whirlpool]): Whirlpool =
+    {
+        val parent = HydrosphericPhenomenonSerializer.read (kryo, input, classOf[HydrosphericPhenomenon])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Whirlpool (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

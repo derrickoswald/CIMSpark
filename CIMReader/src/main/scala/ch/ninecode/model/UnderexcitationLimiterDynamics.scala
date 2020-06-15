@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Simplified type UEL2 underexcitation limiter.
@@ -128,6 +132,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnderexcLim2SimplifiedSerializer extends CIMSerializer[UnderexcLim2Simplified]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcLim2Simplified): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kui),
+            () => output.writeDouble (obj.p0),
+            () => output.writeDouble (obj.p1),
+            () => output.writeDouble (obj.q0),
+            () => output.writeDouble (obj.q1),
+            () => output.writeDouble (obj.vuimax),
+            () => output.writeDouble (obj.vuimin)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcLim2Simplified]): UnderexcLim2Simplified =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcLim2Simplified (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -306,6 +348,60 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnderexcLimIEEE1Serializer extends CIMSerializer[UnderexcLimIEEE1]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcLimIEEE1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kuc),
+            () => output.writeDouble (obj.kuf),
+            () => output.writeDouble (obj.kui),
+            () => output.writeDouble (obj.kul),
+            () => output.writeDouble (obj.kur),
+            () => output.writeDouble (obj.tu1),
+            () => output.writeDouble (obj.tu2),
+            () => output.writeDouble (obj.tu3),
+            () => output.writeDouble (obj.tu4),
+            () => output.writeDouble (obj.vucmax),
+            () => output.writeDouble (obj.vuimax),
+            () => output.writeDouble (obj.vuimin),
+            () => output.writeDouble (obj.vulmax),
+            () => output.writeDouble (obj.vulmin),
+            () => output.writeDouble (obj.vurmax)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimIEEE1]): UnderexcLimIEEE1 =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcLimIEEE1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -652,6 +748,110 @@ extends
     }
 }
 
+object UnderexcLimIEEE2Serializer extends CIMSerializer[UnderexcLimIEEE2]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcLimIEEE2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.kfb),
+            () => output.writeDouble (obj.kuf),
+            () => output.writeDouble (obj.kui),
+            () => output.writeDouble (obj.kul),
+            () => output.writeDouble (obj.p0),
+            () => output.writeDouble (obj.p1),
+            () => output.writeDouble (obj.p10),
+            () => output.writeDouble (obj.p2),
+            () => output.writeDouble (obj.p3),
+            () => output.writeDouble (obj.p4),
+            () => output.writeDouble (obj.p5),
+            () => output.writeDouble (obj.p6),
+            () => output.writeDouble (obj.p7),
+            () => output.writeDouble (obj.p8),
+            () => output.writeDouble (obj.p9),
+            () => output.writeDouble (obj.q0),
+            () => output.writeDouble (obj.q1),
+            () => output.writeDouble (obj.q10),
+            () => output.writeDouble (obj.q2),
+            () => output.writeDouble (obj.q3),
+            () => output.writeDouble (obj.q4),
+            () => output.writeDouble (obj.q5),
+            () => output.writeDouble (obj.q6),
+            () => output.writeDouble (obj.q7),
+            () => output.writeDouble (obj.q8),
+            () => output.writeDouble (obj.q9),
+            () => output.writeDouble (obj.tu1),
+            () => output.writeDouble (obj.tu2),
+            () => output.writeDouble (obj.tu3),
+            () => output.writeDouble (obj.tu4),
+            () => output.writeDouble (obj.tul),
+            () => output.writeDouble (obj.tup),
+            () => output.writeDouble (obj.tuq),
+            () => output.writeDouble (obj.tuv),
+            () => output.writeDouble (obj.vuimax),
+            () => output.writeDouble (obj.vuimin),
+            () => output.writeDouble (obj.vulmax),
+            () => output.writeDouble (obj.vulmin)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimIEEE2]): UnderexcLimIEEE2 =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcLimIEEE2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  *
@@ -758,6 +958,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnderexcLimX1Serializer extends CIMSerializer[UnderexcLimX1]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcLimX1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.kf2),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.melmax),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tm)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimX1]): UnderexcLimX1 =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcLimX1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -876,6 +1112,44 @@ extends
     }
 }
 
+object UnderexcLimX2Serializer extends CIMSerializer[UnderexcLimX2]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcLimX2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kf2),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.melmax),
+            () => output.writeDouble (obj.qo),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tm)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimX2]): UnderexcLimX2 =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcLimX2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -962,6 +1236,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnderexcitationLimiterDynamicsSerializer extends CIMSerializer[UnderexcitationLimiterDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcitationLimiterDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => output.writeString (obj.RemoteInputSignal)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcitationLimiterDynamics]): UnderexcitationLimiterDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcitationLimiterDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

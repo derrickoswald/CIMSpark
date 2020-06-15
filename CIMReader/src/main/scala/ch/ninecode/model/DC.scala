@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
@@ -223,6 +227,68 @@ extends
     }
 }
 
+object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
+{
+    def write (kryo: Kryo, output: Output, obj: ACDCConverter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.baseS),
+            () => output.writeDouble (obj.idc),
+            () => output.writeDouble (obj.idleLoss),
+            () => output.writeDouble (obj.maxUdc),
+            () => output.writeDouble (obj.minUdc),
+            () => output.writeInt (obj.numberOfValves),
+            () => output.writeDouble (obj.p),
+            () => output.writeDouble (obj.poleLossP),
+            () => output.writeDouble (obj.q),
+            () => output.writeDouble (obj.ratedUdc),
+            () => output.writeDouble (obj.resistiveLoss),
+            () => output.writeDouble (obj.switchingLoss),
+            () => output.writeDouble (obj.targetPpcc),
+            () => output.writeDouble (obj.targetUdc),
+            () => output.writeDouble (obj.uc),
+            () => output.writeDouble (obj.udc),
+            () => output.writeDouble (obj.valveU0),
+            () => writeList (obj.DCTerminals, output),
+            () => output.writeString (obj.PccTerminal)
+        )
+        ConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ACDCConverter]): ACDCConverter =
+    {
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ACDCConverter (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readInt else 0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) readList (input) else null,
+            if (isSet (18)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A DC electrical connection point at the AC/DC converter.
  *
@@ -310,6 +376,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ACDCConverterDCTerminalSerializer extends CIMSerializer[ACDCConverterDCTerminal]
+{
+    def write (kryo: Kryo, output: Output, obj: ACDCConverterDCTerminal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.polarity),
+            () => output.writeString (obj.DCConductingEquipment)
+        )
+        DCBaseTerminalSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ACDCConverterDCTerminal]): ACDCConverterDCTerminal =
+    {
+        val parent = DCBaseTerminalSerializer.read (kryo, input, classOf[DCBaseTerminal])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ACDCConverterDCTerminal (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -493,6 +587,60 @@ extends
     }
 }
 
+object CsConverterSerializer extends CIMSerializer[CsConverter]
+{
+    def write (kryo: Kryo, output: Output, obj: CsConverter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.alpha),
+            () => output.writeDouble (obj.gamma),
+            () => output.writeDouble (obj.maxAlpha),
+            () => output.writeDouble (obj.maxGamma),
+            () => output.writeDouble (obj.maxIdc),
+            () => output.writeDouble (obj.minAlpha),
+            () => output.writeDouble (obj.minGamma),
+            () => output.writeDouble (obj.minIdc),
+            () => output.writeString (obj.operatingMode),
+            () => output.writeString (obj.pPccControl),
+            () => output.writeDouble (obj.ratedIdc),
+            () => output.writeDouble (obj.targetAlpha),
+            () => output.writeDouble (obj.targetGamma),
+            () => output.writeDouble (obj.targetIdc),
+            () => output.writeString (obj.CSCDynamics)
+        )
+        ACDCConverterSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CsConverter]): CsConverter =
+    {
+        val parent = ACDCConverterSerializer.read (kryo, input, classOf[ACDCConverter])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CsConverter (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An electrical connection point at a piece of DC conducting equipment.
  *
@@ -585,6 +733,34 @@ extends
     }
 }
 
+object DCBaseTerminalSerializer extends CIMSerializer[DCBaseTerminal]
+{
+    def write (kryo: Kryo, output: Output, obj: DCBaseTerminal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DCNode),
+            () => output.writeString (obj.DCTopologicalNode)
+        )
+        ACDCTerminalSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCBaseTerminal]): DCBaseTerminal =
+    {
+        val parent = ACDCTerminalSerializer.read (kryo, input, classOf[ACDCTerminal])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCBaseTerminal (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A breaker within a DC system.
  *
@@ -647,6 +823,31 @@ extends
             DCSwitch.parse (context)
         )
         ret
+    }
+}
+
+object DCBreakerSerializer extends CIMSerializer[DCBreaker]
+{
+    def write (kryo: Kryo, output: Output, obj: DCBreaker): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DCSwitchSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCBreaker]): DCBreaker =
+    {
+        val parent = DCSwitchSerializer.read (kryo, input, classOf[DCSwitch])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCBreaker (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -715,6 +916,31 @@ extends
     }
 }
 
+object DCBusbarSerializer extends CIMSerializer[DCBusbar]
+{
+    def write (kryo: Kryo, output: Output, obj: DCBusbar): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCBusbar]): DCBusbar =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCBusbar (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Low resistance equipment used in the internal DC circuit to balance voltages.
  *
@@ -779,6 +1005,31 @@ extends
             DCConductingEquipment.parse (context)
         )
         ret
+    }
+}
+
+object DCChopperSerializer extends CIMSerializer[DCChopper]
+{
+    def write (kryo: Kryo, output: Output, obj: DCChopper): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCChopper]): DCChopper =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCChopper (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -879,6 +1130,36 @@ extends
     }
 }
 
+object DCConductingEquipmentSerializer extends CIMSerializer[DCConductingEquipment]
+{
+    def write (kryo: Kryo, output: Output, obj: DCConductingEquipment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ratedUdc),
+            () => writeList (obj.DCTerminals, output),
+            () => writeList (obj.ProtectiveActionAdjustment, output)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCConductingEquipment]): DCConductingEquipment =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCConductingEquipment (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling – DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
  *
@@ -967,6 +1248,34 @@ extends
     }
 }
 
+object DCConverterUnitSerializer extends CIMSerializer[DCConverterUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: DCConverterUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.operationMode),
+            () => output.writeString (obj.Substation)
+        )
+        DCEquipmentContainerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCConverterUnit]): DCConverterUnit =
+    {
+        val parent = DCEquipmentContainerSerializer.read (kryo, input, classOf[DCEquipmentContainer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCConverterUnit (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A disconnector within a DC system.
  *
@@ -1029,6 +1338,31 @@ extends
             DCSwitch.parse (context)
         )
         ret
+    }
+}
+
+object DCDisconnectorSerializer extends CIMSerializer[DCDisconnector]
+{
+    def write (kryo: Kryo, output: Output, obj: DCDisconnector): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DCSwitchSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCDisconnector]): DCDisconnector =
+    {
+        val parent = DCSwitchSerializer.read (kryo, input, classOf[DCSwitch])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCDisconnector (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1123,6 +1457,34 @@ extends
     }
 }
 
+object DCEquipmentContainerSerializer extends CIMSerializer[DCEquipmentContainer]
+{
+    def write (kryo: Kryo, output: Output, obj: DCEquipmentContainer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DCNodes, output),
+            () => writeList (obj.DCTopologicalNode, output)
+        )
+        EquipmentContainerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCEquipmentContainer]): DCEquipmentContainer =
+    {
+        val parent = EquipmentContainerSerializer.read (kryo, input, classOf[EquipmentContainer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCEquipmentContainer (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A ground within a DC system.
  *
@@ -1208,6 +1570,34 @@ extends
     }
 }
 
+object DCGroundSerializer extends CIMSerializer[DCGround]
+{
+    def write (kryo: Kryo, output: Output, obj: DCGround): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.inductance),
+            () => output.writeDouble (obj.r)
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCGround]): DCGround =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCGround (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Overhead lines and/or cables connecting two or more HVDC substations.
  *
@@ -1287,6 +1677,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DCLineSerializer extends CIMSerializer[DCLine]
+{
+    def write (kryo: Kryo, output: Output, obj: DCLine): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Region)
+        )
+        DCEquipmentContainerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCLine]): DCLine =
+    {
+        val parent = DCEquipmentContainerSerializer.read (kryo, input, classOf[DCEquipmentContainer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCLine (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1399,6 +1815,40 @@ extends
     }
 }
 
+object DCLineSegmentSerializer extends CIMSerializer[DCLineSegment]
+{
+    def write (kryo: Kryo, output: Output, obj: DCLineSegment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.capacitance),
+            () => output.writeDouble (obj.inductance),
+            () => output.writeDouble (obj.len),
+            () => output.writeDouble (obj.resistance),
+            () => output.writeString (obj.PerLengthParameter)
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCLineSegment]): DCLineSegment =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCLineSegment (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
  *
@@ -1497,6 +1947,36 @@ extends
     }
 }
 
+object DCNodeSerializer extends CIMSerializer[DCNode]
+{
+    def write (kryo: Kryo, output: Output, obj: DCNode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DCEquipmentContainer),
+            () => writeList (obj.DCTerminals, output),
+            () => output.writeString (obj.DCTopologicalNode)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCNode]): DCNode =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCNode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A series device within the DC system, typically a reactor used for filtering or smoothing.
  *
@@ -1581,6 +2061,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DCSeriesDeviceSerializer extends CIMSerializer[DCSeriesDevice]
+{
+    def write (kryo: Kryo, output: Output, obj: DCSeriesDevice): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.inductance),
+            () => output.writeDouble (obj.resistance)
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCSeriesDevice]): DCSeriesDevice =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCSeriesDevice (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1671,6 +2179,34 @@ extends
     }
 }
 
+object DCShuntSerializer extends CIMSerializer[DCShunt]
+{
+    def write (kryo: Kryo, output: Output, obj: DCShunt): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.capacitance),
+            () => output.writeDouble (obj.resistance)
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCShunt]): DCShunt =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCShunt (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A switch within the DC system.
  *
@@ -1733,6 +2269,31 @@ extends
             DCConductingEquipment.parse (context)
         )
         ret
+    }
+}
+
+object DCSwitchSerializer extends CIMSerializer[DCSwitch]
+{
+    def write (kryo: Kryo, output: Output, obj: DCSwitch): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DCConductingEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCSwitch]): DCSwitch =
+    {
+        val parent = DCConductingEquipmentSerializer.read (kryo, input, classOf[DCConductingEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCSwitch (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1815,6 +2376,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DCTerminalSerializer extends CIMSerializer[DCTerminal]
+{
+    def write (kryo: Kryo, output: Output, obj: DCTerminal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DCConductingEquipment)
+        )
+        DCBaseTerminalSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCTerminal]): DCTerminal =
+    {
+        val parent = DCBaseTerminalSerializer.read (kryo, input, classOf[DCBaseTerminal])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCTerminal (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1901,6 +2488,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DCTopologicalIslandSerializer extends CIMSerializer[DCTopologicalIsland]
+{
+    def write (kryo: Kryo, output: Output, obj: DCTopologicalIsland): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DCTopologicalNodes, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCTopologicalIsland]): DCTopologicalIsland =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCTopologicalIsland (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2010,6 +2623,38 @@ extends
     }
 }
 
+object DCTopologicalNodeSerializer extends CIMSerializer[DCTopologicalNode]
+{
+    def write (kryo: Kryo, output: Output, obj: DCTopologicalNode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DCEquipmentContainer),
+            () => writeList (obj.DCNodes, output),
+            () => writeList (obj.DCTerminals, output),
+            () => output.writeString (obj.DCTopologicalIsland)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DCTopologicalNode]): DCTopologicalNode =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DCTopologicalNode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Common type for per-length electrical catalogues describing DC line parameters.
  *
@@ -2111,6 +2756,38 @@ extends
     }
 }
 
+object PerLengthDCLineParameterSerializer extends CIMSerializer[PerLengthDCLineParameter]
+{
+    def write (kryo: Kryo, output: Output, obj: PerLengthDCLineParameter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.capacitance),
+            () => output.writeDouble (obj.inductance),
+            () => output.writeDouble (obj.resistance),
+            () => writeList (obj.DCLineSegments, output)
+        )
+        PerLengthLineParameterSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PerLengthDCLineParameter]): PerLengthDCLineParameter =
+    {
+        val parent = PerLengthLineParameterSerializer.read (kryo, input, classOf[PerLengthLineParameter])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PerLengthDCLineParameter (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The P-Q capability curve for a voltage source converter, with P on X-axis and Qmin and Qmax on Y1-axis and Y2-axis.
  *
@@ -2190,6 +2867,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VsCapabilityCurveSerializer extends CIMSerializer[VsCapabilityCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: VsCapabilityCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.VsConverterDCSides, output)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VsCapabilityCurve]): VsCapabilityCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VsCapabilityCurve (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2352,6 +3055,56 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VsConverterSerializer extends CIMSerializer[VsConverter]
+{
+    def write (kryo: Kryo, output: Output, obj: VsConverter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.delta),
+            () => output.writeDouble (obj.droop),
+            () => output.writeDouble (obj.droopCompensation),
+            () => output.writeDouble (obj.maxModulationIndex),
+            () => output.writeDouble (obj.maxValveCurrent),
+            () => output.writeString (obj.pPccControl),
+            () => output.writeString (obj.qPccControl),
+            () => output.writeDouble (obj.qShare),
+            () => output.writeDouble (obj.targetQpcc),
+            () => output.writeDouble (obj.targetUpcc),
+            () => output.writeDouble (obj.uv),
+            () => output.writeString (obj.CapabilityCurve),
+            () => output.writeString (obj.VSCDynamics)
+        )
+        ACDCConverterSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VsConverter]): VsConverter =
+    {
+        val parent = ACDCConverterSerializer.read (kryo, input, classOf[ACDCConverter])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VsConverter (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

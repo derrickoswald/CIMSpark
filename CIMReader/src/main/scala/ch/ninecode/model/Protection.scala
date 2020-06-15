@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A device that checks current flow values in any direction or designated direction.
@@ -119,6 +123,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CurrentRelaySerializer extends CIMSerializer[CurrentRelay]
+{
+    def write (kryo: Kryo, output: Output, obj: CurrentRelay): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.currentLimit1),
+            () => output.writeDouble (obj.currentLimit2),
+            () => output.writeDouble (obj.currentLimit3),
+            () => output.writeBoolean (obj.inverseTimeFlag),
+            () => output.writeDouble (obj.timeDelay1),
+            () => output.writeDouble (obj.timeDelay2),
+            () => output.writeDouble (obj.timeDelay3)
+        )
+        ProtectionEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CurrentRelay]): CurrentRelay =
+    {
+        val parent = ProtectionEquipmentSerializer.read (kryo, input, classOf[ProtectionEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CurrentRelay (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -259,6 +301,48 @@ extends
     }
 }
 
+object ProtectionEquipmentSerializer extends CIMSerializer[ProtectionEquipment]
+{
+    def write (kryo: Kryo, output: Output, obj: ProtectionEquipment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.highLimit),
+            () => output.writeDouble (obj.lowLimit),
+            () => output.writeBoolean (obj.powerDirectionFlag),
+            () => output.writeDouble (obj.relayDelayTime),
+            () => output.writeString (obj.unitMultiplier),
+            () => output.writeString (obj.unitSymbol),
+            () => writeList (obj.ConductingEquipments, output),
+            () => writeList (obj.ProtectedSwitches, output),
+            () => writeList (obj.ProtectiveAction, output)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProtectionEquipment]): ProtectionEquipment =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProtectionEquipment (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
  *
@@ -354,6 +438,36 @@ extends
     }
 }
 
+object RecloseSequenceSerializer extends CIMSerializer[RecloseSequence]
+{
+    def write (kryo: Kryo, output: Output, obj: RecloseSequence): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.recloseDelay),
+            () => output.writeInt (obj.recloseStep),
+            () => output.writeString (obj.ProtectedSwitch)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RecloseSequence]): RecloseSequence =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RecloseSequence (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A device that operates when two AC circuits are within the desired limits of frequency, phase angle, and voltage, to permit or to cause the paralleling of these two circuits.
  *
@@ -444,6 +558,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SynchrocheckRelaySerializer extends CIMSerializer[SynchrocheckRelay]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchrocheckRelay): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxAngleDiff),
+            () => output.writeDouble (obj.maxFreqDiff),
+            () => output.writeDouble (obj.maxVoltDiff)
+        )
+        ProtectionEquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchrocheckRelay]): SynchrocheckRelay =
+    {
+        val parent = ProtectionEquipmentSerializer.read (kryo, input, classOf[ProtectionEquipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchrocheckRelay (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Interval between two dates.
@@ -94,6 +98,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DateIntervalSerializer extends CIMSerializer[DateInterval]
+{
+    def write (kryo: Kryo, output: Output, obj: DateInterval): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.end),
+            () => output.writeString (obj.start)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DateInterval]): DateInterval =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DateInterval (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -186,6 +218,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DateTimeIntervalSerializer extends CIMSerializer[DateTimeInterval]
+{
+    def write (kryo: Kryo, output: Output, obj: DateTimeInterval): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.end),
+            () => output.writeString (obj.start)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DateTimeInterval]): DateTimeInterval =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DateTimeInterval (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -292,6 +352,38 @@ extends
     }
 }
 
+object DecimalQuantitySerializer extends CIMSerializer[DecimalQuantity]
+{
+    def write (kryo: Kryo, output: Output, obj: DecimalQuantity): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.currency),
+            () => output.writeString (obj.multiplier),
+            () => output.writeString (obj.unit),
+            () => output.writeDouble (obj.value)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DecimalQuantity]): DecimalQuantity =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DecimalQuantity (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Quantity with float value and associated unit information.
  *
@@ -386,6 +478,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object FloatQuantitySerializer extends CIMSerializer[FloatQuantity]
+{
+    def write (kryo: Kryo, output: Output, obj: FloatQuantity): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.multiplier),
+            () => output.writeString (obj.unit),
+            () => output.writeDouble (obj.value)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FloatQuantity]): FloatQuantity =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FloatQuantity (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -486,6 +608,36 @@ extends
     }
 }
 
+object IntegerQuantitySerializer extends CIMSerializer[IntegerQuantity]
+{
+    def write (kryo: Kryo, output: Output, obj: IntegerQuantity): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.multiplier),
+            () => output.writeString (obj.unit),
+            () => output.writeInt (obj.value)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IntegerQuantity]): IntegerQuantity =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IntegerQuantity (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readInt else 0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Interval between two times specified as month and day.
  *
@@ -573,6 +725,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MonthDayIntervalSerializer extends CIMSerializer[MonthDayInterval]
+{
+    def write (kryo: Kryo, output: Output, obj: MonthDayInterval): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.end),
+            () => output.writeString (obj.start)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MonthDayInterval]): MonthDayInterval =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MonthDayInterval (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -673,6 +853,36 @@ extends
     }
 }
 
+object StringQuantitySerializer extends CIMSerializer[StringQuantity]
+{
+    def write (kryo: Kryo, output: Output, obj: StringQuantity): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.multiplier),
+            () => output.writeString (obj.unit),
+            () => output.writeString (obj.value)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StringQuantity]): StringQuantity =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StringQuantity (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Interval between two times.
  *
@@ -760,6 +970,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TimeIntervalSerializer extends CIMSerializer[TimeInterval]
+{
+    def write (kryo: Kryo, output: Output, obj: TimeInterval): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.end),
+            () => output.writeString (obj.start)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TimeInterval]): TimeInterval =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TimeInterval (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

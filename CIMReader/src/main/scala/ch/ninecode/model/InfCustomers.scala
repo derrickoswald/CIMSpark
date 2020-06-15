@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
@@ -86,6 +90,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ComplianceEventSerializer extends CIMSerializer[ComplianceEvent]
+{
+    def write (kryo: Kryo, output: Output, obj: ComplianceEvent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.deadline)
+        )
+        ActivityRecordSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ComplianceEvent]): ComplianceEvent =
+    {
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ComplianceEvent (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -236,6 +266,50 @@ extends
     }
 }
 
+object CustomerBillingInfoSerializer extends CIMSerializer[CustomerBillingInfo]
+{
+    def write (kryo: Kryo, output: Output, obj: CustomerBillingInfo): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.billingDate),
+            () => output.writeString (obj.dueDate),
+            () => output.writeString (obj.kind),
+            () => output.writeDouble (obj.lastPaymentAmt),
+            () => output.writeString (obj.lastPaymentDate),
+            () => output.writeDouble (obj.outBalance),
+            () => output.writeDouble (obj.pymtPlanAmt),
+            () => output.writeString (obj.pymtPlanType),
+            () => output.writeString (obj.CustomerAccount),
+            () => writeList (obj.ErpInvoiceLineItems, output)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CustomerBillingInfo]): CustomerBillingInfo =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CustomerBillingInfo (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A type of customer agreement involving an external agency.
  *
@@ -300,6 +374,31 @@ extends
             Agreement.parse (context)
         )
         ret
+    }
+}
+
+object ExternalCustomerAgreementSerializer extends CIMSerializer[ExternalCustomerAgreement]
+{
+    def write (kryo: Kryo, output: Output, obj: ExternalCustomerAgreement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExternalCustomerAgreement]): ExternalCustomerAgreement =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExternalCustomerAgreement (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -430,6 +529,48 @@ extends
     }
 }
 
+object PowerQualityPricingSerializer extends CIMSerializer[PowerQualityPricing]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerQualityPricing): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.emergencyHighVoltLimit),
+            () => output.writeDouble (obj.emergencyLowVoltLimit),
+            () => output.writeDouble (obj.normalHighVoltLimit),
+            () => output.writeDouble (obj.normalLowVoltLimit),
+            () => output.writeDouble (obj.powerFactorMin),
+            () => output.writeDouble (obj.valueUninterruptedServiceEnergy),
+            () => output.writeDouble (obj.valueUninterruptedServiceP),
+            () => output.writeDouble (obj.voltImbalanceViolCost),
+            () => output.writeDouble (obj.voltLimitViolCost)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerQualityPricing]): PowerQualityPricing =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerQualityPricing (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
  *
@@ -533,6 +674,38 @@ extends
     }
 }
 
+object ServiceGuaranteeSerializer extends CIMSerializer[ServiceGuarantee]
+{
+    def write (kryo: Kryo, output: Output, obj: ServiceGuarantee): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.applicationPeriod),
+            () => output.writeBoolean (obj.automaticPay),
+            () => output.writeDouble (obj.payAmount),
+            () => output.writeString (obj.serviceRequirement)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ServiceGuarantee]): ServiceGuarantee =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ServiceGuarantee (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The Standard Industrial Classification (SIC) are the codes that identify the type of products/service an industry is involved in, and used for statutory reporting purposes.
  *
@@ -625,6 +798,34 @@ extends
     }
 }
 
+object StandardIndustryCodeSerializer extends CIMSerializer[StandardIndustryCode]
+{
+    def write (kryo: Kryo, output: Output, obj: StandardIndustryCode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.code),
+            () => writeList (obj.CustomerAgreements, output)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StandardIndustryCode]): StandardIndustryCode =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StandardIndustryCode (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
  *
@@ -687,6 +888,31 @@ extends
             Curve.parse (context)
         )
         ret
+    }
+}
+
+object SubscribePowerCurveSerializer extends CIMSerializer[SubscribePowerCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: SubscribePowerCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SubscribePowerCurve]): SubscribePowerCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SubscribePowerCurve (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -829,6 +1055,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WorkBillingInfoSerializer extends CIMSerializer[WorkBillingInfo]
+{
+    def write (kryo: Kryo, output: Output, obj: WorkBillingInfo): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.costEstimate),
+            () => output.writeDouble (obj.deposit),
+            () => output.writeDouble (obj.discount),
+            () => output.writeString (obj.dueDateTime),
+            () => output.writeString (obj.issueDateTime),
+            () => output.writeString (obj.receivedDateTime),
+            () => output.writeDouble (obj.workPrice),
+            () => output.writeString (obj.CustomerAccount),
+            () => writeList (obj.ErpLineItems, output),
+            () => writeList (obj.Works, output)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WorkBillingInfo]): WorkBillingInfo =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WorkBillingInfo (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

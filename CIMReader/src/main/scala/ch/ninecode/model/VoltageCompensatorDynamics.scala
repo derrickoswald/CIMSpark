@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Resistive and reactive components of compensation for generator associated with IEEE type 2 voltage compensator for current flow out of another generator in the interconnection.
@@ -113,6 +117,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GenICompensationForGenJSerializer extends CIMSerializer[GenICompensationForGenJ]
+{
+    def write (kryo: Kryo, output: Output, obj: GenICompensationForGenJ): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.rcij),
+            () => output.writeDouble (obj.xcij),
+            () => output.writeString (obj.SynchronousMachineDynamics),
+            () => output.writeString (obj.VcompIEEEType2)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GenICompensationForGenJ]): GenICompensationForGenJ =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GenICompensationForGenJ (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -224,6 +260,36 @@ extends
     }
 }
 
+object VCompIEEEType1Serializer extends CIMSerializer[VCompIEEEType1]
+{
+    def write (kryo: Kryo, output: Output, obj: VCompIEEEType1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.rc),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.xc)
+        )
+        VoltageCompensatorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VCompIEEEType1]): VCompIEEEType1 =
+    {
+        val parent = VoltageCompensatorDynamicsSerializer.read (kryo, input, classOf[VoltageCompensatorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VCompIEEEType1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * <font color="#0f0f0f">Terminal voltage transducer and load compensator as defined in IEEE 421.5-2005, 4.
  *
@@ -328,6 +394,34 @@ extends
     }
 }
 
+object VCompIEEEType2Serializer extends CIMSerializer[VCompIEEEType2]
+{
+    def write (kryo: Kryo, output: Output, obj: VCompIEEEType2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tr),
+            () => writeList (obj.GenICompensationForGenJ, output)
+        )
+        VoltageCompensatorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VCompIEEEType2]): VCompIEEEType2 =
+    {
+        val parent = VoltageCompensatorDynamicsSerializer.read (kryo, input, classOf[VoltageCompensatorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VCompIEEEType2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -421,6 +515,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VoltageCompensatorDynamicsSerializer extends CIMSerializer[VoltageCompensatorDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: VoltageCompensatorDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => output.writeString (obj.RemoteInputSignal)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VoltageCompensatorDynamics]): VoltageCompensatorDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VoltageCompensatorDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

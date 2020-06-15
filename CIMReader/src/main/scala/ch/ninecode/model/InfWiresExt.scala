@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
@@ -88,6 +92,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SVCSerializer extends CIMSerializer[SVC]
+{
+    def write (kryo: Kryo, output: Output, obj: SVC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.capacitiveRating),
+            () => output.writeDouble (obj.inductiveRating)
+        )
+        ShuntCompensatorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SVC]): SVC =
+    {
+        val parent = ShuntCompensatorSerializer.read (kryo, input, classOf[ShuntCompensator])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SVC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -275,6 +307,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ShuntCompensatorControlSerializer extends CIMSerializer[ShuntCompensatorControl]
+{
+    def write (kryo: Kryo, output: Output, obj: ShuntCompensatorControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.branchDirect),
+            () => output.writeDouble (obj.cellSize),
+            () => output.writeString (obj.controlKind),
+            () => output.writeDouble (obj.highVoltageOverride),
+            () => output.writeString (obj.localControlKind),
+            () => output.writeString (obj.localOffLevel),
+            () => output.writeString (obj.localOnLevel),
+            () => output.writeBoolean (obj.localOverride),
+            () => output.writeDouble (obj.lowVoltageOverride),
+            () => output.writeInt (obj.maxSwitchOperationCount),
+            () => output.writeBoolean (obj.normalOpen),
+            () => output.writeString (obj.regBranch),
+            () => output.writeInt (obj.regBranchEnd),
+            () => output.writeString (obj.regBranchKind),
+            () => output.writeString (obj.sensingPhaseCode),
+            () => output.writeDouble (obj.switchOperationCycle),
+            () => output.writeBoolean (obj.vRegLineLine),
+            () => output.writeString (obj.ShuntCompensatorInfo)
+        )
+        RegulatingControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ShuntCompensatorControl]): ShuntCompensatorControl =
+    {
+        val parent = RegulatingControlSerializer.read (kryo, input, classOf[RegulatingControl])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ShuntCompensatorControl (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readBoolean else false,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readInt else 0,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readInt else 0,
+            if (isSet (13)) input.readString else null,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readBoolean else false,
+            if (isSet (17)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

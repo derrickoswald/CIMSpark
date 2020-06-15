@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A fault applied at the terminal, external to the equipment.
@@ -88,6 +92,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EquipmentFaultSerializer extends CIMSerializer[EquipmentFault]
+{
+    def write (kryo: Kryo, output: Output, obj: EquipmentFault): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Terminal)
+        )
+        FaultSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquipmentFault]): EquipmentFault =
+    {
+        val parent = FaultSerializer.read (kryo, input, classOf[Fault])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquipmentFault (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -223,6 +253,46 @@ extends
     }
 }
 
+object FaultSerializer extends CIMSerializer[Fault]
+{
+    def write (kryo: Kryo, output: Output, obj: Fault): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.impedance),
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.occurredDateTime),
+            () => output.writeString (obj.phases),
+            () => writeList (obj.FaultCauseTypes, output),
+            () => output.writeString (obj.FaultyEquipment),
+            () => output.writeString (obj.Location),
+            () => output.writeString (obj.Outage)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Fault]): Fault =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Fault (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Type of cause of the fault.
  *
@@ -309,6 +379,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object FaultCauseTypeSerializer extends CIMSerializer[FaultCauseType]
+{
+    def write (kryo: Kryo, output: Output, obj: FaultCauseType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ConfigurationEvent, output),
+            () => writeList (obj.Faults, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FaultCauseType]): FaultCauseType =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FaultCauseType (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -409,6 +507,38 @@ extends
     }
 }
 
+object FaultImpedanceSerializer extends CIMSerializer[FaultImpedance]
+{
+    def write (kryo: Kryo, output: Output, obj: FaultImpedance): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.rGround),
+            () => output.writeDouble (obj.rLineToLine),
+            () => output.writeDouble (obj.xGround),
+            () => output.writeDouble (obj.xLineToLine)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FaultImpedance]): FaultImpedance =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FaultImpedance (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A fault that occurs on an AC line segment at some point along the length.
  *
@@ -495,6 +625,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LineFaultSerializer extends CIMSerializer[LineFault]
+{
+    def write (kryo: Kryo, output: Output, obj: LineFault): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.lengthFromTerminal1),
+            () => output.writeString (obj.ACLineSegment)
+        )
+        FaultSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LineFault]): LineFault =
+    {
+        val parent = FaultSerializer.read (kryo, input, classOf[Fault])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LineFault (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

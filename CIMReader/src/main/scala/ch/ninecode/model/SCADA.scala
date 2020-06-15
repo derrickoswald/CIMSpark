@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * The connection to remote units is through one or more communication links.
@@ -97,6 +101,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CommunicationLinkSerializer extends CIMSerializer[CommunicationLink]
+{
+    def write (kryo: Kryo, output: Output, obj: CommunicationLink): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.BilateralExchangeActor),
+            () => writeList (obj.RemoteUnits, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CommunicationLink]): CommunicationLink =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CommunicationLink (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -202,6 +234,38 @@ extends
     }
 }
 
+object RemoteControlSerializer extends CIMSerializer[RemoteControl]
+{
+    def write (kryo: Kryo, output: Output, obj: RemoteControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.actuatorMaximum),
+            () => output.writeDouble (obj.actuatorMinimum),
+            () => output.writeBoolean (obj.remoteControlled),
+            () => output.writeString (obj.Control)
+        )
+        RemotePointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemoteControl]): RemoteControl =
+    {
+        val parent = RemotePointSerializer.read (kryo, input, classOf[RemotePoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemoteControl (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * For an RTU, remote points correspond to telemetered values or control outputs.
  *
@@ -284,6 +348,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RemotePointSerializer extends CIMSerializer[RemotePoint]
+{
+    def write (kryo: Kryo, output: Output, obj: RemotePoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.RemoteUnit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemotePoint]): RemotePoint =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemotePoint (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -395,6 +485,40 @@ extends
     }
 }
 
+object RemoteSourceSerializer extends CIMSerializer[RemoteSource]
+{
+    def write (kryo: Kryo, output: Output, obj: RemoteSource): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.deadband),
+            () => output.writeDouble (obj.scanInterval),
+            () => output.writeDouble (obj.sensorMaximum),
+            () => output.writeDouble (obj.sensorMinimum),
+            () => output.writeString (obj.MeasurementValue)
+        )
+        RemotePointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemoteSource]): RemoteSource =
+    {
+        val parent = RemotePointSerializer.read (kryo, input, classOf[RemotePoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemoteSource (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A remote unit can be an RTU, IED, substation control system, control centre, etc.
  *
@@ -491,6 +615,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RemoteUnitSerializer extends CIMSerializer[RemoteUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: RemoteUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.remoteUnitType),
+            () => writeList (obj.CommunicationLinks, output),
+            () => writeList (obj.RemotePoints, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemoteUnit]): RemoteUnit =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemoteUnit (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

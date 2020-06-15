@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group DER
@@ -113,6 +117,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DERCurveDataSerializer extends CIMSerializer[DERCurveData]
+{
+    def write (kryo: Kryo, output: Output, obj: DERCurveData): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.intervalNumber),
+            () => output.writeDouble (obj.maxYValue),
+            () => output.writeDouble (obj.minYValue),
+            () => output.writeDouble (obj.nominalYValue),
+            () => output.writeString (obj.timeStamp),
+            () => output.writeString (obj.DERMonitorableParameter),
+            () => output.writeString (obj.DispatchSchedule)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DERCurveData]): DERCurveData =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DERCurveData (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -239,6 +281,50 @@ extends
     }
 }
 
+object DERFunctionSerializer extends CIMSerializer[DERFunction]
+{
+    def write (kryo: Kryo, output: Output, obj: DERFunction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.connectDisconnect),
+            () => output.writeBoolean (obj.frequencyWattCurveFunction),
+            () => output.writeBoolean (obj.maxRealPowerLimiting),
+            () => output.writeBoolean (obj.rampRateControl),
+            () => output.writeBoolean (obj.reactivePowerDispatch),
+            () => output.writeBoolean (obj.realPowerDispatch),
+            () => output.writeBoolean (obj.voltVarCurveFunction),
+            () => output.writeBoolean (obj.voltWattCurveFunction),
+            () => output.writeBoolean (obj.voltageRegulation),
+            () => writeList (obj.EndDeviceGroup, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DERFunction]): DERFunction =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DERFunction (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readBoolean else false,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group DER
  * @groupname DER Package DER
@@ -313,6 +399,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DERGroupDispatchSerializer extends CIMSerializer[DERGroupDispatch]
+{
+    def write (kryo: Kryo, output: Output, obj: DERGroupDispatch): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EndDeviceGroup, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DERGroupDispatch]): DERGroupDispatch =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DERGroupDispatch (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -396,6 +508,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DERGroupForecastSerializer extends CIMSerializer[DERGroupForecast]
+{
+    def write (kryo: Kryo, output: Output, obj: DERGroupForecast): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.predictionCreationDate),
+            () => writeList (obj.EndDeviceGroup, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DERGroupForecast]): DERGroupForecast =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DERGroupForecast (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -520,6 +660,48 @@ extends
     }
 }
 
+object DERMonitorableParameterSerializer extends CIMSerializer[DERMonitorableParameter]
+{
+    def write (kryo: Kryo, output: Output, obj: DERMonitorableParameter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.flowDirection),
+            () => output.writeString (obj.yMultiplier),
+            () => output.writeString (obj.yUnit),
+            () => output.writeDouble (obj.yUnitInstalledMax),
+            () => output.writeDouble (obj.yUnitInstalledMin),
+            () => output.writeString (obj.DERCurveData),
+            () => output.writeString (obj.DERParameter),
+            () => writeList (obj.DispatchSchedule, output),
+            () => writeList (obj.EndDeviceGroup, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DERMonitorableParameter]): DERMonitorableParameter =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DERMonitorableParameter (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group DER
  * @groupname DER Package DER
@@ -632,6 +814,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DispatchScheduleSerializer extends CIMSerializer[DispatchSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: DispatchSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.confidence),
+            () => output.writeString (obj.curveStyleKind),
+            () => output.writeInt (obj.numberOfIntervals),
+            () => output.writeString (obj.startTime),
+            () => output.writeInt (obj.timeIntervalDuration),
+            () => output.writeString (obj.timeIntervalUnit),
+            () => writeList (obj.DERCurveData, output),
+            () => output.writeString (obj.DERMonitorableParameter)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DispatchSchedule]): DispatchSchedule =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DispatchSchedule (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readInt else 0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -761,6 +983,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DispatchablePowerCapabilitySerializer extends CIMSerializer[DispatchablePowerCapability]
+{
+    def write (kryo: Kryo, output: Output, obj: DispatchablePowerCapability): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.currentActivePower),
+            () => output.writeDouble (obj.currentApparentPower),
+            () => output.writeDouble (obj.currentReactivePower),
+            () => output.writeDouble (obj.maxActivePower),
+            () => output.writeDouble (obj.maxApparentPower),
+            () => output.writeDouble (obj.maxReactivePower),
+            () => output.writeDouble (obj.minActivePower),
+            () => output.writeDouble (obj.minApparentPower),
+            () => output.writeDouble (obj.minReactivePower),
+            () => output.writeString (obj.EndDevice),
+            () => output.writeString (obj.EndDeviceGroup)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DispatchablePowerCapability]): DispatchablePowerCapability =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DispatchablePowerCapability (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

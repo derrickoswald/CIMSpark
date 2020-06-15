@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * @group CSC
@@ -65,6 +69,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object CCAinverterSerializer extends CIMSerializer[CCAinverter]
+{
+    def write (kryo: Kryo, output: Output, obj: CCAinverter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CCAinverter]): CCAinverter =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CCAinverter (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -129,6 +158,31 @@ extends
     }
 }
 
+object CCArectifierControlSerializer extends CIMSerializer[CCArectifierControl]
+{
+    def write (kryo: Kryo, output: Output, obj: CCArectifierControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CCArectifierControl]): CCArectifierControl =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CCArectifierControl (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group CSC
  * @groupname CSC Package CSC
@@ -187,6 +241,31 @@ extends
             CSCDynamics.parse (context)
         )
         ret
+    }
+}
+
+object CSCtype1Serializer extends CIMSerializer[CSCtype1]
+{
+    def write (kryo: Kryo, output: Output, obj: CSCtype1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        CSCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CSCtype1]): CSCtype1 =
+    {
+        val parent = CSCDynamicsSerializer.read (kryo, input, classOf[CSCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CSCtype1 (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -251,6 +330,31 @@ extends
     }
 }
 
+object IdcInverterControlSerializer extends CIMSerializer[IdcInverterControl]
+{
+    def write (kryo: Kryo, output: Output, obj: IdcInverterControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IdcInverterControl]): IdcInverterControl =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IdcInverterControl (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group CSC
  * @groupname CSC Package CSC
@@ -312,6 +416,31 @@ extends
     }
 }
 
+object IgnAngleContInverterSerializer extends CIMSerializer[IgnAngleContInverter]
+{
+    def write (kryo: Kryo, output: Output, obj: IgnAngleContInverter): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IgnAngleContInverter]): IgnAngleContInverter =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IgnAngleContInverter (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group CSC
  * @groupname CSC Package CSC
@@ -370,6 +499,31 @@ extends
             BasicElement.parse (context)
         )
         ret
+    }
+}
+
+object VDCOLSerializer extends CIMSerializer[VDCOL]
+{
+    def write (kryo: Kryo, output: Output, obj: VDCOL): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VDCOL]): VDCOL =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VDCOL (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

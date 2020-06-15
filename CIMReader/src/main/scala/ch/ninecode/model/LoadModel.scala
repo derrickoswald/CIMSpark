@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
@@ -88,6 +92,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ConformLoadSerializer extends CIMSerializer[ConformLoad]
+{
+    def write (kryo: Kryo, output: Output, obj: ConformLoad): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.LoadGroup)
+        )
+        EnergyConsumerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ConformLoad]): ConformLoad =
+    {
+        val parent = EnergyConsumerSerializer.read (kryo, input, classOf[EnergyConsumer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ConformLoad (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -182,6 +212,34 @@ extends
     }
 }
 
+object ConformLoadGroupSerializer extends CIMSerializer[ConformLoadGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: ConformLoadGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ConformLoadSchedules, output),
+            () => writeList (obj.EnergyConsumers, output)
+        )
+        LoadGroupSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ConformLoadGroup]): ConformLoadGroup =
+    {
+        val parent = LoadGroupSerializer.read (kryo, input, classOf[LoadGroup])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ConformLoadGroup (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
  *
@@ -265,6 +323,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ConformLoadScheduleSerializer extends CIMSerializer[ConformLoadSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: ConformLoadSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ConformLoadGroup)
+        )
+        SeasonDayTypeScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ConformLoadSchedule]): ConformLoadSchedule =
+    {
+        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf[SeasonDayTypeSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ConformLoadSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -354,6 +438,32 @@ extends
     }
 }
 
+object DayTypeSerializer extends CIMSerializer[DayType]
+{
+    def write (kryo: Kryo, output: Output, obj: DayType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.SeasonDayTypeSchedules, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DayType]): DayType =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DayType (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Describes an area having energy production or consumption.
  *
@@ -437,6 +547,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EnergyAreaSerializer extends CIMSerializer[EnergyArea]
+{
+    def write (kryo: Kryo, output: Output, obj: EnergyArea): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ControlArea)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnergyArea]): EnergyArea =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnergyArea (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -524,6 +660,32 @@ extends
     }
 }
 
+object LoadAreaSerializer extends CIMSerializer[LoadArea]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadArea): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.SubLoadAreas, output)
+        )
+        EnergyAreaSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadArea]): LoadArea =
+    {
+        val parent = EnergyAreaSerializer.read (kryo, input, classOf[EnergyArea])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadArea (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  *
@@ -605,6 +767,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadGroupSerializer extends CIMSerializer[LoadGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.SubLoadArea)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadGroup]): LoadGroup =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadGroup (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -782,6 +970,54 @@ extends
     }
 }
 
+object LoadResponseCharacteristicSerializer extends CIMSerializer[LoadResponseCharacteristic]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadResponseCharacteristic): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.exponentModel),
+            () => output.writeDouble (obj.pConstantCurrent),
+            () => output.writeDouble (obj.pConstantImpedance),
+            () => output.writeDouble (obj.pConstantPower),
+            () => output.writeDouble (obj.pFrequencyExponent),
+            () => output.writeDouble (obj.pVoltageExponent),
+            () => output.writeDouble (obj.qConstantCurrent),
+            () => output.writeDouble (obj.qConstantImpedance),
+            () => output.writeDouble (obj.qConstantPower),
+            () => output.writeDouble (obj.qFrequencyExponent),
+            () => output.writeDouble (obj.qVoltageExponent),
+            () => writeList (obj.EnergyConsumer, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadResponseCharacteristic]): LoadResponseCharacteristic =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadResponseCharacteristic (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * NonConformLoad represents loads that do not follow a daily load change pattern and whose changes are not correlated with the daily load change pattern.
  *
@@ -863,6 +1099,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NonConformLoadSerializer extends CIMSerializer[NonConformLoad]
+{
+    def write (kryo: Kryo, output: Output, obj: NonConformLoad): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.LoadGroup)
+        )
+        EnergyConsumerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NonConformLoad]): NonConformLoad =
+    {
+        val parent = EnergyConsumerSerializer.read (kryo, input, classOf[EnergyConsumer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NonConformLoad (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -957,6 +1219,34 @@ extends
     }
 }
 
+object NonConformLoadGroupSerializer extends CIMSerializer[NonConformLoadGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: NonConformLoadGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EnergyConsumers, output),
+            () => writeList (obj.NonConformLoadSchedules, output)
+        )
+        LoadGroupSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NonConformLoadGroup]): NonConformLoadGroup =
+    {
+        val parent = LoadGroupSerializer.read (kryo, input, classOf[LoadGroup])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NonConformLoadGroup (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modelled).
  *
@@ -1038,6 +1328,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object NonConformLoadScheduleSerializer extends CIMSerializer[NonConformLoadSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: NonConformLoadSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.NonConformLoadGroup)
+        )
+        SeasonDayTypeScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NonConformLoadSchedule]): NonConformLoadSchedule =
+    {
+        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf[SeasonDayTypeSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NonConformLoadSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1135,6 +1451,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PowerCutZoneSerializer extends CIMSerializer[PowerCutZone]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerCutZone): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.cutLevel1),
+            () => output.writeDouble (obj.cutLevel2),
+            () => writeList (obj.EnergyConsumers, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerCutZone]): PowerCutZone =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerCutZone (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1242,6 +1588,38 @@ extends
     }
 }
 
+object SeasonSerializer extends CIMSerializer[Season]
+{
+    def write (kryo: Kryo, output: Output, obj: Season): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.endDate),
+            () => output.writeString (obj.startDate),
+            () => writeList (obj.ScheduledLimits, output),
+            () => writeList (obj.SeasonDayTypeSchedules, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Season]): Season =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Season (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
  *
@@ -1333,6 +1711,34 @@ extends
     }
 }
 
+object SeasonDayTypeScheduleSerializer extends CIMSerializer[SeasonDayTypeSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: SeasonDayTypeSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DayType),
+            () => output.writeString (obj.Season)
+        )
+        RegularIntervalScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SeasonDayTypeSchedule]): SeasonDayTypeSchedule =
+    {
+        val parent = RegularIntervalScheduleSerializer.read (kryo, input, classOf[RegularIntervalSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SeasonDayTypeSchedule (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Station supply with load derived from the station output.
  *
@@ -1397,6 +1803,31 @@ extends
             EnergyConsumer.parse (context)
         )
         ret
+    }
+}
+
+object StationSupplySerializer extends CIMSerializer[StationSupply]
+{
+    def write (kryo: Kryo, output: Output, obj: StationSupply): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        EnergyConsumerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StationSupply]): StationSupply =
+    {
+        val parent = EnergyConsumerSerializer.read (kryo, input, classOf[EnergyConsumer])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StationSupply (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1489,6 +1920,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SubLoadAreaSerializer extends CIMSerializer[SubLoadArea]
+{
+    def write (kryo: Kryo, output: Output, obj: SubLoadArea): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.LoadArea),
+            () => writeList (obj.LoadGroups, output)
+        )
+        EnergyAreaSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SubLoadArea]): SubLoadArea =
+    {
+        val parent = EnergyAreaSerializer.read (kryo, input, classOf[EnergyArea])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SubLoadArea (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

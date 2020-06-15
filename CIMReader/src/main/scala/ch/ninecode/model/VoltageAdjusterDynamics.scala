@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * IEEE voltage adjuster which is used to represent the voltage adjuster in either a power factor or VAr control system.
@@ -124,6 +128,42 @@ extends
     }
 }
 
+object VAdjIEEESerializer extends CIMSerializer[VAdjIEEE]
+{
+    def write (kryo: Kryo, output: Output, obj: VAdjIEEE): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.adjslew),
+            () => output.writeDouble (obj.taoff),
+            () => output.writeDouble (obj.taon),
+            () => output.writeDouble (obj.vadjf),
+            () => output.writeDouble (obj.vadjmax),
+            () => output.writeDouble (obj.vadjmin)
+        )
+        VoltageAdjusterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VAdjIEEE]): VAdjIEEE =
+    {
+        val parent = VoltageAdjusterDynamicsSerializer.read (kryo, input, classOf[VoltageAdjusterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VAdjIEEE (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -204,6 +244,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VoltageAdjusterDynamicsSerializer extends CIMSerializer[VoltageAdjusterDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: VoltageAdjusterDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.PFVArControllerType1Dynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VoltageAdjusterDynamics]): VoltageAdjusterDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VoltageAdjusterDynamics (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

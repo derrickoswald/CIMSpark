@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
@@ -104,6 +108,36 @@ extends
     }
 }
 
+object AccumulatorSerializer extends CIMSerializer[Accumulator]
+{
+    def write (kryo: Kryo, output: Output, obj: Accumulator): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.maxValue),
+            () => writeList (obj.AccumulatorValues, output),
+            () => writeList (obj.LimitSets, output)
+        )
+        MeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Accumulator]): Accumulator =
+    {
+        val parent = MeasurementSerializer.read (kryo, input, classOf[Measurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Accumulator (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Limit values for Accumulator measurements.
  *
@@ -191,6 +225,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AccumulatorLimitSerializer extends CIMSerializer[AccumulatorLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: AccumulatorLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.value),
+            () => output.writeString (obj.LimitSet)
+        )
+        LimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AccumulatorLimit]): AccumulatorLimit =
+    {
+        val parent = LimitSerializer.read (kryo, input, classOf[Limit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AccumulatorLimit (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -283,6 +345,34 @@ extends
     }
 }
 
+object AccumulatorLimitSetSerializer extends CIMSerializer[AccumulatorLimitSet]
+{
+    def write (kryo: Kryo, output: Output, obj: AccumulatorLimitSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Limits, output),
+            () => writeList (obj.Measurements, output)
+        )
+        LimitSetSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AccumulatorLimitSet]): AccumulatorLimitSet =
+    {
+        val parent = LimitSetSerializer.read (kryo, input, classOf[LimitSet])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AccumulatorLimitSet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This command resets the counter value to zero.
  *
@@ -362,6 +452,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AccumulatorResetSerializer extends CIMSerializer[AccumulatorReset]
+{
+    def write (kryo: Kryo, output: Output, obj: AccumulatorReset): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AccumulatorValue)
+        )
+        ControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AccumulatorReset]): AccumulatorReset =
+    {
+        val parent = ControlSerializer.read (kryo, input, classOf[Control])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AccumulatorReset (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -459,6 +575,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AccumulatorValueSerializer extends CIMSerializer[AccumulatorValue]
+{
+    def write (kryo: Kryo, output: Output, obj: AccumulatorValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.value),
+            () => output.writeString (obj.Accumulator),
+            () => output.writeString (obj.AccumulatorReset)
+        )
+        MeasurementValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AccumulatorValue]): AccumulatorValue =
+    {
+        val parent = MeasurementValueSerializer.read (kryo, input, classOf[MeasurementValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AccumulatorValue (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -578,6 +724,42 @@ extends
     }
 }
 
+object AnalogSerializer extends CIMSerializer[Analog]
+{
+    def write (kryo: Kryo, output: Output, obj: Analog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxValue),
+            () => output.writeDouble (obj.minValue),
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeBoolean (obj.positiveFlowIn),
+            () => writeList (obj.AnalogValues, output),
+            () => writeList (obj.LimitSets, output)
+        )
+        MeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Analog]): Analog =
+    {
+        val parent = MeasurementSerializer.read (kryo, input, classOf[Measurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Analog (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An analog control used for supervisory control.
  *
@@ -675,6 +857,36 @@ extends
     }
 }
 
+object AnalogControlSerializer extends CIMSerializer[AnalogControl]
+{
+    def write (kryo: Kryo, output: Output, obj: AnalogControl): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxValue),
+            () => output.writeDouble (obj.minValue),
+            () => output.writeString (obj.AnalogValue)
+        )
+        ControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AnalogControl]): AnalogControl =
+    {
+        val parent = ControlSerializer.read (kryo, input, classOf[Control])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AnalogControl (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Limit values for Analog measurements.
  *
@@ -764,6 +976,34 @@ extends
     }
 }
 
+object AnalogLimitSerializer extends CIMSerializer[AnalogLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: AnalogLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value),
+            () => output.writeString (obj.LimitSet)
+        )
+        LimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AnalogLimit]): AnalogLimit =
+    {
+        val parent = LimitSerializer.read (kryo, input, classOf[Limit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AnalogLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
  *
@@ -850,6 +1090,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AnalogLimitSetSerializer extends CIMSerializer[AnalogLimitSet]
+{
+    def write (kryo: Kryo, output: Output, obj: AnalogLimitSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Limits, output),
+            () => writeList (obj.Measurements, output)
+        )
+        LimitSetSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AnalogLimitSet]): AnalogLimitSet =
+    {
+        val parent = LimitSetSerializer.read (kryo, input, classOf[LimitSet])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AnalogLimitSet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -964,6 +1232,40 @@ extends
     }
 }
 
+object AnalogValueSerializer extends CIMSerializer[AnalogValue]
+{
+    def write (kryo: Kryo, output: Output, obj: AnalogValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.value),
+            () => writeList (obj.AltGeneratingUnit, output),
+            () => writeList (obj.AltTieMeas, output),
+            () => output.writeString (obj.Analog),
+            () => output.writeString (obj.AnalogControl)
+        )
+        MeasurementValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AnalogValue]): AnalogValue =
+    {
+        val parent = MeasurementValueSerializer.read (kryo, input, classOf[MeasurementValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AnalogValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A Command is a discrete control used for supervisory control.
  *
@@ -1063,6 +1365,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CommandSerializer extends CIMSerializer[Command]
+{
+    def write (kryo: Kryo, output: Output, obj: Command): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.normalValue),
+            () => output.writeInt (obj.value),
+            () => output.writeString (obj.DiscreteValue),
+            () => output.writeString (obj.ValueAliasSet)
+        )
+        ControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Command]): Command =
+    {
+        val parent = ControlSerializer.read (kryo, input, classOf[Control])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Command (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1196,6 +1530,46 @@ extends
     }
 }
 
+object ControlSerializer extends CIMSerializer[Control]
+{
+    def write (kryo: Kryo, output: Output, obj: Control): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.controlType),
+            () => output.writeBoolean (obj.operationInProgress),
+            () => output.writeString (obj.timeStamp),
+            () => output.writeString (obj.unitMultiplier),
+            () => output.writeString (obj.unitSymbol),
+            () => output.writeString (obj.ControlAction),
+            () => output.writeString (obj.PowerSystemResource),
+            () => output.writeString (obj.RemoteControl)
+        )
+        IOPointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Control]): Control =
+    {
+        val parent = IOPointSerializer.read (kryo, input, classOf[IOPoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Control (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
  *
@@ -1307,6 +1681,40 @@ extends
     }
 }
 
+object DiscreteSerializer extends CIMSerializer[Discrete]
+{
+    def write (kryo: Kryo, output: Output, obj: Discrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.maxValue),
+            () => output.writeInt (obj.minValue),
+            () => output.writeInt (obj.normalValue),
+            () => writeList (obj.DiscreteValues, output),
+            () => output.writeString (obj.ValueAliasSet)
+        )
+        MeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Discrete]): Discrete =
+    {
+        val parent = MeasurementSerializer.read (kryo, input, classOf[Measurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Discrete (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * DiscreteValue represents a discrete MeasurementValue.
  *
@@ -1403,6 +1811,36 @@ extends
     }
 }
 
+object DiscreteValueSerializer extends CIMSerializer[DiscreteValue]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscreteValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.value),
+            () => output.writeString (obj.Command),
+            () => output.writeString (obj.Discrete)
+        )
+        MeasurementValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscreteValue]): DiscreteValue =
+    {
+        val parent = MeasurementValueSerializer.read (kryo, input, classOf[MeasurementValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscreteValue (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The class describe a measurement or control value.
  *
@@ -1495,6 +1933,34 @@ extends
     }
 }
 
+object IOPointSerializer extends CIMSerializer[IOPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: IOPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.BilateralToIOPoint, output),
+            () => output.writeString (obj.IOPointSource)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IOPoint]): IOPoint =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IOPoint (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Specifies one limit value for a Measurement.
  *
@@ -1579,6 +2045,32 @@ extends
     }
 }
 
+object LimitSerializer extends CIMSerializer[Limit]
+{
+    def write (kryo: Kryo, output: Output, obj: Limit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Procedures, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Limit]): Limit =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Limit (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Specifies a set of Limits that are associated with a Measurement.
  *
@@ -1657,6 +2149,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LimitSetSerializer extends CIMSerializer[LimitSet]
+{
+    def write (kryo: Kryo, output: Output, obj: LimitSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isPercentageLimits)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LimitSet]): LimitSet =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LimitSet (
+            parent,
+            if (isSet (0)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1848,6 +2366,60 @@ extends
     }
 }
 
+object MeasurementSerializer extends CIMSerializer[Measurement]
+{
+    def write (kryo: Kryo, output: Output, obj: Measurement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.measurementType),
+            () => output.writeString (obj.phases),
+            () => output.writeString (obj.uncefactUnitCode),
+            () => output.writeString (obj.unitMultiplier),
+            () => output.writeString (obj.unitSymbol),
+            () => output.writeString (obj.Asset),
+            () => output.writeString (obj.CalculationMethodHierarchy),
+            () => writeList (obj.Locations, output),
+            () => output.writeString (obj.MeasurementAction),
+            () => writeList (obj.MeasurementCalculatorInput, output),
+            () => writeList (obj.PinMeasurement, output),
+            () => output.writeString (obj.PowerSystemResource),
+            () => writeList (obj.Procedures, output),
+            () => writeList (obj.ProtectiveActionAdjustment, output),
+            () => output.writeString (obj.Terminal)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Measurement]): Measurement =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Measurement (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) readList (input) else null,
+            if (isSet (13)) readList (input) else null,
+            if (isSet (14)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The current state for a measurement.
  *
@@ -1982,6 +2554,46 @@ extends
     }
 }
 
+object MeasurementValueSerializer extends CIMSerializer[MeasurementValue]
+{
+    def write (kryo: Kryo, output: Output, obj: MeasurementValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.sensorAccuracy),
+            () => output.writeString (obj.timeStamp),
+            () => output.writeString (obj.CalculationMethodHierarchy),
+            () => output.writeString (obj.ErpPerson),
+            () => output.writeString (obj.MeasurementValueQuality),
+            () => output.writeString (obj.MeasurementValueSource),
+            () => writeList (obj.ProcedureDataSet, output),
+            () => output.writeString (obj.RemoteSource)
+        )
+        IOPointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MeasurementValue]): MeasurementValue =
+    {
+        val parent = IOPointSerializer.read (kryo, input, classOf[IOPoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MeasurementValue (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Measurement quality flags.
  *
@@ -2066,6 +2678,32 @@ extends
     }
 }
 
+object MeasurementValueQualitySerializer extends CIMSerializer[MeasurementValueQuality]
+{
+    def write (kryo: Kryo, output: Output, obj: MeasurementValueQuality): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.MeasurementValue)
+        )
+        Quality61850Serializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MeasurementValueQuality]): MeasurementValueQuality =
+    {
+        val parent = Quality61850Serializer.read (kryo, input, classOf[Quality61850])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MeasurementValueQuality (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
  *
@@ -2147,6 +2785,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MeasurementValueSourceSerializer extends CIMSerializer[MeasurementValueSource]
+{
+    def write (kryo: Kryo, output: Output, obj: MeasurementValueSource): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.MeasurementValues, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MeasurementValueSource]): MeasurementValueSource =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MeasurementValueSource (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2300,6 +2964,54 @@ extends
     }
 }
 
+object Quality61850Serializer extends CIMSerializer[Quality61850]
+{
+    def write (kryo: Kryo, output: Output, obj: Quality61850): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.badReference),
+            () => output.writeBoolean (obj.estimatorReplaced),
+            () => output.writeBoolean (obj.failure),
+            () => output.writeBoolean (obj.oldData),
+            () => output.writeBoolean (obj.operatorBlocked),
+            () => output.writeBoolean (obj.oscillatory),
+            () => output.writeBoolean (obj.outOfRange),
+            () => output.writeBoolean (obj.overFlow),
+            () => output.writeString (obj.source),
+            () => output.writeBoolean (obj.suspect),
+            () => output.writeBoolean (obj.test),
+            () => output.writeString (obj.validity)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Quality61850]): Quality61850 =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Quality61850 (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readBoolean else false,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An analog control that increases or decreases a set point value with pulses.
  *
@@ -2381,6 +3093,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RaiseLowerCommandSerializer extends CIMSerializer[RaiseLowerCommand]
+{
+    def write (kryo: Kryo, output: Output, obj: RaiseLowerCommand): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ValueAliasSet)
+        )
+        AnalogControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RaiseLowerCommand]): RaiseLowerCommand =
+    {
+        val parent = AnalogControlSerializer.read (kryo, input, classOf[AnalogControl])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RaiseLowerCommand (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2469,6 +3207,34 @@ extends
     }
 }
 
+object SetPointSerializer extends CIMSerializer[SetPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: SetPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeDouble (obj.value)
+        )
+        AnalogControlSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SetPoint]): SetPoint =
+    {
+        val parent = AnalogControlSerializer.read (kryo, input, classOf[AnalogControl])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SetPoint (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * StringMeasurement represents a measurement with values of type string.
  *
@@ -2548,6 +3314,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object StringMeasurementSerializer extends CIMSerializer[StringMeasurement]
+{
+    def write (kryo: Kryo, output: Output, obj: StringMeasurement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.StringMeasurementValues, output)
+        )
+        MeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StringMeasurement]): StringMeasurement =
+    {
+        val parent = MeasurementSerializer.read (kryo, input, classOf[Measurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StringMeasurement (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2637,6 +3429,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object StringMeasurementValueSerializer extends CIMSerializer[StringMeasurementValue]
+{
+    def write (kryo: Kryo, output: Output, obj: StringMeasurementValue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.value),
+            () => output.writeString (obj.StringMeasurement)
+        )
+        MeasurementValueSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StringMeasurementValue]): StringMeasurementValue =
+    {
+        val parent = MeasurementValueSerializer.read (kryo, input, classOf[MeasurementValue])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StringMeasurementValue (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2745,6 +3565,38 @@ extends
     }
 }
 
+object ValueAliasSetSerializer extends CIMSerializer[ValueAliasSet]
+{
+    def write (kryo: Kryo, output: Output, obj: ValueAliasSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Commands, output),
+            () => writeList (obj.Discretes, output),
+            () => writeList (obj.RaiseLowerCommands, output),
+            () => writeList (obj.Values, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ValueAliasSet]): ValueAliasSet =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ValueAliasSet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Describes the translation of one particular value into a name, e.g. 1 as "Open".
  *
@@ -2831,6 +3683,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ValueToAliasSerializer extends CIMSerializer[ValueToAlias]
+{
+    def write (kryo: Kryo, output: Output, obj: ValueToAlias): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.value),
+            () => output.writeString (obj.ValueAliasSet)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ValueToAlias]): ValueToAlias =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ValueToAlias (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

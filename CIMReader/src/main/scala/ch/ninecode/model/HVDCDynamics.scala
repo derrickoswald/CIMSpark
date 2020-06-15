@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * CSC function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -89,6 +93,32 @@ extends
     }
 }
 
+object CSCDynamicsSerializer extends CIMSerializer[CSCDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: CSCDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.CSConverter)
+        )
+        HVDCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CSCDynamics]): CSCDynamics =
+    {
+        val parent = HVDCDynamicsSerializer.read (kryo, input, classOf[HVDCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CSCDynamics (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * HVDC whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -151,6 +181,31 @@ extends
             DynamicsFunctionBlock.parse (context)
         )
         ret
+    }
+}
+
+object HVDCDynamicsSerializer extends CIMSerializer[HVDCDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: HVDCDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HVDCDynamics]): HVDCDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HVDCDynamics (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -233,6 +288,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VSCDynamicsSerializer extends CIMSerializer[VSCDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: VSCDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.VsConverter)
+        )
+        HVDCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VSCDynamics]): VSCDynamics =
+    {
+        val parent = HVDCDynamicsSerializer.read (kryo, input, classOf[HVDCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VSCDynamics (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

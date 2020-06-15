@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * The Area Control Error tariff type that is applied or used.
@@ -107,6 +111,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AceTariffTypeSerializer extends CIMSerializer[AceTariffType]
+{
+    def write (kryo: Kryo, output: Output, obj: AceTariffType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.Unit, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AceTariffType]): AceTariffType =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AceTariffType (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -215,6 +251,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AttributeInstanceComponentSerializer extends CIMSerializer[AttributeInstanceComponent]
+{
+    def write (kryo: Kryo, output: Output, obj: AttributeInstanceComponent): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.attribute),
+            () => output.writeString (obj.attributeValue),
+            () => output.writeInt (obj.position),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AttributeInstanceComponent]): AttributeInstanceComponent =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AttributeInstanceComponent (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -334,6 +404,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AuctionSerializer extends CIMSerializer[Auction]
+{
+    def write (kryo: Kryo, output: Output, obj: Auction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.allocationMode),
+            () => output.writeString (obj.cancelled),
+            () => output.writeString (obj.category),
+            () => output.writeString (obj.paymentTerms),
+            () => output.writeString (obj.rights),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.TimeSeries, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Auction]): Auction =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Auction (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -468,6 +576,48 @@ extends
     }
 }
 
+object BidTimeSeriesSerializer extends CIMSerializer[BidTimeSeries]
+{
+    def write (kryo: Kryo, output: Output, obj: BidTimeSeries): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.blockBid),
+            () => output.writeString (obj.direction),
+            () => output.writeString (obj.divisible),
+            () => output.writeString (obj.exclusiveBidsIdentification),
+            () => output.writeString (obj.linkedBidsIdentification),
+            () => output.writeDouble (obj.minimumActivationQuantity),
+            () => output.writeInt (obj.priority),
+            () => output.writeString (obj.status),
+            () => output.writeDouble (obj.stepIncrementQuantity)
+        )
+        TimeSeriesSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BidTimeSeries]): BidTimeSeries =
+    {
+        val parent = TimeSeriesSerializer.read (kryo, input, classOf[TimeSeries])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BidTimeSeries (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readInt else 0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Duration constraint to activate, to put in operation, to deactivate, ... a given event.
  *
@@ -560,6 +710,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ConstraintDurationSerializer extends CIMSerializer[ConstraintDuration]
+{
+    def write (kryo: Kryo, output: Output, obj: ConstraintDuration): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.duration),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ConstraintDuration]): ConstraintDuration =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ConstraintDuration (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -662,6 +842,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DateAndOrTimeSerializer extends CIMSerializer[DateAndOrTime]
+{
+    def write (kryo: Kryo, output: Output, obj: DateAndOrTime): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.date),
+            () => output.writeString (obj.time),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DateAndOrTime]): DateAndOrTime =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DateAndOrTime (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -775,6 +987,40 @@ extends
     }
 }
 
+object DomainSerializer extends CIMSerializer[Domain]
+{
+    def write (kryo: Kryo, output: Output, obj: Domain): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.Price, output),
+            () => writeList (obj.Quantity, output),
+            () => writeList (obj.RegisteredResource, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Domain]): Domain =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Domain (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The coded identification of the direction of energy flow.
  *
@@ -871,6 +1117,36 @@ extends
     }
 }
 
+object FlowDirectionSerializer extends CIMSerializer[FlowDirection]
+{
+    def write (kryo: Kryo, output: Output, obj: FlowDirection): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.direction),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FlowDirection]): FlowDirection =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FlowDirection (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An identification  or eventually the contents of an agreement between two or more parties.
  *
@@ -933,6 +1209,31 @@ extends
             MarketDocument.parse (context)
         )
         ret
+    }
+}
+
+object MarketAgreementSerializer extends CIMSerializer[MarketAgreement]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketAgreement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        MarketDocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketAgreement]): MarketAgreement =
+    {
+        val parent = MarketDocumentSerializer.read (kryo, input, classOf[MarketDocument])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketAgreement (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1088,6 +1389,52 @@ extends
     }
 }
 
+object MarketDocumentSerializer extends CIMSerializer[MarketDocument]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketDocument): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.AceTariffType, output),
+            () => writeList (obj.AttributeInstanceComponent, output),
+            () => writeList (obj.DateAndOrTime, output),
+            () => writeList (obj.Domain, output),
+            () => writeList (obj.MarketDocument_attr, output),
+            () => writeList (obj.MarketParticipant, output),
+            () => writeList (obj.Period, output),
+            () => writeList (obj.Process, output),
+            () => writeList (obj.Reason, output),
+            () => writeList (obj.SelfMarketDocument, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketDocument]): MarketDocument =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketDocument (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The identification of an entity where energy products are measured or computed.
  *
@@ -1167,6 +1514,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MarketEvaluationPointSerializer extends CIMSerializer[MarketEvaluationPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketEvaluationPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.TimeSeries, output)
+        )
+        UsagePointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketEvaluationPoint]): MarketEvaluationPoint =
+    {
+        val parent = UsagePointSerializer.read (kryo, input, classOf[UsagePoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketEvaluationPoint (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1266,6 +1639,36 @@ extends
     }
 }
 
+object MarketObjectStatusSerializer extends CIMSerializer[MarketObjectStatus]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketObjectStatus): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => writeList (obj.RegisteredResource, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketObjectStatus]): MarketObjectStatus =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketObjectStatus (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The type of a power system resource.
  *
@@ -1352,6 +1755,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MktPSRTypeSerializer extends CIMSerializer[MktPSRType]
+{
+    def write (kryo: Kryo, output: Output, obj: MktPSRType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.psrType),
+            () => writeList (obj.TimeSeries, output)
+        )
+        PSRTypeSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MktPSRType]): MktPSRType =
+    {
+        val parent = PSRTypeSerializer.read (kryo, input, classOf[PSRType])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MktPSRType (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1469,6 +1900,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PeriodSerializer extends CIMSerializer[Period]
+{
+    def write (kryo: Kryo, output: Output, obj: Period): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.resolution),
+            () => output.writeString (obj.timeInterval),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.Reason, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Period]): Period =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Period (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1623,6 +2090,52 @@ extends
     }
 }
 
+object PointSerializer extends CIMSerializer[Point]
+{
+    def write (kryo: Kryo, output: Output, obj: Point): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.position),
+            () => output.writeString (obj.quality),
+            () => output.writeDouble (obj.quantity),
+            () => output.writeDouble (obj.secondaryQuantity),
+            () => writeList (obj.AceTariffType, output),
+            () => writeList (obj.FlowDirection, output),
+            () => output.writeString (obj.Period),
+            () => writeList (obj.Price, output),
+            () => writeList (obj.Quantity, output),
+            () => writeList (obj.Reason, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Point]): Point =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Point (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The cost corresponding to a specific measure and expressed in a currency.
  *
@@ -1740,6 +2253,42 @@ extends
     }
 }
 
+object PriceSerializer extends CIMSerializer[Price]
+{
+    def write (kryo: Kryo, output: Output, obj: Price): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.amount),
+            () => output.writeString (obj.category),
+            () => output.writeString (obj.direction),
+            () => writeList (obj.Domain, output),
+            () => output.writeString (obj.Point),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Price]): Price =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Price (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The formal specification of a set of business transactions having the same business goal.
  *
@@ -1833,6 +2382,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ProcessSerializer extends CIMSerializer[Process]
+{
+    def write (kryo: Kryo, output: Output, obj: Process): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.classificationType),
+            () => output.writeString (obj.processType),
+            () => writeList (obj.MarketDocument, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Process]): Process =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Process (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1964,6 +2543,44 @@ extends
     }
 }
 
+object QuantitySerializer extends CIMSerializer[Quantity]
+{
+    def write (kryo: Kryo, output: Output, obj: Quantity): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.quality),
+            () => output.writeString (obj.quantity),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.Detail_Quantity, output),
+            () => writeList (obj.Domain, output),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Quantity]): Quantity =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Quantity (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The motivation of an act.
  *
@@ -2087,6 +2704,44 @@ extends
     }
 }
 
+object ReasonSerializer extends CIMSerializer[Reason]
+{
+    def write (kryo: Kryo, output: Output, obj: Reason): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.code),
+            () => output.writeString (obj.text),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.Period, output),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.RegisteredResource, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Reason]): Reason =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Reason (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A set of similar physical or conceptual objects defined for the same period or point of time.
  *
@@ -2192,6 +2847,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SeriesSerializer extends CIMSerializer[Series]
+{
+    def write (kryo: Kryo, output: Output, obj: Series): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.lastUpdateDate),
+            () => output.writeString (obj.methodType),
+            () => output.writeString (obj.registrationDate),
+            () => writeList (obj.SelfSeries, output),
+            () => writeList (obj.Series_attr, output)
+        )
+        TimeSeriesSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Series]): Series =
+    {
+        val parent = TimeSeriesSerializer.read (kryo, input, classOf[TimeSeries])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Series (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2440,6 +3129,80 @@ extends
     }
 }
 
+object TimeSeriesSerializer extends CIMSerializer[TimeSeries]
+{
+    def write (kryo: Kryo, output: Output, obj: TimeSeries): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.businessType),
+            () => output.writeString (obj.cancelledTS),
+            () => output.writeString (obj.curveType),
+            () => output.writeString (obj.objectAggregation),
+            () => output.writeString (obj.product),
+            () => output.writeString (obj.version),
+            () => writeList (obj.AttributeInstanceComponent, output),
+            () => writeList (obj.Auction, output),
+            () => writeList (obj.ConstraintDuration, output),
+            () => writeList (obj.DateAndOrTime, output),
+            () => writeList (obj.Domain, output),
+            () => writeList (obj.EnvironmentalMonitoringStation, output),
+            () => writeList (obj.FlowDirection, output),
+            () => writeList (obj.MarketDocument, output),
+            () => writeList (obj.MarketEvaluationPoint, output),
+            () => writeList (obj.MarketObjectStatus, output),
+            () => writeList (obj.MarketParticipant, output),
+            () => writeList (obj.MktPSRType, output),
+            () => writeList (obj.Period, output),
+            () => writeList (obj.Point, output),
+            () => writeList (obj.Price, output),
+            () => writeList (obj.Quantity, output),
+            () => writeList (obj.Reason, output),
+            () => writeList (obj.RegisteredResource, output),
+            () => writeList (obj.Unit, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TimeSeries]): TimeSeries =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TimeSeries (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) readList (input) else null,
+            if (isSet (13)) readList (input) else null,
+            if (isSet (14)) readList (input) else null,
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) readList (input) else null,
+            if (isSet (17)) readList (input) else null,
+            if (isSet (18)) readList (input) else null,
+            if (isSet (19)) readList (input) else null,
+            if (isSet (20)) readList (input) else null,
+            if (isSet (21)) readList (input) else null,
+            if (isSet (22)) readList (input) else null,
+            if (isSet (23)) readList (input) else null,
+            if (isSet (24)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The identification of the unit name for the time series quantities.
  *
@@ -2533,6 +3296,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object Unit_Serializer extends CIMSerializer[Unit_]
+{
+    def write (kryo: Kryo, output: Output, obj: Unit_): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.name),
+            () => writeList (obj.AceTariffType, output),
+            () => writeList (obj.TimeSeries, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Unit_]): Unit_ =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Unit_ (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Abstract parent class for all Dynamics function blocks.
@@ -86,6 +90,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DynamicsFunctionBlockSerializer extends CIMSerializer[DynamicsFunctionBlock]
+{
+    def write (kryo: Kryo, output: Output, obj: DynamicsFunctionBlock): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.enabled)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DynamicsFunctionBlock]): DynamicsFunctionBlock =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DynamicsFunctionBlock (
+            parent,
+            if (isSet (0)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -202,6 +232,42 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RotatingMachineDynamicsSerializer extends CIMSerializer[RotatingMachineDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: RotatingMachineDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.damping),
+            () => output.writeDouble (obj.inertia),
+            () => output.writeDouble (obj.saturationFactor),
+            () => output.writeDouble (obj.saturationFactor120),
+            () => output.writeDouble (obj.statorLeakageReactance),
+            () => output.writeDouble (obj.statorResistance)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RotatingMachineDynamics]): RotatingMachineDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RotatingMachineDynamics (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

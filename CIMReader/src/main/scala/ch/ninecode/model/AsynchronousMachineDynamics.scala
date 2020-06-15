@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Asynchronous machine whose behaviour is described by reference to a standard model expressed in either time constant reactance form or equivalent circuit form <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -115,6 +119,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AsynchronousMachineDynamicsSerializer extends CIMSerializer[AsynchronousMachineDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: AsynchronousMachineDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AsynchronousMachine),
+            () => output.writeString (obj.MechanicalLoadDynamics),
+            () => output.writeString (obj.TurbineGovernorDynamics),
+            () => output.writeString (obj.WindTurbineType1or2Dynamics)
+        )
+        RotatingMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineDynamics]): AsynchronousMachineDynamics =
+    {
+        val parent = RotatingMachineDynamicsSerializer.read (kryo, input, classOf[RotatingMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AsynchronousMachineDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -233,6 +269,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AsynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[AsynchronousMachineEquivalentCircuit]
+{
+    def write (kryo: Kryo, output: Output, obj: AsynchronousMachineEquivalentCircuit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.rr1),
+            () => output.writeDouble (obj.rr2),
+            () => output.writeDouble (obj.xlr1),
+            () => output.writeDouble (obj.xlr2),
+            () => output.writeDouble (obj.xm)
+        )
+        AsynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineEquivalentCircuit]): AsynchronousMachineEquivalentCircuit =
+    {
+        val parent = AsynchronousMachineDynamicsSerializer.read (kryo, input, classOf[AsynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AsynchronousMachineEquivalentCircuit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -361,6 +431,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AsynchronousMachineTimeConstantReactanceSerializer extends CIMSerializer[AsynchronousMachineTimeConstantReactance]
+{
+    def write (kryo: Kryo, output: Output, obj: AsynchronousMachineTimeConstantReactance): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tpo),
+            () => output.writeDouble (obj.tppo),
+            () => output.writeDouble (obj.xp),
+            () => output.writeDouble (obj.xpp),
+            () => output.writeDouble (obj.xs)
+        )
+        AsynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineTimeConstantReactance]): AsynchronousMachineTimeConstantReactance =
+    {
+        val parent = AsynchronousMachineDynamicsSerializer.read (kryo, input, classOf[AsynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AsynchronousMachineTimeConstantReactance (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

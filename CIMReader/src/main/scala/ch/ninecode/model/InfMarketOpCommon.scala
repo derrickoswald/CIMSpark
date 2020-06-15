@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Kind of market role an organisation can have.
@@ -456,6 +460,138 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MarketRoleKindSerializer extends CIMSerializer[MarketRoleKind]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketRoleKind): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.balancingAuthority),
+            () => output.writeString (obj.competitiveRetailer),
+            () => output.writeString (obj.complianceMonitor),
+            () => output.writeString (obj.distributionProvider),
+            () => output.writeString (obj.energyServiceConsumer),
+            () => output.writeString (obj.generatorOperator),
+            () => output.writeString (obj.generatorOwner),
+            () => output.writeString (obj.interchangeAuthority),
+            () => output.writeString (obj.loadServingEntity),
+            () => output.writeString (obj.planningAuthority),
+            () => output.writeString (obj.purchasingSellingEntity),
+            () => output.writeString (obj.reliabilityAuthority),
+            () => output.writeString (obj.resourcePlanner),
+            () => output.writeString (obj.standardsDeveloper),
+            () => output.writeString (obj.transmissionOperator),
+            () => output.writeString (obj.transmissionOwner),
+            () => output.writeString (obj.transmissionPlanner),
+            () => output.writeString (obj.transmissionServiceProvider),
+            () => output.writeString (obj.BalanceResponsibleParty),
+            () => output.writeString (obj.BalanceSupplier),
+            () => output.writeString (obj.BillingAgent),
+            () => output.writeString (obj.BlockEnergyTrader),
+            () => output.writeString (obj.CapacityCoordinator),
+            () => output.writeString (obj.CapacityTrader),
+            () => output.writeString (obj.Consumer),
+            () => output.writeString (obj.ConsumptionResponsibleParty),
+            () => output.writeString (obj.ControlAreaOperator),
+            () => output.writeString (obj.ControlBlockOperator),
+            () => output.writeString (obj.CoordinationCenterOperator),
+            () => output.writeString (obj.GridAccessProvider),
+            () => output.writeString (obj.GridOperator),
+            () => output.writeString (obj.ImbalanceSettlementResponsible),
+            () => output.writeString (obj.InterconnectionTradeResponsible),
+            () => output.writeString (obj.MOLResponsible),
+            () => output.writeString (obj.MarketInformationAggregator),
+            () => output.writeString (obj.MarketOperator),
+            () => output.writeString (obj.MeterAdministrator),
+            () => output.writeString (obj.MeterOperator),
+            () => output.writeString (obj.MeteredDataAggregator),
+            () => output.writeString (obj.MeteredDataCollector),
+            () => output.writeString (obj.MeteredDataResponsible),
+            () => output.writeString (obj.MeteringPointAdministrator),
+            () => output.writeString (obj.NominationValidator),
+            () => output.writeString (obj.PartyConnectedToTheGrid),
+            () => output.writeString (obj.Producer),
+            () => output.writeString (obj.ProductionResponsibleParty),
+            () => output.writeString (obj.ReconciliationAccountable),
+            () => output.writeString (obj.ReconciliationResponsible),
+            () => output.writeString (obj.ReserveAllocator),
+            () => output.writeString (obj.ResourceProvider),
+            () => output.writeString (obj.SchedulingCoordinator),
+            () => output.writeString (obj.SystemOperator),
+            () => output.writeString (obj.TradeResponsibleParty),
+            () => output.writeString (obj.TransmissionCapacityAllocator)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketRoleKind]): MarketRoleKind =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketRoleKind (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readString else null,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) input.readString else null,
+            if (isSet (16)) input.readString else null,
+            if (isSet (17)) input.readString else null,
+            if (isSet (18)) input.readString else null,
+            if (isSet (19)) input.readString else null,
+            if (isSet (20)) input.readString else null,
+            if (isSet (21)) input.readString else null,
+            if (isSet (22)) input.readString else null,
+            if (isSet (23)) input.readString else null,
+            if (isSet (24)) input.readString else null,
+            if (isSet (25)) input.readString else null,
+            if (isSet (26)) input.readString else null,
+            if (isSet (27)) input.readString else null,
+            if (isSet (28)) input.readString else null,
+            if (isSet (29)) input.readString else null,
+            if (isSet (30)) input.readString else null,
+            if (isSet (31)) input.readString else null,
+            if (isSet (32)) input.readString else null,
+            if (isSet (33)) input.readString else null,
+            if (isSet (34)) input.readString else null,
+            if (isSet (35)) input.readString else null,
+            if (isSet (36)) input.readString else null,
+            if (isSet (37)) input.readString else null,
+            if (isSet (38)) input.readString else null,
+            if (isSet (39)) input.readString else null,
+            if (isSet (40)) input.readString else null,
+            if (isSet (41)) input.readString else null,
+            if (isSet (42)) input.readString else null,
+            if (isSet (43)) input.readString else null,
+            if (isSet (44)) input.readString else null,
+            if (isSet (45)) input.readString else null,
+            if (isSet (46)) input.readString else null,
+            if (isSet (47)) input.readString else null,
+            if (isSet (48)) input.readString else null,
+            if (isSet (49)) input.readString else null,
+            if (isSet (50)) input.readString else null,
+            if (isSet (51)) input.readString else null,
+            if (isSet (52)) input.readString else null,
+            if (isSet (53)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

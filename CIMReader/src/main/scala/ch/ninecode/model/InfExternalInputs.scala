@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
@@ -102,6 +106,36 @@ extends
     }
 }
 
+object ReserveReqSerializer extends CIMSerializer[ReserveReq]
+{
+    def write (kryo: Kryo, output: Output, obj: ReserveReq): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.MarketProduct),
+            () => output.writeString (obj.ReserveReqCurve),
+            () => output.writeString (obj.SensitivityPriceCurve)
+        )
+        ResourceGroupReqSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ReserveReq]): ReserveReq =
+    {
+        val parent = ResourceGroupReqSerializer.read (kryo, input, classOf[ResourceGroupReq])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ReserveReq (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
  *
@@ -184,6 +218,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ReserveReqCurveSerializer extends CIMSerializer[ReserveReqCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: ReserveReqCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ReserveReq)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ReserveReqCurve]): ReserveReqCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ReserveReqCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -289,6 +349,38 @@ extends
     }
 }
 
+object ResourceGroupSerializer extends CIMSerializer[ResourceGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: ResourceGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.RegisteredResources, output),
+            () => writeList (obj.ResourceGroupReqs, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ResourceGroup]): ResourceGroup =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ResourceGroup (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Ancillary service requirements for a market.
  *
@@ -378,6 +470,34 @@ extends
     }
 }
 
+object ResourceGroupReqSerializer extends CIMSerializer[ResourceGroupReq]
+{
+    def write (kryo: Kryo, output: Output, obj: ResourceGroupReq): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.RTOs, output),
+            () => output.writeString (obj.ResourceGroup)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ResourceGroupReq]): ResourceGroupReq =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ResourceGroupReq (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Optionally, this curve expresses elasticity of the associated requirement.
  *
@@ -460,6 +580,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SensitivityPriceCurveSerializer extends CIMSerializer[SensitivityPriceCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: SensitivityPriceCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ReserveReq)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SensitivityPriceCurve]): SensitivityPriceCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SensitivityPriceCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A prioritized measurement to be used for the generating unit in the control area specification.
@@ -104,6 +108,36 @@ extends
     }
 }
 
+object AltGeneratingUnitMeasSerializer extends CIMSerializer[AltGeneratingUnitMeas]
+{
+    def write (kryo: Kryo, output: Output, obj: AltGeneratingUnitMeas): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.priority),
+            () => output.writeString (obj.AnalogValue),
+            () => output.writeString (obj.ControlAreaGeneratingUnit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AltGeneratingUnitMeas]): AltGeneratingUnitMeas =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AltGeneratingUnitMeas (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A prioritized measurement to be used for the tie flow as part of the control area specification.
  *
@@ -198,6 +232,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AltTieMeasSerializer extends CIMSerializer[AltTieMeas]
+{
+    def write (kryo: Kryo, output: Output, obj: AltTieMeas): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.priority),
+            () => output.writeString (obj.AnalogValue),
+            () => output.writeString (obj.TieFlow)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AltTieMeas]): AltTieMeas =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AltTieMeas (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -320,6 +384,42 @@ extends
     }
 }
 
+object ControlAreaSerializer extends CIMSerializer[ControlArea]
+{
+    def write (kryo: Kryo, output: Output, obj: ControlArea): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.netInterchange),
+            () => output.writeDouble (obj.pTolerance),
+            () => output.writeString (obj.`type`),
+            () => writeList (obj.ControlAreaGeneratingUnit, output),
+            () => output.writeString (obj.EnergyArea),
+            () => writeList (obj.TieFlow, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ControlArea]): ControlArea =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ControlArea (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A control area generating unit.
  *
@@ -417,6 +517,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ControlAreaGeneratingUnitSerializer extends CIMSerializer[ControlAreaGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: ControlAreaGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.AltGeneratingUnitMeas, output),
+            () => output.writeString (obj.ControlArea),
+            () => output.writeString (obj.GeneratingUnit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ControlAreaGeneratingUnit]): ControlAreaGeneratingUnit =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ControlAreaGeneratingUnit (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -522,6 +652,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TieFlowSerializer extends CIMSerializer[TieFlow]
+{
+    def write (kryo: Kryo, output: Output, obj: TieFlow): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.positiveFlowIn),
+            () => writeList (obj.AltTieMeas, output),
+            () => output.writeString (obj.ControlArea),
+            () => output.writeString (obj.Terminal)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TieFlow]): TieFlow =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TieFlow (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

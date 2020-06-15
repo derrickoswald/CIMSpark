@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Describes a set of changes that can be applied in different situations.
@@ -113,6 +117,38 @@ extends
     }
 }
 
+object ChangeSetSerializer extends CIMSerializer[ChangeSet]
+{
+    def write (kryo: Kryo, output: Output, obj: ChangeSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ChangeSetMember, output),
+            () => writeList (obj.IncrementalDatasetArg, output),
+            () => output.writeString (obj.NMProjectStage),
+            () => writeList (obj.NetworkModelProjectChangeVersion, output)
+        )
+        DataSetSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ChangeSet]): ChangeSet =
+    {
+        val parent = DataSetSerializer.read (kryo, input, classOf[DataSet])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ChangeSet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A CRUD-style data object.
  *
@@ -207,6 +243,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ChangeSetMemberSerializer extends CIMSerializer[ChangeSetMember]
+{
+    def write (kryo: Kryo, output: Output, obj: ChangeSetMember): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Changeset),
+            () => output.writeString (obj.PropertiesObject),
+            () => output.writeString (obj.TargetObject)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ChangeSetMember]): ChangeSetMember =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ChangeSetMember (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -325,6 +391,40 @@ extends
     }
 }
 
+object DataSetSerializer extends CIMSerializer[DataSet]
+{
+    def write (kryo: Kryo, output: Output, obj: DataSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.description),
+            () => output.writeString (obj.mRID),
+            () => output.writeString (obj.name),
+            () => output.writeString (obj.AlternateModel),
+            () => writeList (obj.Profile, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DataSet]): DataSet =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DataSet (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group GenericDataSet
  * @groupname GenericDataSet Package GenericDataSet
@@ -407,6 +507,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GenericDataSetVersionSerializer extends CIMSerializer[GenericDataSetVersion]
+{
+    def write (kryo: Kryo, output: Output, obj: GenericDataSetVersion): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.majorVersion),
+            () => output.writeString (obj.minorVersion),
+            () => output.writeString (obj.published)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GenericDataSetVersion]): GenericDataSetVersion =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GenericDataSetVersion (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -501,6 +631,34 @@ extends
     }
 }
 
+object InstanceSetSerializer extends CIMSerializer[InstanceSet]
+{
+    def write (kryo: Kryo, output: Output, obj: InstanceSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DatasetArg, output),
+            () => writeList (obj.InstanceSetMember, output)
+        )
+        DataSetSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InstanceSet]): InstanceSet =
+    {
+        val parent = DataSetSerializer.read (kryo, input, classOf[DataSet])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InstanceSet (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An object is to be created in the context.
  *
@@ -566,6 +724,31 @@ extends
     }
 }
 
+object ObjectCreationSerializer extends CIMSerializer[ObjectCreation]
+{
+    def write (kryo: Kryo, output: Output, obj: ObjectCreation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ChangeSetMemberSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ObjectCreation]): ObjectCreation =
+    {
+        val parent = ChangeSetMemberSerializer.read (kryo, input, classOf[ChangeSetMember])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ObjectCreation (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An object is to be deleted in the context.
  *
@@ -628,6 +811,31 @@ extends
             ChangeSetMember.parse (context)
         )
         ret
+    }
+}
+
+object ObjectDeletionSerializer extends CIMSerializer[ObjectDeletion]
+{
+    def write (kryo: Kryo, output: Output, obj: ObjectDeletion): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        ChangeSetMemberSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ObjectDeletion]): ObjectDeletion =
+    {
+        val parent = ChangeSetMemberSerializer.read (kryo, input, classOf[ChangeSetMember])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ObjectDeletion (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -710,6 +918,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ObjectModificationSerializer extends CIMSerializer[ObjectModification]
+{
+    def write (kryo: Kryo, output: Output, obj: ObjectModification): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ObjectReverseModification)
+        )
+        ChangeSetMemberSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ObjectModification]): ObjectModification =
+    {
+        val parent = ChangeSetMemberSerializer.read (kryo, input, classOf[ChangeSetMember])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ObjectModification (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -796,6 +1030,32 @@ extends
     }
 }
 
+object ObjectReverseModificationSerializer extends CIMSerializer[ObjectReverseModification]
+{
+    def write (kryo: Kryo, output: Output, obj: ObjectReverseModification): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ObjectModification)
+        )
+        ChangeSetMemberSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ObjectReverseModification]): ObjectReverseModification =
+    {
+        val parent = ChangeSetMemberSerializer.read (kryo, input, classOf[ChangeSetMember])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ObjectReverseModification (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Describes the existence of a profile.
  *
@@ -877,6 +1137,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object Profile2Serializer extends CIMSerializer[Profile2]
+{
+    def write (kryo: Kryo, output: Output, obj: Profile2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DataSet, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Profile2]): Profile2 =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Profile2 (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

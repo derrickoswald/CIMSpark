@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * BilateralExchangeActor describes an actor that provides ICCP data, consumes ICCP data or both.
@@ -112,6 +116,38 @@ extends
     }
 }
 
+object BilateralExchangeActorSerializer extends CIMSerializer[BilateralExchangeActor]
+{
+    def write (kryo: Kryo, output: Output, obj: BilateralExchangeActor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.CommunicationLink, output),
+            () => writeList (obj.ConsumerBilateralExchange, output),
+            () => writeList (obj.ProvidedBilateralIOPoint, output),
+            () => writeList (obj.ProviderBilateralExchange, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BilateralExchangeActor]): BilateralExchangeActor =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BilateralExchangeActor (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This is the representation of the information exchange agreement between peers.
  *
@@ -198,6 +234,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object BilateralExchangeAgreementSerializer extends CIMSerializer[BilateralExchangeAgreement]
+{
+    def write (kryo: Kryo, output: Output, obj: BilateralExchangeAgreement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Consumer),
+            () => output.writeString (obj.Provider)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BilateralExchangeAgreement]): BilateralExchangeAgreement =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BilateralExchangeAgreement (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -298,6 +362,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ICCPInformationMessageSerializer extends CIMSerializer[ICCPInformationMessage]
+{
+    def write (kryo: Kryo, output: Output, obj: ICCPInformationMessage): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.localReference),
+            () => output.writeString (obj.scope),
+            () => writeList (obj.TASE2BilateralTable, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ICCPInformationMessage]): ICCPInformationMessage =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ICCPInformationMessage (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -405,6 +499,38 @@ extends
     }
 }
 
+object ICCPProvidedPointSerializer extends CIMSerializer[ICCPProvidedPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: ICCPProvidedPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.accessPriviledge),
+            () => output.writeString (obj.pointQuality),
+            () => output.writeString (obj.pointType),
+            () => output.writeString (obj.scope)
+        )
+        ProvidedBilateralPointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ICCPProvidedPoint]): ICCPProvidedPoint =
+    {
+        val parent = ProvidedBilateralPointSerializer.read (kryo, input, classOf[ProvidedBilateralPoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ICCPProvidedPoint (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Indicates that the ICCP information is global in nature and normally is available to all authorized peers.
  *
@@ -467,6 +593,31 @@ extends
             BilateralExchangeActor.parse (context)
         )
         ret
+    }
+}
+
+object ICCPVCCSerializer extends CIMSerializer[ICCPVCC]
+{
+    def write (kryo: Kryo, output: Output, obj: ICCPVCC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BilateralExchangeActorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ICCPVCC]): ICCPVCC =
+    {
+        val parent = BilateralExchangeActorSerializer.read (kryo, input, classOf[BilateralExchangeActor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ICCPVCC (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -622,6 +773,54 @@ extends
     }
 }
 
+object ICCPVirtualControlCentreSerializer extends CIMSerializer[ICCPVirtualControlCentre]
+{
+    def write (kryo: Kryo, output: Output, obj: ICCPVirtualControlCentre): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.applicationSecurityRequirement),
+            () => output.writeBoolean (obj.calling),
+            () => output.writeBoolean (obj.clientAndServer),
+            () => output.writeInt (obj.minimumUpdateInterval),
+            () => output.writeString (obj.nameOfLocalICC),
+            () => output.writeBoolean (obj.supportForBlock1),
+            () => output.writeBoolean (obj.supportForBlock2),
+            () => output.writeBoolean (obj.supportForBlock3),
+            () => output.writeBoolean (obj.supportForBlock4),
+            () => output.writeBoolean (obj.supportForBlock5),
+            () => output.writeBoolean (obj.supportForDepriciatedBlock8),
+            () => output.writeBoolean (obj.transportSecurityRequirement)
+        )
+        BilateralExchangeActorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ICCPVirtualControlCentre]): ICCPVirtualControlCentre =
+    {
+        val parent = BilateralExchangeActorSerializer.read (kryo, input, classOf[BilateralExchangeActor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ICCPVirtualControlCentre (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readBoolean else false,
+            if (isSet (7)) input.readBoolean else false,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Indicates the point source for an IO Point.
  *
@@ -701,6 +900,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object IOPointSourceSerializer extends CIMSerializer[IOPointSource]
+{
+    def write (kryo: Kryo, output: Output, obj: IOPointSource): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.IOPoint, output)
+        )
+        MeasurementValueSourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IOPointSource]): IOPointSource =
+    {
+        val parent = MeasurementValueSourceSerializer.read (kryo, input, classOf[MeasurementValueSource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IOPointSource (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -801,6 +1026,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object IPAccessPointSerializer extends CIMSerializer[IPAccessPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: IPAccessPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.address),
+            () => output.writeString (obj.addressType),
+            () => output.writeString (obj.gateway),
+            () => output.writeString (obj.subnet)
+        )
+        CommunicationLinkSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IPAccessPoint]): IPAccessPoint =
+    {
+        val parent = CommunicationLinkSerializer.read (kryo, input, classOf[CommunicationLink])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IPAccessPoint (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -930,6 +1187,46 @@ extends
     }
 }
 
+object ISOUpperLayerSerializer extends CIMSerializer[ISOUpperLayer]
+{
+    def write (kryo: Kryo, output: Output, obj: ISOUpperLayer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.aeInvoke),
+            () => output.writeInt (obj.aeQual),
+            () => output.writeInt (obj.apInvoke),
+            () => output.writeString (obj.apTitle),
+            () => output.writeString (obj.osiPsel),
+            () => output.writeString (obj.osiSsel),
+            () => output.writeString (obj.osiTsel),
+            () => writeList (obj.UpperLayerPublicX509Certificate, output)
+        )
+        TCPAccessPointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ISOUpperLayer]): ISOUpperLayer =
+    {
+        val parent = TCPAccessPointSerializer.read (kryo, input, classOf[TCPAccessPoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ISOUpperLayer (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Allows declaration of ICCP points to be provided through a Bilateral Table agreement.
  *
@@ -1016,6 +1313,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ProvidedBilateralPointSerializer extends CIMSerializer[ProvidedBilateralPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: ProvidedBilateralPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.BilateralExchangeActor),
+            () => output.writeString (obj.IOPoint)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProvidedBilateralPoint]): ProvidedBilateralPoint =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProvidedBilateralPoint (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1124,6 +1449,38 @@ extends
     }
 }
 
+object PublicX509CertificateSerializer extends CIMSerializer[PublicX509Certificate]
+{
+    def write (kryo: Kryo, output: Output, obj: PublicX509Certificate): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.issuerName),
+            () => output.writeString (obj.serialNumber),
+            () => output.writeString (obj.ISOUpperLayer),
+            () => output.writeString (obj.TCPAccessPoint)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PublicX509Certificate]): PublicX509Certificate =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PublicX509Certificate (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This class describe the sending (providing) side in a bilateral ICCP data exchange.
  *
@@ -1229,6 +1586,38 @@ extends
     }
 }
 
+object TASE2BilateralTableSerializer extends CIMSerializer[TASE2BilateralTable]
+{
+    def write (kryo: Kryo, output: Output, obj: TASE2BilateralTable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.bilateralTableID),
+            () => output.writeString (obj.bilateralTableVersion),
+            () => output.writeString (obj.tase2version),
+            () => writeList (obj.ICCPInformationMessage, output)
+        )
+        BilateralExchangeAgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TASE2BilateralTable]): TASE2BilateralTable =
+    {
+        val parent = BilateralExchangeAgreementSerializer.read (kryo, input, classOf[BilateralExchangeAgreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TASE2BilateralTable (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Allows addressing and behavioural information regarding the use of TCP by ICCP links.
  *
@@ -1327,6 +1716,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TCPAccessPointSerializer extends CIMSerializer[TCPAccessPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: TCPAccessPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.keepAliveTime),
+            () => output.writeInt (obj.port),
+            () => writeList (obj.PublicX509Certificate, output)
+        )
+        IPAccessPointSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TCPAccessPoint]): TCPAccessPoint =
+    {
+        val parent = IPAccessPointSerializer.read (kryo, input, classOf[IPAccessPoint])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TCPAccessPoint (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

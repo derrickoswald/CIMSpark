@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Mechanical load model type 1.
@@ -104,6 +108,38 @@ extends
     }
 }
 
+object MechLoad1Serializer extends CIMSerializer[MechLoad1]
+{
+    def write (kryo: Kryo, output: Output, obj: MechLoad1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.b),
+            () => output.writeDouble (obj.d),
+            () => output.writeDouble (obj.e)
+        )
+        MechanicalLoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MechLoad1]): MechLoad1 =
+    {
+        val parent = MechanicalLoadDynamicsSerializer.read (kryo, input, classOf[MechanicalLoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MechLoad1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Mechanical load function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -192,6 +228,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object MechanicalLoadDynamicsSerializer extends CIMSerializer[MechanicalLoadDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: MechanicalLoadDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AsynchronousMachineDynamics),
+            () => output.writeString (obj.SynchronousMachineDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MechanicalLoadDynamics]): MechanicalLoadDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MechanicalLoadDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -94,6 +98,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PowerSystemStabilizerDynamicsSerializer extends CIMSerializer[PowerSystemStabilizerDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerSystemStabilizerDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ExcitationSystemDynamics),
+            () => writeList (obj.RemoteInputSignal, output)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerSystemStabilizerDynamics]): PowerSystemStabilizerDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerSystemStabilizerDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -274,6 +306,60 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object Pss1Serializer extends CIMSerializer[Pss1]
+{
+    def write (kryo: Kryo, output: Output, obj: Pss1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.komega),
+            () => output.writeDouble (obj.kpe),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t10),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.t9),
+            () => output.writeDouble (obj.tpe),
+            () => output.writeBoolean (obj.vadat),
+            () => output.writeDouble (obj.vsmn),
+            () => output.writeDouble (obj.vsmx)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pss1]): Pss1 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pss1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readBoolean else false,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -484,6 +570,74 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object Pss1ASerializer extends CIMSerializer[Pss1A]
+{
+    def write (kryo: Kryo, output: Output, obj: Pss1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a1),
+            () => output.writeDouble (obj.a2),
+            () => output.writeDouble (obj.a3),
+            () => output.writeDouble (obj.a4),
+            () => output.writeDouble (obj.a5),
+            () => output.writeDouble (obj.a6),
+            () => output.writeDouble (obj.a7),
+            () => output.writeDouble (obj.a8),
+            () => output.writeString (obj.inputSignalType),
+            () => output.writeBoolean (obj.kd),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.tdelay),
+            () => output.writeDouble (obj.vcl),
+            () => output.writeDouble (obj.vcu),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pss1A]): Pss1A =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pss1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -765,6 +919,88 @@ extends
     }
 }
 
+object Pss2BSerializer extends CIMSerializer[Pss2B]
+{
+    def write (kryo: Kryo, output: Output, obj: Pss2B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.ks2),
+            () => output.writeDouble (obj.ks3),
+            () => output.writeDouble (obj.ks4),
+            () => output.writeInt (obj.m),
+            () => output.writeInt (obj.n),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t10),
+            () => output.writeDouble (obj.t11),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.t9),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tw1),
+            () => output.writeDouble (obj.tw2),
+            () => output.writeDouble (obj.tw3),
+            () => output.writeDouble (obj.tw4),
+            () => output.writeDouble (obj.vsi1max),
+            () => output.writeDouble (obj.vsi1min),
+            () => output.writeDouble (obj.vsi2max),
+            () => output.writeDouble (obj.vsi2min),
+            () => output.writeDouble (obj.vstmax),
+            () => output.writeDouble (obj.vstmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pss2B]): Pss2B =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pss2B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readInt else 0,
+            if (isSet (6)) input.readInt else 0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * PTI microprocessor-based stabilizer type 1.
  *
@@ -946,6 +1182,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object Pss2STSerializer extends CIMSerializer[Pss2ST]
+{
+    def write (kryo: Kryo, output: Output, obj: Pss2ST): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.inputSignal1Type),
+            () => output.writeString (obj.inputSignal2Type),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.lsmax),
+            () => output.writeDouble (obj.lsmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t10),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.t9),
+            () => output.writeDouble (obj.vcl),
+            () => output.writeDouble (obj.vcu)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pss2ST]): Pss2ST =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pss2ST (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1147,6 +1443,64 @@ extends
     }
 }
 
+object Pss5Serializer extends CIMSerializer[Pss5]
+{
+    def write (kryo: Kryo, output: Output, obj: Pss5): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.ctw2),
+            () => output.writeDouble (obj.deadband),
+            () => output.writeBoolean (obj.isfreq),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kpe),
+            () => output.writeDouble (obj.kpss),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.tl1),
+            () => output.writeDouble (obj.tl2),
+            () => output.writeDouble (obj.tl3),
+            () => output.writeDouble (obj.tl4),
+            () => output.writeDouble (obj.tpe),
+            () => output.writeDouble (obj.tw1),
+            () => output.writeDouble (obj.tw2),
+            () => output.writeBoolean (obj.vadat),
+            () => output.writeDouble (obj.vsmn),
+            () => output.writeDouble (obj.vsmx)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Pss5]): Pss5 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Pss5 (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readBoolean else false,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
  *
@@ -1294,6 +1648,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssELIN2Serializer extends CIMSerializer[PssELIN2]
+{
+    def write (kryo: Kryo, output: Output, obj: PssELIN2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.apss),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.ks2),
+            () => output.writeDouble (obj.ppss),
+            () => output.writeDouble (obj.psslim),
+            () => output.writeDouble (obj.ts1),
+            () => output.writeDouble (obj.ts2),
+            () => output.writeDouble (obj.ts3),
+            () => output.writeDouble (obj.ts4),
+            () => output.writeDouble (obj.ts5),
+            () => output.writeDouble (obj.ts6)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssELIN2]): PssELIN2 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssELIN2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1455,6 +1855,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssIEEE1ASerializer extends CIMSerializer[PssIEEE1A]
+{
+    def write (kryo: Kryo, output: Output, obj: PssIEEE1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a1),
+            () => output.writeDouble (obj.a2),
+            () => output.writeString (obj.inputSignalType),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssIEEE1A]): PssIEEE1A =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssIEEE1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1724,6 +2172,84 @@ extends
     }
 }
 
+object PssIEEE2BSerializer extends CIMSerializer[PssIEEE2B]
+{
+    def write (kryo: Kryo, output: Output, obj: PssIEEE2B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.inputSignal1Type),
+            () => output.writeString (obj.inputSignal2Type),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.ks2),
+            () => output.writeDouble (obj.ks3),
+            () => output.writeInt (obj.m),
+            () => output.writeInt (obj.n),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t10),
+            () => output.writeDouble (obj.t11),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.t9),
+            () => output.writeDouble (obj.tw1),
+            () => output.writeDouble (obj.tw2),
+            () => output.writeDouble (obj.tw3),
+            () => output.writeDouble (obj.tw4),
+            () => output.writeDouble (obj.vsi1max),
+            () => output.writeDouble (obj.vsi1min),
+            () => output.writeDouble (obj.vsi2max),
+            () => output.writeDouble (obj.vsi2min),
+            () => output.writeDouble (obj.vstmax),
+            () => output.writeDouble (obj.vstmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssIEEE2B]): PssIEEE2B =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssIEEE2B (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readInt else 0,
+            if (isSet (6)) input.readInt else 0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type PSS3B power system stabilizer model.
  *
@@ -1917,6 +2443,64 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssIEEE3BSerializer extends CIMSerializer[PssIEEE3B]
+{
+    def write (kryo: Kryo, output: Output, obj: PssIEEE3B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a1),
+            () => output.writeDouble (obj.a2),
+            () => output.writeDouble (obj.a3),
+            () => output.writeDouble (obj.a4),
+            () => output.writeDouble (obj.a5),
+            () => output.writeDouble (obj.a6),
+            () => output.writeDouble (obj.a7),
+            () => output.writeDouble (obj.a8),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.ks2),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.tw1),
+            () => output.writeDouble (obj.tw2),
+            () => output.writeDouble (obj.tw3),
+            () => output.writeDouble (obj.vstmax),
+            () => output.writeDouble (obj.vstmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssIEEE3B]): PssIEEE3B =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssIEEE3B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2460,6 +3044,164 @@ extends
     }
 }
 
+object PssIEEE4BSerializer extends CIMSerializer[PssIEEE4B]
+{
+    def write (kryo: Kryo, output: Output, obj: PssIEEE4B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.bwh1),
+            () => output.writeDouble (obj.bwh2),
+            () => output.writeDouble (obj.bwl1),
+            () => output.writeDouble (obj.bwl2),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.kh1),
+            () => output.writeDouble (obj.kh11),
+            () => output.writeDouble (obj.kh17),
+            () => output.writeDouble (obj.kh2),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.ki1),
+            () => output.writeDouble (obj.ki11),
+            () => output.writeDouble (obj.ki17),
+            () => output.writeDouble (obj.ki2),
+            () => output.writeDouble (obj.kl),
+            () => output.writeDouble (obj.kl1),
+            () => output.writeDouble (obj.kl11),
+            () => output.writeDouble (obj.kl17),
+            () => output.writeDouble (obj.kl2),
+            () => output.writeDouble (obj.omeganh1),
+            () => output.writeDouble (obj.omeganh2),
+            () => output.writeDouble (obj.omeganl1),
+            () => output.writeDouble (obj.omeganl2),
+            () => output.writeDouble (obj.th1),
+            () => output.writeDouble (obj.th10),
+            () => output.writeDouble (obj.th11),
+            () => output.writeDouble (obj.th12),
+            () => output.writeDouble (obj.th2),
+            () => output.writeDouble (obj.th3),
+            () => output.writeDouble (obj.th4),
+            () => output.writeDouble (obj.th5),
+            () => output.writeDouble (obj.th6),
+            () => output.writeDouble (obj.th7),
+            () => output.writeDouble (obj.th8),
+            () => output.writeDouble (obj.th9),
+            () => output.writeDouble (obj.ti1),
+            () => output.writeDouble (obj.ti10),
+            () => output.writeDouble (obj.ti11),
+            () => output.writeDouble (obj.ti12),
+            () => output.writeDouble (obj.ti2),
+            () => output.writeDouble (obj.ti3),
+            () => output.writeDouble (obj.ti4),
+            () => output.writeDouble (obj.ti5),
+            () => output.writeDouble (obj.ti6),
+            () => output.writeDouble (obj.ti7),
+            () => output.writeDouble (obj.ti8),
+            () => output.writeDouble (obj.ti9),
+            () => output.writeDouble (obj.tl1),
+            () => output.writeDouble (obj.tl10),
+            () => output.writeDouble (obj.tl11),
+            () => output.writeDouble (obj.tl12),
+            () => output.writeDouble (obj.tl2),
+            () => output.writeDouble (obj.tl3),
+            () => output.writeDouble (obj.tl4),
+            () => output.writeDouble (obj.tl5),
+            () => output.writeDouble (obj.tl6),
+            () => output.writeDouble (obj.tl7),
+            () => output.writeDouble (obj.tl8),
+            () => output.writeDouble (obj.tl9),
+            () => output.writeDouble (obj.vhmax),
+            () => output.writeDouble (obj.vhmin),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vlmax),
+            () => output.writeDouble (obj.vlmin),
+            () => output.writeDouble (obj.vstmax),
+            () => output.writeDouble (obj.vstmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssIEEE4B]): PssIEEE4B =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssIEEE4B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) input.readDouble else 0.0,
+            if (isSet (38)) input.readDouble else 0.0,
+            if (isSet (39)) input.readDouble else 0.0,
+            if (isSet (40)) input.readDouble else 0.0,
+            if (isSet (41)) input.readDouble else 0.0,
+            if (isSet (42)) input.readDouble else 0.0,
+            if (isSet (43)) input.readDouble else 0.0,
+            if (isSet (44)) input.readDouble else 0.0,
+            if (isSet (45)) input.readDouble else 0.0,
+            if (isSet (46)) input.readDouble else 0.0,
+            if (isSet (47)) input.readDouble else 0.0,
+            if (isSet (48)) input.readDouble else 0.0,
+            if (isSet (49)) input.readDouble else 0.0,
+            if (isSet (50)) input.readDouble else 0.0,
+            if (isSet (51)) input.readDouble else 0.0,
+            if (isSet (52)) input.readDouble else 0.0,
+            if (isSet (53)) input.readDouble else 0.0,
+            if (isSet (54)) input.readDouble else 0.0,
+            if (isSet (55)) input.readDouble else 0.0,
+            if (isSet (56)) input.readDouble else 0.0,
+            if (isSet (57)) input.readDouble else 0.0,
+            if (isSet (58)) input.readDouble else 0.0,
+            if (isSet (59)) input.readDouble else 0.0,
+            if (isSet (60)) input.readDouble else 0.0,
+            if (isSet (61)) input.readDouble else 0.0,
+            if (isSet (62)) input.readDouble else 0.0,
+            if (isSet (63)) input.readDouble else 0.0,
+            if (isSet (64)) input.readDouble else 0.0,
+            if (isSet (65)) input.readDouble else 0.0,
+            if (isSet (66)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * PTI microprocessor-based stabilizer type 1.
  *
@@ -2607,6 +3349,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssPTIST1Serializer extends CIMSerializer[PssPTIST1]
+{
+    def write (kryo: Kryo, output: Output, obj: PssPTIST1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dtc),
+            () => output.writeDouble (obj.dtf),
+            () => output.writeDouble (obj.dtp),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.m),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tp)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssPTIST1]): PssPTIST1 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssPTIST1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2902,6 +3690,98 @@ extends
     }
 }
 
+object PssPTIST3Serializer extends CIMSerializer[PssPTIST3]
+{
+    def write (kryo: Kryo, output: Output, obj: PssPTIST3): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a0),
+            () => output.writeDouble (obj.a1),
+            () => output.writeDouble (obj.a2),
+            () => output.writeDouble (obj.a3),
+            () => output.writeDouble (obj.a4),
+            () => output.writeDouble (obj.a5),
+            () => output.writeDouble (obj.al),
+            () => output.writeDouble (obj.athres),
+            () => output.writeDouble (obj.b0),
+            () => output.writeDouble (obj.b1),
+            () => output.writeDouble (obj.b2),
+            () => output.writeDouble (obj.b3),
+            () => output.writeDouble (obj.b4),
+            () => output.writeDouble (obj.b5),
+            () => output.writeDouble (obj.dl),
+            () => output.writeDouble (obj.dtc),
+            () => output.writeDouble (obj.dtf),
+            () => output.writeDouble (obj.dtp),
+            () => output.writeBoolean (obj.isw),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.lthres),
+            () => output.writeDouble (obj.m),
+            () => output.writeDouble (obj.nav),
+            () => output.writeDouble (obj.ncl),
+            () => output.writeDouble (obj.ncr),
+            () => output.writeDouble (obj.pmin),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tp)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssPTIST3]): PssPTIST3 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssPTIST3 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readBoolean else false,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Power system stabilizer type RQB.
  *
@@ -3044,6 +3924,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssRQBSerializer extends CIMSerializer[PssRQB]
+{
+    def write (kryo: Kryo, output: Output, obj: PssRQB): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kdpm),
+            () => output.writeDouble (obj.ki2),
+            () => output.writeDouble (obj.ki3),
+            () => output.writeDouble (obj.ki4),
+            () => output.writeDouble (obj.sibv),
+            () => output.writeDouble (obj.t4f),
+            () => output.writeDouble (obj.t4m),
+            () => output.writeDouble (obj.t4mom),
+            () => output.writeDouble (obj.tomd),
+            () => output.writeDouble (obj.tomsl)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssRQB]): PssRQB =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssRQB (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3194,6 +4118,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssSB4Serializer extends CIMSerializer[PssSB4]
+{
+    def write (kryo: Kryo, output: Output, obj: PssSB4): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kx),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tt),
+            () => output.writeDouble (obj.tx1),
+            () => output.writeDouble (obj.tx2),
+            () => output.writeDouble (obj.vsmax),
+            () => output.writeDouble (obj.vsmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssSB4]): PssSB4 =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssSB4 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3364,6 +4334,56 @@ extends
     }
 }
 
+object PssSHSerializer extends CIMSerializer[PssSH]
+{
+    def write (kryo: Kryo, output: Output, obj: PssSH): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.k0),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.vsmax),
+            () => output.writeDouble (obj.vsmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssSH]): PssSH =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssSH (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Slovakian PSS with three inputs.
  *
@@ -3514,6 +4534,52 @@ extends
     }
 }
 
+object PssSKSerializer extends CIMSerializer[PssSK]
+{
+    def write (kryo: Kryo, output: Output, obj: PssSK): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.vsmax),
+            () => output.writeDouble (obj.vsmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssSK]): PssSK =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssSK (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Power system stabilizer part of an ABB excitation system.
  * [Footnote: ABB excitation systems are an example of suitable products available commercially.
@@ -3643,6 +4709,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssSTAB2ASerializer extends CIMSerializer[PssSTAB2A]
+{
+    def write (kryo: Kryo, output: Output, obj: PssSTAB2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.hlim),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t5)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssSTAB2A]): PssSTAB2A =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssSTAB2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3843,6 +4949,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PssWECCSerializer extends CIMSerializer[PssWECC]
+{
+    def write (kryo: Kryo, output: Output, obj: PssWECC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.inputSignal1Type),
+            () => output.writeString (obj.inputSignal2Type),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t10),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.t7),
+            () => output.writeDouble (obj.t8),
+            () => output.writeDouble (obj.t9),
+            () => output.writeDouble (obj.vcl),
+            () => output.writeDouble (obj.vcu),
+            () => output.writeDouble (obj.vsmax),
+            () => output.writeDouble (obj.vsmin)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PssWECC]): PssWECC =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PssWECC (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

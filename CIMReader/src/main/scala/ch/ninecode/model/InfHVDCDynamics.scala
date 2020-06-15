@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * All the measurements are filtered by a first lag element with a time constant TM.
@@ -144,6 +148,48 @@ extends
     }
 }
 
+object DelaySerializer extends CIMSerializer[Delay]
+{
+    def write (kryo: Kryo, output: Output, obj: Delay): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.tm),
+            () => output.writeString (obj.BlockingFunction),
+            () => output.writeString (obj.DCvoltageControl),
+            () => output.writeString (obj.PFmode),
+            () => output.writeString (obj.Pcontrol),
+            () => output.writeString (obj.Qlimiter),
+            () => output.writeString (obj.Qmode),
+            () => output.writeString (obj.Qregulator),
+            () => output.writeString (obj.Umode)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Delay]): Delay =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Delay (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group InfHVDCDynamics
  * @groupname InfHVDCDynamics Package InfHVDCDynamics
@@ -239,6 +285,40 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HVDCLookUpTableSerializer extends CIMSerializer[HVDCLookUpTable]
+{
+    def write (kryo: Kryo, output: Output, obj: HVDCLookUpTable): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.functionKind),
+            () => output.writeDouble (obj.input),
+            () => output.writeDouble (obj.output),
+            () => output.writeInt (obj.sequence),
+            () => output.writeString (obj.Qregulator)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HVDCLookUpTable]): HVDCLookUpTable =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HVDCLookUpTable (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

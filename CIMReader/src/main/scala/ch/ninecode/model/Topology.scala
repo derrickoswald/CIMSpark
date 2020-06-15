@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Used to apply user standard names to TopologicalNodes.
@@ -115,6 +119,38 @@ extends
     }
 }
 
+object BusNameMarkerSerializer extends CIMSerializer[BusNameMarker]
+{
+    def write (kryo: Kryo, output: Output, obj: BusNameMarker): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.priority),
+            () => output.writeString (obj.ReportingGroup),
+            () => writeList (obj.Terminal, output),
+            () => output.writeString (obj.TopologicalNode)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BusNameMarker]): BusNameMarker =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BusNameMarker (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An electrically connected subset of the network.
  *
@@ -207,6 +243,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TopologicalIslandSerializer extends CIMSerializer[TopologicalIsland]
+{
+    def write (kryo: Kryo, output: Output, obj: TopologicalIsland): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.AngleRefTopologicalNode),
+            () => writeList (obj.TopologicalNodes, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TopologicalIsland]): TopologicalIsland =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TopologicalIsland (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -376,6 +440,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TopologicalNodeSerializer extends CIMSerializer[TopologicalNode]
+{
+    def write (kryo: Kryo, output: Output, obj: TopologicalNode): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.pInjection),
+            () => output.writeDouble (obj.qInjection),
+            () => output.writeString (obj.AngleRefTopologicalIsland),
+            () => output.writeString (obj.BaseVoltage),
+            () => writeList (obj.BusNameMarker, output),
+            () => output.writeString (obj.ConnectivityNodeContainer),
+            () => writeList (obj.ConnectivityNodes, output),
+            () => output.writeString (obj.ReportingGroup),
+            () => writeList (obj.SvInjection, output),
+            () => writeList (obj.SvVoltage, output),
+            () => writeList (obj.Terminal, output),
+            () => output.writeString (obj.TopologicalIsland)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TopologicalNode]): TopologicalNode =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TopologicalNode (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

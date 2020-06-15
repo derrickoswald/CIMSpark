@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
@@ -206,6 +210,72 @@ extends
     }
 }
 
+object BWRSteamSupplySerializer extends CIMSerializer[BWRSteamSupply]
+{
+    def write (kryo: Kryo, output: Output, obj: BWRSteamSupply): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.highPowerLimit),
+            () => output.writeDouble (obj.inCoreThermalTC),
+            () => output.writeDouble (obj.integralGain),
+            () => output.writeDouble (obj.lowPowerLimit),
+            () => output.writeDouble (obj.lowerLimit),
+            () => output.writeDouble (obj.pressureLimit),
+            () => output.writeDouble (obj.pressureSetpointGA),
+            () => output.writeDouble (obj.pressureSetpointTC1),
+            () => output.writeDouble (obj.pressureSetpointTC2),
+            () => output.writeDouble (obj.proportionalGain),
+            () => output.writeDouble (obj.rfAux1),
+            () => output.writeDouble (obj.rfAux2),
+            () => output.writeDouble (obj.rfAux3),
+            () => output.writeDouble (obj.rfAux4),
+            () => output.writeDouble (obj.rfAux5),
+            () => output.writeDouble (obj.rfAux6),
+            () => output.writeDouble (obj.rfAux7),
+            () => output.writeDouble (obj.rfAux8),
+            () => output.writeDouble (obj.rodPattern),
+            () => output.writeDouble (obj.rodPatternConstant),
+            () => output.writeDouble (obj.upperLimit)
+        )
+        SteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BWRSteamSupply]): BWRSteamSupply =
+    {
+        val parent = SteamSupplySerializer.read (kryo, input, classOf[SteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BWRSteamSupply (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
  *
@@ -285,6 +355,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CTTempActivePowerCurveSerializer extends CIMSerializer[CTTempActivePowerCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: CTTempActivePowerCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.CombustionTurbine)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CTTempActivePowerCurve]): CTTempActivePowerCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CTTempActivePowerCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -436,6 +532,52 @@ extends
     }
 }
 
+object CombustionTurbineSerializer extends CIMSerializer[CombustionTurbine]
+{
+    def write (kryo: Kryo, output: Output, obj: CombustionTurbine): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ambientTemp),
+            () => output.writeDouble (obj.auxPowerVersusFrequency),
+            () => output.writeDouble (obj.auxPowerVersusVoltage),
+            () => output.writeDouble (obj.capabilityVersusFrequency),
+            () => output.writeBoolean (obj.heatRecoveryFlag),
+            () => output.writeDouble (obj.powerVariationByTemp),
+            () => output.writeDouble (obj.referenceTemp),
+            () => output.writeDouble (obj.timeConstant),
+            () => output.writeString (obj.AirCompressor),
+            () => output.writeString (obj.CTTempActivePowerCurve),
+            () => output.writeString (obj.HeatRecoveryBoiler)
+        )
+        PrimeMoverSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CombustionTurbine]): CombustionTurbine =
+    {
+        val parent = PrimeMoverSerializer.read (kryo, input, classOf[PrimeMover])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CombustionTurbine (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Drum boiler.
  *
@@ -512,6 +654,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DrumBoilerSerializer extends CIMSerializer[DrumBoiler]
+{
+    def write (kryo: Kryo, output: Output, obj: DrumBoiler): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.drumBoilerRating)
+        )
+        FossilSteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DrumBoiler]): DrumBoiler =
+    {
+        val parent = FossilSteamSupplySerializer.read (kryo, input, classOf[FossilSteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DrumBoiler (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -747,6 +915,82 @@ extends
     }
 }
 
+object FossilSteamSupplySerializer extends CIMSerializer[FossilSteamSupply]
+{
+    def write (kryo: Kryo, output: Output, obj: FossilSteamSupply): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.auxPowerVersusFrequency),
+            () => output.writeDouble (obj.auxPowerVersusVoltage),
+            () => output.writeString (obj.boilerControlMode),
+            () => output.writeDouble (obj.controlErrorBiasP),
+            () => output.writeDouble (obj.controlIC),
+            () => output.writeDouble (obj.controlPC),
+            () => output.writeDouble (obj.controlPEB),
+            () => output.writeDouble (obj.controlPED),
+            () => output.writeDouble (obj.controlTC),
+            () => output.writeDouble (obj.feedWaterIG),
+            () => output.writeDouble (obj.feedWaterPG),
+            () => output.writeDouble (obj.feedWaterTC),
+            () => output.writeDouble (obj.fuelDemandLimit),
+            () => output.writeDouble (obj.fuelSupplyDelay),
+            () => output.writeDouble (obj.fuelSupplyTC),
+            () => output.writeDouble (obj.maxErrorRateP),
+            () => output.writeDouble (obj.mechPowerSensorLag),
+            () => output.writeDouble (obj.minErrorRateP),
+            () => output.writeDouble (obj.pressureCtrlDG),
+            () => output.writeDouble (obj.pressureCtrlIG),
+            () => output.writeDouble (obj.pressureCtrlPG),
+            () => output.writeInt (obj.pressureFeedback),
+            () => output.writeDouble (obj.superHeater1Capacity),
+            () => output.writeDouble (obj.superHeater2Capacity),
+            () => output.writeDouble (obj.superHeaterPipePD),
+            () => output.writeDouble (obj.throttlePressureSP)
+        )
+        SteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FossilSteamSupply]): FossilSteamSupply =
+    {
+        val parent = SteamSupplySerializer.read (kryo, input, classOf[SteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FossilSteamSupply (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readInt else 0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
  *
@@ -833,6 +1077,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HeatRecoveryBoilerSerializer extends CIMSerializer[HeatRecoveryBoiler]
+{
+    def write (kryo: Kryo, output: Output, obj: HeatRecoveryBoiler): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.steamSupplyRating2),
+            () => writeList (obj.CombustionTurbines, output)
+        )
+        FossilSteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HeatRecoveryBoiler]): HeatRecoveryBoiler =
+    {
+        val parent = FossilSteamSupplySerializer.read (kryo, input, classOf[FossilSteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HeatRecoveryBoiler (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -975,6 +1247,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HydroTurbineSerializer extends CIMSerializer[HydroTurbine]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroTurbine): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.gateRateLimit),
+            () => output.writeDouble (obj.gateUpperLimit),
+            () => output.writeDouble (obj.maxHeadMaxP),
+            () => output.writeDouble (obj.minHeadMaxP),
+            () => output.writeDouble (obj.speedRating),
+            () => output.writeDouble (obj.speedRegulation),
+            () => output.writeDouble (obj.transientDroopTime),
+            () => output.writeDouble (obj.transientRegulation),
+            () => output.writeDouble (obj.turbineRating),
+            () => output.writeString (obj.turbineType),
+            () => output.writeDouble (obj.waterStartingTime)
+        )
+        PrimeMoverSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroTurbine]): HydroTurbine =
+    {
+        val parent = PrimeMoverSerializer.read (kryo, input, classOf[PrimeMover])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroTurbine (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1171,6 +1489,70 @@ extends
     }
 }
 
+object PWRSteamSupplySerializer extends CIMSerializer[PWRSteamSupply]
+{
+    def write (kryo: Kryo, output: Output, obj: PWRSteamSupply): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.coldLegFBLagTC),
+            () => output.writeDouble (obj.coldLegFBLeadTC1),
+            () => output.writeDouble (obj.coldLegFBLeadTC2),
+            () => output.writeDouble (obj.coldLegFG1),
+            () => output.writeDouble (obj.coldLegFG2),
+            () => output.writeDouble (obj.coldLegLagTC),
+            () => output.writeDouble (obj.coreHTLagTC1),
+            () => output.writeDouble (obj.coreHTLagTC2),
+            () => output.writeDouble (obj.coreNeutronicsEffTC),
+            () => output.writeDouble (obj.coreNeutronicsHT),
+            () => output.writeDouble (obj.feedbackFactor),
+            () => output.writeDouble (obj.hotLegLagTC),
+            () => output.writeDouble (obj.hotLegSteamGain),
+            () => output.writeDouble (obj.hotLegToColdLegGain),
+            () => output.writeDouble (obj.pressureCG),
+            () => output.writeDouble (obj.steamFlowFG),
+            () => output.writeDouble (obj.steamPressureDropLagTC),
+            () => output.writeDouble (obj.steamPressureFG),
+            () => output.writeDouble (obj.throttlePressureFactor),
+            () => output.writeDouble (obj.throttlePressureSP)
+        )
+        SteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PWRSteamSupply]): PWRSteamSupply =
+    {
+        val parent = SteamSupplySerializer.read (kryo, input, classOf[SteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PWRSteamSupply (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The machine used to develop mechanical energy used to drive a generator.
  *
@@ -1260,6 +1642,34 @@ extends
     }
 }
 
+object PrimeMoverSerializer extends CIMSerializer[PrimeMover]
+{
+    def write (kryo: Kryo, output: Output, obj: PrimeMover): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.primeMoverRating),
+            () => writeList (obj.SynchronousMachines, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PrimeMover]): PrimeMover =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PrimeMover (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Steam supply for steam turbine.
  *
@@ -1346,6 +1756,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SteamSupplySerializer extends CIMSerializer[SteamSupply]
+{
+    def write (kryo: Kryo, output: Output, obj: SteamSupply): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.steamSupplyRating),
+            () => writeList (obj.SteamTurbines, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SteamSupply]): SteamSupply =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SteamSupply (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1504,6 +1942,56 @@ extends
     }
 }
 
+object SteamTurbineSerializer extends CIMSerializer[SteamTurbine]
+{
+    def write (kryo: Kryo, output: Output, obj: SteamTurbine): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.crossoverTC),
+            () => output.writeDouble (obj.reheater1TC),
+            () => output.writeDouble (obj.reheater2TC),
+            () => output.writeDouble (obj.shaft1PowerHP),
+            () => output.writeDouble (obj.shaft1PowerIP),
+            () => output.writeDouble (obj.shaft1PowerLP1),
+            () => output.writeDouble (obj.shaft1PowerLP2),
+            () => output.writeDouble (obj.shaft2PowerHP),
+            () => output.writeDouble (obj.shaft2PowerIP),
+            () => output.writeDouble (obj.shaft2PowerLP1),
+            () => output.writeDouble (obj.shaft2PowerLP2),
+            () => output.writeDouble (obj.steamChestTC),
+            () => writeList (obj.SteamSupplys, output)
+        )
+        PrimeMoverSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SteamTurbine]): SteamTurbine =
+    {
+        val parent = PrimeMoverSerializer.read (kryo, input, classOf[PrimeMover])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SteamTurbine (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Once-through subcritical boiler.
  *
@@ -1569,6 +2057,31 @@ extends
     }
 }
 
+object SubcriticalSerializer extends CIMSerializer[Subcritical]
+{
+    def write (kryo: Kryo, output: Output, obj: Subcritical): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        FossilSteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Subcritical]): Subcritical =
+    {
+        val parent = FossilSteamSupplySerializer.read (kryo, input, classOf[FossilSteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Subcritical (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Once-through supercritical boiler.
  *
@@ -1631,6 +2144,31 @@ extends
             FossilSteamSupply.parse (context)
         )
         ret
+    }
+}
+
+object SupercriticalSerializer extends CIMSerializer[Supercritical]
+{
+    def write (kryo: Kryo, output: Output, obj: Supercritical): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        FossilSteamSupplySerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Supercritical]): Supercritical =
+    {
+        val parent = FossilSteamSupplySerializer.read (kryo, input, classOf[FossilSteamSupply])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Supercritical (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

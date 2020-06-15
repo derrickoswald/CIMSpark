@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * The diagram being exchanged.
@@ -127,6 +131,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiagramSerializer extends CIMSerializer[Diagram]
+{
+    def write (kryo: Kryo, output: Output, obj: Diagram): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.orientation),
+            () => output.writeDouble (obj.x1InitialView),
+            () => output.writeDouble (obj.x2InitialView),
+            () => output.writeDouble (obj.y1InitialView),
+            () => output.writeDouble (obj.y2InitialView),
+            () => writeList (obj.DiagramElements, output),
+            () => output.writeString (obj.DiagramStyle)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Diagram]): Diagram =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Diagram (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -284,6 +326,50 @@ extends
     }
 }
 
+object DiagramObjectSerializer extends CIMSerializer[DiagramObject]
+{
+    def write (kryo: Kryo, output: Output, obj: DiagramObject): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.drawingOrder),
+            () => output.writeBoolean (obj.isPolygon),
+            () => output.writeDouble (obj.offsetX),
+            () => output.writeDouble (obj.offsetY),
+            () => output.writeDouble (obj.rotation),
+            () => output.writeString (obj.Diagram),
+            () => writeList (obj.DiagramObjectPoints, output),
+            () => output.writeString (obj.DiagramObjectStyle),
+            () => output.writeString (obj.IdentifiedObject_attr),
+            () => writeList (obj.VisibilityLayers, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiagramObject]): DiagramObject =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiagramObject (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
  *
@@ -363,6 +449,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiagramObjectGluePointSerializer extends CIMSerializer[DiagramObjectGluePoint]
+{
+    def write (kryo: Kryo, output: Output, obj: DiagramObjectGluePoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DiagramObjectPoints, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiagramObjectGluePoint]): DiagramObjectGluePoint =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiagramObjectGluePoint (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -482,6 +594,42 @@ extends
     }
 }
 
+object DiagramObjectPointSerializer extends CIMSerializer[DiagramObjectPoint]
+{
+    def write (kryo: Kryo, output: Output, obj: DiagramObjectPoint): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.sequenceNumber),
+            () => output.writeDouble (obj.xPosition),
+            () => output.writeDouble (obj.yPosition),
+            () => output.writeDouble (obj.zPosition),
+            () => output.writeString (obj.DiagramObject),
+            () => output.writeString (obj.DiagramObjectGluePoint)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiagramObjectPoint]): DiagramObjectPoint =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiagramObjectPoint (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A reference to a style used by the originating system for a diagram object.
  *
@@ -563,6 +711,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiagramObjectStyleSerializer extends CIMSerializer[DiagramObjectStyle]
+{
+    def write (kryo: Kryo, output: Output, obj: DiagramObjectStyle): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.StyledObjects, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiagramObjectStyle]): DiagramObjectStyle =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiagramObjectStyle (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -650,6 +824,32 @@ extends
     }
 }
 
+object DiagramStyleSerializer extends CIMSerializer[DiagramStyle]
+{
+    def write (kryo: Kryo, output: Output, obj: DiagramStyle): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Diagram, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiagramStyle]): DiagramStyle =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiagramStyle (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A diagram object for placing free-text or text derived from an associated domain object.
  *
@@ -726,6 +926,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TextDiagramObjectSerializer extends CIMSerializer[TextDiagramObject]
+{
+    def write (kryo: Kryo, output: Output, obj: TextDiagramObject): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.text)
+        )
+        DiagramObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TextDiagramObject]): TextDiagramObject =
+    {
+        val parent = DiagramObjectSerializer.read (kryo, input, classOf[DiagramObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TextDiagramObject (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -820,6 +1046,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VisibilityLayerSerializer extends CIMSerializer[VisibilityLayer]
+{
+    def write (kryo: Kryo, output: Output, obj: VisibilityLayer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.drawingOrder),
+            () => writeList (obj.VisibleObjects, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VisibilityLayer]): VisibilityLayer =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VisibilityLayer (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Turbine load controller model developed by WECC.
@@ -172,6 +176,54 @@ extends
     }
 }
 
+object TurbLCFB1Serializer extends CIMSerializer[TurbLCFB1]
+{
+    def write (kryo: Kryo, output: Output, obj: TurbLCFB1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.db),
+            () => output.writeDouble (obj.emax),
+            () => output.writeDouble (obj.fb),
+            () => output.writeBoolean (obj.fbf),
+            () => output.writeDouble (obj.irmax),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.mwbase),
+            () => output.writeBoolean (obj.pbf),
+            () => output.writeDouble (obj.pmwset),
+            () => output.writeBoolean (obj.speedReferenceGovernor),
+            () => output.writeDouble (obj.tpelec)
+        )
+        TurbineLoadControllerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TurbLCFB1]): TurbLCFB1 =
+    {
+        val parent = TurbineLoadControllerDynamicsSerializer.read (kryo, input, classOf[TurbineLoadControllerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TurbLCFB1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Turbine load controller function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -251,6 +303,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TurbineLoadControllerDynamicsSerializer extends CIMSerializer[TurbineLoadControllerDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: TurbineLoadControllerDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.TurbineGovernorDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TurbineLoadControllerDynamics]): TurbineLoadControllerDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TurbineLoadControllerDynamics (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

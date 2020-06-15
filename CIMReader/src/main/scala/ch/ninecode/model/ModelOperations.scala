@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * A model operation argument referencing a dataset instance.
@@ -96,6 +100,34 @@ extends
     }
 }
 
+object DatasetArgSerializer extends CIMSerializer[DatasetArg]
+{
+    def write (kryo: Kryo, output: Output, obj: DatasetArg): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Dataset),
+            () => output.writeString (obj.OperationDatasetArgDescription)
+        )
+        ModelOperationArgSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DatasetArg]): DatasetArg =
+    {
+        val parent = ModelOperationArgSerializer.read (kryo, input, classOf[ModelOperationArg])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DatasetArg (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
@@ -170,6 +202,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DatasetArgDescriptionSerializer extends CIMSerializer[DatasetArgDescription]
+{
+    def write (kryo: Kryo, output: Output, obj: DatasetArgDescription): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.OperationDatasetArg, output)
+        )
+        ModelOperationArgDescriptionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DatasetArgDescription]): DatasetArgDescription =
+    {
+        val parent = ModelOperationArgDescriptionSerializer.read (kryo, input, classOf[ModelOperationArgDescription])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DatasetArgDescription (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -261,6 +319,34 @@ extends
     }
 }
 
+object IncrementalDatasetArgSerializer extends CIMSerializer[IncrementalDatasetArg]
+{
+    def write (kryo: Kryo, output: Output, obj: IncrementalDatasetArg): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.IncrementalDataset),
+            () => output.writeString (obj.IncrementalDatasetArgDescription)
+        )
+        ModelOperationArgSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IncrementalDatasetArg]): IncrementalDatasetArg =
+    {
+        val parent = ModelOperationArgSerializer.read (kryo, input, classOf[ModelOperationArg])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IncrementalDatasetArg (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group ModelOperations
  * @groupname ModelOperations Package ModelOperations
@@ -335,6 +421,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object IncrementalDatasetArgDescriptionSerializer extends CIMSerializer[IncrementalDatasetArgDescription]
+{
+    def write (kryo: Kryo, output: Output, obj: IncrementalDatasetArgDescription): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.IncrementalDatasetArg, output)
+        )
+        ModelOperationArgDescriptionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IncrementalDatasetArgDescription]): IncrementalDatasetArgDescription =
+    {
+        val parent = ModelOperationArgDescriptionSerializer.read (kryo, input, classOf[ModelOperationArgDescription])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IncrementalDatasetArgDescription (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -442,6 +554,38 @@ extends
     }
 }
 
+object ModelOperationSerializer extends CIMSerializer[ModelOperation]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelOperation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.sequenceNumber),
+            () => writeList (obj.ModelOperationArg, output),
+            () => output.writeString (obj.ModelOperationDescription),
+            () => output.writeString (obj.OperationSequence)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelOperation]): ModelOperation =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelOperation (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Describes the role a dataset plays in a model operation.
  *
@@ -530,6 +674,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ModelOperationArgSerializer extends CIMSerializer[ModelOperationArg]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelOperationArg): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.sequenceNumber),
+            () => output.writeString (obj.ModelOperation)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelOperationArg]): ModelOperationArg =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelOperationArg (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -630,6 +802,36 @@ extends
     }
 }
 
+object ModelOperationArgDescriptionSerializer extends CIMSerializer[ModelOperationArgDescription]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelOperationArgDescription): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.multiplicityMaximum),
+            () => output.writeInt (obj.multiplicityMinimum),
+            () => output.writeString (obj.ModelOperationDefinition)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelOperationArgDescription]): ModelOperationArgDescription =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelOperationArgDescription (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The type of model operation.
  *
@@ -720,6 +922,34 @@ extends
     }
 }
 
+object ModelOperationDescriptionSerializer extends CIMSerializer[ModelOperationDescription]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelOperationDescription): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ModelOperation, output),
+            () => writeList (obj.OperationDatasetArgDescription, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelOperationDescription]): ModelOperationDescription =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelOperationDescription (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A concrete sequence of operations.
  *
@@ -800,6 +1030,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ModelOperationSequenceSerializer extends CIMSerializer[ModelOperationSequence]
+{
+    def write (kryo: Kryo, output: Output, obj: ModelOperationSequence): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ModelOperation, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ModelOperationSequence]): ModelOperationSequence =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ModelOperationSequence (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

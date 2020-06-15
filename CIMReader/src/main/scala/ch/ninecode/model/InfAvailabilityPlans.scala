@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * The collection of all the availability schedules for a given time range.
@@ -88,6 +92,32 @@ extends
     }
 }
 
+object AvailablityPlanSerializer extends CIMSerializer[AvailablityPlan]
+{
+    def write (kryo: Kryo, output: Output, obj: AvailablityPlan): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.validPeriod)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AvailablityPlan]): AvailablityPlan =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AvailablityPlan (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * @group InfAvailabilityPlans
  * @groupname InfAvailabilityPlans Package InfAvailabilityPlans
@@ -147,6 +177,31 @@ extends
             IdentifiedObject.parse (context)
         )
         ret
+    }
+}
+
+object EquipmentUnavailabilityScheduleSerializer extends CIMSerializer[EquipmentUnavailabilitySchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: EquipmentUnavailabilitySchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EquipmentUnavailabilitySchedule]): EquipmentUnavailabilitySchedule =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EquipmentUnavailabilitySchedule (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -234,6 +289,34 @@ extends
     }
 }
 
+object UnavailabilityScheduleDependencySerializer extends CIMSerializer[UnavailabilityScheduleDependency]
+{
+    def write (kryo: Kryo, output: Output, obj: UnavailabilityScheduleDependency): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.UnavailabilityScheduleDependsOn),
+            () => output.writeString (obj.UnavailabilityScheduleImpacts)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnavailabilityScheduleDependency]): UnavailabilityScheduleDependency =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnavailabilityScheduleDependency (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relevant switching action for supporting the availability (or unavailability) plans.
  *
@@ -312,6 +395,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnavailabilitySwitchActionSerializer extends CIMSerializer[UnavailabilitySwitchAction]
+{
+    def write (kryo: Kryo, output: Output, obj: UnavailabilitySwitchAction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.open)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnavailabilitySwitchAction]): UnavailabilitySwitchAction =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnavailabilitySwitchAction (
+            parent,
+            if (isSet (0)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -401,6 +510,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnavailablityScheduleSerializer extends CIMSerializer[UnavailablitySchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: UnavailablitySchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.DependsOn, output),
+            () => writeList (obj.Impacts, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnavailablitySchedule]): UnavailablitySchedule =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnavailablitySchedule (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Model of market clearing related to results at the inter-ties.
@@ -87,6 +91,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object InterTieClearingSerializer extends CIMSerializer[InterTieClearing]
+{
+    def write (kryo: Kryo, output: Output, obj: InterTieClearing): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.InterTieResults, output)
+        )
+        MarketFactorsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InterTieClearing]): InterTieClearing =
+    {
+        val parent = MarketFactorsSerializer.read (kryo, input, classOf[MarketFactors])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InterTieClearing (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -190,6 +220,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object InterTieResultsSerializer extends CIMSerializer[InterTieResults]
+{
+    def write (kryo: Kryo, output: Output, obj: InterTieResults): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.baseMW),
+            () => output.writeDouble (obj.clearedValue),
+            () => output.writeString (obj.Flowgate),
+            () => output.writeString (obj.InterTieClearing)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InterTieResults]): InterTieResults =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InterTieResults (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -301,6 +363,38 @@ extends
     }
 }
 
+object MarketCaseClearingSerializer extends CIMSerializer[MarketCaseClearing]
+{
+    def write (kryo: Kryo, output: Output, obj: MarketCaseClearing): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.caseType),
+            () => output.writeString (obj.modifiedDate),
+            () => output.writeString (obj.postedDate),
+            () => writeList (obj.MarketProductClearing, output)
+        )
+        MarketFactorsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MarketCaseClearing]): MarketCaseClearing =
+    {
+        val parent = MarketFactorsSerializer.read (kryo, input, classOf[MarketFactors])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MarketCaseClearing (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Binding security constrained clearing results posted for a given settlement period.
  *
@@ -388,6 +482,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SecurityConstraintsClearingSerializer extends CIMSerializer[SecurityConstraintsClearing]
+{
+    def write (kryo: Kryo, output: Output, obj: SecurityConstraintsClearing): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.mwFlow),
+            () => output.writeDouble (obj.mwLimit),
+            () => output.writeDouble (obj.shadowPrice)
+        )
+        MarketFactorsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SecurityConstraintsClearing]): SecurityConstraintsClearing =
+    {
+        val parent = MarketFactorsSerializer.read (kryo, input, classOf[MarketFactors])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SecurityConstraintsClearing (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Generic generation equipment that may be used for various purposes such as work planning.
@@ -177,6 +181,62 @@ extends
     }
 }
 
+object GeneratorTypeAssetSerializer extends CIMSerializer[GeneratorTypeAsset]
+{
+    def write (kryo: Kryo, output: Output, obj: GeneratorTypeAsset): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxP),
+            () => output.writeDouble (obj.maxQ),
+            () => output.writeDouble (obj.minP),
+            () => output.writeDouble (obj.minQ),
+            () => output.writeDouble (obj.rDirectSubtrans),
+            () => output.writeDouble (obj.rDirectSync),
+            () => output.writeDouble (obj.rDirectTrans),
+            () => output.writeDouble (obj.rQuadSubtrans),
+            () => output.writeDouble (obj.rQuadSync),
+            () => output.writeDouble (obj.rQuadTrans),
+            () => output.writeDouble (obj.xDirectSubtrans),
+            () => output.writeDouble (obj.xDirectSync),
+            () => output.writeDouble (obj.xDirectTrans),
+            () => output.writeDouble (obj.xQuadSubtrans),
+            () => output.writeDouble (obj.xQuadSync),
+            () => output.writeDouble (obj.xQuadTrans)
+        )
+        CatalogAssetTypeSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GeneratorTypeAsset]): GeneratorTypeAsset =
+    {
+        val parent = CatalogAssetTypeSerializer.read (kryo, input, classOf[CatalogAssetType])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GeneratorTypeAsset (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Catalogue of generic types of assets (TypeAsset) that may be used for design purposes.
  *
@@ -264,6 +324,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TypeAssetCatalogueSerializer extends CIMSerializer[TypeAssetCatalogue]
+{
+    def write (kryo: Kryo, output: Output, obj: TypeAssetCatalogue): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.status),
+            () => writeList (obj.TypeAssets, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TypeAssetCatalogue]): TypeAssetCatalogue =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TypeAssetCatalogue (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

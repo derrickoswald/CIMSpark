@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Definition of type of analog useful in asset domain.
@@ -110,6 +114,38 @@ extends
     }
 }
 
+object AssetAnalogSerializer extends CIMSerializer[AssetAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: AssetAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.detectionLimit),
+            () => output.writeDouble (obj.precision),
+            () => output.writeDouble (obj.reportingTemperature),
+            () => output.writeString (obj.TestStandard)
+        )
+        AnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssetAnalog]): AssetAnalog =
+    {
+        val parent = AnalogSerializer.read (kryo, input, classOf[Analog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssetAnalog (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Definition of type of discrete useful in asset domain.
  *
@@ -188,6 +224,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AssetDiscreteSerializer extends CIMSerializer[AssetDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: AssetDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.TestStandard)
+        )
+        DiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssetDiscrete]): AssetDiscrete =
+    {
+        val parent = DiscreteSerializer.read (kryo, input, classOf[Discrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssetDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -278,6 +340,34 @@ extends
     }
 }
 
+object AssetStringMeasurementSerializer extends CIMSerializer[AssetStringMeasurement]
+{
+    def write (kryo: Kryo, output: Output, obj: AssetStringMeasurement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.TestStandard)
+        )
+        StringMeasurementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssetStringMeasurement]): AssetStringMeasurement =
+    {
+        val parent = StringMeasurementSerializer.read (kryo, input, classOf[StringMeasurement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssetStringMeasurement (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Temperature or pressure type of asset analog.
  *
@@ -353,6 +443,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AssetTemperaturePressureAnalogSerializer extends CIMSerializer[AssetTemperaturePressureAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: AssetTemperaturePressureAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AssetTemperaturePressureAnalog]): AssetTemperaturePressureAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AssetTemperaturePressureAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -452,6 +568,36 @@ extends
     }
 }
 
+object CalculationMethodHierarchySerializer extends CIMSerializer[CalculationMethodHierarchy]
+{
+    def write (kryo: Kryo, output: Output, obj: CalculationMethodHierarchy): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.CalculationMethodOrder, output),
+            () => writeList (obj.Measurement, output),
+            () => output.writeString (obj.MeasurementValue)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CalculationMethodHierarchy]): CalculationMethodHierarchy =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CalculationMethodHierarchy (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The order of this calculation method in a hierarchy of calculation methods.
  *
@@ -547,6 +693,36 @@ extends
     }
 }
 
+object CalculationMethodOrderSerializer extends CIMSerializer[CalculationMethodOrder]
+{
+    def write (kryo: Kryo, output: Output, obj: CalculationMethodOrder): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.order),
+            () => output.writeString (obj.CalculationMethodHierarchy),
+            () => output.writeString (obj.StatisicalCalculation)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CalculationMethodOrder]): CalculationMethodOrder =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CalculationMethodOrder (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset inspection type of analog.
  *
@@ -622,6 +798,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object InspectionAnalogSerializer extends CIMSerializer[InspectionAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: InspectionAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InspectionAnalog]): InspectionAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InspectionAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -703,6 +905,32 @@ extends
     }
 }
 
+object InspectionDiscreteSerializer extends CIMSerializer[InspectionDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: InspectionDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetDiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InspectionDiscrete]): InspectionDiscrete =
+    {
+        val parent = AssetDiscreteSerializer.read (kryo, input, classOf[AssetDiscrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InspectionDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis fluid test type of analog.
  *
@@ -778,6 +1006,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OilAnalysisFluidAnalogSerializer extends CIMSerializer[OilAnalysisFluidAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisFluidAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisFluidAnalog]): OilAnalysisFluidAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisFluidAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -859,6 +1113,32 @@ extends
     }
 }
 
+object OilAnalysisFluidDiscreteSerializer extends CIMSerializer[OilAnalysisFluidDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisFluidDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetDiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisFluidDiscrete]): OilAnalysisFluidDiscrete =
+    {
+        val parent = AssetDiscreteSerializer.read (kryo, input, classOf[AssetDiscrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisFluidDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis gas type of analog.
  *
@@ -934,6 +1214,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OilAnalysisGasAnalogSerializer extends CIMSerializer[OilAnalysisGasAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisGasAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisGasAnalog]): OilAnalysisGasAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisGasAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1015,6 +1321,32 @@ extends
     }
 }
 
+object OilAnalysisMetalsAnalogSerializer extends CIMSerializer[OilAnalysisMetalsAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisMetalsAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisMetalsAnalog]): OilAnalysisMetalsAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisMetalsAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis moisture type of analog.
  *
@@ -1090,6 +1422,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OilAnalysisMoistureAnalogSerializer extends CIMSerializer[OilAnalysisMoistureAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisMoistureAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisMoistureAnalog]): OilAnalysisMoistureAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisMoistureAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1171,6 +1529,32 @@ extends
     }
 }
 
+object OilAnalysisPCBAnalogSerializer extends CIMSerializer[OilAnalysisPCBAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisPCBAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisPCBAnalog]): OilAnalysisPCBAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisPCBAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis PCB type of discrete.
  *
@@ -1246,6 +1630,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OilAnalysisPCBDiscreteSerializer extends CIMSerializer[OilAnalysisPCBDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisPCBDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetDiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisPCBDiscrete]): OilAnalysisPCBDiscrete =
+    {
+        val parent = AssetDiscreteSerializer.read (kryo, input, classOf[AssetDiscrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisPCBDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1327,6 +1737,32 @@ extends
     }
 }
 
+object OilAnalysisPaperAnalogSerializer extends CIMSerializer[OilAnalysisPaperAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisPaperAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisPaperAnalog]): OilAnalysisPaperAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisPaperAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis particle type of analog.
  *
@@ -1405,6 +1841,32 @@ extends
     }
 }
 
+object OilAnalysisParticleAnalogSerializer extends CIMSerializer[OilAnalysisParticleAnalog]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisParticleAnalog): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetAnalogSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisParticleAnalog]): OilAnalysisParticleAnalog =
+    {
+        val parent = AssetAnalogSerializer.read (kryo, input, classOf[AssetAnalog])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisParticleAnalog (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Asset oil analysis particle type of discrete.
  *
@@ -1480,6 +1942,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OilAnalysisParticleDiscreteSerializer extends CIMSerializer[OilAnalysisParticleDiscrete]
+{
+    def write (kryo: Kryo, output: Output, obj: OilAnalysisParticleDiscrete): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind)
+        )
+        AssetDiscreteSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OilAnalysisParticleDiscrete]): OilAnalysisParticleDiscrete =
+    {
+        val parent = AssetDiscreteSerializer.read (kryo, input, classOf[AssetDiscrete])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OilAnalysisParticleDiscrete (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1569,6 +2057,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PeriodicStatisticalCalculationSerializer extends CIMSerializer[PeriodicStatisticalCalculation]
+{
+    def write (kryo: Kryo, output: Output, obj: PeriodicStatisticalCalculation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.calculationIntervalMagnitude),
+            () => output.writeString (obj.calculationIntervalUnit)
+        )
+        StatisticalCalculationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PeriodicStatisticalCalculation]): PeriodicStatisticalCalculation =
+    {
+        val parent = StatisticalCalculationSerializer.read (kryo, input, classOf[StatisticalCalculation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PeriodicStatisticalCalculation (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1663,6 +2179,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object StatisticalCalculationSerializer extends CIMSerializer[StatisticalCalculation]
+{
+    def write (kryo: Kryo, output: Output, obj: StatisticalCalculation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.calculationMode),
+            () => output.writeString (obj.calculationTechnique),
+            () => writeList (obj.CalculationMethodOrder, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StatisticalCalculation]): StatisticalCalculation =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StatisticalCalculation (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

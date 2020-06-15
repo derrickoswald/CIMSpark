@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data.
@@ -98,6 +102,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadAggregateSerializer extends CIMSerializer[LoadAggregate]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadAggregate): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.LoadMotor),
+            () => output.writeString (obj.LoadStatic)
+        )
+        LoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadAggregate]): LoadAggregate =
+    {
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadAggregate (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -255,6 +287,52 @@ extends
     }
 }
 
+object LoadCompositeSerializer extends CIMSerializer[LoadComposite]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadComposite): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.epfd),
+            () => output.writeDouble (obj.epfs),
+            () => output.writeDouble (obj.epvd),
+            () => output.writeDouble (obj.epvs),
+            () => output.writeDouble (obj.eqfd),
+            () => output.writeDouble (obj.eqfs),
+            () => output.writeDouble (obj.eqvd),
+            () => output.writeDouble (obj.eqvs),
+            () => output.writeDouble (obj.h),
+            () => output.writeDouble (obj.lfac),
+            () => output.writeDouble (obj.pfrac)
+        )
+        LoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadComposite]): LoadComposite =
+    {
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadComposite (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Load whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single load definition.
@@ -339,6 +417,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadDynamicsSerializer extends CIMSerializer[LoadDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.EnergyConsumer, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadDynamics]): LoadDynamics =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadDynamics (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -459,6 +563,44 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadGenericNonLinearSerializer extends CIMSerializer[LoadGenericNonLinear]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadGenericNonLinear): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.bs),
+            () => output.writeDouble (obj.bt),
+            () => output.writeString (obj.genericNonLinearLoadModelType),
+            () => output.writeDouble (obj.ls),
+            () => output.writeDouble (obj.lt),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tq)
+        )
+        LoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadGenericNonLinear]): LoadGenericNonLinear =
+    {
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadGenericNonLinear (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -641,6 +783,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadMotorSerializer extends CIMSerializer[LoadMotor]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadMotor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.d),
+            () => output.writeDouble (obj.h),
+            () => output.writeDouble (obj.lfac),
+            () => output.writeDouble (obj.lp),
+            () => output.writeDouble (obj.lpp),
+            () => output.writeDouble (obj.ls),
+            () => output.writeDouble (obj.pfrac),
+            () => output.writeDouble (obj.ra),
+            () => output.writeDouble (obj.tbkr),
+            () => output.writeDouble (obj.tpo),
+            () => output.writeDouble (obj.tppo),
+            () => output.writeDouble (obj.tv),
+            () => output.writeDouble (obj.vt),
+            () => output.writeString (obj.LoadAggregate)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadMotor]): LoadMotor =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadMotor (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -847,6 +1041,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadStaticSerializer extends CIMSerializer[LoadStatic]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadStatic): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ep1),
+            () => output.writeDouble (obj.ep2),
+            () => output.writeDouble (obj.ep3),
+            () => output.writeDouble (obj.eq1),
+            () => output.writeDouble (obj.eq2),
+            () => output.writeDouble (obj.eq3),
+            () => output.writeDouble (obj.kp1),
+            () => output.writeDouble (obj.kp2),
+            () => output.writeDouble (obj.kp3),
+            () => output.writeDouble (obj.kp4),
+            () => output.writeDouble (obj.kpf),
+            () => output.writeDouble (obj.kq1),
+            () => output.writeDouble (obj.kq2),
+            () => output.writeDouble (obj.kq3),
+            () => output.writeDouble (obj.kq4),
+            () => output.writeDouble (obj.kqf),
+            () => output.writeString (obj.staticLoadModelType),
+            () => output.writeString (obj.LoadAggregate)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadStatic]): LoadStatic =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadStatic (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readString else null,
+            if (isSet (17)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

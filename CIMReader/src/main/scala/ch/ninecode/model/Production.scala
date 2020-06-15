@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
@@ -103,6 +107,36 @@ extends
     }
 }
 
+object AirCompressorSerializer extends CIMSerializer[AirCompressor]
+{
+    def write (kryo: Kryo, output: Output, obj: AirCompressor): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.airCompressorRating),
+            () => output.writeString (obj.CAESPlant),
+            () => output.writeString (obj.CombustionTurbine)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AirCompressor]): AirCompressor =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AirCompressor (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * An electrochemical energy storage device.
  *
@@ -192,6 +226,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object BatteryUnitSerializer extends CIMSerializer[BatteryUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: BatteryUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.batteryState),
+            () => output.writeDouble (obj.ratedE),
+            () => output.writeDouble (obj.storedE)
+        )
+        PowerElectronicsUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BatteryUnit]): BatteryUnit =
+    {
+        val parent = PowerElectronicsUnitSerializer.read (kryo, input, classOf[PowerElectronicsUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BatteryUnit (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -294,6 +358,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CAESPlantSerializer extends CIMSerializer[CAESPlant]
+{
+    def write (kryo: Kryo, output: Output, obj: CAESPlant): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.energyStorageCapacity),
+            () => output.writeDouble (obj.ratedCapacityP),
+            () => output.writeString (obj.AirCompressor),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CAESPlant]): CAESPlant =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CAESPlant (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -420,6 +516,44 @@ extends
     }
 }
 
+object CogenerationPlantSerializer extends CIMSerializer[CogenerationPlant]
+{
+    def write (kryo: Kryo, output: Output, obj: CogenerationPlant): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.cogenHPSendoutRating),
+            () => output.writeDouble (obj.cogenHPSteamRating),
+            () => output.writeDouble (obj.cogenLPSendoutRating),
+            () => output.writeDouble (obj.cogenLPSteamRating),
+            () => output.writeDouble (obj.ratedP),
+            () => output.writeString (obj.SteamSendoutSchedule),
+            () => writeList (obj.ThermalGeneratingUnits, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CogenerationPlant]): CogenerationPlant =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CogenerationPlant (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
  *
@@ -506,6 +640,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CombinedCyclePlantSerializer extends CIMSerializer[CombinedCyclePlant]
+{
+    def write (kryo: Kryo, output: Output, obj: CombinedCyclePlant): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.combCyclePlantRating),
+            () => writeList (obj.ThermalGeneratingUnits, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CombinedCyclePlant]): CombinedCyclePlant =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CombinedCyclePlant (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -603,6 +765,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EmissionAccountSerializer extends CIMSerializer[EmissionAccount]
+{
+    def write (kryo: Kryo, output: Output, obj: EmissionAccount): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.emissionType),
+            () => output.writeString (obj.emissionValueSource),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EmissionAccount]): EmissionAccount =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EmissionAccount (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -707,6 +899,38 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object EmissionCurveSerializer extends CIMSerializer[EmissionCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: EmissionCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.emissionContent),
+            () => output.writeString (obj.emissionType),
+            () => output.writeBoolean (obj.isNetGrossP),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EmissionCurve]): EmissionCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EmissionCurve (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -865,6 +1089,54 @@ extends
     }
 }
 
+object FossilFuelSerializer extends CIMSerializer[FossilFuel]
+{
+    def write (kryo: Kryo, output: Output, obj: FossilFuel): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.fossilFuelType),
+            () => output.writeDouble (obj.fuelCost),
+            () => output.writeDouble (obj.fuelDispatchCost),
+            () => output.writeDouble (obj.fuelEffFactor),
+            () => output.writeDouble (obj.fuelHandlingCost),
+            () => output.writeDouble (obj.fuelHeatContent),
+            () => output.writeDouble (obj.fuelMixture),
+            () => output.writeDouble (obj.fuelSulfur),
+            () => output.writeDouble (obj.highBreakpointP),
+            () => output.writeDouble (obj.lowBreakpointP),
+            () => writeList (obj.FuelAllocationSchedules, output),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FossilFuel]): FossilFuel =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FossilFuel (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
  *
@@ -985,6 +1257,44 @@ extends
     }
 }
 
+object FuelAllocationScheduleSerializer extends CIMSerializer[FuelAllocationSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: FuelAllocationSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.fuelAllocationEndDate),
+            () => output.writeString (obj.fuelAllocationStartDate),
+            () => output.writeString (obj.fuelType),
+            () => output.writeDouble (obj.maxFuelAllocation),
+            () => output.writeDouble (obj.minFuelAllocation),
+            () => output.writeString (obj.FossilFuel),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[FuelAllocationSchedule]): FuelAllocationSchedule =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = FuelAllocationSchedule (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
  *
@@ -1076,6 +1386,34 @@ extends
     }
 }
 
+object GenUnitOpCostCurveSerializer extends CIMSerializer[GenUnitOpCostCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: GenUnitOpCostCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isNetGrossP),
+            () => output.writeString (obj.GeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GenUnitOpCostCurve]): GenUnitOpCostCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GenUnitOpCostCurve (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  *
@@ -1157,6 +1495,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GenUnitOpScheduleSerializer extends CIMSerializer[GenUnitOpSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: GenUnitOpSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.GeneratingUnit)
+        )
+        RegularIntervalScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GenUnitOpSchedule]): GenUnitOpSchedule =
+    {
+        val parent = RegularIntervalScheduleSerializer.read (kryo, input, classOf[RegularIntervalSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GenUnitOpSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1505,6 +1869,114 @@ extends
     }
 }
 
+object GeneratingUnitSerializer extends CIMSerializer[GeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: GeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.allocSpinResP),
+            () => output.writeDouble (obj.autoCntrlMarginP),
+            () => output.writeDouble (obj.baseP),
+            () => output.writeDouble (obj.controlDeadband),
+            () => output.writeDouble (obj.controlPulseHigh),
+            () => output.writeDouble (obj.controlPulseLow),
+            () => output.writeDouble (obj.controlResponseRate),
+            () => output.writeDouble (obj.efficiency),
+            () => output.writeString (obj.genControlMode),
+            () => output.writeString (obj.genControlSource),
+            () => output.writeDouble (obj.governorMPL),
+            () => output.writeDouble (obj.governorSCD),
+            () => output.writeDouble (obj.highControlLimit),
+            () => output.writeDouble (obj.initialP),
+            () => output.writeDouble (obj.longPF),
+            () => output.writeDouble (obj.lowControlLimit),
+            () => output.writeDouble (obj.lowerRampRate),
+            () => output.writeDouble (obj.maxEconomicP),
+            () => output.writeDouble (obj.maxOperatingP),
+            () => output.writeDouble (obj.maximumAllowableSpinningReserve),
+            () => output.writeDouble (obj.minEconomicP),
+            () => output.writeDouble (obj.minOperatingP),
+            () => output.writeDouble (obj.minimumOffTime),
+            () => output.writeInt (obj.modelDetail),
+            () => output.writeDouble (obj.nominalP),
+            () => output.writeDouble (obj.normalPF),
+            () => output.writeDouble (obj.penaltyFactor),
+            () => output.writeDouble (obj.raiseRampRate),
+            () => output.writeDouble (obj.ratedGrossMaxP),
+            () => output.writeDouble (obj.ratedGrossMinP),
+            () => output.writeDouble (obj.ratedNetMaxP),
+            () => output.writeDouble (obj.shortPF),
+            () => output.writeDouble (obj.startupCost),
+            () => output.writeDouble (obj.startupTime),
+            () => output.writeDouble (obj.tieLinePF),
+            () => output.writeDouble (obj.totalEfficiency),
+            () => output.writeDouble (obj.variableCost),
+            () => writeList (obj.ControlAreaGeneratingUnit, output),
+            () => writeList (obj.GenUnitOpCostCurves, output),
+            () => output.writeString (obj.GenUnitOpSchedule),
+            () => writeList (obj.GrossToNetActivePowerCurves, output),
+            () => writeList (obj.RotatingMachine, output)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GeneratingUnit]): GeneratingUnit =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GeneratingUnit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readInt else 0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0,
+            if (isSet (36)) input.readDouble else 0.0,
+            if (isSet (37)) readList (input) else null,
+            if (isSet (38)) readList (input) else null,
+            if (isSet (39)) input.readString else null,
+            if (isSet (40)) readList (input) else null,
+            if (isSet (41)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
  *
@@ -1586,6 +2058,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object GrossToNetActivePowerCurveSerializer extends CIMSerializer[GrossToNetActivePowerCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: GrossToNetActivePowerCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.GeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GrossToNetActivePowerCurve]): GrossToNetActivePowerCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GrossToNetActivePowerCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1704,6 +2202,42 @@ extends
     }
 }
 
+object HeatInputCurveSerializer extends CIMSerializer[HeatInputCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: HeatInputCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.auxPowerMult),
+            () => output.writeDouble (obj.auxPowerOffset),
+            () => output.writeDouble (obj.heatInputEff),
+            () => output.writeDouble (obj.heatInputOffset),
+            () => output.writeBoolean (obj.isNetGrossP),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HeatInputCurve]): HeatInputCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HeatInputCurve (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
  *
@@ -1795,6 +2329,34 @@ extends
     }
 }
 
+object HeatRateCurveSerializer extends CIMSerializer[HeatRateCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: HeatRateCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isNetGrossP),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HeatRateCurve]): HeatRateCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HeatRateCurve (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between unit efficiency as percentage and unit output active power for a given net head in meters.
  *
@@ -1878,6 +2440,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HydroGeneratingEfficiencyCurveSerializer extends CIMSerializer[HydroGeneratingEfficiencyCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroGeneratingEfficiencyCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.HydroGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroGeneratingEfficiencyCurve]): HydroGeneratingEfficiencyCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroGeneratingEfficiencyCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2007,6 +2595,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HydroGeneratingUnitSerializer extends CIMSerializer[HydroGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dropHeight),
+            () => output.writeString (obj.energyConversionCapability),
+            () => output.writeDouble (obj.hydroUnitWaterCost),
+            () => output.writeString (obj.turbineType),
+            () => writeList (obj.HydroGeneratingEfficiencyCurves, output),
+            () => output.writeString (obj.HydroPowerPlant),
+            () => output.writeString (obj.PenstockLossCurve),
+            () => writeList (obj.TailbayLossCurve, output)
+        )
+        GeneratingUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroGeneratingUnit]): HydroGeneratingUnit =
+    {
+        val parent = GeneratingUnitSerializer.read (kryo, input, classOf[GeneratingUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroGeneratingUnit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2171,6 +2799,56 @@ extends
     }
 }
 
+object HydroPowerPlantSerializer extends CIMSerializer[HydroPowerPlant]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroPowerPlant): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dischargeTravelDelay),
+            () => output.writeDouble (obj.genRatedP),
+            () => output.writeString (obj.hydroPlantStorageType),
+            () => output.writeString (obj.penstockType),
+            () => output.writeDouble (obj.plantDischargeCapacity),
+            () => output.writeDouble (obj.plantRatedHead),
+            () => output.writeDouble (obj.pumpRatedP),
+            () => output.writeString (obj.surgeTankCode),
+            () => output.writeDouble (obj.surgeTankCrestLevel),
+            () => output.writeString (obj.GenSourcePumpDischargeReservoir),
+            () => writeList (obj.HydroGeneratingUnits, output),
+            () => writeList (obj.HydroPumps, output),
+            () => output.writeString (obj.Reservoir)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroPowerPlant]): HydroPowerPlant =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroPowerPlant (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A synchronous motor-driven pump, typically associated with a pumped storage plant.
  *
@@ -2293,6 +2971,44 @@ extends
     }
 }
 
+object HydroPumpSerializer extends CIMSerializer[HydroPump]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroPump): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.pumpDischAtMaxHead),
+            () => output.writeDouble (obj.pumpDischAtMinHead),
+            () => output.writeDouble (obj.pumpPowerAtMaxHead),
+            () => output.writeDouble (obj.pumpPowerAtMinHead),
+            () => output.writeString (obj.HydroPowerPlant),
+            () => output.writeString (obj.HydroPumpOpSchedule),
+            () => output.writeString (obj.RotatingMachine)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroPump]): HydroPump =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroPump (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  *
@@ -2374,6 +3090,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object HydroPumpOpScheduleSerializer extends CIMSerializer[HydroPumpOpSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: HydroPumpOpSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.HydroPump)
+        )
+        RegularIntervalScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[HydroPumpOpSchedule]): HydroPumpOpSchedule =
+    {
+        val parent = RegularIntervalScheduleSerializer.read (kryo, input, classOf[RegularIntervalSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = HydroPumpOpSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2468,6 +3210,34 @@ extends
     }
 }
 
+object IncrementalHeatRateCurveSerializer extends CIMSerializer[IncrementalHeatRateCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: IncrementalHeatRateCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isNetGrossP),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IncrementalHeatRateCurve]): IncrementalHeatRateCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IncrementalHeatRateCurve (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
  *
@@ -2549,6 +3319,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object InflowForecastSerializer extends CIMSerializer[InflowForecast]
+{
+    def write (kryo: Kryo, output: Output, obj: InflowForecast): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Reservoir)
+        )
+        RegularIntervalScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[InflowForecast]): InflowForecast =
+    {
+        val parent = RegularIntervalScheduleSerializer.read (kryo, input, classOf[RegularIntervalSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = InflowForecast (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2636,6 +3432,32 @@ extends
     }
 }
 
+object LevelVsVolumeCurveSerializer extends CIMSerializer[LevelVsVolumeCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: LevelVsVolumeCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Reservoir)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LevelVsVolumeCurve]): LevelVsVolumeCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LevelVsVolumeCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A nuclear generating unit.
  *
@@ -2698,6 +3520,31 @@ extends
             GeneratingUnit.parse (context)
         )
         ret
+    }
+}
+
+object NuclearGeneratingUnitSerializer extends CIMSerializer[NuclearGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: NuclearGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        GeneratingUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[NuclearGeneratingUnit]): NuclearGeneratingUnit =
+    {
+        val parent = GeneratingUnitSerializer.read (kryo, input, classOf[GeneratingUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = NuclearGeneratingUnit (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2785,6 +3632,32 @@ extends
     }
 }
 
+object PenstockLossCurveSerializer extends CIMSerializer[PenstockLossCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: PenstockLossCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.HydroGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PenstockLossCurve]): PenstockLossCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PenstockLossCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A photovoltaic device or an aggregation of such devices.
  *
@@ -2847,6 +3720,31 @@ extends
             PowerElectronicsUnit.parse (context)
         )
         ret
+    }
+}
+
+object PhotoVoltaicUnitSerializer extends CIMSerializer[PhotoVoltaicUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: PhotoVoltaicUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        PowerElectronicsUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PhotoVoltaicUnit]): PhotoVoltaicUnit =
+    {
+        val parent = PowerElectronicsUnitSerializer.read (kryo, input, classOf[PowerElectronicsUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PhotoVoltaicUnit (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2947,6 +3845,36 @@ extends
     }
 }
 
+object PowerElectronicsUnitSerializer extends CIMSerializer[PowerElectronicsUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerElectronicsUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maxP),
+            () => output.writeDouble (obj.minP),
+            () => output.writeString (obj.PowerElectronicsConnection)
+        )
+        EquipmentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerElectronicsUnit]): PowerElectronicsUnit =
+    {
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerElectronicsUnit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A wind generating unit that connects to the AC network with power electronics rather than rotating machines or an aggregation of such units.
  *
@@ -3009,6 +3937,31 @@ extends
             PowerElectronicsUnit.parse (context)
         )
         ret
+    }
+}
+
+object PowerElectronicsWindUnitSerializer extends CIMSerializer[PowerElectronicsWindUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerElectronicsWindUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        PowerElectronicsUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerElectronicsWindUnit]): PowerElectronicsWindUnit =
+    {
+        val parent = PowerElectronicsUnitSerializer.read (kryo, input, classOf[PowerElectronicsUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerElectronicsWindUnit (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3207,6 +4160,66 @@ extends
     }
 }
 
+object ReservoirSerializer extends CIMSerializer[Reservoir]
+{
+    def write (kryo: Kryo, output: Output, obj: Reservoir): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.activeStorageCapacity),
+            () => output.writeDouble (obj.energyStorageRating),
+            () => output.writeDouble (obj.fullSupplyLevel),
+            () => output.writeDouble (obj.grossCapacity),
+            () => output.writeDouble (obj.normalMinOperateLevel),
+            () => output.writeString (obj.riverOutletWorks),
+            () => output.writeDouble (obj.spillTravelDelay),
+            () => output.writeString (obj.spillWayGateType),
+            () => output.writeDouble (obj.spillwayCapacity),
+            () => output.writeDouble (obj.spillwayCrestLength),
+            () => output.writeDouble (obj.spillwayCrestLevel),
+            () => writeList (obj.HydroPowerPlants, output),
+            () => writeList (obj.InflowForecasts, output),
+            () => writeList (obj.LevelVsVolumeCurves, output),
+            () => output.writeString (obj.SpillsFromReservoir),
+            () => writeList (obj.SpillsIntoReservoirs, output),
+            () => output.writeString (obj.TargetLevelSchedule),
+            () => writeList (obj.UpstreamFromHydroPowerPlants, output)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Reservoir]): Reservoir =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Reservoir (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) readList (input) else null,
+            if (isSet (13)) readList (input) else null,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) input.readString else null,
+            if (isSet (17)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
  *
@@ -3302,6 +4315,36 @@ extends
     }
 }
 
+object ShutdownCurveSerializer extends CIMSerializer[ShutdownCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: ShutdownCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.shutdownCost),
+            () => output.writeString (obj.shutdownDate),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ShutdownCurve]): ShutdownCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ShutdownCurve (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A solar thermal generating unit, connected to the grid by means of a rotating machine.
  *
@@ -3366,6 +4409,31 @@ extends
             GeneratingUnit.parse (context)
         )
         ret
+    }
+}
+
+object SolarGeneratingUnitSerializer extends CIMSerializer[SolarGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: SolarGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        GeneratingUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SolarGeneratingUnit]): SolarGeneratingUnit =
+    {
+        val parent = GeneratingUnitSerializer.read (kryo, input, classOf[GeneratingUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SolarGeneratingUnit (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3457,6 +4525,34 @@ extends
     }
 }
 
+object StartIgnFuelCurveSerializer extends CIMSerializer[StartIgnFuelCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: StartIgnFuelCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.ignitionFuelType),
+            () => output.writeString (obj.StartupModel)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StartIgnFuelCurve]): StartIgnFuelCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StartIgnFuelCurve (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
  *
@@ -3542,6 +4638,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object StartMainFuelCurveSerializer extends CIMSerializer[StartMainFuelCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: StartMainFuelCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.mainFuelType),
+            () => output.writeString (obj.StartupModel)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StartMainFuelCurve]): StartMainFuelCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StartMainFuelCurve (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3631,6 +4755,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object StartRampCurveSerializer extends CIMSerializer[StartRampCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: StartRampCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.hotStandbyRamp),
+            () => output.writeString (obj.StartupModel)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StartRampCurve]): StartRampCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StartRampCurve (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3800,6 +4952,58 @@ extends
     }
 }
 
+object StartupModelSerializer extends CIMSerializer[StartupModel]
+{
+    def write (kryo: Kryo, output: Output, obj: StartupModel): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.fixedMaintCost),
+            () => output.writeDouble (obj.hotStandbyHeat),
+            () => output.writeDouble (obj.incrementalMaintCost),
+            () => output.writeDouble (obj.minimumDownTime),
+            () => output.writeDouble (obj.minimumRunTime),
+            () => output.writeDouble (obj.riskFactorCost),
+            () => output.writeDouble (obj.startupCost),
+            () => output.writeString (obj.startupDate),
+            () => output.writeInt (obj.startupPriority),
+            () => output.writeDouble (obj.stbyAuxP),
+            () => output.writeString (obj.StartIgnFuelCurve),
+            () => output.writeString (obj.StartMainFuelCurve),
+            () => output.writeString (obj.StartRampCurve),
+            () => output.writeString (obj.ThermalGeneratingUnit)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[StartupModel]): StartupModel =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = StartupModel (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readInt else 0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The cogeneration plant's steam sendout schedule in volume per time unit.
  *
@@ -3879,6 +5083,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SteamSendoutScheduleSerializer extends CIMSerializer[SteamSendoutSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: SteamSendoutSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.CogenerationPlant)
+        )
+        RegularIntervalScheduleSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SteamSendoutSchedule]): SteamSendoutSchedule =
+    {
+        val parent = RegularIntervalScheduleSerializer.read (kryo, input, classOf[RegularIntervalSchedule])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SteamSendoutSchedule (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3963,6 +5193,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TailbayLossCurveSerializer extends CIMSerializer[TailbayLossCurve]
+{
+    def write (kryo: Kryo, output: Output, obj: TailbayLossCurve): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.HydroGeneratingUnit)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TailbayLossCurve]): TailbayLossCurve =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TailbayLossCurve (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4060,6 +5316,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TargetLevelScheduleSerializer extends CIMSerializer[TargetLevelSchedule]
+{
+    def write (kryo: Kryo, output: Output, obj: TargetLevelSchedule): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.highLevelLimit),
+            () => output.writeDouble (obj.lowLevelLimit),
+            () => output.writeString (obj.Reservoir)
+        )
+        CurveSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TargetLevelSchedule]): TargetLevelSchedule =
+    {
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TargetLevelSchedule (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4230,6 +5516,56 @@ extends
     }
 }
 
+object ThermalGeneratingUnitSerializer extends CIMSerializer[ThermalGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: ThermalGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.oMCost),
+            () => output.writeString (obj.CAESPlant),
+            () => output.writeString (obj.CogenerationPlant),
+            () => output.writeString (obj.CombinedCyclePlant),
+            () => writeList (obj.EmissionCurves, output),
+            () => writeList (obj.EmmissionAccounts, output),
+            () => writeList (obj.FossilFuels, output),
+            () => writeList (obj.FuelAllocationSchedules, output),
+            () => output.writeString (obj.HeatInputCurve),
+            () => output.writeString (obj.HeatRateCurve),
+            () => output.writeString (obj.IncrementalHeatRateCurve),
+            () => output.writeString (obj.ShutdownCurve),
+            () => output.writeString (obj.StartupModel)
+        )
+        GeneratingUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ThermalGeneratingUnit]): ThermalGeneratingUnit =
+    {
+        val parent = GeneratingUnitSerializer.read (kryo, input, classOf[GeneratingUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ThermalGeneratingUnit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A wind driven generating unit, connected to the grid by means of a rotating machine.
  *
@@ -4308,6 +5644,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindGeneratingUnitSerializer extends CIMSerializer[WindGeneratingUnit]
+{
+    def write (kryo: Kryo, output: Output, obj: WindGeneratingUnit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.windGenUnitType)
+        )
+        GeneratingUnitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindGeneratingUnit]): WindGeneratingUnit =
+    {
+        val parent = GeneratingUnitSerializer.read (kryo, input, classOf[GeneratingUnit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindGeneratingUnit (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

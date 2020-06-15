@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Bilateral transaction
@@ -135,6 +139,46 @@ extends
     }
 }
 
+object BilateralTransactionSerializer extends CIMSerializer[BilateralTransaction]
+{
+    def write (kryo: Kryo, output: Output, obj: BilateralTransaction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.curtailTimeMax),
+            () => output.writeInt (obj.curtailTimeMin),
+            () => output.writeString (obj.marketType),
+            () => output.writeInt (obj.purchaseTimeMax),
+            () => output.writeInt (obj.purchaseTimeMin),
+            () => output.writeString (obj.scope),
+            () => output.writeDouble (obj.totalTranChargeMax),
+            () => output.writeString (obj.transactionType)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BilateralTransaction]): BilateralTransaction =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BilateralTransaction (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readInt else 0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
  *
@@ -211,6 +255,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ParticipationSerializer extends CIMSerializer[Participation]
+{
+    def write (kryo: Kryo, output: Output, obj: Participation): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.factor)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Participation]): Participation =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Participation (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -374,6 +444,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ResourceCertification2Serializer extends CIMSerializer[ResourceCertification2]
+{
+    def write (kryo: Kryo, output: Output, obj: ResourceCertification2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.certifiedDAM),
+            () => output.writeString (obj.certifiedNonspinDAM),
+            () => output.writeDouble (obj.certifiedNonspinDAMMw),
+            () => output.writeString (obj.certifiedNonspinRTM),
+            () => output.writeDouble (obj.certifiedNonspinRTMMw),
+            () => output.writeString (obj.certifiedPIRP),
+            () => output.writeString (obj.certifiedRTM),
+            () => output.writeString (obj.certifiedRUC),
+            () => output.writeString (obj.certifiedRegulation),
+            () => output.writeDouble (obj.certifiedRegulationMw),
+            () => output.writeString (obj.certifiedReplaceAS),
+            () => output.writeString (obj.certifiedSpin),
+            () => output.writeDouble (obj.certifiedSpinMw),
+            () => writeList (obj.RegisteredResource, output)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ResourceCertification2]): ResourceCertification2 =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ResourceCertification2 (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

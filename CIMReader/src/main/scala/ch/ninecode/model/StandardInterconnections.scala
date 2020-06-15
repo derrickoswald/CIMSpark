@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
@@ -150,6 +154,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object RemoteInputSignalSerializer extends CIMSerializer[RemoteInputSignal]
+{
+    def write (kryo: Kryo, output: Output, obj: RemoteInputSignal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.remoteSignalType),
+            () => output.writeString (obj.DiscontinuousExcitationControlDynamics),
+            () => output.writeString (obj.PFVArControllerType1Dynamics),
+            () => output.writeString (obj.PowerSystemStabilizerDynamics),
+            () => output.writeString (obj.Terminal),
+            () => output.writeString (obj.UnderexcitationLimiterDynamics),
+            () => output.writeString (obj.VoltageCompensatorDynamics),
+            () => output.writeString (obj.WindPlantDynamics),
+            () => output.writeString (obj.WindTurbineType1or2Dynamics),
+            () => output.writeString (obj.WindTurbineType3or4Dynamics)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[RemoteInputSignal]): RemoteInputSignal =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = RemoteInputSignal (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

@@ -2,8 +2,6 @@ package ch.ninecode.cim
 
 import java.io.File
 
-import scala.collection.JavaConversions.mapAsJavaMap
-
 import org.apache.spark.sql.SparkSession
 
 class CIMSparkSuite extends ch.ninecode.SparkSuite

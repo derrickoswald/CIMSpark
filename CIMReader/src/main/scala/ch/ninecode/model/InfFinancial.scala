@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Operates the Control Area.
@@ -99,6 +103,34 @@ extends
     }
 }
 
+object ControlAreaOperatorSerializer extends CIMSerializer[ControlAreaOperator]
+{
+    def write (kryo: Kryo, output: Output, obj: ControlAreaOperator): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.CAChildOf, output),
+            () => output.writeString (obj.ControlledBy)
+        )
+        OrganisationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ControlAreaOperator]): ControlAreaOperator =
+    {
+        val parent = OrganisationSerializer.read (kryo, input, classOf[Organisation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ControlAreaOperator (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * The energy buyer in the energy marketplace.
  *
@@ -178,6 +210,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CustomerConsumerSerializer extends CIMSerializer[CustomerConsumer]
+{
+    def write (kryo: Kryo, output: Output, obj: CustomerConsumer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.CustChildOf, output)
+        )
+        OrganisationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CustomerConsumer]): CustomerConsumer =
+    {
+        val parent = OrganisationSerializer.read (kryo, input, classOf[Organisation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CustomerConsumer (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -263,6 +321,32 @@ extends
     }
 }
 
+object GenerationProviderSerializer extends CIMSerializer[GenerationProvider]
+{
+    def write (kryo: Kryo, output: Output, obj: GenerationProvider): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.ProvidedBy, output)
+        )
+        OrganisationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[GenerationProvider]): GenerationProvider =
+    {
+        val parent = OrganisationSerializer.read (kryo, input, classOf[Organisation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = GenerationProvider (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *
@@ -340,6 +424,32 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object IntSchedAgreementSerializer extends CIMSerializer[IntSchedAgreement]
+{
+    def write (kryo: Kryo, output: Output, obj: IntSchedAgreement): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.defaultIntegrationMethod)
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[IntSchedAgreement]): IntSchedAgreement =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = IntSchedAgreement (
+            parent,
+            if (isSet (0)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -432,6 +542,34 @@ extends
     }
 }
 
+object MarketerSerializer extends CIMSerializer[Marketer]
+{
+    def write (kryo: Kryo, output: Output, obj: Marketer): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.HoldsTitleTo_EnergyProducts, output),
+            () => writeList (obj.Resells_EnergyProduct, output)
+        )
+        OrganisationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[Marketer]): Marketer =
+    {
+        val parent = OrganisationSerializer.read (kryo, input, classOf[Organisation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = Marketer (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Contracts for services offered commercially.
  *
@@ -494,6 +632,31 @@ extends
             Agreement.parse (context)
         )
         ret
+    }
+}
+
+object OpenAccessProductSerializer extends CIMSerializer[OpenAccessProduct]
+{
+    def write (kryo: Kryo, output: Output, obj: OpenAccessProduct): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        AgreementSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OpenAccessProduct]): OpenAccessProduct =
+    {
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OpenAccessProduct (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -588,6 +751,36 @@ extends
     }
 }
 
+object TransmissionProductSerializer extends CIMSerializer[TransmissionProduct]
+{
+    def write (kryo: Kryo, output: Output, obj: TransmissionProduct): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.transmissionProductType),
+            () => writeList (obj.LocationFor, output),
+            () => output.writeString (obj.TransmissionProvider)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TransmissionProduct]): TransmissionProduct =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TransmissionProduct (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
  *
@@ -677,6 +870,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TransmissionProviderSerializer extends CIMSerializer[TransmissionProvider]
+{
+    def write (kryo: Kryo, output: Output, obj: TransmissionProvider): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.For, output),
+            () => writeList (obj.TransmissionProducts, output)
+        )
+        OrganisationSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TransmissionProvider]): TransmissionProvider =
+    {
+        val parent = OrganisationSerializer.read (kryo, input, classOf[Organisation])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TransmissionProvider (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

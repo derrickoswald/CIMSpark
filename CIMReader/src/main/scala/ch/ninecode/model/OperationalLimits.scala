@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Limit on active power flow.
@@ -92,6 +96,34 @@ extends
     }
 }
 
+object ActivePowerLimitSerializer extends CIMSerializer[ActivePowerLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: ActivePowerLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeDouble (obj.value)
+        )
+        OperationalLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ActivePowerLimit]): ActivePowerLimit =
+    {
+        val parent = OperationalLimitSerializer.read (kryo, input, classOf[OperationalLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ActivePowerLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Apparent power limit.
  *
@@ -174,6 +206,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ApparentPowerLimitSerializer extends CIMSerializer[ApparentPowerLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: ApparentPowerLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeDouble (obj.value)
+        )
+        OperationalLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ApparentPowerLimit]): ApparentPowerLimit =
+    {
+        val parent = OperationalLimitSerializer.read (kryo, input, classOf[OperationalLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ApparentPowerLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -305,6 +365,46 @@ extends
     }
 }
 
+object BranchGroupSerializer extends CIMSerializer[BranchGroup]
+{
+    def write (kryo: Kryo, output: Output, obj: BranchGroup): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.maximumActivePower),
+            () => output.writeDouble (obj.maximumReactivePower),
+            () => output.writeDouble (obj.minimumActivePower),
+            () => output.writeDouble (obj.minimumReactivePower),
+            () => output.writeBoolean (obj.monitorActivePower),
+            () => output.writeBoolean (obj.monitorReactivePower),
+            () => writeList (obj.BranchGroupTerminal, output),
+            () => writeList (obj.PinBranchGroup, output)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BranchGroup]): BranchGroup =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BranchGroup (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A specific directed terminal flow for a branch group.
  *
@@ -402,6 +502,36 @@ extends
     }
 }
 
+object BranchGroupTerminalSerializer extends CIMSerializer[BranchGroupTerminal]
+{
+    def write (kryo: Kryo, output: Output, obj: BranchGroupTerminal): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.positiveFlowIn),
+            () => output.writeString (obj.BranchGroup),
+            () => output.writeString (obj.Terminal)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[BranchGroupTerminal]): BranchGroupTerminal =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = BranchGroupTerminal (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Operational limit on current.
  *
@@ -484,6 +614,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object CurrentLimitSerializer extends CIMSerializer[CurrentLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: CurrentLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeDouble (obj.value)
+        )
+        OperationalLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CurrentLimit]): CurrentLimit =
+    {
+        val parent = OperationalLimitSerializer.read (kryo, input, classOf[OperationalLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CurrentLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -598,6 +756,38 @@ extends
     }
 }
 
+object OperationalLimitSerializer extends CIMSerializer[OperationalLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: OperationalLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.LimitDependencyModel, output),
+            () => writeList (obj.LimitScalingLimit, output),
+            () => output.writeString (obj.OperationalLimitSet),
+            () => output.writeString (obj.OperationalLimitType)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OperationalLimit]): OperationalLimit =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OperationalLimit (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * A set of limits associated with equipment.
  *
@@ -694,6 +884,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OperationalLimitSetSerializer extends CIMSerializer[OperationalLimitSet]
+{
+    def write (kryo: Kryo, output: Output, obj: OperationalLimitSet): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.Equipment),
+            () => writeList (obj.OperationalLimitValue, output),
+            () => output.writeString (obj.Terminal)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OperationalLimitSet]): OperationalLimitSet =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OperationalLimitSet (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) readList (input) else null,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -808,6 +1028,40 @@ extends
     }
 }
 
+object OperationalLimitTypeSerializer extends CIMSerializer[OperationalLimitType]
+{
+    def write (kryo: Kryo, output: Output, obj: OperationalLimitType): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.acceptableDuration),
+            () => output.writeString (obj.direction),
+            () => writeList (obj.OperationalLimit, output),
+            () => writeList (obj.SourceOperationalLimitTypeScaling, output),
+            () => output.writeString (obj.TargetOperationalLimitmTypeScaling)
+        )
+        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OperationalLimitType]): OperationalLimitType =
+    {
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OperationalLimitType (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) readList (input) else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Operational limit applied to voltage.
  *
@@ -892,6 +1146,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VoltageLimitSerializer extends CIMSerializer[VoltageLimit]
+{
+    def write (kryo: Kryo, output: Output, obj: VoltageLimit): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.normalValue),
+            () => output.writeDouble (obj.value)
+        )
+        OperationalLimitSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VoltageLimit]): VoltageLimit =
+    {
+        val parent = OperationalLimitSerializer.read (kryo, input, classOf[OperationalLimit])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VoltageLimit (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

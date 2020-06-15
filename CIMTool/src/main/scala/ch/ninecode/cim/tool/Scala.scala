@@ -367,6 +367,88 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
            |        )$update
            |        ret
            |    }
+           |""".stripMargin
+    }
+
+    def write (arg: (Member, Int)) (implicit identified_object: Boolean): String =
+    {
+        val (member, _) = arg
+        if (identified_object && member.name == "mRID")
+            "Unit"
+        else
+            member.datatype match
+            {
+                case "String" => s"output.writeString (obj.${member.variable})"
+                case "Int" => s"output.writeInt (obj.${member.variable})"
+                case "Double" => s"output.writeDouble (obj.${member.variable})"
+                case "Boolean" => s"output.writeBoolean (obj.${member.variable})"
+                case "List[String]" => s"writeList (obj.${member.variable}, output)"
+                case _ =>
+                    throw new Exception (s"unhandled type ${member.datatype}")
+            }
+    }
+
+    def read (arg: (Member, Int)) (implicit identified_object: Boolean): String =
+    {
+        val (member, index) = arg
+        val reader = if (identified_object && member.name == "mRID")
+            "parent.mRID"
+        else
+            member.datatype match
+            {
+                case "String" => "input.readString"
+                case "Int" => "input.readInt"
+                case "Double" => "input.readDouble"
+                case "Boolean" => "input.readBoolean"
+                case "List[String]" => s"readList (input)"
+                case _ =>
+                    throw new Exception (s"unhandled type ${member.datatype}")
+            }
+        // adding "${member.variable} =" to use named parameters causes the compiler to run out of memory
+        s"if (isSet ($index)) $reader else ${member.initializer}"
+    }
+
+    def serialize (cls: Class, name: String, members: SortedSet[Member]): String =
+    {
+        implicit val identified_object: Boolean = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
+        val fields = members.filter (x => !x.isSuper).toSeq
+
+        val writers = fields.zipWithIndex.map (write).map (w => s"            () => $w").mkString (",\n")
+        val readers = (Seq ("parent") ++ fields.zipWithIndex.map (read)).map (r => s"            $r").mkString (",\n")
+
+        // output the serializer/deserializer class
+        val supser = if (null == cls.sup)
+            "BasicElement"
+        else
+            cls.sup.name
+        val supobj = if (null == cls.sup)
+            "obj.sup.asInstanceOf[BasicElement]"
+        else
+            "obj.sup"
+        s"""
+           |object ${name}Serializer extends CIMSerializer[$name]
+           |{
+           |    def write (kryo: Kryo, output: Output, obj: $name): Unit =
+           |    {
+           |        val toSerialize: Array[() => Unit] = Array (
+           |$writers
+           |        )
+           |        ${supser}Serializer.write (kryo, output, $supobj)
+           |        implicit val bitfields: Array[Int] = obj.bitfields
+           |        writeBitfields (output)
+           |        writeFields (toSerialize)
+           |    }
+           |
+           |    def read (kryo: Kryo, input: Input, cls: Class[$name]): $name =
+           |    {
+           |        val parent = ${supser}Serializer.read (kryo, input, classOf[${supser}])
+           |        implicit val bitfields: Array[Int] = readBitfields (input)
+           |        val obj = $name (
+           |$readers
+           |        )
+           |        obj.bitfields = bitfields
+           |        obj
+           |    }
            |}
            |""".stripMargin
     }
@@ -401,6 +483,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append ("\n{\n")
                 .append (parseRelationships (fields))
                 .append (parse (cls, name, members))
+                .append ("}\n")
+                .append (serialize (cls, name, members))
                 .append ("\n")
 
             p.append (s)
@@ -412,12 +496,16 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
                 .append ("""package ch.ninecode.model
                     |
+                    |import com.esotericsoftware.kryo.Kryo
+                    |import com.esotericsoftware.kryo.io.Input
+                    |import com.esotericsoftware.kryo.io.Output
                     |import org.apache.spark.sql.Row
                     |
                     |import ch.ninecode.cim.CIMClassInfo
                     |import ch.ninecode.cim.CIMContext
                     |import ch.ninecode.cim.CIMParseable
                     |import ch.ninecode.cim.CIMRelationship
+                    |import ch.ninecode.cim.CIMSerializer
                     |
                     |""".stripMargin)
                 .append (p.toString)

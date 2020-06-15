@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -100,6 +104,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object AsynchronousMachineUserDefinedSerializer extends CIMSerializer[AsynchronousMachineUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: AsynchronousMachineUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        AsynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineUserDefined]): AsynchronousMachineUserDefined =
+    {
+        val parent = AsynchronousMachineDynamicsSerializer.read (kryo, input, classOf[AsynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = AsynchronousMachineUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -199,6 +231,34 @@ extends
     }
 }
 
+object CSCUserDefinedSerializer extends CIMSerializer[CSCUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: CSCUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        CSCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[CSCUserDefined]): CSCUserDefined =
+    {
+        val parent = CSCDynamicsSerializer.read (kryo, input, classOf[CSCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = CSCUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -292,6 +352,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object DiscontinuousExcitationControlUserDefinedSerializer extends CIMSerializer[DiscontinuousExcitationControlUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: DiscontinuousExcitationControlUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        DiscontinuousExcitationControlDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DiscontinuousExcitationControlUserDefined]): DiscontinuousExcitationControlUserDefined =
+    {
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DiscontinuousExcitationControlUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -391,6 +479,34 @@ extends
     }
 }
 
+object ExcitationSystemUserDefinedSerializer extends CIMSerializer[ExcitationSystemUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcitationSystemUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcitationSystemUserDefined]): ExcitationSystemUserDefined =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcitationSystemUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Load whose dynamic behaviour is described by a user-defined model.
  *
@@ -484,6 +600,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object LoadUserDefinedSerializer extends CIMSerializer[LoadUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: LoadUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        LoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[LoadUserDefined]): LoadUserDefined =
+    {
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = LoadUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -583,6 +727,34 @@ extends
     }
 }
 
+object MechanicalLoadUserDefinedSerializer extends CIMSerializer[MechanicalLoadUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: MechanicalLoadUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        MechanicalLoadDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[MechanicalLoadUserDefined]): MechanicalLoadUserDefined =
+    {
+        val parent = MechanicalLoadDynamicsSerializer.read (kryo, input, classOf[MechanicalLoadDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = MechanicalLoadUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -676,6 +848,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object OverexcitationLimiterUserDefinedSerializer extends CIMSerializer[OverexcitationLimiterUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: OverexcitationLimiterUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        OverexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[OverexcitationLimiterUserDefined]): OverexcitationLimiterUserDefined =
+    {
+        val parent = OverexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[OverexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = OverexcitationLimiterUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -775,6 +975,34 @@ extends
     }
 }
 
+object PFVArControllerType1UserDefinedSerializer extends CIMSerializer[PFVArControllerType1UserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: PFVArControllerType1UserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        PFVArControllerType1DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFVArControllerType1UserDefined]): PFVArControllerType1UserDefined =
+    {
+        val parent = PFVArControllerType1DynamicsSerializer.read (kryo, input, classOf[PFVArControllerType1Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFVArControllerType1UserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Power factor or VAr controller type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -871,6 +1099,34 @@ extends
     }
 }
 
+object PFVArControllerType2UserDefinedSerializer extends CIMSerializer[PFVArControllerType2UserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: PFVArControllerType2UserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        PFVArControllerType2DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PFVArControllerType2UserDefined]): PFVArControllerType2UserDefined =
+    {
+        val parent = PFVArControllerType2DynamicsSerializer.read (kryo, input, classOf[PFVArControllerType2Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PFVArControllerType2UserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -964,6 +1220,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object PowerSystemStabilizerUserDefinedSerializer extends CIMSerializer[PowerSystemStabilizerUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: PowerSystemStabilizerUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        PowerSystemStabilizerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PowerSystemStabilizerUserDefined]): PowerSystemStabilizerUserDefined =
+    {
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PowerSystemStabilizerUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1224,6 +1508,80 @@ extends
     }
 }
 
+object ProprietaryParameterDynamicsSerializer extends CIMSerializer[ProprietaryParameterDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: ProprietaryParameterDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.booleanParameterValue),
+            () => output.writeDouble (obj.floatParameterValue),
+            () => output.writeInt (obj.integerParameterValue),
+            () => output.writeInt (obj.parameterNumber),
+            () => output.writeString (obj.AsynchronousMachineUserDefined),
+            () => output.writeString (obj.CSCUserDefined),
+            () => output.writeString (obj.DiscontinuousExcitationControlUserDefined),
+            () => output.writeString (obj.ExcitationSystemUserDefined),
+            () => output.writeString (obj.LoadUserDefined),
+            () => output.writeString (obj.MechanicalLoadUserDefined),
+            () => output.writeString (obj.OverexcitationLimiterUserDefined),
+            () => output.writeString (obj.PFVArControllerType1UserDefined),
+            () => output.writeString (obj.PFVArControllerType2UserDefined),
+            () => output.writeString (obj.PowerSystemStabilizerUserDefined),
+            () => output.writeString (obj.SVCUserDefined),
+            () => output.writeString (obj.SynchronousMachineUserDefined),
+            () => output.writeString (obj.TurbineGovernorUserDefined),
+            () => output.writeString (obj.TurbineLoadControllerUserDefined),
+            () => output.writeString (obj.UnderexcitationLimiterUserDefined),
+            () => output.writeString (obj.VSCUserDefined),
+            () => output.writeString (obj.VoltageAdjusterUserDefined),
+            () => output.writeString (obj.VoltageCompensatorUserDefined),
+            () => output.writeString (obj.WindPlantUserDefined),
+            () => output.writeString (obj.WindType1or2UserDefined),
+            () => output.writeString (obj.WindType3or4UserDefined)
+        )
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ProprietaryParameterDynamics]): ProprietaryParameterDynamics =
+    {
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ProprietaryParameterDynamics (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) input.readInt else 0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readString else null,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) input.readString else null,
+            if (isSet (16)) input.readString else null,
+            if (isSet (17)) input.readString else null,
+            if (isSet (18)) input.readString else null,
+            if (isSet (19)) input.readString else null,
+            if (isSet (20)) input.readString else null,
+            if (isSet (21)) input.readString else null,
+            if (isSet (22)) input.readString else null,
+            if (isSet (23)) input.readString else null,
+            if (isSet (24)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Static var compensator (SVC) function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -1317,6 +1675,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object SVCUserDefinedSerializer extends CIMSerializer[SVCUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: SVCUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        StaticVarCompensatorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SVCUserDefined]): SVCUserDefined =
+    {
+        val parent = StaticVarCompensatorDynamicsSerializer.read (kryo, input, classOf[StaticVarCompensatorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SVCUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1416,6 +1802,34 @@ extends
     }
 }
 
+object SynchronousMachineUserDefinedSerializer extends CIMSerializer[SynchronousMachineUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: SynchronousMachineUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        SynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachineUserDefined]): SynchronousMachineUserDefined =
+    {
+        val parent = SynchronousMachineDynamicsSerializer.read (kryo, input, classOf[SynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = SynchronousMachineUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -1509,6 +1923,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object TurbineGovernorUserDefinedSerializer extends CIMSerializer[TurbineGovernorUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: TurbineGovernorUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        TurbineGovernorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TurbineGovernorUserDefined]): TurbineGovernorUserDefined =
+    {
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TurbineGovernorUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1608,6 +2050,34 @@ extends
     }
 }
 
+object TurbineLoadControllerUserDefinedSerializer extends CIMSerializer[TurbineLoadControllerUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: TurbineLoadControllerUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        TurbineLoadControllerDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[TurbineLoadControllerUserDefined]): TurbineLoadControllerUserDefined =
+    {
+        val parent = TurbineLoadControllerDynamicsSerializer.read (kryo, input, classOf[TurbineLoadControllerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = TurbineLoadControllerUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -1701,6 +2171,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object UnderexcitationLimiterUserDefinedSerializer extends CIMSerializer[UnderexcitationLimiterUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: UnderexcitationLimiterUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        UnderexcitationLimiterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[UnderexcitationLimiterUserDefined]): UnderexcitationLimiterUserDefined =
+    {
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = UnderexcitationLimiterUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1800,6 +2298,34 @@ extends
     }
 }
 
+object VSCUserDefinedSerializer extends CIMSerializer[VSCUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: VSCUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        VSCDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VSCUserDefined]): VSCUserDefined =
+    {
+        val parent = VSCDynamicsSerializer.read (kryo, input, classOf[VSCDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VSCUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -1893,6 +2419,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object VoltageAdjusterUserDefinedSerializer extends CIMSerializer[VoltageAdjusterUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: VoltageAdjusterUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        VoltageAdjusterDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VoltageAdjusterUserDefined]): VoltageAdjusterUserDefined =
+    {
+        val parent = VoltageAdjusterDynamicsSerializer.read (kryo, input, classOf[VoltageAdjusterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VoltageAdjusterUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1992,6 +2546,34 @@ extends
     }
 }
 
+object VoltageCompensatorUserDefinedSerializer extends CIMSerializer[VoltageCompensatorUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: VoltageCompensatorUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        VoltageCompensatorDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[VoltageCompensatorUserDefined]): VoltageCompensatorUserDefined =
+    {
+        val parent = VoltageCompensatorDynamicsSerializer.read (kryo, input, classOf[VoltageCompensatorDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = VoltageCompensatorUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -2085,6 +2667,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindPlantUserDefinedSerializer extends CIMSerializer[WindPlantUserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: WindPlantUserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        WindPlantDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindPlantUserDefined]): WindPlantUserDefined =
+    {
+        val parent = WindPlantDynamicsSerializer.read (kryo, input, classOf[WindPlantDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindPlantUserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2184,6 +2794,34 @@ extends
     }
 }
 
+object WindType1or2UserDefinedSerializer extends CIMSerializer[WindType1or2UserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: WindType1or2UserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        WindTurbineType1or2DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindType1or2UserDefined]): WindType1or2UserDefined =
+    {
+        val parent = WindTurbineType1or2DynamicsSerializer.read (kryo, input, classOf[WindTurbineType1or2Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindType1or2UserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Wind type 3 or type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
@@ -2277,6 +2915,34 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object WindType3or4UserDefinedSerializer extends CIMSerializer[WindType3or4UserDefined]
+{
+    def write (kryo: Kryo, output: Output, obj: WindType3or4UserDefined): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.proprietary),
+            () => writeList (obj.ProprietaryParameterDynamics, output)
+        )
+        WindTurbineType3or4DynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WindType3or4UserDefined]): WindType3or4UserDefined =
+    {
+        val parent = WindTurbineType3or4DynamicsSerializer.read (kryo, input, classOf[WindTurbineType3or4Dynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WindType3or4UserDefined (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 

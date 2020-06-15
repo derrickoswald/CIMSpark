@@ -1,11 +1,15 @@
 package ch.ninecode.model
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMRelationship
+import ch.ninecode.cim.CIMSerializer
 
 /**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
@@ -235,6 +239,74 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAC1ASerializer extends CIMSerializer[ExcAC1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.hvlvgates),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kf1),
+            () => output.writeDouble (obj.kf2),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC1A]): ExcAC1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC1A (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -513,6 +585,86 @@ extends
     }
 }
 
+object ExcAC2ASerializer extends CIMSerializer[ExcAC2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.hvgate),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kb),
+            () => output.writeDouble (obj.kb1),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.kl),
+            () => output.writeDouble (obj.kl1),
+            () => output.writeDouble (obj.ks),
+            () => output.writeBoolean (obj.lvgate),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vlr),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC2A]): ExcAC2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC2A (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readBoolean else false,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
  *
@@ -770,6 +922,82 @@ extends
     }
 }
 
+object ExcAC3ASerializer extends CIMSerializer[ExcAC3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdn),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kf1),
+            () => output.writeDouble (obj.kf2),
+            () => output.writeDouble (obj.klv),
+            () => output.writeDouble (obj.kn),
+            () => output.writeDouble (obj.kr),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vlv)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC3A]): ExcAC3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
  *
@@ -905,6 +1133,48 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAC4ASerializer extends CIMSerializer[ExcAC4A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC4A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC4A]): ExcAC4A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC4A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1106,6 +1376,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAC5ASerializer extends CIMSerializer[ExcAC5A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC5A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a),
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tf3),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC5A]): ExcAC5A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC5A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1342,6 +1672,76 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAC6ASerializer extends CIMSerializer[ExcAC6A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC6A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.th),
+            () => output.writeDouble (obj.tj),
+            () => output.writeDouble (obj.tk),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vfelim),
+            () => output.writeDouble (obj.vhmax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC6A]): ExcAC6A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC6A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -1616,6 +2016,84 @@ extends
     }
 }
 
+object ExcAC8BSerializer extends CIMSerializer[ExcAC8B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAC8B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.inlim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kdr),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kir),
+            () => output.writeDouble (obj.kpr),
+            () => output.writeDouble (obj.ks),
+            () => output.writeBoolean (obj.pidlim),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tdr),
+            () => output.writeDouble (obj.te),
+            () => output.writeBoolean (obj.telim),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vpidmax),
+            () => output.writeDouble (obj.vpidmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeBoolean (obj.vtmult)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAC8B]): ExcAC8B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAC8B (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readBoolean else false,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readBoolean else false,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Italian excitation system.
  *
@@ -1797,6 +2275,58 @@ extends
     }
 }
 
+object ExcANSSerializer extends CIMSerializer[ExcANS]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcANS): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.blint),
+            () => output.writeDouble (obj.ifmn),
+            () => output.writeDouble (obj.ifmx),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.kce),
+            () => output.writeInt (obj.krvecc),
+            () => output.writeInt (obj.kvfif),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.vrmn),
+            () => output.writeDouble (obj.vrmx)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcANS]): ExcANS =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcANS (
+            parent,
+            if (isSet (0)) input.readInt else 0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readInt else 0,
+            if (isSet (7)) input.readInt else 0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Italian excitation system corresponding to IEEE (1968) type 1 model.
  *
@@ -1955,6 +2485,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAVR1Serializer extends CIMSerializer[ExcAVR1]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.se1),
+            () => output.writeDouble (obj.se2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vrmn),
+            () => output.writeDouble (obj.vrmx)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR1]): ExcAVR1 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2126,6 +2704,56 @@ extends
     }
 }
 
+object ExcAVR2Serializer extends CIMSerializer[ExcAVR2]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.se1),
+            () => output.writeDouble (obj.se2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.vrmn),
+            () => output.writeDouble (obj.vrmx)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR2]): ExcAVR2 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Italian excitation system.
  *
@@ -2284,6 +2912,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAVR3Serializer extends CIMSerializer[ExcAVR3]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR3): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.se1),
+            () => output.writeDouble (obj.se2),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.vrmn),
+            () => output.writeDouble (obj.vrmx)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR3]): ExcAVR3 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR3 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2464,6 +3140,58 @@ extends
     }
 }
 
+object ExcAVR4Serializer extends CIMSerializer[ExcAVR4]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR4): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.imul),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kif),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t1if),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.tif),
+            () => output.writeDouble (obj.vfmn),
+            () => output.writeDouble (obj.vfmx),
+            () => output.writeDouble (obj.vrmn),
+            () => output.writeDouble (obj.vrmx)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR4]): ExcAVR4 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR4 (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Manual excitation control with field circuit resistance.
  *
@@ -2556,6 +3284,36 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcAVR5Serializer extends CIMSerializer[ExcAVR5]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR5): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.rex),
+            () => output.writeDouble (obj.ta)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR5]): ExcAVR5 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR5 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -2781,6 +3539,72 @@ extends
     }
 }
 
+object ExcAVR7Serializer extends CIMSerializer[ExcAVR7]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcAVR7): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.a1),
+            () => output.writeDouble (obj.a2),
+            () => output.writeDouble (obj.a3),
+            () => output.writeDouble (obj.a4),
+            () => output.writeDouble (obj.a5),
+            () => output.writeDouble (obj.a6),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k5),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.vmax1),
+            () => output.writeDouble (obj.vmax3),
+            () => output.writeDouble (obj.vmax5),
+            () => output.writeDouble (obj.vmin1),
+            () => output.writeDouble (obj.vmin3),
+            () => output.writeDouble (obj.vmin5)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcAVR7]): ExcAVR7 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcAVR7 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Transformer fed static excitation system (static with ABB regulator).
  *
@@ -2937,6 +3761,52 @@ extends
     }
 }
 
+object ExcBBCSerializer extends CIMSerializer[ExcBBC]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcBBC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeDouble (obj.k),
+            () => output.writeBoolean (obj.`switch`),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xe)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcBBC]): ExcBBC =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcBBC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readBoolean else false,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Czech proportion/integral exciter.
  *
@@ -3069,6 +3939,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcCZSerializer extends CIMSerializer[ExcCZ]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcCZ): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcCZ]): ExcCZ =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcCZ (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3273,6 +4187,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcDC1ASerializer extends CIMSerializer[ExcDC1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcDC1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcDC1A]): ExcDC1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcDC1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -3484,6 +4458,66 @@ extends
     }
 }
 
+object ExcDC2ASerializer extends CIMSerializer[ExcDC2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcDC2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeBoolean (obj.vtlim)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcDC2A]): ExcDC2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcDC2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readBoolean else false
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE DC3A direct current commutator exciter with speed input, and deadband.
  *
@@ -3678,6 +4712,62 @@ extends
     }
 }
 
+object ExcDC3ASerializer extends CIMSerializer[ExcDC3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcDC3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeBoolean (obj.efdlim),
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kr),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.kv),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.trh),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcDC3A]): ExcDC3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcDC3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified old IEEE type 3 excitation system.
  *
@@ -3852,6 +4942,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcDC3A1Serializer extends CIMSerializer[ExcDC3A1]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcDC3A1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vb1max),
+            () => output.writeBoolean (obj.vblim),
+            () => output.writeDouble (obj.vbmax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcDC3A1]): ExcDC3A1 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcDC3A1 (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4034,6 +5176,60 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcELIN1Serializer extends CIMSerializer[ExcELIN1]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcELIN1): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.dpnf),
+            () => output.writeDouble (obj.efmax),
+            () => output.writeDouble (obj.efmin),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.ks2),
+            () => output.writeDouble (obj.smax),
+            () => output.writeDouble (obj.tfi),
+            () => output.writeDouble (obj.tnu),
+            () => output.writeDouble (obj.ts1),
+            () => output.writeDouble (obj.ts2),
+            () => output.writeDouble (obj.tsw),
+            () => output.writeDouble (obj.vpi),
+            () => output.writeDouble (obj.vpnf),
+            () => output.writeDouble (obj.vpu),
+            () => output.writeDouble (obj.xe)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcELIN1]): ExcELIN1 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcELIN1 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4303,6 +5499,84 @@ extends
     }
 }
 
+object ExcELIN2Serializer extends CIMSerializer[ExcELIN2]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcELIN2): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdbas),
+            () => output.writeDouble (obj.iefmax),
+            () => output.writeDouble (obj.iefmax2),
+            () => output.writeDouble (obj.iefmin),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k1ec),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.k3),
+            () => output.writeDouble (obj.k4),
+            () => output.writeDouble (obj.kd1),
+            () => output.writeDouble (obj.ke2),
+            () => output.writeDouble (obj.ketb),
+            () => output.writeDouble (obj.pid1max),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.tb1),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.te2),
+            () => output.writeDouble (obj.ti1),
+            () => output.writeDouble (obj.ti3),
+            () => output.writeDouble (obj.ti4),
+            () => output.writeDouble (obj.tr4),
+            () => output.writeDouble (obj.upmax),
+            () => output.writeDouble (obj.upmin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.xp)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcELIN2]): ExcELIN2 =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcELIN2 (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Hungarian excitation system, with built-in voltage transducer.
  *
@@ -4459,6 +5733,54 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcHUSerializer extends CIMSerializer[ExcHU]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcHU): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ae),
+            () => output.writeDouble (obj.ai),
+            () => output.writeDouble (obj.atr),
+            () => output.writeDouble (obj.emax),
+            () => output.writeDouble (obj.emin),
+            () => output.writeDouble (obj.imax),
+            () => output.writeDouble (obj.imin),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.ti),
+            () => output.writeDouble (obj.tr)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcHU]): ExcHU =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcHU (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4663,6 +5985,66 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEAC1ASerializer extends CIMSerializer[ExcIEEEAC1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC1A]): ExcIEEEAC1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -4891,6 +6273,72 @@ extends
     }
 }
 
+object ExcIEEEAC2ASerializer extends CIMSerializer[ExcIEEEAC2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kb),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC2A]): ExcIEEEAC2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type AC3A model.
  *
@@ -5116,6 +6564,72 @@ extends
     }
 }
 
+object ExcIEEEAC3ASerializer extends CIMSerializer[ExcIEEEAC3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdn),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kn),
+            () => output.writeDouble (obj.kr),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vfemax)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC3A]): ExcIEEEAC3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type AC4A model.
  *
@@ -5254,6 +6768,48 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEAC4ASerializer extends CIMSerializer[ExcIEEEAC4A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC4A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC4A]): ExcIEEEAC4A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC4A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -5430,6 +6986,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEAC5ASerializer extends CIMSerializer[ExcIEEEAC5A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC5A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tf3),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC5A]): ExcIEEEAC5A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC5A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -5662,6 +7270,74 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEAC6ASerializer extends CIMSerializer[ExcIEEEAC6A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC6A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.th),
+            () => output.writeDouble (obj.tj),
+            () => output.writeDouble (obj.tk),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vfelim),
+            () => output.writeDouble (obj.vhmax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC6A]): ExcIEEEAC6A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC6A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -5925,6 +7601,82 @@ extends
     }
 }
 
+object ExcIEEEAC7BSerializer extends CIMSerializer[ExcIEEEAC7B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC7B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kdr),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf1),
+            () => output.writeDouble (obj.kf2),
+            () => output.writeDouble (obj.kf3),
+            () => output.writeDouble (obj.kia),
+            () => output.writeDouble (obj.kir),
+            () => output.writeDouble (obj.kl),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.kpa),
+            () => output.writeDouble (obj.kpr),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.tdr),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC7B]): ExcIEEEAC7B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC7B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type AC8B model.
  *
@@ -6129,6 +7881,66 @@ extends
     }
 }
 
+object ExcIEEEAC8BSerializer extends CIMSerializer[ExcIEEEAC8B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEAC8B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kdr),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kir),
+            () => output.writeDouble (obj.kpr),
+            () => output.writeDouble (obj.seve1),
+            () => output.writeDouble (obj.seve2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tdr),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.ve1),
+            () => output.writeDouble (obj.ve2),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vfemax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC8B]): ExcIEEEAC8B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEAC8B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type DC1A model.
  *
@@ -6321,6 +8133,62 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEDC1ASerializer extends CIMSerializer[ExcIEEEDC1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEDC1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeBoolean (obj.uelin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC1A]): ExcIEEEDC1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEDC1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readBoolean else false,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -6517,6 +8385,62 @@ extends
     }
 }
 
+object ExcIEEEDC2ASerializer extends CIMSerializer[ExcIEEEDC2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEDC2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.exclim),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeBoolean (obj.uelin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC2A]): ExcIEEEDC2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEDC2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readBoolean else false,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type DC3A model.
  *
@@ -6672,6 +8596,52 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEDC3ASerializer extends CIMSerializer[ExcIEEEDC3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEDC3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeBoolean (obj.exclim),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kv),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.trh),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC3A]): ExcIEEEDC3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEDC3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -6890,6 +8860,68 @@ extends
     }
 }
 
+object ExcIEEEDC4BSerializer extends CIMSerializer[ExcIEEEDC4B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEDC4B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efd1),
+            () => output.writeDouble (obj.efd2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeBoolean (obj.oelin),
+            () => output.writeDouble (obj.seefd1),
+            () => output.writeDouble (obj.seefd2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.td),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeBoolean (obj.uelin),
+            () => output.writeDouble (obj.vemin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC4B]): ExcIEEEDC4B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEDC4B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readBoolean else false,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type ST1A model.
  *
@@ -7104,6 +9136,68 @@ extends
     }
 }
 
+object ExcIEEEST1ASerializer extends CIMSerializer[ExcIEEEST1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ilr),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.klr),
+            () => output.writeBoolean (obj.pssin),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tb1),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tc1),
+            () => output.writeDouble (obj.tf),
+            () => output.writeString (obj.uelin),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST1A]): ExcIEEEST1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readBoolean else false,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type ST2A model.
  *
@@ -7272,6 +9366,56 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEST2ASerializer extends CIMSerializer[ExcIEEEST2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeBoolean (obj.uelin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST2A]): ExcIEEEST2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readBoolean else false,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -7493,6 +9637,70 @@ extends
     }
 }
 
+object ExcIEEEST3ASerializer extends CIMSerializer[ExcIEEEST3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.thetap),
+            () => output.writeDouble (obj.tm),
+            () => output.writeDouble (obj.vbmax),
+            () => output.writeDouble (obj.vgmax),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vmmax),
+            () => output.writeDouble (obj.vmmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xl)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST3A]): ExcIEEEST3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type ST4B model.
  *
@@ -7680,6 +9888,62 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEST4BSerializer extends CIMSerializer[ExcIEEEST4B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST4B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kim),
+            () => output.writeDouble (obj.kir),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.kpm),
+            () => output.writeDouble (obj.kpr),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.thetap),
+            () => output.writeDouble (obj.vbmax),
+            () => output.writeDouble (obj.vmmax),
+            () => output.writeDouble (obj.vmmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xl)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST4B]): ExcIEEEST4B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST4B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -7881,6 +10145,64 @@ extends
     }
 }
 
+object ExcIEEEST5BSerializer extends CIMSerializer[ExcIEEEST5B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST5B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kr),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.tb1),
+            () => output.writeDouble (obj.tb2),
+            () => output.writeDouble (obj.tc1),
+            () => output.writeDouble (obj.tc2),
+            () => output.writeDouble (obj.tob1),
+            () => output.writeDouble (obj.tob2),
+            () => output.writeDouble (obj.toc1),
+            () => output.writeDouble (obj.toc2),
+            () => output.writeDouble (obj.tub1),
+            () => output.writeDouble (obj.tub2),
+            () => output.writeDouble (obj.tuc1),
+            () => output.writeDouble (obj.tuc2),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST5B]): ExcIEEEST5B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST5B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * IEEE 421.5-2005 type ST6B model.
  *
@@ -8055,6 +10377,58 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcIEEEST6BSerializer extends CIMSerializer[ExcIEEEST6B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST6B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ilr),
+            () => output.writeDouble (obj.kci),
+            () => output.writeDouble (obj.kff),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.kia),
+            () => output.writeDouble (obj.klr),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.kpa),
+            () => output.writeString (obj.oelin),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST6B]): ExcIEEEST6B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST6B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -8242,6 +10616,60 @@ extends
     }
 }
 
+object ExcIEEEST7BSerializer extends CIMSerializer[ExcIEEEST7B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcIEEEST7B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.kia),
+            () => output.writeDouble (obj.kl),
+            () => output.writeDouble (obj.kpa),
+            () => output.writeString (obj.oelin),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tia),
+            () => output.writeString (obj.uelin),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST7B]): ExcIEEEST7B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcIEEEST7B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Bus or solid fed SCR (silicon-controlled rectifier) bridge excitation system model type NI (NVE).
  *
@@ -8388,6 +10816,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcNISerializer extends CIMSerializer[ExcNI]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcNI): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.busFedSelector),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.r),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcNI]): ExcNI =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcNI (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -8577,6 +11049,68 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcOEX3TSerializer extends CIMSerializer[ExcOEX3T]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcOEX3T): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.see1),
+            () => output.writeDouble (obj.see2),
+            () => output.writeDouble (obj.t1),
+            () => output.writeDouble (obj.t2),
+            () => output.writeDouble (obj.t3),
+            () => output.writeDouble (obj.t4),
+            () => output.writeDouble (obj.t5),
+            () => output.writeDouble (obj.t6),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcOEX3T]): ExcOEX3T =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcOEX3T (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -8815,6 +11349,76 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcPICSerializer extends CIMSerializer[ExcPIC]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcPIC): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.se1),
+            () => output.writeDouble (obj.se2),
+            () => output.writeDouble (obj.ta1),
+            () => output.writeDouble (obj.ta2),
+            () => output.writeDouble (obj.ta3),
+            () => output.writeDouble (obj.ta4),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.vr1),
+            () => output.writeDouble (obj.vr2),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcPIC]): ExcPIC =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcPIC (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -9148,6 +11752,102 @@ extends
     }
 }
 
+object ExcREXSSerializer extends CIMSerializer[ExcREXS]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcREXS): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.e1),
+            () => output.writeDouble (obj.e2),
+            () => output.writeString (obj.fbf),
+            () => output.writeDouble (obj.flimf),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kefd),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.kii),
+            () => output.writeDouble (obj.kip),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.kvi),
+            () => output.writeDouble (obj.kvp),
+            () => output.writeDouble (obj.kvphz),
+            () => output.writeDouble (obj.nvphz),
+            () => output.writeDouble (obj.se1),
+            () => output.writeDouble (obj.se2),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb1),
+            () => output.writeDouble (obj.tb2),
+            () => output.writeDouble (obj.tc1),
+            () => output.writeDouble (obj.tc2),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tf1),
+            () => output.writeDouble (obj.tf2),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.vcmax),
+            () => output.writeDouble (obj.vfmax),
+            () => output.writeDouble (obj.vfmin),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xc)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcREXS]): ExcREXS =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcREXS (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0,
+            if (isSet (32)) input.readDouble else 0.0,
+            if (isSet (33)) input.readDouble else 0.0,
+            if (isSet (34)) input.readDouble else 0.0,
+            if (isSet (35)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Excitation system type RQB (four-loop regulator, r?gulateur quatre boucles, developed in France) primarily used in nuclear or thermal generating units.
  *
@@ -9316,6 +12016,56 @@ extends
     }
 }
 
+object ExcRQBSerializer extends CIMSerializer[ExcRQB]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcRQB): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ki0),
+            () => output.writeDouble (obj.ki1),
+            () => output.writeDouble (obj.klir),
+            () => output.writeDouble (obj.klus),
+            () => output.writeDouble (obj.lsat),
+            () => output.writeDouble (obj.lus),
+            () => output.writeDouble (obj.mesu),
+            () => output.writeDouble (obj.t4m),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.ucmax),
+            () => output.writeDouble (obj.ucmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcRQB]): ExcRQB =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcRQB (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
  *
@@ -9445,6 +12195,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcSCRXSerializer extends CIMSerializer[ExcSCRX]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcSCRX): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.cswitch),
+            () => output.writeDouble (obj.emax),
+            () => output.writeDouble (obj.emin),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.rcrfd),
+            () => output.writeDouble (obj.tatb),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.te)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcSCRX]): ExcSCRX =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcSCRX (
+            parent,
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -9590,6 +12380,50 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcSEXSSerializer extends CIMSerializer[ExcSEXS]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcSEXS): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeDouble (obj.emax),
+            () => output.writeDouble (obj.emin),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.tatb),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcSEXS]): ExcSEXS =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcSEXS (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -9894,6 +12728,94 @@ extends
     }
 }
 
+object ExcSKSerializer extends CIMSerializer[ExcSK]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcSK): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.efdmin),
+            () => output.writeDouble (obj.emax),
+            () => output.writeDouble (obj.emin),
+            () => output.writeDouble (obj.k),
+            () => output.writeDouble (obj.k1),
+            () => output.writeDouble (obj.k2),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kce),
+            () => output.writeDouble (obj.kd),
+            () => output.writeDouble (obj.kgob),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.kqi),
+            () => output.writeDouble (obj.kqob),
+            () => output.writeDouble (obj.kqp),
+            () => output.writeDouble (obj.nq),
+            () => output.writeBoolean (obj.qconoff),
+            () => output.writeDouble (obj.qz),
+            () => output.writeBoolean (obj.remote),
+            () => output.writeDouble (obj.sbase),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.ti),
+            () => output.writeDouble (obj.tp),
+            () => output.writeDouble (obj.tr),
+            () => output.writeDouble (obj.uimax),
+            () => output.writeDouble (obj.uimin),
+            () => output.writeDouble (obj.urmax),
+            () => output.writeDouble (obj.urmin),
+            () => output.writeDouble (obj.vtmax),
+            () => output.writeDouble (obj.vtmin),
+            () => output.writeDouble (obj.yp)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcSK]): ExcSK =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcSK (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readBoolean else false,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readBoolean else false,
+            if (isSet (19)) input.readDouble else 0.0,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0,
+            if (isSet (23)) input.readDouble else 0.0,
+            if (isSet (24)) input.readDouble else 0.0,
+            if (isSet (25)) input.readDouble else 0.0,
+            if (isSet (26)) input.readDouble else 0.0,
+            if (isSet (27)) input.readDouble else 0.0,
+            if (isSet (28)) input.readDouble else 0.0,
+            if (isSet (29)) input.readDouble else 0.0,
+            if (isSet (30)) input.readDouble else 0.0,
+            if (isSet (31)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
  *
@@ -10095,6 +13017,66 @@ extends
     }
 }
 
+object ExcST1ASerializer extends CIMSerializer[ExcST1A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST1A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ilr),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.klr),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tb1),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tc1),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xe)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST1A]): ExcST1A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST1A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE ST2A static excitation system with another lead-lag block added to match the model defined by WECC.
  *
@@ -10274,6 +13256,60 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcST2ASerializer extends CIMSerializer[ExcST2A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST2A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.ka),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.ke),
+            () => output.writeDouble (obj.kf),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.te),
+            () => output.writeDouble (obj.tf),
+            () => output.writeBoolean (obj.uelin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST2A]): ExcST2A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST2A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readBoolean else false,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -10492,6 +13528,70 @@ extends
     }
 }
 
+object ExcST3ASerializer extends CIMSerializer[ExcST3A]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST3A): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.efdmax),
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kj),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.ks),
+            () => output.writeDouble (obj.ks1),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.thetap),
+            () => output.writeDouble (obj.tm),
+            () => output.writeDouble (obj.vbmax),
+            () => output.writeDouble (obj.vgmax),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xl)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST3A]): ExcST3A =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST3A (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <i>Vgmax</i>.
  *
@@ -10701,6 +13801,68 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcST4BSerializer extends CIMSerializer[ExcST4B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST4B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kc),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.ki),
+            () => output.writeDouble (obj.kim),
+            () => output.writeDouble (obj.kir),
+            () => output.writeDouble (obj.kp),
+            () => output.writeDouble (obj.kpm),
+            () => output.writeDouble (obj.kpr),
+            () => output.writeBoolean (obj.lvgate),
+            () => output.writeDouble (obj.ta),
+            () => output.writeDouble (obj.thetap),
+            () => output.writeBoolean (obj.uel),
+            () => output.writeDouble (obj.vbmax),
+            () => output.writeDouble (obj.vgmax),
+            () => output.writeDouble (obj.vmmax),
+            () => output.writeDouble (obj.vmmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xl)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST4B]): ExcST4B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST4B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readBoolean else false,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readBoolean else false,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readDouble else 0.0,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
@@ -10947,6 +14109,76 @@ extends
     }
 }
 
+object ExcST6BSerializer extends CIMSerializer[ExcST6B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST6B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.ilr),
+            () => output.writeBoolean (obj.k1),
+            () => output.writeDouble (obj.kcl),
+            () => output.writeDouble (obj.kff),
+            () => output.writeDouble (obj.kg),
+            () => output.writeDouble (obj.kia),
+            () => output.writeDouble (obj.klr),
+            () => output.writeDouble (obj.km),
+            () => output.writeDouble (obj.kpa),
+            () => output.writeDouble (obj.kvd),
+            () => output.writeString (obj.oelin),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.ts),
+            () => output.writeDouble (obj.tvd),
+            () => output.writeDouble (obj.vamax),
+            () => output.writeDouble (obj.vamin),
+            () => output.writeBoolean (obj.vilim),
+            () => output.writeDouble (obj.vimax),
+            () => output.writeDouble (obj.vimin),
+            () => output.writeBoolean (obj.vmult),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin),
+            () => output.writeDouble (obj.xc)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST6B]): ExcST6B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST6B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readBoolean else false,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0,
+            if (isSet (16)) input.readBoolean else false,
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) input.readBoolean else false,
+            if (isSet (20)) input.readDouble else 0.0,
+            if (isSet (21)) input.readDouble else 0.0,
+            if (isSet (22)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
  *
@@ -11135,6 +14367,62 @@ extends
     }
 }
 
+object ExcST7BSerializer extends CIMSerializer[ExcST7B]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcST7B): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeDouble (obj.kh),
+            () => output.writeDouble (obj.kia),
+            () => output.writeDouble (obj.kl),
+            () => output.writeDouble (obj.kpa),
+            () => output.writeString (obj.oelin),
+            () => output.writeDouble (obj.tb),
+            () => output.writeDouble (obj.tc),
+            () => output.writeDouble (obj.tf),
+            () => output.writeDouble (obj.tg),
+            () => output.writeDouble (obj.tia),
+            () => output.writeDouble (obj.ts),
+            () => output.writeString (obj.uelin),
+            () => output.writeDouble (obj.vmax),
+            () => output.writeDouble (obj.vmin),
+            () => output.writeDouble (obj.vrmax),
+            () => output.writeDouble (obj.vrmin)
+        )
+        ExcitationSystemDynamicsSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcST7B]): ExcST7B =
+    {
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcST7B (
+            parent,
+            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (1)) input.readDouble else 0.0,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readDouble else 0.0,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readDouble else 0.0,
+            if (isSet (9)) input.readDouble else 0.0,
+            if (isSet (10)) input.readDouble else 0.0,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (15)) input.readDouble else 0.0
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 /**
  * Excitation system function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
@@ -11265,6 +14553,46 @@ extends
         )
         ret.bitfields = bitfields
         ret
+    }
+}
+
+object ExcitationSystemDynamicsSerializer extends CIMSerializer[ExcitationSystemDynamics]
+{
+    def write (kryo: Kryo, output: Output, obj: ExcitationSystemDynamics): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.DiscontinuousExcitationControlDynamics),
+            () => output.writeString (obj.OverexcitationLimiterDynamics),
+            () => output.writeString (obj.PFVArControllerType1Dynamics),
+            () => output.writeString (obj.PFVArControllerType2Dynamics),
+            () => output.writeString (obj.PowerSystemStabilizerDynamics),
+            () => output.writeString (obj.SynchronousMachineDynamics),
+            () => output.writeString (obj.UnderexcitationLimiterDynamics),
+            () => output.writeString (obj.VoltageCompensatorDynamics)
+        )
+        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ExcitationSystemDynamics]): ExcitationSystemDynamics =
+    {
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ExcitationSystemDynamics (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readString else null,
+            if (isSet (7)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
     }
 }
 
