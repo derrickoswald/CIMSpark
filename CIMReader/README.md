@@ -211,7 +211,7 @@ import ch.ninecode.cim._
 val configuration = spark.sparkContext.getConf
 sc.stop()
 configuration.registerKryoClasses (CIMClasses.list)
-configuration..set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
+configuration.set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
 val sc = new SparkContext (conf)
 val spark = org.apache.spark.sql.SparkSession.builder ().getOrCreate ()
 ```

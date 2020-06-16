@@ -19,7 +19,10 @@ import ch.ninecode.model._
  * Create a topology.
  *
  * Create TopologicalNode and optionally TopologicalIsland RDD that encode the
- * connections between electrical elements.
+ * connections between electrical elements and updates the Terminal and ConnectivityNode
+ * RDD to reference them.
+ *
+ * This creates a "bus-branch" model, but retains the "node-breaker" model.
  *
  * Based on ConnectivityNode elements and connecting edges, find the topology that has:
  *
@@ -34,6 +37,105 @@ import ch.ninecode.model._
    different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
    of all the ConnectivityNode with the same TopologicalNode)
  *
+ * There are flags that affect whether a Switch (force_retain_switches)
+ * or Fuse (force_retain_fuses) is included in the topology:
+ *
+ * <table width="642" cellpadding="0" cellspacing="0" style="page-break-inside: auto">
+ * <col width="161"/>
+ * <col width="161"/>
+ * <col width="161"/>
+ * <col width="161"/>
+ * <tbody>
+ * <tr>
+ * <td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+ * force_retain_switches
+ * </td>
+ * <td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+ * Switch.retain
+ * </td>
+ * <td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+ * Switch.open/<br/>
+ * Switch.normalOpen
+ * </td>
+ * <td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+ * in Topology
+ * </td>
+ * </tr>
+ * </tbody>
+ * <tbody>
+ * <tr>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * ForceTrue
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * don’t care
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * don’t care
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * yes
+ * </td>
+ * </tr>
+ * <tr>
+ * <td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+ * ForceFalse
+ * </td>
+ * <td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+ * don’t care
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * true
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * yes
+ * </td>
+ * </tr>
+ * <tr>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * false
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * no
+ * </td>
+ * </tr>
+ * <tr>
+ * <td rowspan="3" width="161" style="border: 1px solid #000000; padding: 0mm">
+ * Unforced
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * true
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * don’t care
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * yes
+ * </td>
+ * </tr>
+ * <tr>
+ * <td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+ * false
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * true
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * yes
+ * </td>
+ * </tr>
+ * <tr>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * false
+ * </td>
+ * <td width="161" style="border: 1px solid #000000; padding: 0mm">
+ * no
+ * </td>
+ * </tr>
+ * </tbody>
+ * </table>
+ *
+ *
  * To be done eventually:
  *
  - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
@@ -42,32 +144,6 @@ import ch.ninecode.model._
  */
 case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 {
-    /**
-     * The old constructor for CIMNetworkTopologyProcessor.
-     *
-     * @deprecated ("Use the constructor taking a CIMTopologyOptions object", "3.0.3")
-     * or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfNeeded(CIMTopologyOptions)
-     */
-    def this (
-                 spark: SparkSession,
-                 storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
-                 force_retain_switches: Boolean = false,
-                 force_retain_fuses: Boolean = false,
-                 debug: Boolean = false) =
-    {
-        this (spark)
-        options = CIMTopologyOptions (
-            identify_islands = false,
-            force_retain_switches = if (force_retain_switches) ForceTrue else Unforced,
-            force_retain_fuses = if (force_retain_fuses) ForceTrue else Unforced,
-            force_switch_separate_islands = Unforced,
-            force_fuse_separate_islands = Unforced,
-            default_switch_open_state = false,
-            debug = debug,
-            storage = storage
-        )
-    }
-
     private implicit val session: SparkSession = spark
     private implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
@@ -656,7 +732,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         }
     }
 
-
     def islandVertex (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
     {
         if (null == msg)
@@ -743,14 +818,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         ret
     }
-
-    /**
-     * Old process() method.
-     * @deprecated ("Use the method taking a CIMTopologyOptions", "3.0.3")
-     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
-     */
-    def process (identify_islands: Boolean): RDD[Element] =
-        process (options.copy (identify_islands = identify_islands))
 
     /**
      * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
@@ -906,13 +973,6 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         log.info ("finished Network Topology Processing")
         new_elements
     }
-
-    /**
-     * Old processIfNeeded() method.
-     * @deprecated ("Use the method taking a CIMTopologyOptions", "3.0.3")
-     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
-     */
-    def processIfNeeded (identify_islands: Boolean): RDD[Element] = processIfNeeded (options.copy (identify_islands = identify_islands))
 
     /**
      * Conditionally create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.

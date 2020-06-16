@@ -99,17 +99,6 @@ class CIMRelation (
     // check for cache option
     val _Cache: String = parameters.getOrElse ("ch.ninecode.cim.cache", "")
 
-    val _TopologyOptions: CIMTopologyOptions = CIMTopologyOptions (
-        identify_islands = _Islands,
-        force_retain_switches = _Force_Retain_Switches,
-        force_retain_fuses = _Force_Retain_Fuses,
-        force_switch_separate_islands = _Force_Switch_Separate_Islands,
-        force_fuse_separate_islands = _Force_Fuse_Separate_Islands,
-        default_switch_open_state = _Default_Switch_Open_State,
-        debug = _Debug,
-        storage = _StorageLevel
-    )
-
     log.info (s"parameters: ${parameters.toString}")
     log.info (s"storage: ${_StorageLevel.description}")
 
@@ -264,8 +253,18 @@ class CIMRelation (
             // perform topological processing if requested
             if (_Topo)
             {
-                val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
-                ret = ntp.process (_TopologyOptions).asInstanceOf[RDD[Row]]
+                val options = CIMTopologyOptions (
+                    identify_islands = _Islands,
+                    force_retain_switches = _Force_Retain_Switches,
+                    force_retain_fuses = _Force_Retain_Fuses,
+                    force_switch_separate_islands = _Force_Switch_Separate_Islands,
+                    force_fuse_separate_islands = _Force_Fuse_Separate_Islands,
+                    default_switch_open_state = _Default_Switch_Open_State,
+                    debug = _Debug,
+                    storage = _StorageLevel
+                )
+                val ntp = CIMNetworkTopologyProcessor (spark)
+                ret = ntp.process (options).asInstanceOf[RDD[Row]]
             }
 
             // set up edge graph if requested
