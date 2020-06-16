@@ -170,20 +170,50 @@ val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.as
 
 # Serialization
 
-The recommended serialization is Kryo. Since this must be specified before the Spark context is
-created, the only option if you would like to get the maximum memory and speed,
-is to shut down the context and restart after registering the CIM classes with Kryo:
+The recommended serialization is [Kryo](https://github.com/EsotericSoftware/kryo).
+Serialization options must be specified before the Spark context is created,
+that is, Kryo must be enabled prior to the `SparkSession` being created.
+Although Kryo works well when simply turned on,
+
+ i.e. command line with `--conf spark.serializer=org.apache.spark.serializer.KryoSerializer`,
+ 
+the best results are obtained if classes are registered with Kryo
+via the `SparkConfiguration` used to create the `SparkSession`,
+
+ i.e. programmatically `configuration.registerKryoClasses (CIMClasses.list)`.
+ 
+The CIMreader includes custom Kryo serialization
+with a Spark [Kryo Registrator](https://spark.apache.org/docs/0.7.0/api/core/spark/KryoRegistrator.html)
+which provides additional optimization.
+The table below shows the approximate serialized size for all Elements of the DemoData.rdf (720325 bytes, 44980 bytes zipped):
+
+| Method | Serialized Size | Size Reduction |
+| --- | --- | ---|
+| JavaSerializer (default) | 2107629 bytes |  |
+| Kryo | 352888 bytes | -83.3% |
+| Kryo with registration | 248890 bytes | -29.5% |
+| CIMSerializer | 178352 bytes | -18.3% |
+
+To enable the custom registrator:
+
+ command line `--conf spark.kryo.registrator=ch.ninecode.cim.CIMRegistrator`
+ 
+ programmatically `configuration.set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")`
+
+When running a program where a Spark context has already been created,
+the only option if you would like to get the optimal Kryo serialization,
+is to shut down the context and restart Spark after enabling Kryo:
 
 ```
 import org.apache.spark.{SparkContext, SparkConf}
 import ch.ninecode.cim._
 
-val conf = spark.sparkContext.getConf
+val configuration = spark.sparkContext.getConf
 sc.stop()
-conf.registerKryoClasses (CIMClasses.list)
+configuration.registerKryoClasses (CIMClasses.list)
+configuration..set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
 val sc = new SparkContext (conf)
 val spark = org.apache.spark.sql.SparkSession.builder ().getOrCreate ()
-
 ```
 
 # Logging

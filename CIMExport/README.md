@@ -36,14 +36,14 @@ The normal build process also generates a stand-alone program in the `target/` d
 This is executed using the `spark-submit` command. It can provide help text with the --help option: 
 
 ``` bash
-$ spark-submit --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g target/CIMExport-2.11-2.4.5-4.2.0-jar-with-dependencies.jar --help
-CIMExportMain 2.11-2.4.5-4.2.0
+$ spark-submit --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g target/CIMExport-&lt;version&gt;-jar-with-dependencies.jar --help
+CIMExportMain 2.11-2.4.5-4.2.1
 Usage: CIMExportMain [options] <CIM> <CIM> ...
 
 Extracts subsets of CIM files based on topology.
 
   --help                   prints this usage text
-  --version                Scala: 2.11, Spark: 2.4.5, CIMExportMain: 4.1.3
+  --version                Scala: 2.11, Spark: 2.4.5, CIMExportMain: 4.2.1
   --quiet                  suppress informational messages [false]
   --logging <value>        log level, one of ALL,DEBUG,ERROR,FATAL,INFO,OFF,TRACE,WARN [OFF]
   --sparkopts k1=v1,k2=v2  Spark options [spark.graphx.pregel.checkpointInterval=8,spark.serializer=org.apache.spark.serializer.KryoSerializer,spark.ui.showConsoleProgress=false]

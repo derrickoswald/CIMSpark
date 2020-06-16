@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMRDD - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMRDD</title>
-          <meta name="description" content="CIMRDD - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMRDD" />
-          <meta name="keywords" content="CIMRDD CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMRDD" />
+          <title>CIMRDD - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMRDD</title>
+          <meta name="description" content="CIMRDD - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMRDD" />
+          <meta name="keywords" content="CIMRDD CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMRDD" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -207,6 +207,24 @@ Implicit parameter StorageLevel is required to put().
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#biggest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="biggest(name:String):(Int,(Int,org.apache.spark.rdd.RDD[_]))=&gt;Int"></a>
+      <a id="biggest(String):(Int,(Int,RDD[_]))⇒Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">biggest</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: (<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[_])) ⇒ <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@biggest(name:String):(Int,(Int,org.apache.spark.rdd.RDD[_]))=&gt;Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Find the largest integer after the name| pattern in a foldLeft operation.</p><div class="fullcomment"><div class="comment cmt"><p>Find the largest integer after the name| pattern in a foldLeft operation.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name to check</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -415,25 +433,24 @@ class type (the usual case).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMRDD#modify_schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType"></a>
-      <a id="modify_schema(Class[_],StructType):StructType"></a>
+    </li><li name="ch.ninecode.cim.CIMRDD#like" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean"></a>
+      <a id="like(String):((Int,RDD[_]))⇒Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">modify_schema</span><span class="params">(<span name="rtc">rtc: <span class="extype" name="scala.Predef.Class">Class</span>[_]</span>, <span name="schema">schema: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>
+        <span class="name">like</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: ((<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[_])) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Alter the schema so sup has the correct superclass name.</p><div class="fullcomment"><div class="comment cmt"><p>Alter the schema so sup has the correct superclass name.
-</p></div><dl class="paramcmts block"><dt class="param">rtc</dt><dd class="cmt"><p>The runtime class for Typeclass A.</p></dd><dt class="param">schema</dt><dd class="cmt"><p>The SQL schema for Typeclass A, e.g.
-  org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...</p></dd></dl></div>
+      <p class="shortcomment cmt">Match names with pattern &quot;name|xxx&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Match names with pattern &quot;name|xxx&quot;.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name to match</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the RDD name matches the pattern</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#nameOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nameOf[T](implicitevidence$6:scala.reflect.ClassTag[T]):String"></a>
       <a id="nameOf[T](ClassTag[T]):String"></a>
@@ -504,41 +521,48 @@ class type (the usual case).
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T])(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],keep:Boolean)(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](RDD[T],Boolean)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="keep">keep: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],keep:Boolean)(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">keep</dt><dd class="cmt"><p>If <code>true</code> then don't unpersist any existing RDD with the given name.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T],String)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String,keep:Boolean)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](RDD[T],String,Boolean)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="keep">keep: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String,keep:Boolean)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl></div>
+      <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Since the use of RDD persistence can be problematic for memory reuse, the <code>keep</code> parameter
+has special processing. When <code>keep</code> is <code>true</code> any existing RDD of the same name is renamed to
+<code>name|n</code>
+where n is sequentially increasing to the next available integer. When <code>keep</code> is <code>false</code>
+all existing RDD of the above form are unpersisted.</p><p>This facilitates the use-case where the new RDD depends on the existing one. For example, the <code>Elements</code>
+RDD is rewritten by about, dedup, join, normalize and topological processing, where the new RDD is derived from
+the original. But when a completely new CIM RDF file is read in, <code>keep=false</code> will unpersist all
+the derived RDD.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">keep</dt><dd class="cmt"><p>If <code>true</code> then don't unpersist the existing RDD with the given name.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -593,6 +617,23 @@ class type (the usual case).
     </span>
       <p class="shortcomment cmt">Check for the named RDD.</p><div class="fullcomment"><div class="comment cmt"><p>Check for the named RDD.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of objects contained in the named RDD.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name of the RDD, usually the same as the CIM class.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the named RDD.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the named RDD exists, <code>false</code> otherwise.</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#toInt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="toInt(s:String):Option[Int]"></a>
+      <a id="toInt(String):Option[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toInt</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMRDD@toInt(s:String):Option[Int]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

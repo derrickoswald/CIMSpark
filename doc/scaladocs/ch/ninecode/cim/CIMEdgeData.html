@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMEdgeData - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMEdgeData</title>
-          <meta name="description" content="CIMEdgeData - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMEdgeData" />
-          <meta name="keywords" content="CIMEdgeData CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMEdgeData" />
+          <title>CIMEdgeData - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMEdgeData</title>
+          <meta name="description" content="CIMEdgeData - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMEdgeData" />
+          <meta name="keywords" content="CIMEdgeData CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMEdgeData" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -45,12 +45,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMEdgeData</span><span class="params">(<span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CIMEdgeData</span><span class="params">(<span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Edge data for topological processing.
-</p></div><dl class="paramcmts block"><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the edge</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
+</p></div><dl class="paramcmts block"><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
        which means the terminals are the same topological node</p></dd><dt class="param">isConnected</dt><dd class="cmt"><p><code>true</code> if there is a connection between the terminals, i.e. a cable,
        which means the terminals are the same topological island</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
@@ -92,7 +92,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMEdgeData#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(id_cn_1:String,id_cn_2:String,id_equ:String,voltage:String,isZero:Boolean,isConnected:Boolean):ch.ninecode.cim.CIMEdgeData"></a>
+      <a id="&lt;init&gt;(id_cn_1:String,id_cn_2:String,id_equ:String,isZero:Boolean,isConnected:Boolean):ch.ninecode.cim.CIMEdgeData"></a>
       <a id="&lt;init&gt;:CIMEdgeData"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -100,14 +100,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMEdgeData</span><span class="params">(<span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="name">CIMEdgeData</span><span class="params">(<span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMEdgeData@&lt;init&gt;(id_cn_1:String,id_cn_2:String,id_equ:String,voltage:String,isZero:Boolean,isConnected:Boolean):ch.ninecode.cim.CIMEdgeData" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMEdgeData@&lt;init&gt;(id_cn_1:String,id_cn_2:String,id_equ:String,isZero:Boolean,isConnected:Boolean):ch.ninecode.cim.CIMEdgeData" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the edge</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
        which means the terminals are the same topological node</p></dd><dt class="param">isConnected</dt><dd class="cmt"><p><code>true</code> if there is a connection between the terminals, i.e. a cable,
        which means the terminals are the same topological island</p></dd></dl></div>
     </li></ol>
@@ -439,23 +439,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMEdgeData#voltage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="voltage:String"></a>
-      <a id="voltage:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">voltage</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMEdgeData@voltage:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">the nominal voltage of the edge</p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
-          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
-          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
+          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -210,6 +210,24 @@ or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfN
     </span>
       <p class="shortcomment cmt">Get a typed DataSet for the given class.</p><div class="fullcomment"><div class="comment cmt"><p>Get a typed DataSet for the given class.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt>returns</dt><dd class="cmt"><p>A typed dataset of the RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#asEdge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asEdge(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="asEdge(CIMEdgeData):Edge[CIMEdgeData]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asEdge</span><span class="params">(<span name="e">e: <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Edge">Edge</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@asEdge(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create a GraphX Edge.</p><div class="fullcomment"><div class="comment cmt"><p>Create a GraphX Edge.
+</p></div><dl class="paramcmts block"><dt class="param">e</dt><dd class="cmt"><p>the data to pack in the edge</p></dd><dt>returns</dt><dd class="cmt"><p>an Edge[T] object</p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -227,6 +245,42 @@ or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfN
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#asVertexId" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asVertexId(string:String):org.apache.spark.graphx.VertexId"></a>
+      <a id="asVertexId(String):VertexId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asVertexId</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@asVertexId(string:String):org.apache.spark.graphx.VertexId" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Compute the hash code for the string to be used as a VertextId (Long).</p><div class="fullcomment"><div class="comment cmt"><p>Compute the hash code for the string to be used as a VertextId (Long).
+</p></div><dl class="paramcmts block"><dt class="param">string</dt><dd class="cmt"><p>the mRID to convert into a VertexId</p></dd><dt>returns</dt><dd class="cmt"><p>the VertexId for the mRID</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#biggest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="biggest(name:String):(Int,(Int,org.apache.spark.rdd.RDD[_]))=&gt;Int"></a>
+      <a id="biggest(String):(Int,(Int,RDD[_]))⇒Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">biggest</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: (<span class="extype" name="scala.Int">Int</span>, (<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[_])) ⇒ <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@biggest(name:String):(Int,(Int,org.apache.spark.rdd.RDD[_]))=&gt;Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Find the largest integer after the name| pattern in a foldLeft operation.</p><div class="fullcomment"><div class="comment cmt"><p>Find the largest integer after the name| pattern in a foldLeft operation.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name to check</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -250,23 +304,24 @@ or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfN
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#edge_operator" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]"></a>
-      <a id="edge_operator((Element,Iterable[Terminal])):List[CIMEdgeData]"></a>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#conductingEquipment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="conductingEquipment(element:ch.ninecode.model.Element):Option[ch.ninecode.model.ConductingEquipment]"></a>
+      <a id="conductingEquipment(Element):Option[ConductingEquipment]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edge_operator</span><span class="params">(<span name="arg">arg: (<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Iterable">Iterable</span>[<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>])</span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+        <span class="name">conductingEquipment</span><span class="params">(<span name="element">element: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@conductingEquipment(element:ch.ninecode.model.Element):Option[ch.ninecode.model.ConductingEquipment]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Get the underlying ConductingEquipment superclass.</p><div class="fullcomment"><div class="comment cmt"><p>Get the underlying ConductingEquipment superclass.
+</p></div><dl class="paramcmts block"><dt class="param">element</dt><dd class="cmt"><p>the element to traverse</p></dd><dt>returns</dt><dd class="cmt"><p>Some(ConductingEquipment) or None if the Element is not a ConductingEquipment subclass</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -419,18 +474,18 @@ class type (the usual case).
     </span>
       <p class="shortcomment cmt">Use GraphX to identify nodes that are connected electrically</p><div class="fullcomment"><div class="comment cmt"><p>Use GraphX to identify nodes that are connected electrically</p></div><dl class="paramcmts block"><dt class="param">graph</dt><dd class="cmt"><p>The results from the topological node processing step.</p></dd><dt>returns</dt><dd class="cmt"><p>A new graph with vertices having island information.</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>isSameIsland(Element)</p></span></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#identifyNodes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
-      <a id="identifyNodes(Graph[CIMVertexData,CIMEdgeData]):Graph[CIMVertexData,CIMEdgeData]"></a>
+      <a id="identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="identifyNodes(Graph[CIMVD,CIMEdgeData]):Graph[CIMVertexData,CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">identifyNodes</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+        <span class="name">identifyNodes</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -560,59 +615,92 @@ class type (the usual case).
     </span>
       <p class="shortcomment cmt">Method to determine if a switch can be represented as a single topological node.</p><div class="fullcomment"><div class="comment cmt"><p>Method to determine if a switch can be represented as a single topological node.
 </p></div><dl class="paramcmts block"><dt class="param">switch</dt><dd class="cmt"><p>The switch object to test.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the switch is effectively one node, <code>false</code> otherwise.</p></dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#make_graph" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
-      <a id="make_graph():Graph[CIMVertexData,CIMEdgeData]"></a>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#islandMergeMessage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="islandMergeMessage(a:ch.ninecode.cim.CIMIslandData,b:ch.ninecode.cim.CIMIslandData):ch.ninecode.cim.CIMIslandData"></a>
+      <a id="islandMergeMessage(CIMIslandData,CIMIslandData):CIMIslandData"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make_graph</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+        <span class="name">islandMergeMessage</span><span class="params">(<span name="a">a: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>, <span name="b">b: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>)</span><span class="result">: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@islandMergeMessage(a:ch.ninecode.cim.CIMIslandData,b:ch.ninecode.cim.CIMIslandData):ch.ninecode.cim.CIMIslandData" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#make_graph_edges" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="make_graph_edges(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]"></a>
-      <a id="make_graph_edges(CIMEdgeData):Edge[CIMEdgeData]"></a>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#islandSendMessage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="islandSendMessage(triplet:org.apache.spark.graphx.EdgeTriplet[ch.ninecode.cim.CIMIslandData,ch.ninecode.cim.CIMEdgeData]):Iterator[(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMIslandData)]"></a>
+      <a id="islandSendMessage(EdgeTriplet[CIMIslandData,CIMEdgeData]):Iterator[(VertexId,CIMIslandData)]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make_graph_edges</span><span class="params">(<span name="e">e: <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Edge">Edge</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+        <span class="name">islandSendMessage</span><span class="params">(<span name="triplet">triplet: <span class="extype" name="org.apache.spark.graphx.EdgeTriplet">EdgeTriplet</span>[<a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a>)]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph_edges(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@islandSendMessage(triplet:org.apache.spark.graphx.EdgeTriplet[ch.ninecode.cim.CIMIslandData,ch.ninecode.cim.CIMEdgeData]):Iterator[(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMIslandData)]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMRDD#modify_schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType"></a>
-      <a id="modify_schema(Class[_],StructType):StructType"></a>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#islandVertex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="islandVertex(id:org.apache.spark.graphx.VertexId,attr:ch.ninecode.cim.CIMIslandData,msg:ch.ninecode.cim.CIMIslandData):ch.ninecode.cim.CIMIslandData"></a>
+      <a id="islandVertex(VertexId,CIMIslandData,CIMIslandData):CIMIslandData"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">modify_schema</span><span class="params">(<span name="rtc">rtc: <span class="extype" name="scala.Predef.Class">Class</span>[_]</span>, <span name="schema">schema: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>
+        <span class="name">islandVertex</span><span class="params">(<span name="id">id: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>, <span name="attr">attr: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>, <span name="msg">msg: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>)</span><span class="result">: <a href="CIMIslandData.html" class="extype" name="ch.ninecode.cim.CIMIslandData">CIMIslandData</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@modify_schema(rtc:Class[_],schema:org.apache.spark.sql.types.StructType):org.apache.spark.sql.types.StructType" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@islandVertex(id:org.apache.spark.graphx.VertexId,attr:ch.ninecode.cim.CIMIslandData,msg:ch.ninecode.cim.CIMIslandData):ch.ninecode.cim.CIMIslandData" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Alter the schema so sup has the correct superclass name.</p><div class="fullcomment"><div class="comment cmt"><p>Alter the schema so sup has the correct superclass name.
-</p></div><dl class="paramcmts block"><dt class="param">rtc</dt><dd class="cmt"><p>The runtime class for Typeclass A.</p></dd><dt class="param">schema</dt><dd class="cmt"><p>The SQL schema for Typeclass A, e.g.
-  org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+      
+    </li><li name="ch.ninecode.cim.CIMRDD#like" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean"></a>
+      <a id="like(String):((Int,RDD[_]))⇒Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">like</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: ((<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[_])) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Match names with pattern &quot;name|xxx&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Match names with pattern &quot;name|xxx&quot;.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name to match</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the RDD name matches the pattern</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#makeGraph" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="makeGraph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="makeGraph():Graph[CIMVD,CIMEdgeData]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">makeGraph</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@makeGraph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="ch.ninecode.cim.CIMRDD#nameOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nameOf[T](implicitevidence$6:scala.reflect.ClassTag[T]):String"></a>
       <a id="nameOf[T](ClassTag[T]):String"></a>
@@ -648,6 +736,57 @@ class type (the usual case).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#nodeMergeMessage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="nodeMergeMessage(a:ch.ninecode.cim.CIMVD,b:ch.ninecode.cim.CIMVD):ch.ninecode.cim.CIMVD"></a>
+      <a id="nodeMergeMessage(CIMVD,CIMVD):CIMVD"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nodeMergeMessage</span><span class="params">(<span name="a">a: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>, <span name="b">b: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>)</span><span class="result">: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@nodeMergeMessage(a:ch.ninecode.cim.CIMVD,b:ch.ninecode.cim.CIMVD):ch.ninecode.cim.CIMVD" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#nodeSendMessage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="nodeSendMessage(triplet:org.apache.spark.graphx.EdgeTriplet[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]):Iterator[(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVD)]"></a>
+      <a id="nodeSendMessage(EdgeTriplet[CIMVD,CIMEdgeData]):Iterator[(VertexId,CIMVD)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nodeSendMessage</span><span class="params">(<span name="triplet">triplet: <span class="extype" name="org.apache.spark.graphx.EdgeTriplet">EdgeTriplet</span>[<a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Iterator">Iterator</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@nodeSendMessage(triplet:org.apache.spark.graphx.EdgeTriplet[ch.ninecode.cim.CIMVD,ch.ninecode.cim.CIMEdgeData]):Iterator[(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVD)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#nodeVertex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="nodeVertex(id:org.apache.spark.graphx.VertexId,data:ch.ninecode.cim.CIMVD,message:ch.ninecode.cim.CIMVD):ch.ninecode.cim.CIMVD"></a>
+      <a id="nodeVertex(VertexId,CIMVD,CIMVD):CIMVD"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nodeVertex</span><span class="params">(<span name="id">id: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>, <span name="data">data: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>, <span name="message">message: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>)</span><span class="result">: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@nodeVertex(id:org.apache.spark.graphx.VertexId,data:ch.ninecode.cim.CIMVD,message:ch.ninecode.cim.CIMVD):ch.ninecode.cim.CIMVD" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#normalOpenMask" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="normalOpenMask:Int"></a>
       <a id="normalOpenMask:Int"></a>
@@ -772,41 +911,48 @@ Hierarchical nested case class RDDs will also be updated.
 Otherwise it calls the <a href="#process(_options:ch.ninecode.cim.CIMTopologyOptions):org.apache.spark.rdd.RDD[ch.ninecode.model.Element]" class="extmbr" name="ch.ninecode.cim.CIMNetworkTopologyProcessor#process">process</a> method.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Either the old Elements RDD or a new Elements RDD - with TopologicalNode and TopologicalIsland objects included.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T])(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],keep:Boolean)(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](RDD[T],Boolean)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="keep">keep: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],keep:Boolean)(implicitevidence$10:scala.reflect.ClassTag[T],implicitevidence$11:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">keep</dt><dd class="cmt"><p>If <code>true</code> then don't unpersist any existing RDD with the given name.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
-      <a id="put[T&lt;:Product](RDD[T],String)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String,keep:Boolean)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](RDD[T],String,Boolean)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="keep">keep: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String,keep:Boolean)(implicitevidence$4:scala.reflect.ClassTag[T],implicitevidence$5:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+      <p class="shortcomment cmt">Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the given name, checkpoint it if that is enabled, and create the SQL view for it.</p><p>Since the use of RDD persistence can be problematic for memory reuse, the <code>keep</code> parameter
+has special processing. When <code>keep</code> is <code>true</code> any existing RDD of the same name is renamed to
+<code>name|n</code>
+where n is sequentially increasing to the next available integer. When <code>keep</code> is <code>false</code>
+all existing RDD of the above form are unpersisted.</p><p>This facilitates the use-case where the new RDD depends on the existing one. For example, the <code>Elements</code>
+RDD is rewritten by about, dedup, join, normalize and topological processing, where the new RDD is derived from
+the original. But when a completely new CIM RDF file is read in, <code>keep=false</code> will unpersist all
+the derived RDD.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name under which to persist it.</p></dd><dt class="param">keep</dt><dd class="cmt"><p>If <code>true</code> then don't unpersist the existing RDD with the given name.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd><dt>returns</dt><dd class="cmt"><p>The named, viewed and possibly checkpointed original RDD.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#retainFuse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="retainFuse(switch:ch.ninecode.model.Switch):Boolean"></a>
       <a id="retainFuse(Switch):Boolean"></a>
@@ -952,6 +1098,59 @@ class type (the usual case).
     </span>
       <p class="shortcomment cmt">Check for the named RDD.</p><div class="fullcomment"><div class="comment cmt"><p>Check for the named RDD.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of objects contained in the named RDD.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name of the RDD, usually the same as the CIM class.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the named RDD.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the named RDD exists, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#toEdges" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toEdges(args:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="toEdges((Element,Iterable[Terminal])):List[CIMEdgeData]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toEdges</span><span class="params">(<span name="args">args: (<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Iterable">Iterable</span>[<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>])</span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@toEdges(args:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Construct edges for terminal pairs of this equipment.</p><div class="fullcomment"><div class="comment cmt"><p>Construct edges for terminal pairs of this equipment.
+</p></div><dl class="paramcmts block"><dt class="param">args</dt><dd class="cmt"><p>Element (ConductingEquipment) and the Terminal that reference it</p></dd><dt>returns</dt><dd class="cmt"><p>edges for each terminal pair</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#toInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toInt(s:String):Option[Int]"></a>
+      <a id="toInt(String):Option[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toInt</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@toInt(s:String):Option[Int]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#toVertex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toVertex(a:(ch.ninecode.model.ConnectivityNode,String)):ch.ninecode.cim.CIMVD"></a>
+      <a id="toVertex((ConnectivityNode,String)):CIMVD"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toVertex</span><span class="params">(<span name="a">a: (<a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>, <span class="extype" name="scala.Predef.String">String</span>)</span>)</span><span class="result">: <a href="CIMVD.html" class="extype" name="ch.ninecode.cim.CIMVD">CIMVD</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@toVertex(a:(ch.ninecode.model.ConnectivityNode,String)):ch.ninecode.cim.CIMVD" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Construct vertex data for the ConnectivityNode and voltage.</p><div class="fullcomment"><div class="comment cmt"><p>Construct vertex data for the ConnectivityNode and voltage.
+</p></div><dl class="paramcmts block"><dt class="param">a</dt><dd class="cmt"><p>the ConnectivityNode and its voltage</p></dd><dt>returns</dt><dd class="cmt"><p>the data for the vertex</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#to_islands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="to_islands(nodes:Iterable[((ch.ninecode.cim.CIMVertexData,ch.ninecode.model.ConnectivityNode),Option[(ch.ninecode.model.Terminal,ch.ninecode.model.Element)])]):(org.apache.spark.graphx.VertexId,ch.ninecode.model.TopologicalIsland)"></a>
       <a id="to_islands(Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal,Element)])]):(VertexId,TopologicalIsland)"></a>
@@ -986,23 +1185,6 @@ class type (the usual case).
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#to_vertex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="to_vertex(arg:(ch.ninecode.model.ConnectivityNode,String)):ch.ninecode.cim.CIMVertexData"></a>
-      <a id="to_vertex((ConnectivityNode,String)):CIMVertexData"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">to_vertex</span><span class="params">(<span name="arg">arg: (<a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>, <span class="extype" name="scala.Predef.String">String</span>)</span>)</span><span class="result">: <a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_vertex(arg:(ch.ninecode.model.ConnectivityNode,String)):ch.ninecode.cim.CIMVertexData" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#update_cn" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="update_cn(arg:(ch.ninecode.model.ConnectivityNode,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.ConnectivityNode"></a>
       <a id="update_cn((ConnectivityNode,Option[CIMVertexData])):ConnectivityNode"></a>
@@ -1033,23 +1215,6 @@ class type (the usual case).
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@update_terminals(arg:(ch.ninecode.model.Terminal,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.Terminal" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#vertex_id" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="vertex_id(string:String):org.apache.spark.graphx.VertexId"></a>
-      <a id="vertex_id(String):VertexId"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">vertex_id</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@vertex_id(string:String):org.apache.spark.graphx.VertexId" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>

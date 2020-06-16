@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMSubsetter - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMSubsetter</title>
-          <meta name="description" content="CIMSubsetter - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMSubsetter" />
-          <meta name="keywords" content="CIMSubsetter CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMSubsetter" />
+          <title>CIMSubsetter - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMSubsetter</title>
+          <meta name="description" content="CIMSubsetter - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMSubsetter" />
+          <meta name="keywords" content="CIMSubsetter CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMSubsetter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -223,6 +223,24 @@ for the CIM case classes.
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMSubsetter#asThisClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asThisClass(element:ch.ninecode.model.Element):Option[A]"></a>
+      <a id="asThisClass(Element):Option[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asThisClass</span><span class="params">(<span name="element">element: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="ch.ninecode.cim.CIMSubsetter.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@asThisClass(element:ch.ninecode.model.Element):Option[A]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the provided Element as this class if possible.</p><div class="fullcomment"><div class="comment cmt"><p>Return the provided Element as this class if possible.
+</p></div><dl class="paramcmts block"><dt class="param">element</dt><dd class="cmt"><p>the element to convert</p></dd><dt>returns</dt><dd class="cmt"><p>Some(A) or None if the Element is not this Subsetter class type.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMSubsetter#classname" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="classname:String"></a>
       <a id="classname:String"></a>
@@ -388,6 +406,24 @@ for the CIM case classes.
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMSubsetter#like" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean"></a>
+      <a id="like(String):((Int,RDD[_]))⇒Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">like</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: ((<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[_])) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@like(name:String):((Int,org.apache.spark.rdd.RDD[_]))=&gt;Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Match names with pattern &quot;name|xxx&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Match names with pattern &quot;name|xxx&quot;.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name to match</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the RDD name matches the pattern</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMSubsetter#make" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="make(context:org.apache.spark.sql.SQLContext,rdd:org.apache.spark.rdd.RDD[ch.ninecode.model.Element],storage:org.apache.spark.storage.StorageLevel):Unit"></a>
       <a id="make(SQLContext,RDD[Element],StorageLevel):Unit"></a>
@@ -475,23 +511,6 @@ for the CIM case classes.
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMSubsetter#pf" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="pf:PartialFunction[ch.ninecode.model.Element,A]"></a>
-      <a id="pf:PartialFunction[Element,A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">pf</span><span class="result">: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="ch.ninecode.cim.CIMSubsetter.A">A</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@pf:PartialFunction[ch.ninecode.model.Element,A]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Selector for elements of this class.</p>
     </li><li name="ch.ninecode.cim.CIMSubsetter#runtime_class" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="runtime_class:Class[_]"></a>
       <a id="runtime_class:Class[_]"></a>
@@ -527,24 +546,6 @@ for the CIM case classes.
     </span>
       <p class="shortcomment cmt">Create the Dataframe for Typeclass A.</p><div class="fullcomment"><div class="comment cmt"><p>Create the Dataframe for Typeclass A.
 </p></div><dl class="paramcmts block"><dt class="param">context</dt><dd class="cmt"><p>The SQL context for creating the views.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The raw Element RDD to subset.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level to persist the subset RDD with.</p></dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMSubsetter#subclass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="subclass(element:ch.ninecode.model.Element):A"></a>
-      <a id="subclass(Element):A"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">subclass</span><span class="params">(<span name="element">element: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="ch.ninecode.cim.CIMSubsetter.A">A</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@subclass(element:ch.ninecode.model.Element):A" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Convert the generic element into an object of type A.</p><div class="fullcomment"><div class="comment cmt"><p>Convert the generic element into an object of type A.</p><p>Runs up the hierarchy of nested CIM classes to find this class - or not.
-</p></div><dl class="paramcmts block"><dt class="param">element</dt><dd class="cmt"><p>the generic element</p></dd><dt>returns</dt><dd class="cmt"><p>the object of this class, or <code>null</code> if the element is not derived from this class</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

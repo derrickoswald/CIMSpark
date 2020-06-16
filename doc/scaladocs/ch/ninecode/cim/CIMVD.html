@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMVD - CIMReader 2.11-2.4.5-4.2.0 API - ch.ninecode.cim.CIMVD</title>
-          <meta name="description" content="CIMVD - CIMReader 2.11 - 2.4.5 - 4.2.0 API - ch.ninecode.cim.CIMVD" />
-          <meta name="keywords" content="CIMVD CIMReader 2.11 2.4.5 4.2.0 API ch.ninecode.cim.CIMVD" />
+          <title>CIMVD - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMVD</title>
+          <meta name="description" content="CIMVD - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMVD" />
+          <meta name="keywords" content="CIMVD CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMVD" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -45,11 +45,11 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMVD</span><span class="params">(<span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CIMVD</span><span class="params">(<span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="container">container: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Smaller version of CIMVertexData for identifyNodes().</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Smaller version of CIMVertexData for identifyNodes().</p></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd><dt class="param">container</dt><dd class="cmt"><p>the node container</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -89,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMVD#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String):ch.ninecode.cim.CIMVD"></a>
+      <a id="&lt;init&gt;(node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String,container:String):ch.ninecode.cim.CIMVD"></a>
       <a id="&lt;init&gt;:CIMVD"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -97,14 +97,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMVD</span><span class="params">(<span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
+        <span class="name">CIMVD</span><span class="params">(<span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="container">container: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMVD@&lt;init&gt;(node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String):ch.ninecode.cim.CIMVD" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMVD@&lt;init&gt;(node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String,container:String):ch.ninecode.cim.CIMVD" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd><dt class="param">container</dt><dd class="cmt"><p>the node container</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -205,6 +205,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMVD#container" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="container:String"></a>
+      <a id="container:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">container</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMVD@container:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">the node container</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -302,7 +319,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">var</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">node</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>
@@ -319,7 +336,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">var</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">node_label</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
@@ -404,7 +421,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">var</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
         <span class="name">voltage</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
