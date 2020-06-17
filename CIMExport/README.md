@@ -37,7 +37,7 @@ This is executed using the `spark-submit` command. It can provide help text with
 
 ``` bash
 $ spark-submit --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g target/CIMExport-&lt;version&gt;-jar-with-dependencies.jar --help
-CIMExportMain 2.11-2.4.5-4.2.1
+CIMExportMain 2.11-2.4.5-4.2.2
 Usage: CIMExportMain [options] <CIM> <CIM> ...
 
 Extracts subsets of CIM files based on topology.

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
-          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
-          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.4.5-4.2.2 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
+          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.4.5 - 4.2.2 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.4.5 4.2.2 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -50,13 +50,113 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Create a topology.</p><p>Create TopologicalNode and optionally TopologicalIsland RDD that encode the
-connections between electrical elements.</p><p>Based on ConnectivityNode elements and connecting edges, find the topology that has:</p><ul><li>each substation has a single bus (TopologicalNode) at each nominal voltage level
+connections between electrical elements and updates the Terminal and ConnectivityNode
+RDD to reference them.</p><p>This creates a &quot;bus-branch&quot; model, but retains the &quot;node-breaker&quot; model.</p><p>Based on ConnectivityNode elements and connecting edges, find the topology that has:</p><ul><li>each substation has a single bus (TopologicalNode) at each nominal voltage level
    for each set of BusbarSection that are connected by closed switches</li><li>eliminates switches based on their open/closed state</li><li>assigns each ConnectivityNode to exactly one TopologicalNode</li><li>assigns each TopologicalNode to exactly one TopologicalIsland
    (islands are un-connected groups of internally-connected TopologicalNode)</li><li>assigns to each TopologicalNode only one ConnectivityNodeContainer
    (a new unique generated container or one of the possibly many
    different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
-   of all the ConnectivityNode with the same TopologicalNode)</li></ul><p>To be done eventually:</p><ul><li>create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
-</li></ul></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd></dl><div class="toggleContainer block">
+   of all the ConnectivityNode with the same TopologicalNode)</li></ul><p>There are flags that affect whether a Switch (force_retain_switches)
+or Fuse (force_retain_fuses) is included in the topology:</p><p><table width="642" cellpadding="0" cellspacing="0" style="page-break-inside: auto">
+<col width="161"/>
+<col width="161"/>
+<col width="161"/>
+<col width="161"/>
+<tbody>
+<tr>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+force_retain_switches
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+Switch.retain
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+Switch.open/<br/>
+Switch.normalOpen
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+in Topology
+</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+ForceTrue
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+ForceFalse
+</td>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+no
+</td>
+</tr>
+<tr>
+<td rowspan="3" width="161" style="border: 1px solid #000000; padding: 0mm">
+Unforced
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+no
+</td>
+</tr>
+</tbody>
+</table>
+
+
+To be done eventually:
+
+ - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
+</p></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -112,26 +212,6 @@ connections between electrical elements.</p><p>Based on ConnectivityNode element
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel,force_retain_switches:Boolean,force_retain_fuses:Boolean,debug:Boolean):ch.ninecode.cim.CIMNetworkTopologyProcessor"></a>
-      <a id="&lt;init&gt;:CIMNetworkTopologyProcessor"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (&quot;Use the constructor taking a CIMTopologyOptions object&quot;, &quot;3.0.3&quot;)
-or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfNeeded(CIMTopologyOptions)">CIMNetworkTopologyProcessor</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>, <span name="force_retain_switches">force_retain_switches: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="force_retain_fuses">force_retain_fuses: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel,force_retain_switches:Boolean,force_retain_fuses:Boolean,debug:Boolean):ch.ninecode.cim.CIMNetworkTopologyProcessor" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">The old constructor for CIMNetworkTopologyProcessor.</p><div class="fullcomment"><div class="comment cmt"><p>The old constructor for CIMNetworkTopologyProcessor.
-</p></div><dl class="attributes block"> <dt>Deprecated</dt><dd class="cmt"><p>(&quot;Use the constructor taking a CIMTopologyOptions object&quot;, &quot;3.0.3&quot;)
-or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfNeeded(CIMTopologyOptions)</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1293,44 +1373,7 @@ class type (the usual case).
 
         
 
-        <div id="values" class="values members">
-              <h3>Deprecated Value Members</h3>
-              <ol><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#process" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="process(identify_islands:Boolean):org.apache.spark.rdd.RDD[ch.ninecode.model.Element]"></a>
-      <a id="process(Boolean):RDD[Element]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (&quot;Use the method taking a CIMTopologyOptions&quot;, &quot;3.0.3&quot;)">process</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@process(identify_islands:Boolean):org.apache.spark.rdd.RDD[ch.ninecode.model.Element]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Old process() method.</p><div class="fullcomment"><div class="comment cmt"><p>Old process() method.</p></div><dl class="paramcmts block"><dt class="param">identify_islands</dt><dd class="cmt"><p>pass <code>true</code> if the TopologicalIsland RDD should be populated.</p></dd></dl><dl class="attributes block"> <dt>Deprecated</dt><dd class="cmt"><p>(&quot;Use the method taking a CIMTopologyOptions&quot;, &quot;3.0.3&quot;)</p></dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#processIfNeeded" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="processIfNeeded(identify_islands:Boolean):org.apache.spark.rdd.RDD[ch.ninecode.model.Element]"></a>
-      <a id="processIfNeeded(Boolean):RDD[Element]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (&quot;Use the method taking a CIMTopologyOptions&quot;, &quot;3.0.3&quot;)">processIfNeeded</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@processIfNeeded(identify_islands:Boolean):org.apache.spark.rdd.RDD[ch.ninecode.model.Element]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Old processIfNeeded() method.</p><div class="fullcomment"><div class="comment cmt"><p>Old processIfNeeded() method.</p></div><dl class="paramcmts block"><dt class="param">identify_islands</dt><dd class="cmt"><p>pass <code>true</code> if the TopologicalIsland RDD should be populated.</p></dd></dl><dl class="attributes block"> <dt>Deprecated</dt><dd class="cmt"><p>(&quot;Use the method taking a CIMTopologyOptions&quot;, &quot;3.0.3&quot;)</p></dd></dl></div>
-    </li></ol>
-            </div>
+        
         </div>
 
         <div id="inheritedMembers">

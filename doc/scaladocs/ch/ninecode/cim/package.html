@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>cim - CIMReader 2.11-2.4.5-4.2.1 API - ch.ninecode.cim</title>
-          <meta name="description" content="cim - CIMReader 2.11 - 2.4.5 - 4.2.1 API - ch.ninecode.cim" />
-          <meta name="keywords" content="cim CIMReader 2.11 2.4.5 4.2.1 API ch.ninecode.cim" />
+          <title>cim - CIMReader 2.11-2.4.5-4.2.2 API - ch.ninecode.cim</title>
+          <meta name="description" content="cim - CIMReader 2.11 - 2.4.5 - 4.2.2 API - ch.ninecode.cim" />
+          <meta name="keywords" content="cim CIMReader 2.11 2.4.5 4.2.2 API ch.ninecode.cim" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -373,13 +373,113 @@ the elements that are retained.
       </a>
     </span>
       <p class="shortcomment cmt">Create a topology.</p><div class="fullcomment"><div class="comment cmt"><p>Create a topology.</p><p>Create TopologicalNode and optionally TopologicalIsland RDD that encode the
-connections between electrical elements.</p><p>Based on ConnectivityNode elements and connecting edges, find the topology that has:</p><ul><li>each substation has a single bus (TopologicalNode) at each nominal voltage level
+connections between electrical elements and updates the Terminal and ConnectivityNode
+RDD to reference them.</p><p>This creates a &quot;bus-branch&quot; model, but retains the &quot;node-breaker&quot; model.</p><p>Based on ConnectivityNode elements and connecting edges, find the topology that has:</p><ul><li>each substation has a single bus (TopologicalNode) at each nominal voltage level
    for each set of BusbarSection that are connected by closed switches</li><li>eliminates switches based on their open/closed state</li><li>assigns each ConnectivityNode to exactly one TopologicalNode</li><li>assigns each TopologicalNode to exactly one TopologicalIsland
    (islands are un-connected groups of internally-connected TopologicalNode)</li><li>assigns to each TopologicalNode only one ConnectivityNodeContainer
    (a new unique generated container or one of the possibly many
    different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
-   of all the ConnectivityNode with the same TopologicalNode)</li></ul><p>To be done eventually:</p><ul><li>create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
-</li></ul></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd></dl></div>
+   of all the ConnectivityNode with the same TopologicalNode)</li></ul><p>There are flags that affect whether a Switch (force_retain_switches)
+or Fuse (force_retain_fuses) is included in the topology:</p><p><table width="642" cellpadding="0" cellspacing="0" style="page-break-inside: auto">
+<col width="161"/>
+<col width="161"/>
+<col width="161"/>
+<col width="161"/>
+<tbody>
+<tr>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+force_retain_switches
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+Switch.retain
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+Switch.open/<br/>
+Switch.normalOpen
+</td>
+<td width="161" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0mm">
+in Topology
+</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+ForceTrue
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+ForceFalse
+</td>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+no
+</td>
+</tr>
+<tr>
+<td rowspan="3" width="161" style="border: 1px solid #000000; padding: 0mm">
+Unforced
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+don’t care
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td rowspan="2" width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+true
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+yes
+</td>
+</tr>
+<tr>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+false
+</td>
+<td width="161" style="border: 1px solid #000000; padding: 0mm">
+no
+</td>
+</tr>
+</tbody>
+</table>
+
+
+To be done eventually:
+
+ - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
+</p></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNormalize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMNormalizeextendsCIMRDDwithSerializable"></a>
       <a id="CIMNormalize:CIMNormalize"></a>
