@@ -47,16 +47,26 @@ abstract class CIMSerializer[T] extends Serializer[T]
 
     def writeList (list: List[String], output: Output): Unit =
     {
-        output.writeVarInt (list.length, true)
-        list.foreach (output.writeString)
+        if (null != list)
+        {
+            output.writeVarInt (list.length, true)
+            list.foreach (output.writeString)
+        }
+        else
+            output.writeVarInt (-1, true)
     }
 
     def readList (input: Input): List[String] =
     {
         val l = input.readVarInt (true)
-        val s = for (_ <- 0 until l)
-            yield input.readString
-        s.toList
+        if (l >= 0)
+        {
+            val s = for (_ <- 0 until l)
+                yield input.readString
+            s.toList
+        }
+        else
+            null
     }
 
     def isSet (i: Int)(implicit bitfields: Array[Int]): Boolean = 0 != (bitfields(i / 32) & (1 << (i % 32)))

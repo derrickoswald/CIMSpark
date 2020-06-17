@@ -88,6 +88,27 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
             check (obj)
     }
 
+    test ("null list")
+    {
+        implicit serializer =>
+            val MRID = "_81849a73-d1c5-4cae-b58f-a6f1ad3b53a0"
+            val basic = BasicElement (
+                null,
+                mRID = MRID
+            )
+            basic.bitfields = BasicElement.fieldsToBitfields ("mRID")
+            val obj = IdentifiedObject (
+                Element = basic,
+                aliasName = "USR34519",
+                description = "another simple identified object",
+                mRID = MRID,
+                name = "17, Kerkstraat, Oost West en Middelbeers",
+                DiagramObjects = null
+            )
+            obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "description", "mRID", "name", "DiagramObjects")
+            check (obj)
+    }
+
     test ("simple")
     {
         implicit serializer =>

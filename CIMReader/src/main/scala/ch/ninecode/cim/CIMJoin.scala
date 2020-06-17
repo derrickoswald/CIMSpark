@@ -51,6 +51,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     nis.WorkLocation.Location.IdentifiedObject.PropertiesCIMDataObject,
                     nis.WorkLocation.Location.IdentifiedObject.TargetingCIMDataObject
                 )
+                id.bitfields = nis.WorkLocation.Location.IdentifiedObject.bitfields.clone
+                IdentifiedObject.fieldsToBitfields ("mRID").zipWithIndex.foreach (x => id.bitfields(x._2) |= x._1)
                 val location = Location (
                     id,
                     direction = isu.WorkLocation.Location.direction,
@@ -81,13 +83,24 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     SwitchingOrder = isu.WorkLocation.Location.SwitchingOrder,
                     TroubleOrder = isu.WorkLocation.Location.TroubleOrder
                 )
+                val ibits = Location.fieldsToBitfields ("direction", "electronicAddress", "geoInfoReference", "mainAddress",
+                    "phone1", "phone2", "status", "Assets", "ConfigurationEvents", "Crew", "Crews", "EnvironmentalLocationKind",
+                    "EnvironmentalMonitoringStation", "Fault", "Hazards", "Incident", "LandProperties",
+                    "Measurements", "OutageOrder", "Routes", "SwitchingOrder", "TroubleOrder")
+                val nbits = Location.fieldsToBitfields ("secondaryAddress", "type", "CoordinateSystem",
+                    "PositionPoints", "PowerSystemResources")
+                location.bitfields =
+                    isu.WorkLocation.Location.bitfields.clone.zipWithIndex.map (x => x._1 & ibits (x._2)).zip (
+                        nis.WorkLocation.Location.bitfields.clone.zipWithIndex.map (x => x._1 & nbits (x._2)))
+                    .map (x => x._1 | x._2)
                 val worklocation = WorkLocation (
                     location,
                     BaseWorks = isu.WorkLocation.BaseWorks,
                     isu.WorkLocation.DesignLocations,
                     isu.WorkLocation.OneCallRequest
                 )
-                ServiceLocation (
+                worklocation.bitfields = isu.WorkLocation.bitfields.clone
+                val s = ServiceLocation (
                     worklocation,
                     accessMethod = isu.accessMethod,
                     needsInspection = isu.needsInspection,
@@ -97,6 +110,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     TroubleTicket = isu.TroubleTicket,
                     UsagePoints = isu.UsagePoints
                 )
+                s.bitfields = isu.bitfields.clone
+                s
             case None =>
                 // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
                 a._1
@@ -108,9 +123,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // delete ServiceLocation that match (they were edited already and new ones have an ISU mRID)
-            case (Some (_)) => false
+            case Some (_) => false
             // keep ServiceLocation without a match
-            case (None) => true
+            case None => true
         }
     }
 
@@ -120,7 +135,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         {
             // for PositionPoint with a NIS ServiceLocation, make a new one with the ISU ServiceLocation
             case Some (x) =>
-                PositionPoint (
+                val p = PositionPoint (
                     BasicElement (null, a._1.id),
                     a._1.groupNumber,
                     a._1.sequenceNumber,
@@ -128,6 +143,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     a._1.yPosition,
                     a._1.zPosition,
                     x._1.id)
+                p.bitfields = a._1.bitfields.clone
+                p
             // default is to keep the original PositionPoint where there isn't a match
             case None => a._1
         }
@@ -139,7 +156,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         {
             // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
             case Some (x) =>
-                UserAttribute (
+                val u = UserAttribute (
                     BasicElement (null, a._1.id),
                     name = x._1.id,
                     sequenceNumber = a._1.sequenceNumber,
@@ -150,8 +167,10 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     PropertySpecification = a._1.PropertySpecification,
                     RatingSpecification = a._1.RatingSpecification,
                     Transaction = a._1.Transaction
-                    )
-
+                )
+                u.bitfields = a._1.bitfields.clone
+                UserAttribute.fieldsToBitfields ("name").zipWithIndex.foreach (x => u.bitfields(x._2) |= x._1)
+                u
             // default is to keep the original UserAttribute where there isn't a match
             case None => a._1
         }
