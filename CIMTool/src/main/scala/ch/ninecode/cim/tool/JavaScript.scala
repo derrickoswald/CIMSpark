@@ -1,10 +1,6 @@
 package ch.ninecode.cim.tool
 
-import java.io.File
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.Paths
-
+import scala.collection.SortedSet
 import scala.collection.mutable
 
 import org.slf4j.Logger
@@ -78,6 +74,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         .mkString
     }
 
+    def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
+
     def asText (pkg: Package): String =
     {
         val requires = mutable.Set[Package]()
@@ -140,19 +138,15 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
         val bunch2 = read (graph.children)
         val classes2 = bunch2.map (x => x.cls)
 
-        def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
-
         val enumerationList = classes2
             .filter (_.stereotype == "enumeration")
             .map (cls => (cls.name.replace ("-", "_"), cls))
         enumerationList.foreach (x => provides.add ((x._1, x._1)))
         val enumerations = enumerationList.map (_._1).toSet
 
-        val p = new StringBuilder ()
-            .append (generateEnumerations (enumerationList))
-
         // do the regular classes
-        for (cls <- classes2)
+        val theClasses = for (cls <- classes2)
+            yield
         {
             val s = new StringBuilder ()
 
@@ -367,15 +361,19 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                         attribute.typ // local enumeration
                     else
                     {
-                        val domain = parser.domains.filter (_.name == attribute.typ).head // a domain
-                        if (domain.pkg == pkg)
-                            attribute.typ // local
-                        else
+                        parser.domains.find (_.name == attribute.typ) match
                         {
-                            // add it to requires if necessary
-                            if (!requires.contains (domain.pkg))
-                                requires.add (domain.pkg)
-                            s"${domain.pkg.name}.${attribute.typ}"
+                            case Some (domain) => // a domain
+                                if (domain.pkg == pkg)
+                                    attribute.typ // local
+                                else
+                                {
+                                    // add it to requires if necessary
+                                    if (!requires.contains (domain.pkg))
+                                        requires.add (domain.pkg)
+                                    s"${domain.pkg.name}.${attribute.typ}"
+                                }
+                            case _ => ""
                         }
                     }
                     s.append ("\n                obj[\"%s\"] = [{ id: '', selected: (!obj[\"%s\"])}]; for (let property in %s) obj[\"%s\"].push ({ id: property, selected: obj[\"%s\"] && obj[\"%s\"].endsWith ('.' + property)});".format (variable, attribute.name, qualified, variable, attribute.name, attribute.name))
@@ -470,16 +468,21 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                             attribute.typ // local enumeration
                         else
                         {
-                            val domain = parser.domains.filter (_.name == attribute.typ).head // a domain
-                            if (domain.pkg == pkg)
-                                attribute.typ // local
-                            else
+                            parser.domains.find (_.name == attribute.typ) match
                             {
-                                // add it to requires if necessary
-                                if (!requires.contains (domain.pkg))
-                                    requires.add (pkg)
-                                s"${domain.pkg.name}.${attribute.typ}"
+                                case Some (domain) => // a domain
+                                    if (domain.pkg == pkg)
+                                        attribute.typ // local
+                                    else
+                                    {
+                                        // add it to requires if necessary
+                                        if (!requires.contains (domain.pkg))
+                                            requires.add (pkg)
+                                        s"${domain.pkg.name}.${attribute.typ}"
+                                    }
+                                case _ => ""
                             }
+
                         }
                         s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualified, attribute.name, attribute.name, attribute.typ, attribute.name))
                     }
@@ -529,105 +532,84 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                     |""".stripMargin)
             }
 
-            p.append (s)
+            s.toString
         }
 
         if (provides.nonEmpty)
         {
-            val v = new StringBuilder ()
-            val r = scala.collection.mutable.SortedSet[String]()
-            requires.foreach (p => r.add (p.name))
-
-            v.append ("""define
+            val jd = JavaDoc (pkg.notes, 4).asText
+            val requirements = List ("base") ++ SortedSet (requires.map (_.name).toSeq:_*).toList
+             s"""define
                 |(
-                |    ["model/base"""".stripMargin)
-            val includes = r.map (p => s""""model/$p"""").mkString (", ")
-            if (includes != "")
-                v.append (""", """)
-            v.append (includes)
-            v.append ("""],
-                |""".stripMargin)
-            v.append (JavaDoc (pkg.notes, 4).asText)
-            v.append ("""    function (base""")
-            val parameters = r.mkString (", ")
-            if (parameters != "")
-                v.append (""", """)
-            v.append (parameters)
-            v.append (""")
+                |    [${requirements.map (p => s""""model/$p"""").mkString (", ")}],
+                |$jd    function (${requirements.mkString (", ")})
                 |    {
-                |
-                |""".stripMargin)
-            v.append (p.toString)
-            v.append ("""        return (
+                |${generateEnumerations (enumerationList)}${theClasses.mkString}        return (
                 |            {
-                |""".stripMargin)
-            val functions = provides.map (p => s"                ${p._1}: ${p._2}").mkString (",\n")
-            v.append (functions)
-            v.append ("""
+                |${provides.map (p => s"                ${p._1}: ${p._2}").mkString (",\n")}
                 |            }
                 |        );
                 |    }
-                |);""".stripMargin)
-
-            v.toString
+                |);""".stripMargin
         }
         else
             ""
     }
 
+    def do_package (pkg: Package): List[String] =
+    {
+        val s = asText (pkg)
+        if (s.trim != "")
+        {
+            val file = s"${options.directory}/model/${pkg.name}.js"
+            log.info (file)
+            save (file, s)
+            List (pkg.name)
+        }
+        else
+        {
+            log.debug (s"no text generated for package ${pkg.xuid} (${pkg.name})")
+            List ()
+        }
+    }
+
     def generate (): Unit =
     {
-        new File ("%s/model".format (options.directory)).mkdirs
-        val js = JavaScript (parser, options)
+        val dofiles = for (pkg <- parser.packages)
+            yield
+            {
+                val p = pkg._2
+                // shenanigans to avoid the circular dependency between the Wires package and the LoadModel package
+                if ("LoadModel" == p.name)
+                {
+                    // put all classes that don't depend on Wires in LoadModel
+                    val p_no_wires = p.copy (name = "LoadModel2")
+                    parser.classes.foreach (
+                        cls =>
+                            if (cls._2.pkg == p && cls._2.sup.pkg.name == "Wires")
+                                cls._2.pkg = p_no_wires
+                    )
+                    do_package (p) ++ do_package (p_no_wires)
+                }
+                // shenanigans to avoid the circular dependency between the Assets package and the InfAssets package
+                else if ("InfAssets" == p.name)
+                {
+                    // put all classes derived from Assets in InfAssets2
+                    val p_sub_assets = p.copy (name = "InfAssets2")
+                    parser.classes.foreach (
+                        cls =>
+                            if (cls._2.pkg == p && (null != cls._2.sup) && cls._2.sup.pkg.name == "Assets")
+                                cls._2.pkg = p_sub_assets
+                    )
+                    do_package (p) ++ do_package (p_sub_assets)
+                }
+                else
+                    do_package (p)
+            }
 
-        val files = scala.collection.mutable.SortedSet[String]()
-        def do_package (pkg: Package): Unit =
-        {
-            val s = js.asText (pkg)
-            if (s.trim != "")
-            {
-                files.add (pkg.name)
-                val file = "%s/model/%s.js".format (options.directory, pkg.name)
-                log.info (file)
-                Files.write (Paths.get (file), s.getBytes (StandardCharsets.UTF_8))
-            }
-            else
-                log.debug ("no text generated for package %s (%s)".format (pkg.xuid, pkg.name))
-        }
-        for (pkg <- parser.packages)
-        {
-            val p = pkg._2
-            // shenanigans to avoid the circular dependency between the Wires package and the LoadModel package
-            if ("LoadModel" == p.name)
-            {
-                // put all classes that don't depend on Wires in LoadModel
-                val p_no_wires = p.copy (name = "LoadModel2")
-                parser.classes.foreach (
-                    cls =>
-                        if (cls._2.pkg == p && cls._2.sup.pkg.name == "Wires")
-                            cls._2.pkg = p_no_wires
-                )
-                do_package (p)
-                do_package (p_no_wires)
-            }
-            // shenanigans to avoid the circular dependency between the Assets package and the InfAssets package
-            else if ("InfAssets" == p.name)
-            {
-                // put all classes derived from Assets in InfAssets2
-                val p_sub_assets = p.copy (name = "InfAssets2")
-                parser.classes.foreach (
-                    cls =>
-                        if (cls._2.pkg == p && (null != cls._2.sup) && cls._2.sup.pkg.name == "Assets")
-                            cls._2.pkg = p_sub_assets
-                )
-                do_package (p)
-                do_package (p_sub_assets)
-            }
-            else
-                do_package (p)
-        }
-        val decl = s"""    ["model/base", ${files.map (f => s"""model/$f""").mkString ("\"", "\", \"", "\"],")}"""
+        val files = SortedSet[String] (dofiles.flatten.toSeq:_*)
+        val decl = s"""    ["model/base", ${files.map (f => s""""model/$f"""").mkString (", ")}],"""
         val fn = s"""    function (base, ${files.mkString (", ")})"""
-        Files.write (Paths.get ("%s/cim_header.js".format (options.directory)), s"$decl\n$fn".getBytes (StandardCharsets.UTF_8))
+        save (s"${options.directory}/cim_header.js", s"$decl\n$fn")
     }
 }

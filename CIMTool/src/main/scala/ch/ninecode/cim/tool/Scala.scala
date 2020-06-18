@@ -538,13 +538,6 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             ""
     }
 
-    def save (filename: String, text: String): Unit =
-    {
-        val file = Paths.get (filename)
-        mkdir (file.getParent.toString)
-        val _ = Files.write (file, text.getBytes (StandardCharsets.UTF_8))
-    }
-
     def writeRegistration (registers: List[String]): Unit =
     {
         val register =
