@@ -1,9 +1,5 @@
 package ch.ninecode.cim.tool
 
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.Paths
-
 import scala.collection.mutable
 import scala.collection.SortedSet
 
@@ -319,7 +315,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             ""
     }
 
-    def parse (cls: Class, name: String, members: SortedSet[Member]): String =
+    def parse (name: String, members: SortedSet[Member]): String =
     {
         val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
         val fields: SortedSet[Member] = members.filter (!_.isSuper)
@@ -465,6 +461,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def asText (pkg: Package): String =
     {
         val case_classes = parser.classesFor (pkg)
+        var hasRelationShip = false
         val p = new StringBuilder ()
         for (cls <- case_classes)
         {
@@ -479,6 +476,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     parser.attributesFor (cls).map (details (case_classes)).toSet
                         .union (parser.rolesFor (cls).map (details).toSet)
             val fields: mutable.SortedSet[Member] = members.filter (!_.isSuper)
+            hasRelationShip |= fields.exists (member => null != member.referenced_class)
             val s = new StringBuilder ()
                 .append (JavaDoc (cls.note, 0, members, pkg.name, s"Package ${pkg.name}", pkg.notes).asText)
                 .append (declareClass (name, members))
@@ -491,7 +489,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 .append (declareObject (name))
                 .append ("\n{\n")
                 .append (parseRelationships (fields))
-                .append (parse (cls, name, members))
+                .append (parse (name, members))
                 .append (serializer (name))
                 .append ("}\n")
                 .append (serialize (cls, name, members))
@@ -504,7 +502,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             val v = new StringBuilder ()
 
-                .append ("""package ch.ninecode.model
+                .append (s"""package ch.ninecode.model
                     |
                     |import com.esotericsoftware.kryo.Kryo
                     |import com.esotericsoftware.kryo.Serializer
@@ -515,7 +513,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     |import ch.ninecode.cim.CIMClassInfo
                     |import ch.ninecode.cim.CIMContext
                     |import ch.ninecode.cim.CIMParseable
-                    |import ch.ninecode.cim.CIMRelationship
+                    |${if (hasRelationShip) "import ch.ninecode.cim.CIMRelationship" else ""}
                     |import ch.ninecode.cim.CIMSerializer
                     |
                     |""".stripMargin)

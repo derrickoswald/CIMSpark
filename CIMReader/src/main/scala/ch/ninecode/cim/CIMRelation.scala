@@ -10,7 +10,6 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.execution.datasources.FileIndex
-import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.TableScan
 import org.apache.spark.sql.types.StructType
@@ -29,17 +28,11 @@ import ch.ninecode.model.Element
  * using the CIM class name.
  *
  * @param location object containing the file(s) to read
- * @param partitionSchema <em>not used</em>
- * @param dataSchema <em>not used</em>
- * @param fileFormat <em>not used</em>
  * @param parameters specific settings for reading the file(s)
  * @param spark the Spark session object
  */
 class CIMRelation (
     location: FileIndex,
-    partitionSchema: StructType,
-    dataSchema: StructType,
-    fileFormat: FileFormat,
     parameters: Map[String, String]) (spark: SparkSession) extends BaseRelation with TableScan with CIMRDD
 {
     // We use BaseRelation because if it inherits from HadoopFSRelation,

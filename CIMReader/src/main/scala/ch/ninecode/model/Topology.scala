@@ -157,9 +157,10 @@ object BusNameMarkerSerializer extends CIMSerializer[BusNameMarker]
 /**
  * An electrically connected subset of the network.
  *
- * Topological islands can change as the current network state changes: e.g. due to
+ * Topological islands can change as the current network state changes, e.g. due to:
  * - disconnect switches or breakers changing state in a SCADA/EMS.
  * - manual creation, change or deletion of topological nodes in a planning tool.
+ * Only energised TopologicalNode-s shall be part of the topological island.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AngleRefTopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The angle reference for the island.

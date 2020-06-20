@@ -814,23 +814,28 @@ object LoadGroupSerializer extends CIMSerializer[LoadGroup]
 /**
  * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
  *
- * This is not related to demand response.
- *
- * If LoadResponseCharacteristic.exponentModel is True, the voltage exponents are specified and used as to calculate:
- *
- * Active power component = Pnominal * (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
- *
- * Reactive power component = Qnominal * (Voltage/cim:BaseVoltage.nominalVoltage)** cim:LoadResponseCharacteristic.qVoltageExponent
- *
- * Where  * means "multiply" and ** is "raised to power of".
+ * It is not related to demand response.
+ * If LoadResponseCharacteristic.exponentModel is True, the exponential voltage or frequency dependent models are specified and used as to calculate active and reactive power components of the load model.
+ * The equations to calculate active and reactive power components of the load model are internal to the power flow calculation, hence they use different quantities depending on the use case of the data exchange.
+ * The equations for exponential voltage dependent load model injected power are:
+ * pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
+ * qInjection= Qnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.qVoltageExponent
+ * Where:
+ * 1) * means "multiply" and ** is "raised to power of";
+ * 2) Pnominal and Qnominal represent the active power and reactive power at nominal voltage as any load described by the voltage exponential model shall be given at nominal voltage.  This means that EnergyConsumer.p and EnergyConsumer.q  are at nominal voltage.
+ * 3) After power flow is solved:
+ * -pInjection and qInjection correspond to SvPowerflow.p and SvPowerflow.q respectively.
+ * - Voltage corresponds to SvVoltage.v at the TopologicalNode where the load is connected.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param exponentModel Indicates the exponential voltage dependency model is to be used.
  *        If false, the coefficient model is to be used.
- *        The exponential voltage dependency model consist of the attributes
+ *        The exponential voltage dependency model consist of the attributes:
  *        - pVoltageExponent
- *        - qVoltageExponent.
- *        The coefficient model consist of the attributes
+ *        - qVoltageExponent
+ *        - pFrequencyExponent
+ *        - qFrequencyExponent.
+ *        The coefficient model consist of the attributes:
  *        - pConstantImpedance
  *        - pConstantCurrent
  *        - pConstantPower

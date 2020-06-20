@@ -1132,10 +1132,12 @@ object HeatRecoveryBoilerSerializer extends CIMSerializer[HeatRecoveryBoiler]
  * @param maxHeadMaxP Maximum efficiency active power at maximum head conditions.
  * @param minHeadMaxP Maximum efficiency active power at minimum head conditions.
  * @param speedRating Rated speed in number of revolutions.
+ *        The attribute shall be a positive value.
  * @param speedRegulation Speed regulation.
  * @param transientDroopTime Transient droop time constant.
  * @param transientRegulation Transient regulation.
  * @param turbineRating Rated turbine active power.
+ *        The attribute shall be a positive value.
  * @param turbineType Type of turbine.
  * @param waterStartingTime Water starting time.
  * @group GenerationTrainingSimulation

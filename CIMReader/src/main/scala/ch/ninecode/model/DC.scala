@@ -17,47 +17,53 @@ import ch.ninecode.cim.CIMSerializer
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param baseS Base apparent power of the converter pole.
+ *        The attribute shall be a positive value.
  * @param idc Converter DC current, also called Id.
- *        Converter state variable, result from power flow.
+ *        It is converter’s state variable, result from power flow.
  * @param idleLoss Active power loss in pole at no power transfer.
- *        Converter configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
+ * @param maxP Maximum active power limit.
+ *        The value is overwritten by values of VsCapabilityCurve, if present.
  * @param maxUdc The maximum voltage on the DC side at which the converter should operate.
- *        Converter configuration data used in power flow.
- * @param minUdc Minimum allowed converter DC voltage.
- *        Converter configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
+ * @param minP Minimum active power limit.
+ *        The value is overwritten by values of VsCapabilityCurve, if present.
+ * @param minUdc The minimum voltage on the DC side at which the converter should operate.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param numberOfValves Number of valves in the converter.
  *        Used in loss calculations.
  * @param p Active power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  *        Starting value for a steady state solution in the case a simplified power flow model is used.
  * @param poleLossP The active power loss at a DC Pole
- *        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
- *        For lossless operation Pdc=Pac
- *        For rectifier operation with losses Pdc=Pac-lossP
- *        For inverter operation with losses Pdc=Pac+lossP
- *        Converter state variable used in power flow.
+ *        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>.
+ *        For lossless operation Pdc=Pac.
+ *        For rectifier operation with losses Pdc=Pac-lossP.
+ *        For inverter operation with losses Pdc=Pac+lossP.
+ *        It is converter’s state variable used in power flow. The attribute shall be a positive value.
  * @param q Reactive power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  *        Starting value for a steady state solution in the case a simplified power flow model is used.
  * @param ratedUdc Rated converter DC voltage, also called UdN.
- *        Converter configuration data used in power flow.
- * @param resistiveLoss Converter configuration data used in power flow.
- *        Refer to poleLossP.
+ *        The attribute shall be a positive value. It is converter’s configuration data used in power flow. For instance a bipolar HVDC link with value  200 kV has a 400kV difference between the dc lines.
+ * @param resistiveLoss It is converter’s configuration data used in power flow.
+ *        Refer to poleLossP. The attribute shall be a positive value.
  * @param switchingLoss Switching losses, relative to the base apparent power 'baseS'.
- *        Refer to poleLossP.
+ *        Refer to poleLossP. The attribute shall be a positive value.
  * @param targetPpcc Real power injection target in AC grid, at point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param targetUdc Target value for DC voltage magnitude.
+ *        The attribute shall be a positive value.
  * @param uc Line-to-line converter voltage, the voltage at the AC side of the valve.
- *        Converter state variable, result from power flow.
+ *        It is converter’s state variable, result from power flow. The attribute shall be a positive value.
  * @param udc Converter voltage at the DC side, also called Ud.
- *        Converter state variable, result from power flow.
+ *        It is converter’s state variable, result from power flow. The attribute shall be a positive value.
  * @param valveU0 Valve threshold voltage, also called Uvalve.
  *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depend on numberOfValves * valveU0.
  * @param DCTerminals [[ch.ninecode.model.ACDCConverterDCTerminal ACDCConverterDCTerminal]] A DC converter have DC converter terminals.
  *        A converter has two DC converter terminals.
  * @param PccTerminal [[ch.ninecode.model.Terminal Terminal]] Point of common coupling terminal for this converter DC side.
- *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement shall be the sum of all flows into the transformer.
+ *        It is typically the terminal on the power transformer (or switch) closest to the AC network.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -68,7 +74,9 @@ final case class ACDCConverter
     baseS: Double = 0.0,
     idc: Double = 0.0,
     idleLoss: Double = 0.0,
+    maxP: Double = 0.0,
     maxUdc: Double = 0.0,
+    minP: Double = 0.0,
     minUdc: Double = 0.0,
     numberOfValves: Int = 0,
     p: Double = 0.0,
@@ -124,22 +132,24 @@ extends
         emitelem (0, baseS)
         emitelem (1, idc)
         emitelem (2, idleLoss)
-        emitelem (3, maxUdc)
-        emitelem (4, minUdc)
-        emitelem (5, numberOfValves)
-        emitelem (6, p)
-        emitelem (7, poleLossP)
-        emitelem (8, q)
-        emitelem (9, ratedUdc)
-        emitelem (10, resistiveLoss)
-        emitelem (11, switchingLoss)
-        emitelem (12, targetPpcc)
-        emitelem (13, targetUdc)
-        emitelem (14, uc)
-        emitelem (15, udc)
-        emitelem (16, valveU0)
-        emitattrs (17, DCTerminals)
-        emitattr (18, PccTerminal)
+        emitelem (3, maxP)
+        emitelem (4, maxUdc)
+        emitelem (5, minP)
+        emitelem (6, minUdc)
+        emitelem (7, numberOfValves)
+        emitelem (8, p)
+        emitelem (9, poleLossP)
+        emitelem (10, q)
+        emitelem (11, ratedUdc)
+        emitelem (12, resistiveLoss)
+        emitelem (13, switchingLoss)
+        emitelem (14, targetPpcc)
+        emitelem (15, targetUdc)
+        emitelem (16, uc)
+        emitelem (17, udc)
+        emitelem (18, valveU0)
+        emitattrs (19, DCTerminals)
+        emitattr (20, PccTerminal)
         s.toString
     }
     override def export: String =
@@ -156,7 +166,9 @@ extends
         "baseS",
         "idc",
         "idleLoss",
+        "maxP",
         "maxUdc",
+        "minP",
         "minUdc",
         "numberOfValves",
         "p",
@@ -180,22 +192,24 @@ extends
     val baseS: Fielder = parse_element (element (cls, fields(0)))
     val idc: Fielder = parse_element (element (cls, fields(1)))
     val idleLoss: Fielder = parse_element (element (cls, fields(2)))
-    val maxUdc: Fielder = parse_element (element (cls, fields(3)))
-    val minUdc: Fielder = parse_element (element (cls, fields(4)))
-    val numberOfValves: Fielder = parse_element (element (cls, fields(5)))
-    val p: Fielder = parse_element (element (cls, fields(6)))
-    val poleLossP: Fielder = parse_element (element (cls, fields(7)))
-    val q: Fielder = parse_element (element (cls, fields(8)))
-    val ratedUdc: Fielder = parse_element (element (cls, fields(9)))
-    val resistiveLoss: Fielder = parse_element (element (cls, fields(10)))
-    val switchingLoss: Fielder = parse_element (element (cls, fields(11)))
-    val targetPpcc: Fielder = parse_element (element (cls, fields(12)))
-    val targetUdc: Fielder = parse_element (element (cls, fields(13)))
-    val uc: Fielder = parse_element (element (cls, fields(14)))
-    val udc: Fielder = parse_element (element (cls, fields(15)))
-    val valveU0: Fielder = parse_element (element (cls, fields(16)))
-    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
-    val PccTerminal: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val maxP: Fielder = parse_element (element (cls, fields(3)))
+    val maxUdc: Fielder = parse_element (element (cls, fields(4)))
+    val minP: Fielder = parse_element (element (cls, fields(5)))
+    val minUdc: Fielder = parse_element (element (cls, fields(6)))
+    val numberOfValves: Fielder = parse_element (element (cls, fields(7)))
+    val p: Fielder = parse_element (element (cls, fields(8)))
+    val poleLossP: Fielder = parse_element (element (cls, fields(9)))
+    val q: Fielder = parse_element (element (cls, fields(10)))
+    val ratedUdc: Fielder = parse_element (element (cls, fields(11)))
+    val resistiveLoss: Fielder = parse_element (element (cls, fields(12)))
+    val switchingLoss: Fielder = parse_element (element (cls, fields(13)))
+    val targetPpcc: Fielder = parse_element (element (cls, fields(14)))
+    val targetUdc: Fielder = parse_element (element (cls, fields(15)))
+    val uc: Fielder = parse_element (element (cls, fields(16)))
+    val udc: Fielder = parse_element (element (cls, fields(17)))
+    val valveU0: Fielder = parse_element (element (cls, fields(18)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
+    val PccTerminal: Fielder = parse_attribute (attribute (cls, fields(20)))
 
     def parse (context: CIMContext): ACDCConverter =
     {
@@ -206,22 +220,24 @@ extends
             toDouble (mask (baseS (), 0)),
             toDouble (mask (idc (), 1)),
             toDouble (mask (idleLoss (), 2)),
-            toDouble (mask (maxUdc (), 3)),
-            toDouble (mask (minUdc (), 4)),
-            toInteger (mask (numberOfValves (), 5)),
-            toDouble (mask (p (), 6)),
-            toDouble (mask (poleLossP (), 7)),
-            toDouble (mask (q (), 8)),
-            toDouble (mask (ratedUdc (), 9)),
-            toDouble (mask (resistiveLoss (), 10)),
-            toDouble (mask (switchingLoss (), 11)),
-            toDouble (mask (targetPpcc (), 12)),
-            toDouble (mask (targetUdc (), 13)),
-            toDouble (mask (uc (), 14)),
-            toDouble (mask (udc (), 15)),
-            toDouble (mask (valveU0 (), 16)),
-            masks (DCTerminals (), 17),
-            mask (PccTerminal (), 18)
+            toDouble (mask (maxP (), 3)),
+            toDouble (mask (maxUdc (), 4)),
+            toDouble (mask (minP (), 5)),
+            toDouble (mask (minUdc (), 6)),
+            toInteger (mask (numberOfValves (), 7)),
+            toDouble (mask (p (), 8)),
+            toDouble (mask (poleLossP (), 9)),
+            toDouble (mask (q (), 10)),
+            toDouble (mask (ratedUdc (), 11)),
+            toDouble (mask (resistiveLoss (), 12)),
+            toDouble (mask (switchingLoss (), 13)),
+            toDouble (mask (targetPpcc (), 14)),
+            toDouble (mask (targetUdc (), 15)),
+            toDouble (mask (uc (), 16)),
+            toDouble (mask (udc (), 17)),
+            toDouble (mask (valveU0 (), 18)),
+            masks (DCTerminals (), 19),
+            mask (PccTerminal (), 20)
         )
         ret.bitfields = bitfields
         ret
@@ -238,7 +254,9 @@ object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
             () => output.writeDouble (obj.baseS),
             () => output.writeDouble (obj.idc),
             () => output.writeDouble (obj.idleLoss),
+            () => output.writeDouble (obj.maxP),
             () => output.writeDouble (obj.maxUdc),
+            () => output.writeDouble (obj.minP),
             () => output.writeDouble (obj.minUdc),
             () => output.writeInt (obj.numberOfValves),
             () => output.writeDouble (obj.p),
@@ -272,9 +290,9 @@ object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
             if (isSet (2)) input.readDouble else 0.0,
             if (isSet (3)) input.readDouble else 0.0,
             if (isSet (4)) input.readDouble else 0.0,
-            if (isSet (5)) input.readInt else 0,
+            if (isSet (5)) input.readDouble else 0.0,
             if (isSet (6)) input.readDouble else 0.0,
-            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (7)) input.readInt else 0,
             if (isSet (8)) input.readDouble else 0.0,
             if (isSet (9)) input.readDouble else 0.0,
             if (isSet (10)) input.readDouble else 0.0,
@@ -284,8 +302,10 @@ object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
             if (isSet (14)) input.readDouble else 0.0,
             if (isSet (15)) input.readDouble else 0.0,
             if (isSet (16)) input.readDouble else 0.0,
-            if (isSet (17)) readList (input) else null,
-            if (isSet (18)) input.readString else null
+            if (isSet (17)) input.readDouble else 0.0,
+            if (isSet (18)) input.readDouble else 0.0,
+            if (isSet (19)) readList (input) else null,
+            if (isSet (20)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -299,6 +319,9 @@ object ACDCConverterSerializer extends CIMSerializer[ACDCConverter]
  *
  * @param DCBaseTerminal [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
+ *        Depending on the converter configuration the value shall be set as follows:
+ *        - For a monopole with two converter terminals use DCPolarityKind “positive” and “negative”.
+ *        - For a bi-pole or symmetric monopole with three converter terminals use DCPolarityKind “positive”, “middle” and “negative”.
  * @param DCConductingEquipment [[ch.ninecode.model.ACDCConverter ACDCConverter]] A DC converter terminal belong to an DC converter.
  * @group DC
  * @groupname DC Package DC
@@ -415,34 +438,39 @@ object ACDCConverterDCTerminalSerializer extends CIMSerializer[ACDCConverterDCTe
 /**
  * DC side of the current source converter (CSC).
  *
+ * The firing angle controls the dc voltage at the converter, both for rectifier and inverter. The difference between the dc voltages of the rectifier and inverter determines the dc current. The extinction angle is used to limit the dc voltage at the inverter, if needed, and is not used in active power control. The firing angle, transformer tap position and number of connected filters are the primary means to control a current source dc line. Higher level controls are built on top, e.g. dc voltage, dc current and active power. From a steady state perspective it is sufficient to specify the wanted active power transfer (ACDCConverter.targetPpcc) and the control functions will set the dc voltage, dc current, firing angle, transformer tap position and number of connected filters to meet this. Therefore attributes targetAlpha and targetGamma are not applicable in this case.
+ * The reactive power consumed by the converter is a function of the firing angle, transformer tap position and number of connected filter, which can be approximated with half of the active power. The losses is a function of the dc voltage and dc current.
+ * The attributes minAlpha and maxAlpha define the range of firing angles for rectifier operation between which no discrete tap changer action takes place. The range is typically 10-18 degrees.
+ * The attributes minGamma and maxGamma define the range of extinction angles for inverter operation between which no discrete tap changer action takes place. The range is typically 17-20 degrees.
+ *
  * @param ACDCConverter [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
- * @param alpha Firing angle, typical value between 10 degrees and 18 degrees for a rectifier.
- *        CSC state variable, result from power flow.
+ * @param alpha Firing angle that determines the dc voltage at the converter dc terminal.
+ *        Typical value between 10 degrees and 18 degrees for a rectifier. It is converter’s state variable, result from power flow. The attribute shall be a positive value.
  * @param gamma Extinction angle.
- *        CSC state variable, result from power flow.
+ *        It is used to limit the dc voltage at the inverter if needed. Typical value between 17 degrees and 20 degrees for an inverter. It is converter’s state variable, result from power flow. The attribute shall be a positive value.
  * @param maxAlpha Maximum firing angle.
- *        CSC configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param maxGamma Maximum extinction angle.
- *        CSC configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param maxIdc The maximum direct current (Id) on the DC side at which the converter should operate.
- *        Converter configuration data use in power flow.
+ *        It is converter’s configuration data use in power flow. The attribute shall be a positive value.
  * @param minAlpha Minimum firing angle.
- *        CSC configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param minGamma Minimum extinction angle.
- *        CSC configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param minIdc The minimum direct current (Id) on the DC side at which the converter should operate.
- *        CSC configuration data used in power flow.
+ *        It is converter’s configuration data used in power flow. The attribute shall be a positive value.
  * @param operatingMode Indicates whether the DC pole is operating as an inverter or as a rectifier.
- *        CSC control variable used in power flow.
+ *        It is converter’s control variable used in power flow.
  * @param pPccControl Kind of active power control.
  * @param ratedIdc Rated converter DC current, also called IdN.
- *        Converter configuration data used in power flow.
+ *        The attribute shall be a positive value. It is converter’s configuration data used in power flow.
  * @param targetAlpha Target firing angle.
- *        CSC control variable used in power flow.
+ *        It is converter’s control variable used in power flow. It is only applicable for rectifier if continuous tap changer control is used. Allowed values are within the range minAlpha&lt;=targetAlpha&lt;=maxAlpha. The attribute shall be a positive value.
  * @param targetGamma Target extinction angle.
- *        CSC  control variable used in power flow.
+ *        It is converter’s control variable used in power flow. It is only applicable for inverter if continuous tap changer control is used. Allowed values are within the range minGamma&lt;=targetGamma&lt;=maxGamma. The attribute shall be a positive value.
  * @param targetIdc DC current target value.
- *        CSC control variable used in power flow.
+ *        It is converter’s control variable used in power flow. The attribute shall be a positive value.
  * @param CSCDynamics [[ch.ninecode.model.CSCDynamics CSCDynamics]] Current source converter dynamics model used to describe dynamic behaviour of this converter.
  * @group DC
  * @groupname DC Package DC
@@ -1053,7 +1081,7 @@ object DCChopperSerializer extends CIMSerializer[DCChopper]
  *
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param ratedUdc Rated DC device voltage.
- *        Converter configuration data used in power flow.
+ *        The attribute shall be a positive value. It is configuration data used in power flow.
  * @param DCTerminals [[ch.ninecode.model.DCTerminal DCTerminal]] A DC conducting equipment has DC terminals.
  * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] <em>undocumented</em>
  * @group DC
@@ -1390,7 +1418,7 @@ object DCDisconnectorSerializer extends CIMSerializer[DCDisconnector]
 /**
  * A modelling construct to provide a root class for containment of DC as well as AC equipment.
  *
- * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
+ * The class differ from the EquipmentContaner for AC in that it may also contain DCNode-s. Hence it can contain both AC and DC equipment.
  *
  * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] The DC nodes contained in the DC equipment container.
@@ -2447,9 +2475,10 @@ object DCTerminalSerializer extends CIMSerializer[DCTerminal]
 /**
  * An electrically connected subset of the network.
  *
- * DC topological islands can change as the current network state changes: e.g. due to
+ * DC topological islands can change as the current network state changes, e.g. due to:
  * - disconnect switches or breakers changing state in a SCADA/EMS.
  * - manual creation, change or deletion of topological nodes in a planning tool.
+ * Only energised TopologicalNode-s shall be part of the topological island.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological nodes in a DC topological island.
@@ -2947,23 +2976,32 @@ object VsCapabilityCurveSerializer extends CIMSerializer[VsCapabilityCurve]
  * DC side of the voltage source converter (VSC).
  *
  * @param ACDCConverter [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
- * @param delta Angle between uf and uc.
- *        Converter state variable used in power flow.
- * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
+ * @param delta Angle between VsConverter.uv and ACDCConverter.uc.
+ *        It is converter’s state variable used in power flow. The attribute shall be a positive value or zero.
+ * @param droop Droop constant.
+ *        The pu value is obtained as D [kV/MW] x Sb / Ubdc. The attribute shall be a positive value.
  * @param droopCompensation Compensation constant.
- *        Used to compensate for voltage drop when controlling voltage at a distant bus.
+ *        Used to compensate for voltage drop when controlling voltage at a distant bus. The attribute shall be a positive value.
  * @param maxModulationIndex The maximum quotient between the AC converter voltage (Uc) and DC voltage (Ud).
- *        A factor typically less than 1. VSC configuration data used in power flow.
+ *        A factor typically less than 1. It is converter’s configuration data used in power flow.
  * @param maxValveCurrent The maximum current through a valve.
- *        This current limit is the basis for calculating the capability diagram. VSC  configuration data.
+ *        It is converter’s configuration data.
  * @param pPccControl Kind of control of real power and/or DC voltage.
  * @param qPccControl Kind of reactive power control.
  * @param qShare Reactive power sharing factor among parallel converters on Uac control.
+ *        The attribute shall be a positive value or zero.
+ * @param targetPWMfactor Magnitude of pulse-modulation factor.
+ *        The attribute shall be a positive value.
+ * @param targetPhasePcc Phase target at AC side, at point of common coupling.
+ *        The attribute shall be a positive value.
+ * @param targetPowerFactorPcc Power factor target at the AC side, at point of common coupling.
+ *        The attribute shall be a positive value.
  * @param targetQpcc Reactive power injection target in AC grid, at point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param targetUpcc Voltage target in AC grid, at point of common coupling.
+ *        The attribute shall be a positive value.
  * @param uv Line-to-line voltage on the valve side of the converter transformer.
- *        Converter state variable, result from power flow.
+ *        It is converter’s state variable, result from power flow. The attribute shall be a positive value.
  * @param CapabilityCurve [[ch.ninecode.model.VsCapabilityCurve VsCapabilityCurve]] Capability curve of this converter.
  * @param VSCDynamics [[ch.ninecode.model.VSCDynamics VSCDynamics]] Voltage source converter dynamics model used to describe dynamic behaviour of this converter.
  * @group DC
@@ -2981,6 +3019,9 @@ final case class VsConverter
     pPccControl: String = null,
     qPccControl: String = null,
     qShare: Double = 0.0,
+    targetPWMfactor: Double = 0.0,
+    targetPhasePcc: Double = 0.0,
+    targetPowerFactorPcc: Double = 0.0,
     targetQpcc: Double = 0.0,
     targetUpcc: Double = 0.0,
     uv: Double = 0.0,
@@ -3030,11 +3071,14 @@ extends
         emitattr (5, pPccControl)
         emitattr (6, qPccControl)
         emitelem (7, qShare)
-        emitelem (8, targetQpcc)
-        emitelem (9, targetUpcc)
-        emitelem (10, uv)
-        emitattr (11, CapabilityCurve)
-        emitattr (12, VSCDynamics)
+        emitelem (8, targetPWMfactor)
+        emitelem (9, targetPhasePcc)
+        emitelem (10, targetPowerFactorPcc)
+        emitelem (11, targetQpcc)
+        emitelem (12, targetUpcc)
+        emitelem (13, uv)
+        emitattr (14, CapabilityCurve)
+        emitattr (15, VSCDynamics)
         s.toString
     }
     override def export: String =
@@ -3056,6 +3100,9 @@ extends
         "pPccControl",
         "qPccControl",
         "qShare",
+        "targetPWMfactor",
+        "targetPhasePcc",
+        "targetPowerFactorPcc",
         "targetQpcc",
         "targetUpcc",
         "uv",
@@ -3074,11 +3121,14 @@ extends
     val pPccControl: Fielder = parse_attribute (attribute (cls, fields(5)))
     val qPccControl: Fielder = parse_attribute (attribute (cls, fields(6)))
     val qShare: Fielder = parse_element (element (cls, fields(7)))
-    val targetQpcc: Fielder = parse_element (element (cls, fields(8)))
-    val targetUpcc: Fielder = parse_element (element (cls, fields(9)))
-    val uv: Fielder = parse_element (element (cls, fields(10)))
-    val CapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val VSCDynamics: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val targetPWMfactor: Fielder = parse_element (element (cls, fields(8)))
+    val targetPhasePcc: Fielder = parse_element (element (cls, fields(9)))
+    val targetPowerFactorPcc: Fielder = parse_element (element (cls, fields(10)))
+    val targetQpcc: Fielder = parse_element (element (cls, fields(11)))
+    val targetUpcc: Fielder = parse_element (element (cls, fields(12)))
+    val uv: Fielder = parse_element (element (cls, fields(13)))
+    val CapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val VSCDynamics: Fielder = parse_attribute (attribute (cls, fields(15)))
 
     def parse (context: CIMContext): VsConverter =
     {
@@ -3094,11 +3144,14 @@ extends
             mask (pPccControl (), 5),
             mask (qPccControl (), 6),
             toDouble (mask (qShare (), 7)),
-            toDouble (mask (targetQpcc (), 8)),
-            toDouble (mask (targetUpcc (), 9)),
-            toDouble (mask (uv (), 10)),
-            mask (CapabilityCurve (), 11),
-            mask (VSCDynamics (), 12)
+            toDouble (mask (targetPWMfactor (), 8)),
+            toDouble (mask (targetPhasePcc (), 9)),
+            toDouble (mask (targetPowerFactorPcc (), 10)),
+            toDouble (mask (targetQpcc (), 11)),
+            toDouble (mask (targetUpcc (), 12)),
+            toDouble (mask (uv (), 13)),
+            mask (CapabilityCurve (), 14),
+            mask (VSCDynamics (), 15)
         )
         ret.bitfields = bitfields
         ret
@@ -3120,6 +3173,9 @@ object VsConverterSerializer extends CIMSerializer[VsConverter]
             () => output.writeString (obj.pPccControl),
             () => output.writeString (obj.qPccControl),
             () => output.writeDouble (obj.qShare),
+            () => output.writeDouble (obj.targetPWMfactor),
+            () => output.writeDouble (obj.targetPhasePcc),
+            () => output.writeDouble (obj.targetPowerFactorPcc),
             () => output.writeDouble (obj.targetQpcc),
             () => output.writeDouble (obj.targetUpcc),
             () => output.writeDouble (obj.uv),
@@ -3149,8 +3205,11 @@ object VsConverterSerializer extends CIMSerializer[VsConverter]
             if (isSet (8)) input.readDouble else 0.0,
             if (isSet (9)) input.readDouble else 0.0,
             if (isSet (10)) input.readDouble else 0.0,
-            if (isSet (11)) input.readString else null,
-            if (isSet (12)) input.readString else null
+            if (isSet (11)) input.readDouble else 0.0,
+            if (isSet (12)) input.readDouble else 0.0,
+            if (isSet (13)) input.readDouble else 0.0,
+            if (isSet (14)) input.readString else null,
+            if (isSet (15)) input.readString else null
         )
         obj.bitfields = bitfields
         obj

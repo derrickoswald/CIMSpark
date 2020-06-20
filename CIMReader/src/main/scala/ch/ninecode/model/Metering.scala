@@ -6210,7 +6210,7 @@ object SimpleEndDeviceFunctionSerializer extends CIMSerializer[SimpleEndDeviceFu
  * @param amiBillingReady Tracks the lifecycle of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
  * @param checkBilling True if as a result of an inspection or otherwise, there is a reason to suspect that a previous billing may have been performed with erroneous data.
  *        Value should be reset once this potential discrepancy has been resolved.
- * @param connectionCategory A code used to specify the connection category, e.g., low voltage, where the usage point is defined.
+ * @param connectionCategory A code used to specify the connection category, e.g., low voltage or low pressure, where the usage point is defined.
  * @param connectionState State of the usage point with respect to connection to the network.
  * @param disconnectionMethod Is an indication of how the usage point is physically connected or disconnected.
  * @param estimatedLoad Estimated load.
@@ -6224,6 +6224,7 @@ object SimpleEndDeviceFunctionSerializer extends CIMSerializer[SimpleEndDeviceFu
  * @param outageRegion Outage region in which this usage point is located.
  * @param phaseCode Phase code.
  *        Number of wires and specific nominal phases can be deduced from enumeration literal values. For example, ABCN is three-phase, four-wire, s12n (splitSecondary12N) is single-phase, three-wire, and s1n and s2n are single-phase, two-wire.
+ * @param phaseCount Number of potential phases the Usage Point supports, typically 0, 1 or 3.
  * @param physicalConnectionCapacity Quantitative information about the maximum physical capacity of the connection for the usage point.
  * @param ratedCurrent Current flow that this usage point is configured to deliver.
  * @param ratedPower Active power that this usage point is configured to deliver.
@@ -6244,7 +6245,7 @@ object SimpleEndDeviceFunctionSerializer extends CIMSerializer[SimpleEndDeviceFu
  * @param MeterReadings [[ch.ninecode.model.MeterReading MeterReading]] All meter readings obtained from this usage point.
  * @param MeterServiceWorkTasks [[ch.ninecode.model.MeterWorkTask MeterWorkTask]] All meter service work tasks at this usage point.
  * @param MetrologyRequirements [[ch.ninecode.model.MetrologyRequirement MetrologyRequirement]] All metrology requirements for this usage point.
- * @param Outage [[ch.ninecode.model.Outage Outage]] <em>undocumented</em>
+ * @param Outage [[ch.ninecode.model.Outage Outage]] All outages at this usage point.
  * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures applicable to this service delivery point (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer).
  * @param Register [[ch.ninecode.model.Register Register]] <em>undocumented</em>
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category delivered by this usage point.
@@ -6273,7 +6274,8 @@ final case class UsagePoint
     nominalServiceVoltage: Double = 0.0,
     outageRegion: String = null,
     phaseCode: String = null,
-    physicalConnectionCapacity: Double = 0.0,
+    phaseCount: Int = 0,
+    physicalConnectionCapacity: String = null,
     ratedCurrent: Double = 0.0,
     ratedPower: Double = 0.0,
     readCycle: String = null,
@@ -6349,32 +6351,33 @@ extends
         emitelem (10, nominalServiceVoltage)
         emitelem (11, outageRegion)
         emitattr (12, phaseCode)
-        emitelem (13, physicalConnectionCapacity)
-        emitelem (14, ratedCurrent)
-        emitelem (15, ratedPower)
-        emitelem (16, readCycle)
-        emitelem (17, readRoute)
-        emitelem (18, serviceDeliveryRemark)
-        emitelem (19, servicePriority)
-        emitattrs (20, ConfigurationEvents)
-        emitattr (21, CustomerAgreement)
-        emitattrs (22, EndDeviceControls)
-        emitattrs (23, EndDeviceEvents)
-        emitattrs (24, EndDevices)
-        emitattr (25, EnvironmentalMonitoringStation)
-        emitattrs (26, Equipments)
-        emitattrs (27, MeterReadings)
-        emitattrs (28, MeterServiceWorkTasks)
-        emitattrs (29, MetrologyRequirements)
-        emitattrs (30, Outage)
-        emitattrs (31, PricingStructures)
-        emitattrs (32, Register)
-        emitattr (33, ServiceCategory)
-        emitattr (34, ServiceLocation)
-        emitattrs (35, ServiceMultipliers)
-        emitattr (36, ServiceSupplier)
-        emitattrs (37, UsagePointGroups)
-        emitattr (38, UsagePointLocation)
+        emitelem (13, phaseCount)
+        emitattr (14, physicalConnectionCapacity)
+        emitelem (15, ratedCurrent)
+        emitelem (16, ratedPower)
+        emitelem (17, readCycle)
+        emitelem (18, readRoute)
+        emitelem (19, serviceDeliveryRemark)
+        emitelem (20, servicePriority)
+        emitattrs (21, ConfigurationEvents)
+        emitattr (22, CustomerAgreement)
+        emitattrs (23, EndDeviceControls)
+        emitattrs (24, EndDeviceEvents)
+        emitattrs (25, EndDevices)
+        emitattr (26, EnvironmentalMonitoringStation)
+        emitattrs (27, Equipments)
+        emitattrs (28, MeterReadings)
+        emitattrs (29, MeterServiceWorkTasks)
+        emitattrs (30, MetrologyRequirements)
+        emitattrs (31, Outage)
+        emitattrs (32, PricingStructures)
+        emitattrs (33, Register)
+        emitattr (34, ServiceCategory)
+        emitattr (35, ServiceLocation)
+        emitattrs (36, ServiceMultipliers)
+        emitattr (37, ServiceSupplier)
+        emitattrs (38, UsagePointGroups)
+        emitattr (39, UsagePointLocation)
         s.toString
     }
     override def export: String =
@@ -6401,6 +6404,7 @@ extends
         "nominalServiceVoltage",
         "outageRegion",
         "phaseCode",
+        "phaseCount",
         "physicalConnectionCapacity",
         "ratedCurrent",
         "ratedPower",
@@ -6462,32 +6466,33 @@ extends
     val nominalServiceVoltage: Fielder = parse_element (element (cls, fields(10)))
     val outageRegion: Fielder = parse_element (element (cls, fields(11)))
     val phaseCode: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val physicalConnectionCapacity: Fielder = parse_element (element (cls, fields(13)))
-    val ratedCurrent: Fielder = parse_element (element (cls, fields(14)))
-    val ratedPower: Fielder = parse_element (element (cls, fields(15)))
-    val readCycle: Fielder = parse_element (element (cls, fields(16)))
-    val readRoute: Fielder = parse_element (element (cls, fields(17)))
-    val serviceDeliveryRemark: Fielder = parse_element (element (cls, fields(18)))
-    val servicePriority: Fielder = parse_element (element (cls, fields(19)))
-    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
-    val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(21)))
-    val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(22)))
-    val EndDeviceEvents: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
-    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(24)))
-    val EnvironmentalMonitoringStation: Fielder = parse_attribute (attribute (cls, fields(25)))
-    val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(26)))
-    val MeterReadings: FielderMultiple = parse_attributes (attribute (cls, fields(27)))
-    val MeterServiceWorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(28)))
-    val MetrologyRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(29)))
-    val Outage: FielderMultiple = parse_attributes (attribute (cls, fields(30)))
-    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(31)))
-    val Register: FielderMultiple = parse_attributes (attribute (cls, fields(32)))
-    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(33)))
-    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(34)))
-    val ServiceMultipliers: FielderMultiple = parse_attributes (attribute (cls, fields(35)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(36)))
-    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(37)))
-    val UsagePointLocation: Fielder = parse_attribute (attribute (cls, fields(38)))
+    val phaseCount: Fielder = parse_element (element (cls, fields(13)))
+    val physicalConnectionCapacity: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(15)))
+    val ratedPower: Fielder = parse_element (element (cls, fields(16)))
+    val readCycle: Fielder = parse_element (element (cls, fields(17)))
+    val readRoute: Fielder = parse_element (element (cls, fields(18)))
+    val serviceDeliveryRemark: Fielder = parse_element (element (cls, fields(19)))
+    val servicePriority: Fielder = parse_element (element (cls, fields(20)))
+    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
+    val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(22)))
+    val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
+    val EndDeviceEvents: FielderMultiple = parse_attributes (attribute (cls, fields(24)))
+    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(25)))
+    val EnvironmentalMonitoringStation: Fielder = parse_attribute (attribute (cls, fields(26)))
+    val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(27)))
+    val MeterReadings: FielderMultiple = parse_attributes (attribute (cls, fields(28)))
+    val MeterServiceWorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(29)))
+    val MetrologyRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(30)))
+    val Outage: FielderMultiple = parse_attributes (attribute (cls, fields(31)))
+    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(32)))
+    val Register: FielderMultiple = parse_attributes (attribute (cls, fields(33)))
+    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(34)))
+    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(35)))
+    val ServiceMultipliers: FielderMultiple = parse_attributes (attribute (cls, fields(36)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(37)))
+    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(38)))
+    val UsagePointLocation: Fielder = parse_attribute (attribute (cls, fields(39)))
 
     def parse (context: CIMContext): UsagePoint =
     {
@@ -6508,32 +6513,33 @@ extends
             toDouble (mask (nominalServiceVoltage (), 10)),
             mask (outageRegion (), 11),
             mask (phaseCode (), 12),
-            toDouble (mask (physicalConnectionCapacity (), 13)),
-            toDouble (mask (ratedCurrent (), 14)),
-            toDouble (mask (ratedPower (), 15)),
-            mask (readCycle (), 16),
-            mask (readRoute (), 17),
-            mask (serviceDeliveryRemark (), 18),
-            mask (servicePriority (), 19),
-            masks (ConfigurationEvents (), 20),
-            mask (CustomerAgreement (), 21),
-            masks (EndDeviceControls (), 22),
-            masks (EndDeviceEvents (), 23),
-            masks (EndDevices (), 24),
-            mask (EnvironmentalMonitoringStation (), 25),
-            masks (Equipments (), 26),
-            masks (MeterReadings (), 27),
-            masks (MeterServiceWorkTasks (), 28),
-            masks (MetrologyRequirements (), 29),
-            masks (Outage (), 30),
-            masks (PricingStructures (), 31),
-            masks (Register (), 32),
-            mask (ServiceCategory (), 33),
-            mask (ServiceLocation (), 34),
-            masks (ServiceMultipliers (), 35),
-            mask (ServiceSupplier (), 36),
-            masks (UsagePointGroups (), 37),
-            mask (UsagePointLocation (), 38)
+            toInteger (mask (phaseCount (), 13)),
+            mask (physicalConnectionCapacity (), 14),
+            toDouble (mask (ratedCurrent (), 15)),
+            toDouble (mask (ratedPower (), 16)),
+            mask (readCycle (), 17),
+            mask (readRoute (), 18),
+            mask (serviceDeliveryRemark (), 19),
+            mask (servicePriority (), 20),
+            masks (ConfigurationEvents (), 21),
+            mask (CustomerAgreement (), 22),
+            masks (EndDeviceControls (), 23),
+            masks (EndDeviceEvents (), 24),
+            masks (EndDevices (), 25),
+            mask (EnvironmentalMonitoringStation (), 26),
+            masks (Equipments (), 27),
+            masks (MeterReadings (), 28),
+            masks (MeterServiceWorkTasks (), 29),
+            masks (MetrologyRequirements (), 30),
+            masks (Outage (), 31),
+            masks (PricingStructures (), 32),
+            masks (Register (), 33),
+            mask (ServiceCategory (), 34),
+            mask (ServiceLocation (), 35),
+            masks (ServiceMultipliers (), 36),
+            mask (ServiceSupplier (), 37),
+            masks (UsagePointGroups (), 38),
+            mask (UsagePointLocation (), 39)
         )
         ret.bitfields = bitfields
         ret
@@ -6560,7 +6566,8 @@ object UsagePointSerializer extends CIMSerializer[UsagePoint]
             () => output.writeDouble (obj.nominalServiceVoltage),
             () => output.writeString (obj.outageRegion),
             () => output.writeString (obj.phaseCode),
-            () => output.writeDouble (obj.physicalConnectionCapacity),
+            () => output.writeInt (obj.phaseCount),
+            () => output.writeString (obj.physicalConnectionCapacity),
             () => output.writeDouble (obj.ratedCurrent),
             () => output.writeDouble (obj.ratedPower),
             () => output.writeString (obj.readCycle),
@@ -6612,32 +6619,33 @@ object UsagePointSerializer extends CIMSerializer[UsagePoint]
             if (isSet (10)) input.readDouble else 0.0,
             if (isSet (11)) input.readString else null,
             if (isSet (12)) input.readString else null,
-            if (isSet (13)) input.readDouble else 0.0,
-            if (isSet (14)) input.readDouble else 0.0,
+            if (isSet (13)) input.readInt else 0,
+            if (isSet (14)) input.readString else null,
             if (isSet (15)) input.readDouble else 0.0,
-            if (isSet (16)) input.readString else null,
+            if (isSet (16)) input.readDouble else 0.0,
             if (isSet (17)) input.readString else null,
             if (isSet (18)) input.readString else null,
             if (isSet (19)) input.readString else null,
-            if (isSet (20)) readList (input) else null,
-            if (isSet (21)) input.readString else null,
-            if (isSet (22)) readList (input) else null,
+            if (isSet (20)) input.readString else null,
+            if (isSet (21)) readList (input) else null,
+            if (isSet (22)) input.readString else null,
             if (isSet (23)) readList (input) else null,
             if (isSet (24)) readList (input) else null,
-            if (isSet (25)) input.readString else null,
-            if (isSet (26)) readList (input) else null,
+            if (isSet (25)) readList (input) else null,
+            if (isSet (26)) input.readString else null,
             if (isSet (27)) readList (input) else null,
             if (isSet (28)) readList (input) else null,
             if (isSet (29)) readList (input) else null,
             if (isSet (30)) readList (input) else null,
             if (isSet (31)) readList (input) else null,
             if (isSet (32)) readList (input) else null,
-            if (isSet (33)) input.readString else null,
+            if (isSet (33)) readList (input) else null,
             if (isSet (34)) input.readString else null,
-            if (isSet (35)) readList (input) else null,
-            if (isSet (36)) input.readString else null,
-            if (isSet (37)) readList (input) else null,
-            if (isSet (38)) input.readString else null
+            if (isSet (35)) input.readString else null,
+            if (isSet (36)) readList (input) else null,
+            if (isSet (37)) input.readString else null,
+            if (isSet (38)) readList (input) else null,
+            if (isSet (39)) input.readString else null
         )
         obj.bitfields = bitfields
         obj

@@ -146,7 +146,9 @@ object AirCompressorSerializer extends CIMSerializer[AirCompressor]
  * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
  * @param batteryState The current state of the battery (charging, full, etc.).
  * @param ratedE Full energy storage capacity of the battery.
- * @param storedE Amount of energy currently stored; no more than ratedE.
+ *        The attribute shall be a positive value.
+ * @param storedE Amount of energy currently stored.
+ *        The attribute shall be a positive value or zero and lower than BatteryUnit.ratedE.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -269,7 +271,9 @@ object BatteryUnitSerializer extends CIMSerializer[BatteryUnit]
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param energyStorageCapacity The rated energy storage capacity.
+ *        The attribute shall be a positive value.
  * @param ratedCapacityP The CAES plant's gross rated generating capacity.
+ *        The attribute shall be a positive value.
  * @param AirCompressor [[ch.ninecode.model.AirCompressor AirCompressor]] An air compressor may be a member of a compressed air energy storage plant.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a compressed air energy storage plant.
  * @group Production
@@ -411,6 +415,7 @@ object CAESPlantSerializer extends CIMSerializer[CAESPlant]
  * @param cogenLPSendoutRating The low pressure steam sendout.
  * @param cogenLPSteamRating The low pressure steam rating.
  * @param ratedP The rated output active power of the cogeneration plant.
+ *        The attribute shall be a positive value.
  * @param SteamSendoutSchedule [[ch.ninecode.model.SteamSendoutSchedule SteamSendoutSchedule]] A cogeneration plant has a steam sendout schedule.
  * @param ThermalGeneratingUnits [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a cogeneration plant.
  * @group Production
@@ -1586,13 +1591,16 @@ object GenUnitOpScheduleSerializer extends CIMSerializer[GenUnitOpSchedule]
  *        Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
  *        The attribute shall be a positive value equal to or less than RotatingMachine.ratedS.
  * @param normalPF Generating unit economic participation factor.
- *        The sum of the participation factors across generating units does not have to sum to one.  It is used for representing distributed slack participation factor.
+ *        The sum of the participation factors across generating units does not have to sum to one.  It is used for representing distributed slack participation factor. The attribute shall be a positive value or zero.
  * @param penaltyFactor Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
  *        The typical range of penalty factors is (0.9 to 1.1).
  * @param raiseRampRate The normal maximum rate the generating unit active power output can be raised by control actions.
  * @param ratedGrossMaxP The unit's gross rated maximum capacity (book value).
+ *        The attribute shall be a positive value.
  * @param ratedGrossMinP The gross rated minimum generation level which the unit can safely operate at while delivering power to the transmission grid.
+ *        The attribute shall be a positive value.
  * @param ratedNetMaxP The net rated maximum capacity determined by subtracting the auxiliary power used to operate the internal plant machinery from the rated gross maximum capacity.
+ *        The attribute shall be a positive value.
  * @param shortPF Generating unit short term economic participation factor.
  * @param startupCost The initial startup cost incurred for each start of the GeneratingUnit.
  * @param startupTime Time it takes to get the unit on-line, from the time that the prime mover mechanical power is applied.
@@ -2681,11 +2689,14 @@ object HydroGeneratingUnitSerializer extends CIMSerializer[HydroGeneratingUnit]
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param dischargeTravelDelay Water travel delay from tailbay to next downstream hydro power station.
  * @param genRatedP The hydro plant's generating rating active power for rated head conditions.
+ *        The attribute shall be a positive value.
  * @param hydroPlantStorageType The type of hydro power plant water storage.
  * @param penstockType Type and configuration of hydro plant penstock(s).
  * @param plantDischargeCapacity Total plant discharge capacity.
  * @param plantRatedHead The plant's rated gross head.
+ *        The attribute shall be a positive value.
  * @param pumpRatedP The hydro plant's pumping rating active power for rated head conditions.
+ *        The attribute shall be a positive value.
  * @param surgeTankCode A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
  * @param surgeTankCrestLevel The level at which the surge tank spills.
  * @param GenSourcePumpDischargeReservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators are supplied water from or pumps discharge water to an upstream reservoir.

@@ -96,6 +96,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
     {
         implicit session: SparkSession =>
 
+            val _ = session.version // reference unused parameter session
             val (xml, start, end) = CHIM.read (FILENAME1x, OFFSET, 1024 * 1024) // exactly a megabyte
             //println (s"${start}:${end} ${OFFSET}+${1024 * 1024} ${xml.substring (0, 50)}")
             val parser = new CHIM (xml, start, end, OFFSET, OFFSET + (1024 * 1024))

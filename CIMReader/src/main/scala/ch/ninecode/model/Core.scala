@@ -850,6 +850,7 @@ object BaySerializer extends CIMSerializer[Bay]
  *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
  * @param GroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Action involving grounding operation on this conducting equipment.
  * @param JumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving jumping operation on this conducting equipment.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] <em>undocumented</em>
  * @param ProtectionEquipments [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Protection equipment  used to protect specific conducting equipment.
  * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] The operating condition to the Conducting Equipment is changed when protective action adjustment is activated.
  *        For ShuntCompensator or other conducting equipment that operates on discrete values (integer), the values given in float will be rounded.
@@ -865,6 +866,7 @@ final case class ConductingEquipment
     BaseVoltage: String = null,
     GroundingAction: String = null,
     JumpingAction: String = null,
+    Outage: String = null,
     ProtectionEquipments: List[String] = null,
     ProtectiveActionAdjustment: List[String] = null,
     SvStatus: List[String] = null,
@@ -908,10 +910,11 @@ extends
         emitattr (0, BaseVoltage)
         emitattr (1, GroundingAction)
         emitattr (2, JumpingAction)
-        emitattrs (3, ProtectionEquipments)
-        emitattrs (4, ProtectiveActionAdjustment)
-        emitattrs (5, SvStatus)
-        emitattrs (6, Terminals)
+        emitattr (3, Outage)
+        emitattrs (4, ProtectionEquipments)
+        emitattrs (5, ProtectiveActionAdjustment)
+        emitattrs (6, SvStatus)
+        emitattrs (7, Terminals)
         s.toString
     }
     override def export: String =
@@ -928,6 +931,7 @@ extends
         "BaseVoltage",
         "GroundingAction",
         "JumpingAction",
+        "Outage",
         "ProtectionEquipments",
         "ProtectiveActionAdjustment",
         "SvStatus",
@@ -937,6 +941,7 @@ extends
         CIMRelationship ("BaseVoltage", "BaseVoltage", "0..1", "0..*"),
         CIMRelationship ("GroundingAction", "GroundAction", "0..1", "0..1"),
         CIMRelationship ("JumpingAction", "JumperAction", "0..1", "0..*"),
+        CIMRelationship ("Outage", "Outage", "0..1", "0..*"),
         CIMRelationship ("ProtectionEquipments", "ProtectionEquipment", "0..*", "0..*"),
         CIMRelationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"),
         CIMRelationship ("SvStatus", "SvStatus", "0..*", "1"),
@@ -945,10 +950,11 @@ extends
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(0)))
     val GroundingAction: Fielder = parse_attribute (attribute (cls, fields(1)))
     val JumpingAction: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ProtectionEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val SvStatus: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Terminals: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Outage: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ProtectionEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val SvStatus: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Terminals: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): ConductingEquipment =
     {
@@ -959,10 +965,11 @@ extends
             mask (BaseVoltage (), 0),
             mask (GroundingAction (), 1),
             mask (JumpingAction (), 2),
-            masks (ProtectionEquipments (), 3),
-            masks (ProtectiveActionAdjustment (), 4),
-            masks (SvStatus (), 5),
-            masks (Terminals (), 6)
+            mask (Outage (), 3),
+            masks (ProtectionEquipments (), 4),
+            masks (ProtectiveActionAdjustment (), 5),
+            masks (SvStatus (), 6),
+            masks (Terminals (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -979,6 +986,7 @@ object ConductingEquipmentSerializer extends CIMSerializer[ConductingEquipment]
             () => output.writeString (obj.BaseVoltage),
             () => output.writeString (obj.GroundingAction),
             () => output.writeString (obj.JumpingAction),
+            () => output.writeString (obj.Outage),
             () => writeList (obj.ProtectionEquipments, output),
             () => writeList (obj.ProtectiveActionAdjustment, output),
             () => writeList (obj.SvStatus, output),
@@ -999,10 +1007,11 @@ object ConductingEquipmentSerializer extends CIMSerializer[ConductingEquipment]
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readString else null,
             if (isSet (2)) input.readString else null,
-            if (isSet (3)) readList (input) else null,
+            if (isSet (3)) input.readString else null,
             if (isSet (4)) readList (input) else null,
             if (isSet (5)) readList (input) else null,
-            if (isSet (6)) readList (input) else null
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -1590,12 +1599,15 @@ object CurveDataSerializer extends CIMSerializer[CurveData]
  * The parts of a power system that are physical devices, electronic or mechanical.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param aggregate The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.
- *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
- * @param inService If true, the equipment is in service.
+ * @param aggregate The aggregate flag provides an alternative way of representing an aggregated (equivalent) element.
+ *        It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to “true” the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.
+ *        The attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.
+ * @param inService Specifies the availability of the equipment.
+ *        True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
  * @param networkAnalysisEnabled The equipment is enabled to participate in network analysis.
  *        If unspecified, the value is assumed to be true.
- * @param normallyInService If true, the equipment is normally in service.
+ * @param normallyInService Specifies the availability of the equipment under normal operating conditions.
+ *        True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
  * @param AdditionalEquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Additional equipment container beyond the primary equipment container.
  *        The equipment is contained in another equipment container, but also grouped with this equipment container.
  * @param ContingencyEquipment [[ch.ninecode.model.ContingencyEquipment ContingencyEquipment]] The contingency equipments in which this equipment participates.
@@ -3762,7 +3774,7 @@ object RegularIntervalScheduleSerializer extends CIMSerializer[RegularIntervalSc
  *
  * @param Element Reference to the superclass object.
  * @param sequenceNumber The position of the regular time point in the sequence.
- *        Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time.
+ *        Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time. To specify values for the start time, use sequence number 0.  The sequence number cannot be negative.
  * @param value1 The first value at the time.
  *        The meaning of the value is defined by the derived type of the associated schedule.
  * @param value2 The second value at the time.
@@ -4456,7 +4468,8 @@ object SubstationSerializer extends CIMSerializer[Substation]
  *
  * @param ACDCTerminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
  * @param phases Represents the normal network phasing condition.
- *        If the attribute is missing, three phases (ABC or ABCN) shall be assumed, except for terminals of grounding classes (specializations of EarthFaultCompensator, GroundDisconnector, GroundSwitch, and Ground) which will be assumed to be N.
+ *        If the attribute is missing, three phases (ABC) shall be assumed, except for terminals of grounding classes (specializations of EarthFaultCompensator, GroundDisconnector, GroundSwitch, and Ground) which will be assumed to be N. Therefore, phase code ABCN is explicitly declared when needed, e.g. for star point grounding equipment.
+ *        The phase code on terminals connecting same ConnectivityNode or same TopologicalNode as well as for equipment between two terminals shall be consistent.
  * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] The auxiliary equipment connected to the terminal.
  * @param BranchGroupTerminal [[ch.ninecode.model.BranchGroupTerminal BranchGroupTerminal]] The directed branch group terminals for which this terminal is monitored.
  * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
@@ -4734,7 +4747,9 @@ object TerminalSerializer extends CIMSerializer[Terminal]
  *
  * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param highVoltageLimit The bus bar's high voltage limit.
+ *        The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with lowVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.
  * @param lowVoltageLimit The bus bar's low voltage limit.
+ *        The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with highVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage used for all equipment within the voltage level.
  * @param Bays [[ch.ninecode.model.Bay Bay]] The bays within this voltage level.
  * @param Substation [[ch.ninecode.model.Substation Substation]] The substation of the voltage level.

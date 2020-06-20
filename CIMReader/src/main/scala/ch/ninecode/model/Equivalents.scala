@@ -15,6 +15,8 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * The class represents equivalent branches.
  *
+ * In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.
+ *
  * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
@@ -407,9 +409,11 @@ object EquivalentEquipmentSerializer extends CIMSerializer[EquivalentEquipment]
  *        Used to represent Extended-Ward (IEC 60909).
  *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param regulationCapability Specifies whether or not the EquivalentInjection has the capability to regulate the local voltage.
- * @param regulationStatus Specifies the default regulation status of the EquivalentInjection.
+ *        If true the EquivalentInjection can regulate. If false the EquivalentInjection cannot regulate. ReactiveCapabilityCurve can only be associated with EquivalentInjection  if the flag is true.
+ * @param regulationStatus Specifies the regulation status of the EquivalentInjection.
  *        True is regulating.  False is not regulating.
  * @param regulationTarget The target voltage for voltage regulation.
+ *        The attribute shall be a positive value.
  * @param x Positive sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
  *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
@@ -632,9 +636,9 @@ object EquivalentInjectionSerializer extends CIMSerializer[EquivalentInjection]
 }
 
 /**
- * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
+ * A class that groups electrical equivalents, including internal nodes, of a network that has been reduced.
  *
- * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
+ * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are not contained by the equivalent.
  *
  * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
  * @param EquivalentEquipments [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] The associated reduced equivalents.

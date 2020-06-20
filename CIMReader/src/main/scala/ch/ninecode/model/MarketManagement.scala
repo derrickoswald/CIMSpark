@@ -2459,7 +2459,8 @@ object ProcessSerializer extends CIMSerializer[Process]
  * @param Element Reference to the superclass object.
  * @param quality The quality of the information being provided.
  *        This quality may be estimated, not available, as provided, etc.
- * @param quantity [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
+ * @param quantity The quantity value.
+ *        The association role provides the information about what is expressed.
  * @param type The description of the type of the quantity.
  * @param Detail_Quantity [[ch.ninecode.model.Quantity Quantity]] Additional information related to the associated quantity.
  * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
@@ -2473,7 +2474,7 @@ final case class Quantity
 (
     Element: BasicElement = null,
     quality: String = null,
-    quantity: String = null,
+    quantity: Double = 0.0,
     `type`: String = null,
     Detail_Quantity: List[String] = null,
     Domain: List[String] = null,
@@ -2514,10 +2515,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Quantity.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Quantity.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Quantity.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Quantity.fields (position), x))
         emitelem (0, quality)
-        emitattr (1, quantity)
+        emitelem (1, quantity)
         emitelem (2, `type`)
         emitattrs (3, Detail_Quantity)
         emitattrs (4, Domain)
@@ -2545,14 +2545,13 @@ extends
         "TimeSeries"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("quantity", "Quantity", "0..1", "0..*"),
         CIMRelationship ("Detail_Quantity", "Quantity", "0..*", "0..1"),
         CIMRelationship ("Domain", "Domain", "0..*", "0..*"),
         CIMRelationship ("Point", "Point", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val quality: Fielder = parse_element (element (cls, fields(0)))
-    val quantity: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val quantity: Fielder = parse_element (element (cls, fields(1)))
     val `type`: Fielder = parse_element (element (cls, fields(2)))
     val Detail_Quantity: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
@@ -2566,7 +2565,7 @@ extends
         val ret = Quantity (
             BasicElement.parse (context),
             mask (quality (), 0),
-            mask (quantity (), 1),
+            toDouble (mask (quantity (), 1)),
             mask (`type` (), 2),
             masks (Detail_Quantity (), 3),
             masks (Domain (), 4),
@@ -2586,7 +2585,7 @@ object QuantitySerializer extends CIMSerializer[Quantity]
     {
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeString (obj.quality),
-            () => output.writeString (obj.quantity),
+            () => output.writeDouble (obj.quantity),
             () => output.writeString (obj.`type`),
             () => writeList (obj.Detail_Quantity, output),
             () => writeList (obj.Domain, output),
@@ -2606,7 +2605,7 @@ object QuantitySerializer extends CIMSerializer[Quantity]
         val obj = Quantity (
             parent,
             if (isSet (0)) input.readString else null,
-            if (isSet (1)) input.readString else null,
+            if (isSet (1)) input.readDouble else 0.0,
             if (isSet (2)) input.readString else null,
             if (isSet (3)) readList (input) else null,
             if (isSet (4)) readList (input) else null,

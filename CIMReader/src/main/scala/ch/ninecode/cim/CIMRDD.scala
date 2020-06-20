@@ -1,15 +1,11 @@
 package ch.ninecode.cim
 
 import scala.reflect._
-import scala.reflect.runtime.universe
 import scala.reflect.runtime.universe._
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Dataset
-import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.StructField
-import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger
 

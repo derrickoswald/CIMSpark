@@ -391,7 +391,7 @@ object SvPowerFlowSerializer extends CIMSerializer[SvPowerFlow]
  * @param phase The terminal phase at which the connection is applied.
  *        If missing, the injection is assumed to be balanced among non-neutral phases.
  * @param sections The number of sections in service as a continuous variable.
- *        To get integer value scale with ShuntCompensator.bPerSection.
+ *        The attribute shall be a positive value or zero. To get integer value scale with ShuntCompensator.bPerSection.
  * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] The shunt compensator for which the state applies.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables
@@ -898,6 +898,7 @@ object SvTapStepSerializer extends CIMSerializer[SvTapStep]
  * @param phase If specified the voltage is the line to ground voltage of the individual phase.
  *        If unspecified, then the voltage is assumed balanced.
  * @param v The voltage magnitude at the topological node.
+ *        The attribute shall be a positive value.
  * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node associated with the voltage state.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables

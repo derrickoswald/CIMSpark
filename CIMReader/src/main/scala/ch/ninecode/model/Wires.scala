@@ -37,6 +37,7 @@ import ch.ninecode.cim.CIMSerializer
  * @param LineGroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
  * @param LineJumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
  * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -59,7 +60,8 @@ final case class ACLineSegment
     LineFaults: List[String] = null,
     LineGroundingAction: String = null,
     LineJumpingAction: String = null,
-    PerLengthImpedance: String = null
+    PerLengthImpedance: String = null,
+    WireSpacingInfo: String = null
 )
 extends
     Element
@@ -113,6 +115,7 @@ extends
         emitattr (13, LineGroundingAction)
         emitattr (14, LineJumpingAction)
         emitattr (15, PerLengthImpedance)
+        emitattr (16, WireSpacingInfo)
         s.toString
     }
     override def export: String =
@@ -141,7 +144,8 @@ extends
         "LineFaults",
         "LineGroundingAction",
         "LineJumpingAction",
-        "PerLengthImpedance"
+        "PerLengthImpedance",
+        "WireSpacingInfo"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ACLineSegmentPhases", "ACLineSegmentPhase", "0..*", "1"),
@@ -150,7 +154,8 @@ extends
         CIMRelationship ("LineFaults", "LineFault", "0..*", "0..1"),
         CIMRelationship ("LineGroundingAction", "GroundAction", "0..1", "0..1"),
         CIMRelationship ("LineJumpingAction", "JumperAction", "0..1", "0..*"),
-        CIMRelationship ("PerLengthImpedance", "PerLengthImpedance", "0..1", "0..*")
+        CIMRelationship ("PerLengthImpedance", "PerLengthImpedance", "0..1", "0..*"),
+        CIMRelationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "0..*")
     )
     val b0ch: Fielder = parse_element (element (cls, fields(0)))
     val bch: Fielder = parse_element (element (cls, fields(1)))
@@ -168,6 +173,7 @@ extends
     val LineGroundingAction: Fielder = parse_attribute (attribute (cls, fields(13)))
     val LineJumpingAction: Fielder = parse_attribute (attribute (cls, fields(14)))
     val PerLengthImpedance: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(16)))
 
     def parse (context: CIMContext): ACLineSegment =
     {
@@ -190,7 +196,8 @@ extends
             masks (LineFaults (), 12),
             mask (LineGroundingAction (), 13),
             mask (LineJumpingAction (), 14),
-            mask (PerLengthImpedance (), 15)
+            mask (PerLengthImpedance (), 15),
+            mask (WireSpacingInfo (), 16)
         )
         ret.bitfields = bitfields
         ret
@@ -219,7 +226,8 @@ object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
             () => writeList (obj.LineFaults, output),
             () => output.writeString (obj.LineGroundingAction),
             () => output.writeString (obj.LineJumpingAction),
-            () => output.writeString (obj.PerLengthImpedance)
+            () => output.writeString (obj.PerLengthImpedance),
+            () => output.writeString (obj.WireSpacingInfo)
         )
         ConductorSerializer.write (kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
@@ -248,7 +256,8 @@ object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
             if (isSet (12)) readList (input) else null,
             if (isSet (13)) input.readString else null,
             if (isSet (14)) input.readString else null,
-            if (isSet (15)) input.readString else null
+            if (isSet (15)) input.readString else null,
+            if (isSet (16)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -263,6 +272,7 @@ object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
  * @param sequenceNumber Number designation for this line segment phase.
  *        Each line segment phase within a line segment should have a unique sequence number. This is useful for unbalanced modelling to bind the mathematical model (PhaseImpedanceData of PerLengthPhaseImpedance) with the connectivity model (this class) and the physical model (WirePosition) without tight coupling.
  * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the phase belongs.
+ * @param WireInfo [[ch.ninecode.model.WireInfo WireInfo]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -272,7 +282,8 @@ final case class ACLineSegmentPhase
     PowerSystemResource: PowerSystemResource = null,
     phase: String = null,
     sequenceNumber: Int = 0,
-    ACLineSegment: String = null
+    ACLineSegment: String = null,
+    WireInfo: String = null
 )
 extends
     Element
@@ -312,6 +323,7 @@ extends
         emitattr (0, phase)
         emitelem (1, sequenceNumber)
         emitattr (2, ACLineSegment)
+        emitattr (3, WireInfo)
         s.toString
     }
     override def export: String =
@@ -327,14 +339,17 @@ extends
     override val fields: Array[String] = Array[String] (
         "phase",
         "sequenceNumber",
-        "ACLineSegment"
+        "ACLineSegment",
+        "WireInfo"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*")
+        CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*"),
+        CIMRelationship ("WireInfo", "WireInfo", "0..1", "0..*")
     )
     val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
     val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WireInfo: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): ACLineSegmentPhase =
     {
@@ -344,7 +359,8 @@ extends
             PowerSystemResource.parse (context),
             mask (phase (), 0),
             toInteger (mask (sequenceNumber (), 1)),
-            mask (ACLineSegment (), 2)
+            mask (ACLineSegment (), 2),
+            mask (WireInfo (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -360,7 +376,8 @@ object ACLineSegmentPhaseSerializer extends CIMSerializer[ACLineSegmentPhase]
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeString (obj.phase),
             () => output.writeInt (obj.sequenceNumber),
-            () => output.writeString (obj.ACLineSegment)
+            () => output.writeString (obj.ACLineSegment),
+            () => output.writeString (obj.WireInfo)
         )
         PowerSystemResourceSerializer.write (kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
@@ -376,7 +393,8 @@ object ACLineSegmentPhaseSerializer extends CIMSerializer[ACLineSegmentPhase]
             parent,
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readInt else 0,
-            if (isSet (2)) input.readString else null
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -902,6 +920,8 @@ object BusbarSectionSerializer extends CIMSerializer[BusbarSection]
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
  * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the clamp is connected.
+ * @param ClampAction [[ch.ninecode.model.ClampAction ClampAction]] <em>undocumented</em>
+ * @param JumperAction [[ch.ninecode.model.JumperAction JumperAction]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -910,7 +930,9 @@ final case class Clamp
 (
     ConductingEquipment: ConductingEquipment = null,
     lengthFromTerminal1: Double = 0.0,
-    ACLineSegment: String = null
+    ACLineSegment: String = null,
+    ClampAction: String = null,
+    JumperAction: String = null
 )
 extends
     Element
@@ -949,6 +971,8 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Clamp.fields (position), value)
         emitelem (0, lengthFromTerminal1)
         emitattr (1, ACLineSegment)
+        emitattr (2, ClampAction)
+        emitattr (3, JumperAction)
         s.toString
     }
     override def export: String =
@@ -963,13 +987,19 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "lengthFromTerminal1",
-        "ACLineSegment"
+        "ACLineSegment",
+        "ClampAction",
+        "JumperAction"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*")
+        CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*"),
+        CIMRelationship ("ClampAction", "ClampAction", "0..1", "0..1"),
+        CIMRelationship ("JumperAction", "JumperAction", "0..1", "0..1")
     )
     val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
     val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ClampAction: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val JumperAction: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): Clamp =
     {
@@ -978,7 +1008,9 @@ extends
         val ret = Clamp (
             ConductingEquipment.parse (context),
             toDouble (mask (lengthFromTerminal1 (), 0)),
-            mask (ACLineSegment (), 1)
+            mask (ACLineSegment (), 1),
+            mask (ClampAction (), 2),
+            mask (JumperAction (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -993,7 +1025,9 @@ object ClampSerializer extends CIMSerializer[Clamp]
     {
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeDouble (obj.lengthFromTerminal1),
-            () => output.writeString (obj.ACLineSegment)
+            () => output.writeString (obj.ACLineSegment),
+            () => output.writeString (obj.ClampAction),
+            () => output.writeString (obj.JumperAction)
         )
         ConductingEquipmentSerializer.write (kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
@@ -1008,7 +1042,9 @@ object ClampSerializer extends CIMSerializer[Clamp]
         val obj = Clamp (
             parent,
             if (isSet (0)) input.readDouble else 0.0,
-            if (isSet (1)) input.readString else null
+            if (isSet (1)) input.readString else null,
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -1469,6 +1505,98 @@ object CutSerializer extends CIMSerializer[Cut]
 }
 
 /**
+ * A circuit breaking device including disconnecting function, eliminating the need for separate disconnectors.
+ *
+ * @param Breaker [[ch.ninecode.model.Breaker Breaker]] Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+final case class DisconnectingCircuitBreaker
+(
+    Breaker: Breaker = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: Breaker = Breaker
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        sup.export_fields
+    }
+    override def export: String =
+    {
+        "\t<cim:DisconnectingCircuitBreaker rdf:ID=\"%s\">\n%s\t</cim:DisconnectingCircuitBreaker>".format (id, export_fields)
+    }
+}
+
+object DisconnectingCircuitBreaker
+extends
+    CIMParseable[DisconnectingCircuitBreaker]
+{
+
+    def parse (context: CIMContext): DisconnectingCircuitBreaker =
+    {
+        val ret = DisconnectingCircuitBreaker (
+            Breaker.parse (context)
+        )
+        ret
+    }
+
+    def serializer: Serializer[DisconnectingCircuitBreaker] = DisconnectingCircuitBreakerSerializer
+}
+
+object DisconnectingCircuitBreakerSerializer extends CIMSerializer[DisconnectingCircuitBreaker]
+{
+    def write (kryo: Kryo, output: Output, obj: DisconnectingCircuitBreaker): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+
+        )
+        BreakerSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[DisconnectingCircuitBreaker]): DisconnectingCircuitBreaker =
+    {
+        val parent = BreakerSerializer.read (kryo, input, classOf[Breaker])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = DisconnectingCircuitBreaker (
+            parent
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
  * A manually operated or motor operated mechanical switching device used for changing the connections in a circuit, or for isolating a circuit or equipment from a source of power.
  *
  * It is required to open or close circuits when negligible current is broken or made.
@@ -1766,6 +1894,8 @@ object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
 /**
  * Generic user of energy - a  point of consumption on the power system model.
  *
+ * EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.
+ *
  * @param EnergyConnection [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
  * @param customerCount Number of individual customers represented by this demand.
  * @param grounded Used for Yn and Zn connections.
@@ -1774,7 +1904,7 @@ object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  *        For voltage dependent loads the value is at rated voltage.
  *        Starting value for a steady state solution.
- * @param pfixed Active power of the load that is a fixed quantity.
+ * @param pfixed Active power of the load that is a fixed quantity and does not vary as load group value varies.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixedPct Fixed active power as a percentage of load group fixed active power.
  *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
@@ -1783,10 +1913,11 @@ object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  *        For voltage dependent loads the value is at rated voltage.
  *        Starting value for a steady state solution.
- * @param qfixed Reactive power of the load that is a fixed quantity.
+ * @param qfixed Reactive power of the load that is a fixed quantity and does not vary as load group value varies.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as a percentage of load group fixed reactive power.
  *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param EnergyConsumerAction [[ch.ninecode.model.EnergyConsumerAction EnergyConsumerAction]] <em>undocumented</em>
  * @param EnergyConsumerPhase [[ch.ninecode.model.EnergyConsumerPhase EnergyConsumerPhase]] The individual phase models for this energy consumer.
  * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behaviour of this energy consumer.
  * @param LoadResponse [[ch.ninecode.model.LoadResponseCharacteristic LoadResponseCharacteristic]] The load response characteristic of this load.
@@ -1808,6 +1939,7 @@ final case class EnergyConsumer
     q: Double = 0.0,
     qfixed: Double = 0.0,
     qfixedPct: Double = 0.0,
+    EnergyConsumerAction: String = null,
     EnergyConsumerPhase: List[String] = null,
     LoadDynamics: String = null,
     LoadResponse: String = null,
@@ -1858,10 +1990,11 @@ extends
         emitelem (6, q)
         emitelem (7, qfixed)
         emitelem (8, qfixedPct)
-        emitattrs (9, EnergyConsumerPhase)
-        emitattr (10, LoadDynamics)
-        emitattr (11, LoadResponse)
-        emitattr (12, PowerCutZone)
+        emitattr (9, EnergyConsumerAction)
+        emitattrs (10, EnergyConsumerPhase)
+        emitattr (11, LoadDynamics)
+        emitattr (12, LoadResponse)
+        emitattr (13, PowerCutZone)
         s.toString
     }
     override def export: String =
@@ -1884,12 +2017,14 @@ extends
         "q",
         "qfixed",
         "qfixedPct",
+        "EnergyConsumerAction",
         "EnergyConsumerPhase",
         "LoadDynamics",
         "LoadResponse",
         "PowerCutZone"
     )
     override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumerAction", "EnergyConsumerAction", "0..1", "0..1"),
         CIMRelationship ("EnergyConsumerPhase", "EnergyConsumerPhase", "0..*", "1"),
         CIMRelationship ("LoadDynamics", "LoadDynamics", "0..1", "0..*"),
         CIMRelationship ("LoadResponse", "LoadResponseCharacteristic", "0..1", "0..*"),
@@ -1904,10 +2039,11 @@ extends
     val q: Fielder = parse_element (element (cls, fields(6)))
     val qfixed: Fielder = parse_element (element (cls, fields(7)))
     val qfixedPct: Fielder = parse_element (element (cls, fields(8)))
-    val EnergyConsumerPhase: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val LoadDynamics: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val LoadResponse: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val PowerCutZone: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val EnergyConsumerAction: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val EnergyConsumerPhase: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val LoadDynamics: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val LoadResponse: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val PowerCutZone: Fielder = parse_attribute (attribute (cls, fields(13)))
 
     def parse (context: CIMContext): EnergyConsumer =
     {
@@ -1924,10 +2060,11 @@ extends
             toDouble (mask (q (), 6)),
             toDouble (mask (qfixed (), 7)),
             toDouble (mask (qfixedPct (), 8)),
-            masks (EnergyConsumerPhase (), 9),
-            mask (LoadDynamics (), 10),
-            mask (LoadResponse (), 11),
-            mask (PowerCutZone (), 12)
+            mask (EnergyConsumerAction (), 9),
+            masks (EnergyConsumerPhase (), 10),
+            mask (LoadDynamics (), 11),
+            mask (LoadResponse (), 12),
+            mask (PowerCutZone (), 13)
         )
         ret.bitfields = bitfields
         ret
@@ -1950,6 +2087,7 @@ object EnergyConsumerSerializer extends CIMSerializer[EnergyConsumer]
             () => output.writeDouble (obj.q),
             () => output.writeDouble (obj.qfixed),
             () => output.writeDouble (obj.qfixedPct),
+            () => output.writeString (obj.EnergyConsumerAction),
             () => writeList (obj.EnergyConsumerPhase, output),
             () => output.writeString (obj.LoadDynamics),
             () => output.writeString (obj.LoadResponse),
@@ -1976,10 +2114,11 @@ object EnergyConsumerSerializer extends CIMSerializer[EnergyConsumer]
             if (isSet (6)) input.readDouble else 0.0,
             if (isSet (7)) input.readDouble else 0.0,
             if (isSet (8)) input.readDouble else 0.0,
-            if (isSet (9)) readList (input) else null,
-            if (isSet (10)) input.readString else null,
+            if (isSet (9)) input.readString else null,
+            if (isSet (10)) readList (input) else null,
             if (isSet (11)) input.readString else null,
-            if (isSet (12)) input.readString else null
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -2293,7 +2432,9 @@ object EnergySchedulingTypeSerializer extends CIMSerializer[EnergySchedulingType
  *        Starting value for steady state solutions.
  * @param rn Negative sequence Thevenin resistance.
  * @param voltageAngle Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
+ *        The attribute shall be a positive value or zero.
  * @param voltageMagnitude Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
+ *        The attribute shall be a positive value or zero.
  * @param x Positive sequence Thevenin reactance.
  * @param x0 Zero sequence Thevenin reactance.
  * @param xn Negative sequence Thevenin reactance.
@@ -2644,8 +2785,8 @@ object EnergySourcePhaseSerializer extends CIMSerializer[EnergySourcePhase]
  * @param maxInitialSymShCCurrent Maximum initial symmetrical short-circuit currents (Ik" max) in A (Ik" = Sk"/(SQRT(3) Un)).
  *        Used for short circuit data exchange according to IEC 60909.
  * @param maxP Maximum active power of the injection.
- * @param maxQ Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
- *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param maxQ Maximum reactive power limit.
+ *        It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
  * @param maxR0ToX0Ratio Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
  *        Used for short circuit data exchange according to IEC 60909.
  * @param maxR1ToX1Ratio Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
@@ -2655,8 +2796,8 @@ object EnergySourcePhaseSerializer extends CIMSerializer[EnergySourcePhase]
  * @param minInitialSymShCCurrent Minimum initial symmetrical short-circuit currents (Ik" min) in A (Ik" = Sk"/(SQRT(3) Un)).
  *        Used for short circuit data exchange according to IEC 60909.
  * @param minP Minimum active power of the injection.
- * @param minQ Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
- *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param minQ Minimum reactive power limit.
+ *        It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
  * @param minR0ToX0Ratio Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
  *        Used for short circuit data exchange according to IEC 6090.
  * @param minR1ToX1Ratio Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
@@ -4281,6 +4422,8 @@ object MutualCouplingSerializer extends CIMSerializer[MutualCoupling]
 /**
  * A non linear shunt compensator has bank or section admittance values that differ.
  *
+ * The attributes g, b, g0 and b0 of the associated NonlinearShuntCompensatorPoint describe the total conductance and admittance of a NonlinearShuntCompensatorPoint at a section number specified by NonlinearShuntCompensatorPoint.sectionNumber.
+ *
  * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPoints [[ch.ninecode.model.NonlinearShuntCompensatorPoint NonlinearShuntCompensatorPoint]] All points of the non-linear shunt compensator.
  * @group Wires
@@ -4391,6 +4534,8 @@ object NonlinearShuntCompensatorSerializer extends CIMSerializer[NonlinearShuntC
 /**
  * A per phase non linear shunt compensator has bank or section admittance values that differ.
  *
+ * The attributes g and b of the associated NonlinearShuntCompensatorPhasePoint describe the total conductance and admittance of a NonlinearShuntCompensatorPhasePoint at a section number specified by NonlinearShuntCompensatorPhasePoint.sectionNumber.
+ *
  * @param ShuntCompensatorPhase [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPhasePoints [[ch.ninecode.model.NonlinearShuntCompensatorPhasePoint NonlinearShuntCompensatorPhasePoint]] All points of the non-linear shunt compensator phase.
  * @group Wires
@@ -4500,6 +4645,8 @@ object NonlinearShuntCompensatorPhaseSerializer extends CIMSerializer[NonlinearS
 
 /**
  * A per phase non linear shunt compensator bank or section admittance value.
+ *
+ * The number of NonlinearShuntCompenstorPhasePoint instances associated with a NonlinearShuntCompensatorPhase shall be equal to ShuntCompensatorPhase.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
  *
  * @param Element Reference to the superclass object.
  * @param b Positive sequence shunt (charging) susceptance per section.
@@ -4635,6 +4782,8 @@ object NonlinearShuntCompensatorPhasePointSerializer extends CIMSerializer[Nonli
 
 /**
  * A non linear shunt compensator bank or section admittance value.
+ *
+ * The number of NonlinearShuntCompenstorPoint instances associated with a NonlinearShuntCompensator shall be equal to ShuntCompensator.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
  *
  * @param Element Reference to the superclass object.
  * @param b Positive sequence shunt (charging) susceptance per section.
@@ -5455,7 +5604,7 @@ object PetersenCoilSerializer extends CIMSerializer[PetersenCoil]
  *
  * @param Element Reference to the superclass object.
  * @param b Susceptance matrix element value, per length of unit.
- * @param column The matrix element’s column number, in the range row to PerLengthPhaseImpedance.conductorCount.
+ * @param column The matrix element's column number, in the range 1 to row.
  *        Only the lower triangle needs to be stored. This column number matches ACLineSegmentPhase.sequenceNumber.
  * @param fromPhase Refer to the class description.
  * @param g Conductance matrix element value, per length of unit.
@@ -5740,13 +5889,13 @@ object PhaseTapChangerSerializer extends CIMSerializer[PhaseTapChanger]
 }
 
 /**
- * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the primary side voltage.
+ * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the in-phase winding.
  *
- * The angle between the primary side voltage and the difference voltage is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
+ * The out-of-phase winding is the transformer end where the tap changer is located.  The angle between the in-phase and out-of-phase windings is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
  *
  * @param PhaseTapChangerNonLinear [[ch.ninecode.model.PhaseTapChangerNonLinear PhaseTapChangerNonLinear]] Reference to the superclass object.
  * @param windingConnectionAngle The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
- *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer.
+ *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer. The attribute can only be multiples of 30 degrees.  The allowed range is -150 degrees to 150 degrees excluding 0.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5854,14 +6003,14 @@ object PhaseTapChangerAsymmetricalSerializer extends CIMSerializer[PhaseTapChang
  *
  * This is a mathematical model that is an approximation of a real phase tap changer.
  * The phase angle is computed as stepPhaseShiftIncrement times the tap position.
- * The secondary side voltage magnitude is the same as at the primary side.
+ * The voltage magnitude of both sides is the same.
  *
  * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param stepPhaseShiftIncrement Phase shift per step position.
- *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+ *        A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
  *        The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.
  * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
- *        The maximum reactance (xMax) appears at the low and high tap positions.
+ *        The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
  * @param xMin The reactance depends on the tap position according to a "u" shaped curve.
  *        The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
@@ -5986,10 +6135,11 @@ object PhaseTapChangerLinearSerializer extends CIMSerializer[PhaseTapChangerLine
  * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in IEC 61970-301.
  *
  * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
- * @param voltageStepIncrement The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.
+ * @param voltageStepIncrement The voltage step increment on the out of phase winding (the PowerTransformerEnd where the TapChanger is located) specified in percent of rated voltage of the PowerTransformerEnd.
+ *        A positive value means a positive voltage variation from the Terminal at the PowerTransformerEnd, where the TapChanger is located, into the transformer.
  *        When the increment is negative, the voltage decreases when the tap step increases.
- * @param xMax The reactance depend on the tap position according to a "u" shaped curve.
- *        The maximum reactance (xMax) appear at the low and high tap positions.
+ * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
+ *        The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
  * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
  *        The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
@@ -6109,7 +6259,7 @@ object PhaseTapChangerNonLinearSerializer extends CIMSerializer[PhaseTapChangerN
 }
 
 /**
- * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
+ * Describes a symmetrical phase shifting transformer tap model in which the voltage magnitude of both sides is the same.
  *
  * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
  *
@@ -6326,7 +6476,7 @@ object PhaseTapChangerTableSerializer extends CIMSerializer[PhaseTapChangerTable
  *
  * @param TapChangerTablePoint [[ch.ninecode.model.TapChangerTablePoint TapChangerTablePoint]] Reference to the superclass object.
  * @param angle The angle difference in degrees.
- *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+ *        A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
  * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The table of this point.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6665,6 +6815,7 @@ object PlantSerializer extends CIMSerializer[Plant]
  *        The attribute shall have a positive value.
  * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
  *        It is primarily used for short circuit data exchange according to IEC 60909.
+ *        The attribute shall be a positive value.
  * @param rn Negative sequence Thevenin resistance.
  * @param x Positive sequence Thevenin reactance.
  * @param x0 Zero sequence Thevenin reactance.
@@ -7243,6 +7394,7 @@ object PowerTransformerSerializer extends CIMSerializer[PowerTransformer]
  *        The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
  * @param ratedU Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
  *        A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater than or equal to ratedU for the lower voltage sides.
+ *        The attribute shall be a positive value.
  * @param x Positive sequence series reactance (star-model) of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
  * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] The power transformer of this power transformer end.
@@ -8242,7 +8394,7 @@ extends
         "RegulatingControl"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("RegulatingControl", "RegulatingControl", "0..1", "0..*")
+        CIMRelationship ("RegulatingControl", "RegulatingControl", "0..1", "1..*")
     )
     val controlEnabled: Fielder = parse_element (element (cls, fields(0)))
     val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -8295,18 +8447,24 @@ object RegulatingCondEqSerializer extends CIMSerializer[RegulatingCondEq]
  * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
  *
  * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
- * In case multiple equipment, possibly of different types, control the same terminal, there shall be only one RegulatingControl at that terminal. The specified terminal shall be associated with the connectivity node of the controlled point.  The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers.
+ * The specified terminal shall be associated with the connectivity node of the controlled point.  The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers.
  * For flow control, load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * The attribute minAllowedTargetValue and maxAllowedTargetValue are required in the following cases:
+ * - For a power generating module operated in power factor control mode to specify maximum and minimum power factor values;
+ * - Whenever it is necessary to have an off center target voltage for the tap changer regulator. For instance, due to long cables to off shore wind farms and the need to have a simpler setup at the off shore transformer platform, the voltage is controlled from the land at the connection point for the off shore wind farm. Since there usually is a voltage rise along the cable, there is typical and overvoltage of up 3-4 kV compared to the on shore station. Thus in normal operation the tap changer on the on shore station is operated with a target set point, which is in the lower parts of the dead band.
+ * The attributes minAllowedTargetValue and maxAllowedTargetValue are not related to the attribute targetDeadband and thus they are not treated as an alternative of the targetDeadband. They are needed due to limitations in the local substation controller. The attribute targetDeadband is used to prevent the power flow from move the tap position in circles (hunting) that is to be used regardless of the attributes minAllowedTargetValue and maxAllowedTargetValue.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param discrete The regulation is performed in a discrete mode.
  *        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
  * @param enabled The flag tells if regulation is enabled.
+ * @param maxAllowedTargetValue Maximum allowed target value (RegulatingControl.targetValue).
+ * @param minAllowedTargetValue Minimum allowed target value (RegulatingControl.targetValue).
  * @param mode The regulating control mode presently available.
  *        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
  * @param monitoredPhase Phase voltage controlling this regulator, measured at regulator location.
  * @param targetDeadband This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
- *        The units of those appropriate for the mode.  It is primarily used if the RegulatingControl.discrete is set to "true". Tools should handle cases in which RegulatingControl.targetDeadband has a value if RegulatingControl.discrete is set to "false" or cases in which RegulatingControl.targetDeadband equals zero.
+ *        The units of those appropriate for the mode. The attribute shall be a positive value or zero. If RegulatingControl.discrete is set to "false", the RegulatingControl.targetDeadband is to be ignored.
  *        Note that for instance, if the targetValue is 100 kV and the targetDeadband is 2 kV the range is from 99 to 101 kV.
  * @param targetValue The target value specified for case input.
  *        This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
@@ -8325,6 +8483,8 @@ final case class RegulatingControl
     PowerSystemResource: PowerSystemResource = null,
     discrete: Boolean = false,
     enabled: Boolean = false,
+    maxAllowedTargetValue: Double = 0.0,
+    minAllowedTargetValue: Double = 0.0,
     mode: String = null,
     monitoredPhase: String = null,
     targetDeadband: Double = 0.0,
@@ -8373,15 +8533,17 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RegulatingControl.fields (position), x))
         emitelem (0, discrete)
         emitelem (1, enabled)
-        emitattr (2, mode)
-        emitattr (3, monitoredPhase)
-        emitelem (4, targetDeadband)
-        emitelem (5, targetValue)
-        emitattr (6, targetValueUnitMultiplier)
-        emitattrs (7, ProtectiveActionRegulation)
-        emitattrs (8, RegulatingCondEq)
-        emitattrs (9, RegulationSchedule)
-        emitattr (10, Terminal)
+        emitelem (2, maxAllowedTargetValue)
+        emitelem (3, minAllowedTargetValue)
+        emitattr (4, mode)
+        emitattr (5, monitoredPhase)
+        emitelem (6, targetDeadband)
+        emitelem (7, targetValue)
+        emitattr (8, targetValueUnitMultiplier)
+        emitattrs (9, ProtectiveActionRegulation)
+        emitattrs (10, RegulatingCondEq)
+        emitattrs (11, RegulationSchedule)
+        emitattr (12, Terminal)
         s.toString
     }
     override def export: String =
@@ -8397,6 +8559,8 @@ extends
     override val fields: Array[String] = Array[String] (
         "discrete",
         "enabled",
+        "maxAllowedTargetValue",
+        "minAllowedTargetValue",
         "mode",
         "monitoredPhase",
         "targetDeadband",
@@ -8409,21 +8573,23 @@ extends
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ProtectiveActionRegulation", "ProtectiveActionRegulation", "0..*", "1"),
-        CIMRelationship ("RegulatingCondEq", "RegulatingCondEq", "0..*", "0..1"),
+        CIMRelationship ("RegulatingCondEq", "RegulatingCondEq", "1..*", "0..1"),
         CIMRelationship ("RegulationSchedule", "RegulationSchedule", "0..*", "1"),
         CIMRelationship ("Terminal", "Terminal", "0..1", "0..*")
     )
     val discrete: Fielder = parse_element (element (cls, fields(0)))
     val enabled: Fielder = parse_element (element (cls, fields(1)))
-    val mode: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val monitoredPhase: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val targetDeadband: Fielder = parse_element (element (cls, fields(4)))
-    val targetValue: Fielder = parse_element (element (cls, fields(5)))
-    val targetValueUnitMultiplier: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ProtectiveActionRegulation: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val RegulatingCondEq: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val RegulationSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val maxAllowedTargetValue: Fielder = parse_element (element (cls, fields(2)))
+    val minAllowedTargetValue: Fielder = parse_element (element (cls, fields(3)))
+    val mode: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val monitoredPhase: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val targetDeadband: Fielder = parse_element (element (cls, fields(6)))
+    val targetValue: Fielder = parse_element (element (cls, fields(7)))
+    val targetValueUnitMultiplier: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ProtectiveActionRegulation: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val RegulatingCondEq: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val RegulationSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): RegulatingControl =
     {
@@ -8433,15 +8599,17 @@ extends
             PowerSystemResource.parse (context),
             toBoolean (mask (discrete (), 0)),
             toBoolean (mask (enabled (), 1)),
-            mask (mode (), 2),
-            mask (monitoredPhase (), 3),
-            toDouble (mask (targetDeadband (), 4)),
-            toDouble (mask (targetValue (), 5)),
-            mask (targetValueUnitMultiplier (), 6),
-            masks (ProtectiveActionRegulation (), 7),
-            masks (RegulatingCondEq (), 8),
-            masks (RegulationSchedule (), 9),
-            mask (Terminal (), 10)
+            toDouble (mask (maxAllowedTargetValue (), 2)),
+            toDouble (mask (minAllowedTargetValue (), 3)),
+            mask (mode (), 4),
+            mask (monitoredPhase (), 5),
+            toDouble (mask (targetDeadband (), 6)),
+            toDouble (mask (targetValue (), 7)),
+            mask (targetValueUnitMultiplier (), 8),
+            masks (ProtectiveActionRegulation (), 9),
+            masks (RegulatingCondEq (), 10),
+            masks (RegulationSchedule (), 11),
+            mask (Terminal (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -8457,6 +8625,8 @@ object RegulatingControlSerializer extends CIMSerializer[RegulatingControl]
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeBoolean (obj.discrete),
             () => output.writeBoolean (obj.enabled),
+            () => output.writeDouble (obj.maxAllowedTargetValue),
+            () => output.writeDouble (obj.minAllowedTargetValue),
             () => output.writeString (obj.mode),
             () => output.writeString (obj.monitoredPhase),
             () => output.writeDouble (obj.targetDeadband),
@@ -8481,15 +8651,17 @@ object RegulatingControlSerializer extends CIMSerializer[RegulatingControl]
             parent,
             if (isSet (0)) input.readBoolean else false,
             if (isSet (1)) input.readBoolean else false,
-            if (isSet (2)) input.readString else null,
-            if (isSet (3)) input.readString else null,
-            if (isSet (4)) input.readDouble else 0.0,
-            if (isSet (5)) input.readDouble else 0.0,
-            if (isSet (6)) input.readString else null,
-            if (isSet (7)) readList (input) else null,
-            if (isSet (8)) readList (input) else null,
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) input.readDouble else 0.0,
+            if (isSet (7)) input.readDouble else 0.0,
+            if (isSet (8)) input.readString else null,
             if (isSet (9)) readList (input) else null,
-            if (isSet (10)) input.readString else null
+            if (isSet (10)) readList (input) else null,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -8627,11 +8799,12 @@ object RegulationScheduleSerializer extends CIMSerializer[RegulationSchedule]
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  *        Starting value for a steady state solution.
  * @param ratedPowerFactor Power factor (nameplate data).
- *        It is primarily used for short circuit data exchange according to IEC 60909.
+ *        It is primarily used for short circuit data exchange according to IEC 60909. The attribute cannot be a negative value.
  * @param ratedS Nameplate apparent power rating for the unit.
  *        The attribute shall have a positive value.
  * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
  *        It is primarily used for short circuit data exchange according to IEC 60909.
+ *        The attribute shall be a positive value.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
  * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
@@ -8886,9 +9059,13 @@ object SectionaliserSerializer extends CIMSerializer[Sectionaliser]
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param r Positive sequence resistance.
  * @param r0 Zero sequence resistance.
- * @param varistorPresent Describe if a metal oxide varistor (mov) for over voltage protection is configured at the series compensator.
+ * @param varistorPresent Describe if a metal oxide varistor (mov) for over voltage protection is configured in parallel with the series compensator.
+ *        It is used for short circuit calculations.
  * @param varistorRatedCurrent The maximum current the varistor is designed to handle at specified duration.
+ *        It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
+ *        The attribute shall be a positive value.
  * @param varistorVoltageThreshold The dc voltage at which the varistor starts conducting.
+ *        It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
  * @param x Positive sequence reactance.
  * @param x0 Zero sequence reactance.
  * @group Wires
@@ -9041,19 +9218,24 @@ object SeriesCompensatorSerializer extends CIMSerializer[SeriesCompensator]
  * A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
  *
  * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param aVRDelay Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).
+ * @param aVRDelay An automatic voltage regulation delay (AVRDelay) which is the time delay from a change in voltage to when the capacitor is allowed to change state.
+ *        This filters out temporary changes in voltage.
  * @param grounded Used for Yn and Zn connections.
  *        True if the neutral is solidly grounded.
  * @param maximumSections The maximum number of sections that may be switched in.
  * @param nomU The voltage at which the nominal reactive power may be calculated.
  *        This should normally be within 10% of the voltage at which the capacitor is connected to the network.
  * @param normalSections The normal number of sections switched in.
+ *        The value shall be between zero and ShuntCompensator.maximumSections.
  * @param phaseConnection The type of phase connection, such as wye or delta.
  * @param sections Shunt compensator sections in use.
- *        Starting value for steady state solution. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+ *        Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+ *        For LinearShuntConpensator the value shall be between zero and ShuntCompensator.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
+ *        For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
  * @param switchOnCount The switch on count since the capacitor count was last reset or initialized.
  * @param switchOnDate The date and time when the capacitor bank was last switched on.
  * @param voltageSensitivity Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
+ * @param ShuntCompensatorAction [[ch.ninecode.model.ShuntCompensatorAction ShuntCompensatorAction]] <em>undocumented</em>
  * @param ShuntCompensatorPhase [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] The individual phases models for the shunt compensator.
  * @param SvShuntCompensatorSections [[ch.ninecode.model.SvShuntCompensatorSections SvShuntCompensatorSections]] The state for the number of shunt compensator sections in service.
  * @group Wires
@@ -9073,6 +9255,7 @@ final case class ShuntCompensator
     switchOnCount: Int = 0,
     switchOnDate: String = null,
     voltageSensitivity: Double = 0.0,
+    ShuntCompensatorAction: String = null,
     ShuntCompensatorPhase: List[String] = null,
     SvShuntCompensatorSections: List[String] = null
 )
@@ -9122,8 +9305,9 @@ extends
         emitelem (7, switchOnCount)
         emitelem (8, switchOnDate)
         emitelem (9, voltageSensitivity)
-        emitattrs (10, ShuntCompensatorPhase)
-        emitattrs (11, SvShuntCompensatorSections)
+        emitattr (10, ShuntCompensatorAction)
+        emitattrs (11, ShuntCompensatorPhase)
+        emitattrs (12, SvShuntCompensatorSections)
         s.toString
     }
     override def export: String =
@@ -9147,10 +9331,12 @@ extends
         "switchOnCount",
         "switchOnDate",
         "voltageSensitivity",
+        "ShuntCompensatorAction",
         "ShuntCompensatorPhase",
         "SvShuntCompensatorSections"
     )
     override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ShuntCompensatorAction", "ShuntCompensatorAction", "0..1", "0..1"),
         CIMRelationship ("ShuntCompensatorPhase", "ShuntCompensatorPhase", "0..*", "1"),
         CIMRelationship ("SvShuntCompensatorSections", "SvShuntCompensatorSections", "0..*", "1")
     )
@@ -9164,8 +9350,9 @@ extends
     val switchOnCount: Fielder = parse_element (element (cls, fields(7)))
     val switchOnDate: Fielder = parse_element (element (cls, fields(8)))
     val voltageSensitivity: Fielder = parse_element (element (cls, fields(9)))
-    val ShuntCompensatorPhase: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val SvShuntCompensatorSections: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val ShuntCompensatorAction: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val ShuntCompensatorPhase: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SvShuntCompensatorSections: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): ShuntCompensator =
     {
@@ -9183,8 +9370,9 @@ extends
             toInteger (mask (switchOnCount (), 7)),
             mask (switchOnDate (), 8),
             toDouble (mask (voltageSensitivity (), 9)),
-            masks (ShuntCompensatorPhase (), 10),
-            masks (SvShuntCompensatorSections (), 11)
+            mask (ShuntCompensatorAction (), 10),
+            masks (ShuntCompensatorPhase (), 11),
+            masks (SvShuntCompensatorSections (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -9208,6 +9396,7 @@ object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
             () => output.writeInt (obj.switchOnCount),
             () => output.writeString (obj.switchOnDate),
             () => output.writeDouble (obj.voltageSensitivity),
+            () => output.writeString (obj.ShuntCompensatorAction),
             () => writeList (obj.ShuntCompensatorPhase, output),
             () => writeList (obj.SvShuntCompensatorSections, output)
         )
@@ -9233,8 +9422,9 @@ object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
             if (isSet (7)) input.readInt else 0,
             if (isSet (8)) input.readString else null,
             if (isSet (9)) input.readDouble else 0.0,
-            if (isSet (10)) readList (input) else null,
-            if (isSet (11)) readList (input) else null
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) readList (input) else null,
+            if (isSet (12)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -9247,8 +9437,13 @@ object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param maximumSections The maximum number of sections that may be switched in for this phase.
  * @param normalSections For the capacitor phase, the normal number of sections switched in.
+ *        The value shall be between zero and ShuntCompensatorPhase.maximumSections.
  * @param phase Phase of this shunt compensator component.
  *        If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
+ * @param sections Shunt compensator sections in use.
+ *        Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+ *        For LinearShuntConpensator the value shall be between zero and ShuntCompensatorPhase.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
+ *        For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
  * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Shunt compensator of this shunt compensator phase.
  * @group Wires
  * @groupname Wires Package Wires
@@ -9260,6 +9455,7 @@ final case class ShuntCompensatorPhase
     maximumSections: Int = 0,
     normalSections: Int = 0,
     phase: String = null,
+    sections: Double = 0.0,
     ShuntCompensator: String = null
 )
 extends
@@ -9300,7 +9496,8 @@ extends
         emitelem (0, maximumSections)
         emitelem (1, normalSections)
         emitattr (2, phase)
-        emitattr (3, ShuntCompensator)
+        emitelem (3, sections)
+        emitattr (4, ShuntCompensator)
         s.toString
     }
     override def export: String =
@@ -9317,6 +9514,7 @@ extends
         "maximumSections",
         "normalSections",
         "phase",
+        "sections",
         "ShuntCompensator"
     )
     override val relations: List[CIMRelationship] = List (
@@ -9325,7 +9523,8 @@ extends
     val maximumSections: Fielder = parse_element (element (cls, fields(0)))
     val normalSections: Fielder = parse_element (element (cls, fields(1)))
     val phase: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val sections: Fielder = parse_element (element (cls, fields(3)))
+    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): ShuntCompensatorPhase =
     {
@@ -9336,7 +9535,8 @@ extends
             toInteger (mask (maximumSections (), 0)),
             toInteger (mask (normalSections (), 1)),
             mask (phase (), 2),
-            mask (ShuntCompensator (), 3)
+            toDouble (mask (sections (), 3)),
+            mask (ShuntCompensator (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -9353,6 +9553,7 @@ object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPha
             () => output.writeInt (obj.maximumSections),
             () => output.writeInt (obj.normalSections),
             () => output.writeString (obj.phase),
+            () => output.writeDouble (obj.sections),
             () => output.writeString (obj.ShuntCompensator)
         )
         PowerSystemResourceSerializer.write (kryo, output, obj.sup)
@@ -9370,7 +9571,8 @@ object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPha
             if (isSet (0)) input.readInt else 0,
             if (isSet (1)) input.readInt else 0,
             if (isSet (2)) input.readString else null,
-            if (isSet (3)) input.readString else null
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -9394,6 +9596,7 @@ object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPha
  *        Starting value for a steady state solution.
  * @param sVCControlMode SVC control mode.
  * @param slope The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
+ *        The attribute shall be a positive value or zero.
  * @param voltageSetPoint The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
  *        When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
  * @param StaticVarCompensatorDynamics [[ch.ninecode.model.StaticVarCompensatorDynamics StaticVarCompensatorDynamics]] Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.
@@ -9548,20 +9751,27 @@ object StaticVarCompensatorSerializer extends CIMSerializer[StaticVarCompensator
 /**
  * A generic device designed to close, or open, or both, one or more electric circuits.
  *
- * All switches are two terminal devices including grounding switches.
+ * All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param locked If true, the switch is locked.
+ *        The resulting switch state is a combination of locked and Switch.open attributes as follows:
+ *        <ul>
+ *        <li>locked=true and Switch.open=true. The resulting state is open and locked;</li>
+ *        <li>locked=false and Switch.open=true. The resulting state is open;</li>
+ *        <li>locked=false and Switch.open=false. The resulting state is closed.</li>
+ *        </ul>
  * @param normalOpen The attribute is used in cases when no Measurement for the status value is present.
  *        If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
  * @param open The attribute tells if the switch is considered open when used as input to topology processing.
  * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
+ *        The attribute shall be a positive value.
  * @param retained Branch is retained in the topological solution.
  *        The flow through retained switches will normally be calculated in power flow.
  * @param switchOnCount The switch on count since the switch was last reset or initialized.
  * @param switchOnDate The date and time when the switch was last switched on.
  * @param CompositeSwitch [[ch.ninecode.model.CompositeSwitch CompositeSwitch]] Composite switch to which this Switch belongs.
  * @param ConnectDisconnectFunctions [[ch.ninecode.model.ConnectDisconnectFunction ConnectDisconnectFunction]] <em>undocumented</em>
- * @param Outage [[ch.ninecode.model.Outage Outage]] Current outage of this protective device.
  * @param SvSwitch [[ch.ninecode.model.SvSwitch SvSwitch]] The switch state associated with the switch.
  * @param SwitchAction [[ch.ninecode.model.SwitchAction SwitchAction]] Action changing status of this switch.
  * @param SwitchPhase [[ch.ninecode.model.SwitchPhase SwitchPhase]] The individual switch phases for the switch.
@@ -9573,6 +9783,7 @@ object StaticVarCompensatorSerializer extends CIMSerializer[StaticVarCompensator
 final case class Switch
 (
     ConductingEquipment: ConductingEquipment = null,
+    locked: Boolean = false,
     normalOpen: Boolean = false,
     open: Boolean = false,
     ratedCurrent: Double = 0.0,
@@ -9581,7 +9792,6 @@ final case class Switch
     switchOnDate: String = null,
     CompositeSwitch: String = null,
     ConnectDisconnectFunctions: List[String] = null,
-    Outage: String = null,
     SvSwitch: List[String] = null,
     SwitchAction: String = null,
     SwitchPhase: List[String] = null,
@@ -9623,15 +9833,15 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Switch.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Switch.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Switch.fields (position), x))
-        emitelem (0, normalOpen)
-        emitelem (1, open)
-        emitelem (2, ratedCurrent)
-        emitelem (3, retained)
-        emitelem (4, switchOnCount)
-        emitelem (5, switchOnDate)
-        emitattr (6, CompositeSwitch)
-        emitattrs (7, ConnectDisconnectFunctions)
-        emitattr (8, Outage)
+        emitelem (0, locked)
+        emitelem (1, normalOpen)
+        emitelem (2, open)
+        emitelem (3, ratedCurrent)
+        emitelem (4, retained)
+        emitelem (5, switchOnCount)
+        emitelem (6, switchOnDate)
+        emitattr (7, CompositeSwitch)
+        emitattrs (8, ConnectDisconnectFunctions)
         emitattrs (9, SvSwitch)
         emitattr (10, SwitchAction)
         emitattrs (11, SwitchPhase)
@@ -9649,6 +9859,7 @@ extends
     CIMParseable[Switch]
 {
     override val fields: Array[String] = Array[String] (
+        "locked",
         "normalOpen",
         "open",
         "ratedCurrent",
@@ -9657,7 +9868,6 @@ extends
         "switchOnDate",
         "CompositeSwitch",
         "ConnectDisconnectFunctions",
-        "Outage",
         "SvSwitch",
         "SwitchAction",
         "SwitchPhase",
@@ -9666,21 +9876,20 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("CompositeSwitch", "CompositeSwitch", "0..1", "0..*"),
         CIMRelationship ("ConnectDisconnectFunctions", "ConnectDisconnectFunction", "0..*", "0..*"),
-        CIMRelationship ("Outage", "Outage", "0..1", "0..*"),
         CIMRelationship ("SvSwitch", "SvSwitch", "0..*", "1"),
         CIMRelationship ("SwitchAction", "SwitchAction", "0..1", "0..1"),
         CIMRelationship ("SwitchPhase", "SwitchPhase", "0..*", "1"),
         CIMRelationship ("SwitchSchedules", "SwitchSchedule", "0..*", "1")
     )
-    val normalOpen: Fielder = parse_element (element (cls, fields(0)))
-    val open: Fielder = parse_element (element (cls, fields(1)))
-    val ratedCurrent: Fielder = parse_element (element (cls, fields(2)))
-    val retained: Fielder = parse_element (element (cls, fields(3)))
-    val switchOnCount: Fielder = parse_element (element (cls, fields(4)))
-    val switchOnDate: Fielder = parse_element (element (cls, fields(5)))
-    val CompositeSwitch: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ConnectDisconnectFunctions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Outage: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val locked: Fielder = parse_element (element (cls, fields(0)))
+    val normalOpen: Fielder = parse_element (element (cls, fields(1)))
+    val open: Fielder = parse_element (element (cls, fields(2)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(3)))
+    val retained: Fielder = parse_element (element (cls, fields(4)))
+    val switchOnCount: Fielder = parse_element (element (cls, fields(5)))
+    val switchOnDate: Fielder = parse_element (element (cls, fields(6)))
+    val CompositeSwitch: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val ConnectDisconnectFunctions: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
     val SvSwitch: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
     val SwitchAction: Fielder = parse_attribute (attribute (cls, fields(10)))
     val SwitchPhase: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
@@ -9692,15 +9901,15 @@ extends
         implicit val bitfields: Array[Int] = Array(0)
         val ret = Switch (
             ConductingEquipment.parse (context),
-            toBoolean (mask (normalOpen (), 0)),
-            toBoolean (mask (open (), 1)),
-            toDouble (mask (ratedCurrent (), 2)),
-            toBoolean (mask (retained (), 3)),
-            toInteger (mask (switchOnCount (), 4)),
-            mask (switchOnDate (), 5),
-            mask (CompositeSwitch (), 6),
-            masks (ConnectDisconnectFunctions (), 7),
-            mask (Outage (), 8),
+            toBoolean (mask (locked (), 0)),
+            toBoolean (mask (normalOpen (), 1)),
+            toBoolean (mask (open (), 2)),
+            toDouble (mask (ratedCurrent (), 3)),
+            toBoolean (mask (retained (), 4)),
+            toInteger (mask (switchOnCount (), 5)),
+            mask (switchOnDate (), 6),
+            mask (CompositeSwitch (), 7),
+            masks (ConnectDisconnectFunctions (), 8),
             masks (SvSwitch (), 9),
             mask (SwitchAction (), 10),
             masks (SwitchPhase (), 11),
@@ -9718,6 +9927,7 @@ object SwitchSerializer extends CIMSerializer[Switch]
     def write (kryo: Kryo, output: Output, obj: Switch): Unit =
     {
         val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.locked),
             () => output.writeBoolean (obj.normalOpen),
             () => output.writeBoolean (obj.open),
             () => output.writeDouble (obj.ratedCurrent),
@@ -9726,7 +9936,6 @@ object SwitchSerializer extends CIMSerializer[Switch]
             () => output.writeString (obj.switchOnDate),
             () => output.writeString (obj.CompositeSwitch),
             () => writeList (obj.ConnectDisconnectFunctions, output),
-            () => output.writeString (obj.Outage),
             () => writeList (obj.SvSwitch, output),
             () => output.writeString (obj.SwitchAction),
             () => writeList (obj.SwitchPhase, output),
@@ -9746,13 +9955,13 @@ object SwitchSerializer extends CIMSerializer[Switch]
             parent,
             if (isSet (0)) input.readBoolean else false,
             if (isSet (1)) input.readBoolean else false,
-            if (isSet (2)) input.readDouble else 0.0,
-            if (isSet (3)) input.readBoolean else false,
-            if (isSet (4)) input.readInt else 0,
-            if (isSet (5)) input.readString else null,
+            if (isSet (2)) input.readBoolean else false,
+            if (isSet (3)) input.readDouble else 0.0,
+            if (isSet (4)) input.readBoolean else false,
+            if (isSet (5)) input.readInt else 0,
             if (isSet (6)) input.readString else null,
-            if (isSet (7)) readList (input) else null,
-            if (isSet (8)) input.readString else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null,
             if (isSet (9)) readList (input) else null,
             if (isSet (10)) input.readString else null,
             if (isSet (11)) readList (input) else null,
@@ -9775,6 +9984,7 @@ object SwitchSerializer extends CIMSerializer[Switch]
  * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
  *        Should be a phase contained in that terminal’s Terminal.phases attribute.
  * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
+ *        The attribute shall be a positive value.
  * @param Switch [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
  * @group Wires
  * @groupname Wires Package Wires
@@ -10553,7 +10763,7 @@ extends
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("SvTapStep", "SvTapStep", "0..1", "1"),
-        CIMRelationship ("TapChangerControl", "TapChangerControl", "0..1", "0..*"),
+        CIMRelationship ("TapChangerControl", "TapChangerControl", "0..1", "1..*"),
         CIMRelationship ("TapSchedules", "TapSchedule", "0..*", "1")
     )
     val controlEnabled: Fielder = parse_element (element (cls, fields(0)))
@@ -10738,7 +10948,7 @@ extends
         "TapChanger"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("TapChanger", "TapChanger", "0..*", "0..1")
+        CIMRelationship ("TapChanger", "TapChanger", "1..*", "0..1")
     )
     val limitVoltage: Fielder = parse_element (element (cls, fields(0)))
     val lineDropCompensation: Fielder = parse_element (element (cls, fields(1)))
@@ -12186,6 +12396,244 @@ object VoltageControlZoneSerializer extends CIMSerializer[VoltageControlZone]
     }
 }
 
+/**
+ * A two terminal and power conducting device of negligible impedance and length represented as zero impedance device that can be used to connect auxiliary equipment to its terminals.
+ *
+ * @param Conductor [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
+ * @param WireSegmentPhases [[ch.ninecode.model.WireSegmentPhase WireSegmentPhase]] The wire segment phases which belong to the wire segment.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+final case class WireSegment
+(
+    Conductor: Conductor = null,
+    WireSegmentPhases: List[String] = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: Conductor = Conductor
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WireSegment.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireSegment.fields (position), x))
+        emitattrs (0, WireSegmentPhases)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WireSegment rdf:ID=\"%s\">\n%s\t</cim:WireSegment>".format (id, export_fields)
+    }
+}
+
+object WireSegment
+extends
+    CIMParseable[WireSegment]
+{
+    override val fields: Array[String] = Array[String] (
+        "WireSegmentPhases"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WireSegmentPhases", "WireSegmentPhase", "0..*", "1")
+    )
+    val WireSegmentPhases: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+
+    def parse (context: CIMContext): WireSegment =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = WireSegment (
+            Conductor.parse (context),
+            masks (WireSegmentPhases (), 0)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[WireSegment] = WireSegmentSerializer
+}
+
+object WireSegmentSerializer extends CIMSerializer[WireSegment]
+{
+    def write (kryo: Kryo, output: Output, obj: WireSegment): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.WireSegmentPhases, output)
+        )
+        ConductorSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WireSegment]): WireSegment =
+    {
+        val parent = ConductorSerializer.read (kryo, input, classOf[Conductor])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WireSegment (
+            parent,
+            if (isSet (0)) readList (input) else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
+ * Represents a single wire of an alternating current wire segment.
+ *
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param phase The phase connection of the wire at both ends.
+ * @param sequenceNumber Number designation for this wire segment phase.
+ *        Each wire segment phase within a wire segment should have a unique sequence number.
+ * @param WireSegment [[ch.ninecode.model.WireSegment WireSegment]] The wire segment to which the phase belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+final case class WireSegmentPhase
+(
+    PowerSystemResource: PowerSystemResource = null,
+    phase: String = null,
+    sequenceNumber: Int = 0,
+    WireSegment: String = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: PowerSystemResource = PowerSystemResource
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WireSegmentPhase.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSegmentPhase.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSegmentPhase.fields (position), value)
+        emitattr (0, phase)
+        emitelem (1, sequenceNumber)
+        emitattr (2, WireSegment)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WireSegmentPhase rdf:ID=\"%s\">\n%s\t</cim:WireSegmentPhase>".format (id, export_fields)
+    }
+}
+
+object WireSegmentPhase
+extends
+    CIMParseable[WireSegmentPhase]
+{
+    override val fields: Array[String] = Array[String] (
+        "phase",
+        "sequenceNumber",
+        "WireSegment"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("WireSegment", "WireSegment", "1", "0..*")
+    )
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
+    val WireSegment: Fielder = parse_attribute (attribute (cls, fields(2)))
+
+    def parse (context: CIMContext): WireSegmentPhase =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = WireSegmentPhase (
+            PowerSystemResource.parse (context),
+            mask (phase (), 0),
+            toInteger (mask (sequenceNumber (), 1)),
+            mask (WireSegment (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[WireSegmentPhase] = WireSegmentPhaseSerializer
+}
+
+object WireSegmentPhaseSerializer extends CIMSerializer[WireSegmentPhase]
+{
+    def write (kryo: Kryo, output: Output, obj: WireSegmentPhase): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.phase),
+            () => output.writeInt (obj.sequenceNumber),
+            () => output.writeString (obj.WireSegment)
+        )
+        PowerSystemResourceSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[WireSegmentPhase]): WireSegmentPhase =
+    {
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = WireSegmentPhase (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
 private[ninecode] object _Wires
 {
     def register: List[CIMClassInfo] =
@@ -12201,6 +12649,7 @@ private[ninecode] object _Wires
             Conductor.register,
             Connector.register,
             Cut.register,
+            DisconnectingCircuitBreaker.register,
             Disconnector.register,
             EarthFaultCompensator.register,
             EnergyConnection.register,
@@ -12274,7 +12723,9 @@ private[ninecode] object _Wires
             TransformerStarImpedance.register,
             TransformerTank.register,
             TransformerTankEnd.register,
-            VoltageControlZone.register
+            VoltageControlZone.register,
+            WireSegment.register,
+            WireSegmentPhase.register
         )
     }
 }

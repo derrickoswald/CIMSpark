@@ -271,13 +271,18 @@ object AltTieMeasSerializer extends CIMSerializer[AltTieMeas]
 }
 
 /**
- * A control area is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
+ * A control area is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, power flow solution area interchange control specification, and input to load forecasting.
  *
- * All generation and load within the area defined by the terminals on the border are considered in the area interchange control.  Note that any number of overlapping control area specifications can be superimposed on the physical model.
+ * All generation and load within the area defined by the terminals on the border are considered in the area interchange control. Note that any number of overlapping control area specifications can be superimposed on the physical model. The following general principles apply to ControlArea:
+ * 1.  The control area orientation for net interchange is positive for an import, negative for an export.
+ * 2.  The control area net interchange is determined by summing flows in Terminals. The Terminals are identified by creating a set of TieFlow objects associated with a ControlArea object. Each TieFlow object identifies one Terminal.
+ * 3.  In a single network model, a tie between two control areas must be modelled in both control area specifications, such that the two representations of the tie flow sum to zero.
+ * 4.  The normal orientation of Terminal flow is positive for flow into the conducting equipment that owns the Terminal. (i.e. flow from a bus into a device is positive.) However, the orientation of each flow in the control area specification must align with the control area convention, i.e. import is positive. If the orientation of the Terminal flow referenced by a TieFlow is positive into the control area, then this is confirmed by setting TieFlow.positiveFlowIn flag TRUE. If not, the orientation must be reversed by setting the TieFlow.positiveFlowIn flag FALSE.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
+ * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow into the area.
  * @param pTolerance Active power net interchange tolerance.
+ *        The attribute shall be a positive value or zero.
  * @param type The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
  * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The generating unit specifications for the control area.
@@ -560,11 +565,13 @@ object ControlAreaGeneratingUnitSerializer extends CIMSerializer[ControlAreaGene
 }
 
 /**
- * A flow specification in terms of location and direction for a control area.
+ * Defines the structure (in terms of location and direction) of the net interchange constraint for a control area.
+ *
+ * This constraint may be used by either AGC or power flow.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
- *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
+ * @param positiveFlowIn Specifies the sign of the tie flow associated with a control area.
+ *        True if positive flow into the terminal (load convention) is also positive flow into the control area.  See the description of ControlArea for further explanation of how TieFlow.positiveFlowIn is used.
  * @param AltTieMeas [[ch.ninecode.model.AltTieMeas AltTieMeas]] The primary and alternate tie flow measurements associated with the tie flow.
  * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The control area of the tie flows.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal to which this tie flow belongs.

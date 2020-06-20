@@ -1,8 +1,8 @@
 package ch.ninecode.cim
 
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.Path
-import org.apache.spark.deploy.SparkHadoopUtil
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.execution.datasources.InMemoryFileIndex
 import org.apache.spark.sql.sources.BaseRelation
@@ -13,8 +13,14 @@ class DefaultSource
 extends
     RelationProvider
 {
-    private val log = LoggerFactory.getLogger (getClass) 
-    
+    private val log = LoggerFactory.getLogger (getClass)
+
+    def isGlobPath (pattern: Path): Boolean = pattern.toString.exists("{}[]*?\\".toSet.contains)
+
+    def globPath (fs: FileSystem, path: Path): Seq[Path] = fs.globStatus (path).map (_.getPath)
+
+    def globPathIfNecessary (fs: FileSystem, pattern: Path): Seq[Path] = if (isGlobPath (pattern)) globPath (fs, pattern) else Seq (pattern)
+
     override def createRelation (
         sqlContext: SQLContext,
         parameters: Map[String, String]): BaseRelation =
@@ -30,7 +36,7 @@ extends
                 val configuration = new Configuration (session.sparkContext.hadoopConfiguration)
                 val fs = hdfsPath.getFileSystem (configuration)
                 val qualified = hdfsPath.makeQualified (fs.getUri, fs.getWorkingDirectory)
-                val globPath = SparkHadoopUtil.get.globPathIfNecessary (qualified)
+                val globPath = globPathIfNecessary (fs, qualified)
                 if (globPath.isEmpty)
                     throw new java.io.FileNotFoundException (s"Path does not exist: $qualified")
                 globPath.foreach (
@@ -43,10 +49,7 @@ extends
                 globPath
         }
         val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
-        val partitionSchema = fileCatalog.partitionSpec().partitionColumns
-        val format = new CIMFileFormat ()
-        val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).orNull
-        new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters) (session)
+        new CIMRelation (fileCatalog, parameters) (session)
     }
 }
 

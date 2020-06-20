@@ -1,7 +1,5 @@
 package ch.ninecode.cim
 
-import scala.language.existentials
-
 import com.esotericsoftware.kryo.Serializer
 
 /**

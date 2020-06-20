@@ -2229,8 +2229,6 @@ object LimitSetSerializer extends CIMSerializer[LimitSet]
  * @param phases Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
  *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
  *        If the attribute is missing three phases (ABC) shall be assumed.
- * @param uncefactUnitCode Contains a string value for units and multipliers from a list maintained by UN/CEFACT and described in recommendation No. 20, "Codes for Units of Measure Used in International Trade".
- *        Refer to the UN/CEFACT recommendation for details.
  * @param unitMultiplier The unit multiplier of the measured quantity.
  * @param unitSymbol The unit of measure of the measured quantity.
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
@@ -2252,7 +2250,6 @@ final case class Measurement
     IdentifiedObject: IdentifiedObject = null,
     measurementType: String = null,
     phases: String = null,
-    uncefactUnitCode: String = null,
     unitMultiplier: String = null,
     unitSymbol: String = null,
     Asset: String = null,
@@ -2304,19 +2301,18 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Measurement.fields (position), x))
         emitelem (0, measurementType)
         emitattr (1, phases)
-        emitelem (2, uncefactUnitCode)
-        emitattr (3, unitMultiplier)
-        emitattr (4, unitSymbol)
-        emitattr (5, Asset)
-        emitattr (6, CalculationMethodHierarchy)
-        emitattrs (7, Locations)
-        emitattr (8, MeasurementAction)
-        emitattrs (9, MeasurementCalculatorInput)
-        emitattrs (10, PinMeasurement)
-        emitattr (11, PowerSystemResource)
-        emitattrs (12, Procedures)
-        emitattrs (13, ProtectiveActionAdjustment)
-        emitattr (14, Terminal)
+        emitattr (2, unitMultiplier)
+        emitattr (3, unitSymbol)
+        emitattr (4, Asset)
+        emitattr (5, CalculationMethodHierarchy)
+        emitattrs (6, Locations)
+        emitattr (7, MeasurementAction)
+        emitattrs (8, MeasurementCalculatorInput)
+        emitattrs (9, PinMeasurement)
+        emitattr (10, PowerSystemResource)
+        emitattrs (11, Procedures)
+        emitattrs (12, ProtectiveActionAdjustment)
+        emitattr (13, Terminal)
         s.toString
     }
     override def export: String =
@@ -2332,7 +2328,6 @@ extends
     override val fields: Array[String] = Array[String] (
         "measurementType",
         "phases",
-        "uncefactUnitCode",
         "unitMultiplier",
         "unitSymbol",
         "Asset",
@@ -2360,19 +2355,18 @@ extends
     )
     val measurementType: Fielder = parse_element (element (cls, fields(0)))
     val phases: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val uncefactUnitCode: Fielder = parse_element (element (cls, fields(2)))
-    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val CalculationMethodHierarchy: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val MeasurementAction: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val CalculationMethodHierarchy: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val MeasurementAction: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(13)))
 
     def parse (context: CIMContext): Measurement =
     {
@@ -2382,19 +2376,18 @@ extends
             IdentifiedObject.parse (context),
             mask (measurementType (), 0),
             mask (phases (), 1),
-            mask (uncefactUnitCode (), 2),
-            mask (unitMultiplier (), 3),
-            mask (unitSymbol (), 4),
-            mask (Asset (), 5),
-            mask (CalculationMethodHierarchy (), 6),
-            masks (Locations (), 7),
-            mask (MeasurementAction (), 8),
-            masks (MeasurementCalculatorInput (), 9),
-            masks (PinMeasurement (), 10),
-            mask (PowerSystemResource (), 11),
-            masks (Procedures (), 12),
-            masks (ProtectiveActionAdjustment (), 13),
-            mask (Terminal (), 14)
+            mask (unitMultiplier (), 2),
+            mask (unitSymbol (), 3),
+            mask (Asset (), 4),
+            mask (CalculationMethodHierarchy (), 5),
+            masks (Locations (), 6),
+            mask (MeasurementAction (), 7),
+            masks (MeasurementCalculatorInput (), 8),
+            masks (PinMeasurement (), 9),
+            mask (PowerSystemResource (), 10),
+            masks (Procedures (), 11),
+            masks (ProtectiveActionAdjustment (), 12),
+            mask (Terminal (), 13)
         )
         ret.bitfields = bitfields
         ret
@@ -2410,7 +2403,6 @@ object MeasurementSerializer extends CIMSerializer[Measurement]
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeString (obj.measurementType),
             () => output.writeString (obj.phases),
-            () => output.writeString (obj.uncefactUnitCode),
             () => output.writeString (obj.unitMultiplier),
             () => output.writeString (obj.unitSymbol),
             () => output.writeString (obj.Asset),
@@ -2442,15 +2434,14 @@ object MeasurementSerializer extends CIMSerializer[Measurement]
             if (isSet (3)) input.readString else null,
             if (isSet (4)) input.readString else null,
             if (isSet (5)) input.readString else null,
-            if (isSet (6)) input.readString else null,
-            if (isSet (7)) readList (input) else null,
-            if (isSet (8)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null,
             if (isSet (9)) readList (input) else null,
-            if (isSet (10)) readList (input) else null,
-            if (isSet (11)) input.readString else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) readList (input) else null,
             if (isSet (12)) readList (input) else null,
-            if (isSet (13)) readList (input) else null,
-            if (isSet (14)) input.readString else null
+            if (isSet (13)) input.readString else null
         )
         obj.bitfields = bitfields
         obj

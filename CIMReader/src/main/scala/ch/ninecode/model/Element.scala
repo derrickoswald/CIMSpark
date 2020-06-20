@@ -13,7 +13,6 @@ import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
 import ch.ninecode.cim.CIMParser
 import ch.ninecode.cim.CIMParser.namespace
-import ch.ninecode.cim.CIMRelationship
 import ch.ninecode.cim.CIMSerializer
 // NOTE: ElementUDT is actually in this artifact
 import org.apache.spark.sql.types.ElementUDT

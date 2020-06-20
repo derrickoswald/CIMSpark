@@ -2921,6 +2921,7 @@ object WireAssemblyInfoSerializer extends CIMSerializer[WireAssemblyInfo]
  * @param ratedCurrent Current carrying capacity of the wire under stated thermal conditions.
  * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
  * @param strandCount Number of strands in the conductor.
+ * @param ACLineSegmentPhase [[ch.ninecode.model.ACLineSegmentPhase ACLineSegmentPhase]] <em>undocumented</em>
  * @param WirePhaseInfo [[ch.ninecode.model.WirePhaseInfo WirePhaseInfo]] Wire phase information associated with this wire information.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -2944,6 +2945,7 @@ final case class WireInfo
     ratedCurrent: Double = 0.0,
     sizeDescription: String = null,
     strandCount: Int = 0,
+    ACLineSegmentPhase: List[String] = null,
     WirePhaseInfo: List[String] = null
 )
 extends
@@ -2997,7 +2999,8 @@ extends
         emitelem (12, ratedCurrent)
         emitelem (13, sizeDescription)
         emitelem (14, strandCount)
-        emitattrs (15, WirePhaseInfo)
+        emitattrs (15, ACLineSegmentPhase)
+        emitattrs (16, WirePhaseInfo)
         s.toString
     }
     override def export: String =
@@ -3026,9 +3029,11 @@ extends
         "ratedCurrent",
         "sizeDescription",
         "strandCount",
+        "ACLineSegmentPhase",
         "WirePhaseInfo"
     )
     override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ACLineSegmentPhase", "ACLineSegmentPhase", "0..*", "0..1"),
         CIMRelationship ("WirePhaseInfo", "WirePhaseInfo", "0..*", "0..1")
     )
     val coreRadius: Fielder = parse_element (element (cls, fields(0)))
@@ -3046,7 +3051,8 @@ extends
     val ratedCurrent: Fielder = parse_element (element (cls, fields(12)))
     val sizeDescription: Fielder = parse_element (element (cls, fields(13)))
     val strandCount: Fielder = parse_element (element (cls, fields(14)))
-    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val ACLineSegmentPhase: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
 
     def parse (context: CIMContext): WireInfo =
     {
@@ -3069,7 +3075,8 @@ extends
             toDouble (mask (ratedCurrent (), 12)),
             mask (sizeDescription (), 13),
             toInteger (mask (strandCount (), 14)),
-            masks (WirePhaseInfo (), 15)
+            masks (ACLineSegmentPhase (), 15),
+            masks (WirePhaseInfo (), 16)
         )
         ret.bitfields = bitfields
         ret
@@ -3098,6 +3105,7 @@ object WireInfoSerializer extends CIMSerializer[WireInfo]
             () => output.writeDouble (obj.ratedCurrent),
             () => output.writeString (obj.sizeDescription),
             () => output.writeInt (obj.strandCount),
+            () => writeList (obj.ACLineSegmentPhase, output),
             () => writeList (obj.WirePhaseInfo, output)
         )
         AssetInfoSerializer.write (kryo, output, obj.sup)
@@ -3127,7 +3135,8 @@ object WireInfoSerializer extends CIMSerializer[WireInfo]
             if (isSet (12)) input.readDouble else 0.0,
             if (isSet (13)) input.readString else null,
             if (isSet (14)) input.readInt else 0,
-            if (isSet (15)) readList (input) else null
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -3274,10 +3283,12 @@ object WirePhaseInfoSerializer extends CIMSerializer[WirePhaseInfo]
  * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sequenceNumber Numbering for wires on a WireSpacingInfo.
+ *        Neutrals should be numbered last.
  * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
  * @param yCoord Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
  * @param WirePhaseInfo [[ch.ninecode.model.WirePhaseInfo WirePhaseInfo]] Wire phase information for this wire position.
- * @param WireSpacingInfo [[ch.ninecode.model.WireSpacing WireSpacing]] Wire spacing data this wire position belongs to.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] Wire spacing data this wire position belongs to.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -3285,6 +3296,7 @@ object WirePhaseInfoSerializer extends CIMSerializer[WirePhaseInfo]
 final case class WirePosition
 (
     IdentifiedObject: IdentifiedObject = null,
+    sequenceNumber: Int = 0,
     xCoord: Double = 0.0,
     yCoord: Double = 0.0,
     WirePhaseInfo: List[String] = null,
@@ -3326,10 +3338,11 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WirePosition.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WirePosition.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WirePosition.fields (position), x))
-        emitelem (0, xCoord)
-        emitelem (1, yCoord)
-        emitattrs (2, WirePhaseInfo)
-        emitattr (3, WireSpacingInfo)
+        emitelem (0, sequenceNumber)
+        emitelem (1, xCoord)
+        emitelem (2, yCoord)
+        emitattrs (3, WirePhaseInfo)
+        emitattr (4, WireSpacingInfo)
         s.toString
     }
     override def export: String =
@@ -3343,6 +3356,7 @@ extends
     CIMParseable[WirePosition]
 {
     override val fields: Array[String] = Array[String] (
+        "sequenceNumber",
         "xCoord",
         "yCoord",
         "WirePhaseInfo",
@@ -3350,12 +3364,13 @@ extends
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WirePhaseInfo", "WirePhaseInfo", "0..*", "0..1"),
-        CIMRelationship ("WireSpacingInfo", "WireSpacing", "0..1", "1..*")
+        CIMRelationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "1..*")
     )
-    val xCoord: Fielder = parse_element (element (cls, fields(0)))
-    val yCoord: Fielder = parse_element (element (cls, fields(1)))
-    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
+    val xCoord: Fielder = parse_element (element (cls, fields(1)))
+    val yCoord: Fielder = parse_element (element (cls, fields(2)))
+    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): WirePosition =
     {
@@ -3363,10 +3378,11 @@ extends
         implicit val bitfields: Array[Int] = Array(0)
         val ret = WirePosition (
             IdentifiedObject.parse (context),
-            toDouble (mask (xCoord (), 0)),
-            toDouble (mask (yCoord (), 1)),
-            masks (WirePhaseInfo (), 2),
-            mask (WireSpacingInfo (), 3)
+            toInteger (mask (sequenceNumber (), 0)),
+            toDouble (mask (xCoord (), 1)),
+            toDouble (mask (yCoord (), 2)),
+            masks (WirePhaseInfo (), 3),
+            mask (WireSpacingInfo (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -3380,6 +3396,7 @@ object WirePositionSerializer extends CIMSerializer[WirePosition]
     def write (kryo: Kryo, output: Output, obj: WirePosition): Unit =
     {
         val toSerialize: Array[() => Unit] = Array (
+            () => output.writeInt (obj.sequenceNumber),
             () => output.writeDouble (obj.xCoord),
             () => output.writeDouble (obj.yCoord),
             () => writeList (obj.WirePhaseInfo, output),
@@ -3397,10 +3414,11 @@ object WirePositionSerializer extends CIMSerializer[WirePosition]
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WirePosition (
             parent,
-            if (isSet (0)) input.readDouble else 0.0,
+            if (isSet (0)) input.readInt else 0,
             if (isSet (1)) input.readDouble else 0.0,
-            if (isSet (2)) readList (input) else null,
-            if (isSet (3)) input.readString else null
+            if (isSet (2)) input.readDouble else 0.0,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -3412,11 +3430,12 @@ object WirePositionSerializer extends CIMSerializer[WirePosition]
  *
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param isCable If true, this spacing data describes a cable.
  * @param phaseWireCount Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).
  * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
  * @param usage Usage of the associated wires.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] <em>undocumented</em>
  * @param DuctBank [[ch.ninecode.model.DuctBank DuctBank]] <em>undocumented</em>
  * @param Structures [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @param WirePositions [[ch.ninecode.model.WirePosition WirePosition]] All positions of single wires (phase or neutral) making the conductor.
@@ -3424,13 +3443,14 @@ object WirePositionSerializer extends CIMSerializer[WirePosition]
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-final case class WireSpacing
+final case class WireSpacingInfo
 (
-    IdentifiedObject: IdentifiedObject = null,
+    AssetInfo: AssetInfo = null,
     isCable: Boolean = false,
     phaseWireCount: Int = 0,
     phaseWireSpacing: Double = 0.0,
     usage: String = null,
+    ACLineSegment: List[String] = null,
     DuctBank: String = null,
     Structures: List[String] = null,
     WirePositions: List[String] = null
@@ -3446,7 +3466,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    override def sup: IdentifiedObject = IdentifiedObject
+    override def sup: AssetInfo = AssetInfo
 
     //
     // Row overrides
@@ -3467,39 +3487,42 @@ extends
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = WireSpacing.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSpacing.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSpacing.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireSpacing.fields (position), x))
+        implicit val clz: String = WireSpacingInfo.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSpacingInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSpacingInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireSpacingInfo.fields (position), x))
         emitelem (0, isCable)
         emitelem (1, phaseWireCount)
         emitelem (2, phaseWireSpacing)
         emitattr (3, usage)
-        emitattr (4, DuctBank)
-        emitattrs (5, Structures)
-        emitattrs (6, WirePositions)
+        emitattrs (4, ACLineSegment)
+        emitattr (5, DuctBank)
+        emitattrs (6, Structures)
+        emitattrs (7, WirePositions)
         s.toString
     }
     override def export: String =
     {
-        "\t<cim:WireSpacing rdf:ID=\"%s\">\n%s\t</cim:WireSpacing>".format (id, export_fields)
+        "\t<cim:WireSpacingInfo rdf:ID=\"%s\">\n%s\t</cim:WireSpacingInfo>".format (id, export_fields)
     }
 }
 
-object WireSpacing
+object WireSpacingInfo
 extends
-    CIMParseable[WireSpacing]
+    CIMParseable[WireSpacingInfo]
 {
     override val fields: Array[String] = Array[String] (
         "isCable",
         "phaseWireCount",
         "phaseWireSpacing",
         "usage",
+        "ACLineSegment",
         "DuctBank",
         "Structures",
         "WirePositions"
     )
     override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ACLineSegment", "ACLineSegment", "0..*", "0..1"),
         CIMRelationship ("DuctBank", "DuctBank", "0..1", "0..*"),
         CIMRelationship ("Structures", "Structure", "0..*", "0..*"),
         CIMRelationship ("WirePositions", "WirePosition", "1..*", "0..1")
@@ -3508,63 +3531,67 @@ extends
     val phaseWireCount: Fielder = parse_element (element (cls, fields(1)))
     val phaseWireSpacing: Fielder = parse_element (element (cls, fields(2)))
     val usage: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val DuctBank: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val WirePositions: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ACLineSegment: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val DuctBank: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val WirePositions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
-    def parse (context: CIMContext): WireSpacing =
+    def parse (context: CIMContext): WireSpacingInfo =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = WireSpacing (
-            IdentifiedObject.parse (context),
+        val ret = WireSpacingInfo (
+            AssetInfo.parse (context),
             toBoolean (mask (isCable (), 0)),
             toInteger (mask (phaseWireCount (), 1)),
             toDouble (mask (phaseWireSpacing (), 2)),
             mask (usage (), 3),
-            mask (DuctBank (), 4),
-            masks (Structures (), 5),
-            masks (WirePositions (), 6)
+            masks (ACLineSegment (), 4),
+            mask (DuctBank (), 5),
+            masks (Structures (), 6),
+            masks (WirePositions (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
 
-    def serializer: Serializer[WireSpacing] = WireSpacingSerializer
+    def serializer: Serializer[WireSpacingInfo] = WireSpacingInfoSerializer
 }
 
-object WireSpacingSerializer extends CIMSerializer[WireSpacing]
+object WireSpacingInfoSerializer extends CIMSerializer[WireSpacingInfo]
 {
-    def write (kryo: Kryo, output: Output, obj: WireSpacing): Unit =
+    def write (kryo: Kryo, output: Output, obj: WireSpacingInfo): Unit =
     {
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeBoolean (obj.isCable),
             () => output.writeInt (obj.phaseWireCount),
             () => output.writeDouble (obj.phaseWireSpacing),
             () => output.writeString (obj.usage),
+            () => writeList (obj.ACLineSegment, output),
             () => output.writeString (obj.DuctBank),
             () => writeList (obj.Structures, output),
             () => writeList (obj.WirePositions, output)
         )
-        IdentifiedObjectSerializer.write (kryo, output, obj.sup)
+        AssetInfoSerializer.write (kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
     }
 
-    def read (kryo: Kryo, input: Input, cls: Class[WireSpacing]): WireSpacing =
+    def read (kryo: Kryo, input: Input, cls: Class[WireSpacingInfo]): WireSpacingInfo =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = AssetInfoSerializer.read (kryo, input, classOf[AssetInfo])
         implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = WireSpacing (
+        val obj = WireSpacingInfo (
             parent,
             if (isSet (0)) input.readBoolean else false,
             if (isSet (1)) input.readInt else 0,
             if (isSet (2)) input.readDouble else 0.0,
             if (isSet (3)) input.readString else null,
-            if (isSet (4)) input.readString else null,
-            if (isSet (5)) readList (input) else null,
-            if (isSet (6)) readList (input) else null
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null,
+            if (isSet (7)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -3598,7 +3625,7 @@ private[ninecode] object _AssetInfo
             WireInfo.register,
             WirePhaseInfo.register,
             WirePosition.register,
-            WireSpacing.register
+            WireSpacingInfo.register
         )
     }
 }

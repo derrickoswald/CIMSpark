@@ -991,7 +991,7 @@ extends
         CIMRelationship ("ProductAssetModel", "ProductAssetModel", "0..1", "0..*"),
         CIMRelationship ("Reconditionings", "Reconditioning", "0..*", "0..1"),
         CIMRelationship ("ReliabilityInfos", "ReliabilityInfo", "0..*", "0..*"),
-        CIMRelationship ("ReplacementWorkTasks", "WorkTask", "0..*", "0..1"),
+        CIMRelationship ("ReplacementWorkTasks", "WorkTask", "0..*", "0..*"),
         CIMRelationship ("ScheduledEvents", "ScheduledEvent", "0..*", "0..*"),
         CIMRelationship ("WorkTasks", "WorkTask", "0..*", "0..*")
     )
@@ -3970,7 +3970,7 @@ object DobleStandardSerializer extends CIMSerializer[DobleStandard]
  * @param AssetContainer [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param circuitCount Number of circuits in duct bank.
  *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
- * @param WireSpacingInfos [[ch.ninecode.model.WireSpacing WireSpacing]] <em>undocumented</em>
+ * @param WireSpacingInfos [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -4035,7 +4035,7 @@ extends
         "WireSpacingInfos"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("WireSpacingInfos", "WireSpacing", "0..*", "0..1")
+        CIMRelationship ("WireSpacingInfos", "WireSpacingInfo", "0..*", "0..1")
     )
     val circuitCount: Fielder = parse_element (element (cls, fields(0)))
     val WireSpacingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -5503,7 +5503,7 @@ object InspectionDataSetSerializer extends CIMSerializer[InspectionDataSet]
  * Some interrupters have one fixed and one moving contact, some have 2 fixed contacts, some 2 moving contacts. An interrupter will have relationships with 2 bushings and those relationships may be any combination of the FixedContact and MovingContact associations.
  *
  * @param Asset [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
- * @param Bushing [[ch.ninecode.model.Bushing Bushing]] Bushing(s) to which the fixed contact(s) of this interrupter is(are) attached.
+ * @param Bushing [[ch.ninecode.model.Bushing Bushing]] Bushing(s) to which the moving contact(s) of this interrupter is(are) attached.
  *        Some interrupters have one fixed and one moving contact, some have 2 fixed contacts, some 2 moving contacts. An interrupter will have relationships with 2 bushings and those relationships may be any combination of the FixedContact and MovingContact associations.
  * @param OperatingMechanism [[ch.ninecode.model.OperatingMechanism OperatingMechanism]] Breaker mechanism controlling this interrupter.
  * @group Assets
@@ -8015,7 +8015,7 @@ object StreetlightSerializer extends CIMSerializer[Streetlight]
  * @param removeWeed True if weeds are to be removed around asset.
  * @param weedRemovedDate Date weed were last removed.
  * @param StructureSupports [[ch.ninecode.model.StructureSupport StructureSupport]] Structure support for this structure.
- * @param WireSpacingInfos [[ch.ninecode.model.WireSpacing WireSpacing]] <em>undocumented</em>
+ * @param WireSpacingInfos [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -8103,7 +8103,7 @@ extends
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("StructureSupports", "StructureSupport", "0..*", "0..1"),
-        CIMRelationship ("WireSpacingInfos", "WireSpacing", "0..*", "0..*")
+        CIMRelationship ("WireSpacingInfos", "WireSpacingInfo", "0..*", "0..*")
     )
     val fumigantAppliedDate: Fielder = parse_element (element (cls, fields(0)))
     val fumigantName: Fielder = parse_element (element (cls, fields(1)))

@@ -9,7 +9,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
-import ch.ninecode.cim.CIMRelationship
+
 import ch.ninecode.cim.CIMSerializer
 
 /**
@@ -17,8 +17,9 @@ import ch.ninecode.cim.CIMSerializer
  *
  * @param Element Reference to the superclass object.
  * @param date (const=2016-10-31) Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
- * @param version (const=IEC61968CIM13v09) Form is IEC61968CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
- *        For example IEC61968CIM10v17.
+ * @param version (const=IEC61968CIM13v09) Form is IEC61968CIMXXvYY[a-z] where XX is the major CIM package version and the YY is the minor version.
+ *        For example IEC61968CIM10v17a.
+ *        The letter on the version number indicates the changes are due to National Committee comments.
  * @group IEC61968
  * @groupname IEC61968 Package IEC61968
  * @groupdesc IEC61968 The IEC 61968 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 14: interfaces for distribution management (WG14).

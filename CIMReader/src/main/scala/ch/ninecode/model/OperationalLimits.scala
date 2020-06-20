@@ -17,7 +17,9 @@ import ch.ninecode.cim.CIMSerializer
  *
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal value of active power limit.
+ *        The attribute shall be a positive value or zero.
  * @param value Value of active power limit.
+ *        The attribute shall be a positive value or zero.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -132,7 +134,9 @@ object ActivePowerLimitSerializer extends CIMSerializer[ActivePowerLimit]
  *
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal apparent power limit.
+ *        The attribute shall be a positive value or zero.
  * @param value The apparent power limit.
+ *        The attribute shall be a positive value or zero.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -546,7 +550,9 @@ object BranchGroupTerminalSerializer extends CIMSerializer[BranchGroupTerminal]
  *
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal value for limit on current flow.
+ *        The attribute shall be a positive value or zero.
  * @param value Limit on current flow.
+ *        The attribute shall be a positive value or zero.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -657,13 +663,10 @@ object CurrentLimitSerializer extends CIMSerializer[CurrentLimit]
 }
 
 /**
- * A value associated with a specific kind of limit.
+ * A value and normal value associated with a specific kind of limit.
  *
- * The sub class value attribute shall be positive.
- * The sub class value attribute is inversely proportional to OperationalLimitType.acceptableDuration (acceptableDuration for short). A pair of value_x and acceptableDuration_x are related to each other as follows:
- * if value_1 &gt; value_2 &gt; value_3 &gt;... then
- * acceptableDuration_1 &lt; acceptableDuration_2 &lt; acceptableDuration_3 &lt; ...
- * A value_x with direction="high" shall be greater than a value_y with direction="low".
+ * The sub class value and normalValue attributes vary inversely to the associated OperationalLimitType.acceptableDuration (acceptableDuration for short).
+ * If a particular piece of equipment has multiple operational limits of the same kind (apparent power, current, etc.), the limit with the greatest acceptableDuration shall have the smallest limit value and the limit with the smallest acceptableDuration shall have the largest limit value.  Note: A large current can only be allowed to flow through a piece of equipment for a short duration without causing damage, but a lesser current can be allowed to flow for a longer duration.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] The limit dependency models which are used to calculate this limit.
@@ -937,8 +940,10 @@ object OperationalLimitSetSerializer extends CIMSerializer[OperationalLimitSet]
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptableDuration The nominal acceptable duration of the limit.
- *        Limits are commonly expressed in terms of the time limit for which the limit is normally acceptable. The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
+ *        Limits are commonly expressed in terms of the time limit for which the limit is normally acceptable. The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed. The attribute has meaning only if the flag isInfiniteDuration is set to false, hence it shall not be exchanged when isInfiniteDuration is set to true.
  * @param direction The direction of the limit.
+ * @param isInfiniteDuration Defines if the operational limit type has infinite duration.
+ *        If true, the limit has infinite duration. If false, the limit has definite duration which is defined by the attribute acceptableDuration.
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] The operational limits associated with this type of limit.
  * @param SourceOperationalLimitTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
  * @param TargetOperationalLimitmTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
@@ -951,6 +956,7 @@ final case class OperationalLimitType
     IdentifiedObject: IdentifiedObject = null,
     acceptableDuration: Double = 0.0,
     direction: String = null,
+    isInfiniteDuration: Boolean = false,
     OperationalLimit: List[String] = null,
     SourceOperationalLimitTypeScaling: List[String] = null,
     TargetOperationalLimitmTypeScaling: String = null
@@ -993,9 +999,10 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OperationalLimitType.fields (position), x))
         emitelem (0, acceptableDuration)
         emitattr (1, direction)
-        emitattrs (2, OperationalLimit)
-        emitattrs (3, SourceOperationalLimitTypeScaling)
-        emitattr (4, TargetOperationalLimitmTypeScaling)
+        emitelem (2, isInfiniteDuration)
+        emitattrs (3, OperationalLimit)
+        emitattrs (4, SourceOperationalLimitTypeScaling)
+        emitattr (5, TargetOperationalLimitmTypeScaling)
         s.toString
     }
     override def export: String =
@@ -1011,6 +1018,7 @@ extends
     override val fields: Array[String] = Array[String] (
         "acceptableDuration",
         "direction",
+        "isInfiniteDuration",
         "OperationalLimit",
         "SourceOperationalLimitTypeScaling",
         "TargetOperationalLimitmTypeScaling"
@@ -1022,9 +1030,10 @@ extends
     )
     val acceptableDuration: Fielder = parse_element (element (cls, fields(0)))
     val direction: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val OperationalLimit: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val SourceOperationalLimitTypeScaling: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val isInfiniteDuration: Fielder = parse_element (element (cls, fields(2)))
+    val OperationalLimit: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val SourceOperationalLimitTypeScaling: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): OperationalLimitType =
     {
@@ -1034,9 +1043,10 @@ extends
             IdentifiedObject.parse (context),
             toDouble (mask (acceptableDuration (), 0)),
             mask (direction (), 1),
-            masks (OperationalLimit (), 2),
-            masks (SourceOperationalLimitTypeScaling (), 3),
-            mask (TargetOperationalLimitmTypeScaling (), 4)
+            toBoolean (mask (isInfiniteDuration (), 2)),
+            masks (OperationalLimit (), 3),
+            masks (SourceOperationalLimitTypeScaling (), 4),
+            mask (TargetOperationalLimitmTypeScaling (), 5)
         )
         ret.bitfields = bitfields
         ret
@@ -1052,6 +1062,7 @@ object OperationalLimitTypeSerializer extends CIMSerializer[OperationalLimitType
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeDouble (obj.acceptableDuration),
             () => output.writeString (obj.direction),
+            () => output.writeBoolean (obj.isInfiniteDuration),
             () => writeList (obj.OperationalLimit, output),
             () => writeList (obj.SourceOperationalLimitTypeScaling, output),
             () => output.writeString (obj.TargetOperationalLimitmTypeScaling)
@@ -1070,9 +1081,10 @@ object OperationalLimitTypeSerializer extends CIMSerializer[OperationalLimitType
             parent,
             if (isSet (0)) input.readDouble else 0.0,
             if (isSet (1)) input.readString else null,
-            if (isSet (2)) readList (input) else null,
+            if (isSet (2)) input.readBoolean else false,
             if (isSet (3)) readList (input) else null,
-            if (isSet (4)) input.readString else null
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -1082,11 +1094,13 @@ object OperationalLimitTypeSerializer extends CIMSerializer[OperationalLimitType
 /**
  * Operational limit applied to voltage.
  *
+ * The use of operational VoltageLimit is preferred instead of limits defined at VoltageLevel. The operational VoltageLimits are used, if present.
+ *
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param normalValue The normal limit on voltage.
- *        High or low limit nature of the limit depends upon the properties of the operational limit type.
+ *        High or low limit nature of the limit depends upon the properties of the operational limit type. The attribute shall be a positive value or zero.
  * @param value Limit on voltage.
- *        High or low limit nature of the limit depends upon the properties of the operational limit type.
+ *        High or low limit nature of the limit depends upon the properties of the operational limit type. The attribute shall be a positive value or zero.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.

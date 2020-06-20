@@ -530,7 +530,10 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             else
                 data
         else
+        {
+            val _ = id // reference unused parameter id
             data
+        }
     }
 
     def nodeSendMessage (triplet: EdgeTriplet[CIMVD, CIMEdgeData]): Iterator[(VertexId, CIMVD)] =
@@ -735,8 +738,11 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     def islandVertex (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
     {
         if (null == msg)
+        {
+            val _ = id // reference unused parameter id
             // initially assign each node to it's own island
             attr.copy (island = attr.node)
+        }
         else
             if (attr.island > msg.island)
                 attr.copy (island = msg.island, island_label = msg.island_label)

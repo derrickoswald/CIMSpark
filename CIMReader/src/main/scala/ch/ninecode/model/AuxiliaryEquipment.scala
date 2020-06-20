@@ -360,98 +360,6 @@ object FaultIndicatorSerializer extends CIMSerializer[FaultIndicator]
 }
 
 /**
- * Represents a two terminal and power conducting device of negligible impedance that senses flow through the device.
- *
- * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @group AuxiliaryEquipment
- * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
- * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
- */
-final case class FlowSensor
-(
-    ConductingEquipment: ConductingEquipment = null
-)
-extends
-    Element
-{
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    override def sup: ConductingEquipment = ConductingEquipment
-
-    //
-    // Row overrides
-    //
-
-    /**
-     * Return a copy of this object as a Row.
-     *
-     * Creates a clone of this object for use in Row manipulations.
-     *
-     * @return The copy of the object.
-     * @group Row
-     * @groupname Row SQL Row Implementation
-     * @groupdesc Row Members related to implementing the SQL Row interface
-     */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
-
-    override def export_fields: String =
-    {
-        sup.export_fields
-    }
-    override def export: String =
-    {
-        "\t<cim:FlowSensor rdf:ID=\"%s\">\n%s\t</cim:FlowSensor>".format (id, export_fields)
-    }
-}
-
-object FlowSensor
-extends
-    CIMParseable[FlowSensor]
-{
-
-    def parse (context: CIMContext): FlowSensor =
-    {
-        val ret = FlowSensor (
-            ConductingEquipment.parse (context)
-        )
-        ret
-    }
-
-    def serializer: Serializer[FlowSensor] = FlowSensorSerializer
-}
-
-object FlowSensorSerializer extends CIMSerializer[FlowSensor]
-{
-    def write (kryo: Kryo, output: Output, obj: FlowSensor): Unit =
-    {
-        val toSerialize: Array[() => Unit] = Array (
-
-        )
-        ConductingEquipmentSerializer.write (kryo, output, obj.sup)
-        implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
-    }
-
-    def read (kryo: Kryo, input: Input, cls: Class[FlowSensor]): FlowSensor =
-    {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = FlowSensor (
-            parent
-        )
-        obj.bitfields = bitfields
-        obj
-    }
-}
-
-/**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
  *
  * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
@@ -961,7 +869,6 @@ private[ninecode] object _AuxiliaryEquipment
             AuxiliaryEquipment.register,
             CurrentTransformer.register,
             FaultIndicator.register,
-            FlowSensor.register,
             PostLineSensor.register,
             PotentialTransformer.register,
             Sensor.register,

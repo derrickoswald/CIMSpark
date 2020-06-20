@@ -9,7 +9,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.CIMClassInfo
 import ch.ninecode.cim.CIMContext
 import ch.ninecode.cim.CIMParseable
-import ch.ninecode.cim.CIMRelationship
+
 import ch.ninecode.cim.CIMSerializer
 
 /**

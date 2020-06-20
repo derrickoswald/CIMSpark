@@ -1,12 +1,12 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
+
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.SparkSuite
 import ch.ninecode.model._
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.SparkSession
 
 class CIMExportSuite extends SparkSuite
 {

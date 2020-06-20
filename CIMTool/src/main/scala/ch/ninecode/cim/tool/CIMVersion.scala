@@ -14,7 +14,7 @@ package ch.ninecode.cim.tool
     case object cim15  extends CIMVersion ("CIM15",  "iec61970cim15v33_iec61968cim11v13_iec62325cim01v07.eap" )
     case object cim16  extends CIMVersion ("CIM16",  "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap" )
     case object ENTSOE extends CIMVersion ("ENTSOE", "ENTSOE_CGMES_v2.4.15_7Aug2014.eap" )
-    case object cim100 extends CIMVersion ("CIM100", "iec61970cim17v34_iec61968cim13v12_iec62325cim03v17a.eap" )
+    case object cim100 extends CIMVersion ("CIM100", "iec61970cim17v38_iec61968cim13v13a_iec62325cim03v17a_CIM100.1.1.eap" )
 
     class CIMVersionReader extends Read[CIMVersion]
     {

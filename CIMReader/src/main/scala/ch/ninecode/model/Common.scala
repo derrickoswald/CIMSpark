@@ -2739,7 +2739,7 @@ object IssuerSerializer extends CIMSerializer[Issuer]
 /**
  * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
  *
- * It can be defined with one or more postition points (coordinates) in a given coordinate system.
+ * It can be defined with one or more position points (coordinates) in a given coordinate system.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
@@ -4136,7 +4136,7 @@ object PersonRoleSerializer extends CIMSerializer[PersonRole]
 /**
  * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
  *
- * CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
+ * CoordinateSystem'. Use a single position point instance to describe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
  *
  * @param Element Reference to the superclass object.
  * @param groupNumber Zero-relative sequence number of this group within a series of points; used when there is a need to express disjoint groups of points that are considered to be part of a single location.

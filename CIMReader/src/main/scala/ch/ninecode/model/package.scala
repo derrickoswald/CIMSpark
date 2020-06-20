@@ -215,8 +215,6 @@ package ch.ninecode
  * The package is used to define detailed customer models.
  *
  *
- * ===InfDomain===
- *
  * ===InfERPSupport===
  * The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG).
  *
@@ -245,8 +243,6 @@ package ch.ninecode
  * ===InfHVDCDynamics===
  *
  * ===InfLocations===
- *
- * ===InfMarketOpCommon===
  *
  * ===InfMarketOperations===
  *

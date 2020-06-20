@@ -1745,6 +1745,7 @@ object WorkLocationSerializer extends CIMSerializer[WorkLocation]
  * @param completedDateTime Date and time work task was completed.
  * @param contractorCost Total contractor costs associated with the work task.
  * @param crewETA Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
+ * @param estimatedCompletionTime Time and Date when the work task will be completed.
  * @param instruction Instructions for performing this task.
  * @param laborCost Total labor costs associated with the work task.
  * @param laborHours Hours of labor expended under work task.
@@ -1759,6 +1760,7 @@ object WorkLocationSerializer extends CIMSerializer[WorkLocation]
  * @param OldAsset [[ch.ninecode.model.Asset Asset]] Old asset replaced by this work task.
  * @param ProcedureDataSet [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Procedure data set associated with this work task.
  * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan executed by this work task.
+ * @param TroubleOrder [[ch.ninecode.model.TroubleOrder TroubleOrder]] <em>undocumented</em>
  * @param Work [[ch.ninecode.model.Work Work]] Work this task belongs to.
  * @group Work
  * @groupname Work Package Work
@@ -1770,6 +1772,7 @@ final case class WorkTask
     completedDateTime: String = null,
     contractorCost: Double = 0.0,
     crewETA: String = null,
+    estimatedCompletionTime: String = null,
     instruction: String = null,
     laborCost: Double = 0.0,
     laborHours: Double = 0.0,
@@ -1781,9 +1784,10 @@ final case class WorkTask
     Assets: List[String] = null,
     Crews: List[String] = null,
     MaterialItems: List[String] = null,
-    OldAsset: String = null,
+    OldAsset: List[String] = null,
     ProcedureDataSet: List[String] = null,
     SwitchingPlan: String = null,
+    TroubleOrder: String = null,
     Work: String = null
 )
 extends
@@ -1825,21 +1829,23 @@ extends
         emitelem (0, completedDateTime)
         emitelem (1, contractorCost)
         emitelem (2, crewETA)
-        emitelem (3, instruction)
-        emitelem (4, laborCost)
-        emitelem (5, laborHours)
-        emitelem (6, materiallCost)
-        emitelem (7, schedOverride)
-        emitelem (8, startedDateTime)
-        emitattr (9, taskKind)
-        emitelem (10, toolCost)
-        emitattrs (11, Assets)
-        emitattrs (12, Crews)
-        emitattrs (13, MaterialItems)
-        emitattr (14, OldAsset)
-        emitattrs (15, ProcedureDataSet)
-        emitattr (16, SwitchingPlan)
-        emitattr (17, Work)
+        emitelem (3, estimatedCompletionTime)
+        emitelem (4, instruction)
+        emitelem (5, laborCost)
+        emitelem (6, laborHours)
+        emitelem (7, materiallCost)
+        emitelem (8, schedOverride)
+        emitelem (9, startedDateTime)
+        emitattr (10, taskKind)
+        emitelem (11, toolCost)
+        emitattrs (12, Assets)
+        emitattrs (13, Crews)
+        emitattrs (14, MaterialItems)
+        emitattrs (15, OldAsset)
+        emitattrs (16, ProcedureDataSet)
+        emitattr (17, SwitchingPlan)
+        emitattr (18, TroubleOrder)
+        emitattr (19, Work)
         s.toString
     }
     override def export: String =
@@ -1856,6 +1862,7 @@ extends
         "completedDateTime",
         "contractorCost",
         "crewETA",
+        "estimatedCompletionTime",
         "instruction",
         "laborCost",
         "laborHours",
@@ -1870,35 +1877,39 @@ extends
         "OldAsset",
         "ProcedureDataSet",
         "SwitchingPlan",
+        "TroubleOrder",
         "Work"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Assets", "Asset", "0..*", "0..*"),
         CIMRelationship ("Crews", "Crew", "0..*", "0..*"),
         CIMRelationship ("MaterialItems", "MaterialItem", "0..*", "0..1"),
-        CIMRelationship ("OldAsset", "Asset", "0..1", "0..*"),
+        CIMRelationship ("OldAsset", "Asset", "0..*", "0..*"),
         CIMRelationship ("ProcedureDataSet", "ProcedureDataSet", "0..*", "0..1"),
         CIMRelationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
+        CIMRelationship ("TroubleOrder", "TroubleOrder", "0..1", "0..*"),
         CIMRelationship ("Work", "Work", "1", "0..*")
     )
     val completedDateTime: Fielder = parse_element (element (cls, fields(0)))
     val contractorCost: Fielder = parse_element (element (cls, fields(1)))
     val crewETA: Fielder = parse_element (element (cls, fields(2)))
-    val instruction: Fielder = parse_element (element (cls, fields(3)))
-    val laborCost: Fielder = parse_element (element (cls, fields(4)))
-    val laborHours: Fielder = parse_element (element (cls, fields(5)))
-    val materiallCost: Fielder = parse_element (element (cls, fields(6)))
-    val schedOverride: Fielder = parse_element (element (cls, fields(7)))
-    val startedDateTime: Fielder = parse_element (element (cls, fields(8)))
-    val taskKind: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val toolCost: Fielder = parse_element (element (cls, fields(10)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val OldAsset: Fielder = parse_attribute (attribute (cls, fields(14)))
-    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val Work: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val estimatedCompletionTime: Fielder = parse_element (element (cls, fields(3)))
+    val instruction: Fielder = parse_element (element (cls, fields(4)))
+    val laborCost: Fielder = parse_element (element (cls, fields(5)))
+    val laborHours: Fielder = parse_element (element (cls, fields(6)))
+    val materiallCost: Fielder = parse_element (element (cls, fields(7)))
+    val schedOverride: Fielder = parse_element (element (cls, fields(8)))
+    val startedDateTime: Fielder = parse_element (element (cls, fields(9)))
+    val taskKind: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val toolCost: Fielder = parse_element (element (cls, fields(11)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val OldAsset: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val TroubleOrder: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val Work: Fielder = parse_attribute (attribute (cls, fields(19)))
 
     def parse (context: CIMContext): WorkTask =
     {
@@ -1909,21 +1920,23 @@ extends
             mask (completedDateTime (), 0),
             toDouble (mask (contractorCost (), 1)),
             mask (crewETA (), 2),
-            mask (instruction (), 3),
-            toDouble (mask (laborCost (), 4)),
-            toDouble (mask (laborHours (), 5)),
-            toDouble (mask (materiallCost (), 6)),
-            mask (schedOverride (), 7),
-            mask (startedDateTime (), 8),
-            mask (taskKind (), 9),
-            toDouble (mask (toolCost (), 10)),
-            masks (Assets (), 11),
-            masks (Crews (), 12),
-            masks (MaterialItems (), 13),
-            mask (OldAsset (), 14),
-            masks (ProcedureDataSet (), 15),
-            mask (SwitchingPlan (), 16),
-            mask (Work (), 17)
+            mask (estimatedCompletionTime (), 3),
+            mask (instruction (), 4),
+            toDouble (mask (laborCost (), 5)),
+            toDouble (mask (laborHours (), 6)),
+            toDouble (mask (materiallCost (), 7)),
+            mask (schedOverride (), 8),
+            mask (startedDateTime (), 9),
+            mask (taskKind (), 10),
+            toDouble (mask (toolCost (), 11)),
+            masks (Assets (), 12),
+            masks (Crews (), 13),
+            masks (MaterialItems (), 14),
+            masks (OldAsset (), 15),
+            masks (ProcedureDataSet (), 16),
+            mask (SwitchingPlan (), 17),
+            mask (TroubleOrder (), 18),
+            mask (Work (), 19)
         )
         ret.bitfields = bitfields
         ret
@@ -1940,6 +1953,7 @@ object WorkTaskSerializer extends CIMSerializer[WorkTask]
             () => output.writeString (obj.completedDateTime),
             () => output.writeDouble (obj.contractorCost),
             () => output.writeString (obj.crewETA),
+            () => output.writeString (obj.estimatedCompletionTime),
             () => output.writeString (obj.instruction),
             () => output.writeDouble (obj.laborCost),
             () => output.writeDouble (obj.laborHours),
@@ -1951,9 +1965,10 @@ object WorkTaskSerializer extends CIMSerializer[WorkTask]
             () => writeList (obj.Assets, output),
             () => writeList (obj.Crews, output),
             () => writeList (obj.MaterialItems, output),
-            () => output.writeString (obj.OldAsset),
+            () => writeList (obj.OldAsset, output),
             () => writeList (obj.ProcedureDataSet, output),
             () => output.writeString (obj.SwitchingPlan),
+            () => output.writeString (obj.TroubleOrder),
             () => output.writeString (obj.Work)
         )
         BaseWorkSerializer.write (kryo, output, obj.sup)
@@ -1972,20 +1987,22 @@ object WorkTaskSerializer extends CIMSerializer[WorkTask]
             if (isSet (1)) input.readDouble else 0.0,
             if (isSet (2)) input.readString else null,
             if (isSet (3)) input.readString else null,
-            if (isSet (4)) input.readDouble else 0.0,
+            if (isSet (4)) input.readString else null,
             if (isSet (5)) input.readDouble else 0.0,
             if (isSet (6)) input.readDouble else 0.0,
-            if (isSet (7)) input.readString else null,
+            if (isSet (7)) input.readDouble else 0.0,
             if (isSet (8)) input.readString else null,
             if (isSet (9)) input.readString else null,
-            if (isSet (10)) input.readDouble else 0.0,
-            if (isSet (11)) readList (input) else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readDouble else 0.0,
             if (isSet (12)) readList (input) else null,
             if (isSet (13)) readList (input) else null,
-            if (isSet (14)) input.readString else null,
+            if (isSet (14)) readList (input) else null,
             if (isSet (15)) readList (input) else null,
-            if (isSet (16)) input.readString else null,
-            if (isSet (17)) input.readString else null
+            if (isSet (16)) readList (input) else null,
+            if (isSet (17)) input.readString else null,
+            if (isSet (18)) input.readString else null,
+            if (isSet (19)) input.readString else null
         )
         obj.bitfields = bitfields
         obj

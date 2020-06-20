@@ -13,6 +13,124 @@ import ch.ninecode.cim.CIMRelationship
 import ch.ninecode.cim.CIMSerializer
 
 /**
+ * Action on Clamp as a switching step
+ *
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param kind Switching action to perform
+ * @param Clamp [[ch.ninecode.model.Clamp Clamp]] <em>undocumented</em>
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
+ */
+final case class ClampAction
+(
+    SwitchingAction: SwitchingAction = null,
+    kind: String = null,
+    Clamp: String = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: SwitchingAction = SwitchingAction
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ClampAction.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ClampAction.fields (position), value)
+        emitattr (0, kind)
+        emitattr (1, Clamp)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ClampAction rdf:ID=\"%s\">\n%s\t</cim:ClampAction>".format (id, export_fields)
+    }
+}
+
+object ClampAction
+extends
+    CIMParseable[ClampAction]
+{
+    override val fields: Array[String] = Array[String] (
+        "kind",
+        "Clamp"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Clamp", "Clamp", "0..1", "0..1")
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Clamp: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: CIMContext): ClampAction =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = ClampAction (
+            SwitchingAction.parse (context),
+            mask (kind (), 0),
+            mask (Clamp (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[ClampAction] = ClampActionSerializer
+}
+
+object ClampActionSerializer extends CIMSerializer[ClampAction]
+{
+    def write (kryo: Kryo, output: Output, obj: ClampAction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.Clamp)
+        )
+        SwitchingActionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ClampAction]): ClampAction =
+    {
+        val parent = SwitchingActionSerializer.read (kryo, input, classOf[SwitchingAction])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ClampAction (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
  * Action on clearance document as a switching step.
  *
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
@@ -505,6 +623,124 @@ object CutActionSerializer extends CIMSerializer[CutAction]
         val parent = SwitchingActionSerializer.read (kryo, input, classOf[SwitchingAction])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CutAction (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
+ * Action to connect or disconnect the Energy Consumer from its Terminal
+ *
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
+ * @param kind Switching action to perform
+ * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] <em>undocumented</em>
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
+ */
+final case class EnergyConsumerAction
+(
+    SwitchingAction: SwitchingAction = null,
+    kind: String = null,
+    EnergyConsumer: String = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: SwitchingAction = SwitchingAction
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EnergyConsumerAction.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumerAction.fields (position), value)
+        emitattr (0, kind)
+        emitattr (1, EnergyConsumer)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:EnergyConsumerAction rdf:ID=\"%s\">\n%s\t</cim:EnergyConsumerAction>".format (id, export_fields)
+    }
+}
+
+object EnergyConsumerAction
+extends
+    CIMParseable[EnergyConsumerAction]
+{
+    override val fields: Array[String] = Array[String] (
+        "kind",
+        "EnergyConsumer"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("EnergyConsumer", "EnergyConsumer", "0..1", "0..1")
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val EnergyConsumer: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: CIMContext): EnergyConsumerAction =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = EnergyConsumerAction (
+            SwitchingAction.parse (context),
+            mask (kind (), 0),
+            mask (EnergyConsumer (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[EnergyConsumerAction] = EnergyConsumerActionSerializer
+}
+
+object EnergyConsumerActionSerializer extends CIMSerializer[EnergyConsumerAction]
+{
+    def write (kryo: Kryo, output: Output, obj: EnergyConsumerAction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.EnergyConsumer)
+        )
+        SwitchingActionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[EnergyConsumerAction]): EnergyConsumerAction =
+    {
+        val parent = SwitchingActionSerializer.read (kryo, input, classOf[SwitchingAction])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = EnergyConsumerAction (
             parent,
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readString else null
@@ -1150,6 +1386,7 @@ object GroundActionSerializer extends CIMSerializer[GroundAction]
  * @param Owner [[ch.ninecode.model.Operator Operator]] Operator who owns this incident.
  * @param TroubleOrder [[ch.ninecode.model.TroubleOrder TroubleOrder]] <em>undocumented</em>
  * @param TroubleTickets [[ch.ninecode.model.TroubleTicket TroubleTicket]] All trouble tickets reporting this incident.
+ * @param UnplannedOutage [[ch.ninecode.model.UnplannedOutage UnplannedOutage]] <em>undocumented</em>
  * @param Works [[ch.ninecode.model.Work Work]] All works addressing this incident.
  * @group Operations
  * @groupname Operations Package Operations
@@ -1166,6 +1403,7 @@ final case class Incident
     Owner: String = null,
     TroubleOrder: String = null,
     TroubleTickets: List[String] = null,
+    UnplannedOutage: String = null,
     Works: List[String] = null
 )
 extends
@@ -1212,7 +1450,8 @@ extends
         emitattr (5, Owner)
         emitattr (6, TroubleOrder)
         emitattrs (7, TroubleTickets)
-        emitattrs (8, Works)
+        emitattr (8, UnplannedOutage)
+        emitattrs (9, Works)
         s.toString
     }
     override def export: String =
@@ -1234,6 +1473,7 @@ extends
         "Owner",
         "TroubleOrder",
         "TroubleTickets",
+        "UnplannedOutage",
         "Works"
     )
     override val relations: List[CIMRelationship] = List (
@@ -1244,6 +1484,7 @@ extends
         CIMRelationship ("Owner", "Operator", "0..1", "0..*"),
         CIMRelationship ("TroubleOrder", "TroubleOrder", "0..1", "0..1"),
         CIMRelationship ("TroubleTickets", "TroubleTicket", "0..*", "0..1"),
+        CIMRelationship ("UnplannedOutage", "UnplannedOutage", "0..1", "0..*"),
         CIMRelationship ("Works", "Work", "0..*", "0..*")
     )
     val cause: Fielder = parse_element (element (cls, fields(0)))
@@ -1254,7 +1495,8 @@ extends
     val Owner: Fielder = parse_attribute (attribute (cls, fields(5)))
     val TroubleOrder: Fielder = parse_attribute (attribute (cls, fields(6)))
     val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val UnplannedOutage: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: CIMContext): Incident =
     {
@@ -1270,7 +1512,8 @@ extends
             mask (Owner (), 5),
             mask (TroubleOrder (), 6),
             masks (TroubleTickets (), 7),
-            masks (Works (), 8)
+            mask (UnplannedOutage (), 8),
+            masks (Works (), 9)
         )
         ret.bitfields = bitfields
         ret
@@ -1292,6 +1535,7 @@ object IncidentSerializer extends CIMSerializer[Incident]
             () => output.writeString (obj.Owner),
             () => output.writeString (obj.TroubleOrder),
             () => writeList (obj.TroubleTickets, output),
+            () => output.writeString (obj.UnplannedOutage),
             () => writeList (obj.Works, output)
         )
         DocumentSerializer.write (kryo, output, obj.sup)
@@ -1314,7 +1558,8 @@ object IncidentSerializer extends CIMSerializer[Incident]
             if (isSet (5)) input.readString else null,
             if (isSet (6)) input.readString else null,
             if (isSet (7)) readList (input) else null,
-            if (isSet (8)) readList (input) else null
+            if (isSet (8)) input.readString else null,
+            if (isSet (9)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -1326,10 +1571,11 @@ object IncidentSerializer extends CIMSerializer[Incident]
  *
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
  * @param kind Switching action to perform.
- * @param AlongACLineSegments [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment that this jumper action will affect.
+ * @param ACLineSegments [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment that this jumper action will affect.
  *        This is the only way to access relationship to clamp in case the jumper needs to connect along the line segment.
- * @param JumpedEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] The conducting equipment that this jumper action will affect.
- *        In case of placing a jumper anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the jumper at a line segment terminal), reference to one or more conducting equipment is sufficient.
+ * @param Clamp [[ch.ninecode.model.Clamp Clamp]] <em>undocumented</em>
+ * @param JumpedEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Conducting equipment is affected when the jumper action connects one or both ends of a jumper to the conducting equipment.
+ *        If the jumper action involves placing one or both ends of a jumper anywhere along a line segment, you must use the clamp (to get the distance from one terminal), using the explicit relation with clamp. In the case of placing one or both ends of the jumper at a line segment terminal, reference to one or more line segments is sufficient.
  * @param Jumper [[ch.ninecode.model.Jumper Jumper]] Jumper on which this action is taken.
  * @group Operations
  * @groupname Operations Package Operations
@@ -1339,7 +1585,8 @@ final case class JumperAction
 (
     SwitchingAction: SwitchingAction = null,
     kind: String = null,
-    AlongACLineSegments: List[String] = null,
+    ACLineSegments: List[String] = null,
+    Clamp: String = null,
     JumpedEquipments: List[String] = null,
     Jumper: String = null
 )
@@ -1379,9 +1626,10 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (JumperAction.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (JumperAction.fields (position), x))
         emitattr (0, kind)
-        emitattrs (1, AlongACLineSegments)
-        emitattrs (2, JumpedEquipments)
-        emitattr (3, Jumper)
+        emitattrs (1, ACLineSegments)
+        emitattr (2, Clamp)
+        emitattrs (3, JumpedEquipments)
+        emitattr (4, Jumper)
         s.toString
     }
     override def export: String =
@@ -1396,19 +1644,22 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "kind",
-        "AlongACLineSegments",
+        "ACLineSegments",
+        "Clamp",
         "JumpedEquipments",
         "Jumper"
     )
     override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("AlongACLineSegments", "ACLineSegment", "0..*", "0..1"),
+        CIMRelationship ("ACLineSegments", "ACLineSegment", "0..*", "0..1"),
+        CIMRelationship ("Clamp", "Clamp", "0..1", "0..1"),
         CIMRelationship ("JumpedEquipments", "ConductingEquipment", "0..*", "0..1"),
         CIMRelationship ("Jumper", "Jumper", "0..1", "0..1")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val AlongACLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val JumpedEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Jumper: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ACLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Clamp: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val JumpedEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Jumper: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): JumperAction =
     {
@@ -1417,9 +1668,10 @@ extends
         val ret = JumperAction (
             SwitchingAction.parse (context),
             mask (kind (), 0),
-            masks (AlongACLineSegments (), 1),
-            masks (JumpedEquipments (), 2),
-            mask (Jumper (), 3)
+            masks (ACLineSegments (), 1),
+            mask (Clamp (), 2),
+            masks (JumpedEquipments (), 3),
+            mask (Jumper (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -1434,7 +1686,8 @@ object JumperActionSerializer extends CIMSerializer[JumperAction]
     {
         val toSerialize: Array[() => Unit] = Array (
             () => output.writeString (obj.kind),
-            () => writeList (obj.AlongACLineSegments, output),
+            () => writeList (obj.ACLineSegments, output),
+            () => output.writeString (obj.Clamp),
             () => writeList (obj.JumpedEquipments, output),
             () => output.writeString (obj.Jumper)
         )
@@ -1452,8 +1705,9 @@ object JumperActionSerializer extends CIMSerializer[JumperAction]
             parent,
             if (isSet (0)) input.readString else null,
             if (isSet (1)) readList (input) else null,
-            if (isSet (2)) readList (input) else null,
-            if (isSet (3)) input.readString else null
+            if (isSet (2)) input.readString else null,
+            if (isSet (3)) readList (input) else null,
+            if (isSet (4)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -2111,9 +2365,8 @@ object OperationsSafetySupervisorSerializer extends CIMSerializer[OperationsSafe
  * @param EstimatedRestorationTime [[ch.ninecode.model.EstimatedRestorationTime EstimatedRestorationTime]] <em>undocumented</em>
  * @param Faults [[ch.ninecode.model.Fault Fault]] All faults involved in this outage.
  * @param Incident [[ch.ninecode.model.Incident Incident]] Incident reported in trouble call that results in this outage.
- * @param OpenedSwitches [[ch.ninecode.model.Switch Switch]] All potentially open switches causing this outage.
- *        This realationship is meant to be used as "indication" for initiation of outage-related business processes, whereas for actual actions of switches, SwitchAction-Switch relationship should be used.
  * @param OutageArea [[ch.ninecode.model.OutageArea OutageArea]] <em>undocumented</em>
+ * @param OutageIsolationEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] <em>undocumented</em>
  * @param PlannedSwitchActions [[ch.ninecode.model.SwitchAction SwitchAction]] All switch actions to apply within the scope of this planned outage.
  *        Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.
  * @param SwitchingPlans [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] All switching plans that lead to supply restoration due to this outage.
@@ -2143,8 +2396,8 @@ final case class Outage
     EstimatedRestorationTime: String = null,
     Faults: List[String] = null,
     Incident: List[String] = null,
-    OpenedSwitches: List[String] = null,
     OutageArea: List[String] = null,
+    OutageIsolationEquipment: List[String] = null,
     PlannedSwitchActions: List[String] = null,
     SwitchingPlans: List[String] = null
 )
@@ -2202,8 +2455,8 @@ extends
         emitattr (15, EstimatedRestorationTime)
         emitattrs (16, Faults)
         emitattrs (17, Incident)
-        emitattrs (18, OpenedSwitches)
-        emitattrs (19, OutageArea)
+        emitattrs (18, OutageArea)
+        emitattrs (19, OutageIsolationEquipment)
         emitattrs (20, PlannedSwitchActions)
         emitattrs (21, SwitchingPlans)
         s.toString
@@ -2237,8 +2490,8 @@ extends
         "EstimatedRestorationTime",
         "Faults",
         "Incident",
-        "OpenedSwitches",
         "OutageArea",
+        "OutageIsolationEquipment",
         "PlannedSwitchActions",
         "SwitchingPlans"
     )
@@ -2251,8 +2504,8 @@ extends
         CIMRelationship ("EstimatedRestorationTime", "EstimatedRestorationTime", "0..1", "0..*"),
         CIMRelationship ("Faults", "Fault", "0..*", "0..1"),
         CIMRelationship ("Incident", "Incident", "0..*", "0..1"),
-        CIMRelationship ("OpenedSwitches", "Switch", "0..*", "0..1"),
         CIMRelationship ("OutageArea", "OutageArea", "0..*", "0..*"),
+        CIMRelationship ("OutageIsolationEquipment", "ConductingEquipment", "0..*", "0..1"),
         CIMRelationship ("PlannedSwitchActions", "SwitchAction", "0..*", "0..1"),
         CIMRelationship ("SwitchingPlans", "SwitchingPlan", "0..*", "0..1")
     )
@@ -2274,8 +2527,8 @@ extends
     val EstimatedRestorationTime: Fielder = parse_attribute (attribute (cls, fields(15)))
     val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
     val Incident: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
-    val OpenedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
-    val OutageArea: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
+    val OutageArea: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val OutageIsolationEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
     val PlannedSwitchActions: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
     val SwitchingPlans: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
 
@@ -2303,8 +2556,8 @@ extends
             mask (EstimatedRestorationTime (), 15),
             masks (Faults (), 16),
             masks (Incident (), 17),
-            masks (OpenedSwitches (), 18),
-            masks (OutageArea (), 19),
+            masks (OutageArea (), 18),
+            masks (OutageIsolationEquipment (), 19),
             masks (PlannedSwitchActions (), 20),
             masks (SwitchingPlans (), 21)
         )
@@ -2338,8 +2591,8 @@ object OutageSerializer extends CIMSerializer[Outage]
             () => output.writeString (obj.EstimatedRestorationTime),
             () => writeList (obj.Faults, output),
             () => writeList (obj.Incident, output),
-            () => writeList (obj.OpenedSwitches, output),
             () => writeList (obj.OutageArea, output),
+            () => writeList (obj.OutageIsolationEquipment, output),
             () => writeList (obj.PlannedSwitchActions, output),
             () => writeList (obj.SwitchingPlans, output)
         )
@@ -3071,6 +3324,126 @@ object PlannedOutageSerializer extends CIMSerializer[PlannedOutage]
 }
 
 /**
+ * This class will be used to generate call ahead lists for customers who will be affected by a planned outage.
+ *
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param Customer [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
+ * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] <em>undocumented</em>
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
+ */
+final case class PlannedOutageNotification
+(
+    Document: Document = null,
+    Customer: List[String] = null,
+    SwitchingPlan: String = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: Document = Document
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PlannedOutageNotification.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PlannedOutageNotification.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PlannedOutageNotification.fields (position), x))
+        emitattrs (0, Customer)
+        emitattr (1, SwitchingPlan)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PlannedOutageNotification rdf:ID=\"%s\">\n%s\t</cim:PlannedOutageNotification>".format (id, export_fields)
+    }
+}
+
+object PlannedOutageNotification
+extends
+    CIMParseable[PlannedOutageNotification]
+{
+    override val fields: Array[String] = Array[String] (
+        "Customer",
+        "SwitchingPlan"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("Customer", "Customer", "0..*", "0..*"),
+        CIMRelationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..1")
+    )
+    val Customer: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: CIMContext): PlannedOutageNotification =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = PlannedOutageNotification (
+            Document.parse (context),
+            masks (Customer (), 0),
+            mask (SwitchingPlan (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[PlannedOutageNotification] = PlannedOutageNotificationSerializer
+}
+
+object PlannedOutageNotificationSerializer extends CIMSerializer[PlannedOutageNotification]
+{
+    def write (kryo: Kryo, output: Output, obj: PlannedOutageNotification): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => writeList (obj.Customer, output),
+            () => output.writeString (obj.SwitchingPlan)
+        )
+        DocumentSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[PlannedOutageNotification]): PlannedOutageNotification =
+    {
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = PlannedOutageNotification (
+            parent,
+            if (isSet (0)) readList (input) else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
  *
  * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
@@ -3351,6 +3724,119 @@ object ServicePointOutageSummarySerializer extends CIMSerializer[ServicePointOut
 }
 
 /**
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
+ */
+final case class ShuntCompensatorAction
+(
+    SwitchingAction: SwitchingAction = null,
+    kind: String = null,
+    ShuntCompensator: String = null
+)
+extends
+    Element
+{
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    override def sup: SwitchingAction = SwitchingAction
+
+    //
+    // Row overrides
+    //
+
+    /**
+     * Return a copy of this object as a Row.
+     *
+     * Creates a clone of this object for use in Row manipulations.
+     *
+     * @return The copy of the object.
+     * @group Row
+     * @groupname Row SQL Row Implementation
+     * @groupdesc Row Members related to implementing the SQL Row interface
+     */
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
+
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ShuntCompensatorAction.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShuntCompensatorAction.fields (position), value)
+        emitattr (0, kind)
+        emitattr (1, ShuntCompensator)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ShuntCompensatorAction rdf:ID=\"%s\">\n%s\t</cim:ShuntCompensatorAction>".format (id, export_fields)
+    }
+}
+
+object ShuntCompensatorAction
+extends
+    CIMParseable[ShuntCompensatorAction]
+{
+    override val fields: Array[String] = Array[String] (
+        "kind",
+        "ShuntCompensator"
+    )
+    override val relations: List[CIMRelationship] = List (
+        CIMRelationship ("ShuntCompensator", "ShuntCompensator", "0..1", "0..1")
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: CIMContext): ShuntCompensatorAction =
+    {
+        implicit val ctx: CIMContext = context
+        implicit val bitfields: Array[Int] = Array(0)
+        val ret = ShuntCompensatorAction (
+            SwitchingAction.parse (context),
+            mask (kind (), 0),
+            mask (ShuntCompensator (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+
+    def serializer: Serializer[ShuntCompensatorAction] = ShuntCompensatorActionSerializer
+}
+
+object ShuntCompensatorActionSerializer extends CIMSerializer[ShuntCompensatorAction]
+{
+    def write (kryo: Kryo, output: Output, obj: ShuntCompensatorAction): Unit =
+    {
+        val toSerialize: Array[() => Unit] = Array (
+            () => output.writeString (obj.kind),
+            () => output.writeString (obj.ShuntCompensator)
+        )
+        SwitchingActionSerializer.write (kryo, output, obj.sup)
+        implicit val bitfields: Array[Int] = obj.bitfields
+        writeBitfields (output)
+        writeFields (toSerialize)
+    }
+
+    def read (kryo: Kryo, input: Input, cls: Class[ShuntCompensatorAction]): ShuntCompensatorAction =
+    {
+        val parent = SwitchingActionSerializer.read (kryo, input, classOf[SwitchingAction])
+        implicit val bitfields: Array[Int] = readBitfields (input)
+        val obj = ShuntCompensatorAction (
+            parent,
+            if (isSet (0)) input.readString else null,
+            if (isSet (1)) input.readString else null
+        )
+        obj.bitfields = bitfields
+        obj
+    }
+}
+
+/**
  * Action on switch as a switching step.
  *
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] Reference to the superclass object.
@@ -3481,14 +3967,14 @@ object SwitchActionSerializer extends CIMSerializer[SwitchAction]
  * Atomic switching action.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param description Free text description of this activity.
  * @param executedDateTime Actual date and time of this switching step.
- * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param issuedDateTime Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+ * @param phases Phases of the Switching Action
  * @param plannedDateTime Planned date and time of this switching step.
  * @param Crew [[ch.ninecode.model.Crew Crew]] <em>undocumented</em>
  * @param Operator [[ch.ninecode.model.Operator Operator]] Operator responsible for this switching step.
  * @param SwitchingEvent [[ch.ninecode.model.SwitchingEvent SwitchingEvent]] <em>undocumented</em>
+ * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] <em>undocumented</em>
  * @param SwitchingStep [[ch.ninecode.model.SwitchingStep SwitchingStep]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
@@ -3497,14 +3983,14 @@ object SwitchActionSerializer extends CIMSerializer[SwitchAction]
 final case class SwitchingAction
 (
     IdentifiedObject: IdentifiedObject = null,
-    description: String = null,
     executedDateTime: String = null,
-    isFreeSequence: Boolean = false,
     issuedDateTime: String = null,
+    phases: String = null,
     plannedDateTime: String = null,
     Crew: List[String] = null,
     Operator: String = null,
     SwitchingEvent: String = null,
+    SwitchingPlan: String = null,
     SwitchingStep: String = null
 )
 extends
@@ -3543,14 +4029,14 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingAction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingAction.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SwitchingAction.fields (position), x))
-        emitelem (0, description)
-        emitelem (1, executedDateTime)
-        emitelem (2, isFreeSequence)
-        emitelem (3, issuedDateTime)
-        emitelem (4, plannedDateTime)
-        emitattrs (5, Crew)
-        emitattr (6, Operator)
-        emitattr (7, SwitchingEvent)
+        emitelem (0, executedDateTime)
+        emitelem (1, issuedDateTime)
+        emitattr (2, phases)
+        emitelem (3, plannedDateTime)
+        emitattrs (4, Crew)
+        emitattr (5, Operator)
+        emitattr (6, SwitchingEvent)
+        emitattr (7, SwitchingPlan)
         emitattr (8, SwitchingStep)
         s.toString
     }
@@ -3565,30 +4051,31 @@ extends
     CIMParseable[SwitchingAction]
 {
     override val fields: Array[String] = Array[String] (
-        "description",
         "executedDateTime",
-        "isFreeSequence",
         "issuedDateTime",
+        "phases",
         "plannedDateTime",
         "Crew",
         "Operator",
         "SwitchingEvent",
+        "SwitchingPlan",
         "SwitchingStep"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Crew", "Crew", "0..*", "1"),
         CIMRelationship ("Operator", "Operator", "0..1", "0..*"),
         CIMRelationship ("SwitchingEvent", "SwitchingEvent", "0..1", "1"),
+        CIMRelationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
         CIMRelationship ("SwitchingStep", "SwitchingStep", "0..1", "1")
     )
-    val description: Fielder = parse_element (element (cls, fields(0)))
-    val executedDateTime: Fielder = parse_element (element (cls, fields(1)))
-    val isFreeSequence: Fielder = parse_element (element (cls, fields(2)))
-    val issuedDateTime: Fielder = parse_element (element (cls, fields(3)))
-    val plannedDateTime: Fielder = parse_element (element (cls, fields(4)))
-    val Crew: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Operator: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val SwitchingEvent: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val executedDateTime: Fielder = parse_element (element (cls, fields(0)))
+    val issuedDateTime: Fielder = parse_element (element (cls, fields(1)))
+    val phases: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val plannedDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val Crew: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Operator: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val SwitchingEvent: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(7)))
     val SwitchingStep: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: CIMContext): SwitchingAction =
@@ -3597,14 +4084,14 @@ extends
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SwitchingAction (
             IdentifiedObject.parse (context),
-            mask (description (), 0),
-            mask (executedDateTime (), 1),
-            toBoolean (mask (isFreeSequence (), 2)),
-            mask (issuedDateTime (), 3),
-            mask (plannedDateTime (), 4),
-            masks (Crew (), 5),
-            mask (Operator (), 6),
-            mask (SwitchingEvent (), 7),
+            mask (executedDateTime (), 0),
+            mask (issuedDateTime (), 1),
+            mask (phases (), 2),
+            mask (plannedDateTime (), 3),
+            masks (Crew (), 4),
+            mask (Operator (), 5),
+            mask (SwitchingEvent (), 6),
+            mask (SwitchingPlan (), 7),
             mask (SwitchingStep (), 8)
         )
         ret.bitfields = bitfields
@@ -3619,14 +4106,14 @@ object SwitchingActionSerializer extends CIMSerializer[SwitchingAction]
     def write (kryo: Kryo, output: Output, obj: SwitchingAction): Unit =
     {
         val toSerialize: Array[() => Unit] = Array (
-            () => output.writeString (obj.description),
             () => output.writeString (obj.executedDateTime),
-            () => output.writeBoolean (obj.isFreeSequence),
             () => output.writeString (obj.issuedDateTime),
+            () => output.writeString (obj.phases),
             () => output.writeString (obj.plannedDateTime),
             () => writeList (obj.Crew, output),
             () => output.writeString (obj.Operator),
             () => output.writeString (obj.SwitchingEvent),
+            () => output.writeString (obj.SwitchingPlan),
             () => output.writeString (obj.SwitchingStep)
         )
         IdentifiedObjectSerializer.write (kryo, output, obj.sup)
@@ -3643,10 +4130,10 @@ object SwitchingActionSerializer extends CIMSerializer[SwitchingAction]
             parent,
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readString else null,
-            if (isSet (2)) input.readBoolean else false,
+            if (isSet (2)) input.readString else null,
             if (isSet (3)) input.readString else null,
-            if (isSet (4)) input.readString else null,
-            if (isSet (5)) readList (input) else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
             if (isSet (6)) input.readString else null,
             if (isSet (7)) input.readString else null,
             if (isSet (8)) input.readString else null
@@ -3919,7 +4406,9 @@ object SwitchingOrderSerializer extends CIMSerializer[SwitchingOrder]
  * @param rank Ranking in comparison to other switching plans.
  * @param Outage [[ch.ninecode.model.Outage Outage]] Outage that will be activated or eliminated when this switching plan gets executed.
  * @param OutagePlan [[ch.ninecode.model.OutagePlan OutagePlan]] The outage plan for which the switching plan is defined.
+ * @param PlannedOutageNotification [[ch.ninecode.model.PlannedOutageNotification PlannedOutageNotification]] <em>undocumented</em>
  * @param SafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents applicable to this swtiching plan.
+ * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] <em>undocumented</em>
  * @param SwitchingOrder [[ch.ninecode.model.SwitchingOrder SwitchingOrder]] <em>undocumented</em>
  * @param SwitchingPlanRequest [[ch.ninecode.model.SwitchingPlanRequest SwitchingPlanRequest]] <em>undocumented</em>
  * @param SwitchingStepGroups [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] All groups of switching steps within this switching plan.
@@ -3938,7 +4427,9 @@ final case class SwitchingPlan
     rank: Int = 0,
     Outage: String = null,
     OutagePlan: String = null,
+    PlannedOutageNotification: String = null,
     SafetyDocuments: List[String] = null,
+    SwitchingAction: List[String] = null,
     SwitchingOrder: String = null,
     SwitchingPlanRequest: String = null,
     SwitchingStepGroups: List[String] = null,
@@ -3987,11 +4478,13 @@ extends
         emitelem (4, rank)
         emitattr (5, Outage)
         emitattr (6, OutagePlan)
-        emitattrs (7, SafetyDocuments)
-        emitattr (8, SwitchingOrder)
-        emitattr (9, SwitchingPlanRequest)
-        emitattrs (10, SwitchingStepGroups)
-        emitattrs (11, WorkTasks)
+        emitattr (7, PlannedOutageNotification)
+        emitattrs (8, SafetyDocuments)
+        emitattrs (9, SwitchingAction)
+        emitattr (10, SwitchingOrder)
+        emitattr (11, SwitchingPlanRequest)
+        emitattrs (12, SwitchingStepGroups)
+        emitattrs (13, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -4012,7 +4505,9 @@ extends
         "rank",
         "Outage",
         "OutagePlan",
+        "PlannedOutageNotification",
         "SafetyDocuments",
+        "SwitchingAction",
         "SwitchingOrder",
         "SwitchingPlanRequest",
         "SwitchingStepGroups",
@@ -4021,7 +4516,9 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Outage", "Outage", "0..1", "0..*"),
         CIMRelationship ("OutagePlan", "OutagePlan", "0..1", "0..1"),
+        CIMRelationship ("PlannedOutageNotification", "PlannedOutageNotification", "0..1", "0..1"),
         CIMRelationship ("SafetyDocuments", "SafetyDocument", "0..*", "0..1"),
+        CIMRelationship ("SwitchingAction", "SwitchingAction", "0..*", "0..1"),
         CIMRelationship ("SwitchingOrder", "SwitchingOrder", "0..1", "0..1"),
         CIMRelationship ("SwitchingPlanRequest", "SwitchingPlanRequest", "0..1", "0..*"),
         CIMRelationship ("SwitchingStepGroups", "SwitchingStepGroup", "0..*", "0..1"),
@@ -4034,11 +4531,13 @@ extends
     val rank: Fielder = parse_element (element (cls, fields(4)))
     val Outage: Fielder = parse_attribute (attribute (cls, fields(5)))
     val OutagePlan: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val SafetyDocuments: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val SwitchingOrder: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val SwitchingPlanRequest: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val SwitchingStepGroups: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val PlannedOutageNotification: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val SafetyDocuments: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val SwitchingAction: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val SwitchingOrder: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val SwitchingPlanRequest: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val SwitchingStepGroups: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
     def parse (context: CIMContext): SwitchingPlan =
     {
@@ -4053,11 +4552,13 @@ extends
             toInteger (mask (rank (), 4)),
             mask (Outage (), 5),
             mask (OutagePlan (), 6),
-            masks (SafetyDocuments (), 7),
-            mask (SwitchingOrder (), 8),
-            mask (SwitchingPlanRequest (), 9),
-            masks (SwitchingStepGroups (), 10),
-            masks (WorkTasks (), 11)
+            mask (PlannedOutageNotification (), 7),
+            masks (SafetyDocuments (), 8),
+            masks (SwitchingAction (), 9),
+            mask (SwitchingOrder (), 10),
+            mask (SwitchingPlanRequest (), 11),
+            masks (SwitchingStepGroups (), 12),
+            masks (WorkTasks (), 13)
         )
         ret.bitfields = bitfields
         ret
@@ -4078,7 +4579,9 @@ object SwitchingPlanSerializer extends CIMSerializer[SwitchingPlan]
             () => output.writeInt (obj.rank),
             () => output.writeString (obj.Outage),
             () => output.writeString (obj.OutagePlan),
+            () => output.writeString (obj.PlannedOutageNotification),
             () => writeList (obj.SafetyDocuments, output),
+            () => writeList (obj.SwitchingAction, output),
             () => output.writeString (obj.SwitchingOrder),
             () => output.writeString (obj.SwitchingPlanRequest),
             () => writeList (obj.SwitchingStepGroups, output),
@@ -4103,11 +4606,13 @@ object SwitchingPlanSerializer extends CIMSerializer[SwitchingPlan]
             if (isSet (4)) input.readInt else 0,
             if (isSet (5)) input.readString else null,
             if (isSet (6)) input.readString else null,
-            if (isSet (7)) readList (input) else null,
-            if (isSet (8)) input.readString else null,
-            if (isSet (9)) input.readString else null,
-            if (isSet (10)) readList (input) else null,
-            if (isSet (11)) readList (input) else null
+            if (isSet (7)) input.readString else null,
+            if (isSet (8)) readList (input) else null,
+            if (isSet (9)) readList (input) else null,
+            if (isSet (10)) input.readString else null,
+            if (isSet (11)) input.readString else null,
+            if (isSet (12)) readList (input) else null,
+            if (isSet (13)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -4319,7 +4824,10 @@ object SwitchingPlanRequestSerializer extends CIMSerializer[SwitchingPlanRequest
  * Atomic switching step; can be part of a switching step group, or part of a switching plan.
  *
  * @param Element Reference to the superclass object.
+ * @param isFreeSequence For a step, if isFreeSequence is set to false or is not specified, all of the steps in the group must be executed in the order defined by the sequenceNumber attribute.
+ *        The sequenceNumber for a step has a different meaning when there are two or more sequential steps that have the isFreeSequence attribute set to true. Execution must still be performed in sequenceNumber order until a set of two or more steps that have isFreeSequence set to true is encountered. In this case, these steps can be executed in any sequence, until a step is encountered that has isFreeSequence set to false. All of the steps preceding this step must be executed before the step can be executed.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
+ * @param subStepSequenceNumber Supports compound switching steps that are made up of several sub steps.
  * @param SwitchingAction [[ch.ninecode.model.SwitchingAction SwitchingAction]] <em>undocumented</em>
  * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] <em>undocumented</em>
  * @group Operations
@@ -4329,7 +4837,9 @@ object SwitchingPlanRequestSerializer extends CIMSerializer[SwitchingPlanRequest
 final case class SwitchingStep
 (
     Element: BasicElement = null,
+    isFreeSequence: Boolean = false,
     sequenceNumber: Int = 0,
+    subStepSequenceNumber: Int = 0,
     SwitchingAction: String = null,
     SwitchingStepGroup: String = null
 )
@@ -4368,9 +4878,11 @@ extends
         implicit val clz: String = SwitchingStep.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingStep.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingStep.fields (position), value)
-        emitelem (0, sequenceNumber)
-        emitattr (1, SwitchingAction)
-        emitattr (2, SwitchingStepGroup)
+        emitelem (0, isFreeSequence)
+        emitelem (1, sequenceNumber)
+        emitelem (2, subStepSequenceNumber)
+        emitattr (3, SwitchingAction)
+        emitattr (4, SwitchingStepGroup)
         s.toString
     }
     override def export: String =
@@ -4384,7 +4896,9 @@ extends
     CIMParseable[SwitchingStep]
 {
     override val fields: Array[String] = Array[String] (
+        "isFreeSequence",
         "sequenceNumber",
+        "subStepSequenceNumber",
         "SwitchingAction",
         "SwitchingStepGroup"
     )
@@ -4392,9 +4906,11 @@ extends
         CIMRelationship ("SwitchingAction", "SwitchingAction", "1", "0..1"),
         CIMRelationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
-    val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
-    val SwitchingAction: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val SwitchingStepGroup: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val isFreeSequence: Fielder = parse_element (element (cls, fields(0)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
+    val subStepSequenceNumber: Fielder = parse_element (element (cls, fields(2)))
+    val SwitchingAction: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val SwitchingStepGroup: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): SwitchingStep =
     {
@@ -4402,9 +4918,11 @@ extends
         implicit val bitfields: Array[Int] = Array(0)
         val ret = SwitchingStep (
             BasicElement.parse (context),
-            toInteger (mask (sequenceNumber (), 0)),
-            mask (SwitchingAction (), 1),
-            mask (SwitchingStepGroup (), 2)
+            toBoolean (mask (isFreeSequence (), 0)),
+            toInteger (mask (sequenceNumber (), 1)),
+            toInteger (mask (subStepSequenceNumber (), 2)),
+            mask (SwitchingAction (), 3),
+            mask (SwitchingStepGroup (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -4418,7 +4936,9 @@ object SwitchingStepSerializer extends CIMSerializer[SwitchingStep]
     def write (kryo: Kryo, output: Output, obj: SwitchingStep): Unit =
     {
         val toSerialize: Array[() => Unit] = Array (
+            () => output.writeBoolean (obj.isFreeSequence),
             () => output.writeInt (obj.sequenceNumber),
+            () => output.writeInt (obj.subStepSequenceNumber),
             () => output.writeString (obj.SwitchingAction),
             () => output.writeString (obj.SwitchingStepGroup)
         )
@@ -4434,9 +4954,11 @@ object SwitchingStepSerializer extends CIMSerializer[SwitchingStep]
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SwitchingStep (
             parent,
-            if (isSet (0)) input.readInt else 0,
-            if (isSet (1)) input.readString else null,
-            if (isSet (2)) input.readString else null
+            if (isSet (0)) input.readBoolean else false,
+            if (isSet (1)) input.readInt else 0,
+            if (isSet (2)) input.readInt else 0,
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -4722,6 +5244,9 @@ object TagActionSerializer extends CIMSerializer[TagAction]
  * @param plannedExecutionInterval The planned start and end time for the trouble order.
  * @param Incident [[ch.ninecode.model.Incident Incident]] <em>undocumented</em>
  * @param Location [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param TroubleTicket [[ch.ninecode.model.TroubleTicket TroubleTicket]] <em>undocumented</em>
+ * @param UnplannedOutage [[ch.ninecode.model.UnplannedOutage UnplannedOutage]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -4732,7 +5257,10 @@ final case class TroubleOrder
     comment: String = null,
     plannedExecutionInterval: String = null,
     Incident: String = null,
-    Location: String = null
+    Location: String = null,
+    TroubleTicket: List[String] = null,
+    UnplannedOutage: String = null,
+    WorkTask: List[String] = null
 )
 extends
     Element
@@ -4769,10 +5297,14 @@ extends
         implicit val clz: String = TroubleOrder.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TroubleOrder.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TroubleOrder.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TroubleOrder.fields (position), x))
         emitelem (0, comment)
         emitattr (1, plannedExecutionInterval)
         emitattr (2, Incident)
         emitattr (3, Location)
+        emitattrs (4, TroubleTicket)
+        emitattr (5, UnplannedOutage)
+        emitattrs (6, WorkTask)
         s.toString
     }
     override def export: String =
@@ -4789,16 +5321,25 @@ extends
         "comment",
         "plannedExecutionInterval",
         "Incident",
-        "Location"
+        "Location",
+        "TroubleTicket",
+        "UnplannedOutage",
+        "WorkTask"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Incident", "Incident", "0..1", "0..1"),
-        CIMRelationship ("Location", "Location", "0..1", "0..1")
+        CIMRelationship ("Location", "Location", "0..1", "0..1"),
+        CIMRelationship ("TroubleTicket", "TroubleTicket", "0..*", "0..1"),
+        CIMRelationship ("UnplannedOutage", "UnplannedOutage", "0..1", "0..*"),
+        CIMRelationship ("WorkTask", "WorkTask", "0..*", "0..1")
     )
     val comment: Fielder = parse_element (element (cls, fields(0)))
     val plannedExecutionInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Incident: Fielder = parse_attribute (attribute (cls, fields(2)))
     val Location: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val TroubleTicket: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val UnplannedOutage: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val WorkTask: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): TroubleOrder =
     {
@@ -4809,7 +5350,10 @@ extends
             mask (comment (), 0),
             mask (plannedExecutionInterval (), 1),
             mask (Incident (), 2),
-            mask (Location (), 3)
+            mask (Location (), 3),
+            masks (TroubleTicket (), 4),
+            mask (UnplannedOutage (), 5),
+            masks (WorkTask (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -4826,7 +5370,10 @@ object TroubleOrderSerializer extends CIMSerializer[TroubleOrder]
             () => output.writeString (obj.comment),
             () => output.writeString (obj.plannedExecutionInterval),
             () => output.writeString (obj.Incident),
-            () => output.writeString (obj.Location)
+            () => output.writeString (obj.Location),
+            () => writeList (obj.TroubleTicket, output),
+            () => output.writeString (obj.UnplannedOutage),
+            () => writeList (obj.WorkTask, output)
         )
         DocumentSerializer.write (kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
@@ -4843,7 +5390,10 @@ object TroubleOrderSerializer extends CIMSerializer[TroubleOrder]
             if (isSet (0)) input.readString else null,
             if (isSet (1)) input.readString else null,
             if (isSet (2)) input.readString else null,
-            if (isSet (3)) input.readString else null
+            if (isSet (3)) input.readString else null,
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) input.readString else null,
+            if (isSet (6)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -4871,6 +5421,8 @@ object TroubleOrderSerializer extends CIMSerializer[TroubleOrder]
  * @param causeKind <em>undocumented</em>
  * @param reportedStartTime The earliest start time of the Outage - as reported by some system or individual
  * @param FieldDispatchHistory [[ch.ninecode.model.FieldDispatchHistory FieldDispatchHistory]] <em>undocumented</em>
+ * @param Incident [[ch.ninecode.model.Incident Incident]] <em>undocumented</em>
+ * @param TroubleOrder [[ch.ninecode.model.TroubleOrder TroubleOrder]] <em>undocumented</em>
  * @param TroubleTicket [[ch.ninecode.model.TroubleTicket TroubleTicket]] <em>undocumented</em>
  * @group Operations
  * @groupname Operations Package Operations
@@ -4883,6 +5435,8 @@ final case class UnplannedOutage
     causeKind: String = null,
     reportedStartTime: String = null,
     FieldDispatchHistory: String = null,
+    Incident: List[String] = null,
+    TroubleOrder: List[String] = null,
     TroubleTicket: List[String] = null
 )
 extends
@@ -4925,7 +5479,9 @@ extends
         emitattr (1, causeKind)
         emitelem (2, reportedStartTime)
         emitattr (3, FieldDispatchHistory)
-        emitattrs (4, TroubleTicket)
+        emitattrs (4, Incident)
+        emitattrs (5, TroubleOrder)
+        emitattrs (6, TroubleTicket)
         s.toString
     }
     override def export: String =
@@ -4943,17 +5499,23 @@ extends
         "causeKind",
         "reportedStartTime",
         "FieldDispatchHistory",
+        "Incident",
+        "TroubleOrder",
         "TroubleTicket"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("FieldDispatchHistory", "FieldDispatchHistory", "0..1", "0..1"),
+        CIMRelationship ("Incident", "Incident", "0..*", "0..1"),
+        CIMRelationship ("TroubleOrder", "TroubleOrder", "0..*", "0..1"),
         CIMRelationship ("TroubleTicket", "TroubleTicket", "0..*", "0..1")
     )
     val cause: Fielder = parse_element (element (cls, fields(0)))
     val causeKind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val reportedStartTime: Fielder = parse_element (element (cls, fields(2)))
     val FieldDispatchHistory: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val TroubleTicket: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Incident: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TroubleOrder: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val TroubleTicket: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): UnplannedOutage =
     {
@@ -4965,7 +5527,9 @@ extends
             mask (causeKind (), 1),
             mask (reportedStartTime (), 2),
             mask (FieldDispatchHistory (), 3),
-            masks (TroubleTicket (), 4)
+            masks (Incident (), 4),
+            masks (TroubleOrder (), 5),
+            masks (TroubleTicket (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -4983,6 +5547,8 @@ object UnplannedOutageSerializer extends CIMSerializer[UnplannedOutage]
             () => output.writeString (obj.causeKind),
             () => output.writeString (obj.reportedStartTime),
             () => output.writeString (obj.FieldDispatchHistory),
+            () => writeList (obj.Incident, output),
+            () => writeList (obj.TroubleOrder, output),
             () => writeList (obj.TroubleTicket, output)
         )
         OutageSerializer.write (kryo, output, obj.sup)
@@ -5001,7 +5567,9 @@ object UnplannedOutageSerializer extends CIMSerializer[UnplannedOutage]
             if (isSet (1)) input.readString else null,
             if (isSet (2)) input.readString else null,
             if (isSet (3)) input.readString else null,
-            if (isSet (4)) readList (input) else null
+            if (isSet (4)) readList (input) else null,
+            if (isSet (5)) readList (input) else null,
+            if (isSet (6)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -5132,10 +5700,12 @@ private[ninecode] object _Operations
     def register: List[CIMClassInfo] =
     {
         List (
+            ClampAction.register,
             ClearanceAction.register,
             ClearanceDocument.register,
             ControlAction.register,
             CutAction.register,
+            EnergyConsumerAction.register,
             EnergySourceAction.register,
             EstimatedRestorationTime.register,
             FieldSafetySupervisor.register,
@@ -5154,8 +5724,10 @@ private[ninecode] object _Operations
             OutagePlan.register,
             PSREvent.register,
             PlannedOutage.register,
+            PlannedOutageNotification.register,
             SafetyDocument.register,
             ServicePointOutageSummary.register,
+            ShuntCompensatorAction.register,
             SwitchAction.register,
             SwitchingAction.register,
             SwitchingEvent.register,

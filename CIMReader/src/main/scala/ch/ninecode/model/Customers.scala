@@ -174,6 +174,7 @@ object AccountNotificationSerializer extends CIMSerializer[AccountNotification]
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices of this customer.
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param OutagePlan [[ch.ninecode.model.OutagePlan OutagePlan]] The outage plan that identifies the customers that are affected.
+ * @param PlannedOutageNotification [[ch.ninecode.model.PlannedOutageNotification PlannedOutageNotification]] <em>undocumented</em>
  * @param TroubleTickets [[ch.ninecode.model.TroubleTicket TroubleTicket]] All trouble tickets for this customer.
  * @param Works [[ch.ninecode.model.Work Work]] All the works performed for this customer.
  * @group Customers
@@ -197,6 +198,7 @@ final case class Customer
     EndDevices: List[String] = null,
     ErpPersons: List[String] = null,
     OutagePlan: String = null,
+    PlannedOutageNotification: List[String] = null,
     TroubleTickets: List[String] = null,
     Works: List[String] = null
 )
@@ -250,8 +252,9 @@ extends
         emitattrs (11, EndDevices)
         emitattrs (12, ErpPersons)
         emitattr (13, OutagePlan)
-        emitattrs (14, TroubleTickets)
-        emitattrs (15, Works)
+        emitattrs (14, PlannedOutageNotification)
+        emitattrs (15, TroubleTickets)
+        emitattrs (16, Works)
         s.toString
     }
     override def export: String =
@@ -279,6 +282,7 @@ extends
         "EndDevices",
         "ErpPersons",
         "OutagePlan",
+        "PlannedOutageNotification",
         "TroubleTickets",
         "Works"
     )
@@ -286,10 +290,11 @@ extends
         CIMRelationship ("CustomerAccounts", "CustomerAccount", "0..*", "1"),
         CIMRelationship ("CustomerAgreements", "CustomerAgreement", "0..*", "1"),
         CIMRelationship ("CustomerNotifications", "CustomerNotification", "0..*", "0..1"),
-        CIMRelationship ("Customer_attr", "Customer", "0..*", ""),
+        CIMRelationship ("Customer_attr", "Customer", "", "0..*"),
         CIMRelationship ("EndDevices", "EndDevice", "0..*", "0..1"),
         CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..1"),
         CIMRelationship ("OutagePlan", "OutagePlan", "0..1", "0..*"),
+        CIMRelationship ("PlannedOutageNotification", "PlannedOutageNotification", "0..*", "0..*"),
         CIMRelationship ("TroubleTickets", "TroubleTicket", "0..*", "0..1"),
         CIMRelationship ("Works", "Work", "0..*", "0..*")
     )
@@ -307,8 +312,9 @@ extends
     val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
     val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
     val OutagePlan: Fielder = parse_attribute (attribute (cls, fields(13)))
-    val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val PlannedOutageNotification: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
 
     def parse (context: CIMContext): Customer =
     {
@@ -330,8 +336,9 @@ extends
             masks (EndDevices (), 11),
             masks (ErpPersons (), 12),
             mask (OutagePlan (), 13),
-            masks (TroubleTickets (), 14),
-            masks (Works (), 15)
+            masks (PlannedOutageNotification (), 14),
+            masks (TroubleTickets (), 15),
+            masks (Works (), 16)
         )
         ret.bitfields = bitfields
         ret
@@ -359,6 +366,7 @@ object CustomerSerializer extends CIMSerializer[Customer]
             () => writeList (obj.EndDevices, output),
             () => writeList (obj.ErpPersons, output),
             () => output.writeString (obj.OutagePlan),
+            () => writeList (obj.PlannedOutageNotification, output),
             () => writeList (obj.TroubleTickets, output),
             () => writeList (obj.Works, output)
         )
@@ -389,7 +397,8 @@ object CustomerSerializer extends CIMSerializer[Customer]
             if (isSet (12)) readList (input) else null,
             if (isSet (13)) input.readString else null,
             if (isSet (14)) readList (input) else null,
-            if (isSet (15)) readList (input) else null
+            if (isSet (15)) readList (input) else null,
+            if (isSet (16)) readList (input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -913,7 +922,7 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Customer", "Customer", "0..1", "0..*"),
         CIMRelationship ("Incident", "Incident", "0..1", "0..*"),
-        CIMRelationship ("TroubleTickets", "TroubleTicket", "0..*", "0..1")
+        CIMRelationship ("TroubleTickets", "TroubleTicket", "0..*", "0..*")
     )
     val contactType: Fielder = parse_element (element (cls, fields(0)))
     val contactValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1773,8 +1782,9 @@ final case class TroubleTicket
     Customer: String = null,
     Incident: String = null,
     IncidentHazard: List[String] = null,
-    Notification: String = null,
+    Notification: List[String] = null,
     ServiceLocation: String = null,
+    TroubleOrder: String = null,
     UnplannedOutage: String = null
 )
 extends
@@ -1823,9 +1833,10 @@ extends
         emitattr (7, Customer)
         emitattr (8, Incident)
         emitattrs (9, IncidentHazard)
-        emitattr (10, Notification)
+        emitattrs (10, Notification)
         emitattr (11, ServiceLocation)
-        emitattr (12, UnplannedOutage)
+        emitattr (12, TroubleOrder)
+        emitattr (13, UnplannedOutage)
         s.toString
     }
     override def export: String =
@@ -1851,14 +1862,16 @@ extends
         "IncidentHazard",
         "Notification",
         "ServiceLocation",
+        "TroubleOrder",
         "UnplannedOutage"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Customer", "Customer", "0..1", "0..*"),
         CIMRelationship ("Incident", "Incident", "0..1", "0..*"),
         CIMRelationship ("IncidentHazard", "IncidentHazard", "0..*", "0..1"),
-        CIMRelationship ("Notification", "CustomerNotification", "0..1", "0..*"),
+        CIMRelationship ("Notification", "CustomerNotification", "0..*", "0..*"),
         CIMRelationship ("ServiceLocation", "ServiceLocation", "1", "0..*"),
+        CIMRelationship ("TroubleOrder", "TroubleOrder", "0..1", "0..*"),
         CIMRelationship ("UnplannedOutage", "UnplannedOutage", "0..1", "0..*")
     )
     val comment: Fielder = parse_element (element (cls, fields(0)))
@@ -1871,9 +1884,10 @@ extends
     val Customer: Fielder = parse_attribute (attribute (cls, fields(7)))
     val Incident: Fielder = parse_attribute (attribute (cls, fields(8)))
     val IncidentHazard: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val Notification: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val Notification: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
     val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val UnplannedOutage: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val TroubleOrder: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val UnplannedOutage: Fielder = parse_attribute (attribute (cls, fields(13)))
 
     def parse (context: CIMContext): TroubleTicket =
     {
@@ -1891,9 +1905,10 @@ extends
             mask (Customer (), 7),
             mask (Incident (), 8),
             masks (IncidentHazard (), 9),
-            mask (Notification (), 10),
+            masks (Notification (), 10),
             mask (ServiceLocation (), 11),
-            mask (UnplannedOutage (), 12)
+            mask (TroubleOrder (), 12),
+            mask (UnplannedOutage (), 13)
         )
         ret.bitfields = bitfields
         ret
@@ -1917,8 +1932,9 @@ object TroubleTicketSerializer extends CIMSerializer[TroubleTicket]
             () => output.writeString (obj.Customer),
             () => output.writeString (obj.Incident),
             () => writeList (obj.IncidentHazard, output),
-            () => output.writeString (obj.Notification),
+            () => writeList (obj.Notification, output),
             () => output.writeString (obj.ServiceLocation),
+            () => output.writeString (obj.TroubleOrder),
             () => output.writeString (obj.UnplannedOutage)
         )
         DocumentSerializer.write (kryo, output, obj.sup)
@@ -1943,9 +1959,10 @@ object TroubleTicketSerializer extends CIMSerializer[TroubleTicket]
             if (isSet (7)) input.readString else null,
             if (isSet (8)) input.readString else null,
             if (isSet (9)) readList (input) else null,
-            if (isSet (10)) input.readString else null,
+            if (isSet (10)) readList (input) else null,
             if (isSet (11)) input.readString else null,
-            if (isSet (12)) input.readString else null
+            if (isSet (12)) input.readString else null,
+            if (isSet (13)) input.readString else null
         )
         obj.bitfields = bitfields
         obj

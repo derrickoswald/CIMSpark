@@ -15,10 +15,11 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * The diagram being exchanged.
  *
- * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+ * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation. The initial view related attributes can be used to specify an initial view with the x,y coordinates of the diagonal points.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param orientation Coordinate system orientation of the diagram.
+ *        A positive orientation gives standard “right-hand” orientation, with negative orientation indicating a “left-hand” orientation. For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top. A negative orientation gives the “left-hand” orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
  * @param x1InitialView X coordinate of the first corner of the initial view.
  * @param x2InitialView X coordinate of the second corner of the initial view.
  * @param y1InitialView Y coordinate of the first corner of the initial view.
@@ -492,6 +493,7 @@ object DiagramObjectGluePointSerializer extends CIMSerializer[DiagramObjectGlueP
  *
  * @param Element Reference to the superclass object.
  * @param sequenceNumber The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
+ *        The attribute shall be a positive value.
  * @param xPosition The X coordinate of this point.
  * @param yPosition The Y coordinate of this point.
  * @param zPosition The Z coordinate of this point.
@@ -974,8 +976,7 @@ object TextDiagramObjectSerializer extends CIMSerializer[TextDiagramObject]
  * Layers are typically used for grouping diagram objects according to themes and scales.
  *
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
- *
- * CIM based graphics exchange will support an m:n relationship between diagram objects and layers. It will be the task of the importing system to convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
+ * CIM based graphics exchange supports an m:n relationship between diagram objects and layers. The importing system shall convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
