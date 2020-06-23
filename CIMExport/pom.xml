@@ -63,7 +63,8 @@
     </distributionManagement>
 
     <properties>
-        <version.dependency.cassandra_driver>4.1.0</version.dependency.cassandra_driver>
+        <version.dependency.cassandra_driver>4.5.1</version.dependency.cassandra_driver>
+        <version.dependency.joda-time>2.10.6</version.dependency.joda-time>
         <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
         <version.dependency.log4j>2.12.1</version.dependency.log4j>
         <version.dependency.netty-all>4.1.41.Final</version.dependency.netty-all>
@@ -89,6 +90,13 @@
             <groupId>com.datastax.spark</groupId>
             <artifactId>spark-cassandra-connector_${version.dependency.scala}</artifactId>
             <version>${version.dependency.cassandra_spark}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${version.dependency.joda-time}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -130,6 +138,20 @@
         <dependency>
             <groupId>com.datastax.oss</groupId>
             <artifactId>java-driver-core</artifactId>
+            <version>${version.dependency.cassandra_driver}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.datastax.oss</groupId>
+            <artifactId>java-driver-query-builder</artifactId>
+            <version>${version.dependency.cassandra_driver}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.datastax.oss</groupId>
+            <artifactId>java-driver-mapper-runtime</artifactId>
             <version>${version.dependency.cassandra_driver}</version>
             <scope>test</scope>
         </dependency>
@@ -258,6 +280,11 @@ enable_scripted_user_defined_functions: true
                     </yaml>
                 </configuration>
                 <dependencies>
+                    <dependency>
+                        <groupId>org.apache.cassandra</groupId>
+                        <artifactId>cassandra-all</artifactId>
+                        <version>3.11.6</version>
+                    </dependency>
                     <dependency>
                         <groupId>org.apache.logging.log4j</groupId>
                         <artifactId>log4j-cassandra</artifactId>

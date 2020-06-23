@@ -106,7 +106,7 @@
 
         <!-- Spark versions -->
         <version.dependency.spark>3.0.0</version.dependency.spark>
-        <version.dependency.cassandra_spark>2.4.3</version.dependency.cassandra_spark>
+        <version.dependency.cassandra_spark>2.5.0</version.dependency.cassandra_spark>
         <!-- version.dependency.hadoop>3.2.1</version.dependency.hadoop -->
 
         <!-- Component versions -->

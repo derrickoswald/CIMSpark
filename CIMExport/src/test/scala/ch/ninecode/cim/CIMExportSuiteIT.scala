@@ -5,13 +5,14 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.net.InetSocketAddress
 import java.util.Properties
 import java.util.zip.ZipInputStream
 
 import scala.collection.JavaConverters.asScalaBufferConverter
 
-import com.datastax.driver.core.Cluster
-import com.datastax.driver.core.Session
+import com.datastax.oss.driver.api.core.CqlSession
+
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
@@ -36,14 +37,16 @@ class CIMExportSuiteIT
 
     @Test def Main ()
     {
-        val cluster = Cluster.builder.addContactPoint ("localhost").withPort (PORT.toInt).build
-        val session: Session = cluster.connect
-
-        val keyspaces = session.execute ("select * from system_schema.keyspaces where keyspace_name='%s'".format (KEYSPACE)).all
+        val session: CqlSession = CqlSession
+            .builder ()
+            .withLocalDatacenter ("datacenter1")
+            .addContactPoint (new InetSocketAddress ("localhost", PORT.toInt))
+            .build ()
+        val keyspaces = session.execute (s"select * from system_schema.keyspaces where keyspace_name='$KEYSPACE'").all
         val count = if (0 == keyspaces.size)
             0
         else
-            session.execute ("select * from %s.export".format (KEYSPACE)).all.size
+            session.execute (s"select * from $KEYSPACE.export").all.size
 
         CIMExportMain.main (
             Array (
@@ -58,12 +61,12 @@ class CIMExportSuiteIT
                 "--replication", "1",
                 DEMO_DATA))
 
-        val exports = session.execute ("select * from %s.export".format (KEYSPACE)).all
+        val exports = session.execute (s"select * from $KEYSPACE.export").all
         assert (exports.size == count + 1)
         val times = for (export <- exports.asScala)
-            yield (export.getString ("id"), export.getTimestamp ("runtime"))
+            yield (export.getString ("id"), export.getInstant ("runtime"))
         val id = times.maxBy (x ⇒ x._2)._1
-        val transformers = session.execute ("select * from %s.transformers where id='%s'".format (KEYSPACE, id)).all
+        val transformers = session.execute (s"select * from $KEYSPACE.transformers where id='$id'").all
         assert (transformers.size == 2)
         for (trafo <- transformers.asScala)
         {
