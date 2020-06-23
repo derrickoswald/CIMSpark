@@ -4,7 +4,6 @@ import ch.ninecode.model.Asset
 import ch.ninecode.model.BasicElement
 import ch.ninecode.model.IdentifiedObject
 import ch.ninecode.model.RegisteredGenerator
-import ch.ninecode.model.OASISDataItems
 
 import org.scalatest.funsuite.AnyFunSuite
 
@@ -53,17 +52,5 @@ class CHIMSuite extends AnyFunSuite
         )
         obj.bitfields = RegisteredGenerator.fieldsToBitfields ("RegulatingLimit")
         assert (obj.bitfields === Array (0, 0, Integer.parseInt ("10000", 2)))
-    }
-
-    test ("fourInt")
-    {
-
-        val obj = OASISDataItems (
-            null,
-            CA_value = "someCAValue",
-            TRNS_TR_USEAGE = "someUsage"
-        )
-        obj.bitfields = OASISDataItems.fieldsToBitfields ("CA_value", "TRNS_TR_USEAGE")
-        assert (obj.bitfields === Array (Integer.parseInt ("10000000000000000000000", 2), 0, 0, Integer.parseInt ("1000000000", 2)))
     }
 }
