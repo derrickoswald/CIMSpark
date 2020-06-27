@@ -45,7 +45,7 @@ This should produce a jar file in the target/ directory.
 **NOTE: The sbt project file uses the bintray plugin which can be installed by adding (or creating) to project/plugins.sbt the line: 
 _addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.4")_.
 If you use sbt, the jar file will be in a subdirectory of target/ based on the version of the Scala library used,
-e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, that is, the name will be cimreader_2.11-??.** 
+e.g. target/scala-2.12, and the name will not have upper/lowercase preserved, that is, the name will be cimreader_2.12-??.** 
 
 **NOTE: The unit tests can be skipped if you add the magic incantation `mvn -DskipTests package`**
 
@@ -97,47 +97,46 @@ hdfs dfs -ls /data
 ```
 From within the interactive shell in the master container, to start the Spark shell with the CIMReader jar file on the classpath
 ```
-spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:<cimreader_version>
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:<cimspark_version>
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
 Ivy Default Cache set to: /root/.ivy2/cache
 The jars for the packages stored in: /root/.ivy2/jars
-:: loading settings :: url = jar:file:/usr/local/spark-2.2.0/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+:: loading settings :: url = jar:file:/root/spark/spark-3.0.0-bin-hadoop3.2/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
 ch.ninecode.cim#CIMReader added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-69ac0dfd-a56d-46a5-9b45-b9754495a263;1.0
 	confs: [default]
-	found ch.ninecode.cim#CIMReader;<cimreader_version> in central
-	found com.github.scopt#scopt_2.11;3.6.0 in central
-:: resolution report :: resolve 245ms :: artifacts dl 6ms
+	found ch.ninecode.cim#CIMReader;2.12-3.0.0-5.0.1 in local-m2-cache
+	found com.github.scopt#scopt_2.12;4.0.0-RC2 in spark-list
+:: resolution report :: resolve 195ms :: artifacts dl 6ms
 	:: modules in use:
-	ch.ninecode.cim#CIMReader;<cimreader_version> from central in [default]
-	com.github.scopt#scopt_2.11;3.6.0 from central in [default]
+	ch.ninecode.cim#CIMReader;2.12-3.0.0-5.0.1 from local-m2-cache in [default]
+	com.github.scopt#scopt_2.12;4.0.0-RC2 from spark-list in [default]
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
 	---------------------------------------------------------------------
 	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
 	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent
+:: retrieving :: org.apache.spark#spark-submit-parent-69ac0dfd-a56d-46a5-9b45-b9754495a263
 	confs: [default]
-	0 artifacts copied, 2 already retrieved (0kB/10ms)
-17/11/02 08:40:09 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
-Spark context Web UI available at http://172.18.0.2:4040
-Spark context available as 'sc' (master = spark://sandbox:7077, app id = app-20171102083959-0012).
+	0 artifacts copied, 2 already retrieved (0kB/9ms)
+Spark context Web UI available at http://192.168.10.221:4040
+Spark context available as 'sc' (master = spark://sandbox:7077, app id = app-20200625140743-0003).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.2.0
+   /___/ .__/\_,_/_/ /_/\_\   version 3.0.0
       /_/
          
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_121)
+Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.7)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala> 
+scala>
 ```
 * At the scala prompt one can import the classes defined in the CIMReader jar:
 ```scala
@@ -309,7 +308,7 @@ so to match that, use Spark release 2.4.5 (Feb 5 2020), Pre-built for Hadoop 2.7
 hence the file is currently spark-2.4.5-bin-hadoop2.7.tgz.
 
 Unpack the tarball into an appropriate directory on the remote client.
-The name of this directory will be used to set the SPARK_HOME environment variable (e.g. /home/derrick/spark/spark-2.4.5-bin-hadoop2.7 shown below).
+The name of this directory will be used to set the SPARK_HOME environment variable (e.g. /root/spark/spark-2.4.5-bin-hadoop2.7 shown below).
 
 # R
 
@@ -317,7 +316,7 @@ Start RStudio or R.
 
 Install the SparkR package.
 
-    Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.5-bin-hadoop2.7")
+    Sys.setenv (SPARK_HOME="/root/spark/spark-2.4.5-bin-hadoop2.7")
     install.packages (pkgs = file.path(Sys.getenv("SPARK_HOME"), "R", "lib", "SparkR"), repos = NULL)
 
 Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio),
@@ -325,16 +324,16 @@ except do not specify a local master and include the CIMReader reader as a jar t
 
 ```
 # set up the Spark system
-Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.4.5-bin-hadoop2.7")
+Sys.setenv (SPARK_HOME="/root/spark/spark-2.4.5-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-<cimreader_version>.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/root/code/CIMSpark/target/CIMReader-<cimreader_version>.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
 
 ```
 # read the data file
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/DemoData.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
 head (sql ("select * from elements")) # triggers evaluation
 
 # read the edges RDD as an R data frame
