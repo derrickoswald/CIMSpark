@@ -183,6 +183,7 @@ class CIMRelation (
             val fs = path.getFileSystem (configuration)
             if (fs.exists (path))
             {
+                log.info (s"reading cache: $_Cache")
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
                 put (rdd, "Elements", true)
                 make_tables (rdd)
@@ -269,7 +270,10 @@ class CIMRelation (
 
             // cache elements if requested
             if (_Cache != "")
+            {
+                log.info (s"writing cache: $_Cache")
                 ret.saveAsObjectFile (_Cache)
+            }
         }
 
         ret
