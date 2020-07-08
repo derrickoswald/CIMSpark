@@ -63,7 +63,7 @@
     </distributionManagement>
 
     <properties>
-        <version.dependency.cassandra_driver>4.5.1</version.dependency.cassandra_driver>
+        <version.dependency.cassandra_driver>4.7.2</version.dependency.cassandra_driver>
         <version.dependency.joda-time>2.10.6</version.dependency.joda-time>
         <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
         <version.dependency.log4j>2.12.1</version.dependency.log4j>
