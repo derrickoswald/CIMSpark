@@ -156,7 +156,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
         val cr = encoder.encode (cb, bytes, true)
         if (!cr.isUnderflow)
             cr.throwException ()
-        bytes.position
+        bytes.position ()
     }
 
     def parse_one (): Boolean =
