@@ -247,18 +247,20 @@ class CIMRelation (
             // perform topological processing if requested
             if (_Topo)
             {
-                val options = CIMTopologyOptions (
-                    identify_islands = _Islands,
-                    force_retain_switches = _Force_Retain_Switches,
-                    force_retain_fuses = _Force_Retain_Fuses,
-                    force_switch_separate_islands = _Force_Switch_Separate_Islands,
-                    force_fuse_separate_islands = _Force_Fuse_Separate_Islands,
-                    default_switch_open_state = _Default_Switch_Open_State,
-                    debug = _Debug,
-                    storage = _StorageLevel
+                val ntp = CIMNetworkTopologyProcessor (
+                    spark,
+                    CIMTopologyOptions (
+                        identify_islands = _Islands,
+                        force_retain_switches = _Force_Retain_Switches,
+                        force_retain_fuses = _Force_Retain_Fuses,
+                        force_switch_separate_islands = _Force_Switch_Separate_Islands,
+                        force_fuse_separate_islands = _Force_Fuse_Separate_Islands,
+                        default_switch_open_state = _Default_Switch_Open_State,
+                        debug = _Debug,
+                        storage = _StorageLevel
+                    )
                 )
-                val ntp = CIMNetworkTopologyProcessor (spark)
-                ret = ntp.process (options).asInstanceOf[RDD[Row]]
+                ret = ntp.process.asInstanceOf[RDD[Row]]
             }
 
             // set up edge graph if requested

@@ -43,14 +43,16 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (session)
-            val new_elements = topo.process (
+            val topo = CIMNetworkTopologyProcessor (
+                session,
                 CIMTopologyOptions (
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
                     debug = true,
-                    storage = StorageLevel.MEMORY_AND_DISK_SER))
+                    storage = StorageLevel.MEMORY_AND_DISK_SER)
+            )
+            val new_elements = topo.process
 
             val process = System.nanoTime ()
 
@@ -75,14 +77,16 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (session)
-            val new_elements = topo.process (
+            val topo = CIMNetworkTopologyProcessor (
+                session,
                 CIMTopologyOptions (
                     identify_islands = false,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
                     debug = true,
-                    storage = StorageLevel.MEMORY_AND_DISK_SER))
+                    storage = StorageLevel.MEMORY_AND_DISK_SER)
+            )
+            val new_elements = topo.process
 
             val process = System.nanoTime ()
 
@@ -109,14 +113,16 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (session)
-            val new_elements = topo.process (
+            val topo = CIMNetworkTopologyProcessor (
+                session,
                 CIMTopologyOptions (
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
                     debug = true,
-                    storage = StorageLevel.MEMORY_AND_DISK_SER))
+                    storage = StorageLevel.MEMORY_AND_DISK_SER)
+            )
+            val new_elements = topo.process
 
             val process = System.nanoTime ()
 
@@ -145,14 +151,16 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (session)
-            val new_elements = topo.process (
+            val topo = CIMNetworkTopologyProcessor (
+                session,
                 CIMTopologyOptions (
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
                     debug = true,
-                    storage = StorageLevel.MEMORY_AND_DISK_SER))
+                    storage = StorageLevel.MEMORY_AND_DISK_SER)
+            )
+            val new_elements = topo.process
 
             val process = System.nanoTime ()
 

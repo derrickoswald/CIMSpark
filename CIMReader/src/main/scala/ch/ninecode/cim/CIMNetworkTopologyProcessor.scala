@@ -140,17 +140,13 @@ import ch.ninecode.model._
  *
  - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  *
- * @param spark The session with CIM RDD defined, for which the topology should be calculated
+ * @param spark the session with CIM RDD defined, for which the topology should be calculated
+ * @param options options in effect for the process operation
  */
-case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
+case class CIMNetworkTopologyProcessor (spark: SparkSession, options: CIMTopologyOptions) extends CIMRDD
 {
     private implicit val session: SparkSession = spark
     private implicit val log: Logger = LoggerFactory.getLogger(getClass)
-
-    /**
-     * Options in effect for the process operation.
-     */
-    var options: CIMTopologyOptions = CIMTopologyOptions ()
 
     /**
      * Index of normalOpen field in Switch bitmask.
@@ -833,10 +829,9 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      *
      * @return The new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
      */
-    def process (_options: CIMTopologyOptions): RDD[Element] =
+    def process: RDD[Element] =
     {
         log.info ("performing Network Topology Processing")
-        options = _options
         implicit val storage: StorageLevel = options.storage // for put()
 
         // get the initial graph based on edges
@@ -984,20 +979,20 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      * Conditionally create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
      * Note, if these RDD exist and are already populated, this method does nothing.
-     * Otherwise it calls the [[process(_options:ch\.ninecode\.cim\.CIMTopologyOptions)* process]] method.
+     * Otherwise it calls the [[process ]] method.
      *
      * @return Either the old Elements RDD or a new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
      */
-    def processIfNeeded (_options: CIMTopologyOptions): RDD[Element] =
+    def processIfNeeded: RDD[Element] =
     {
         val nodes = getOrElse[TopologicalNode]
         if (nodes.isEmpty)
-            process (_options)
+            process
         else
         {
             val islands = getOrElse[TopologicalIsland]
-            if (_options.identify_islands && islands.isEmpty)
-                process (_options)
+            if (options.identify_islands && islands.isEmpty)
+                process
             else
                 get [Element]("Elements")
         }
